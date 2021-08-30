@@ -1,1 +1,0 @@
-### Hostname Rewrites
