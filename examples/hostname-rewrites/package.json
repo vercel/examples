@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "cross-env NODE_ENV=production node ./node_modules/next/dist/bin/next build",
-    "start": "cross-env NODE_ENV=production node ./node_modules/next/dist/bin/next start"
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "next": "https://next-middleware-build.vercel.sh/next-v12.0.0-nightly.7.tgz",
