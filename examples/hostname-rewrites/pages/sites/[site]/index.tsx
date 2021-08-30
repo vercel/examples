@@ -4,16 +4,16 @@ export default function Index(props){
         <>
         <div>
             <h1>{props.name}</h1>
-            <p>Subdomain: {props.subdomain}.vercel.app</p>
+            <p>Subdomain: {props.subdomain}.vercel.sh</p>
             {
                 props.customDomain &&
                 <p>Custom Domain: {props.customDomain}</p>
             }
         </div>
         <div>
-            <a href="https://test-site-1.vercel.app">test-site-1.vercel.app  •</a>
-            <a href="https://test-site-2.vercel.app">  test-site-2.vercel.app  •</a>
-            <a href="https://test-site-3.vercel.app">  test-site-3.vercel.app</a>
+            <a href="https://test-site-1.vercel.sh">test-site-1.vercel.sh  •</a>
+            <a href="https://test-site-2.vercel.sh">  test-site-2.vercel.sh  •</a>
+            <a href="https://test-site-3.vercel.sh">  test-site-3.vercel.sh</a>
         </div>
         </>
     )
