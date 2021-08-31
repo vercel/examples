@@ -24,9 +24,9 @@ export default function About(props){
 }
 
 const mockDB = [
-    {name: "Test Site", subdomain: "test-site-1", customDomain: "test-site-vercel.com"},
-    {name: "Test Site 2", subdomain: "test-site-2", customDomain: null},
-    {name: "Test Site 3", subdomain: "test-site-3", customDomain: null},
+    {name: "Hostname 1", subdomain: "hostname-1", customDomain: "hostname-vercel.com"},
+    {name: "Hostname 2", subdomain: "hostname-2", customDomain: null},
+    {name: "Hostname 3", subdomain: "hostname-3", customDomain: null},
 ]
 
 export async function getStaticPaths() {
