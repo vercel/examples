@@ -4,7 +4,7 @@ This repository contains example Edge Middleware functions and the use cases for
 
 | Example                                  | Description                                                  |
 | ---------------------------------------- | ------------------------------------------------------------ |
-| [Hostname Rewrites](./hostname-rewrites) | This example shows how you can use middleware rewrites to capture hostnames (subdomains, custom domains) and render the appropriate content using ISR. |
-| [A/B Testing](./ab-testing)              | Blah                                                         |
-| asdasd                                   |                                                              |
+| [A/B Testing](./ab-testing)              | Use edge middleware to conduct A/B testing directly on server-side, hence reducing layout shift and improving your site's performance. |
+| [Hostname Rewrites](./hostname-rewrites) | Use middleware rewrites to capture hostnames (subdomains, custom domains) and render the appropriate content using ISR. |
+|                                          |                                                              |
 
