@@ -63,6 +63,8 @@ That's the only requirement to deploy. After running a deploy with the proper bu
 
 ## Middleware Function API
 
+:mega: We’re actively exploring evolving this API to be more familiar with the Web Platform. Changes will follow!
+
 The middleware consists simply of a function (sync or async) that is called with three parameters: `EdgeRequest`, `EdgeResponse` and `EdgeNext`. This signature is inspired in the [Express.JS middleware](https://expressjs.com/en/guide/using-middleware.html) notation and the parameters that are passed to the function are a mixture of well-known Node.JS APIs and the Web Fetch standard.
 
 The middleware function **MUST** either finish the request by writing a response or keep the request execution by imperatively calling `next`. Check below the API details and recall that if nothing is written in the response object and neither `next` i called, the request may hang until it times out.
