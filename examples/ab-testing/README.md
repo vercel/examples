@@ -9,7 +9,28 @@ For context, here's an example of this in action (open this both in your browser
 
 Since the different variants are generated statically on the server side, it mitigates any potential layout shift that could happen when a variant modal is inserted into the DOM on client side, hence improving your site's performance.
 
-The magic happens in the `_middleware.ts` folder:
+The magic happens in the [`_middleware.ts` file](/examples/ab-testing/pages/home/_middleware.ts):
+
+```javascript
+export function middleware(req, res) {
+
+    // check if there is a cookie called "bucket"
+    let bucket = req.cookies.bucket;
+
+    // if the "bucket" cookie doesn't exist
+    if (!bucket) {
+      
+      // randomly assign values "a" or "b" to the bucket variable
+      bucket = Math.random() >= 0.5 ? 'a' : 'b';
+
+      // set "bucket" cookie to the bucket variable
+      res.cookie('bucket', bucket);
+    }
+  
+    // rewrite content according to the value of the bucket variable
+    res.rewrite(`/home/${bucket}`);
+}
+```
 
 
 
