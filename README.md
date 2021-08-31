@@ -18,21 +18,17 @@ The use-cases for Edge Middleware include:
 
 When you define and deploy middleware as part of your Next.js application, we deploy them globally as Edge Functions that respond instantly to user requests. Unlike Serverless Functions, there are no cold boots and they run automatically in every region of our Edge Network.
 
-**How to use this repository**
-
-We are running the Early Access Program (EAP) through this repository. In it you'll find everything you need to get set up with the feature, provide feedback, and dive into examples so that you can begin trying things out yourself. 
-
-**Get started:** 
+## Get started:
 
 1. Download the [packed version](https://next-middleware-build.vercel.sh/next-v12.0.0-nightly.7.tgz) of Next. Since it's an unreleased version of Next.js, you will have to point to this version from [`package.json`](package.json#L11).
 
 2. The runtime required to build Next.js with the Edge Middleware is not publish yet either so you will have to require the project to use the specific dev builder version like in the [`vercel.json`](vercel.json#L5) file of this repo.
 
-**Read the docs:** 
+## Read the docs:
 
 We are writing the docs similarily to how we write code: iteratively and alongside the featureset. You can [read the docs here](https://github.com/vercel-customer-feedback/edge-middleware/blob/main/docs/docs.md), they're part of this repository. If you have any questions or suggestions about the docs, feel free to [open a discussion](https://github.com/vercel-customer-feedback/edge-middleware/discussions), or [submit a PR](https://github.com/vercel-customer-feedback/edge-middleware/pulls) with your suggestions! 
 
-**Provide feedback:**
+## Provide feedback:
 
 We are collecting feedback right here in this repo using Discussions and Issues. How do you know if you should open a discussion or an issue? 
 
