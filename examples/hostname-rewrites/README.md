@@ -8,7 +8,7 @@ For context, here are some example pages:
 - https://test-site-3.vercel.sh/ (subdomain)
 - https://test-site-vercel.com/ (custom domain)
 
-All of these generated sites are powered by ISR (no SSR at all) so they load pretty much instantly + the inter-page transitions are lightning fast. The app.platformize.co itself is static + SWR, which provides a great client-side transition UX.
+All of these generated sites are powered by ISR (no SSR at all) so they load pretty much instantly + the inter-page transitions are lightning fast.
 
 The example above is generated based on the following mock database:
 
@@ -20,15 +20,19 @@ const mockDB = [
 ]
 ```
 
-## Deploy your own
+When deploying your own clone of this example, you will need to replace the data fetching methods in `getStaticPaths` and `getStaticProps` with your own database of choice (BYOD, *Bring-Your-Own-Database*).
+
+## How to Use
+
+You can choose from one of the following two methods to use this repository:
+
+### One-Click Deploy
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel-customer-feedback/edge-middleware/tree/main/examples/hostname-rewrites&project-name=platforms&repository-name=platforms)
 
-
-
-## How to use
+### Clone and Deploy
 
 Download this repository via git:
 
@@ -45,4 +49,8 @@ yarn create next-app --example edge-middleware/examples/hostname-rewrites hostna
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
+
+> 💡 Do note that you will need to replace the `ROOT_URL` variable in the `.env.example` file with your domain of choice and add that domain as a wildcard domain your Vercel project.
+
+### 
 
