@@ -3,9 +3,9 @@
 In this example, you'll learn how to programmatically create unique content pages for your users with a multi-tenant infrastructure using Edge Middleware. Each user gets assigned a unique subdomain when they create their account, with the (usually paid) option to add a custom domain.
 
 For context, here are some example pages:  
-- https://test-site-1.vercel.app/ (subdomain)
-- https://test-site-2.vercel.app/ (subdomain)
-- https://test-site-3.vercel.app/ (subdomain)
+- https://test-site-1.vercel.sh/ (subdomain)
+- https://test-site-2.vercel.sh/ (subdomain)
+- https://test-site-3.vercel.sh/ (subdomain)
 - https://test-site-vercel.com/ (custom domain)
 
 All of these generated sites are powered by ISR (no SSR at all) so they load pretty much instantly + the inter-page transitions are lightning fast. The app.platformize.co itself is static + SWR, which provides a great client-side transition UX.
@@ -19,3 +19,10 @@ const mockDB = [
     {name: "Test Site 3", subdomain: "test-site-3", customDomain: null},
 ]
 ```
+
+## Deploy your own
+
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel-customer-feedback/edge-middleware/tree/main/examples/hostname-rewrites&project-name=hostname%20rewrites&repository-name=hostname-rewrites)
+
