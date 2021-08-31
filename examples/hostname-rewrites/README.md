@@ -26,3 +26,23 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel-customer-feedback/edge-middleware/tree/main/examples/hostname-rewrites&project-name=platforms&repository-name=platforms)
 
+
+
+## How to use
+
+Download this repository via git:
+
+```bash
+git clone https://github.com/vercel-customer-feedback/edge-middleware.git
+```
+
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+
+```bash
+npx create-next-app --example edge-middleware/examples/hostname-rewrites hostname-rewrites
+# or
+yarn create next-app --example edge-middleware/examples/hostname-rewrites hostname-rewrites
+```
+
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+
