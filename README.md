@@ -1,8 +1,22 @@
-### Welcome to the Early Access Program (EAP) for Edge Functions
+# Welcome to the Early Access Program (EAP) for Edge Functions
 
 We're excited to have you participate in Vercel's EAPs. In this repository, you will find everything you need to get started testing Vercel's Edge Middleware features.  
 
+## About Edge Functions 
+
 Edge Functions is a Vercel technology that allows our customers to run Javascript code at the Edge right before a request is processed. Based on the incoming request shape, the customer can perform effects on the response such as rewriting, redirecting, adding headers or intercepting the request and respond. This enables a number of interesting features such as performing effects based on the user agent, A/B testing, country blocking, etc.
+
+One of the easiest ways to introduce Edge Functions into your stack is as middleware.
+
+The use-cases for Edge Middleware include:
+- Experimentation: A/B Testing and Feature Flags
+- Security: Protecting your site from attacks and bots
+- Dynamic Routing: Decide what page to serve, with code.
+- Dynamic Headers
+- Observability and Logging without client-side scripts
+- Authentication
+
+When you define and deploy middleware as part of your Next.js application, we deploy them globally as Edge Functions that respond instantly to user requests. Unlike Serverless Functions, there are no cold boots and they run automatically in every region of our Edge Network.
 
 **How to use this repository**
 
