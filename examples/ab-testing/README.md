@@ -9,6 +9,10 @@ For context, here's an example of this in action (open this both in your browser
 
 Since the different variants are generated statically on the server side, it mitigates any potential layout shift that could happen when a variant modal is inserted into the DOM on client side, hence improving your site's performance.
 
+The magic happens in the `_middleware.ts` folder:
+
+
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:
