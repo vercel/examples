@@ -5,7 +5,7 @@ In this example, you'll learn how conduct A/B testing directly on server-side us
 For context, here's an example of this in action (open this both in your browser and incognito):
 - https://edge-middleware-demo.vercel.sh/home
 
-![A/B Testing](/public/ab-testing-demo.png)
+![A/B Testing](/examples/ab-testing/public/ab-testing-demo.png)
 
 Since the different variants are generated statically on the server side, it mitigates any potential layout shift that could happen when a variant modal is inserted into the DOM on client side, hence improving your site's performance.
 
