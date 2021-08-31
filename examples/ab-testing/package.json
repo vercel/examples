@@ -1,5 +1,5 @@
 {
-  "name": "hostname-rewrites",
+  "name": "ab-testing",
   "version": "0.1.0",
   "private": true,
   "scripts": {
