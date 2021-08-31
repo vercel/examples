@@ -152,6 +152,10 @@ Once the Edge Middleware is deployed it will run with V8 and a limited set of AP
 
 The following APIs are available in the runtime:
 
+### Fetch
+
+You can use the [`fetch` API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) from the runtime. This enables some powerful use cases like using the middleware as a proxy or connecting to external storage APIs. You have to be careful with this though because the chances of adding latency are quite high. Consider that if you define a root Edge Middleware function running a fetch against a storage in Virginia and somebody access your platform from Tokio, there will be a request that has to be resolved from our Edge (closest to Tokio) to Virgina, and that may happen before every single request making your site sloppy. When using the `fetch` API you must make sure it doesn't run for every single request and also ensure there is a good latency for the request.
+
 ### Base64
 
 - [`atob`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/atob) Decodes a string of data which has been encoded using base-64 encoding.
