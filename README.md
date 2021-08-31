@@ -6,9 +6,7 @@ We're excited to have you participate in Vercel's EAPs. In this repository, you 
 
 Edge Functions is a Vercel technology that allows our customers to run Javascript code at the Edge right before a request is processed. Based on the incoming request shape, the customer can perform effects on the response such as rewriting, redirecting, adding headers or intercepting the request and respond. This enables a number of interesting features such as performing effects based on the user agent, A/B testing, country blocking, etc.
 
-One of the easiest ways to introduce Edge Functions into your stack is as middleware.
-
-The use-cases for Edge Middleware include:
+One of the easiest ways to introduce Edge Functions into your stack is as middleware, and the use-cases for Edge Middleware include:
 - Experimentation: A/B Testing and Feature Flags
 - Security: Protecting your site from attacks and bots
 - Dynamic Routing: Decide what page to serve, with code.
