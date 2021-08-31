@@ -1,4 +1,4 @@
-## Hostname Rewrites Example
+# Hostname Rewrites Example
 
 In this example, you'll learn how to programmatically create unique content pages for your users with a multi-tenant infrastructure using Edge Middleware. Each user gets assigned a unique subdomain when they create their account, with the (usually paid) option to add a custom domain.
 

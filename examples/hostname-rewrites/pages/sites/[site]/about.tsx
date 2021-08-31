@@ -1,11 +1,11 @@
 import Link from 'next/link'
 
-export default function Index(props){
+export default function About(props){
 
     return (
         <>
         <div>
-            <h1>{props.name}</h1>
+            <h1>About {props.name}</h1>
         </div>
         <div>
             <Link href="/">
@@ -16,12 +16,8 @@ export default function Index(props){
             </Link>
         </div>
         <div>
-            <p>More examples:</p>
-            <ul>
-                <li><a href="https://test-site-1.vercel.sh">test-site-1.vercel.sh</a></li>
-                <li><a href="https://test-site-2.vercel.sh">test-site-2.vercel.sh</a></li>
-                <li><a href="https://test-site-3.vercel.sh">test-site-3.vercel.sh</a></li>
-            </ul>
+            <p>Subdomain: {props.subdomain}.vercel.sh</p>
+            <p>Custom Domain: {props.customDomain || 'none'}</p>
         </div>
         </>
     )
