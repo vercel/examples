@@ -16,11 +16,11 @@ One of the easiest ways to introduce Edge Functions into your stack is as middle
 
 When you define and deploy middleware as part of your Next.js application, we deploy them globally as Edge Functions that respond instantly to user requests. Unlike Serverless Functions, there are no cold boots and they run automatically in every region of our Edge Network.
 
-## Get started:
+## Requirements:
 
 1. Install the [packed version](https://next-middleware-build.vercel.sh/latest) of Next. Since it's an unreleased version of Next.js, you will have to point to this version from [`package.json`](package.json#L11).
 
-2. The runtime required to build Next.js with the Edge Middleware is not publish yet either so you will have to require the project to use the specific dev builder version like in the [`vercel.json`](vercel.json#L5) file of this repo.
+2. The runtime required to build Next.js with Edge Middleware in production is not published yet either so you will have to require the project to use the specific dev builder version like in the [`vercel.json`](vercel.json#L5) file of this repo.
 
 ## Read the docs:
 
