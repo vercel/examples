@@ -22,9 +22,9 @@ export default function About(props){
             </Link>
         </div>
         <div>
-            <p>{props.description}</p>
-            <p>Subdomain: {props.subdomain}.vercel.sh</p>
-            <p>Custom Domain: {props.customDomain || 'none'}</p>
+            <p><b>Properties</b>: {props.description}</p>
+            <p><b>Subdomain</b>: {props.subdomain}.vercel.sh</p>
+            <p><b>Custom Domain</b>: {props.customDomain || 'none'}</p>
         </div>
         </>
     )
