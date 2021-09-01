@@ -12,7 +12,7 @@ You should see slightly more latency in general since it is literally impossible
 
 ### To what extent can we move all of the application into `_middleware`?
 
-Up to the you. We limit soon the size of Edge Functions to be somewhere around 1MB but for now you can move any amount of code. Because an Edge Middleware is intended to run _before_ requests, the less code it requires to run, the better so it is best to use Edge Middleware only for the purpose it is designed: preprocessing requests.
+Up to the you. Soon we will limit the size of Edge Functions to be somewhere around 1MB but for now you can move any amount of code. Because an Edge Middleware is intended to run _before_ requests, the less code it requires to run, the better so it is best to use Edge Middleware only for the purpose it is designed: preprocessing requests.
 
 ### What happens if I forged to call `next`?
 
