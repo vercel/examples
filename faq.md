@@ -12,11 +12,11 @@ You should see slightly more latency in general since it is literally impossible
 
 ### To what extent can we move all of the application into `_middleware`?
 
-Up to the you. Soon we will limit the size of Edge Functions to be somewhere around 1MB but for now you can move any amount of code. Because an Edge Middleware is intended to run _before_ requests, the less code it requires to run, the better so it is best to use Edge Middleware only for the purpose it is designed: preprocessing requests.
+Up to the you. Soon we will limit the size of Edge Functions to be somewhere around 1MB. For now you can move any amount of code. Because an Edge Middleware is intended to run _before_ requests, the less code it requires to run, the better so it is best to use Edge Middleware only for the purpose it is designed: preprocessing requests.
 
-### What happens if I forged to call `next`?
+### What happens if I forget to call `next`?
 
-If you didn't write any content in the response either, the middleware will hang and your request will do too ending in a timeout error.
+If you didn't write any content in the response either, the middleware will hang and your request will end in a timeout error.
 
 ### What happens if I add some code after `next`?
 
@@ -36,4 +36,4 @@ Yes. When it is an ES Module that doesn't depend on Node.JS APIs we will bundle 
 
 ## How to leave feedback
 
-To report issues and leave feedback first make sure you are using the most recent version of both the runtime builder and Next.JS. Then if the issue persists you can open an issue in this repository with your feedback or request.
+To report issues and leave feedback first make sure you are using the most recent version of both the runtime builder and Next.JS. Then, if the issue persists, you can open an issue in this repository with your feedback or request.
