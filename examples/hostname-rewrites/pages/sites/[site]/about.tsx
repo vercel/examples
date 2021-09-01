@@ -1,9 +1,14 @@
+import Head from 'next/head'
 import Link from 'next/link'
 
 export default function About(props){
 
     return (
         <>
+        <Head>
+            <title>{props.name}</title>
+            <link rel="icon" href='/favicon.ico' />
+        </Head>
         <div>
             <h1>About {props.name}</h1>
         </div>

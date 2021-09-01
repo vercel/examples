@@ -1,9 +1,14 @@
+import Head from 'next/head'
 import Link from 'next/link'
 
 export default function Index(props){
 
     return (
         <>
+        <Head>
+            <title>{props.name}</title>
+            <link rel="icon" href='/favicon.ico' />
+        </Head>
         <div>
             <h1>{props.name}</h1>
         </div>
@@ -58,7 +63,6 @@ export async function getStaticProps({ params: {site} }) {
   
     // fetch data from mock database using the site value as the key
     const data = mockDB.filter(item => customDomain ? item.customDomain == site : item.subdomain == site);
-    console.log(site)
 
     return { 
         props: {...data[0]},
