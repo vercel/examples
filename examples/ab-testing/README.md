@@ -12,7 +12,9 @@ Since the different variants are generated statically on the server side, it mit
 The magic happens in the [`_middleware.ts` file](/examples/ab-testing/pages/home/_middleware.ts):
 
 ```javascript
-export function middleware(req, res) {
+import type { EdgeRequest, EdgeResponse } from 'next';
+
+export default function (req: EdgeRequest, res: EdgeResponse) {
 
     // check if there is a cookie called "bucket"
     let bucket = req.cookies.bucket;

@@ -1,4 +1,6 @@
-export function middleware(req, res) {
+import type { EdgeRequest, EdgeResponse } from 'next';
+
+export default function (req: EdgeRequest, res: EdgeResponse) {
 
     // check if there is a cookie called "bucket"
     let bucket = req.cookies.bucket;
