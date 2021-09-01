@@ -24,9 +24,9 @@ export default function About(props){
 }
 
 const mockDB = [
-    {name: "Hostname 1", subdomain: "hostname-1", customDomain: "custom-domain-1.com"},
-    {name: "Hostname 2", subdomain: "hostname-2", customDomain: null},
-    {name: "Hostname 3", subdomain: "hostname-3", customDomain: null},
+    {name: "Site 1 (subdomain + custom domain)", subdomain: "subdomain-1", customDomain: "custom-domain-1.com"},
+    {name: "Site 2 (subdomain only)", subdomain: "subdomain-2", customDomain: null},
+    {name: "Site 3 (subdomain only)", subdomain: "subdomain-3", customDomain: null},
 ]
 
 export async function getStaticPaths() {

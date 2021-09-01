@@ -18,9 +18,9 @@ export default function Index(props){
         <div>
             <p>More examples:</p>
             <ul>
-                <li><a href="https://hostname-1.vercel.sh">hostname-1.vercel.sh</a></li>
-                <li><a href="https://hostname-2.vercel.sh">hostname-2.vercel.sh</a></li>
-                <li><a href="https://hostname-3.vercel.sh">hostname-3.vercel.sh</a></li>
+                <li><a href="https://subdomain-1.vercel.sh">subdomain-1.vercel.sh</a></li>
+                <li><a href="https://subdomain-2.vercel.sh">subdomain-2.vercel.sh</a></li>
+                <li><a href="https://subdomain-3.vercel.sh">subdomain-3.vercel.sh</a></li>
                 <li><a href="https://custom-domain-1.com">custom-domain-1.com</a></li>
             </ul>
         </div>
@@ -29,9 +29,9 @@ export default function Index(props){
 }
 
 const mockDB = [
-    {name: "Hostname 1", subdomain: "hostname-1", customDomain: "custom-domain-1.com"},
-    {name: "Hostname 2", subdomain: "hostname-2", customDomain: null},
-    {name: "Hostname 3", subdomain: "hostname-3", customDomain: null},
+    {name: "Site 1 (subdomain + custom domain)", subdomain: "subdomain-1", customDomain: "custom-domain-1.com"},
+    {name: "Site 2 (subdomain only)", subdomain: "subdomain-2", customDomain: null},
+    {name: "Site 3 (subdomain only)", subdomain: "subdomain-3", customDomain: null},
 ]
 
 export async function getStaticPaths() {
