@@ -8,6 +8,7 @@ export default function About(props){
         <Head>
             <title>{props.name}</title>
             <link rel="icon" href='/favicon.ico' />
+            <meta itemProp="description" content={props.description}/>
         </Head>
         <div>
             <h1>About {props.name}</h1>
@@ -21,6 +22,7 @@ export default function About(props){
             </Link>
         </div>
         <div>
+            <p>{props.description}</p>
             <p>Subdomain: {props.subdomain}.vercel.sh</p>
             <p>Custom Domain: {props.customDomain || 'none'}</p>
         </div>
@@ -29,9 +31,9 @@ export default function About(props){
 }
 
 const mockDB = [
-    {name: "Site 1 (subdomain + custom domain)", subdomain: "subdomain-1", customDomain: "custom-domain-1.com"},
-    {name: "Site 2 (subdomain only)", subdomain: "subdomain-2", customDomain: null},
-    {name: "Site 3 (subdomain only)", subdomain: "subdomain-3", customDomain: null},
+    {name: "Site 1", description: "Subdomain + custom domain", subdomain: "subdomain-1", customDomain: "custom-domain-1.com"},
+    {name: "Site 2", description: "Subdomain only", subdomain: "subdomain-2", customDomain: null},
+    {name: "Site 3", description: "Subdomain only", subdomain: "subdomain-3", customDomain: null},
 ]
 
 export async function getStaticPaths() {

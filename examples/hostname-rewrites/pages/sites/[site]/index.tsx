@@ -8,6 +8,7 @@ export default function Index(props){
         <Head>
             <title>{props.name}</title>
             <link rel="icon" href='/favicon.ico' />
+            <meta itemProp="description" content={props.description}/>
         </Head>
         <div>
             <h1>{props.name}</h1>
@@ -26,7 +27,7 @@ export default function Index(props){
                 <li><a href="https://subdomain-1.vercel.sh">subdomain-1.vercel.sh</a></li>
                 <li><a href="https://subdomain-2.vercel.sh">subdomain-2.vercel.sh</a></li>
                 <li><a href="https://subdomain-3.vercel.sh">subdomain-3.vercel.sh</a></li>
-                <li><a href="https://custom-domain-1.com">custom-domain-1.com</a></li>
+                <li><a href="https://custom-domain-1.com">custom-domain-1.com</a> (maps to <a href="https://subdomain-1.vercel.sh">subdomain-1.vercel.sh</a>)</li>
             </ul>
         </div>
         </>
@@ -34,9 +35,9 @@ export default function Index(props){
 }
 
 const mockDB = [
-    {name: "Site 1 (subdomain + custom domain)", subdomain: "subdomain-1", customDomain: "custom-domain-1.com"},
-    {name: "Site 2 (subdomain only)", subdomain: "subdomain-2", customDomain: null},
-    {name: "Site 3 (subdomain only)", subdomain: "subdomain-3", customDomain: null},
+    {name: "Site 1", description: "Subdomain + custom domain", subdomain: "subdomain-1", customDomain: "custom-domain-1.com"},
+    {name: "Site 2", description: "Subdomain only", subdomain: "subdomain-2", customDomain: null},
+    {name: "Site 3", description: "Subdomain only", subdomain: "subdomain-3", customDomain: null},
 ]
 
 export async function getStaticPaths() {
