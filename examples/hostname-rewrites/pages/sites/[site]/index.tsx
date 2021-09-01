@@ -29,7 +29,7 @@ export default function Index(props){
 }
 
 const mockDB = [
-    {name: "Hostname 1", subdomain: "hostname-1", customDomain: "hostname-vercel.com"},
+    {name: "Hostname 1", subdomain: "hostname-1", customDomain: "custom-domain-1.com"},
     {name: "Hostname 2", subdomain: "hostname-2", customDomain: null},
     {name: "Hostname 3", subdomain: "hostname-3", customDomain: null},
 ]
@@ -58,6 +58,7 @@ export async function getStaticProps({ params: {site} }) {
   
     // fetch data from mock database using the site value as the key
     const data = mockDB.filter(item => customDomain ? item.customDomain == site : item.subdomain == site);
+    console.log(site)
 
     return { 
         props: {...data[0]},

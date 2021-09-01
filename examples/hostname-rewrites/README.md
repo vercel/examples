@@ -3,10 +3,10 @@
 In this example, you'll learn how to programmatically create unique content pages for your users with a multi-tenant infrastructure using Edge Middleware. Each user gets assigned a unique subdomain when they create their account, with the (usually paid) option to add a custom domain.
 
 For context, here are some example pages:  
-- https://hostname-1.vercel.sh/ (subdomain)
-- https://hostname-2.vercel.sh/ (subdomain)
-- https://hostname-3.vercel.sh/ (subdomain)
-- https://custom-domain-1.com/ (custom domain)
+- [hostname-1.vercel.sh](https://hostname-1.vercel.sh/) (subdomain)
+- [hostname-2.vercel.sh](https://hostname-2.vercel.sh/) (subdomain)
+- [hostname-3.vercel.sh](https://hostname-3.vercel.sh/) (subdomain)
+- [custom-domain-1.com](https://custom-domain-1.com/) (custom domain)
 
 All of these generated sites are powered by ISR (no SSR at all) so they load pretty much instantly + the inter-page transitions are lightning fast.
 
