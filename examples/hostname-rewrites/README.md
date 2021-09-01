@@ -6,7 +6,7 @@ For context, here are some example pages:
 - https://hostname-1.vercel.sh/ (subdomain)
 - https://hostname-2.vercel.sh/ (subdomain)
 - https://hostname-3.vercel.sh/ (subdomain)
-- https://hostname-vercel.com/ (custom domain)
+- https://custom-domain-1.com/ (custom domain)
 
 All of these generated sites are powered by ISR (no SSR at all) so they load pretty much instantly + the inter-page transitions are lightning fast.
 
@@ -14,7 +14,7 @@ The example above is generated based on the following mock database:
 
 ```
 const mockDB = [
-    {name: "Hostname 1", subdomain: "hostname-1", customDomain: "hostname-vercel.com"},
+    {name: "Hostname 1", subdomain: "hostname-1", customDomain: "custom-domain-1.com"},
     {name: "Hostname 2", subdomain: "hostname-2", customDomain: null},
     {name: "Hostname 3", subdomain: "hostname-3", customDomain: null},
 ]

@@ -24,7 +24,7 @@ export default function About(props){
 }
 
 const mockDB = [
-    {name: "Hostname 1", subdomain: "hostname-1", customDomain: "hostname-vercel.com"},
+    {name: "Hostname 1", subdomain: "hostname-1", customDomain: "custom-domain-1.com"},
     {name: "Hostname 2", subdomain: "hostname-2", customDomain: null},
     {name: "Hostname 3", subdomain: "hostname-3", customDomain: null},
 ]

@@ -21,6 +21,7 @@ export default function Index(props){
                 <li><a href="https://hostname-1.vercel.sh">hostname-1.vercel.sh</a></li>
                 <li><a href="https://hostname-2.vercel.sh">hostname-2.vercel.sh</a></li>
                 <li><a href="https://hostname-3.vercel.sh">hostname-3.vercel.sh</a></li>
+                <li><a href="https://custom-domain-1.com">custom-domain-1.com</a></li>
             </ul>
         </div>
         </>
