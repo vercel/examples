@@ -1,6 +1,6 @@
-import type { EdgeRequest, EdgeResponse } from "next";
+import type { EdgeRequest, EdgeResponse, EdgeNext } from 'next';
 
-export async function middleware(req: EdgeRequest, res: EdgeResponse, next) {
+export default function (req: EdgeRequest, res: EdgeResponse, next: EdgeNext) {
     // Get hostname (e.g. vercel.com, test.vercel.app, etc.)
     const hostname = req.headers.get('host')
 
