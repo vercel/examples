@@ -14,8 +14,6 @@ export default function (req: EdgeRequest, res: EdgeResponse, next: EdgeNext) {
     // Prevent security issues – users should not be able to canonically access
     // the pages/sites folder and its respective contents. This can also be done via a
     // rewrites to a custom 404 page
-
-    // WHAT IF A USER WANTS TO CREATE A ROUTE THAT'S CALLED /sites??????
     
     if (req.url.pathname.startsWith(`/_sites`)) {
         return res.redirect(`/`)
