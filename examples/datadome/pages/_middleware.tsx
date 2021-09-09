@@ -7,6 +7,10 @@ export async function middleware(req: EdgeRequest, res: EdgeResponse, next) {
     return;
   }
 
+  if (req.url.pathname === '/blocked') {
+    req.headers.set('user-agent', 'BLOCKUA');
+  }
+
   const latency = await datadome(
     req,
     res,
@@ -14,12 +18,11 @@ export async function middleware(req: EdgeRequest, res: EdgeResponse, next) {
   );
 
   if (!latency) return;
-  if (req.url.pathname === '/' || req.url.pathname === '/no-connection') {
-    res.setHeader(
-      'x-datadome-latency',
-      String(latency === true ? 'Unavailable' : latency)
-    );
-  }
+
+  res.setHeader(
+    'x-datadome-latency',
+    String(latency === true ? 'Unavailable' : latency)
+  );
 
   next();
 }

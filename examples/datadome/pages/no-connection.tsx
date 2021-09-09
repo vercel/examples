@@ -6,23 +6,26 @@ export default function NoConnection() {
     <Page>
       <h1>Bot Protection with DataDome</h1>
       <h3>This page is using DataDome but the connection is closed.</h3>
+      <p>Navigate to other routes:</p>
       <ul>
+        <li>
+          <Link href="/">
+            <a>Home page using DataDome</a>
+          </Link>
+        </li>
         <li>
           <Link href="/omit">
             <a>Without DataDome</a>
           </Link>
         </li>
         <li>
-          <Link href="/">
-            <a>Use DataDome and keep the connection alive</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/im-a-bot">
-            <a>Simulation of bot</a>
+          <Link href="/blocked">
+            <a>Behind captcha</a>
           </Link>
         </li>
       </ul>
+      <hr />
+      <p>Below is a fetch for this page</p>
       <Headers path="/no-connection" />
       <p>
         You should expect a higher latency for every request if the Edge does

@@ -6,10 +6,11 @@ export default function Omit() {
     <Page>
       <h1>Bot Protection with DataDome</h1>
       <h3>This page is not using DataDome.</h3>
+      <p>Navigate to other routes:</p>
       <ul>
         <li>
           <Link href="/">
-            <a>Use DataDome</a>
+            <a>Home page using DataDome</a>
           </Link>
         </li>
         <li>
@@ -20,15 +21,14 @@ export default function Omit() {
           </Link>
         </li>
         <li>
-          <Link href="/im-a-bot">
-            <a>Simulation of bot</a>
+          <Link href="/blocked">
+            <a>Behind captcha</a>
           </Link>
         </li>
       </ul>
+      <hr />
+      <p>Below is a fetch for this page</p>
       <Headers path="/omit" />
-      <p>
-        This should give an overall idea of how TTFB is affected by DataDome
-      </p>
     </Page>
   );
 }

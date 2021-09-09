@@ -1,7 +1,7 @@
 // temporary, remove once we support logging
 import log from './log';
 
-const DATADOME_TIMEOUT = 300;
+const DATADOME_TIMEOUT = 500;
 const DATADOME_URI_REGEX_EXCLUSION =
   /\.(avi|flv|mka|mkv|mov|mp4|mpeg|mpg|mp3|flac|ogg|ogm|opus|wav|webm|webp|bmp|gif|ico|jpeg|jpg|png|svg|svgz|swf|eot|otf|ttf|woff|woff2|css|less|js)$/i;
 
@@ -68,20 +68,21 @@ export default async function datadome(
     }
   );
 
-  await log('body', stringify(requestData));
-
   const timeoutPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
       reject(new Error('Datadome timeout'));
     }, DATADOME_TIMEOUT);
   });
 
-  let dataDomeRes;
+  let dataDomeRes: Response;
   let dataDomeTook: number;
   const dataDomeStart = Date.now();
 
   try {
-    dataDomeRes = await Promise.race([dataDomeReq, timeoutPromise]);
+    dataDomeRes = (await Promise.race([
+      dataDomeReq,
+      timeoutPromise,
+    ])) as Response;
     dataDomeTook = Date.now() - dataDomeStart;
     log('Datadome took', dataDomeTook);
   } catch (err) {
@@ -98,8 +99,8 @@ export default async function datadome(
   switch (dataDomeRes.status) {
     case 301:
     case 302:
-    case 403:
     case 401:
+    case 403:
       // blocked!
       // in the future we can return the bot kind, bot name, etc.
       const isBot = dataDomeRes.headers.get('x-datadome-isbot');
@@ -116,6 +117,11 @@ export default async function datadome(
         toHeaders(req.headers, dataDomeRes.headers, 'x-datadome-headers')
       );
       res.end(await dataDomeRes.text());
+      return false;
+
+    case 400:
+      // Something is wrong with our authentication
+      await log('DataDome returned 400', dataDomeRes.statusText);
       return false;
 
     case 200:
@@ -179,7 +185,6 @@ function stringify(obj) {
   };
   return obj
     ? Object.keys(obj)
-        .sort((() => {}) as any)
         .map((key) => {
           const value = obj[key];
           if (value === undefined) {

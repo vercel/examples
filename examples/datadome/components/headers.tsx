@@ -21,13 +21,8 @@ export default function Headers({ path }: { path: string }) {
   }, []);
 
   return (
-    <div>
-      <p>
-        If we do a HEAD request to this page the response takes:{' '}
-        <b>~{latency}ms</b>
-      </p>
-      <p>And the headers are:</p>
-      <pre>{JSON.stringify(headers, null, 2)}</pre>
-    </div>
+    <pre style={{ fontSize: '1rem' }}>
+      {JSON.stringify({ path, latency: `~${latency}ms`, headers }, null, 2)}
+    </pre>
   );
 }
