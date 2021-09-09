@@ -3,7 +3,7 @@ export default async function log(...log: any[]) {
   const domain = process.env.UPSTASH_REST_API_DOMAIN;
   const token = process.env.UPSTASH_REST_API_KEY;
 
-  if (!domain || !token || true) {
+  if (!domain || !token) {
     console.log('*[log]', str);
     // Logging with Upstash is disabled
     return;
