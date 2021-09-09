@@ -22,6 +22,16 @@ const mockDB = [
 
 When deploying your own clone of this example, you will need to replace the data fetching methods in `getStaticPaths` and `getStaticProps` with your own database of choice (BYOD, *Bring-Your-Own-Database*).
 
+To give a bit of context of how this can be applied in a real-world context, here's a starter kit that we're currently working on – it's basically a Substack clone with subdomains + custom domains functionality:  
+- [steven.platformize.co](https://steven.platformize.co)
+- [vercel.platformize.co](https://vercel.platformize.co)
+- [retreat.platformize.co](https://retreat.platformize.co)
+- [stey.me](https://stey.me) (custom domain)
+- [vercel.pub](https://vercel.pub) (custom domain)
+- [retreat.vercel.pub](https://retreat.vercel.pub) (custom subdomain)
+
+We will be releasing this starter kit very soon, so stay tuned!
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:
