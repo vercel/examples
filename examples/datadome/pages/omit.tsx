@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { Code, Page, Headers } from '@components';
+import Link from 'next/link'
+import { Code, Page, Headers } from '@components'
 
 export default function Omit() {
   return (
@@ -30,5 +30,5 @@ export default function Omit() {
       <p>Below is a fetch for this page</p>
       <Headers path="/omit" />
     </Page>
-  );
+  )
 }

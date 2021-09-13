@@ -2,7 +2,8 @@
 
 In this example, you'll learn how to programmatically create unique content pages for your users with a multi-tenant infrastructure using Edge Middleware. Each user gets assigned a unique subdomain when they create their account, with the (usually paid) option to add a custom domain.
 
-For context, here are some example pages:  
+For context, here are some example pages:
+
 - [subdomain-1.vercel.sh](https://subdomain-1.vercel.sh/) (subdomain)
 - [subdomain-2.vercel.sh](https://subdomain-2.vercel.sh/) (subdomain)
 - [subdomain-3.vercel.sh](https://subdomain-3.vercel.sh/) (subdomain)
@@ -20,9 +21,10 @@ const mockDB = [
 ]
 ```
 
-When deploying your own clone of this example, you will need to replace the data fetching methods in `getStaticPaths` and `getStaticProps` with your own database of choice (BYOD, *Bring-Your-Own-Database*).
+When deploying your own clone of this example, you will need to replace the data fetching methods in `getStaticPaths` and `getStaticProps` with your own database of choice (BYOD, _Bring-Your-Own-Database_).
 
-To give a bit of context of how this can be applied in a real-world context, here's a starter kit that we're currently working on – it's basically a Substack clone with subdomains + custom domains functionality:  
+To give a bit of context of how this can be applied in a real-world context, here's a starter kit that we're currently working on – it's basically a Substack clone with subdomains + custom domains functionality:
+
 - [steven.platformize.co](https://steven.platformize.co)
 - [vercel.platformize.co](https://vercel.platformize.co)
 - [retreat.platformize.co](https://retreat.platformize.co)

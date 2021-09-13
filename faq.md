@@ -1,6 +1,6 @@
 # FAQ for Edge Functions
 
-_The contents of this document will likely be incorporated into the documentation over time. Feel free to [suggest more questions](https://github.com/vercel-customer-feedback/edge-middleware/discussions/new) as they come up._ 
+_The contents of this document will likely be incorporated into the documentation over time. Feel free to [suggest more questions](https://github.com/vercel-customer-feedback/edge-middleware/discussions/new) as they come up._
 
 ## How stable is it?
 

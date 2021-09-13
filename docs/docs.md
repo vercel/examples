@@ -13,7 +13,7 @@ To keep it updated make sure you run `yarn --update` often so that an old versio
 To start using a middleware in Next.JS you can create a special kind of file anywhere in your `pages/` folder called `_middleware`. Wether your middleware is invoked or not will depend on _where_ you define such file. There is an important difference on how it is invoked depending on the location:
 
 - If you place the middleware file _at the root_ of your pages folder (`pages/_middleware.ts`) it will be called for **every single request**. Note this also includes static assets.
-- If you place it _under a certain path_ within the pages folder (`pages/dashboard/_middleware.ts`) then your middleware will be invoked only for thouse *pages* that live under such route `/dashboard*`.
+- If you place it _under a certain path_ within the pages folder (`pages/dashboard/_middleware.ts`) then your middleware will be invoked only for thouse _pages_ that live under such route `/dashboard*`.
 
 Because defining a middleware can increase latency we encourage you to use a specific path unless your use case requires activating the middleware for every single request. Note that you can have **more than one** middleware in your application.
 
@@ -21,11 +21,11 @@ The middleware file can export either a default or named function called `middle
 
 ```javascript
 // pages/_middleware.ts
-import type { EdgeRequest, EdgeResponse, EdgeNext } from 'next';
+import type { EdgeRequest, EdgeResponse, EdgeNext } from 'next'
 
 export default function (req: EdgeRequest, res: EdgeResponse, next: EdgeNext) {
-    res.setHeader('x-edge', '1');
-    next();
+  res.setHeader('x-edge', '1')
+  next()
 }
 ```
 
@@ -52,10 +52,12 @@ Since we are using a custom release of Next.JS, building the app for production 
 
 ```json
 {
-  "builds": [{
-    "src": "package.json",
-    "use": "@vercelruntimes/next@0.0.1-dev.16"
-  }]
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercelruntimes/next@0.0.1-dev.16"
+    }
+  ]
 }
 ```
 
@@ -75,51 +77,51 @@ Represents an _incoming request_ passing through the middleware. It is simply an
 
 ```typescript
 interface EdgeRequest {
-    geo: {
-        city?: string;
-        country?: string;
-        region?: string;
-    };
-    headers: Headers;
-    cookies: { [key: string]: string };
-    ip?: string;
-    method?: string;
-    ua?: {
-        browser: { major?: string; name?: string; version?: string; };
-        cpu: { architecture?: string; };
-        device: { model?: string; type?: string; vendor?: string; };
-        engine: { name?: string; version?: string; };
-        isBot: boolean;
-        os: { name?: string; version?: string; };
-    };
-    url?: {
-        basePath?: string;
-        hash: string;
-        hostname?: string | null;
-        locale?: {
-            defaultLocale: string;
-            domain?: {
-                defaultLocale: string;
-                domain: string;
-                http?: true;
-                locales?: string[];
-            };
-            locale: string;
-            path: {
-                detectedLocale?: string;
-                pathname: string;
-            };
-            redirect?: string;
-            trailingSlash?: boolean;
-        }
-        page?: string;
-        params?: { [key: string]: string };
-        pathname: string;
-        port?: string | null;
-        protocol?: string | null;
-        query: { [key: string]: string | string[]; };
-        search: string;
+  geo: {
+    city?: string
+    country?: string
+    region?: string
+  }
+  headers: Headers
+  cookies: { [key: string]: string }
+  ip?: string
+  method?: string
+  ua?: {
+    browser: { major?: string; name?: string; version?: string }
+    cpu: { architecture?: string }
+    device: { model?: string; type?: string; vendor?: string }
+    engine: { name?: string; version?: string }
+    isBot: boolean
+    os: { name?: string; version?: string }
+  }
+  url?: {
+    basePath?: string
+    hash: string
+    hostname?: string | null
+    locale?: {
+      defaultLocale: string
+      domain?: {
+        defaultLocale: string
+        domain: string
+        http?: true
+        locales?: string[]
+      }
+      locale: string
+      path: {
+        detectedLocale?: string
+        pathname: string
+      }
+      redirect?: string
+      trailingSlash?: boolean
     }
+    page?: string
+    params?: { [key: string]: string }
+    pathname: string
+    port?: string | null
+    protocol?: string | null
+    query: { [key: string]: string | string[] }
+    search: string
+  }
 }
 ```
 
@@ -129,25 +131,29 @@ An object where you can express effects for the response that is a mixture betwe
 
 ```typescript
 interface EdgeResponse {
-    body?: string | null | ReadableStream;
-    clearCookie(name: string, opts?: CookieSerializeOptions): EdgeResponse;
-    cookie(name: string, value: string, opts?: CookieSerializeOptions): EdgeResponse;
-    cookies: { [key: string]: string };
-    end(): void;
-    finished: boolean;
-    headers: Headers;
-    headersSent: boolean;
-    json(obj: { [key: string]: any }): void
-    location?: string;
-    redirect(location: string)
-    redirect(status: number, location: string)
-    rewriteLocation?: string;
-    send(data?: string | number | boolean | ReadableString<Uint8Array>): void;
-    setHeaders(headers: {[key: string]: value}): EdgeResponse;
-    status(status: number): EdgeResponse;
-    statusCode: number;
-    write(chunk: any): void;
-    writeHead(code: number, headers?: { [key: string]: string }): void;
+  body?: string | null | ReadableStream
+  clearCookie(name: string, opts?: CookieSerializeOptions): EdgeResponse
+  cookie(
+    name: string,
+    value: string,
+    opts?: CookieSerializeOptions
+  ): EdgeResponse
+  cookies: { [key: string]: string }
+  end(): void
+  finished: boolean
+  headers: Headers
+  headersSent: boolean
+  json(obj: { [key: string]: any }): void
+  location?: string
+  redirect(location: string)
+  redirect(status: number, location: string)
+  rewriteLocation?: string
+  send(data?: string | number | boolean | ReadableString<Uint8Array>): void
+  setHeaders(headers: { [key: string]: value }): EdgeResponse
+  status(status: number): EdgeResponse
+  statusCode: number
+  write(chunk: any): void
+  writeHead(code: number, headers?: { [key: string]: string }): void
 }
 ```
 
@@ -156,14 +162,18 @@ interface EdgeResponse {
 When the middleware receives a request it is possible to respond using `EdgeResponse`, but in case you want to continue the execution of such request you can call `next`. Once it is done you can still execute code but you can't perform effects against the response. For example, you could call a tracker service without blocking the request:
 
 ```typescript
-import type { EdgeRequest, EdgeResponse, EdgeNext } from 'next';
+import type { EdgeRequest, EdgeResponse, EdgeNext } from 'next'
 
-export async function middleware(req: EdgeRequest, res: EdgeResponse, next: EdgeNext) {
-    next();
-    await fetch('https://my-tracking-server', {
-        method: 'POST',
-        body: JSON.stringify({ pathname: req.url.pathname })
-    })
+export async function middleware(
+  req: EdgeRequest,
+  res: EdgeResponse,
+  next: EdgeNext
+) {
+  next()
+  await fetch('https://my-tracking-server', {
+    method: 'POST',
+    body: JSON.stringify({ pathname: req.url.pathname }),
+  })
 }
 ```
 
@@ -226,11 +236,11 @@ You may see these requests in the Network panel and you don't have to deal with 
 ```typescript
 // pages/landing/_middleware
 export const middleware = (req, res, next) => {
-    if (req.url.pathname === '/landing' && req.cookies.bucket === 'b') {
-        return res.rewrite('/landing/b');
-    }
-    
-    next()
+  if (req.url.pathname === '/landing' && req.cookies.bucket === 'b') {
+    return res.rewrite('/landing/b')
+  }
+
+  next()
 }
 ```
 

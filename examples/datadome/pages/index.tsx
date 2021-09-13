@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { Code, Page, Headers } from '@components';
+import Link from 'next/link'
+import { Code, Page, Headers } from '@components'
 
 export default function Index() {
   return (
@@ -38,5 +38,5 @@ export default function Index() {
         at the headers.
       </p>
     </Page>
-  );
+  )
 }
