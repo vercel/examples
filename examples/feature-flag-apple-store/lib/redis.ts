@@ -1,5 +1,5 @@
 interface Response {
-  result: string;
+  result: string
 }
 
 export default async function get(key) {
@@ -11,8 +11,8 @@ export default async function get(key) {
         Authorization: `Bearer ${process.env.UPSTASH_SECRET}`,
       },
     }
-  );
+  )
 
-  const response: Response = await req.json();
-  return response.result === 'true';
+  const response: Response = await req.json()
+  return response.result === 'true'
 }

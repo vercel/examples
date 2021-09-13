@@ -27,5 +27,5 @@ export default function Nav() {
         <li>Support</li>
       </ul>
     </nav>
-  );
+  )
 }

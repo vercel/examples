@@ -1,5 +1,5 @@
-import type { EdgeRequest, EdgeResponse, EdgeNext } from 'next';
-import get from 'lib/redis';
+import type { EdgeRequest, EdgeResponse, EdgeNext } from 'next'
+import get from 'lib/redis'
 
 export default async function (
   req: EdgeRequest,
@@ -7,7 +7,7 @@ export default async function (
   next: EdgeNext
 ) {
   if (await get('store-closed')) {
-    res.rewrite(`/_closed`);
+    res.rewrite(`/_closed`)
   }
-  next();
+  next()
 }

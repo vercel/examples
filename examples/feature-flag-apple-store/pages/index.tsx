@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
 function ProductCard({ src, href, name }) {
   return (
@@ -10,7 +10,7 @@ function ProductCard({ src, href, name }) {
         </p>
       </a>
     </li>
-  );
+  )
 }
 
 export default function Home() {
@@ -76,5 +76,5 @@ export default function Home() {
         </ul>
       </section>
     </div>
-  );
+  )
 }
