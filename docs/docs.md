@@ -55,7 +55,7 @@ Since we are using a custom release of Next.JS, building the app for production 
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercelruntimes/next@0.0.1-dev.16"
+      "use": "@vercelruntimes/next@0.0.1-dev.19"
     }
   ]
 }
