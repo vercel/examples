@@ -8,3 +8,4 @@ This repository contains example Edge Middleware functions and the use cases for
 | [Hostname Rewrites](./hostname-rewrites) | Use middleware rewrites to capture hostnames (subdomains, custom domains) and render the appropriate content using ISR.                |
 | [DataDome](./datadome)                   | Full protection for your site in real-time using the edge and DataDome                                                                 |
 | [ConfigCat](./configcat)                 | Feature flags at the edge                                                                 |
+| [Google Optimize](./google-optimize)     | A/B Testing with experiments in Google Optimize                                                                 |
