@@ -1,20 +1,11 @@
 {
-    "name": "edge-middleware",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-      "dev": "next dev",
-      "build": "next build",
-      "start": "next start"
-    },
-    "dependencies": {
-      "next": "https://next-middleware-build.vercel.sh/latest",
-      "react": "latest",
-      "react-dom": "latest"
-    },
-    "devDependencies": {
-      "@types/react": "17.0.8",
-      "typescript": "4.3.2"
-    }
+  "name": "edge-functions",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "prettier": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^2.4.0"
   }
-  
+}
