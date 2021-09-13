@@ -1,11 +1,11 @@
-import Link from 'next/link';
-import Cookies from 'js-cookie';
-import { Button, Code, Headers, Page } from '@components';
+import Link from 'next/link'
+import Cookies from 'js-cookie'
+import { Button, Code, Headers, Page } from '@components'
 
 export default function Blocked() {
   const removeCookie = () => {
-    Cookies.remove('datadome');
-  };
+    Cookies.remove('datadome')
+  }
 
   return (
     <Page>
@@ -40,5 +40,5 @@ export default function Blocked() {
       <p>Below is a fetch for this page</p>
       <Headers path="/blocked" />
     </Page>
-  );
+  )
 }

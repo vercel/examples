@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { Code, Headers, Page } from '@components';
+import Link from 'next/link'
+import { Code, Headers, Page } from '@components'
 
 export default function NoConnection() {
   return (
@@ -32,5 +32,5 @@ export default function NoConnection() {
         not keep the connection alive with DataDome
       </p>
     </Page>
-  );
+  )
 }

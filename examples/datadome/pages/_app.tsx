@@ -1,6 +1,6 @@
-import type { AppProps } from 'next/app';
-import Script from 'next/script';
-import '../styles.css';
+import type { AppProps } from 'next/app'
+import Script from 'next/script'
+import '../styles.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Script>
       <Script src="https://js.datadome.co/tags.js" strategy="lazyOnload" />
     </main>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

@@ -1,8 +1,9 @@
 # A/B Testing Example
 
-In this example, you'll learn how conduct A/B testing directly on server-side using Edge Middleware. 
+In this example, you'll learn how conduct A/B testing directly on server-side using Edge Middleware.
 
 For context, here's an example of this in action (open this both in your browser and incognito):
+
 - https://edge-middleware-demo.vercel.sh/home
 
 ![A/B Testing](/examples/ab-testing/public/ab-testing-demo.png)
@@ -12,29 +13,25 @@ Since the different variants are generated statically on the server side, it mit
 The magic happens in the [`_middleware.ts` file](/examples/ab-testing/pages/home/_middleware.ts):
 
 ```javascript
-import type { EdgeRequest, EdgeResponse } from 'next';
+import type { EdgeRequest, EdgeResponse } from 'next'
 
 export default function (req: EdgeRequest, res: EdgeResponse) {
+  // check if there is a cookie called "bucket"
+  let bucket = req.cookies.bucket
 
-    // check if there is a cookie called "bucket"
-    let bucket = req.cookies.bucket;
+  // if the "bucket" cookie doesn't exist
+  if (!bucket) {
+    // randomly assign values "a" or "b" to the bucket variable
+    bucket = Math.random() >= 0.5 ? 'a' : 'b'
 
-    // if the "bucket" cookie doesn't exist
-    if (!bucket) {
-      
-      // randomly assign values "a" or "b" to the bucket variable
-      bucket = Math.random() >= 0.5 ? 'a' : 'b';
+    // set "bucket" cookie to the bucket variable
+    res.cookie('bucket', bucket)
+  }
 
-      // set "bucket" cookie to the bucket variable
-      res.cookie('bucket', bucket);
-    }
-  
-    // rewrite content according to the value of the bucket variable
-    res.rewrite(`/home/${bucket}`);
+  // rewrite content according to the value of the bucket variable
+  res.rewrite(`/home/${bucket}`)
 }
 ```
-
-
 
 ## How to Use
 
@@ -63,4 +60,3 @@ yarn create next-app --example edge-middleware/examples/ab-testing ab-testing
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
-
