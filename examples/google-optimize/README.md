@@ -10,7 +10,7 @@ https://ab-testing-google-optimize.vercel.app/
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=customer-success-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-functions%2Ftree%2Fmain%2Fexamples%2Fconfigcat&env=NEXT_PUBLIC_CONFIGCAT_SDK_KEY&project-name=configcat&repo-name=configcat)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-functions%2Ftree%2Fmain%2Fexamples%2Fgoogle-optimize&project-name=google-optimize&repo-name=google-optimize)
 
 ## Getting Started
 

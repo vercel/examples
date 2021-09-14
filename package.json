@@ -7,8 +7,5 @@
   },
   "devDependencies": {
     "prettier": "^2.4.0"
-  },
-  "dependencies": {
-    "next": "https://next-middleware-build.vercel.sh/latest",
   }
 }
