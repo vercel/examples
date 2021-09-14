@@ -1,33 +1,40 @@
-# Welcome to the Early Access Program (EAP) for Edge Functions
+<p align="center">
+  <a href="https://vercel.com">
+    <img src="https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png" height="96">
+    <h3 align="center">Edge Functions</h3>
+  </a>
+</p>
 
-We're excited to have you participate in Vercel's EAPs. In this repository, you will find everything you need to get started testing Vercel's Edge Middleware features.
+Welcome to Vercel's Early Access Program for Edge Functions. We're excited you're here! In this repository, you'll find everything you need to get started using our new Edge Functions and Middleware.
 
 ## About Edge Functions
 
-Edge Functions is a Vercel technology that allows our customers to run Javascript code at the Edge right before a request is processed. Based on the incoming request shape, the customer can perform effects on the response such as rewriting, redirecting, adding headers or intercepting the request and respond. This enables a number of interesting features such as performing effects based on the user agent, A/B testing, country blocking, etc.
+Edge Functions allow you to run JavaScript code at the Edge before a request is processed. Based on the incoming request, you can modify the response by rewriting, redirecting, adding headers, and more before responding. This enables a number of interesting features such as performing effects based on the user agent, A/B testing, country blocking, etc.
 
-One of the easiest ways to introduce Edge Functions into your stack is as middleware, and the use-cases for Edge Middleware include:
+One of the easiest ways to introduce Edge Functions into your stack is as Middleware, and the use-cases for Edge Middleware include:
 
-- Experimentation: A/B Testing and Feature Flags
-- Security: Protecting your site from attacks and bots
-- Dynamic Routing: Decide what page to serve, with code.
-- Dynamic Headers
-- Observability and Logging without client-side scripts
-- Authentication
+- **Experimentation:** A/B Testing and Feature Flags
+- **Security:** Protecting your site from attacks and bots
+- **Dynamic Routing:** Decide what page to serve, with code.
+- **Observability and Logging:** No client-side scripts needed!
+- **Dynamic Headers**
+- **Authentication**
 
-When you define and deploy middleware as part of your Next.js application, we deploy them globally as Edge Functions that respond instantly to user requests. Unlike Serverless Functions, there are no cold boots and they run automatically in every region of our Edge Network.
+When you define Middleware as part of your Next.js application, Vercel deploys each Edge Function globally. Unlike Serverless Functions, Edge Functions have **no cold boots** and run automatically in every region of Vercel's Edge Network.
 
-## Requirements:
+## Requirements
 
-1. Install the [packed version](https://next-middleware-build.vercel.sh/latest) of Next. Since it's an unreleased version of Next.js, you will have to point to this version from [`package.json`](package.json#L12).
+1. Install the [packed version](https://next-middleware-build.vercel.sh/latest) of Next. Since it's an unreleased version of Next.js, you will have to point to this version from `package.json`.
 
-2. The runtime required to build Next.js with Edge Middleware in production is not published yet either so you will have to require the project to use the specific dev builder version like in the [`vercel.json`](vercel.json#L5) file of this repo.
+2. The runtime required to build Next.js with Edge Middleware in production is not yet public. You will need to require the project to use the specific Vercel builder inside your `vercel.json` file.
 
-## Read the docs:
+View the [examples](/examples) to get started.
+
+## Read the Docs
 
 We are writing the docs similarily to how we write code: iteratively and alongside the featureset. You can [read the docs here](https://github.com/vercel-customer-feedback/edge-middleware/blob/main/docs/docs.md), they're part of this repository. If you have any questions or suggestions about the docs, feel free to [open a discussion](https://github.com/vercel-customer-feedback/edge-middleware/discussions), or [submit a PR](https://github.com/vercel-customer-feedback/edge-middleware/pulls) with your suggestions!
 
-## Provide feedback:
+## Provide Feedback
 
 We are collecting feedback right here in this repo using Discussions and Issues. How do you know if you should open a discussion or an issue?
 
