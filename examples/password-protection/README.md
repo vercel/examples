@@ -2,7 +2,7 @@
 
 In this example, you'll learn how to create a simple username-password authentication flow for password-protected pages using edge functions.
 
-Working example: 
+Working example:
 
 ## How to Use
 
