@@ -1,5 +1,7 @@
 # Hostname Rewrites Example
 
+> If you're building a Platforms on Vercel, this example is for you.
+
 In this example, you'll learn how to programmatically create unique content pages for your users with a multi-tenant infrastructure using Edge Middleware. Each user gets assigned a unique subdomain when they create their account, with the (usually paid) option to add a custom domain.
 
 For context, here are some example pages:
