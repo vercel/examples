@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "js-cookie": "^2.2.1",
-    "next": "https://next-middleware-build.vercel.sh/next-v12.0.0-nightly.10.tgz",
+    "next": "https://next-middleware-build.vercel.sh/next-v12.0.0-nightly.17.tgz",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
