@@ -19,11 +19,7 @@ export async function middleware(req: EdgeRequest, res: EdgeResponse, next) {
     req.headers.set('user-agent', 'BLOCKUA')
   }
 
-  const latency = await datadome(
-    req,
-    res,
-    req.url.pathname === '/no-connection' ? { Connection: 'close' } : {}
-  )
+  const latency = await datadome(req, res)
 
   if (!latency) return
 

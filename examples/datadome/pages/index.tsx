@@ -14,13 +14,6 @@ export default function Index() {
           </Link>
         </li>
         <li>
-          <Link href="/no-connection">
-            <a>
-              DataDome and <Code>Connection: 'close'</Code>
-            </a>
-          </Link>
-        </li>
-        <li>
           <Link href="/blocked">
             <a>Behind captcha</a>
           </Link>
