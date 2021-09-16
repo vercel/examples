@@ -28,7 +28,7 @@ When you define Middleware as part of your Next.js application, Vercel deploys e
 
 2. The runtime required to build Next.js with Edge Middleware in production is not yet public. You will need to require the project to use the specific Vercel builder inside your `vercel.json` file.
 
-View the [examples](/examples) to get started.
+Find the most recent version for both Next and builder [listed here](https://next-middleware-build.vercel.sh/latest.json). View the [examples](/examples) to get started.
 
 ## Read the Docs
 
