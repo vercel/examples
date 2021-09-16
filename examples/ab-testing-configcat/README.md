@@ -1,6 +1,6 @@
 # A/B Testing with ConfigCat
 
-[DataDome](https://datadome.co/) is a service for feature flag and configuration management. In this demo you'll be able to use feature flags at the edge.
+[ConfigCat](https://configcat.com) is a service for feature flag and configuration management. In this demo you'll be able to use feature flags at the edge.
 
 ## Demo
 

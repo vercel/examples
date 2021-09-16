@@ -1,13 +1,16 @@
-# Password Protection Example
+# JSON Response Example
 
-In this example, you'll learn how to create a simple username-password authentication flow for password-protected pages using edge functions.
+```ts
+import type { EdgeRequest, EdgeResponse, EdgeNext } from 'next'
 
-Working example: [password-protection.vercel.app](https://password-protection.vercel.app/)
-
-Login credentials:
-
-- Username: `4dmin`
-- Password: `testpwd123`
+export default async function (
+  req: EdgeRequest,
+  res: EdgeResponse,
+  next: EdgeNext
+) {
+  return res.json({ message: 'hello world!' })
+}
+```
 
 ## How to Use
 
@@ -17,7 +20,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel-customer-feedback/edge-functions/tree/main/examples/password-protection&project-name=password-protection&repository-name=password-protection)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel-customer-feedback/edge-functions/tree/main/examples/json-response&project-name=json-response&repository-name=json-response)
 
 ### Clone and Deploy
 
@@ -30,9 +33,9 @@ git clone https://github.com/vercel-customer-feedback/edge-functions.git
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example edge-middleware/examples/password-protection password-protection
+npx create-next-app --example edge-middleware/examples/json-response json-response
 # or
-yarn create next-app --example edge-middleware/examples/password-protection password-protection
+yarn create next-app --example edge-middleware/examples/json-response json-response
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
