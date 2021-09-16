@@ -2,15 +2,17 @@
 
 [ConfigCat](https://configcat.com) is a service for feature flag and configuration management. In this demo you'll be able to use feature flags at the edge.
 
+By A/B testing directly on the server-side, you'll reduce layout shift from client-loaded experiments and improving your site's performance with smaller JavaScript bundles.
+
 ## Demo
 
 https://ab-testing-configcat.vercel.app/
 
 ### One-Click Deploy
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=customer-success-example):
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-functions%2Ftree%2Fmain%2Fexamples%2Fconfigcat&env=NEXT_PUBLIC_CONFIGCAT_SDK_KEY&project-name=configcat&repo-name=configcat)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-functions%2Ftree%2Fmain%2Fexamples%2Fab-testing-configcat&env=NEXT_PUBLIC_CONFIGCAT_SDK_KEY&project-name=configcat&repo-name=configcat)
 
 ## Getting Started
 
