@@ -1,0 +1,54 @@
+import { useState, FC } from 'react'
+import { Button } from '@components'
+import styles from './headers.module.css'
+
+const Headers: FC<{ path: string }> = ({ path, children }) => {
+  const [loading, setLoading] = useState(false)
+  const [state, setState] = useState<any>({
+    path,
+    latency: null,
+    status: null,
+    headers: {
+      'X-upstash-latency': '',
+      'X-RateLimit-Limit': '',
+      'X-RateLimit-Remaining': '',
+      'X-RateLimit-Reset': '',
+    },
+    data: null,
+  })
+  const handleFetch = async () => {
+    const start = Date.now()
+    setLoading(true)
+
+    try {
+      const res = await fetch(path)
+      setState({
+        path,
+        latency: `~${Math.round(Date.now() - start)}ms`,
+        status: `${res.status}`,
+        headers: {
+          'X-upstash-latency': `${res.headers.get('X-upstash-latency')}ms`,
+          'X-RateLimit-Limit': res.headers.get('X-RateLimit-Limit'),
+          'X-RateLimit-Remaining': res.headers.get('x-RateLimit-Remaining'),
+          'X-RateLimit-Reset': res.headers.get('x-RateLimit-Reset'),
+        },
+        data: res.headers.get('Content-Type')?.includes('application/json')
+          ? await res.json()
+          : null,
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div>
+      <Button onClick={handleFetch}>{children}</Button>
+      <pre className={`${styles.pre}${loading ? ` ${styles.loading}` : ''}`}>
+        {JSON.stringify(state, null, 2)}
+      </pre>
+    </div>
+  )
+}
+
+export default Headers
