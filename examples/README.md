@@ -10,6 +10,7 @@
 - [Feature Flags Configcat](./feature-flag-configcat)
 - Feature Flags Upstash (Coming Soon)
 - Feature Flags Launch Darkly (Coming Soon)
+- [Geolocation Headers](./geolocation)
 - [Hostname Rewrites](./hostname-rewrites)
 - [JSON Response](./json-response)
 - [Query Parameters Filter](./query-params-filter)
