@@ -68,6 +68,7 @@ async function rateLimit(
   const latency = Date.now() - start
   console.log('Upstash took', latency)
   res.headers.set('x-upstash-latency', `${latency}`)
+  res.headers.set('Content-Type', 'application/json')
 
   if (headers[0]) res.headers.set(headers[0], `${limit}`)
   if (headers[1])

@@ -21,11 +21,7 @@ const Headers: FC<{ path: string }> = ({ path, children }) => {
     setLoading(true)
 
     try {
-      const res = await fetch(path, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      const res = await fetch(path)
       setState({
         path,
         latency: `~${Math.round(Date.now() - start)}ms`,

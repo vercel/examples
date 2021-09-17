@@ -15,6 +15,7 @@ export async function middleware(
 ) {
   if (await rateLimit(req, res)) return
   if (req.url?.pathname === '/api') {
+    res.headers.set('Content-Type', 'application/json')
     return res.json({ done: true })
   }
   next()

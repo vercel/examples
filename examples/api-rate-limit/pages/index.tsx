@@ -20,7 +20,7 @@ export default function Index() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Github API
+          GitHub API
         </a>
         .
       </p>

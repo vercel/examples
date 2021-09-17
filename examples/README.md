@@ -13,3 +13,4 @@
 - [Hostname Rewrites](./hostname-rewrites)
 - [JSON Response](./json-response)
 - [Query Parameters Filter](./query-params-filter)
+- [API Rate Limiting with Upstash](./api-rate-limit)
