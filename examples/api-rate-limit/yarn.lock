@@ -75,20 +75,20 @@
   resolved "https://registry.yarnpkg.com/@napi-rs/triples/-/triples-1.0.3.tgz#76d6d0c3f4d16013c61e45dfca5ff1e6c31ae53c"
   integrity sha512-jDJTpta+P4p1NZTFVLHJ/TLFVYVcOqv6l8xwOeBKNPMgY/zDYH/YH7SJbvrr/h1RcS9GzbPcLKGzpuK9cV56UA==
 
-"@next/env@11.1.3-canary.15":
-  version "11.1.3-canary.15"
-  resolved "https://registry.yarnpkg.com/@next/env/-/env-11.1.3-canary.15.tgz#721fc023a47ae1823fb6d2be602639558be13183"
-  integrity sha512-Zcqr4jg6kJw5LkJeWpv4uNauu1sQ25/1htHanvkQx15UthA90IKUdMzCXXasoj/UHqcFpyl1C/MIknaHz9sdqA==
+"@next/env@11.1.3-canary.17":
+  version "11.1.3-canary.17"
+  resolved "https://registry.yarnpkg.com/@next/env/-/env-11.1.3-canary.17.tgz#13973efc833819d2d52faa3fdff4f0e2e784a144"
+  integrity sha512-Ek/3aCeREKoWdshGVg6qRZAIAyipm1QLjrZLKeJXdUmWFIht3oN8O7GeKcj46cKckgzZWuRShWIaajnWPPvamg==
 
-"@next/polyfill-module@11.1.3-canary.15":
-  version "11.1.3-canary.15"
-  resolved "https://registry.yarnpkg.com/@next/polyfill-module/-/polyfill-module-11.1.3-canary.15.tgz#32f7487852aa7cbf0c1e2fec58fa005314a178b6"
-  integrity sha512-vyKRWA27ppUkED9b2thaArtFmdpYSUAnN3nVMlylqS16Kd2F9Bsj5l4B0/3qOLTTxIr4GTosuneQUIiW4olFoA==
+"@next/polyfill-module@11.1.3-canary.17":
+  version "11.1.3-canary.17"
+  resolved "https://registry.yarnpkg.com/@next/polyfill-module/-/polyfill-module-11.1.3-canary.17.tgz#5e856b204537b66005f5a9c0e9dc6f5dc9f6c87b"
+  integrity sha512-qglaXjGpevVtNU2F8GGQQGKIG0ZMHi0ssoRo3LSESejp7CpN8wr0GgOcEPN+U0M86JGn0EfSCLlw+QjCHSYlag==
 
-"@next/react-dev-overlay@11.1.3-canary.15":
-  version "11.1.3-canary.15"
-  resolved "https://registry.yarnpkg.com/@next/react-dev-overlay/-/react-dev-overlay-11.1.3-canary.15.tgz#004aec5f6e1cdf225fbf9b84c4a202403f104124"
-  integrity sha512-aWDsmDUhA5zMMkJhpl2sI5SinXGL/KYw6Q9U95MLoT+6LCJ4T+WnSKX8sY5eujrApqi/ZlbYBQV+jKTtOa1DgQ==
+"@next/react-dev-overlay@11.1.3-canary.17":
+  version "11.1.3-canary.17"
+  resolved "https://registry.yarnpkg.com/@next/react-dev-overlay/-/react-dev-overlay-11.1.3-canary.17.tgz#e39ebeb93d88022dff1313afb12920484504fb78"
+  integrity sha512-gbUf0cccT8oJFJn0blC29TkEXplMgtB/GgxxfbGdTWsvoYeuEEr+0lDEVw0puOyurRyVLi5wvQ9sovj0VOQBEg==
   dependencies:
     "@babel/code-frame" "7.12.11"
     anser "1.4.9"
@@ -102,10 +102,10 @@
     stacktrace-parser "0.1.10"
     strip-ansi "6.0.0"
 
-"@next/react-refresh-utils@11.1.3-canary.15":
-  version "11.1.3-canary.15"
-  resolved "https://registry.yarnpkg.com/@next/react-refresh-utils/-/react-refresh-utils-11.1.3-canary.15.tgz#0ecab065656eb1cd9814af2318d0b12ef2a55e7f"
-  integrity sha512-B8EH3P7T87i6gdUlHOa8pIS6hn6vjpDagd4ok040+Vq4FmvGubAWvNlj/T2oaZyMuDjoVf4q5JWuMaw4hhpP6g==
+"@next/react-refresh-utils@11.1.3-canary.17":
+  version "11.1.3-canary.17"
+  resolved "https://registry.yarnpkg.com/@next/react-refresh-utils/-/react-refresh-utils-11.1.3-canary.17.tgz#beceb485950c3468494e7c027947a09562f6d179"
+  integrity sha512-ha0c2xTtHvS4egZBIRColSKVezrcccDhrwTrCRWySFC3lVyJdo+IoNeJE4oS4QUJsg31cmFbFxzncm/+craePQ==
 
 "@node-rs/helper@1.2.1":
   version "1.2.1"
@@ -1122,16 +1122,16 @@ native-url@0.3.4:
   dependencies:
     querystring "^0.2.0"
 
-"next@https://next-middleware-build.vercel.sh/latest":
-  version "12.0.0-nightly.15"
-  resolved "https://next-middleware-build.vercel.sh/latest#4ff39c606dcd046021fade26c21121b66c2bc51c"
+"next@https://next-middleware-build.vercel.sh/next-v12.0.0-nightly.17.tgz":
+  version "12.0.0-nightly.17"
+  resolved "https://next-middleware-build.vercel.sh/next-v12.0.0-nightly.17.tgz#27054dfc12e22d949db14f25826c6d1aec8dab00"
   dependencies:
     "@babel/runtime" "7.15.3"
     "@hapi/accept" "5.0.2"
-    "@next/env" "11.1.3-canary.15"
-    "@next/polyfill-module" "11.1.3-canary.15"
-    "@next/react-dev-overlay" "11.1.3-canary.15"
-    "@next/react-refresh-utils" "11.1.3-canary.15"
+    "@next/env" "11.1.3-canary.17"
+    "@next/polyfill-module" "11.1.3-canary.17"
+    "@next/react-dev-overlay" "11.1.3-canary.17"
+    "@next/react-refresh-utils" "11.1.3-canary.17"
     "@node-rs/helper" "1.2.1"
     assert "2.0.0"
     browserify-zlib "0.2.0"
@@ -1175,7 +1175,6 @@ native-url@0.3.4:
     util "0.12.4"
     vm-browserify "1.1.2"
     watchpack "2.1.1"
-    web-streams-polyfill "3.0.3"
 
 node-fetch@2.6.1:
   version "2.6.1"
@@ -1874,11 +1873,6 @@ watchpack@2.1.1:
   dependencies:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
-
-web-streams-polyfill@3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/web-streams-polyfill/-/web-streams-polyfill-3.0.3.tgz#f49e487eedeca47a207c1aee41ee5578f884b42f"
-  integrity sha512-d2H/t0eqRNM4w2WvmTdoeIvzAUSpK7JmATB8Nr2lb7nQ9BTIJVjbQ/TRFVEh2gUH1HwclPdoPtfMoFfetXaZnA==
 
 webidl-conversions@^4.0.2:
   version "4.0.2"
