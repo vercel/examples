@@ -9,9 +9,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
 
       {/* datadome bot protection */}
-      <Script>{`
-        !function(a,b,c,d,e,f){a.ddjskey=e;a.ddoptions=f||null;var m=b.createElement(c),n=b.getElementsByTagName(c)[0];m.async=1,m.src=d,n.parentNode.insertBefore(m,n)}(window,document,"script","${DATADOME_TAGS}","${process.env.NEXT_PUBLIC_DATADOME_CLIENT_KEY}", {endpoint: '${DATADOME_JS}'});
+
+      <Script strategy="lazyOnload">{`
+        window.ddjskey = '${process.env.NEXT_PUBLIC_DATADOME_CLIENT_KEY}'
+        window.ddoptions = {
+          endpoint: '${DATADOME_JS}'
+        }
       `}</Script>
+      <Script src={DATADOME_TAGS} strategy="lazyOnload" />
     </main>
   )
 }

@@ -6,13 +6,12 @@ export async function middleware(req: EdgeRequest, res: EdgeResponse, next) {
   const proxy = DOMAINS[req.url.pathname]
 
   if (proxy) {
-    res.rewrite(proxy.src)
-    return
+    res.headers.set('x-forwarded-for', req.headers.get('x-forwarded-for'))
+    return res.rewrite(proxy.src)
   }
 
   if (req.url.pathname === '/omit') {
-    next()
-    return
+    return next()
   }
 
   if (req.url.pathname === '/blocked') {
