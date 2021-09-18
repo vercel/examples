@@ -12,7 +12,7 @@ export default function Index() {
         For the demo below you can send a maximum of{' '}
         <b>5 requests every 10 seconds</b>.
       </p>
-      <Headers path="/api">Make a request with Edge Caching</Headers>
+      <Headers path="/api">Make a request</Headers>
       <p>
         The pattern we're using in this example is inspired by the{' '}
         <a
