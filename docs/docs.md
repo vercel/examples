@@ -1,16 +1,32 @@
 ## Getting Started
 
-Most Vercel customers build their website and apps using Next.JS so it is our first integration target. Edge Middleware is implemented for Next.JS on top of the most recent [canary release](https://github.com/vercel/next.js). You can get the most recent release that supports Edge Middleware from [this link](https://next-middleware-build.vercel.sh/latest) where [pinned versions](https://next-middleware-build.vercel.sh/next-v12.0.0-nightly.9.tgz) are available too. To start using it you can point in your `package.json` the `next` dependency to the distribution URL:
+Next.js is our first integration target for Edge Functions. To get started, change your `package.json` dependency for `next` to use the latest nightly release:
 
+**package.json**
 ```json
-"next": "https://next-middleware-build.vercel.sh/latest"
+"next": "https://next-middleware-build.vercel.sh/next-v12.0.0-nightly.18.tgz"
 ```
 
-To keep it updated make sure you run `yarn --update` often so that an old version does not stick to your `yarn.lock` file. We will be cutting new releases often since this is an early and non-final release. Note that you can also pin to a specific version and update it manually or even download the zip file and point to it in your repository.
+Then, you'll need to define a custom runtime for Vercel (which is unreleased) with Edge Functions support:
+
+**vercel.json**
+```json
+{
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercelruntimes/next@0.0.1-dev.22"
+    }
+  ]
+}
+```
+
+_Note: This won't be necessary after the Early Access Program._
+
 
 ### Creating a Middleware
 
-To start using a middleware in Next.JS you can create a special kind of file anywhere in your `pages/` folder called `_middleware`. Wether your middleware is invoked or not will depend on _where_ you define such file. There is an important difference on how it is invoked depending on the location:
+To start using a middleware in Next.js you can create a special kind of file anywhere in your `pages/` folder called `_middleware`. Wether your middleware is invoked or not will depend on _where_ you define such file. There is an important difference on how it is invoked depending on the location:
 
 - If you place the middleware file _at the root_ of your pages folder (`pages/_middleware.ts`) it will be called for **every single request**. Note this also includes static assets.
 - If you place it _under a certain path_ within the pages folder (`pages/dashboard/_middleware.ts`) then your middleware will be invoked only for thouse _pages_ that live under such route `/dashboard*`.
@@ -45,23 +61,6 @@ Date: Tue, 31 Aug 2021 12:56:13 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 ```
-
-## Deploying to Vercel
-
-Since we are using a custom release of Next.JS, building the app for production requires a custom builder that is aware of the middleware. We keep working on improvements for the Vercel Deployment pipeline and the builder is not used by default yet. This means you must tell Vercel that you want to use a very specific runtime for your app. For this, you must use a [_legacy_ property](https://vercel.com/docs/configuration#project/builds) in the `vercel.json` configuration file to specify the builder:
-
-```json
-{
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercelruntimes/next@0.0.1-dev.19"
-    }
-  ]
-}
-```
-
-That's the only requirement to deploy. After running a deploy with the proper builder and Next.JS versions, your deployment will be running your middleware functions automatically in production and will be available with no further action required.
 
 ## Middleware Function API
 
@@ -202,7 +201,7 @@ The following APIs are available in the runtime:
 
 ### Environment
 
-- `process.env` Holds an object with all enviroment variables for both production and development in the exact same way as any other page or API in Next.JS.
+- `process.env` Holds an object with all enviroment variables for both production and development in the exact same way as any other page or API in Next.js.
 
 ### Fetch
 
@@ -227,9 +226,9 @@ You can use the [Web Fetch API](https://developer.mozilla.org/en-US/docs/Web/API
 
 ## Preflight Requests
 
-It is very important to note that when your Next.JS app loads for the first time, the request will go through Vercel and the middleware may be applied altering routing (for example, for an A/B test). Once the application loads there is no hard navigation anymore and Next.JS keeps all state locally, routing in the client by running synchronous data requests to fetch server props when it is required. Being this the case, how can the middleware be invoked to calculate effects before the navigation happens? We implemented a protocol to make it possible that we called "preflight".
+It is very important to note that when your Next.js app loads for the first time, the request will go through Vercel and the middleware may be applied altering routing (for example, for an A/B test). Once the application loads there is no hard navigation anymore and Next.js keeps all state locally, routing in the client by running synchronous data requests to fetch server props when it is required. Being this the case, how can the middleware be invoked to calculate effects before the navigation happens? We implemented a protocol to make it possible that we called "preflight".
 
-Whenever a Next.JS application loads it will keep a manifest internally with all routes that depend on a middleware. We use the prefetching lifecycle to do a special `HEAD` request with an internal header that asks the server for what will happen when the middleware gets invoked. This communication is based only on headers to make it as fast as possible and, in production, they will happen only on the prefetching phase so that there is no friction on navigation.
+Whenever a Next.js application loads it will keep a manifest internally with all routes that depend on a middleware. We use the prefetching lifecycle to do a special `HEAD` request with an internal header that asks the server for what will happen when the middleware gets invoked. This communication is based only on headers to make it as fast as possible and, in production, they will happen only on the prefetching phase so that there is no friction on navigation.
 
 You may see these requests in the Network panel and you don't have to deal with them at all. It is this technology what allows us to calculate on front what is the right bundle to fetch. For example, say you have a middleware like:
 
@@ -244,7 +243,7 @@ export const middleware = (req, res, next) => {
 }
 ```
 
-If the user goes to `/dashboard` where there is a link to `/landing`, Next.JS will see that this link depends on a middleware and it is possible that the bundle to fetch is not `landing/index.ts` so it will run a _preflight request_ to see if there is an effect to rewrite to `/landing/b` and if so, it will preload such bundle.
+If the user goes to `/dashboard` where there is a link to `/landing`, Next.js will see that this link depends on a middleware and it is possible that the bundle to fetch is not `landing/index.ts` so it will run a _preflight request_ to see if there is an effect to rewrite to `/landing/b` and if so, it will preload such bundle.
 
 ## Caveats
 
