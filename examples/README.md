@@ -5,7 +5,7 @@
 - [Basic Auth Password Protection](./basic-auth-password)
 - [Bot Protection Datadome](./bot-protection-datadome)
 - [Crypto Web APIs](./crypto)
-- [Feature Flags Apple Store](./feature-flags-apple-store)
+- [Feature Flags Apple Store](./feature-flag-apple-store)
 - [Feature Flags Split.io](./feature-flag-split)
 - [Feature Flags Configcat](./feature-flag-configcat)
 - Feature Flags Upstash (Coming Soon)
