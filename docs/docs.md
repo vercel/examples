@@ -256,10 +256,15 @@ export const middleware = (req, res, next) => {
 
 If the user goes to `/dashboard` where there is a link to `/landing`, Next.js will see that this link depends on a middleware and it is possible that the bundle to fetch is not `landing/index.ts` so it will run a _preflight request_ to see if there is an effect to rewrite to `/landing/b` and if so, it will preload such bundle.
 
+## Logging
+
+We have full support for the `console` API, incluing `time`, `debug`, `timeEnd`, etc. Logs will appear inside your Vercel project under the Functions tab.
+
+![image](https://user-images.githubusercontent.com/9113740/134103765-5b766f2a-3228-4a82-92e4-ea6e634f0336.png)
+
 ## Caveats
 
 There are some important caveats to keep in mind when using the early access to Edge Middleware:
 
-- The API for the Middleware function is **very likely** to completely change to be closer to the new Web Standards instead of implementing custom and Node.JS APIs. This is important to make a future-proof technology and you will _not_ get a major change in versioning once this happens.
-- We are still working on logs so although you can use `console.log` locally, you will see no logs in Vercel.
-- This is still **experimental technology** and we encourage you to not use it in production with heavy traffic.
+- The API for the Edge Functions is **likely to change**. Please report issues on this repository, and we will communicate changes as best possible.
+- This is still **experimental technology** and we encourage you to not use it in production yet.
