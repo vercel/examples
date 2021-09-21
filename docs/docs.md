@@ -182,10 +182,12 @@ In this scenario there will be almost no latency added as we are continuing the 
 
 Once the Edge Middleware is deployed it will run with a V8 Runtime and a limited set of APIs. It is for this reason that in development we will run the code in a sandbox that emulates the production Runtime to get you the best possible experience. Therefore there are some restrictions to write your functions:
 
-- Node.JS is not supported. You can't use any Node.JS native APIs such as the filesystem or crypto.
-- Node Modules can be used as long as they implement ESM and don't use Node.JS native APIs. We encourage you to use as little external modules as possible to keep your functions small and fast.
-- You can use ESM and split your code into reusable files that we will bundle together when the application is built.
+- Node.js is not supported. You can't use any Node.js native APIs such as reading/writing to the filesystem.
+- Node Modules can be used as long as they implement ES Modules and don't use Node.js native APIs.
+- You can use ES Modules and split your code into reusable files that we will bundle together when the application is built.
 - Calling `require` directly is not allowed. If you do use it, it might work when the import path can be statically resolved, although we don't guarantee that it will still work in the future. Please use always ES Modules.
+
+## Available APIs
 
 The following APIs are available in the runtime:
 
@@ -223,6 +225,15 @@ You can use the [Web Fetch API](https://developer.mozilla.org/en-US/docs/Web/API
 - [`Headers`](https://developer.mozilla.org/en-US/docs/Web/API/Headers) A WHATWG implementation of the headers API.
 - [`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) A WHATWG implementation of the URL API.
 - [`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) A WHATWG implementation of `URLSearchParams`.
+
+### Crypto
+
+Fully supported. [See example here](https://github.com/vercel-customer-feedback/edge-functions/tree/main/examples/crypto).
+
+- [`Crypto`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto)
+- [`crypto.randomUUID`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID)
+- [`crypto.getRandomValues`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues)
+- [`crypto.subtle`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/subtle)
 
 ## Preflight Requests
 
