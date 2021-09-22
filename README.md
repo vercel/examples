@@ -36,7 +36,5 @@ We are writing the docs similarily to how we write code: iteratively and alongsi
 
 ## Provide Feedback
 
-We are collecting feedback right here in this repo using Discussions and Issues. How do you know if you should open a discussion or an issue?
-
-1. **Discussion post:** a question, piece of feedback, or idea you have about the feature that you would like to discuss with the team.
-2. **Issue:** Open a GitHub issue if you believe you've encountered a bug that you want to flag for the team. We may commend and kick off a conversation about the bug in the issue thread.
+- [Start a Discussion](https://github.com/vercel-customer-feedback/edge-functions/discussions) with a question, piece of feedback, or idea you want to share with the team.
+- [Open an Issue](https://github.com/vercel-customer-feedback/edge-functions/issues) if you believe you've encountered a bug that you want to flag for the team.
