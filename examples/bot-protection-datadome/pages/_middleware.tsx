@@ -1,31 +1,13 @@
 import type { EdgeRequest, EdgeResponse } from 'next'
-import { DOMAINS } from '@lib/domains'
 import datadome from '@lib/datadome'
+import demoMiddleware from '@lib/demo-middleware'
 
-export async function middleware(req: EdgeRequest, res: EdgeResponse, next) {
-  const proxy = DOMAINS[req.url.pathname]
-
-  if (proxy) {
-    res.headers.set('x-forwarded-for', req.headers.get('x-forwarded-for'))
-    return res.rewrite(proxy.src)
-  }
-
-  if (req.url.pathname === '/omit') {
-    return next()
-  }
-
-  if (req.url.pathname === '/blocked') {
-    req.headers.set('user-agent', 'BLOCKUA')
-  }
-
-  const latency = await datadome(req, res)
-
-  if (!latency) return
-
-  res.setHeader(
-    'x-datadome-latency',
-    String(latency === true ? 'Unavailable' : latency)
-  )
-
+async function handler(req: EdgeRequest, res: EdgeResponse, next) {
+  if (!(await datadome(req, res))) return
   next()
 }
+
+// if you are using this example as reference,
+// feel free to remove the wrapping here which
+// is only here to serve this demo
+export const middleware = demoMiddleware(handler)

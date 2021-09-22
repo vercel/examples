@@ -75,7 +75,6 @@ export default async function datadome(
   })
 
   let dataDomeRes: Response
-  let dataDomeTook: number
   const dataDomeStart = Date.now()
 
   try {
@@ -83,8 +82,9 @@ export default async function datadome(
       dataDomeReq,
       timeoutPromise,
     ])) as Response
-    dataDomeTook = Date.now() - dataDomeStart
-    log('Datadome took', dataDomeTook)
+
+    // We're sending the latency for demo purposes, this is not something you need to do
+    res.setHeader('x-datadome-latency', `${Date.now() - dataDomeStart}`)
   } catch (err) {
     console.error('Datadome error', err.stack)
     return true
@@ -130,7 +130,7 @@ export default async function datadome(
       )
   }
 
-  return dataDomeTook
+  return true
 }
 
 function encode(query) {
