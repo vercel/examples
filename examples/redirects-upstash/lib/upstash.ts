@@ -50,6 +50,5 @@ export async function upstashEdge(...args: any[]) {
     throw new Error('Missing required Upstash credentials of the Edge API')
   }
 
-  console.log('X', `https://${domain}/${args.join('/')}`)
   return upstash({ token, url: `https://${domain}/${args.join('/')}` })
 }

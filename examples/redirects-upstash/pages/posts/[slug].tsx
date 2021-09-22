@@ -1,17 +1,39 @@
+import { useState, useEffect, Fragment } from 'react'
 import { useRouter } from 'next/dist/client/router'
-import { Code } from '@components'
+import { A, Code } from '@components'
+
+function randomInteger(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
 
 export default function Slug() {
+  const [links, setLinks] = useState([8000, 800])
+
   const router = useRouter()
   const slug = router.query.slug as string
-  const latency = router.query.l
+  const latency = router.query.l ?? 0
+
+  useEffect(() => {
+    setLinks([
+      Math.floor(Math.random() * 10000) + 1001,
+      Math.floor(Math.random() * 1000) + 1,
+    ])
+  }, [router.asPath])
 
   return (
     <div className="h-screen text-primary font-medium p-4 grid items-center justify-center">
       <div className="grid justify-items-center">
-        <h1 className="text-8xl">#{slug.padStart(5, '0')}</h1>
+        <h1 className="text-8xl mb-4">#{slug.padStart(5, '0')}</h1>
         <p>
-          latency: <Code>{latency ?? 0}ms</Code>
+          latency: <Code>{latency}ms</Code>
+        </p>
+        <p>
+          <A href="/">Home</A>
+          {links.map((n) => (
+            <Fragment key={n}>
+              | <A href={`/${n}`}>/{n}</A>
+            </Fragment>
+          ))}
         </p>
       </div>
     </div>

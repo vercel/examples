@@ -7,7 +7,7 @@ export default function Index() {
         <h1 className="text-6xl font-bold mb-12">Edge Redirects</h1>
         <p>
           This demo will redirect any path from <A href="/1">/1</A> -{' '}
-          <A href="/10000">/10000</A> to <Code>/posts/1</Code> to{' '}
+          <A href="/10000">/10000</A> to <Code>/posts/1</Code> -{' '}
           <Code>/posts/10000</Code>
         </p>
         <p className="my-6">

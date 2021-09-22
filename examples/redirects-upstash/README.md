@@ -4,15 +4,17 @@ This demo features a list of redirects, both hardcoded and coming from Redis ([U
 
 The demo has a total of 10,000 redirects, 1,000 of which are hardcoded on a JSON file, and 9,000 added to Redis.
 
+Redirects in a JSON file are faster to evaluate, but they can only be edited at build time, with Redis we can have editable redirects with a low latency cost.
+
 ## Demo
 
-https://edge-functions-api-rate-limit.vercel.app/
+https://edge-functions-redirects-upstash.vercel.app/
 
 ### One-Click Deploy
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-functions%2Ftree%2Fmain%2Fexamples%2Fapi-rate-limit&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN&project-name=api-rate-limit&repo-name=api-rate-limit)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-functions%2Ftree%2Fmain%2Fexamples%2Fredirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,UPSTASH_EDGE_API_DOMAIN,UPSTASH_EDGE_API_TOKEN&project-name=redirects-upstash&repo-name=redirects-upstash)
 
 ## Getting Started
 
@@ -34,7 +36,7 @@ UPSTASH_EDGE_API_DOMAIN = "us1-shiny-firefly-12345.edge-a.upstash.io"
 UPSTASH_EDGE_API_TOKEN = "your-edge-token"
 ```
 
-We use the REST API to setup the redirects in Upstash ([source](scripts/upstash.js)), if you prefer not to do that then set `POPULATE_REDIS` to `false` in `.env`.
+We populate the redirects in Upstash in [scripts/upstash.js](scripts/upstash.js) using their REST API, if you prefer not to do that then set `POPULATE_REDIS` to `false` in `.env`. JSON redirects are also created there.
 
 We use the Edge API to have the lowest latency possible when fetching a redirect, it's also possible to only use the REST API by replacing `upstashEdge` with `upstashRest` in [lib/redirects.ts](lib/redirects.ts).
 
