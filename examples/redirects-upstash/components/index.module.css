@@ -1,0 +1,42 @@
+.inlineCode {
+  @apply text-code text-xl whitespace-pre-wrap;
+}
+
+.inlineCode::before,
+.inlineCode::after {
+  content: '`';
+}
+
+.link {
+  @apply relative inline-block z-0 text-anchor overflow-hidden align-bottom;
+
+  padding: 0 5px;
+  transition: color 0.3s ease-out;
+}
+
+.link::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  transform: translateY(calc(100% - 2px));
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    90deg,
+    hsla(236, 71%, 33%, 1) 0%,
+    hsla(206, 100%, 60%, 1) 0%,
+    hsla(322, 95%, 48%, 1) 100%
+  );
+  transition: transform 0.15s ease-out;
+}
+
+.link:hover {
+  @apply text-white;
+}
+
+.link:hover::before {
+  transform: translateY(0);
+  transition: transform 0.15s ease-out;
+}
