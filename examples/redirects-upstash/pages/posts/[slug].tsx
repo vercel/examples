@@ -15,7 +15,7 @@ export default function Slug() {
 
   useEffect(() => {
     setLinks([
-      Math.floor(Math.random() * 10000) + 1001,
+      Math.floor(Math.random() * 9000) + 1001,
       Math.floor(Math.random() * 1000) + 1,
     ])
   }, [router.asPath])

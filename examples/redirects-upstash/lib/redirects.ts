@@ -16,6 +16,8 @@ export default async function redirects(req: EdgeRequest, res: EdgeResponse) {
   let start = Date.now()
 
   if (pathname) {
+    // Find the redirect from the local JSON file, do note this JSON shouldn't be
+    // large, as the space in Edge Functions is quite limited
     const localRedirect = (redirectsJson as LocalRedirects)[pathname]
 
     if (localRedirect) {
