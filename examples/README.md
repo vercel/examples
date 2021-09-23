@@ -11,7 +11,7 @@
 - Feature Flags Upstash (Coming Soon)
 - Feature Flags Launch Darkly (Coming Soon)
 - [Geolocation Headers](./geolocation)
-- [Hostname Rewrites](./hostname-rewrites)
+- [Hostname Rewrites](./hostname-rewrites) (Platforms on Vercel)
 - [JSON Response](./json-response)
 - [Query Parameters Filter](./query-params-filter)
 - [API Rate Limiting with Upstash](./api-rate-limit)
