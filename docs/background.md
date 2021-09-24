@@ -140,7 +140,7 @@ The static boundary can still be the entire page, specially for cases where Next
 
 First, Next.js will incrementally introduce a new primitive called **Edge Middleware**, which will work on top of all existing Next.js apps (and for customers of Vercel, on top of other frameworks as well.
 
-It consists of a function hook called `onEdgeRequest`, defined in a module specially named `_edge.js` (e.g.: `pages/_middleware.js`) and gives customers the equivalent of Express middleware, but deployed globally on top of the fast Edge runtime.
+It consists of a function hook called `middleware`, defined in a module specially named `_middleware.js` (e.g.: `pages/_middleware.js`) and gives customers the equivalent of Express middleware, but deployed globally on top of the fast Edge runtime.
 
 ```jsx
 // pages/_middleware.js
@@ -178,7 +178,7 @@ In the future, we might be able to automatically apply the Edge runtime if we ca
 
 ### 2️⃣ React Suspense based caching
 
-Just like `_edge.js` provides a natural and incremental transition point towards the Edge Runtime, so will React Server Components with the `{page}.server.js` convention. RSC pages will default to (and _enforce_) `runtime = 'edge'`.
+Just like `_middleware.js` provides a natural and incremental transition point towards the Edge Runtime, so will React Server Components with the `{page}.server.js` convention. RSC pages will default to (and _enforce_) `runtime = 'edge'`.
 
 Suspense boundaries can be defined with `<Static>` and `<Dynamic>` components that allow us to cache granularly at the edge, with full control for the developer on the **level of fault tolerance and data consistency they desire**.
 
