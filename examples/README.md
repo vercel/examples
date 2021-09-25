@@ -15,3 +15,4 @@
 - [JSON Response](./json-response)
 - [Query Parameters Filter](./query-params-filter)
 - [API Rate Limiting with Upstash](./api-rate-limit)
+- [Scalable redirects with Upstash](./redirects-upstash)
