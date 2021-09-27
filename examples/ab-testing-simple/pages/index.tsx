@@ -1,16 +1,26 @@
 import Link from 'next/link'
+import { Page } from '../components'
 
 export default function Index() {
   return (
-    <>
-      <div>
-        <h1>A/B Testing Example</h1>
-      </div>
-      <div>
-        <Link href="/home">
-          <a>Open this link in your browser and incognito</a>
-        </Link>
-      </div>
-    </>
+    <Page>
+      <h1>AB testing with buckets</h1>
+      <p>
+        In this demo we use cookies to assign a bucket with the variant to show.
+        Visit one of the pages below and a bucket will be assigned to you.
+      </p>
+      <ul>
+        <li>
+          <Link href="/home">
+            <a>/home</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/marketing">
+            <a>/marketing</a>
+          </Link>
+        </li>
+      </ul>
+    </Page>
   )
 }

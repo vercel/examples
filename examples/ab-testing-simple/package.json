@@ -8,11 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "https://next-middleware-build.vercel.sh/latest",
+    "js-cookie": "^3.0.1",
+    "next": "https://next-middleware-build.vercel.sh/next-v12.0.0-nightly.20.tgz",
     "react": "latest",
     "react-dom": "latest"
   },
   "devDependencies": {
+    "@types/js-cookie": "^2.2.7",
     "@types/react": "17.0.8",
     "typescript": "4.3.2"
   }
