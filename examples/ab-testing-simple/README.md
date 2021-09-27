@@ -4,9 +4,9 @@ By A/B testing directly on the server-side, you'll reduce layout shift from clie
 
 ## Demo
 
-https://edge-middleware-demo.vercel.sh/home
+https://edge-functions-ab-testing-simple.vercel.app
 
-Since the different variants are generated statically on the server side, it mitigates any potential layout shift that could happen when a variant modal is inserted into the DOM on client side, hence improving your site's performance.
+Since the different variants are generated statically on the server side, it mitigates any potential layout shift that could happen when a variant is inserted into the DOM client side, hence improving your site's performance.
 
 The magic happens in the [`_middleware.ts` file](pages/home/_middleware.ts):
 
