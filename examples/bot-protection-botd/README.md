@@ -4,7 +4,7 @@
 
 ## Demo
 
-https://bot-protection-botd.vercel.sh
+https://botd.vercel.sh
 
 ### One-Click Deploy
 
@@ -25,7 +25,7 @@ async function handler(req: EdgeRequest, res: EdgeResponse, next) {
 }
 ```
 
-If you try and go to [/blocked](https://bot-protection-botd.vercel.sh/blocked) you'll see the [/bot-detected](pages/bot-detected.tsx) page being rendered instead, done by a rewrite from the edge after it identifies you as a bot. We do that by changing the user agent of the request before calling `botdEdge`, like so:
+If you try and go to [/blocked](https://botd.vercel.sh/blocked) you'll see the [/bot-detected](pages/bot-detected.tsx) page being rendered instead, done by a rewrite from the edge after it identifies you as a bot. We do that by changing the user agent of the request before calling `botdEdge`, like so:
 
 ```ts
 // From lib/demo-middleware.ts
