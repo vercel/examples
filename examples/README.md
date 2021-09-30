@@ -4,6 +4,7 @@
 - [A/B Testing Google Optimize](./ab-testing-google-optimize)
 - [Basic Auth Password Protection](./basic-auth-password)
 - [Bot Protection Datadome](./bot-protection-datadome)
+- [Bot Protection Botd](./bot-protection-botd)
 - [Crypto Web APIs](./crypto)
 - [Feature Flags Apple Store](./feature-flag-apple-store)
 - [Feature Flags Split.io](./feature-flag-split)

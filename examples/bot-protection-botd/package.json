@@ -1,0 +1,22 @@
+{
+  "name": "ab-testing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/vercel-customer-feedback/edge-functions.git",
+  "author": "Luis Alvarez <luis@vercel.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "https://next-middleware-build.vercel.sh/next-v12.0.0-nightly.20.tgz",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.18",
+    "typescript": "^4.3.5"
+  }
+}
