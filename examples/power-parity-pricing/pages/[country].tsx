@@ -94,8 +94,9 @@ export default function CountryPage({
         </a>
         <div className="lg:h-[512px] lg:w-[512px] h-[320px] w-[320px] -mb-40 lg:-mb-56">
           <Image
-            alt={`Black shirt with white logo`}
+            alt="Black shirt with white logo"
             src={shirt}
+            placeholder="blur"
             layout="responsive"
           />
         </div>
@@ -118,15 +119,15 @@ export default function CountryPage({
           </div>
           <div className="p-4 gap-4 flex flex-col justify-center items-center border-b">
             <div className="bg-gray-50 text-gray-500 text-left py-2 px-4 rounded-md border-gray-200 border text-sm flex flex-col gap-4">
-              <p>
-                We noticed that you're from <b><Image width={16} height={12} src={`https://lipis.github.io/flag-icon-css/flags/4x3/${country.toLowerCase()}.svg`} /></b>. We are offering purchasing power parity pricing. If that is something that you need:
+              <p className="inline-block">
+                <span>We noticed that you're from </span>
+                <img className="bg-gray-200 inline-flex" width={16} height={12} src={`https://lipis.github.io/flag-icon-css/flags/4x3/${country.toLowerCase()}.svg`} />
+                <span>. We are offering purchasing power parity pricing. If that is something that you need:</span>
               </p>
-              <div className="flex">
-                <label className="inline-flex items-center font-semibold">
-                  <input onChange={(event) => toggleParity(event.target.checked)} className="text-black-500 w-4 h-4 mr-2 focus:ring-black-400 focus:ring-opacity-25 border border-gray-300 rounded" type="checkbox" />
-                  Activate {parity}% off with regional pricing
-                </label>
-              </div>
+              <label className="inline-flex items-center font-semibold">
+                <input onChange={(event) => toggleParity(event.target.checked)} className="text-black-500 w-4 h-4 mr-2 border border-gray-300 rounded" type="checkbox" />
+                Activate {parity}% off with regional pricing
+              </label>
             </div>
             <button className="py-4 px-6 text-lg w-full bg-black text-white rounded-md hover:bg-gray-900" onClick={() => alert(`its yours for USD ${isParityEnabled ? parityPrice : 500}`)}>
               Buy now
