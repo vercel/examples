@@ -1,17 +1,13 @@
 import type { EdgeRequest, EdgeResponse } from 'next'
 
-export default async function (
+export async function middleware (
   req: EdgeRequest,
   res: EdgeResponse,
 ) {
-  const country = req.geo?.country || 'US';
+  const country = req.geo?.country?.toLowerCase() || 'us';
 
   res.rewrite({
     ...req.url,
     pathname: `/${country}`,
-    query: {
-      ...req.url.query,
-      country,
-    },
   })
 }

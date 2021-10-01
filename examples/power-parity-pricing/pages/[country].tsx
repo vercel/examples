@@ -26,7 +26,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         country
       }
     })),
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 
@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps<unknown, Params> = async ({params}) 
   };
 };
 
-export default function Index({
+export default function CountryPage({
   country,
   parity
 }) {
@@ -119,7 +119,7 @@ export default function Index({
           <div className="p-4 gap-4 flex flex-col justify-center items-center border-b">
             <div className="bg-gray-50 text-gray-500 text-left py-2 px-4 rounded-md border-gray-200 border text-sm flex flex-col gap-4">
               <p>
-                We noticed that you're from <b><Image width={12} height={12} src={`https://lipis.github.io/flag-icon-css/flags/4x3/${country.toLowerCase()}.svg`} /> {country}</b>. We are offering purchasing power parity pricing. If that is something that you need:
+                We noticed that you're from <b><Image width={16} height={12} src={`https://lipis.github.io/flag-icon-css/flags/4x3/${country.toLowerCase()}.svg`} /></b>. We are offering purchasing power parity pricing. If that is something that you need:
               </p>
               <div className="flex">
                 <label className="inline-flex items-center font-semibold">
