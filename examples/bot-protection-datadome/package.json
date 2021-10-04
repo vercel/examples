@@ -11,7 +11,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "https://next-middleware-build.vercel.sh/next-v12.0.0-nightly.17.tgz",
+    "next": "https://next-middleware-build.vercel.sh/latest",
     "react": "latest",
     "react-dom": "latest"
   },

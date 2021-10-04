@@ -3,6 +3,7 @@
 Next.js is our first integration target for Edge Functions. To get started, change your `package.json` dependency for `next` to use the latest nightly release:
 
 **package.json**
+
 ```json
 "next": "https://next-middleware-build.vercel.sh/next-v12.0.0-nightly.18.tgz"
 ```
@@ -10,6 +11,7 @@ Next.js is our first integration target for Edge Functions. To get started, chan
 Then, you'll need to define a custom runtime for Vercel (which is unreleased) with Edge Functions support:
 
 **vercel.json**
+
 ```json
 {
   "builds": [
@@ -22,7 +24,6 @@ Then, you'll need to define a custom runtime for Vercel (which is unreleased) wi
 ```
 
 _Note: This won't be necessary after the Early Access Program._
-
 
 ### Creating a Middleware
 
