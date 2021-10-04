@@ -1,0 +1,271 @@
+const DATADOME_TIMEOUT = 500
+const DATADOME_URI_REGEX_EXCLUSION =
+  /\.(avi|flv|mka|mkv|mov|mp4|mpeg|mpg|mp3|flac|ogg|ogm|opus|wav|webm|webp|bmp|gif|ico|jpeg|jpg|png|svg|svgz|swf|eot|otf|ttf|woff|woff2|css|less|js)$/i
+
+export default async function datadome(
+  req,
+  res,
+  headers?: Record<string, string>
+) {
+  if (DATADOME_URI_REGEX_EXCLUSION.test(req.url.pathname)) {
+    console.log('ignore datadome')
+    return true
+  }
+
+  const requestData = {
+    Key: process.env.DATADOME_SERVER_KEY,
+    RequestModuleName: 'Next.js',
+    ModuleVersion: '0.1',
+    ServerName: 'vercel',
+    /* this should be `x-real-ip` but it doesn't currently work on Edge Functions */
+    IP: req.headers.get('x-forwarded-for')
+      ? req.headers.get('x-forwarded-for').split(',')[0]
+      : '127.0.0.1',
+    Port: 0,
+    TimeRequest: new Date().getTime() * 1000,
+    Protocol: req.headers.get('x-forwarded-proto'),
+    Method: req.method,
+    ServerHostname: req.headers.get('host'),
+    Request: req.url.pathname + encode(req.url.query),
+    HeadersList: getHeadersList(req),
+    Host: req.headers.get('host'),
+    UserAgent: req.headers.get('user-agent'),
+    Referer: req.headers.get('referer'),
+    Accept: req.headers.get('accept'),
+    AcceptEncoding: req.headers.get('accept-encoding'),
+    AcceptLanguage: req.headers.get('accept-language'),
+    AcceptCharset: req.headers.get('accept-charset'),
+    Origin: req.headers.get('origin'),
+    XForwaredForIP: req.headers.get('x-forwarded-for'),
+    Connection: req.headers.get('connection'),
+    Pragma: req.headers.get('pragma'),
+    CacheControl: req.headers.get('cache-control'),
+    ContentType: req.headers.get('content-type'),
+    From: req.headers.get('from'),
+    Via: req.headers.get('via'),
+    CookiesLen: getCookiesLength(req.cookies),
+    AuthorizationLen: getAuthorizationLength(req),
+    PostParamLen: req.headers.get('content-length'),
+    ClientID: req.cookies.datadome,
+    ServerRegion: 'sfo1',
+  }
+
+  console.log('api call data', JSON.stringify(requestData, null, 2))
+
+  const dataDomeReq = fetch(
+    'http://api-cloudflare.datadome.co/validate-request/',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': 'DataDome',
+        ...headers,
+      },
+      body: stringify(requestData),
+    }
+  )
+
+  const timeoutPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(new Error('Datadome timeout'))
+    }, DATADOME_TIMEOUT)
+  })
+
+  let dataDomeRes: Response
+  const dataDomeStart = Date.now()
+
+  try {
+    dataDomeRes = (await Promise.race([
+      dataDomeReq,
+      timeoutPromise,
+    ])) as Response
+
+    // We're sending the latency for demo purposes, this is not something you need to do
+    res.setHeader('x-datadome-latency', `${Date.now() - dataDomeStart}`)
+  } catch (err) {
+    console.error('Datadome error', err.stack)
+    return true
+  }
+
+  console.log(
+    'Datadome debug',
+    dataDomeRes.status,
+    JSON.stringify(Object.fromEntries(dataDomeRes.headers.entries()), null, 2)
+  )
+
+  switch (dataDomeRes.status) {
+    case 301:
+    case 302:
+    case 401:
+    case 403:
+      // blocked!
+      // in the future we can return the bot kind, bot name, etc.
+      const isBot = dataDomeRes.headers.get('x-datadome-isbot')
+      if (isBot) {
+        console.log(
+          'Bot detected. Name:',
+          dataDomeRes.headers.get('x-datadome-botname'),
+          '– Kind:',
+          dataDomeRes.headers.get('x-datadome-botfamily')
+        )
+      }
+      res.writeHead(
+        200,
+        toHeaders(req.headers, dataDomeRes.headers, 'x-datadome-headers')
+      )
+      res.end(await dataDomeRes.text())
+      return false
+
+    case 400:
+      // Something is wrong with our authentication
+      console.log('DataDome returned 400', dataDomeRes.statusText)
+      return false
+
+    case 200:
+      res.setHeaders(
+        toHeaders(req.headers, dataDomeRes.headers, 'x-datadome-headers')
+      )
+  }
+
+  return true
+}
+
+function encode(query) {
+  let e = ''
+  for (const k in query) {
+    const v = query[k]
+    e += `${encodeURIComponent(k)}=${encodeURIComponent(v)}`
+  }
+  return e
+}
+
+function toHeaders(reqHeaders, dataDomeResHeaders, listKey) {
+  const ret = {}
+  const list = dataDomeResHeaders.get(listKey)
+  for (const header of list.split(' ')) {
+    const value = dataDomeResHeaders.get(header)
+    // workaround for a bug in DataDome where the cookie domain gets set to
+    // the entire public suffix (.vercel.app), which UAs refuse to set cookies for
+    // e.g.: https://devcenter.heroku.com/articles/cookies-and-herokuapp-com
+    if (
+      header.toLowerCase() === 'set-cookie' &&
+      /domain=\.vercel\.app/i.test(value)
+    ) {
+      ret[header] = value.replace(
+        /domain=\.vercel\.app/i,
+        `Domain=${reqHeaders.get('host')}`
+      )
+    } else {
+      ret[header] = value
+    }
+  }
+  return ret
+}
+
+// taken from DataDome-Cloudflare-1.7.0
+function getHeadersList(req) {
+  return [...req.headers.keys()].join(',')
+}
+
+// taken from DataDome-Cloudflare-1.7.0
+function getAuthorizationLength(req) {
+  const authorization = req.headers.get('authorization')
+  return authorization === null ? null : authorization.length
+}
+
+// taken from DataDome-Cloudflare-1.7.0
+function stringify(obj) {
+  const formatter = (key, value) => {
+    return value === null
+      ? encodeURIComponent(key)
+      : encodeURIComponent(key) + '=' + encodeURIComponent(value)
+  }
+  return obj
+    ? Object.keys(obj)
+        .map((key) => {
+          const value = obj[key]
+          if (value === undefined) {
+            return ''
+          }
+          return formatter(key, value)
+        })
+        .filter((x) => x.length > 0)
+        .join('&')
+    : ''
+}
+
+// inspired in DataDome-Cloudflare-1.7.0
+function getCookiesLength(cookies) {
+  let cookiesLength = 0
+  for (const k in cookies) {
+    cookiesLength += cookies[k].length
+  }
+  return cookiesLength
+}
+
+type RULE_RESPONSE = 'block' | 'whitelist' | 'captcha'
+export async function addIpRule(
+  ip: string,
+  rule_response: RULE_RESPONSE = 'block'
+) {
+  // TODO: Check if IP is valid.
+  try {
+    // Adding new Custom Rule
+    const req = await fetch(
+      `https://customer-api.datadome.co/1.0/protection/custom-rules?apikey=${process.env.DATADOME_MANAGEMENT_KEY}`,
+      {
+        method: 'POST',
+        headers: { Accept: '*/*', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          data: {
+            rule_name: `ip_rule_${ip}`, // Needs to be unique
+            query: `ip:${ip}`,
+            rule_response: rule_response,
+            rule_priority: 'high',
+          },
+        }),
+      }
+    )
+    const response = await req.json()
+    if (response.status !== 200) {
+      throw new Error(JSON.stringify(response))
+    }
+    return response
+  } catch (err) {
+    console.log('Error', err)
+    throw new Error(err)
+  }
+}
+
+export async function removeRuleById(customRuleId: string) {
+  try {
+    const req = await fetch(
+      `https://customer-api.datadome.co/1.0/protection/custom-rules/${customRuleId}?apikey=${process.env.DATADOME_MANAGEMENT_KEY}`,
+      {
+        method: 'DELETE',
+        headers: { Accept: '*/*', 'Content-Type': 'application/json' },
+      }
+    )
+    return req.json()
+  } catch (err) {
+    console.log('Error', err)
+  }
+}
+
+export async function getAllRules() {
+  try {
+    const req = await fetch(
+      `https://customer-api.datadome.co/1.0/protection/custom-rules?apikey=${process.env.DATADOME_MANAGEMENT_KEY}`,
+      {
+        method: 'GET',
+        headers: { Accept: '*/*', 'Content-Type': 'application/json' },
+      }
+    )
+    const {
+      data: { custom_rules },
+    } = await req.json()
+    return custom_rules
+  } catch (err) {
+    console.log('Error', err)
+  }
+}

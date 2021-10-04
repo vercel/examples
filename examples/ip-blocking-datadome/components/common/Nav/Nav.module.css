@@ -1,0 +1,8 @@
+.root {
+  @apply border-b border-gray-200 py-5 relative z-20 bg-white;
+  box-shadow: 0 0 15px 0 rgb(0 0 0 / 10%);
+}
+
+.container {
+  @apply mx-auto max-w-7xl px-14;
+}

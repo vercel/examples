@@ -1,0 +1,43 @@
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+  color: var(--accents-5);
+}
+
+.body {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  line-height: 1.6;
+}
+
+.h1 {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.h2 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.47px;
+  line-height: 32px;
+}
+
+.description {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+  color: var(--accents-5);
+}
+
+.smallText {
+  letter-spacing: 0.1rem;
+  margin-top: 0;
+  padding-left: 0.2rem;
+  @apply uppercase text-blue-500 font-semibold text-sm block mb-4;
+}

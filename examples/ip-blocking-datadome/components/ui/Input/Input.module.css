@@ -1,0 +1,24 @@
+.root {
+  padding: 4px 12px;
+  transition: border 0.2s ease 0s, color 0.2s ease 0s;
+  background-color: var(--geist-background);
+  border-radius: 5px;
+  border: 1px solid var(--accents-2);
+  box-shadow: none;
+  box-sizing: border-box;
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 26px;
+  outline: 0px;
+  width: 100%;
+  color: var(--geist-foreground);
+  caret-color: var(--geist-foreground);
+  text-overflow: ellipsis;
+  appearance: none;
+}
+
+.root:focus,
+.root:active {
+  border: 1px solid var(--accents-5);
+}

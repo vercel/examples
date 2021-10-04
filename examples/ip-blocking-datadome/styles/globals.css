@@ -1,0 +1,67 @@
+@tailwind base;
+@import './base.css';
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Chrome has a bug with transitions on load since 2012!
+ *
+ * To prevent a "pop" of content, you have to disable all transitions until
+ * the page is done loading.
+ *
+ * https://lab.laukstein.com/bug/input
+ * https://twitter.com/timer150/status/1345217126680899584
+ */
+body.loading * {
+  transition: none !important;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+  touch-action: manipulation;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-x: none;
+  font-size: 14px;
+  background-color: var(--accents-0);
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+}
+
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  color: var(--accents-4);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accents-8);
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
+}
