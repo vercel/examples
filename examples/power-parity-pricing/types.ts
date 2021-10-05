@@ -1,3 +1,3 @@
-import { PARITIES } from "./constants";
+import { PARITIES } from './constants'
 
-export type Country = keyof typeof PARITIES;
+export type Country = keyof typeof PARITIES

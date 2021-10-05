@@ -1,53 +1,55 @@
 import type { GetStaticPaths, GetStaticProps } from 'next'
-import type {ParsedUrlQuery} from "querystring";
-import type { Country } from '../types';
+import type { ParsedUrlQuery } from 'querystring'
+import type { Country } from '../types'
 
 import Head from 'next/head'
 import Image from 'next/image'
 import { useMemo, useState } from 'react'
 
-import shirt from "../public/shirt.png"
-import map from "../public/map.svg"
-import api from '../api';
-import { PRODUCT_PRICE } from '../constants';
-import { getParityPrice } from '../utils';
+import shirt from '../public/shirt.png'
+import map from '../public/map.svg'
+import api from '../api'
+import { PRODUCT_PRICE } from '../constants'
+import { getParityPrice } from '../utils'
 
 interface Params extends ParsedUrlQuery {
-  country: Country;
+  country: Country
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // Get the list of countries
-  const countries = await api.parity.list();
+  const countries = await api.parity.list()
 
   return {
-    paths: countries.map(country => ({
+    paths: countries.map((country) => ({
       params: {
-        country
-      }
+        country,
+      },
     })),
     fallback: 'blocking',
-  };
-};
+  }
+}
 
-export const getStaticProps: GetStaticProps<unknown, Params> = async ({params}) => {
+export const getStaticProps: GetStaticProps<unknown, Params> = async ({
+  params,
+}) => {
   // Get parity for country
-  const parity = await api.parity.fetch(params.country);
+  const parity = await api.parity.fetch(params.country)
 
   return {
     props: {
       country: params.country,
-      parity
+      parity,
     },
-  };
-};
+  }
+}
 
-export default function CountryPage({
-  country,
-  parity
-}) {
-  const [isParityEnabled, toggleParity] = useState<boolean>(false);
-  const parityPrice = useMemo(() => getParityPrice(PRODUCT_PRICE, parity), [parity])
+export default function CountryPage({ country, parity }) {
+  const [isParityEnabled, toggleParity] = useState<boolean>(false)
+  const parityPrice = useMemo(
+    () => getParityPrice(PRODUCT_PRICE, parity),
+    [parity]
+  )
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-50">
@@ -109,7 +111,9 @@ export default function CountryPage({
               </div>
               {isParityEnabled ? (
                 <div className="flex flex-col items-start font-bold text-lg leading-none">
-                  <span className="text-gray-500 text-sm line-through">USD {PRODUCT_PRICE}</span>
+                  <span className="text-gray-500 text-sm line-through">
+                    USD {PRODUCT_PRICE}
+                  </span>
                   <span className="text-green-500">USD {parityPrice}</span>
                 </div>
               ) : (
@@ -121,15 +125,34 @@ export default function CountryPage({
             <div className="bg-gray-50 text-gray-500 text-left py-2 px-4 rounded-md border-gray-200 border text-sm flex flex-col gap-4">
               <p className="inline-block">
                 <span>We noticed that you're from </span>
-                <img className="bg-gray-200 inline-flex" width={16} height={12} src={`https://lipis.github.io/flag-icon-css/flags/4x3/${country.toLowerCase()}.svg`} />
-                <span>. We are offering purchasing power parity pricing. If that is something that you need:</span>
+                <img
+                  className="bg-gray-200 inline-flex"
+                  width={16}
+                  height={12}
+                  src={`https://lipis.github.io/flag-icon-css/flags/4x3/${country.toLowerCase()}.svg`}
+                />
+                <span>
+                  . We are offering purchasing power parity pricing. If that is
+                  something that you need:
+                </span>
               </p>
               <label className="inline-flex items-center font-semibold">
-                <input onChange={(event) => toggleParity(event.target.checked)} className="text-black-500 w-4 h-4 mr-2 border border-gray-300 rounded" type="checkbox" />
+                <input
+                  onChange={(event) => toggleParity(event.target.checked)}
+                  className="text-black-500 w-4 h-4 mr-2 border border-gray-300 rounded"
+                  type="checkbox"
+                />
                 Activate {parity}% off with regional pricing
               </label>
             </div>
-            <button className="py-4 px-6 text-lg w-full bg-black text-white rounded-md hover:bg-gray-900" onClick={() => alert(`its yours for USD ${isParityEnabled ? parityPrice : 500}`)}>
+            <button
+              className="py-4 px-6 text-lg w-full bg-black text-white rounded-md hover:bg-gray-900"
+              onClick={() =>
+                alert(
+                  `its yours for USD ${isParityEnabled ? parityPrice : 500}`
+                )
+              }
+            >
               Buy now
             </button>
           </div>

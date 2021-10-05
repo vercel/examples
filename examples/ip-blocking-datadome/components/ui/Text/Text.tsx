@@ -2,48 +2,48 @@ import React, {
   FunctionComponent,
   JSXElementConstructor,
   CSSProperties,
-} from "react";
-import cn from "classnames";
-import s from "./Text.module.css";
+} from 'react'
+import cn from 'classnames'
+import s from './Text.module.css'
 
 interface Props {
-  variant?: Variant;
-  className?: string;
-  style?: CSSProperties;
-  children?: React.ReactNode | any;
-  html?: string;
+  variant?: Variant
+  className?: string
+  style?: CSSProperties
+  children?: React.ReactNode | any
+  html?: string
 }
 
-type Variant = "h1" | "h2" | "description" | "body" | "smallText";
+type Variant = 'h1' | 'h2' | 'description' | 'body' | 'smallText'
 
 const Text: FunctionComponent<Props> = ({
   style,
-  className = "",
-  variant = "body",
+  className = '',
+  variant = 'body',
   children,
   html,
 }) => {
   const componentsMap: {
-    [P in Variant]: React.ComponentType<any> | string;
+    [P in Variant]: React.ComponentType<any> | string
   } = {
-    h1: "h1",
-    h2: "h2",
-    body: "p",
-    description: "p",
-    smallText: "small",
-  };
+    h1: 'h1',
+    h2: 'h2',
+    body: 'p',
+    description: 'p',
+    smallText: 'small',
+  }
 
   const Component:
     | JSXElementConstructor<any>
     | React.ReactElement<any>
     | React.ComponentType<any>
-    | string = componentsMap![variant!];
+    | string = componentsMap![variant!]
 
   const htmlContentProps = html
     ? {
         dangerouslySetInnerHTML: { __html: html },
       }
-    : {};
+    : {}
 
   return (
     <Component
@@ -53,7 +53,7 @@ const Text: FunctionComponent<Props> = ({
     >
       {children}
     </Component>
-  );
-};
+  )
+}
 
-export default Text;
+export default Text
