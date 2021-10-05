@@ -3,8 +3,12 @@ export const BOTD_DEFAULT_PATH = '/api/v1/'
 export const BOTD_RESULT_PATH = '/api/v1/results'
 export const BOTD_EDGE_PATH = '/api/v1/edge'
 
-export const BOTD_PROXY_JS = '/botd.min.js'
-export const BOTD_PROXY_API = `/botd${BOTD_DEFAULT_PATH}`
+// Use these if the proxy is enabled
+// export const BOTD_PROXY_JS = '/botd.min.js'
+// export const BOTD_PROXY_API = `/botd${BOTD_DEFAULT_PATH}`
+export const BOTD_PROXY_JS =
+  'https://cdn.jsdelivr.net/npm/@fpjs-incubator/botd-agent@0/dist/botd.min.js'
+export const BOTD_PROXY_API = BOTD_DEFAULT_PATH
 
 export const COOKIE_NAME = 'botd-request-id'
 export const TIMEOUT = 1000

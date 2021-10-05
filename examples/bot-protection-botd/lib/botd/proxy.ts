@@ -17,10 +17,15 @@ export const PROXIES: Proxies = {
     `${BOTD_DEFAULT_URL}${BOTD_DEFAULT_PATH}detect${req.url?.search ?? ''}`,
 }
 
+/**
+ * Proxy Botd scripts and browser calls
+ * Note: We can't change headers when proxying, so for botd we're going to
+ * their domain directly instead of using this proxy because we can't send
+ * the `botd-client-ip` header
+ */
 export default function botdProxy(req: EdgeRequest, res: EdgeResponse) {
   const proxy = PROXIES[req.url?.pathname!]
 
-  // Proxy Botd scripts and browser calls
   if (proxy) {
     res.rewrite(proxy(req))
     return true
