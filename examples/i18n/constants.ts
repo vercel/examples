@@ -7,7 +7,7 @@ export const DICTIONARIES: Record<string, Dictionary> = {
     subtitle: 'Localized text based on geolocation headers',
     link: 'See headers documentation'
   },
-  'en-US': {
+  'en': {
     title: 'i18n Example',
     greet: 'Hello!',
     subtitle: 'Localized text based on geolocation headers',
