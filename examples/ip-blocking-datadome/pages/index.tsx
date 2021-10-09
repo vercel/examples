@@ -1,8 +1,7 @@
 import React from 'react'
 import fetchAPI from '@lib/fetch-api'
 import useSWR from 'swr'
-import { Button, Input, Text } from '@components/ui'
-import { ExamplesLayout } from '@components/common'
+import { Layout, Button, Input, Text } from '@edge-functions/ui'
 
 function Index() {
   const [loading, setLoading] = React.useState<boolean>(false)
@@ -34,22 +33,6 @@ function Index() {
           requests instantly. This example uses DataDome's low-latency Custom
           Rules API that allows us to block certain IPs.
         </Text>
-        {/* <div>
-          <Button
-            Component="a"
-            href="https://github.com/vercel-customer-feedback/edge-functions/tree/main/examples"
-          >
-            Clone & Deploy
-          </Button>
-          <Button
-            variant="ghost"
-            className="ml-2"
-            Component="a"
-            href="https://github.com/vercel-customer-feedback/edge-functions/tree/main/examples"
-          >
-            More Examples →
-          </Button>
-        </div> */}
       </div>
       <div className="flex py-8">
         <Input
@@ -65,13 +48,14 @@ function Index() {
           Block IP
         </Button>
       </div>
-      <div className="">
-        {/* <h2 className="font-semibold text-lg">Rules</h2> */}
-
+      <div>
         {rules ? (
           <ul className="border-accents-2 border rounded-md bg-white divide-y divide-accents-2 my-6">
             {rules.map((r) => (
-              <li className="flex items-center justify-content py-6 px-6">
+              <li
+                key={r.id}
+                className="flex items-center justify-content py-6 px-6"
+              >
                 <span className="flex-1">
                   <h3 className="font-semibold text-black">{r.query}</h3>
                   <p className="font-medium text-accents-4">
@@ -100,6 +84,6 @@ function Index() {
   )
 }
 
-Index.Layout = ExamplesLayout
+Index.Layout = Layout
 
 export default Index

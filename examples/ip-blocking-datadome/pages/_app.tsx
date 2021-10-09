@@ -1,13 +1,12 @@
-import { FC } from 'react'
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { Head, Layout as DefaultLayout } from '@components/common'
+import Head from 'next/head'
 import { SWRConfig } from 'swr'
-
-// const Noop: FC = ({ children }) => <>{children}</>
+import { getLayout } from '@edge-functions/ui'
+import '@edge-functions/ui/globals.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const Layout = (Component as any).Layout || DefaultLayout
+  const Layout = getLayout(Component)
+
   return (
     <SWRConfig
       value={{
@@ -17,7 +16,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           fetch(`/api/${path}`, init).then((res) => res.json()),
       }}
     >
-      <Head />
+      <Head>
+        <title>Vercel Edge Functions - IP Blocking with Datadome</title>
+      </Head>
       <Layout pageProps={pageProps}>
         <Component {...pageProps} />
       </Layout>
