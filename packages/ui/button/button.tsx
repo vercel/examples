@@ -23,7 +23,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean
 }
 
-const Button: React.FC<ButtonProps> = (props, buttonRef) => {
+const Button: React.FC<ButtonProps> = (props) => {
   const {
     width,
     active,
@@ -61,7 +61,7 @@ const Button: React.FC<ButtonProps> = (props, buttonRef) => {
       {...rest}
     >
       {loading ? (
-        <i className="pl-2 m-0 flex">
+        <i className="m-0 flex">
           <LoadingDots />
         </i>
       ) : (

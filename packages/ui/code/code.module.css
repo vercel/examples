@@ -1,0 +1,10 @@
+.root {
+  color: var(--geist-code);
+  font-size: 16px;
+  white-space: pre-wrap;
+}
+
+.root::before,
+.root::after {
+  content: '`';
+}

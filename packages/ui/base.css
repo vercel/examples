@@ -49,6 +49,7 @@
   --accents-9: #000;
 
   --geist-link-color: var(--geist-success);
+  --geist-link-color-light: var(--geist-success-light);
   --geist-marketing-gray: #fafbfc;
   --geist-code: var(--geist-highlight-purple);
   --geist-secondary-lighter: var(--accents-2);
