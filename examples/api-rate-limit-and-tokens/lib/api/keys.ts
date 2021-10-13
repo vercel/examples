@@ -1,4 +1,4 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
+import type { NextRequest } from 'next/server'
 import jwt from '@tsndr/cloudflare-worker-jwt'
 import {
   createRateLimit,
@@ -20,29 +20,31 @@ export const createTokenRateLimit = (options: RateLimitOptions) => {
   const ipRateLimit = createRateLimit(options)
 
   return async function isRateLimited(
-    req: EdgeRequest,
-    res: EdgeResponse,
+    request: NextRequest,
     headers = options.headers,
     handler = options.handler
   ) {
     // Get bearer token from header
-    const token = req.headers.get('Authorization')?.split(' ')[1]
+    const token = request.headers.get('Authorization')?.split(' ')[1]
 
     if (token) {
       const isValid = await jwt.verify(token, API_KEYS_JWT_SECRET_KEY)
-
       if (!isValid) {
-        res.status(401)
-        return res.json({
-          message: 'Your token has expired',
-        })
+        return new Response(
+          JSON.stringify({ error: { message: 'Your token has expired' } }),
+          {
+            status: 401,
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        )
       }
 
       const payload = jwt.decode(token) as ApiTokenPayload
 
       return rateLimit(
-        req,
-        res,
+        request,
         { id: `api-token:${payload.jti}`, ...payload },
         increment,
         headers,
@@ -51,12 +53,11 @@ export const createTokenRateLimit = (options: RateLimitOptions) => {
     }
 
     // Fallback to IP rate limiting if no bearer token is present
-    return ipRateLimit(req, res)
+    return ipRateLimit(request)
   }
 }
 
 const increment: CountFunction<ApiTokenPayload> = async ({
-  res,
   jti,
   key,
   timeframe,
@@ -74,10 +75,15 @@ const increment: CountFunction<ApiTokenPayload> = async ({
 
   if (!jwt) {
     // The token no longer exists in Redis
-    res.status(401)
-    return res.json({
-      message: 'Your token has expired',
-    })
+    return new Response(
+      JSON.stringify({ error: { message: 'Your token has expired' } }),
+      {
+        status: 401,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
   }
 
   return count

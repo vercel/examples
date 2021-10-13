@@ -1,11 +1,15 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
+import type { NextFetchEvent } from 'next/server'
 import { upstashRest } from '@lib/upstash'
-import { IP_RULES } from './constants'
 import getIP from '@lib/get-ip'
+import { IP_RULES } from './constants'
 
-export async function blockedIp(req: EdgeRequest, res: EdgeResponse) {
+export async function blockedIp(event: NextFetchEvent) {
   try {
-    const { result } = await upstashRest(['HGET', IP_RULES, getIP(req)])
+    const { result } = await upstashRest([
+      'HGET',
+      IP_RULES,
+      getIP(event.request),
+    ])
 
     if (!result) return false
 

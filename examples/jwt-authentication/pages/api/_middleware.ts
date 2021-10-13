@@ -1,18 +1,14 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
-import { nanoid } from 'nanoid'
-import { verifyAuth } from '@lib/auth'
+import type { NextFetchEvent } from 'next/server'
+import { NextResponse } from 'next/server'
+import { handleAuth } from '@lib/auth'
 
-export async function middleware(
-  req: EdgeRequest,
-  res: EdgeResponse,
-  next: any
-) {
-  if (req.url?.query.edge === '') {
-    const payload = await verifyAuth(req, res)
-    if (!payload) return
-
-    res.status(200).json({ nanoid: nanoid(), jwtID: payload.jti })
+export function middleware(event: NextFetchEvent) {
+  const url = event.request.nextUrl
+  if (url.searchParams.has('edge')) {
+    console.log('Edge Auth', url.toString())
+    return event.respondWith(handleAuth(event))
   }
-
-  next()
+  
+  console.log('Lambda Auth:', url.toString())
+  return event.respondWith(NextResponse.next())
 }

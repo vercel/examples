@@ -57,6 +57,11 @@ function Index() {
         <SwrResponse url="/api?edge" />
         <SwrResponse url="/api" />
       </div>
+
+      <Text className="mb-6 text-center">
+        The latency shown might not be realistic, check the network tab in
+        devtools and filter by <Code>/api</Code> for better results.
+      </Text>
     </div>
   )
 }

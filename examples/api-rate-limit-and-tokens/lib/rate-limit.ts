@@ -1,4 +1,4 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
+import type { NextRequest } from 'next/server'
 import getIP from './get-ip'
 
 export interface RateLimitCtx {
@@ -13,15 +13,13 @@ export type RateLimitHeaders =
   | readonly [string | null, string | null, string | null]
 
 export type RateLimitHandler<T extends {} = {}> = (
-  req: EdgeRequest,
-  res: EdgeResponse,
+  request: NextRequest,
   ctx: T & RateLimitCtx
-) => void | Promise<void>
+) => Response | Promise<Response>
 
 export type CountFunction<T extends {} = {}> = (
-  context: T &
-    RateLimitCtx & { req: EdgeRequest; res: EdgeResponse; key: string }
-) => Promise<number | void>
+  context: T & RateLimitCtx & { request: NextRequest; key: string }
+) => Promise<number | Response>
 
 export interface RateLimitOptions<T extends {} = {}> {
   limit: number
@@ -42,21 +40,27 @@ function getHeaders(nameOrHeaders?: RateLimitHeaders) {
     : nameOrHeaders
 }
 
-const rateLimited: RateLimitHandler = (_, res, { id }) => {
-  res.status(403)
-  res.json({
-    message: `API rate limit exceeded for ${id}`,
-  })
+const rateLimited: RateLimitHandler = (_, { id }) => {
+  return new Response(
+    JSON.stringify({
+      error: { message: `API rate limit exceeded for ${id}` },
+    }),
+    {
+      status: 403,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  )
 }
 
 export async function rateLimit<T extends RateLimitCtx>(
-  req: EdgeRequest,
-  res: EdgeResponse,
+  request: NextRequest,
   context: T,
   countFunction: CountFunction<T>,
   headers?: RateLimitHeaders,
   handler: RateLimitHandler<T> = rateLimited
-) {
+): Promise<false | Response> {
   headers = getHeaders(headers)
 
   const { id, limit, timeframe } = context
@@ -66,7 +70,7 @@ export async function rateLimit<T extends RateLimitCtx>(
   // we now have a time that changes every `timeframe` seconds
   const time = Math.floor(Date.now() / 1000 / timeframe)
   const key = `${id}:${time}`
-  const count = await countFunction({ ...context, req, res, key }).catch(
+  const count = await countFunction({ ...context, request, key }).catch(
     // If the count function fails we'll ignore rate limiting
     (err) => {
       console.error('Rate limit `countFunction` failed with:', err)
@@ -74,9 +78,10 @@ export async function rateLimit<T extends RateLimitCtx>(
     }
   )
 
-  if (!Number.isInteger(count) || res.finished) {
-    return res.finished
+  if (count instanceof Response) {
+    return count
   }
+  if (count === null) return false
 
   const remaining = limit - (count as number)
   const reset = (time + 1) * timeframe
@@ -84,33 +89,31 @@ export async function rateLimit<T extends RateLimitCtx>(
   // Temporal logging
   const latency = Date.now() - start
 
-  res.headers.set('x-upstash-latency', `${latency}`)
-  res.headers.set('Content-Type', 'application/json')
+  request.headers.set('x-upstash-latency', `${latency}`)
+  request.headers.set('Content-Type', 'application/json')
 
-  if (headers[0]) res.headers.set(headers[0], `${limit}`)
+  if (headers[0]) request.headers.set(headers[0], `${limit}`)
   if (headers[1])
-    res.headers.set(headers[1], `${remaining < 0 ? 0 : remaining}`)
-  if (headers[2]) res.headers.set(headers[2], `${reset}`)
+    request.headers.set(headers[1], `${remaining < 0 ? 0 : remaining}`)
+  if (headers[2]) request.headers.set(headers[2], `${reset}`)
   if (remaining < 0) {
-    await handler(req, res, context)
-    return true
+    return handler(request, context)
   }
   return false
 }
 
 export const createRateLimit = (options: RateLimitOptions) =>
   function isRateLimited(
-    req: EdgeRequest,
-    res: EdgeResponse,
+    request: NextRequest,
     limit = options.limit,
     timeframe = options.timeframe,
     headers = options.headers,
     handler = options.handler
   ) {
+    console.log('MY IP', getIP(request))
     return rateLimit(
-      req,
-      res,
-      { id: `ip:${getIP(req)}`, limit, timeframe },
+      request,
+      { id: `ip:${getIP(request)}`, limit, timeframe },
       options.countFunction,
       headers,
       handler
