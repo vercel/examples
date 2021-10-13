@@ -16,7 +16,7 @@ function Index() {
         </Text>
         <Text className="mb-4">
           With <i className="font-semibold">Vercel's Edge Middleware</i> we're
-          able to excecute functions at the edge level and act on mid-flight
+          able to execute functions at the edge level and act on mid-flight
           requests instantly. This example uses Upstash for API rate limiting
           and to add rules that allows us to block certain IPs.
         </Text>

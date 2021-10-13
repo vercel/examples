@@ -17,7 +17,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       }}
     >
       <Head>
-        <title>Vercel Edge Functions - IP Blocking with Datadome</title>
+        <title>Vercel Edge Functions - API Rate Limiting and IP Blocking</title>
       </Head>
       <Layout pageProps={pageProps}>
         <Component {...pageProps} />
