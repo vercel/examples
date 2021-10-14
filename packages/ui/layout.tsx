@@ -9,7 +9,7 @@ const Layout: FC = ({ children }) => {
       <main className="px-8 bg-accents-0">
         <div
           className="w-full"
-          style={{ minHeight: 'calc(100vh - 68px - 96px)' }}
+          style={{ minHeight: 'calc(100vh - 68px - 102px)' }}
         >
           {children}
         </div>
