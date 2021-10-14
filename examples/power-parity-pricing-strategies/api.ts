@@ -17,6 +17,8 @@ const PRODUCTS: Record<string, Product> = {
   },
   ar: {
     ...PRODUCT,
+    name: 'Taza Vercel',
+    description: 'Edición Limitada',
     discount: 75,
   },
   uk: {
@@ -25,10 +27,14 @@ const PRODUCTS: Record<string, Product> = {
   },
   jp: {
     ...PRODUCT,
+    name: 'Vercel マグ',
+    description: '限定版',
     discount: 15,
   },
   cn: {
     ...PRODUCT,
+    name: 'Vercel 马克杯',
+    description: '限量版',
     discount: 30,
   },
   au: {
@@ -37,6 +43,8 @@ const PRODUCTS: Record<string, Product> = {
   },
   de: {
     ...PRODUCT,
+    name: 'Vercel Becher',
+    description: 'Limitierte Auflage, beschränkte Auflage',
     discount: 25,
   },
 }
