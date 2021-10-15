@@ -11,13 +11,12 @@ export function middleware(evt: NextFetchEvent) {
 
   // Trying to access the /blocked page manually is disallowed
   if (url.pathname === '/blocked') {
-    return evt.respondWith(NextResponse.redirect('/'))
+    return evt.respondWith(Response.redirect('/'))
   }
 }
 
 async function blocked(evt: NextFetchEvent) {
-  if (await blockedIp(evt)) {
-    return NextResponse.rewrite('/blocked')
-  }
-  return NextResponse.next()
+  return (await blockedIp(evt.request))
+    ? NextResponse.rewrite('/blocked')
+    : NextResponse.next()
 }

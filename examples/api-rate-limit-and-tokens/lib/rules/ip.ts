@@ -1,15 +1,11 @@
-import type { NextFetchEvent } from 'next/server'
+import type { NextRequest } from 'next/server'
 import { upstashRest } from '@lib/upstash'
 import getIP from '@lib/get-ip'
 import { IP_RULES } from './constants'
 
-export async function blockedIp(event: NextFetchEvent) {
+export async function blockedIp(request: NextRequest) {
   try {
-    const { result } = await upstashRest([
-      'HGET',
-      IP_RULES,
-      getIP(event.request),
-    ])
+    const { result } = await upstashRest(['HGET', IP_RULES, getIP(request)])
 
     if (!result) return false
 

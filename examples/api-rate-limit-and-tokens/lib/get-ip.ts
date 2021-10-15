@@ -1,6 +1,8 @@
-export default function getIP(request: any) {
+import type { NextApiRequest } from 'next'
+
+export default function getIP(request: Request | NextApiRequest) {
   const xff =
-    typeof request.headers.get === 'function'
+    request instanceof Request
       ? request.headers.get('x-forwarded-for')
       : request.headers['x-forwarded-for']
 

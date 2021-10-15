@@ -11,7 +11,7 @@ export default async function datadome(
   headers?: Record<string, string>
 ) {
   if (DATADOME_URI_REGEX_EXCLUSION.test(req.url.pathname)) {
-    await log('ignore datadome')
+    console.log('ignore datadome')
     return true
   }
 
@@ -53,7 +53,7 @@ export default async function datadome(
     ServerRegion: 'sfo1',
   }
 
-  await log('api call data', JSON.stringify(requestData, null, 2))
+  console.log('api call data', JSON.stringify(requestData, null, 2))
 
   const dataDomeReq = fetch(
     'http://api-cloudflare.datadome.co/validate-request/',
@@ -90,7 +90,7 @@ export default async function datadome(
     return true
   }
 
-  await log(
+  console.log(
     'Datadome debug',
     dataDomeRes.status,
     JSON.stringify(Object.fromEntries(dataDomeRes.headers.entries()), null, 2)
@@ -121,7 +121,7 @@ export default async function datadome(
 
     case 400:
       // Something is wrong with our authentication
-      await log('DataDome returned 400', dataDomeRes.statusText)
+      console.log('DataDome returned 400', dataDomeRes.statusText)
       return false
 
     case 200:

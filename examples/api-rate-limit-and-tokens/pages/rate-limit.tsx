@@ -7,7 +7,7 @@ import ApiRequest from '@components/api-request'
 function RateLimit() {
   const [loading, setLoading] = useState<boolean>(false)
   const [selectedKey, setKey] = useState<string>('')
-  const { data, error, mutate } = useSWR('/keys')
+  const { data, error, mutate } = useSWR('/api/keys')
   const apiKeys = data?.apiKeys
 
   return (

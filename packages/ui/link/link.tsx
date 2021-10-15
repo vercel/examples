@@ -5,10 +5,11 @@ import s from './link.module.css'
 
 const Link: FC<LinkProps & AnchorHTMLAttributes<HTMLAnchorElement>> = ({
   href,
+  prefetch,
   className,
   ...props
 }) => (
-  <NextLink href={href}>
+  <NextLink href={href} prefetch={prefetch}>
     <a className={cn(s.root, className)} {...props}></a>
   </NextLink>
 )

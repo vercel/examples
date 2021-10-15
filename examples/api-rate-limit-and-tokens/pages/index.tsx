@@ -5,7 +5,7 @@ import fetchAPI from '@lib/fetch-api'
 
 function Index() {
   const [loading, setLoading] = useState<boolean>(false)
-  const { data, error, mutate } = useSWR('/rules/ip')
+  const { data, error, mutate } = useSWR('/api/rules/ip')
   const { myIp, rules } = data || {}
 
   return (
@@ -26,8 +26,10 @@ function Index() {
         </Text>
         <Text>
           Add IPs to block them below, next go to{' '}
-          <Link href="/am-i-blocked">/am-i-blocked</Link> under the IP and it'll
-          be blocked. Your IP is: <Code>{myIp}</Code>.
+          <Link href="/am-i-blocked" prefetch={false}>
+            /am-i-blocked
+          </Link>{' '}
+          under the IP and it'll be blocked. Your IP is: <Code>{myIp}</Code>.
         </Text>
       </div>
 

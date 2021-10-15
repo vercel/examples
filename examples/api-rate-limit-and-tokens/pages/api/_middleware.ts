@@ -1,14 +1,5 @@
+import { tokenRateLimit } from '@lib/api/keys'
 import { NextResponse, NextFetchEvent } from 'next/server'
-import { createTokenRateLimit } from '@lib/api/keys'
-import increment from '@lib/increment'
-
-// Does rate limiting based on a bearer token, or by
-// IP address if there's no token.
-const rateLimit = createTokenRateLimit({
-  countFunction: increment,
-  limit: 5,
-  timeframe: 10,
-})
 
 export function middleware(evt: NextFetchEvent) {
   if (evt.request.nextUrl.pathname === '/api') {
@@ -18,8 +9,8 @@ export function middleware(evt: NextFetchEvent) {
 }
 
 async function handler(evt: NextFetchEvent) {
-  const response = await rateLimit(evt.request)
-  if (response) return response
+  const res = await tokenRateLimit(evt.request)
+  if (res) return res
 
   return new Response(JSON.stringify({ done: true }), {
     status: 200,
