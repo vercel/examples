@@ -11,6 +11,12 @@ const {
 } = require('configcat-common/lib/ProjectConfig')
 
 async function setupConfigcat() {
+  if (!process.env.NEXT_PUBLIC_CONFIGCAT_SDK_KEY) {
+    throw new Error(
+      'NEXT_PUBLIC_CONFIGCAT_SDK_KEY is missing in environment variables'
+    )
+  }
+
   const logger = configcat.createConsoleLogger(3)
   // We only need to setup the client once so polling is not required
   const configCatClient = configcat.createClientWithManualPoll(

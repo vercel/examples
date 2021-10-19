@@ -18,10 +18,14 @@ export function getTreatment(key: string, name: SPLITS): string {
     throw new Error(`Could not find a split with the name "${name}"`)
   }
 
-  let n = Math.random() * 100
+  let n = cryptoRandom() * 100
 
   return split.defaultRule.find((rule) => {
-    if (rule.size >= n) return true
     n -= rule.size
+    return n <= 0
   })?.treatment
+}
+
+function cryptoRandom() {
+  return crypto.getRandomValues(new Uint32Array(1))[0] / (0xffffffff + 1)
 }

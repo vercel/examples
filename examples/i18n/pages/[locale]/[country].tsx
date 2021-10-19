@@ -1,20 +1,20 @@
 import type { GetStaticPaths, GetStaticProps } from 'next'
-import type {ParsedUrlQuery} from "querystring";
+import type { ParsedUrlQuery } from 'querystring'
 
 import Head from 'next/head'
 import Image from 'next/image'
 
-import map from "../../public/map.svg"
-import api from '../../api';
-import { Dictionary } from '../../types';
+import map from '../../public/map.svg'
+import api from '../../api'
+import { Dictionary } from '../../types'
 
 interface Params extends ParsedUrlQuery {
-  country: string;
+  country: string
 }
 
 interface Props {
-  country: string;
-  locale: string;
+  country: string
+  locale: string
   dictionary: Dictionary
 }
 
@@ -23,12 +23,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
     fallback: 'blocking',
-  };
-};
+  }
+}
 
-export const getStaticProps: GetStaticProps<unknown, Params> = async ({params: {country, locale}}) => {
+export const getStaticProps: GetStaticProps<unknown, Params> = async ({
+  params: { country, locale },
+}) => {
   // Get dictionary
-  const dictionary = await api.dictionaries.fetch(locale);
+  const dictionary = await api.dictionaries.fetch(locale)
 
   return {
     props: {
@@ -36,15 +38,11 @@ export const getStaticProps: GetStaticProps<unknown, Params> = async ({params: {
       dictionary,
       locale,
     },
-    revalidate: false
-  };
-};
+    revalidate: false,
+  }
+}
 
-export default function CountryPage({
-  country,
-  locale,
-  dictionary,
-}: Props) {
+export default function CountryPage({ country, locale, dictionary }: Props) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-50">
       <Head>

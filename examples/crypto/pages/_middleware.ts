@@ -1,10 +1,10 @@
-import type { EdgeRequest, EdgeResponse, EdgeNext } from 'next'
+import type { NextFetchEvent } from 'next/server'
 
-export default async function (
-  req: EdgeRequest,
-  res: EdgeResponse,
-  next: EdgeNext
-) {
+export function middleware(ev: NextFetchEvent) {
+  ev.respondWith(handler(ev))
+}
+
+async function handler(ev: NextFetchEvent) {
   // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/subtle
   const plainText = 'Hello from the Edge!'
   const password = 'hunter2'
@@ -27,14 +27,17 @@ export default async function (
   const ptBuffer = await crypto.subtle.decrypt(alg, decryptKey, encrypted)
   const decryptedText = new TextDecoder().decode(ptBuffer)
 
-  return res.json({
-    // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID
-    uuid: crypto.randomUUID(),
-    // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues
-    randomValues: crypto.getRandomValues(new Uint32Array(10)),
-    plainText,
-    password,
-    decryptedText,
-    iv,
-  })
+  return new Response(
+    JSON.stringify({
+      // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID
+      uuid: crypto.randomUUID(),
+      // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues
+      randomValues: crypto.getRandomValues(new Uint32Array(10)),
+      plainText,
+      password,
+      decryptedText,
+      iv,
+    }),
+    { headers: { 'Content-Type': 'application/json' } }
+  )
 }

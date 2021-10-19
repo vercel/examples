@@ -1,4 +1,4 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
+import { NextRequest, NextResponse } from 'next/server'
 import {
   BOTD_DEFAULT_PATH,
   BOTD_DEFAULT_URL,
@@ -6,15 +6,17 @@ import {
   BOTD_PROXY_JS,
 } from './constants'
 
+type NextURL = Parameters<typeof NextResponse['rewrite']>[0]
+
 type Proxies = {
-  [key: string]: (req: EdgeRequest) => Parameters<EdgeResponse['rewrite']>[0]
+  [key: string]: (req: NextRequest) => NextURL
 }
 
 export const PROXIES: Proxies = {
   [BOTD_PROXY_JS]: () =>
     'https://cdn.jsdelivr.net/npm/@fpjs-incubator/botd-agent@0/dist/botd.min.js',
   [BOTD_PROXY_API + 'detect']: (req) =>
-    `${BOTD_DEFAULT_URL}${BOTD_DEFAULT_PATH}detect${req.url?.search ?? ''}`,
+    `${BOTD_DEFAULT_URL}${BOTD_DEFAULT_PATH}detect${req.nextUrl.search ?? ''}`,
 }
 
 /**
@@ -23,12 +25,10 @@ export const PROXIES: Proxies = {
  * their domain directly instead of using this proxy because we can't send
  * the `botd-client-ip` header
  */
-export default function botdProxy(req: EdgeRequest, res: EdgeResponse) {
-  const proxy = PROXIES[req.url?.pathname!]
+export default function botdProxy(req: NextRequest) {
+  const proxy = PROXIES[req.nextUrl.pathname]
 
   if (proxy) {
-    res.rewrite(proxy(req))
-    return true
+    return NextResponse.rewrite(proxy(req))
   }
-  return false
 }

@@ -1,25 +1,47 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
+/**
+ * Multi purpose rate limiting API.
+ * Note: We use this lib in multiple demos, feel free to
+ * use it in your own projects.
+ */
+import type { NextRequest } from 'next/server'
+
+export interface RateLimitContextBase {
+  id: string
+  limit: number
+  timeframe: number
+  count: CountFn
+}
+
+export interface RateLimitContext extends RateLimitContextBase {
+  request: NextRequest
+  headers: readonly [string | null, string | null, string | null]
+  onRateLimit: OnRateLimit
+}
+
+export type RateLimitHandler = (
+  request: NextRequest
+) => Promise<RateLimitResult> | RateLimitResult
+
+export type RateLimitResult =
+  | (RateLimitContextBase & {
+      request?: NextRequest
+      headers?: RateLimitHeaders
+      onRateLimit?: OnRateLimit
+    })
+  | Response
 
 export type RateLimitHeaders =
   | null
   | string
   | readonly [string | null, string | null, string | null]
 
-export type RateLimitHandler = (
-  req: EdgeRequest,
-  res: EdgeResponse,
-  ctx: { ip: string }
-) => void | Promise<void>
+export type OnRateLimit = (
+  context: RateLimitContext
+) => Response | Promise<Response>
 
-export type CountFunction = (key: string, timeframe: number) => Promise<number>
-
-export type RateLimitOptions = {
-  countFunction: CountFunction
-  limit: number
-  timeframe: number
-  headers?: RateLimitHeaders
-  handler?: RateLimitHandler
-}
+export type CountFn = (
+  context: RateLimitContext & { key: string }
+) => Promise<number | Response>
 
 function getHeaders(nameOrHeaders?: RateLimitHeaders) {
   nameOrHeaders = nameOrHeaders ?? 'RateLimit'
@@ -32,71 +54,75 @@ function getHeaders(nameOrHeaders?: RateLimitHeaders) {
     : nameOrHeaders
 }
 
-const rateLimited: RateLimitHandler = (_, res, { ip }) => {
-  res.status(403)
-  res.json({
-    message: `API rate limit exceeded for ${ip}`,
-  })
+const rateLimited: OnRateLimit = ({ id }) => {
+  return new Response(
+    JSON.stringify({
+      error: { message: `API rate limit exceeded for ${id}` },
+    }),
+    {
+      status: 403,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  )
 }
 
-async function rateLimit(
-  countFunction: CountFunction,
-  req: EdgeRequest,
-  res: EdgeResponse,
-  limit: number,
-  timeframe: number,
-  headers?: RateLimitHeaders,
-  handler: RateLimitHandler = rateLimited
-) {
-  headers = getHeaders(headers)
+async function rateLimit(context: RateLimitContext) {
+  let { headers, id, limit, timeframe, count, onRateLimit } = context
 
   // Temporal logging
   const start = Date.now()
-
-  const ip = req.headers.get('x-forwarded-for')
-    ? req.headers.get('x-forwarded-for')!.split(',')[0]
-    : '127.0.0.1'
   // By removing the milliseconds our of the date and dividing by `timeframe`
   // we now have a time that changes every `timeframe` seconds
   const time = Math.floor(Date.now() / 1000 / timeframe)
-  const key = `${ip}:${time}`
-  const count = await countFunction(key, timeframe)
-  const remaining = limit - count
+  const key = `${id}:${time}`
+  let countOrRes: number | Response
+
+  try {
+    countOrRes = await count({ ...context, key })
+  } catch (err) {
+    console.error('Rate limit `count` failed with:', err)
+    // If the count function fails we'll ignore rate limiting and
+    // return a successful response to avoid blocking the request
+    return new Response(null)
+  }
+
+  const h = countOrRes instanceof Response ? countOrRes.headers : new Headers()
+  const remaining = countOrRes instanceof Response ? 0 : limit - countOrRes
   const reset = (time + 1) * timeframe
 
   // Temporal logging
   const latency = Date.now() - start
-  console.log('Upstash took', latency)
-  res.headers.set('x-upstash-latency', `${latency}`)
-  res.headers.set('Content-Type', 'application/json')
+  h.set('x-upstash-latency', `${latency}`)
 
-  if (headers[0]) res.headers.set(headers[0], `${limit}`)
-  if (headers[1])
-    res.headers.set(headers[1], `${remaining < 0 ? 0 : remaining}`)
-  if (headers[2]) res.headers.set(headers[2], `${reset}`)
+  if (headers[0]) h.set(headers[0], `${limit}`)
+  if (headers[1]) h.set(headers[1], `${remaining < 0 ? 0 : remaining}`)
+  if (headers[2]) h.set(headers[2], `${reset}`)
+  if (countOrRes instanceof Response) return countOrRes
   if (remaining < 0) {
-    await handler(req, res, { ip })
-    return true
+    const res = await onRateLimit(context)
+
+    // Concat the rate limiting headers
+    headers.concat('x-upstash-latency').forEach((key) => {
+      if (key) res.headers.set(key, h.get(key)!)
+    })
+
+    return res
   }
-  return false
+  return new Response(null, { headers: h })
 }
 
-export const createRateLimit = (options: RateLimitOptions) =>
-  function isRateLimited(
-    req: EdgeRequest,
-    res: EdgeResponse,
-    limit = options.limit,
-    timeframe = options.timeframe,
-    headers = options.headers,
-    handler = options.handler
-  ) {
-    return rateLimit(
-      options.countFunction,
-      req,
-      res,
-      limit,
-      timeframe,
-      headers,
-      handler
-    )
+export const initRateLimit = (fn: RateLimitHandler) =>
+  async function isRateLimited(request: NextRequest) {
+    const ctx = await fn(request)
+
+    if (ctx instanceof Response) return ctx
+
+    return rateLimit({
+      ...ctx,
+      request: ctx.request ?? request,
+      headers: getHeaders(ctx.headers),
+      onRateLimit: ctx.onRateLimit ?? rateLimited,
+    })
   }

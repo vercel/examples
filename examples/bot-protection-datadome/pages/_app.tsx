@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 import Script from 'next/script'
-import { DATADOME_JS, DATADOME_TAGS } from '@lib/domains'
+import { DATADOME_JS, DATADOME_TAGS } from '@lib/constants'
 import '../styles.css'
 
 function MyApp({ Component, pageProps }: AppProps) {

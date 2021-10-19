@@ -19,7 +19,8 @@ export function botd(opts?: any): Promise<any> {
   return Botd.load({
     token: process.env.NEXT_PUBLIC_BOTD_API_TOKEN,
     mode: 'allData', // requestId is the default mode.
-    endpoint: BOTD_PROXY_API,
+    // Add `endpoint` if the proxy is enabled
+    // endpoint: BOTD_PROXY_API,
     ...opts,
   })
 }

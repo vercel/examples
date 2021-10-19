@@ -73,13 +73,13 @@ async function updateNext() {
     const next = packageJson?.dependencies?.next
 
     if (!next) return
-    // This one checks for a fixed version
-    // if (next !== latest.next) {
-    if (next !== NEXT_LATEST) {
+    // This one checks for the latest version
+    // if (next !== NEXT_LATEST) {
+    if (next !== latest.next) {
       console.log(
         `Updating Next.js version in ${filePath.replace(rootDir, '')}`
       )
-      packageJson.dependencies.next = NEXT_LATEST
+      packageJson.dependencies.next = latest.next
 
       const content = prettier.format(JSON.stringify(packageJson, null, 2), {
         parser: 'json',

@@ -12,7 +12,7 @@ https://edge-functions-api-rate-limit.vercel.app/
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-functions%2Ftree%2Fmain%2Fexamples%2Fapi-rate-limit&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_KEY&project-name=api-rate-limit&repo-name=api-rate-limit)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-functions%2Ftree%2Fmain%2Fexamples%2Fapi-rate-limit&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN&project-name=api-rate-limit&repo-name=api-rate-limit)
 
 ## Getting Started
 
@@ -26,7 +26,7 @@ Then open `.env.local` and set the environment variables to match the REST API o
 
 ```bash
 UPSTASH_REST_API_DOMAIN = "us1-shiny-firefly-12345.upstash.io"
-UPSTASH_REST_API_KEY = "your-api-key"
+UPSTASH_REST_API_TOKEN = "your-api-token"
 ```
 
 Next, run Next.js in development mode:

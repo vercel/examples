@@ -1,11 +1,18 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
-import { setBucket } from '@lib/ab-testing'
+import { NextFetchEvent, NextResponse } from 'next/server'
+import { getBucket } from '@lib/ab-testing'
 import { MARKETING_BUCKETS } from '@lib/buckets'
 
-export default function middleware(req: EdgeRequest, res: EdgeResponse) {
-  // Get and set the bucket cookie
-  const bucket = setBucket(req, res, MARKETING_BUCKETS, 'bucket-marketing')
+const COOKIE_NAME = 'bucket-marketing'
 
-  // rewrite to the assigned bucket
-  res.rewrite(`/marketing/${bucket}`)
+export function middleware(ev: NextFetchEvent) {
+  // Get the bucket cookie
+  const bucket = ev.request.cookies[COOKIE_NAME] || getBucket(MARKETING_BUCKETS)
+  const res = NextResponse.rewrite(`/marketing/${bucket}`)
+
+  // Add the bucket to cookies if it's not there
+  if (!ev.request.cookies[COOKIE_NAME]) {
+    res.cookie(COOKIE_NAME, bucket)
+  }
+
+  return ev.respondWith(res)
 }

@@ -18,13 +18,16 @@ export function getValue<K extends Keys>(key: K): boolean {
     return setting[c.Setting.Value]
   }
 
-  let n = Math.random() * 100
+  let n = cryptoRandom() * 100
 
   return (
     percentageItems.find((item) => {
-      const target = item[c.RolloutPercentageItems.Percentage]
-      if (target >= n) return true
-      n -= target
+      n -= item[c.RolloutPercentageItems.Percentage]
+      return n <= 0
     })?.[c.RolloutPercentageItems.Value] ?? setting[c.Setting.Value]
   )
+}
+
+function cryptoRandom() {
+  return crypto.getRandomValues(new Uint32Array(1))[0] / (0xffffffff + 1)
 }

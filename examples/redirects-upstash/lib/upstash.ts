@@ -1,3 +1,8 @@
+/**
+ * Upstash REST and Edge API utils.
+ * Note: We use this lib in multiple demos, feel free to
+ * use it in your own projects.
+ */
 async function upstash({
   url,
   token,
@@ -16,7 +21,7 @@ async function upstash({
     : await res.text()
 
   if (res.ok) {
-    return data.result
+    return data
   } else {
     throw new Error(
       `Upstash failed with (${res.status}): ${
@@ -26,7 +31,10 @@ async function upstash({
   }
 }
 
-export async function upstashRest(...args: any[]) {
+export async function upstashRest(
+  args: any[],
+  options?: { pipeline: boolean }
+) {
   const domain = process.env.UPSTASH_REST_API_DOMAIN
   const token = process.env.UPSTASH_REST_API_TOKEN
 
@@ -36,13 +44,13 @@ export async function upstashRest(...args: any[]) {
 
   return upstash({
     token,
-    url: `https://${domain}`,
+    url: `https://${domain}${options?.pipeline ? '/pipeline' : ''}`,
     method: 'POST',
     body: JSON.stringify(args),
   })
 }
 
-export async function upstashEdge(...args: any[]) {
+export async function upstashEdge(args: any[]) {
   const domain = process.env.UPSTASH_EDGE_API_DOMAIN
   const token = process.env.UPSTASH_EDGE_API_TOKEN
 

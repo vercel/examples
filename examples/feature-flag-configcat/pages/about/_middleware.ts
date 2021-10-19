@@ -1,20 +1,22 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
+import { NextFetchEvent, NextResponse } from 'next/server'
 import { getValue } from '@lib/configcat'
 
-export function middleware(req: EdgeRequest, res: EdgeResponse, next) {
-  let cookie = req.cookies['flag-newAboutPage']
+const COOKIE_NAME = 'flag-newAboutPage'
 
-  if (!cookie) {
-    const value = getValue('newAboutPage') ? '1' : '0'
-
-    cookie = value
-    res.cookie('flag-newAboutPage', value)
+export function middleware(ev: NextFetchEvent) {
+  // Redirect paths that go directly to the variant
+  if (ev.request.nextUrl.pathname != '/about') {
+    return ev.respondWith(NextResponse.redirect('/about'))
   }
 
-  if (req.url.pathname === '/about') {
-    res.rewrite(cookie === '1' ? '/about/b' : '/about')
-    return
+  const cookie =
+    ev.request.cookies[COOKIE_NAME] || (getValue('newAboutPage') ? '1' : '0')
+  const res = NextResponse.rewrite(cookie === '1' ? '/about/b' : '/about')
+
+  // Add the cookie if it's not there
+  if (!ev.request.cookies[COOKIE_NAME]) {
+    res.cookie(COOKIE_NAME, cookie)
   }
 
-  next()
+  return ev.respondWith(res)
 }

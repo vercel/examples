@@ -1,9 +1,12 @@
-import type { EdgeRequest, EdgeResponse, EdgeNext } from 'next'
+import type { NextFetchEvent } from 'next/server'
 
-export default async function (
-  req: EdgeRequest,
-  res: EdgeResponse,
-  next: EdgeNext
-) {
-  return res.json({ message: 'hello world!' })
+export function middleware(ev: NextFetchEvent) {
+  ev.respondWith(
+    new Response(JSON.stringify({ message: 'hello world!' }), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  )
 }

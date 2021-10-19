@@ -1,6 +1,7 @@
 /**
- * Multi purpose rate limiting API, consider this a library
- * that can work outside the demo.
+ * Multi purpose rate limiting API.
+ * Note: We use this lib in multiple demos, feel free to
+ * use it in your own projects.
  */
 import type { NextRequest } from 'next/server'
 
@@ -28,7 +29,6 @@ export type RateLimitResult =
       onRateLimit?: OnRateLimit
     })
   | Response
-  | void
 
 export type RateLimitHeaders =
   | null
@@ -69,7 +69,7 @@ const rateLimited: OnRateLimit = ({ id }) => {
 }
 
 async function rateLimit(context: RateLimitContext) {
-  let { request, headers, id, limit, timeframe, count, onRateLimit } = context
+  let { headers, id, limit, timeframe, count, onRateLimit } = context
 
   // Temporal logging
   const start = Date.now()
@@ -82,13 +82,13 @@ async function rateLimit(context: RateLimitContext) {
   try {
     countOrRes = await count({ ...context, key })
   } catch (err) {
-    // If the count function fails we'll ignore rate limiting
     console.error('Rate limit `count` failed with:', err)
-    return
+    // If the count function fails we'll ignore rate limiting and
+    // return a successful response to avoid blocking the request
+    return new Response(null)
   }
 
-  const h =
-    countOrRes instanceof Response ? countOrRes.headers : request.headers
+  const h = countOrRes instanceof Response ? countOrRes.headers : new Headers()
   const remaining = countOrRes instanceof Response ? 0 : limit - countOrRes
   const reset = (time + 1) * timeframe
 
@@ -110,15 +110,13 @@ async function rateLimit(context: RateLimitContext) {
 
     return res
   }
+  return new Response(null, { headers: h })
 }
 
 export const initRateLimit = (fn: RateLimitHandler) =>
   async function isRateLimited(request: NextRequest) {
     const ctx = await fn(request)
 
-    // If there's no context don't do anything, this can happen if a
-    // rate limiter calls another rate limiter
-    if (!ctx) return
     if (ctx instanceof Response) return ctx
 
     return rateLimit({

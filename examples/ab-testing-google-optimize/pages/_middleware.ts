@@ -1,9 +1,10 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
+import { NextFetchEvent, NextResponse } from 'next/server'
 import { COOKIE_NAME } from '@lib/constants'
 import { getCurrentExperiment } from '@lib/optimize'
 
-export async function middleware(req: EdgeRequest, res: EdgeResponse, next) {
-  let cookie = req.cookies[COOKIE_NAME]
+export function middleware(evt: NextFetchEvent) {
+  let res = NextResponse.next()
+  let cookie = evt.request.cookies[COOKIE_NAME]
 
   if (!cookie) {
     let n = Math.random() * 100
@@ -14,26 +15,22 @@ export async function middleware(req: EdgeRequest, res: EdgeResponse, next) {
     })
 
     cookie = `${experiment.id}.${variant.id}`
-    res.cookie(COOKIE_NAME, cookie)
   }
 
   const [, variantId] = cookie.split('.')
-  const { pathname } = req.url
+  const { pathname } = evt.request.nextUrl
 
   if (['/marketing', '/about'].includes(pathname)) {
-    res.rewrite(
+    res = NextResponse.rewrite(
       // `0` is the original version
       variantId === '0' ? pathname : pathname.replace('/', `/${cookie}/`)
     )
-    return
   }
 
-  // Disallow the use of the variant page outside the original path
-  // NOTE: A simple check like this currently causes infinite redirects
-  // if (req.url.page === '/[variant]/marketing') {
-  //   res.redirect('/marketing')
-  //   return
-  // }
+  // Add the cookie if it's not there
+  if (!evt.request.cookies[COOKIE_NAME]) {
+    res.cookie(COOKIE_NAME, cookie)
+  }
 
-  next()
+  return evt.respondWith(res)
 }

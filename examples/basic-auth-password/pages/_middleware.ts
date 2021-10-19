@@ -1,14 +1,23 @@
-import type { EdgeRequest, EdgeResponse, EdgeNext } from 'next'
+import { NextResponse, NextFetchEvent } from 'next/server'
 
-export default function (req: EdgeRequest, res: EdgeResponse, next: EdgeNext) {
-  const auth = req.headers.get('authorization')
-  if (auth != null) {
-    const [user, pwd] = atob(auth.split(' ')[1]).split(':')
+export function middleware(ev: NextFetchEvent) {
+  const basicAuth = ev.request.headers.get('authorization')
+
+  if (basicAuth) {
+    const auth = basicAuth.split(' ')[1]
+    const [user, pwd] = Buffer.from(auth, 'base64').toString().split(':')
+
     if (user === '4dmin' && pwd === 'testpwd123') {
-      return next()
+      return ev.respondWith(NextResponse.next())
     }
   }
-  res.statusCode = 401
-  res.writeHead(401, { 'WWW-Authenticate': 'Basic realm="Secure Area"' })
-  res.end('Auth required')
+
+  ev.respondWith(
+    new Response('Auth required', {
+      status: 401,
+      headers: {
+        'WWW-Authenticate': 'Basic realm="Secure Area"',
+      },
+    })
+  )
 }

@@ -2,7 +2,7 @@ const { join } = require('path')
 const { writeFile } = require('fs/promises')
 const prettier = require('prettier')
 
-async function upstash(...args) {
+async function upstash(args) {
   const domain = process.env.UPSTASH_REST_API_DOMAIN
   const token = process.env.UPSTASH_REST_API_TOKEN
 
@@ -30,7 +30,7 @@ async function upstash(...args) {
     )
   }
 
-  return data.result
+  return data
 }
 
 async function setupUpstash() {
@@ -74,15 +74,15 @@ async function setupUpstash() {
         )
         return carry
       }, [])
-    const lastRedirect = await upstash(
+    const { result } = await upstash([
       'HGET',
       'redirects',
-      encodeURIComponent('/10000')
-    )
+      encodeURIComponent('/10000'),
+    ])
 
-    if (!lastRedirect) {
+    if (!result) {
       console.log(`Adding ${args.length / 2} records to your Redis database`)
-      await upstash('HSET', 'redirects', ...args)
+      await upstash(['HSET', 'redirects', ...args])
     }
   } catch (error) {
     console.error('Upstash build step failed')

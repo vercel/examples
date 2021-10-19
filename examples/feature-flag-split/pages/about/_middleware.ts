@@ -1,27 +1,23 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
+import { NextFetchEvent, NextResponse } from 'next/server'
 import { getTreatment } from '@lib/split-node'
 import { SPLITS } from '@lib/split'
 
-export async function middleware(req: EdgeRequest, res: EdgeResponse, next) {
-  let flagName = `flag-${SPLITS.NEW_ABOUT_PAGE}`
-  let cookie = req.cookies[flagName]
-
-  if (!cookie) {
-    const value =
-      getTreatment('anonymous', SPLITS.NEW_ABOUT_PAGE) === 'on' ? '1' : '0'
-
-    cookie = value
-    res.cookie(flagName, value)
+export function middleware(ev: NextFetchEvent) {
+  // Redirect paths that go directly to the variant
+  if (ev.request.nextUrl.pathname != '/about') {
+    return ev.respondWith(NextResponse.redirect('/about'))
   }
 
-  if (req.url.pathname === '/about') {
-    // Tracking from the edge is also possible, but this increases latency
-    // await track(SPLITS.NEW_ABOUT_PAGE, 'user', 'page_serve', null, {
-    //   treatment: cookie === '1' ? 'on' : 'off',
-    // })
-    res.rewrite(cookie === '1' ? '/about/b' : '/about')
-    return
+  const flagName = `flag-${SPLITS.NEW_ABOUT_PAGE}`
+  const cookie =
+    ev.request.cookies[flagName] ||
+    (getTreatment('anonymous', SPLITS.NEW_ABOUT_PAGE) === 'on' ? '1' : '0')
+  const res = NextResponse.rewrite(cookie === '1' ? '/about/b' : '/about')
+
+  // Add the cookie if it's not there
+  if (!ev.request.cookies[flagName]) {
+    res.cookie(flagName, cookie)
   }
 
-  next()
+  return ev.respondWith(res)
 }

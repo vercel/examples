@@ -13,8 +13,8 @@ export default function Headers({ path }: { path: string }) {
       if (res.ok) {
         setLatency(Math.round(Date.now() - start))
         setHeaders({
-          'x-datadome': res.headers.get('x-datadome'),
-          'x-datadome-latency': res.headers.get('x-datadome-latency'),
+          'x-datadome': res.headers.get('x-datadome')!,
+          'x-datadome-latency': res.headers.get('x-datadome-latency')!,
         })
       }
     })

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { addIpRule } from '@lib/datadome'
+import { addIpRule } from '@lib/datadome-ip'
 
 export default async function add(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -27,6 +27,7 @@ export default async function add(req: NextApiRequest, res: NextApiResponse) {
       message: `Ok. Rule added. ${JSON.stringify(response)}`,
     })
   } catch (err) {
+    console.error(err)
     return res.status(500).json({
       error: {
         message: `An error ocurred, ${err}`,

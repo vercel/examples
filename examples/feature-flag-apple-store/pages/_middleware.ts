@@ -1,13 +1,13 @@
-import type { EdgeRequest, EdgeResponse, EdgeNext } from 'next'
+import { NextFetchEvent, NextResponse } from 'next/server'
 import get from 'lib/redis'
 
-export default async function (
-  req: EdgeRequest,
-  res: EdgeResponse,
-  next: EdgeNext
-) {
+export function middleware(ev: NextFetchEvent) {
+  ev.respondWith(handler(ev))
+}
+
+async function handler(ev: NextFetchEvent) {
   if (await get('store-closed')) {
-    res.rewrite(`/_closed`)
+    return NextResponse.rewrite(`/_closed`)
   }
-  next()
+  return NextResponse.next()
 }

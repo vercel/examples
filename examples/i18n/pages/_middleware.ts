@@ -1,14 +1,10 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
+import { NextFetchEvent, NextResponse } from 'next/server'
 
-export async function middleware (
-  req: EdgeRequest,
-  res: EdgeResponse,
-) {
-  const country = req.geo?.country?.toLowerCase() || 'us';
-  const locale = req.headers.get('accept-language')?.split(',')?.[0] || 'en-US';
+export function middleware(ev: NextFetchEvent) {
+  const country = ev.request.geo.country?.toLowerCase() || 'us'
+  const locale =
+    ev.request.headers.get('accept-language')?.split(',')?.[0] || 'en-US'
 
-  res.rewrite({
-    ...req.url,
-    pathname: `/${locale}/${country}`,
-  })
+  ev.request.nextUrl.pathname = `/${locale}/${country}`
+  ev.respondWith(NextResponse.rewrite(ev.request.nextUrl))
 }

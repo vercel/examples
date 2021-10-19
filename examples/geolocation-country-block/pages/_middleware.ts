@@ -1,19 +1,16 @@
-import type { EdgeRequest, EdgeResponse, EdgeNext } from 'next'
+import type { NextFetchEvent } from 'next/server'
 
 // Block Austria, prefer Germany
 const BLOCKED_COUNTRY = 'AT'
 
-export default async function (
-  req: EdgeRequest,
-  res: EdgeResponse,
-  next: EdgeNext
-) {
-  const country = req.geo.country || 'US'
+export function middleware(ev: NextFetchEvent) {
+  const country = ev.request.geo.country || 'US'
 
   if (country === BLOCKED_COUNTRY) {
-    res.writeHead(451)
-    res.end('Blocked for legal reasons')
+    ev.respondWith(new Response('Blocked for legal reasons', { status: 451 }))
   } else {
-    res.end(`Greetings from ${country}, where you are not blocked.`)
+    ev.respondWith(
+      new Response(`Greetings from ${country}, where you are not blocked.`)
+    )
   }
 }

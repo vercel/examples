@@ -1,4 +1,4 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
+import { NextRequest, NextResponse } from 'next/server'
 import {
   BOTD_DEFAULT_URL,
   BOTD_EDGE_PATH,
@@ -25,21 +25,17 @@ const defaultOptions = {
 }
 
 export async function botdEdge(
-  req: EdgeRequest,
-  res: EdgeResponse,
+  req: NextRequest,
   options: { useRequestId?: boolean } = defaultOptions
-) {
+): Promise<NextResponse | undefined> {
   const token = getToken()
-  if (!token) return false
+  if (!token) return
 
-  const pathname = req.url?.pathname!
+  const { pathname } = req.nextUrl
 
-  if (STATIC_REGEX_EXCLUSION.test(pathname)) {
-    if (!isFavicon(req)) {
-      return false
-    }
-  }
+  if (STATIC_REGEX_EXCLUSION.test(pathname) && !isFavicon(req)) return
 
+  const headers = new Headers()
   const body = {
     headers: getHeadersDict(req.headers),
     path: pathname,
@@ -69,44 +65,39 @@ export async function botdEdge(
     botdRes = (await Promise.race([botdReq, timeoutPromise])) as Response
     // We're sending the latency for demo purposes,
     // this is not something you need to do
-    res.setHeader('x-botd-latency', `${Date.now() - botdStart}`)
+    headers.set('x-botd-latency', `${Date.now() - botdStart}`)
   } catch (err) {
-    console.error('Botd error', err)
-    return false
+    console.error('Botd failed with:', err)
+    return
   }
 
-  const status = botdRes.headers.get(REQUEST_STATUS_HEADER)
+  const botdStatus = botdRes.headers.get(REQUEST_STATUS_HEADER)
 
   console.log(
-    'botd debug',
+    'botd edge debug',
     botdRes.status,
-    await botdRes.text(),
-    body,
     JSON.stringify(Object.fromEntries(botdRes.headers), null, 2)
   )
 
-  switch (status) {
-    case STATUS.ERROR:
+  switch (botdStatus) {
+    case STATUS.ERROR: {
       const error = botdRes.headers.get(ERROR_DESCRIPTION_HEADER)
 
-      res.headers.set(REQUEST_STATUS_HEADER, status)
-      res.headers.set(ERROR_DESCRIPTION_HEADER, error ?? '')
+      headers.set(REQUEST_STATUS_HEADER, botdStatus)
+      headers.set(ERROR_DESCRIPTION_HEADER, error ?? '')
 
       console.error('Botd failed to process request with:', error)
-      return false
-
-    case STATUS.PROCESSED:
+      return
+    }
+    case STATUS.PROCESSED: {
       for (const name of EDGE_RESULT_HEADERS) {
         const value = botdRes.headers.get(name)
         if (value) {
-          res.headers.set(name, value)
+          headers.set(name, value)
         }
       }
 
       const requestId = botdRes.headers.get(REQUEST_ID_HEADER)
-
-      res.cookie(COOKIE_NAME, requestId!)
-
       // For edge detection not all of these headers return something
       const botProb = Number(botdRes.headers.get(AUTO_TOOL_PROB_HEADER))
       const searchBotProb = Number(botdRes.headers.get(SEARCH_BOT_PROB_HEADER))
@@ -114,37 +105,42 @@ export async function botdEdge(
       const browserSpoofingProb = Number(
         botdRes.headers.get(BROWSER_SPOOFING_PROB_HEADER)
       )
-
-      if (
+      const status =
         botProb > 0 ||
         searchBotProb > 0 ||
         vmProb > 0 ||
         browserSpoofingProb > 0
-      ) {
-        return true
-      }
+          ? 403
+          : 200
+      const res = new NextResponse(null, { status, headers })
 
-      return false
+      // Let Next.js continue to other middlewares
+      if (status === 200) res.headers.set('x-middleware-next', '1')
+      res.cookie(COOKIE_NAME, requestId!)
 
+      return res
+    }
     default:
-      console.error(`Unknown status from botd: ${status}`)
-      return false
+      console.error(`Unknown status from botd: ${botdStatus}`)
+      return
   }
 }
 
-export async function botd(req: EdgeRequest, res: EdgeResponse) {
+/**
+ * Used when the request has a request id added by the botd edge
+ */
+export async function botd(req: NextRequest) {
   const token = getToken()
-  if (!token) return false
+  if (!token) return
 
-  const pathname = req.url?.pathname!
+  const { pathname } = req.nextUrl
 
   if (STATIC_REGEX_EXCLUSION.test(pathname)) {
-    if (isFavicon(req)) {
-      return botdEdge(req, res)
-    }
-    return false
+    if (isFavicon(req)) return botdEdge(req)
+    return
   }
 
+  const headers = new Headers()
   const requestId = req.headers.get(REQUEST_ID_HEADER)
   // `?header` is used to always get results in headers
   const botdReq = fetch(
@@ -163,10 +159,10 @@ export async function botd(req: EdgeRequest, res: EdgeResponse) {
     botdRes = (await Promise.race([botdReq, timeoutPromise])) as Response
     // We're sending the latency for demo purposes,
     // this is not something you need to do
-    res.setHeader('x-botd-latency', `${Date.now() - botdStart}`)
+    headers.set('x-botd-latency', `${Date.now() - botdStart}`)
   } catch (err) {
     console.error('Botd error', err)
-    return false
+    return
   }
 
   const status = botdRes.headers.get(REQUEST_STATUS_HEADER)
@@ -174,7 +170,6 @@ export async function botd(req: EdgeRequest, res: EdgeResponse) {
   console.log(
     'botd debug',
     botdRes.status,
-    await botdRes.text(),
     JSON.stringify(Object.fromEntries(botdRes.headers), null, 2)
   )
 
@@ -182,24 +177,24 @@ export async function botd(req: EdgeRequest, res: EdgeResponse) {
     case STATUS.ERROR:
       const error = botdRes.headers.get(ERROR_DESCRIPTION_HEADER)
 
-      res.headers.set(REQUEST_STATUS_HEADER, status)
-      res.headers.set(ERROR_DESCRIPTION_HEADER, error ?? '')
+      headers.set(REQUEST_STATUS_HEADER, status)
+      headers.set(ERROR_DESCRIPTION_HEADER, error ?? '')
 
       console.error('Botd failed to process request with:', error)
-      return false
+      return
 
     case STATUS.PROCESSED:
       for (const name of RESULT_HEADERS) {
         const value = botdRes.headers.get(name)
         if (value) {
-          res.headers.set(name, value)
+          headers.set(name, value)
         }
       }
-      return false
+      return
 
     default:
       console.error(`Unknown status from botd: ${status}`)
-      return false
+      return
   }
 }
 
@@ -226,7 +221,7 @@ function getHeadersDict(headers: Headers) {
   return headersDict
 }
 
-export function isFavicon(req: EdgeRequest) {
-  const pathname = req.url?.pathname!
+export function isFavicon(req: NextRequest) {
+  const pathname = req.nextUrl.pathname
   return pathname.endsWith('.ico') && pathname.indexOf('fav') > -1
 }

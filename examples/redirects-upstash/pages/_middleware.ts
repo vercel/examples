@@ -1,11 +1,10 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
+import { NextFetchEvent, NextResponse } from 'next/server'
 import redirects from '@lib/redirects'
 
-export async function middleware(
-  req: EdgeRequest,
-  res: EdgeResponse,
-  next: any
-) {
-  if (await redirects(req, res)) return
-  next()
+export function middleware(ev: NextFetchEvent) {
+  ev.respondWith(handler(ev))
+}
+
+async function handler(ev: NextFetchEvent) {
+  return (await redirects(ev.request)) || NextResponse.next()
 }

@@ -1,15 +1,15 @@
+import { NextRequest, NextResponse } from 'next/server'
+
 const DATADOME_TIMEOUT = 500
 const DATADOME_URI_REGEX_EXCLUSION =
   /\.(avi|flv|mka|mkv|mov|mp4|mpeg|mpg|mp3|flac|ogg|ogm|opus|wav|webm|webp|bmp|gif|ico|jpeg|jpg|png|svg|svgz|swf|eot|otf|ttf|woff|woff2|css|less|js)$/i
 
-export default async function datadome(
-  req,
-  res,
-  headers?: Record<string, string>
-) {
-  if (DATADOME_URI_REGEX_EXCLUSION.test(req.url.pathname)) {
+export default async function datadome(req: NextRequest) {
+  const { pathname } = req.nextUrl
+
+  if (DATADOME_URI_REGEX_EXCLUSION.test(pathname)) {
     console.log('ignore datadome')
-    return true
+    return
   }
 
   const requestData = {
@@ -19,14 +19,14 @@ export default async function datadome(
     ServerName: 'vercel',
     /* this should be `x-real-ip` but it doesn't currently work on Edge Functions */
     IP: req.headers.get('x-forwarded-for')
-      ? req.headers.get('x-forwarded-for').split(',')[0]
+      ? req.headers.get('x-forwarded-for')!.split(',')[0]
       : '127.0.0.1',
     Port: 0,
     TimeRequest: new Date().getTime() * 1000,
     Protocol: req.headers.get('x-forwarded-proto'),
     Method: req.method,
     ServerHostname: req.headers.get('host'),
-    Request: req.url.pathname + encode(req.url.query),
+    Request: pathname + encode(Object.fromEntries(req.nextUrl.searchParams)),
     HeadersList: getHeadersList(req),
     Host: req.headers.get('host'),
     UserAgent: req.headers.get('user-agent'),
@@ -49,9 +49,6 @@ export default async function datadome(
     ClientID: req.cookies.datadome,
     ServerRegion: 'sfo1',
   }
-
-  console.log('api call data', JSON.stringify(requestData, null, 2))
-
   const dataDomeReq = fetch(
     'http://api-cloudflare.datadome.co/validate-request/',
     {
@@ -59,7 +56,6 @@ export default async function datadome(
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'User-Agent': 'DataDome',
-        ...headers,
       },
       body: stringify(requestData),
     }
@@ -79,12 +75,9 @@ export default async function datadome(
       dataDomeReq,
       timeoutPromise,
     ])) as Response
-
-    // We're sending the latency for demo purposes, this is not something you need to do
-    res.setHeader('x-datadome-latency', `${Date.now() - dataDomeStart}`)
-  } catch (err) {
-    console.error('Datadome error', err.stack)
-    return true
+  } catch (err: any) {
+    console.error('Datadome failed with:', err.stack)
+    return
   }
 
   console.log(
@@ -109,28 +102,37 @@ export default async function datadome(
           dataDomeRes.headers.get('x-datadome-botfamily')
         )
       }
-      res.writeHead(
-        200,
-        toHeaders(req.headers, dataDomeRes.headers, 'x-datadome-headers')
-      )
-      res.end(await dataDomeRes.text())
-      return false
+
+      // Once `pipeTo` is available we could stream to the response instead
+      return new NextResponse(await dataDomeRes.text(), {
+        headers: Object.assign(
+          toHeaders(req.headers, dataDomeRes.headers, 'x-datadome-headers'),
+          // We're sending the latency for demo purposes, this is not something you need to do
+          { 'x-datadome-latency': `${Date.now() - dataDomeStart}` }
+        ),
+      })
 
     case 400:
       // Something is wrong with our authentication
       console.log('DataDome returned 400', dataDomeRes.statusText)
-      return false
+      return
 
     case 200:
-      res.setHeaders(
-        toHeaders(req.headers, dataDomeRes.headers, 'x-datadome-headers')
-      )
+      return new NextResponse(null, {
+        headers: Object.assign(
+          toHeaders(req.headers, dataDomeRes.headers, 'x-datadome-headers'),
+          {
+            // We're sending the latency for demo purposes, this is not something you need to do
+            'x-datadome-latency': `${Date.now() - dataDomeStart}`,
+            // Let Next.js continue to other middlewares
+            'x-middleware-next': '1',
+          }
+        ),
+      })
   }
-
-  return true
 }
 
-function encode(query) {
+function encode(query: Record<string, string>) {
   let e = ''
   for (const k in query) {
     const v = query[k]
@@ -139,11 +141,15 @@ function encode(query) {
   return e
 }
 
-function toHeaders(reqHeaders, dataDomeResHeaders, listKey) {
-  const ret = {}
-  const list = dataDomeResHeaders.get(listKey)
+function toHeaders(
+  reqHeaders: Headers,
+  dataDomeResHeaders: Headers,
+  listKey: string
+) {
+  const ret: Record<string, string> = {}
+  const list = dataDomeResHeaders.get(listKey)!
   for (const header of list.split(' ')) {
-    const value = dataDomeResHeaders.get(header)
+    const value = dataDomeResHeaders.get(header)!
     // workaround for a bug in DataDome where the cookie domain gets set to
     // the entire public suffix (.vercel.app), which UAs refuse to set cookies for
     // e.g.: https://devcenter.heroku.com/articles/cookies-and-herokuapp-com
@@ -163,23 +169,18 @@ function toHeaders(reqHeaders, dataDomeResHeaders, listKey) {
 }
 
 // taken from DataDome-Cloudflare-1.7.0
-function getHeadersList(req) {
+function getHeadersList(req: NextRequest) {
   return [...req.headers.keys()].join(',')
 }
 
 // taken from DataDome-Cloudflare-1.7.0
-function getAuthorizationLength(req) {
+function getAuthorizationLength(req: NextRequest) {
   const authorization = req.headers.get('authorization')
   return authorization === null ? null : authorization.length
 }
 
 // taken from DataDome-Cloudflare-1.7.0
-function stringify(obj) {
-  const formatter = (key, value) => {
-    return value === null
-      ? encodeURIComponent(key)
-      : encodeURIComponent(key) + '=' + encodeURIComponent(value)
-  }
+function stringify(obj: Record<string, string | number | null | undefined>) {
   return obj
     ? Object.keys(obj)
         .map((key) => {
@@ -187,7 +188,9 @@ function stringify(obj) {
           if (value === undefined) {
             return ''
           }
-          return formatter(key, value)
+          return value === null || value === undefined
+            ? encodeURIComponent(key)
+            : encodeURIComponent(key) + '=' + encodeURIComponent(value)
         })
         .filter((x) => x.length > 0)
         .join('&')
@@ -195,77 +198,10 @@ function stringify(obj) {
 }
 
 // inspired in DataDome-Cloudflare-1.7.0
-function getCookiesLength(cookies) {
+function getCookiesLength(cookies: Record<string, string>) {
   let cookiesLength = 0
   for (const k in cookies) {
     cookiesLength += cookies[k].length
   }
   return cookiesLength
-}
-
-type RULE_RESPONSE = 'block' | 'whitelist' | 'captcha'
-export async function addIpRule(
-  ip: string,
-  rule_response: RULE_RESPONSE = 'block'
-) {
-  // TODO: Check if IP is valid.
-  try {
-    // Adding new Custom Rule
-    const req = await fetch(
-      `https://customer-api.datadome.co/1.0/protection/custom-rules?apikey=${process.env.DATADOME_MANAGEMENT_KEY}`,
-      {
-        method: 'POST',
-        headers: { Accept: '*/*', 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          data: {
-            rule_name: `ip_rule_${ip}`, // Needs to be unique
-            query: `ip:${ip}`,
-            rule_response: rule_response,
-            rule_priority: 'high',
-          },
-        }),
-      }
-    )
-    const response = await req.json()
-    if (response.status !== 200) {
-      throw new Error(JSON.stringify(response))
-    }
-    return response
-  } catch (err) {
-    console.log('Error', err)
-    throw new Error(err)
-  }
-}
-
-export async function removeRuleById(customRuleId: string) {
-  try {
-    const req = await fetch(
-      `https://customer-api.datadome.co/1.0/protection/custom-rules/${customRuleId}?apikey=${process.env.DATADOME_MANAGEMENT_KEY}`,
-      {
-        method: 'DELETE',
-        headers: { Accept: '*/*', 'Content-Type': 'application/json' },
-      }
-    )
-    return req.json()
-  } catch (err) {
-    console.log('Error', err)
-  }
-}
-
-export async function getAllRules() {
-  try {
-    const req = await fetch(
-      `https://customer-api.datadome.co/1.0/protection/custom-rules?apikey=${process.env.DATADOME_MANAGEMENT_KEY}`,
-      {
-        method: 'GET',
-        headers: { Accept: '*/*', 'Content-Type': 'application/json' },
-      }
-    )
-    const {
-      data: { custom_rules },
-    } = await req.json()
-    return custom_rules
-  } catch (err) {
-    console.log('Error', err)
-  }
 }

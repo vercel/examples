@@ -1,6 +1,6 @@
 # Geolocation
 
-This example shows how to use the `req.geo` object to determine a user's location.
+This example shows how to use the `event.request.geo` object to determine a user's location.
 
 ```ts
 geo: {

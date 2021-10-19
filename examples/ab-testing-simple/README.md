@@ -11,16 +11,23 @@ Since the different variants are generated statically on the server side, it mit
 The magic happens in the [`_middleware.ts` file](pages/home/_middleware.ts):
 
 ```javascript
-import type { EdgeRequest, EdgeResponse } from 'next'
-import { setBucket } from '@lib/ab-testing'
+import { NextFetchEvent, NextResponse } from 'next/server'
+import { getBucket } from '@lib/ab-testing'
 import { HOME_BUCKETS } from '@lib/buckets'
 
-export default function middleware(req: EdgeRequest, res: EdgeResponse) {
-  // Get and set the bucket cookie
-  const bucket = setBucket(req, res, HOME_BUCKETS, 'bucket-home')
+const COOKIE_NAME = 'bucket-home'
 
-  // rewrite to the assigned bucket
-  res.rewrite(`/home/${bucket}`)
+export function middleware(ev: NextFetchEvent) {
+  // Get the bucket cookie
+  const bucket = ev.request.cookies[COOKIE_NAME] || getBucket(HOME_BUCKETS)
+  const res = NextResponse.rewrite(`/home/${bucket}`)
+
+  // Add the bucket to cookies if it's not there
+  if (!ev.request.cookies[COOKIE_NAME]) {
+    res.cookie(COOKIE_NAME, bucket)
+  }
+
+  return ev.respondWith(res)
 }
 ```
 

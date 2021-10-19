@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getAllRules } from '@lib/datadome'
+import { getAllRules } from '@lib/datadome-ip'
 
 export default async function index(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
@@ -14,6 +14,7 @@ export default async function index(req: NextApiRequest, res: NextApiResponse) {
     const rules = await getAllRules()
     return res.status(200).json(rules)
   } catch (err) {
+    console.error(err)
     return res.status(500).json({
       error: {
         message: `An error ocurred, ${err}`,

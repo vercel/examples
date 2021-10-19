@@ -1,18 +1,20 @@
 # Filtering Query Parameters
 
 ```ts
-import type { EdgeRequest, EdgeResponse, EdgeNext } from 'next'
-import pick from 'object.pick'
+import { NextFetchEvent, NextResponse } from 'next/server'
 
-export default async function (
-  req: EdgeRequest,
-  res: EdgeResponse,
-  next: EdgeNext
-) {
-  res.rewrite({
-    ...req.url,
-    query: pick(req.url.query, ['allowed']),
+const allowedParams = ['allowed']
+
+export function middleware(ev: NextFetchEvent) {
+  const url = ev.request.nextUrl
+
+  url.searchParams.forEach((_, key) => {
+    if (!allowedParams.includes(key)) {
+      url.searchParams.delete(key)
+    }
   })
+
+  ev.respondWith(NextResponse.rewrite(url))
 }
 ```
 

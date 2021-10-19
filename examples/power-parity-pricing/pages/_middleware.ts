@@ -1,10 +1,9 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
+import { NextFetchEvent, NextResponse } from 'next/server'
 
-export async function middleware(req: EdgeRequest, res: EdgeResponse) {
-  const country = req.geo?.country?.toLowerCase() || 'us'
+export function middleware(ev: NextFetchEvent) {
+  const req = ev.request
+  const country = req.geo.country?.toLowerCase() || 'us'
 
-  res.rewrite({
-    ...req.url,
-    pathname: `/${country}`,
-  })
+  req.nextUrl.pathname = `/${country}`
+  ev.respondWith(NextResponse.rewrite(ev.request.nextUrl))
 }

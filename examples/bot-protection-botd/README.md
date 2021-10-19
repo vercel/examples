@@ -17,11 +17,14 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 We do bot detection at the edge with the following code:
 
 ```ts
-async function handler(req: EdgeRequest, res: EdgeResponse, next) {
-  if (await botdEdge(req, res)) {
-    return res.rewrite('/bot-detected')
+async function handler(ev: NextFetchEvent) {
+  const res = await botdEdge(ev.request)
+
+  if (res && res.status !== 200) {
+    // Bot detected!
+    res.headers.set('x-middleware-rewrite', '/bot-detected')
   }
-  next()
+  return res
 }
 ```
 
@@ -29,8 +32,8 @@ If you try and go to [/blocked](https://botd.vercel.sh/blocked) you'll see the [
 
 ```ts
 // From lib/demo-middleware.ts
-if (req.url?.pathname === '/blocked') {
-  req.headers.set(
+if (pathname === '/blocked') {
+  ev.request.headers.set(
     'user-agent',
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/90.0.4430.93 Safari/537.36'
   )

@@ -1,22 +1,20 @@
-import type { EdgeRequest, EdgeResponse } from 'next'
-import { createRateLimit } from '@lib/rate-limit'
-import increment from '@lib/increment'
+import type { NextFetchEvent } from 'next/server'
+import { ipRateLimit } from '@lib/ip-rate-limit'
 
-const rateLimit = createRateLimit({
-  countFunction: increment,
-  limit: 5,
-  timeframe: 10,
-})
-
-export async function middleware(
-  req: EdgeRequest,
-  res: EdgeResponse,
-  next: any
-) {
-  if (await rateLimit(req, res)) return
-  if (req.url?.pathname === '/api') {
-    res.headers.set('Content-Type', 'application/json')
-    return res.json({ done: true })
+export function middleware(ev: NextFetchEvent) {
+  if (ev.request.nextUrl.pathname === '/api') {
+    return ev.respondWith(handler(ev))
   }
-  next()
+}
+
+async function handler(ev: NextFetchEvent) {
+  const res = await ipRateLimit(ev.request)
+  if (res.status !== 200) return res
+
+  res.headers.set('content-type', 'application/json')
+
+  return new Response(JSON.stringify({ done: true }), {
+    status: 200,
+    headers: res.headers,
+  })
 }
