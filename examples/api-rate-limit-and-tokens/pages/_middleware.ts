@@ -11,7 +11,7 @@ export function middleware(evt: NextFetchEvent) {
 
   // Trying to access the /blocked page manually is disallowed
   if (url.pathname === '/blocked') {
-    return evt.respondWith(Response.redirect('/'))
+    return evt.respondWith(new Response(null, { status: 404 }))
   }
 }
 

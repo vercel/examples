@@ -17,7 +17,7 @@ export default function (ev: NextFetchEvent) {
   // the pages/sites folder and its respective contents. This can also be done
   // via rewrites to a custom 404 page
   if (pathname.startsWith(`/_sites`)) {
-    return ev.respondWith(Response.redirect('/'))
+    return ev.respondWith(new Response(null, { status: 404 }))
   }
 
   if (

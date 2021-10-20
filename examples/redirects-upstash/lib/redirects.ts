@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { upstashEdge } from './upstash'
 import redirectsJson from './redirects.json'
 
@@ -19,7 +19,7 @@ export default async function redirects(req: NextRequest) {
   // large, as the space in Edge Functions is quite limited
   const localRedirect = (redirectsJson as LocalRedirects)[pathname]
   if (localRedirect) {
-    return Response.redirect(
+    return NextResponse.redirect(
       `${localRedirect.destination}?l=${Date.now() - start}`
     )
   }
@@ -34,6 +34,6 @@ export default async function redirects(req: NextRequest) {
 
   if (result) {
     const redirect = JSON.parse(result)
-    return Response.redirect(`${redirect.destination}?l=${Date.now() - start}`)
+    return NextResponse.redirect(`${redirect.destination}?l=${Date.now() - start}`)
   }
 }

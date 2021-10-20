@@ -10,8 +10,8 @@ async function handler(ev: NextFetchEvent) {
   const city = geo.city?.replace('%20', ' ') || 'San Francisco'
   const region = geo.region?.replace('%20', ' ') || 'CA'
 
-  const request = await fetch(`https://restcountries.com/v3.1/alpha/${country}`)
-  const info = await request.json()
+  const res = await fetch(`https://restcountries.com/v3.1/alpha/${country}`)
+  const info = await res.json()
 
   const countryInfo = info[0]
   const currencyCode = Object.keys(countryInfo.currencies)[0]
