@@ -2,6 +2,10 @@
 
 This examples uses [Upstash](https://upstash.com/) (Edge Redis Database) as storage for controlling whether the Apple Store is open or closed.
 
+## Demo
+
+https://apple-store.vercel.sh/
+
 ## Running Locally
 
 After creating `.env.local` similar to `.env.example`, populate it with your Upstash secret from the console.
