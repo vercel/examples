@@ -4,8 +4,8 @@ import { Layout, Text, Link, Code } from '@edge-functions/ui'
 import { USER_TOKEN } from '@lib/constants'
 import SwrResponse from '@components/swr-response'
 
-const sampleFetch = `await fetch('/api')
-await fetch('/api?edge')`
+const sampleFetch = `await fetch('/api?edge')
+await fetch('/api')`
 
 function Index() {
   const [token, setToken] = useState(Cookies.get('token'))
