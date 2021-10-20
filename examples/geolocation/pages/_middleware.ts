@@ -10,21 +10,21 @@ async function handler(ev: NextFetchEvent) {
   const city = geo.city?.replace('%20', ' ') || 'San Francisco'
   const region = geo.region?.replace('%20', ' ') || 'CA'
 
-  const request = await fetch(
-    `https://restcountries.eu/rest/v2/alpha/${country}`
-  )
+  const request = await fetch(`https://restcountries.com/v3.1/alpha/${country}`)
+  const info = await request.json()
 
-  const countryInfo = await request.json()
-  const currency = countryInfo['currencies'][0]
-  const languages = countryInfo.languages.map((l) => l.name).join(', ')
+  const countryInfo = info[0]
+  const currencyCode = Object.keys(countryInfo.currencies)[0]
+  const currency = countryInfo.currencies[currencyCode]
+  const languages = Object.values(countryInfo.languages).join(', ')
 
   url.searchParams.set('country', country)
   url.searchParams.set('city', city)
   url.searchParams.set('region', region)
-  url.searchParams.set('currencyCode', currency.code)
+  url.searchParams.set('currencyCode', currencyCode)
   url.searchParams.set('currencySymbol', currency.symbol)
   url.searchParams.set('name', currency.name)
-  url.searchParams.set('flag', currency.flag)
+  url.searchParams.set('flag', countryInfo.flags.png)
   url.searchParams.set('languages', languages)
 
   return NextResponse.rewrite(url)
