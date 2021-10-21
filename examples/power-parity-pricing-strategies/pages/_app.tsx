@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { getLayout, Text } from '@edge-functions/ui'
 
 import map from '../public/map.svg'

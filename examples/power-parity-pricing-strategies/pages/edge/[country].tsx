@@ -9,6 +9,7 @@ import { Layout } from '@edge-functions/ui'
 
 import api from '../../api'
 import { getDiscountedPrice } from '../../utils'
+import { REGIONS, STORE_URL } from '../../constants'
 
 interface Props {
   product: Product
@@ -113,18 +114,14 @@ function EdgeProductPage({ country, product }: Props) {
               Activate {product.discount}% off with regional pricing
             </label>
           </div>
-          <button
-            className="py-4 px-6 text-lg w-full bg-black text-white rounded-md hover:bg-gray-900"
-            onClick={() =>
-              alert(
-                `its yours for USD ${
-                  isParityEnabled ? parityPrice : product.price
-                }`
-              )
-            }
+          <a
+            href={isParityEnabled ? product.link : `${STORE_URL}/cart/${REGIONS['default'].id}:1`}
+            rel="noopener noreferrer"
+            target="_blank"
+            className="py-4 px-6 text-lg w-full bg-black text-center text-white hover:text-white rounded-md hover:bg-gray-900"
           >
             Buy now
-          </button>
+          </a>
         </div>
       </section>
       <p className="text-gray-500 mt-3 text-sm text-center">

@@ -45,16 +45,11 @@ function StaticProductPage({product}: Props) {
           </div>
         </div>
         <div className="p-4 gap-4 flex flex-col justify-center items-center border-b">
-          <button
-            className="py-4 px-6 text-lg w-full bg-black text-white rounded-md hover:bg-gray-900"
-            onClick={() =>
-              alert(
-                `its yours for USD ${product.price}`
-              )
-            }
-          >
-            Buy now
-          </button>
+        <Link href='/edge'>
+          <a role="button" className="py-4 px-6 text-lg w-full bg-black text-center text-white hover:text-white rounded-md hover:bg-gray-900">
+            Get Discount via Edge
+          </a>
+        </Link>
         </div>
       </section>
       <p className="text-gray-500 mt-3 text-sm text-center">
