@@ -11,7 +11,6 @@ export const getServerSideProps = ({ query }) => ({
 export default function Index({
   name,
   languages,
-  flag,
   city,
   region,
   country,
@@ -66,10 +65,11 @@ export default function Index({
         <section className="border border-gray-300 bg-white rounded-lg shadow-lg mt-16 w-full hover:shadow-2xl transition">
           <div className="p-4 flex justify-center items-between border-b">
             <div className="self-center">
-              <Image
+            <Image
                 alt={`${country} flag`}
                 className="rounded-full"
-                src={flag}
+                src={`https://flagcdn.com/96x72/${country.toLowerCase()}.png`}
+                // src={`https://flagcdn.com/${country.toLowerCase()}.svg`}
                 width={32}
                 height={32}
               />

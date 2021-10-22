@@ -1,4 +1,5 @@
 import { NextFetchEvent, NextResponse } from 'next/server'
+import countries from '../lib/countries.json'
 
 export function middleware(ev: NextFetchEvent) {
   ev.respondWith(handler(ev))
@@ -10,10 +11,8 @@ async function handler(ev: NextFetchEvent) {
   const city = geo.city?.replace('%20', ' ') || 'San Francisco'
   const region = geo.region?.replace('%20', ' ') || 'CA'
 
-  const res = await fetch(`https://restcountries.com/v3.1/alpha/${country}`)
-  const info = await res.json()
+  const countryInfo = countries.find(x => x.cca2 === country )
 
-  const countryInfo = info[0]
   const currencyCode = Object.keys(countryInfo.currencies)[0]
   const currency = countryInfo.currencies[currencyCode]
   const languages = Object.values(countryInfo.languages).join(', ')
@@ -24,7 +23,6 @@ async function handler(ev: NextFetchEvent) {
   url.searchParams.set('currencyCode', currencyCode)
   url.searchParams.set('currencySymbol', currency.symbol)
   url.searchParams.set('name', currency.name)
-  url.searchParams.set('flag', countryInfo.flags.png)
   url.searchParams.set('languages', languages)
 
   return NextResponse.rewrite(url)
