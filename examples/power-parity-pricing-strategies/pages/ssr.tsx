@@ -80,7 +80,7 @@ function SSRProductPage({ country, product }: Props) {
                 className="bg-gray-200 inline-flex"
                 width={16}
                 height={12}
-                src={`https://lipis.github.io/flag-icon-css/flags/4x3/${country.toLowerCase()}.svg`}
+                src={`/flags/${country.toLowerCase()}.svg`}
               />
               <span>{'.'}</span>
             </p>
