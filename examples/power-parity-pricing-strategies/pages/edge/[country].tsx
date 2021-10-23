@@ -87,12 +87,12 @@ function EdgeProductPage({ country, product }: Props) {
         </div>
         <div className="p-4 gap-4 flex flex-col justify-center items-center border-b">
           <div className="bg-gray-50 text-gray-500 text-left py-2 px-4 rounded-md border-gray-200 border text-sm flex flex-col gap-4">
-            <p className="inline-block">
+            <div className="inline-block">
               <span>
                 Using Edge Functions, we dynamically rendered this discount for
                 you, based on your location{' '}
               </span>
-              <img
+              <Image
                 className="bg-gray-200 inline-flex"
                 width={16}
                 height={12}
@@ -103,7 +103,7 @@ function EdgeProductPage({ country, product }: Props) {
               </span>
               <a className="text-blue-500" href="https://vercel.com/edge">vercel.com/edge</a>
               {'.'}
-            </p>
+            </div>
             <label className="inline-flex items-center font-semibold">
               <input
                 onChange={(event) => toggleParity(event.target.checked)}

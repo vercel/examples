@@ -93,7 +93,7 @@ export default function CountryPage({ country, locale, dictionary }: Props) {
             alt="Country flag"
             width={128}
             height={96}
-            src={`https://lipis.github.io/flag-icon-css/flags/4x3/${country.toLowerCase()}.svg`}
+            src={`/flags/${country.toLowerCase()}.svg`}
             layout="fixed"
           />
         </div>
