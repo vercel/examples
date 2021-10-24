@@ -35,7 +35,7 @@ export function middleware(ev: NextFetchEvent) {
 
 ## Demo
 
-https://github.com/vercel-customer-feedback/edge-functions
+https://edge-functions.vercel.sh
 
 ## How to Use
 
