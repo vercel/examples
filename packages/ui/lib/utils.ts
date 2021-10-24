@@ -6,59 +6,44 @@
  * something here could be published eventually
  */
 
-import { NextFetchEvent, NextResponse } from 'next/server'
+import type { NextFetchEvent, NextRequest, NextResponse } from 'next/server'
 
 type Middleware = (
+  req: NextRequest,
   event: NextFetchEvent
 ) => Response | void | Promise<Response | void>
 
 type ComposedMiddleware = (
-  event: NextFetchEvent,
-  res?: NextResponse
+  req: NextRequest,
+  res: NextResponse | undefined,
+  event: NextFetchEvent
 ) => NextResponse | void | Promise<NextResponse | void>
 
 /**
  * Composes middlewares from left to right.
- *
- * `event.respondWith` is called at the start to allow
- * each middleware to be async so it can't be called
- * in the middlewares
  */
 export function sequence(...args: ComposedMiddleware[]) {
-  return (event: NextFetchEvent) => {
-    event.respondWith(handler(event))
-  }
-
-  async function handler(event: NextFetchEvent) {
+  return async function handler(req: NextRequest, event: NextFetchEvent) {
     let res: NextResponse | undefined
 
     for await (const middleware of args) {
-      res = (await middleware(event, res)) ?? undefined
+      res = (await middleware(req, res, event)) ?? undefined
     }
 
-    return res ?? NextResponse.next()
+    return res
   }
 }
 
 /**
- * Composes middlewares from left to right. Execution
+ * Composes async middlewares from left to right. Execution
  * stops with the first middleware that returns a response
- *
- * `event.respondWith` is called at the start to allow
- * each middleware to be async so it can't be called
- * in the middlewares
  */
 export function first(...args: Middleware[]) {
-  return (event: NextFetchEvent) => {
-    event.respondWith(handler(event))
-  }
-
-  async function handler(event: NextFetchEvent) {
+  return async function handler(req: NextRequest, event: NextFetchEvent) {
     for await (const middleware of args) {
-      const res = await middleware(event)
+      const res = await middleware(req, event)
       if (res) return res
     }
-    return NextResponse.next()
   }
 }
 

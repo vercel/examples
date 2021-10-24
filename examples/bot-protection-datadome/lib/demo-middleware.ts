@@ -1,18 +1,16 @@
-import { NextFetchEvent, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 /**
  * Demo setup wrapper
  */
-export default function demoMiddleware(ev: NextFetchEvent) {
-  const { pathname } = ev.request.nextUrl
+export default function demoMiddleware(req: NextRequest) {
+  const { pathname } = req.nextUrl
 
   // Page without DataDome enabled
-  if (pathname === '/omit') {
-    return NextResponse.next()
-  }
+  if (pathname === '/omit') return NextResponse.next()
 
   // Force the page to be blocked by DataDome
   if (pathname === '/blocked') {
-    ev.request.headers.set('user-agent', 'BLOCKUA')
+    req.headers.set('user-agent', 'BLOCKUA')
   }
 }

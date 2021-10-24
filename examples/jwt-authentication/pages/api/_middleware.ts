@@ -1,20 +1,16 @@
-import type { NextFetchEvent } from 'next/server'
+import type { NextRequest } from 'next/server'
 import { nanoid } from 'nanoid'
 import { verifyAuth } from '@lib/auth'
 import { jsonResponse } from '@lib/utils'
 
-export function middleware(event: NextFetchEvent) {
-  const url = event.request.nextUrl
+export async function middleware(req: NextRequest) {
+  const url = req.nextUrl
 
   if (url.searchParams.has('edge')) {
-    event.respondWith(handler(event))
+    const resOrPayload = await verifyAuth(req)
+
+    return resOrPayload instanceof Response
+      ? resOrPayload
+      : jsonResponse(200, { nanoid: nanoid(), jwtID: resOrPayload.jti })
   }
-}
-
-async function handler(event: NextFetchEvent) {
-  const resOrPayload = await verifyAuth(event.request)
-
-  return resOrPayload instanceof Response
-    ? resOrPayload
-    : jsonResponse(200, { nanoid: nanoid(), jwtID: resOrPayload.jti })
 }
