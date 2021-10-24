@@ -1,39 +1,37 @@
 import Head from 'next/head'
-import Link from 'next/link'
+import { Layout, Page, Text, Link } from '@vercel/edge-functions-ui'
 
 export default function About(props) {
   return (
-    <>
+    <Page>
       <Head>
         <title>{props.name}</title>
         <link rel="icon" href="/favicon.ico" />
         <meta itemProp="description" content={props.description} />
       </Head>
-      <div>
-        <h1>About {props.name}</h1>
-      </div>
-      <div>
-        <Link href="/">
-          <a style={{ marginRight: '10px' }}>Home</a>
+      <Text variant="h1" className="mb-6">
+        About {props.name}
+      </Text>
+      <div className="mb-4">
+        <Link className="mr-2.5" href="/">
+          Home
         </Link>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
+        <Link href="/about">About</Link>
       </div>
-      <div>
-        <p>
-          <b>Properties</b>: {props.description}
-        </p>
-        <p>
-          <b>Subdomain</b>: {props.subdomain}.vercel.sh
-        </p>
-        <p>
-          <b>Custom Domain</b>: {props.customDomain || 'none'}
-        </p>
-      </div>
-    </>
+      <Text className="mb-2">
+        <b>Properties</b>: {props.description}
+      </Text>
+      <Text className="mb-2">
+        <b>Subdomain</b>: {props.subdomain}.vercel.sh
+      </Text>
+      <Text className="mb-2">
+        <b>Custom Domain</b>: {props.customDomain || 'none'}
+      </Text>
+    </Page>
   )
 }
+
+About.Layout = Layout
 
 const mockDB = [
   {

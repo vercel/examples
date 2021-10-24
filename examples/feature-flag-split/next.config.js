@@ -1,3 +1,4 @@
+const withTM = require('@vercel/edge-functions-ui/transpile')()
 const { withSplit } = require('./scripts/split')
 
-module.exports = withSplit({})
+module.exports = withTM(withSplit())

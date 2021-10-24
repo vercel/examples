@@ -6,7 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "^11.1.3-canary.89",
+    "next": "^11.1.3-canary.95",
     "react": "latest",
     "react-dom": "latest"
   },

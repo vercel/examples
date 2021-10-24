@@ -1,26 +1,25 @@
-import Link from 'next/link'
-import { Page } from '../components'
+import { Layout, Page, Text, Link, List } from '@vercel/edge-functions-ui'
 
 export default function Index() {
   return (
     <Page>
-      <h1>AB testing with buckets</h1>
-      <p>
+      <Text variant="h1" className="mb-6">
+        AB testing with buckets
+      </Text>
+      <Text className="mb-4">
         In this demo we use cookies to assign a bucket with the variant to show.
         Visit one of the pages below and a bucket will be assigned to you.
-      </p>
-      <ul>
+      </Text>
+      <List>
         <li>
-          <Link href="/home">
-            <a>/home</a>
-          </Link>
+          <Link href="/home">/home</Link>
         </li>
         <li>
-          <Link href="/marketing">
-            <a>/marketing</a>
-          </Link>
+          <Link href="/marketing">/marketing</Link>
         </li>
-      </ul>
+      </List>
     </Page>
   )
 }
+
+Index.Layout = Layout

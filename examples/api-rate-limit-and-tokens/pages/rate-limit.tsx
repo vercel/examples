@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import useSWR from 'swr'
-import { Layout, Button, Text, Link } from '@edge-functions/ui'
+import { Layout, Page, Button, Text, Link } from '@vercel/edge-functions-ui'
 import fetchAPI from '@lib/fetch-api'
 import ApiRequest from '@components/api-request'
 
@@ -11,7 +11,7 @@ function RateLimit() {
   const apiKeys = data?.apiKeys
 
   return (
-    <div className="w-full max-w-3xl mx-auto pt-16 mb-4">
+    <Page>
       <div className="text-center mb-6">
         <Text variant="h1" className="mb-4">
           API Rate Limiting with Upstash
@@ -89,7 +89,7 @@ function RateLimit() {
           Add new API Key
         </Button>
       </div>
-    </div>
+    </Page>
   )
 }
 

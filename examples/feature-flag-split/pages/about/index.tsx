@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
-import Link from 'next/link'
+import { Layout, Page, Text, Link } from '@vercel/edge-functions-ui'
 import { SPLITS, track } from '@lib/split'
-import { Page } from '@components'
 
 export default function About() {
   useEffect(() => {
@@ -17,14 +16,16 @@ export default function About() {
 
   return (
     <Page>
-      <h1>About page</h1>
-      <h2>This is the original about page</h2>
-      <p>
+      <Text variant="h2" className="mb-6">
+        About page
+      </Text>
+      <Text className="text-lg mb-4">This is the original about page</Text>
+      <Text className="mb-4">
         You're currently on <b>/about</b>
-      </p>
-      <Link href="/">
-        <a>Go back to /</a>
-      </Link>
+      </Text>
+      <Link href="/">Go back to /</Link>
     </Page>
   )
 }
+
+About.Layout = Layout

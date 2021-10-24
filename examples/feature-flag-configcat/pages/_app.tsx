@@ -1,13 +1,13 @@
-import type { FC } from 'react'
 import type { AppProps } from 'next/app'
-
-const Noop: FC = ({ children }) => <>{children}</>
+import type { LayoutProps } from '@vercel/edge-functions-ui/layout'
+import { getLayout } from '@vercel/edge-functions-ui'
+import '@vercel/edge-functions-ui/globals.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const Layout = (Component as any).Layout || Noop
+  const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout pageProps={pageProps}>
+    <Layout title="AB testing with ConfigCat" path="feature-flag-configcat">
       <Component {...pageProps} />
     </Layout>
   )

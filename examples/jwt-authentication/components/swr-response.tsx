@@ -14,7 +14,7 @@ const SwrResponse: FC<{ url: string }> = ({ url }) => {
   const { data } = useSWR(url, fetcher)
 
   return (
-    <pre className="overflow-x-auto p-6">
+    <pre className={`overflow-x-auto p-6${!data ? ' opacity-50' : ''}`}>
       {JSON.stringify(
         data
           ? data
@@ -22,7 +22,7 @@ const SwrResponse: FC<{ url: string }> = ({ url }) => {
               url,
               latency: null,
               status: null,
-              data: { done: false },
+              data: { nanoid: null, jwtID: null },
             },
         null,
         2

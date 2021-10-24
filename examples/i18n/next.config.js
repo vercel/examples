@@ -1,5 +1,3 @@
-module.exports = {
-  images: {
-    domains: ['lipis.github.io'],
-  },
-}
+const withTM = require('@vercel/edge-functions-ui/transpile')()
+
+module.exports = withTM()

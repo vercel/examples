@@ -1,38 +1,38 @@
 .description {
   font-weight: 400;
-  font-size: 16px;
   line-height: 1.6;
   letter-spacing: -0.02em;
   color: var(--accents-5);
+  @apply text-base;
 }
 
 .body {
   font-weight: 400;
-  font-size: 16px;
   line-height: 24px;
   line-height: 1.6;
+  @apply text-base;
 }
 
 .h1 {
-  font-size: 42px;
+  font-size: 2.625rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1;
 }
 
 .h2 {
-  font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.47px;
   line-height: 32px;
+  @apply text-3xl;
 }
 
 .description {
   font-weight: 500;
-  font-size: 18px;
   line-height: 1.6;
   letter-spacing: -0.02em;
   color: var(--accents-5);
+  @apply text-lg;
 }
 
 .smallText {

@@ -1,17 +1,19 @@
-import Link from 'next/link'
-import { Page } from '@components'
+import { Text, Link } from '@vercel/edge-functions-ui'
+import ConfigcatLayout from '@components/layout'
 
 export default function Marketing() {
   return (
-    <Page>
-      <h1>Marketing page</h1>
-      <h2>This is the original marketing page</h2>
-      <p>
+    <>
+      <Text variant="h2" className="mb-6">
+        Marketing page
+      </Text>
+      <Text className="text-lg mb-4">This is the original marketing page</Text>
+      <Text className="mb-4">
         You're currently on <b>/marketing</b>
-      </p>
-      <Link href="/">
-        <a>Go back to /</a>
-      </Link>
-    </Page>
+      </Text>
+      <Link href="/">Go back to /</Link>
+    </>
   )
 }
+
+Marketing.Layout = ConfigcatLayout

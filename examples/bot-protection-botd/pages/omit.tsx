@@ -1,27 +1,27 @@
-import Link from 'next/link'
-import { Page, Headers } from '@components'
+import { Layout, Page, Text, Link, List } from '@vercel/edge-functions-ui'
+import Headers from '@components/headers'
 
 export default function Omit() {
   return (
     <Page>
-      <h1>Bot Protection with Botd (by FingerprintJS)</h1>
-      <p>This page is not using Botd.</p>
-      <p>Navigate to other routes:</p>
-      <ul>
+      <Text variant="h2" className="mb-6">
+        Bot Protection with Botd (by FingerprintJS)
+      </Text>
+      <Text className="mb-4">This page is not using Botd.</Text>
+      <Text className="mb-4">Navigate to other routes:</Text>
+      <List className="mb-4">
         <li>
-          <Link href="/">
-            <a>Home page using Botd</a>
-          </Link>
+          <Link href="/">Home page using Botd</Link>
         </li>
         <li>
-          <Link href="/blocked">
-            <a>Page with Bot Detected</a>
-          </Link>
+          <Link href="/blocked">Page with Bot Detected</Link>
         </li>
-      </ul>
-      <hr />
-      <p>Below is a fetch for this page:</p>
+      </List>
+      <hr className="border-t border-accents-2 mb-6" />
+      <Text className="mb-4">Below is a fetch for this page:</Text>
       <Headers path="/omit" />
     </Page>
   )
 }
+
+Omit.Layout = Layout

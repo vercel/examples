@@ -1,9 +1,3 @@
-const withTM = require('next-transpile-modules')(['@edge-functions/ui'], {
-  resolveSymlinks: false,
-})
+const withTM = require('@vercel/edge-functions-ui/transpile')()
 
-module.exports = withTM({
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-})
+module.exports = withTM()

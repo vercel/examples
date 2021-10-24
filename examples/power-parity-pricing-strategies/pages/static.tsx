@@ -2,7 +2,7 @@ import type { GetStaticProps } from 'next'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Layout } from '@edge-functions/ui'
+import { Layout } from '@vercel/edge-functions-ui'
 
 import api from '../api'
 import { Product } from '../types'
@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps<unknown, never> = async () => {
   }
 }
 
-function StaticProductPage({product}: Props) {
+function StaticProductPage({ product }: Props) {
   return (
     <>
       <div className="lg:h-[480px] lg:w-[480px] h-[260px] w-[260px] ml-14 lg:ml-24 -mb-40 lg:-mb-56">
@@ -45,15 +45,26 @@ function StaticProductPage({product}: Props) {
           </div>
         </div>
         <div className="p-4 gap-4 flex flex-col justify-center items-center border-b">
-        <Link href='/edge'>
-          <a role="button" className="py-4 px-6 text-lg w-full bg-black text-center text-white hover:text-white rounded-md hover:bg-gray-900">
-            Get Discount via Edge
-          </a>
-        </Link>
+          <Link href="/edge">
+            <a
+              role="button"
+              className="py-4 px-6 text-lg w-full bg-black text-center text-white hover:text-white rounded-md hover:bg-gray-900"
+            >
+              Get Discount via Edge
+            </a>
+          </Link>
         </div>
       </section>
       <p className="text-gray-500 mt-3 text-sm text-center">
-        This is a static version, compare with the <span className="underline"><Link href="/ssr">SSR</Link></span> or <span className="underline"><Link href="/edge">Edge</Link></span> version.
+        This is a static version, compare with the{' '}
+        <span className="underline">
+          <Link href="/ssr">SSR</Link>
+        </span>{' '}
+        or{' '}
+        <span className="underline">
+          <Link href="/edge">Edge</Link>
+        </span>{' '}
+        version.
       </p>
     </>
   )

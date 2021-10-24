@@ -1,10 +1,6 @@
 import { useState, useEffect, Fragment } from 'react'
-import { useRouter } from 'next/dist/client/router'
-import { A, Code } from '@components'
-
-function randomInteger(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1)) + min
-}
+import { useRouter } from 'next/router'
+import { Layout, Page, Text, Code, Link } from '@vercel/edge-functions-ui'
 
 export default function Slug() {
   const [links, setLinks] = useState([8000, 800])
@@ -21,24 +17,28 @@ export default function Slug() {
   }, [router.asPath])
 
   return (
-    <div className="h-screen text-primary font-medium p-4 grid items-center justify-center">
-      <div className="grid justify-items-center">
-        <h1 className="text-8xl mb-4">#{slug.padStart(5, '0')}</h1>
-        <p>
+    <Page className="grid items-center justify-center">
+      <div className="grid justify-items-center my-6 sm:my-20">
+        <Text variant="h1" className="text-8xl mb-4">
+          #{slug.padStart(5, '0')}
+        </Text>
+        <Text className="mb-2.5">
           latency: <Code>{latency}ms</Code>
-        </p>
-        <p>
-          <A href="/">Home</A>
+        </Text>
+        <Text>
+          <Link href="/">Home </Link>
           {links.map((n) => (
             <Fragment key={n}>
-              | <A href={`/${n}`}>/{n}</A>
+              | <Link href={`/${n}`}>/{n} </Link>
             </Fragment>
           ))}
-        </p>
+        </Text>
       </div>
-    </div>
+    </Page>
   )
 }
+
+Slug.Layout = Layout
 
 export async function getStaticPaths() {
   // Simulate a large amount of paths

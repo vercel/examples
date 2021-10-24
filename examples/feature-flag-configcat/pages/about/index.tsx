@@ -1,17 +1,19 @@
-import Link from 'next/link'
-import { Page } from '@components'
+import { Text, Link } from '@vercel/edge-functions-ui'
+import ConfigcatLayout from '@components/layout'
 
 export default function About() {
   return (
-    <Page>
-      <h1>About page</h1>
-      <h2>This is the original about page</h2>
-      <p>
+    <>
+      <Text variant="h2" className="mb-6">
+        About page
+      </Text>
+      <Text className="text-lg mb-4">This is the original about page</Text>
+      <Text className="mb-4">
         You're currently on <b>/about</b>
-      </p>
-      <Link href="/">
-        <a>Go back to /</a>
-      </Link>
-    </Page>
+      </Text>
+      <Link href="/">Go back to /</Link>
+    </>
   )
 }
+
+About.Layout = ConfigcatLayout

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Text } from '@edge-functions/ui'
+import { Layout, Text } from '@vercel/edge-functions-ui'
 
 const Index = () => (
   <div className="w-full max-w-3xl mx-auto pt-16 mb-4">

@@ -1,8 +1,12 @@
 import type { AppProps } from 'next/app'
 import Botd from '@lib/botd/script'
-import '../styles.css'
+import type { LayoutProps } from '@vercel/edge-functions-ui/layout'
+import { getLayout } from '@vercel/edge-functions-ui'
+import '@vercel/edge-functions-ui/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const Layout = getLayout<LayoutProps>(Component)
+
   return (
     <Botd
       onLoad={() => {
@@ -13,7 +17,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         // await botDetect()
       }}
     >
-      <Component {...pageProps} />
+      <Layout
+        title="Bot Protection with Botd (by FingerprintJS)"
+        path="bot-protection-botd"
+      >
+        <Component {...pageProps} />
+      </Layout>
     </Botd>
   )
 }

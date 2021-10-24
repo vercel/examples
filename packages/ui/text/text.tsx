@@ -37,7 +37,7 @@ const Text: FunctionComponent<Props> = ({
     | JSXElementConstructor<any>
     | React.ReactElement<any>
     | React.ComponentType<any>
-    | string = componentsMap![variant!]
+    | string = componentsMap[variant]
 
   const htmlContentProps = html
     ? {

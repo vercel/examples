@@ -1,6 +1,5 @@
 import { useState, FC } from 'react'
-import { Button } from '@components'
-import styles from './headers.module.css'
+import { Button } from '@vercel/edge-functions-ui'
 
 const Headers: FC<{ path: string }> = ({ path, children }) => {
   const [loading, setLoading] = useState(false)
@@ -42,9 +41,15 @@ const Headers: FC<{ path: string }> = ({ path, children }) => {
   }
 
   return (
-    <div>
-      <Button onClick={handleFetch}>{children}</Button>
-      <pre className={`${styles.pre}${loading ? ` ${styles.loading}` : ''}`}>
+    <div className="mb-4">
+      <Button variant="secondary" className="mb-2" onClick={handleFetch}>
+        {children}
+      </Button>
+      <pre
+        className={`border border-accents-2 rounded-md bg-white overflow-x-auto p-6 transition-all ${
+          loading ? ` opacity-50` : ''
+        }`}
+      >
         {JSON.stringify(state, null, 2)}
       </pre>
     </div>

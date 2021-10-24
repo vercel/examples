@@ -4,7 +4,7 @@ import type { Country, Product } from '../types'
 import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Layout } from '@edge-functions/ui'
+import { Layout } from '@vercel/edge-functions-ui'
 
 import api from '../api'
 import { getDiscountedPrice } from '../utils'
@@ -43,6 +43,7 @@ function SSRProductPage({ country, product }: Props) {
     <>
       <div className="lg:h-[440px] lg:w-[440px] h-[260px] w-[260px] ml-14 lg:ml-24 -mb-40 lg:-mb-56">
         <Image
+          className="pointer-events-none"
           alt={product.name}
           src={product.image}
           width="440"
@@ -73,8 +74,8 @@ function SSRProductPage({ country, product }: Props) {
           <div className="bg-gray-50 text-gray-500 text-left py-2 px-4 rounded-md border-gray-200 border text-sm flex flex-col gap-4">
             <div className="inline-block">
               <span>
-                Using server-side rendering, we dynamically rendered this discount
-                for you, based on your location{' '}
+                Using server-side rendering, we dynamically rendered this
+                discount for you, based on your location{' '}
               </span>
               <Image
                 className="bg-gray-200 inline-flex"

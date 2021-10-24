@@ -1,13 +1,18 @@
-import { Page } from '@components'
+import { Text } from '@vercel/edge-functions-ui'
+import OptimizeLayout from '@components/layout'
 
 export default function About() {
   return (
-    <Page>
-      <h1>About page</h1>
-      <h2>
+    <>
+      <Text variant="h2" className="mb-6">
+        About page
+      </Text>
+      <Text className="text-lg mb-4">
         You're currently on <b>/about</b>
-      </h2>
-      <p>This is the original about page</p>
-    </Page>
+      </Text>
+      <Text>This is the original about page</Text>
+    </>
   )
 }
+
+About.Layout = OptimizeLayout

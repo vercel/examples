@@ -1,18 +1,17 @@
-import Link from 'next/link'
-import { Code } from '@components'
+import { Text, Code, Link } from '@vercel/edge-functions-ui'
 import ConfigcatLayout from '@components/layout'
 
 export default function About() {
   return (
     <>
-      <h1>About Variant</h1>
-      <h2>
+      <Text variant="h2" className="mb-6">
+        About Variant
+      </Text>
+      <Text className="text-lg mb-4">
         You're currently looking at the variant of the about page under{' '}
         <Code>pages/about/b.tsx</Code>
-      </h2>
-      <Link href="/">
-        <a>Go back to /</a>
-      </Link>
+      </Text>
+      <Link href="/">Go back to /</Link>
     </>
   )
 }

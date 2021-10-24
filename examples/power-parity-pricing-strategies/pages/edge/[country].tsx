@@ -5,7 +5,7 @@ import type { Country, Product } from '../../types'
 import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Layout } from '@edge-functions/ui'
+import { Layout } from '@vercel/edge-functions-ui'
 
 import api from '../../api'
 import { getDiscountedPrice } from '../../utils'
@@ -59,6 +59,7 @@ function EdgeProductPage({ country, product }: Props) {
     <>
       <div className="lg:h-[440px] lg:w-[440px] h-[260px] w-[260px] ml-14 lg:ml-24 -mb-40 lg:-mb-56">
         <Image
+          className="pointer-events-none"
           alt={product.name}
           src={product.image}
           width="440"
@@ -98,10 +99,10 @@ function EdgeProductPage({ country, product }: Props) {
                 height={12}
                 src={`/flags/${country.toLowerCase()}.svg`}
               />
-              <span>
-                . Learn more at{' '}
-              </span>
-              <a className="text-blue-500" href="https://vercel.com/edge">vercel.com/edge</a>
+              <span>. Learn more at </span>
+              <a className="text-blue-500" href="https://vercel.com/edge">
+                vercel.com/edge
+              </a>
               {'.'}
             </div>
             <label className="inline-flex items-center font-semibold">
@@ -115,7 +116,11 @@ function EdgeProductPage({ country, product }: Props) {
             </label>
           </div>
           <a
-            href={isParityEnabled ? product.link : `${STORE_URL}/cart/${REGIONS['default'].id}:1`}
+            href={
+              isParityEnabled
+                ? product.link
+                : `${STORE_URL}/cart/${REGIONS['default'].id}:1`
+            }
             rel="noopener noreferrer"
             target="_blank"
             className="py-4 px-6 text-lg w-full bg-black text-center text-white hover:text-white rounded-md hover:bg-gray-900"

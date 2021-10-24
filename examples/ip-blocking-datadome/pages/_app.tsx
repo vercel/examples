@@ -1,11 +1,11 @@
 import type { AppProps } from 'next/app'
-import Head from 'next/head'
 import { SWRConfig } from 'swr'
-import { getLayout } from '@edge-functions/ui'
-import '@edge-functions/ui/globals.css'
+import type { LayoutProps } from '@vercel/edge-functions-ui/layout'
+import { getLayout } from '@vercel/edge-functions-ui'
+import '@vercel/edge-functions-ui/globals.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const Layout = getLayout(Component)
+  const Layout = getLayout<LayoutProps>(Component)
 
   return (
     <SWRConfig
@@ -16,10 +16,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           fetch(`/api/${path}`, init).then((res) => res.json()),
       }}
     >
-      <Head>
-        <title>Vercel Edge Functions - IP Blocking with Datadome</title>
-      </Head>
-      <Layout pageProps={pageProps}>
+      <Layout title="IP Blocking with Datadome" path="ip-blocking-datadome">
         <Component {...pageProps} />
       </Layout>
     </SWRConfig>

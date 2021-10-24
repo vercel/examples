@@ -1,13 +1,18 @@
-import { Page } from '@components'
+import { Text } from '@vercel/edge-functions-ui'
+import OptimizeLayout from '@components/layout'
 
 export default function Marketing() {
   return (
-    <Page>
-      <h1>Marketing page</h1>
-      <h2>
+    <>
+      <Text variant="h2" className="mb-6">
+        Marketing page
+      </Text>
+      <Text className="text-lg mb-4">
         You're currently on <b>/marketing</b>
-      </h2>
-      <p>This is the original marketing page</p>
-    </Page>
+      </Text>
+      <Text>This is the original marketing page</Text>
+    </>
   )
 }
+
+Marketing.Layout = OptimizeLayout

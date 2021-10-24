@@ -1,43 +1,45 @@
-import Link from 'next/link'
-import { Code, Page, Headers } from '@components'
+import { Layout, Page, Text, Code, Link, List } from '@vercel/edge-functions-ui'
+import Headers from '@components/headers'
 import BotdResult from '@components/botd-result'
 
 export default function Index() {
   return (
     <Page>
-      <h1>Bot Protection with Botd (by FingerprintJS)</h1>
-      <p>
+      <Text variant="h2" className="mb-6">
+        Bot Protection with Botd (by FingerprintJS)
+      </Text>
+      <Text className="mb-4">
         This page has Botd enabled. The edge does light bot detection by making
         a request to the <Code>/edge</Code> endpoint from Botd.
-      </p>
-      <p>Navigate to other routes:</p>
-      <ul>
+      </Text>
+      <Text className="mb-4">Navigate to other routes:</Text>
+      <List className="mb-4">
         <li>
-          <Link href="/omit">
-            <a>Without Botd</a>
-          </Link>
+          <Link href="/omit">Without Botd</Link>
         </li>
         <li>
-          <Link href="/blocked">
-            <a>Page with Bot Detected</a>
-          </Link>
+          <Link href="/blocked">Page with Bot Detected</Link>
         </li>
-      </ul>
-      <hr />
-      <p>Below is a fetch for this page and to a page without Botd enabled:</p>
+      </List>
+      <hr className="border-t border-accents-2 mb-6" />
+      <Text className="mb-4">
+        Below is a fetch for this page and to a page without Botd enabled:
+      </Text>
       <Headers path="/" />
       <Headers path="/omit" />
-      <p>
+      <Text className="mb-4">
         By checking the request to this page in the network tab in devtools,
         you'll be able to see how is latency affected by Botd after looking at
         the headers.
-      </p>
-      <p>
+      </Text>
+      <Text className="mb-4">
         After the page loads, we load the botd script and then we can start
         doing full bot protection by calling the <Code>/detect</Code> endpoint.
         You can see the result from Botd below:
-      </p>
+      </Text>
       <BotdResult />
     </Page>
   )
 }
+
+Index.Layout = Layout

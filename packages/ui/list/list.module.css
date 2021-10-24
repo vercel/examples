@@ -1,0 +1,10 @@
+.ul,
+.ol {
+  @apply pl-6;
+}
+
+.ul li::before,
+.ol li::before {
+  content: '-';
+  @apply absolute text-accents-3 -ml-4;
+}

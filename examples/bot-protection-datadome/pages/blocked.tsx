@@ -1,35 +1,35 @@
-import Link from 'next/link'
-import { Code, Headers, Page } from '@components'
+import { Layout, Page, Text, Code, Link, List } from '@vercel/edge-functions-ui'
+import Headers from '@components/headers'
 
 export default function Blocked() {
   return (
     <Page>
-      <h1>Bot Protection with DataDome</h1>
-      <h3>
+      <Text variant="h2" className="mb-6">
+        Bot Protection with DataDome
+      </Text>
+      <Text className="text-lg mb-4">
         This page should ask you for captcha once, future refreshes or
         navigations to this page won't ask you again, unless the{' '}
         <Code>datadome</Code> cookie is removed
-      </h3>
-      <p>
+      </Text>
+      <Text className="mb-4">
         To remove the cookie, open devtools, navigate to Application - Storage -
         Cookies, and remove the <Code>datadome</Code> cookie
-      </p>
-      <p>Navigate to other routes:</p>
-      <ul>
+      </Text>
+      <Text className="mb-4">Navigate to other routes:</Text>
+      <List className="mb-4">
         <li>
-          <Link href="/">
-            <a>Home page using DataDome</a>
-          </Link>
+          <Link href="/">Home page using DataDome</Link>
         </li>
         <li>
-          <Link href="/omit">
-            <a>Without DataDome</a>
-          </Link>
+          <Link href="/omit">Without DataDome</Link>
         </li>
-      </ul>
-      <hr />
-      <p>Below is a fetch for this page</p>
+      </List>
+      <hr className="border-t border-accents-2 mb-6" />
+      <Text className="mb-4">Below is a fetch for this page</Text>
       <Headers path="/blocked" />
     </Page>
   )
 }
+
+Blocked.Layout = Layout

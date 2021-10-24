@@ -1,8 +1,7 @@
-import Link from 'next/link'
 import Cookies from 'js-cookie'
 import { createClient } from 'configcat-node'
+import { Text, Code, List, Link, Button } from '@vercel/edge-functions-ui'
 import { useValue } from '@lib/use-configcat'
-import { Button, Code } from '@components'
 import ConfigcatLayout from '@components/layout'
 
 export default function Index({ isMyFirstFeatureEnabled }) {
@@ -14,57 +13,61 @@ export default function Index({ isMyFirstFeatureEnabled }) {
 
   return (
     <>
-      <h1>AB testing with ConfigCat</h1>
-      <p>
+      <Text variant="h2" className="mb-6">
+        AB testing with ConfigCat
+      </Text>
+      <Text className="mb-4">
         The about and marketing pages will each render a different version with
         a 50% chance:
-      </p>
-      <ul>
+      </Text>
+      <List className="mb-4">
         <li>
-          <Link href="/about">
-            <a>/about</a>
-          </Link>
+          <Link href="/about">/about</Link>
         </li>
         <li>
-          <Link href="/marketing">
-            <a>/marketing</a>
-          </Link>
+          <Link href="/marketing">/marketing</Link>
         </li>
-      </ul>
-      <p>
+      </List>
+      <Text className="mb-4">
         Click the buttons below if you want to change the current variant (each
         variant has a 50% chance)
-      </p>
-      <Button
-        onClick={() => removeCookie('flag-newAboutPage')}
-        style={{ marginRight: '0.625rem' }}
-      >
-        Remove /about cookie & reload
-      </Button>
-      <Button onClick={() => removeCookie('flag-newMarketingPage')}>
-        Remove /marketing cookie & reload
-      </Button>
+      </Text>
+      <div className="mb-4">
+        <Button
+          variant="secondary"
+          className="mr-2.5"
+          onClick={() => removeCookie('flag-newAboutPage')}
+        >
+          Remove /about cookie & reload
+        </Button>
+        <Button
+          variant="secondary"
+          onClick={() => removeCookie('flag-newMarketingPage')}
+        >
+          Remove /marketing cookie & reload
+        </Button>
+      </div>
 
-      <h2>Feature Flags</h2>
+      <Text className="text-lg mb-4">Feature Flags</Text>
       {isMyFirstFeatureEnabled ? (
-        <p>
+        <Text className="mb-4">
           The feature flag called <Code>isMyFirstFeatureEnabled</Code> is{' '}
           <b>enabled</b> in your ConfigCat dashboard, and it was statically
           added to the page
-        </p>
+        </Text>
       ) : (
-        <p>
+        <Text className="mb-4">
           The feature flag called <Code>isMyFirstFeatureEnabled</Code> is{' '}
           <b>disabled</b> in your ConfigCat dashboard, enabling it will change
           this text
-        </p>
+        </Text>
       )}
       {clientSideFeatureEnabled && (
-        <p>
+        <Text>
           If you see this text is because the feature flag called{' '}
           <Code>clientSideFeatureEnabled</Code> is enabled in ConfigCat'
           dashboard, and it was dinamically added to the page
-        </p>
+        </Text>
       )}
     </>
   )

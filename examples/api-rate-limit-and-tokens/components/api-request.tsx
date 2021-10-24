@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { Button, Text } from '@edge-functions/ui'
+import { Button, Text } from '@vercel/edge-functions-ui'
 
 function fetchDemo(key: string) {
   if (!key) return `const res = await fetch('/api')`
@@ -54,7 +54,11 @@ const ApiRequest: FC<{ token: string }> = ({ token }) => {
       <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 mb-2">
         {fetchDemo(token)}
       </pre>
-      <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 mb-4">
+      <pre
+        className={`border-accents-2 border rounded-md bg-white overflow-x-auto p-6 mb-4 transition-all${
+          loading ? ' opacity-50' : ''
+        }`}
+      >
         {JSON.stringify(state, null, 2)}
       </pre>
       <div className="grid gap-4 items-center justify-center sm:justify-between sm:grid-flow-col">

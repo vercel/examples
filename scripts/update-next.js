@@ -12,9 +12,9 @@ console.log()
 
 const NEXT_VERSION = 'canary'
 
-function updateNextInPackageLock(cwd) {
+function execCommand(command, cwd) {
   return new Promise((resolve, reject) => {
-    childProcess.exec(`npm install next@${NEXT_VERSION}`, { cwd }, (error) => {
+    childProcess.exec(command, { cwd }, (error) => {
       if (error) {
         reject(error)
         return
@@ -45,19 +45,20 @@ async function updateNext() {
 
     console.log(`Updating Next.js version in ${filePath.replace(rootDir, '')}`)
     // Update package-lock.json
-    await updateNextInPackageLock(filePath)
+    // await execCommand(`npm install next@${NEXT_VERSION}`, filePath)
+    await execCommand(`npm i @vercel/edge-functions-ui`, filePath)
 
-    const vercelJsonPath = path.join(filePath, 'vercel.json')
-    const vercelJson = await fs
-      .readFile(vercelJsonPath, 'utf8')
-      .then((str) => JSON.parse(str))
-      .catch((err) => null)
-    const nextBuild = vercelJson?.builds?.find((build) =>
-      build.use.includes('@vercelruntimes/next')
-    )
+    // const vercelJsonPath = path.join(filePath, 'vercel.json')
+    // const vercelJson = await fs
+    //   .readFile(vercelJsonPath, 'utf8')
+    //   .then((str) => JSON.parse(str))
+    //   .catch((err) => null)
+    // const nextBuild = vercelJson?.builds?.find((build) =>
+    //   build.use.includes('@vercelruntimes/next')
+    // )
 
-    if (!nextBuild) return
-    await fs.unlink(vercelJsonPath)
+    // if (!nextBuild) return
+    // await fs.unlink(vercelJsonPath)
   })
 
   await Promise.all(promises)

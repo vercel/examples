@@ -1,7 +1,6 @@
 {
-  "name": "ab-testing",
+  "name": "bot-protection-datadome",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "https://github.com/vercel-customer-feedback/edge-functions.git",
   "author": "Luis Alvarez <luis@vercel.com>",
   "license": "MIT",
@@ -11,12 +10,16 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "^11.1.3-canary.89",
+    "@vercel/edge-functions-ui": "^0.1.6",
+    "next": "^11.1.3-canary.95",
     "react": "latest",
     "react-dom": "latest"
   },
   "devDependencies": {
     "@types/react": "^17.0.18",
+    "autoprefixer": "^10.3.7",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.17",
     "typescript": "^4.3.5"
   }
 }

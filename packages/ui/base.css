@@ -1,4 +1,6 @@
-:root {
+:root,
+::before,
+::after {
   --blue: #2882ef;
   --lightblue: #2882ef;
   --violet: #8524c3;

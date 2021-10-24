@@ -1,11 +1,17 @@
+import { Layout, Page, Text, List } from '@vercel/edge-functions-ui'
+
 export default function Index() {
   return (
-    <div>
-      <h1>Password-protected page demo</h1>
-      <ul>
+    <Page>
+      <Text variant="h2" className="mb-6">
+        Password-protected page demo
+      </Text>
+      <List>
         <li>Username: 4dmin</li>
         <li>Password: testpwd123</li>
-      </ul>
-    </div>
+      </List>
+    </Page>
   )
 }
+
+Index.Layout = Layout

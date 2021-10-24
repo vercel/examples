@@ -1,36 +1,36 @@
-import Link from 'next/link'
-import { Headers, Page, Code } from '@components'
+import { Layout, Page, Text, Code, Link, List } from '@vercel/edge-functions-ui'
+import Headers from '@components/headers'
 import BotdResult from '@components/botd-result'
 
 export default function BotDetected() {
   return (
     <Page>
-      <h1>Bot Protection with Botd (by FingerprintJS)</h1>
-      <p>
+      <Text variant="h2" className="mb-6">
+        Bot Protection with Botd (by FingerprintJS)
+      </Text>
+      <Text className="mb-4">
         After doing light bot detection, we have detected that you are a bot!
-      </p>
-      <p>Navigate to other routes:</p>
-      <ul>
+      </Text>
+      <Text className="mb-4">Navigate to other routes:</Text>
+      <List className="mb-4">
         <li>
-          <Link href="/">
-            <a>Home page using Botd</a>
-          </Link>
+          <Link href="/">Home page using Botd</Link>
         </li>
         <li>
-          <Link href="/omit">
-            <a>Without Botd</a>
-          </Link>
+          <Link href="/omit">Without Botd</Link>
         </li>
-      </ul>
-      <hr />
-      <p>Below is a fetch for this page:</p>
+      </List>
+      <hr className="border-t border-accents-2 mb-6" />
+      <Text className="mb-4">Below is a fetch for this page:</Text>
       <Headers path="/blocked" />
-      <p>
+      <Text className="mb-4">
         Below is the result of doing full bot protection by calling the{' '}
         <Code>/detect</Code> endpoint from Botd after changing the{' '}
         <Code>userAgent</Code> to a headless browser:
-      </p>
+      </Text>
       <BotdResult isBot />
     </Page>
   )
 }
+
+BotDetected.Layout = Layout

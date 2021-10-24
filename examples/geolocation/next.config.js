@@ -1,7 +1,10 @@
+const withTM = require('@vercel/edge-functions-ui/transpile')()
 const { withCountryInfo } = require('./scripts/countries')
 
-module.exports = withCountryInfo({
-  images: {
-    domains: ['flagcdn.com'],
-  }
-})
+module.exports = withTM(
+  withCountryInfo({
+    images: {
+      domains: ['flagcdn.com'],
+    },
+  })
+)

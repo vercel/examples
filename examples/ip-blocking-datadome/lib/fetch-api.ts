@@ -17,7 +17,7 @@ export default async function fetchAPI(path = '/', method = 'GET', body = {}) {
     const res = await fetch(`${API}${path}`, ops)
     const data = await res.json()
     return data
-  } catch (e) {
+  } catch (e: any) {
     if (e.message === 'cancelled') {
       // Cancelled by browser
       console.log('Request Cancelled by the Browser ', e)

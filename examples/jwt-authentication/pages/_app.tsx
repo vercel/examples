@@ -1,16 +1,13 @@
 import type { AppProps } from 'next/app'
-import Head from 'next/head'
-import { getLayout } from '@edge-functions/ui'
-import '@edge-functions/ui/globals.css'
+import type { LayoutProps } from '@vercel/edge-functions-ui/layout'
+import { getLayout } from '@vercel/edge-functions-ui'
+import '@vercel/edge-functions-ui/globals.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const Layout = getLayout(Component)
+  const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout pageProps={pageProps}>
-      <Head>
-        <title>Vercel Edge Functions - JWT Authentication</title>
-      </Head>
+    <Layout title="JWT Authentication" path="jwt-authentication">
       <Component {...pageProps} />
     </Layout>
   )

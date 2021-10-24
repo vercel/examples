@@ -1,9 +1,22 @@
-import React, { ButtonHTMLAttributes, JSXElementConstructor } from 'react'
+import {
+  FC,
+  ButtonHTMLAttributes,
+  JSXElementConstructor,
+  AnchorHTMLAttributes,
+} from 'react'
 import cn from 'clsx'
 import LoadingDots from '../loading-dots'
 import s from './button.module.css'
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+/**
+ * All the component types allowed by the Button component.
+ */
+export type ButtonComponentType = 'button' | 'a' | JSXElementConstructor<any>
+
+/**
+ * Base props of the Button component.
+ */
+export interface ButtonProps<C extends ButtonComponentType = 'button'> {
   href?: string
   className?: string
   variant?:
@@ -17,13 +30,30 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'xs' | 'sm' | 'md' | 'lg'
   active?: boolean
   type?: 'submit' | 'reset' | 'button'
-  Component?: string | JSXElementConstructor<any>
+  Component?: C
   width?: string | number
   loading?: boolean
   disabled?: boolean
 }
 
-const Button: React.FC<ButtonProps> = (props) => {
+/**
+ * The HTML props allowed by the Button component. These
+ * props depend on the used component type (C).
+ */
+export type ButtonHTMLType<C extends ButtonComponentType = 'button'> =
+  C extends 'a'
+    ? AnchorHTMLAttributes<HTMLAnchorElement>
+    : ButtonHTMLAttributes<HTMLButtonElement>
+
+type ButtonFC<C extends ButtonComponentType = 'button'> = FC<
+  ButtonHTMLType<C> & ButtonProps<C>
+>
+
+type ButtonType = <C extends ButtonComponentType = 'button'>(
+  ...args: Parameters<ButtonFC<C>>
+) => ReturnType<ButtonFC<C>>
+
+const Button: ButtonFC = (props) => {
   const {
     width,
     active,
@@ -71,4 +101,6 @@ const Button: React.FC<ButtonProps> = (props) => {
   )
 }
 
-export default Button
+// Our Button component is built thinking of it as a button,
+// but it can also be used as a link and include the anchor props
+export default Button as ButtonType

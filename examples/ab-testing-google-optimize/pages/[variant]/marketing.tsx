@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import Cookies from 'js-cookie'
+import { Text, Button } from '@vercel/edge-functions-ui'
 import { getCurrentExperiment } from '@lib/optimize'
 import { COOKIE_NAME } from '@lib/constants'
 import { useGa } from '@lib/useGa'
-import { Button } from '@components'
 import OptimizeLayout from '@components/layout'
 
 export default function Marketing({ experiment, variant }) {
@@ -29,15 +29,19 @@ export default function Marketing({ experiment, variant }) {
 
   return (
     <>
-      <h1>Marketing page</h1>
-      <h2>
+      <Text variant="h2" className="mb-6">
+        Marketing page
+      </Text>
+      <Text className="text-lg mb-4">
         You're currently looking at the variant <b>{variant.name}</b> in the
         experiment <b>{experiment.name}</b>
-      </h2>
-      <p>
+      </Text>
+      <Text className="mb-4">
         Click the button below to register an event with GA for this variant:
-      </p>
-      <Button onClick={sendEvent}>Send event</Button>
+      </Text>
+      <Button variant="secondary" onClick={sendEvent}>
+        Send event
+      </Button>
     </>
   )
 }

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
-import { Layout, Text, Link, Code } from '@edge-functions/ui'
+import { Layout, Page, Text, Code, Link } from '@vercel/edge-functions-ui'
 import { USER_TOKEN } from '@lib/constants'
 import SwrResponse from '@components/swr-response'
 
 const sampleFetch = `await fetch('/api?edge')
 await fetch('/api')`
 
-function Index() {
+export default function Index() {
   const [token, setToken] = useState(Cookies.get('token'))
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function Index() {
   }, [])
 
   return (
-    <div className="w-full max-w-3xl mx-auto pt-16 mb-4">
+    <Page>
       <div className="text-center mb-6">
         <Text variant="h1" className="mb-4">
           JWT Authentication
@@ -58,14 +58,12 @@ function Index() {
         <SwrResponse url="/api" />
       </div>
 
-      <Text className="mb-6 text-center">
+      <Text className="text-center">
         The latency shown might not be realistic, check the network tab in
         devtools and filter by <Code>/api</Code> for better results.
       </Text>
-    </div>
+    </Page>
   )
 }
 
 Index.Layout = Layout
-
-export default Index

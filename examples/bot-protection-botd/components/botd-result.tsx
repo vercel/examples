@@ -33,5 +33,9 @@ export default function BotdResult({ isBot }: { isBot?: boolean }) {
       })
   }, [botdReady])
 
-  return <pre style={{ fontSize: '1rem' }}>{state}</pre>
+  return (
+    <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 mb-4">
+      {state}
+    </pre>
+  )
 }

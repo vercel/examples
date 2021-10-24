@@ -1,29 +1,34 @@
-import { Page, Headers } from '@components'
+import { Layout, Page, Text, Link } from '@vercel/edge-functions-ui'
+import Headers from '@components/headers'
 
 export default function Index() {
   return (
     <Page>
-      <h1>API Rate Limiting with Upstash</h1>
-      <p>
+      <Text variant="h2" className="mb-6">
+        API Rate Limiting with Upstash
+      </Text>
+      <Text className="mb-4">
         By using Redis with Upstash we can keep a counter of requests by IP at
         the edge.
-      </p>
-      <p>
+      </Text>
+      <Text className="mb-4">
         For the demo below you can send a maximum of{' '}
         <b>5 requests every 10 seconds</b>.
-      </p>
+      </Text>
       <Headers path="/api">Make a request</Headers>
-      <p>
+      <Text>
         The pattern we're using in this example is inspired by the{' '}
-        <a
+        <Link
           href="https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting"
           target="_blank"
           rel="noopener noreferrer"
         >
           GitHub API
-        </a>
+        </Link>
         .
-      </p>
+      </Text>
     </Page>
   )
 }
+
+Index.Layout = Layout

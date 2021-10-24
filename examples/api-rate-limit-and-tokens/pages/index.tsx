@@ -1,6 +1,14 @@
 import { useState } from 'react'
 import useSWR from 'swr'
-import { Layout, Button, Input, Text, Link, Code } from '@edge-functions/ui'
+import {
+  Layout,
+  Page,
+  Button,
+  Input,
+  Text,
+  Link,
+  Code,
+} from '@vercel/edge-functions-ui'
 import fetchAPI from '@lib/fetch-api'
 
 function Index() {
@@ -9,7 +17,7 @@ function Index() {
   const { myIp, rules } = data || {}
 
   return (
-    <div className="w-full max-w-3xl mx-auto pt-16 mb-4">
+    <Page>
       <div className="text-center mb-6">
         <Text variant="h1" className="mb-4">
           IP Blocking with Upstash
@@ -53,12 +61,7 @@ function Index() {
         }}
       >
         <Input name="ip" placeholder={myIp || 'IP'} />
-        <Button
-          type="submit"
-          style={{ marginLeft: '1rem' }}
-          width="120px"
-          loading={loading}
-        >
+        <Button type="submit" className="ml-4" width="120px" loading={loading}>
           Block IP
         </Button>
       </form>
@@ -100,7 +103,7 @@ function Index() {
           <div>Loading Rules...</div>
         )}
       </div>
-    </div>
+    </Page>
   )
 }
 

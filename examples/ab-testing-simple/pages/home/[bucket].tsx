@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
-import { Page, Button } from '@components'
+import { Layout, Page, Text, Button } from '@vercel/edge-functions-ui'
 import { HOME_BUCKETS } from '@lib/buckets'
 
 export default function Home() {
@@ -17,27 +17,34 @@ export default function Home() {
 
   return (
     <Page>
-      <h1>Home page variant</h1>
-      <h2>
+      <Text variant="h2" className="mb-6">
+        Home page variant
+      </Text>
+      <Text className="text-lg mb-4">
         You're currently on <b>bucket {bucket.toUpperCase()}</b>
-      </h2>
-      <p>
+      </Text>
+      <Text className="mb-4">
         You can use the buttons below to change your assigned bucket and refresh
         the page:
-      </p>
+      </Text>
       {HOME_BUCKETS.map((bucket) => (
         <Button
           key={bucket}
+          variant="secondary"
           onClick={setBucket(bucket)}
           style={{ marginRight: '0.625rem' }}
         >
           Bucket {bucket.toUpperCase()}
         </Button>
       ))}
-      <Button onClick={removeBucket}>Remove bucket</Button>
+      <Button variant="black" onClick={removeBucket}>
+        Remove bucket
+      </Button>
     </Page>
   )
 }
+
+Home.Layout = Layout
 
 export async function getStaticPaths() {
   return {

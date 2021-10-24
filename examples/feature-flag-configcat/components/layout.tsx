@@ -1,12 +1,15 @@
 import type { FC } from 'react'
+import { Layout, Page } from '@vercel/edge-functions-ui'
+import type { LayoutProps } from '@vercel/edge-functions-ui/layout'
 import { ConfigcatProvider } from '@lib/use-configcat'
-import { Page } from '.'
 
-const ConfigcatLayout: FC = ({ children }) => {
+const ConfigcatLayout: FC<LayoutProps> = ({ children, ...props }) => {
   return (
-    <Page>
-      <ConfigcatProvider>{children}</ConfigcatProvider>
-    </Page>
+    <Layout {...props}>
+      <Page>
+        <ConfigcatProvider>{children}</ConfigcatProvider>
+      </Page>
+    </Layout>
   )
 }
 

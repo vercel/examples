@@ -1,9 +1,9 @@
 import React from 'react'
 import fetchAPI from '@lib/fetch-api'
 import useSWR from 'swr'
-import { Layout, Button, Input, Text } from '@edge-functions/ui'
+import { Layout, Page, Text, Input, Button } from '@vercel/edge-functions-ui'
 
-function Index() {
+export default function Index() {
   const [loading, setLoading] = React.useState<boolean>(false)
   const [ip, setIp] = React.useState<string>('')
 
@@ -22,7 +22,7 @@ function Index() {
   }
 
   return (
-    <div className="w-full max-w-3xl mx-auto pt-16 mb-4">
+    <Page>
       <div className="text-center mb-6">
         <Text variant="h1" className="mb-4">
           IP Blocking with Datadome
@@ -36,14 +36,14 @@ function Index() {
       </div>
       <div className="flex py-8">
         <Input
-          onChange={({ currentTarget: { value } }) => setIp(value)}
           placeholder="IP"
+          onChange={({ currentTarget: { value } }) => setIp(value)}
         />
         <Button
-          onClick={handleBlock}
-          style={{ marginLeft: '1rem' }}
+          className="ml-4"
           width="120px"
           loading={loading}
+          onClick={handleBlock}
         >
           Block IP
         </Button>
@@ -80,10 +80,8 @@ function Index() {
           <div>Loading Rules...</div>
         )}
       </div>
-    </div>
+    </Page>
   )
 }
 
 Index.Layout = Layout
-
-export default Index

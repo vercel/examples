@@ -1,35 +1,37 @@
-import Link from 'next/link'
-import { Code, Page, Headers } from '@components'
+import { Layout, Page, Text, Link, List } from '@vercel/edge-functions-ui'
+import Headers from '@components/headers'
 
 export default function Index() {
   return (
     <Page>
-      <h1>Bot Protection with DataDome</h1>
-      <h3>This page has DataDome enabled, and you're not a bad bot.</h3>
-      <p>Navigate to other routes:</p>
-      <ul>
+      <Text variant="h2" className="mb-6">
+        Bot Protection with DataDome
+      </Text>
+      <Text className="text-lg mb-4">
+        This page has DataDome enabled, and you're not a bad bot.
+      </Text>
+      <Text className="mb-4">Navigate to other routes:</Text>
+      <List className="mb-4">
         <li>
-          <Link href="/omit">
-            <a>Without DataDome</a>
-          </Link>
+          <Link href="/omit">Without DataDome</Link>
         </li>
         <li>
-          <Link href="/blocked">
-            <a>Behind captcha</a>
-          </Link>
+          <Link href="/blocked">Behind captcha</Link>
         </li>
-      </ul>
-      <hr />
-      <p>
+      </List>
+      <hr className="border-t border-accents-2 mb-6" />
+      <Text className="mb-4">
         Below is a fetch for this page and to a page without DataDome enabled
-      </p>
+      </Text>
       <Headers path="/" />
       <Headers path="/omit" />
-      <p>
+      <Text className="mb-4">
         By checking the request to this page in the network tab in devtools,
         you'll be able to see how is latency affected by DataDome after looking
         at the headers.
-      </p>
+      </Text>
     </Page>
   )
 }
+
+Index.Layout = Layout

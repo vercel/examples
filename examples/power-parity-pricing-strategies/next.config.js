@@ -1,21 +1,13 @@
-const withTM = require('next-transpile-modules')(['@edge-functions/ui'], {
-  resolveSymlinks: false,
-})
+const withTM = require('@vercel/edge-functions-ui/transpile')()
 
 module.exports = withTM({
-  images: {
-    domains: ['lipis.github.io'],
-  },
   async redirects() {
     return [
       {
         source: '/',
         destination: '/edge',
-        permanent: true,
+        permanent: false,
       },
     ]
-  },
-  typescript: {
-    ignoreBuildErrors: true,
   },
 })
