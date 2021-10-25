@@ -53,7 +53,7 @@ export default function Nav({ path, deployButton }: NavProps) {
               <Button
                 variant="ghost"
                 Component="a"
-                href="https://github.com/vercel/examples/tree/main/examples"
+                href="https://github.com/vercel/examples/tree/main"
               >
                 More Examples →
               </Button>
