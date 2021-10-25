@@ -5,11 +5,9 @@
   </a>
 </p>
 
-Edge Functions are currently in Public Beta on Vercel. [Read the docs here.](https://vercel.com/docs/concepts/functions/edge-functions)
-
 ## Examples
 
-- [Edge Functions Examples](/edge-functions)
+- [Edge Functions](/edge-functions) – Edge Functions are currently in Public Beta on Vercel. [Read the docs here.](https://vercel.com/docs/concepts/functions/edge-functions)
 
 ## Read the Docs
 
