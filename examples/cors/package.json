@@ -1,12 +1,12 @@
 {
-  "name": "crypto",
+  "name": "cors",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "next": "^11.1.3-canary.95",
+    "next": "^11.1.3-canary.100",
     "react": "latest",
     "react-dom": "latest"
   },
