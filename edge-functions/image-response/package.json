@@ -1,0 +1,17 @@
+{
+  "name": "image-response",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^11.1.3-canary.95",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.8",
+    "typescript": "4.3.2"
+  }
+}
