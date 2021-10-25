@@ -1,6 +1,6 @@
-# Add Header Example
+# CORS Example
 
-Below is the code from [pages/\_middleware.ts](pages/_middleware.ts) with multiple examples of adding headers at the edge:
+Below is the code from [pages/\_middleware.ts](pages/_middleware.ts):
 
 ```ts
 import type { NextFetchEvent, NextRequest } from 'next/server'
@@ -25,12 +25,12 @@ async function handler(req: NextRequest) {
 Test it out with:
 
 ```bash
-curl -i -H 'origin: https://vercel.com' http://localhost:3000
+curl -i -X OPTIONS -H 'origin: https://vercel.com' https://edge-functions-cors.vercel.sh
 ```
 
 ## Demo
 
-https://edge-functions.vercel.sh
+https://edge-functions-cors.vercel.sh
 
 ## How to Use
 
