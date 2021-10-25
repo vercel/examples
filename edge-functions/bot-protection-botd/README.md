@@ -4,7 +4,7 @@
 
 ## Demo
 
-https://botd.vercel.sh
+https://edge-functions-bot-protection-botd.vercel.sh
 
 ### One-Click Deploy
 

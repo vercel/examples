@@ -4,7 +4,7 @@
 
 ## Demo
 
-https://ab-testing-split.vercel.app/
+https://edge-functions-feature-flag-split.vercel.sh
 
 ### One-Click Deploy
 
