@@ -6,7 +6,7 @@ By A/B testing directly on the server-side, you'll reduce layout shift from clie
 
 ## Demo
 
-https://ab-testing-configcat.vercel.app/
+https://edge-functions-feature-flag-configcat.vercel.sh
 
 ### One-Click Deploy
 

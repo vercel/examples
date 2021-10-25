@@ -9,6 +9,10 @@ Login credentials:
 - Username: `4dmin`
 - Password: `testpwd123`
 
+## Demo
+
+https://edge-functions-basic-auth-password.vercel.sh
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:

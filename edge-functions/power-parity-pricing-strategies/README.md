@@ -4,7 +4,7 @@ This example shows how to implement PPP using information from the request geolo
 
 ## Demo
 
-https://edge-ppp-strategies.vercel.app/
+https://edge-mug.vercel.app
 
 ## How to Use
 

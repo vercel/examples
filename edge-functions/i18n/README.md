@@ -4,7 +4,7 @@ This example shows how to redirect users based on i18n configuration.
 
 ## Demo
 
-https://edge-functions-i18n.vercel.app/
+https://edge-functions-i18n.vercel.sh
 
 ## How to Use
 

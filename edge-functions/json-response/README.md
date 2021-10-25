@@ -15,6 +15,10 @@ export function middleware(ev: NextFetchEvent) {
 }
 ```
 
+## Demo
+
+https://edge-functions-json-response.vercel.sh
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:

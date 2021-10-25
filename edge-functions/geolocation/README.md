@@ -12,7 +12,7 @@ geo: {
 
 ## Demo
 
-https://geo-headers.vercel.app/
+https://edge-functions-geolocation.vercel.sh
 
 ## How to Use
 
