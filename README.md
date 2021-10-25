@@ -7,7 +7,7 @@
 
 ## Examples
 
-- [Middleware Examples](/middleware)
+- [Edge Functions Examples](/edge-functions)
 
 ## Read the Docs
 
