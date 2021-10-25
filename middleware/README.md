@@ -1,11 +1,9 @@
 <p align="center">
   <a href="https://vercel.com">
     <img src="https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png" height="96">
-    <h3 align="center">Edge Functions</h3>
+    <h3 align="center">Edge Middleware Examples</h3>
   </a>
 </p>
-
-Welcome to Vercel's Early Access Program for Edge Functions. We're excited you're here! In this repository, you'll find everything you need to get started using our new Edge Functions and Middleware.
 
 ## About Edge Functions
 
@@ -30,11 +28,7 @@ When you define Middleware as part of your Next.js application, Vercel deploys e
 
 Find the most recent version for both Next and builder [listed here](https://next-middleware-build.vercel.sh/latest.json). View the [examples](/examples) to get started.
 
-## Read the Docs
-
-We are writing the docs similarily to how we write code: iteratively and alongside the featureset. You can [read the docs here](https://github.com/vercel-customer-feedback/edge-middleware/blob/main/docs/docs.md), they're part of this repository. If you have any questions or suggestions about the docs, feel free to [open a discussion](https://github.com/vercel-customer-feedback/edge-middleware/discussions), or [submit a PR](https://github.com/vercel-customer-feedback/edge-middleware/pulls) with your suggestions!
-
 ## Provide Feedback
 
-- [Start a Discussion](https://github.com/vercel-customer-feedback/edge-functions/discussions) with a question, piece of feedback, or idea you want to share with the team.
-- [Open an Issue](https://github.com/vercel-customer-feedback/edge-functions/issues) if you believe you've encountered a bug that you want to flag for the team.
+- [Start a Discussion](https://github.com/vercel/code-examples/discussions) with a question, piece of feedback, or idea you want to share with the team.
+- [Open an Issue](https://github.com/vercel/code-examples/edge-functions/issues) if you believe you've encountered a bug that you want to flag for the team.
