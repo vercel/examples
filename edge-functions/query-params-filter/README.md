@@ -21,6 +21,10 @@ export function middleware(ev: NextFetchEvent) {
 **Before URL:** http://localhost:3000?a=b&allowed=test
 **After URL:** http://localhost:3000?allowed=test
 
+## Demo
+
+https://edge-functions-query-params-filter.vercel.sh
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:
