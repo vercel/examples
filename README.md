@@ -5,11 +5,9 @@
   </a>
 </p>
 
-Welcome to **Vercel Code Examples**. Here you'll find a myriad of examples to create, maintain and scale web applications.
-
 ## Examples
 
-- [Edge Middleware Examples](/middleware)
+- [Middleware Examples](/middleware)
 
 ## Read the Docs
 
