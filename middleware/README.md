@@ -5,6 +5,26 @@
   </a>
 </p>
 
+## Index
+
+- [A/B Testing Simple](./examples/ab-testing-simple)
+- [A/B Testing Google Optimize](./examples/ab-testing-google-optimize)
+- [Basic Auth Password Protection](./examples/basic-auth-password)
+- [Bot Protection Datadome](./examples/bot-protection-datadome)
+- [Bot Protection Botd](./examples/bot-protection-botd)
+- [Crypto Web APIs](./examples/crypto)
+- [Feature Flags Apple Store](./examples/feature-flag-apple-store)
+- [Feature Flags Split.io](./examples/feature-flag-split)
+- [Feature Flags Configcat](./examples/feature-flag-configcat)
+- Feature Flags Upstash (Coming Soon)
+- Feature Flags Launch Darkly (Coming Soon)
+- [Geolocation Headers](./examples/geolocation)
+- [Hostname Rewrites](./examples/hostname-rewrites) (Platforms on Vercel)
+- [JSON Response](./examples/json-response)
+- [Query Parameters Filter](./examples/query-params-filter)
+- [API Rate Limiting with Upstash](./examples/api-rate-limit)
+- [Scalable redirects with Upstash](./examples/redirects-upstash)
+
 ## About Edge Functions
 
 Edge Functions allow you to run JavaScript code at the Edge before a request is processed. Based on the incoming request, you can modify the response by rewriting, redirecting, adding headers, and more before responding. This enables a number of interesting features such as performing effects based on the user agent, A/B testing, country blocking, etc.
