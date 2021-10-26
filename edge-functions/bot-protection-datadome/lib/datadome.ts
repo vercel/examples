@@ -8,7 +8,6 @@ export default async function datadome(req: NextRequest) {
   const { pathname } = req.nextUrl
 
   if (DATADOME_URI_REGEX_EXCLUSION.test(pathname)) {
-    console.log('ignore datadome')
     return
   }
 
@@ -117,18 +116,23 @@ export default async function datadome(req: NextRequest) {
       console.log('DataDome returned 400', dataDomeRes.statusText)
       return
 
-    case 200:
-      return new NextResponse(null, {
-        headers: Object.assign(
-          toHeaders(req.headers, dataDomeRes.headers, 'x-datadome-headers'),
-          {
-            // We're sending the latency for demo purposes, this is not something you need to do
-            'x-datadome-latency': `${Date.now() - dataDomeStart}`,
-            // Let Next.js continue to other middlewares
-            'x-middleware-next': '1',
-          }
-        ),
+    case 200: {
+      // next() returns a null body and we'll use it to indicate
+      // that the request is not blocked
+      const res = NextResponse.next()
+
+      // Add Datadome headers to the response
+      Object.entries(
+        toHeaders(req.headers, dataDomeRes.headers, 'x-datadome-headers')
+      ).forEach(([k, v]) => {
+        res.headers.set(k, v)
       })
+
+      // We're sending the latency for demo purposes, this is not something you need to do
+      res.headers.set('x-datadome-latency', `${Date.now() - dataDomeStart}`)
+
+      return res
+    }
   }
 }
 
