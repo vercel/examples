@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
       title="Power parity pricing strategies"
       path="power-parity-pricing-strategies"
     >
-      <div className="flex flex-col items-center justify-center h-full py-2 bg-gray-50">
+      <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-50">
         <div className="fixed inset-0 overflow-hidden opacity-75 bg-[#f8fafb]">
           <Image
             alt="World Map"
