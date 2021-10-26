@@ -7,18 +7,32 @@
 
 ## Index
 
-- [A/B Testing Simple](./examples/ab-testing-simple)
-- [A/B Testing Google Optimize](./examples/ab-testing-google-optimize)
-- [Basic Auth Password Protection](./examples/basic-auth-password)
-- [Bot Protection Datadome](./examples/bot-protection-datadome)
-- [Bot Protection Botd](./examples/bot-protection-botd)
-- [Crypto Web APIs](./examples/crypto)
-- [Feature Flags Apple Store](./examples/feature-flag-apple-store)
-- [Feature Flags Split.io](./examples/feature-flag-split)
-- [Feature Flags Configcat](./examples/feature-flag-configcat)
-- [Geolocation Headers](./examples/geolocation)
-- [Hostname Rewrites](./examples/hostname-rewrites) (Platforms on Vercel)
-- [JSON Response](./examples/json-response)
-- [Query Parameters Filter](./examples/query-params-filter)
-- [API Rate Limiting with Upstash](./examples/api-rate-limit)
-- [Scalable redirects with Upstash](./examples/redirects-upstash)
+- [A/B Testing Google Optimize](./ab-testing-google-optimize)
+- [A/B Testing Simple](./ab-testing-simple)
+- [Add Header](./add-header)
+- [API Rate Limit and Tokens](./api-rate-limit-and-tokens)
+- [API Rate Limiting with Upstash](./api-rate-limit)
+- [Basic Auth Password Protection](./basic-auth-password)
+- [Bot Protection Botd](./bot-protection-botd)
+- [Bot Protection Datadome](./bot-protection-datadome)
+- [CORS](./cors)
+- [Crypto Web APIs](./crypto)
+- [Feature Flags Apple Store](./feature-flag-apple-store)
+- [Feature Flags ConfigCat](./feature-flag-configcat)
+- [Feature Flags Split.io](./feature-flag-split)
+- [Geolocation Country Block](./geolocation-country-block)
+- [Geolocation Headers](./geolocation)
+- [Hostname Rewrites](./hostname-rewrites)
+- [I18n](./i18n)
+- [IP Blocking with Datadome](./ip-blocking-datadome)
+- [JSON Response](./json-response)
+- [JWT Authentication](./jwt-authentication)
+- [Power Parity Pricing Strategies](./power-parity-pricing-strategies)
+- [Power Parity Pricing](./power-parity-pricing)
+- [Query Parameters Filter](./query-params-filter)
+- [Scalable redirects with Upstash](./redirects-upstash)
+
+
+
+
+
