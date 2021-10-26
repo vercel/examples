@@ -25,8 +25,9 @@ export const getStaticProps: GetStaticProps<unknown, never> = async () => {
 function StaticProductPage({ product }: Props) {
   return (
     <>
-      <div className="lg:h-[480px] lg:w-[480px] h-[260px] w-[260px] ml-14 lg:ml-24 -mb-40 lg:-mb-56">
+      <div className="lg:h-[440px] lg:w-[440px] h-[260px] w-[260px] ml-14 lg:ml-24 -mb-40 lg:-mb-56">
         <Image
+          className="pointer-events-none"
           alt={product.name}
           src={product.image}
           width="440"

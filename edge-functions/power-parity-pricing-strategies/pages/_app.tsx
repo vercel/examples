@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
       title="Power parity pricing strategies"
       path="power-parity-pricing-strategies"
     >
-      <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-50">
+      <div className="flex flex-col items-center justify-center h-full py-2 bg-gray-50">
         <div className="fixed inset-0 overflow-hidden opacity-75 bg-[#f8fafb]">
           <Image
             alt="World Map"
@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
             quality={100}
           />
         </div>
-        <main className="flex flex-col items-center flex-1 px-4 sm:px-20 text-center z-10 py-8 sm:py-20">
+        <main className="flex flex-col items-center flex-1 px-4 sm:px-20 w-full text-center z-10 py-8 sm:py-20">
           <Text variant="h1" className="mb-4">
             Edge Functions
           </Text>
