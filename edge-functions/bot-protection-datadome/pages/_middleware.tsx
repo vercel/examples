@@ -1,10 +1,10 @@
-import type { NextFetchEvent } from 'next/server'
+import type { NextRequest } from 'next/server'
 import { first } from '@lib/utils'
 import datadome from '@lib/datadome'
 import demoMiddleware from '@lib/demo-middleware'
 
-function handler(ev: NextFetchEvent) {
-  return datadome(ev.request)
+function handler(req: NextRequest) {
+  return datadome(req)
 }
 
 // if you are using this example as reference,

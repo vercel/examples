@@ -1,12 +1,12 @@
 # Filtering Query Parameters
 
 ```ts
-import { NextFetchEvent, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 const allowedParams = ['allowed']
 
-export function middleware(ev: NextFetchEvent) {
-  const url = ev.request.nextUrl
+export function middleware(req: NextRequest) {
+  const url = req.nextUrl
 
   url.searchParams.forEach((_, key) => {
     if (!allowedParams.includes(key)) {
@@ -14,7 +14,7 @@ export function middleware(ev: NextFetchEvent) {
     }
   })
 
-  ev.respondWith(NextResponse.rewrite(url))
+  return NextResponse.rewrite(url)
 }
 ```
 

@@ -1,22 +1,18 @@
-import type { NextFetchEvent } from 'next/server'
+import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import { blockedIp } from '@lib/rules/ip'
 
-export function middleware(evt: NextFetchEvent) {
+export async function middleware(req: NextRequest) {
   // Rewrite to /blocked if the IP is blocked
-  const url = evt.request.nextUrl
+  const url = req.nextUrl
   if (url.pathname === '/am-i-blocked') {
-    return evt.respondWith(blocked(evt))
+    return (await blockedIp(req))
+      ? NextResponse.rewrite('/blocked')
+      : NextResponse.next()
   }
 
   // Trying to access the /blocked page manually is disallowed
   if (url.pathname === '/blocked') {
-    return evt.respondWith(new Response(null, { status: 404 }))
+    return new Response(null, { status: 404 })
   }
-}
-
-async function blocked(evt: NextFetchEvent) {
-  return (await blockedIp(evt.request))
-    ? NextResponse.rewrite('/blocked')
-    : NextResponse.next()
 }

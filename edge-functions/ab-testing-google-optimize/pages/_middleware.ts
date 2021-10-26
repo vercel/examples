@@ -1,10 +1,10 @@
-import { NextFetchEvent, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { COOKIE_NAME } from '@lib/constants'
 import { getCurrentExperiment } from '@lib/optimize'
 
-export function middleware(evt: NextFetchEvent) {
+export function middleware(req: NextRequest) {
   let res = NextResponse.next()
-  let cookie = evt.request.cookies[COOKIE_NAME]
+  let cookie = req.cookies[COOKIE_NAME]
 
   if (!cookie) {
     let n = Math.random() * 100
@@ -18,7 +18,7 @@ export function middleware(evt: NextFetchEvent) {
   }
 
   const [, variantId] = cookie.split('.')
-  const { pathname } = evt.request.nextUrl
+  const { pathname } = req.nextUrl
 
   if (['/marketing', '/about'].includes(pathname)) {
     res = NextResponse.rewrite(
@@ -28,9 +28,9 @@ export function middleware(evt: NextFetchEvent) {
   }
 
   // Add the cookie if it's not there
-  if (!evt.request.cookies[COOKIE_NAME]) {
+  if (!req.cookies[COOKIE_NAME]) {
     res.cookie(COOKIE_NAME, cookie)
   }
 
-  return evt.respondWith(res)
+  return res
 }
