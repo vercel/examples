@@ -1,6 +1,6 @@
-import type { NextFetchEvent } from 'next/server'
+import type { NextRequest } from 'next/server'
 
-export function middleware(ev: NextFetchEvent) {
+export function middleware(req: NextRequest) {
   // You can add and append headers in multiple ways,
   // below we'll explore some common patterns
 
@@ -15,16 +15,14 @@ export function middleware(ev: NextFetchEvent) {
   // 3. Add a header to an existing response
   res.headers.set('x-custom-3', 'value-3')
 
-  ev.respondWith(
-    // 4. Merge existing headers with new ones in a response
-    new Response(
-      'Open the network tab in devtools to see the response headers',
-      {
-        headers: {
-          ...Object.fromEntries(res.headers),
-          'x-custom-4': 'value-4',
-        },
-      }
-    )
+  // 4. Merge existing headers with new ones in a response
+  return new Response(
+    'Open the network tab in devtools to see the response headers',
+    {
+      headers: {
+        ...Object.fromEntries(res.headers),
+        'x-custom-4': 'value-4',
+      },
+    }
   )
 }
