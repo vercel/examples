@@ -1,6 +1,6 @@
 # Image Response Example
 
-Below is the code from pages/_middleware.ts that parses a png to a blog and returns it as the response body:
+Below is the code from pages/_middleware.ts that parses a png to a blob and returns it as the response body:
 ```js
 import { b64toBlob } from "../lib/parse";
 
