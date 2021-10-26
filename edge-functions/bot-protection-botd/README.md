@@ -10,7 +10,7 @@ https://edge-functions-bot-protection-botd.vercel.sh
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-functions%2Ftree%2Fmain%2Fexamples%2Fbot-protection-botd&env=NEXT_PUBLIC_BOTD_API_TOKEN&project-name=bot-protection-botd&repo-name=bot-protection-botd)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/bot-protection-botd&env=NEXT_PUBLIC_BOTD_API_TOKEN&project-name=bot-protection-botd&repo-name=bot-protection-botd)
 
 ## How it works
 
