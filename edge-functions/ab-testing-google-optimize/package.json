@@ -1,9 +1,7 @@
 {
   "name": "ab-testing",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/vercel-solutions/ab-testing.git",
-  "author": "Luis Alvarez <luis@vercel.com>",
+  "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "scripts": {
     "dev": "next",

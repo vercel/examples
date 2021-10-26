@@ -1,7 +1,8 @@
 {
   "name": "password-protection",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

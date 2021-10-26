@@ -5,7 +5,7 @@ import Button from '../button'
 import DeployButton, { DeployButtonProps } from '../deploy-button'
 import s from './nav.module.css'
 
-const REPO_URL = 'https://github.com/vercel-customer-feedback/edge-functions'
+const REPO_URL = 'https://github.com/vercel/examples'
 const REPO_DIR = '/tree/main/examples'
 
 export interface NavProps {
@@ -53,7 +53,7 @@ export default function Nav({ path, deployButton }: NavProps) {
               <Button
                 variant="ghost"
                 Component="a"
-                href="https://github.com/vercel-customer-feedback/edge-functions/tree/main/examples"
+                href="https://github.com/vercel/examples/tree/main"
               >
                 More Examples →
               </Button>
