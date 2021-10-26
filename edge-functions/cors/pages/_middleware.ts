@@ -1,11 +1,7 @@
-import type { NextFetchEvent, NextRequest } from 'next/server'
+import type { NextRequest } from 'next/server'
 import cors from '../lib/cors'
 
-export function middleware(ev: NextFetchEvent) {
-  ev.respondWith(handler(ev.request))
-}
-
-async function handler(req: NextRequest) {
+export function middleware(req: NextRequest) {
   // `cors` also takes care of handling OPTIONS requests
   return cors(
     req,
