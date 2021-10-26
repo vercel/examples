@@ -13,7 +13,7 @@
     "configcat-js": "^5.5.0",
     "configcat-node": "^6.5.8",
     "js-cookie": "^2.2.1",
-    "next": "^11.1.3-canary.95",
+    "next": "^11.1.3-canary.104",
     "prettier": "^2.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
