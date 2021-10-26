@@ -10,7 +10,6 @@ export default function middleware() {
   
   return new Response(blob); // Return it as a response
 }
-
 ```
 
 ## How to Use
