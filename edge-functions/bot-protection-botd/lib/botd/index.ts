@@ -112,10 +112,14 @@ export async function botdEdge(
         browserSpoofingProb > 0
           ? 403
           : 200
-      const res = new NextResponse(null, { status, headers })
+      let res = new NextResponse(null, { status, headers })
 
-      // Let Next.js continue to other middlewares
-      if (status === 200) res.headers.set('x-middleware-next', '1')
+      if (status === 200) {
+        // Let Next.js continue
+        res = NextResponse.next()
+        headers.forEach((v, k) => res.headers.set(k, v))
+      }
+
       res.cookie(COOKIE_NAME, requestId!)
 
       return res
