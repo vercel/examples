@@ -13,6 +13,10 @@ export default function middleware() {
 
 ```
 
+## Demo
+
+https://edge-functions-image-response.vercel.sh
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:
