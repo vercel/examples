@@ -16,7 +16,17 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           fetch(`/api/${path}`, init).then((res) => res.json()),
       }}
     >
-      <Layout title="IP Blocking with Datadome" path="ip-blocking-datadome">
+      <Layout
+        title="IP Blocking with Datadome"
+        path="ip-blocking-datadome"
+        deployButton={{
+          env: [
+            'NEXT_PUBLIC_DATADOME_CLIENT_KEY',
+            'DATADOME_SERVER_KEY',
+            'DATADOME_MANAGEMENT_KEY',
+          ],
+        }}
+      >
         <Component {...pageProps} />
       </Layout>
     </SWRConfig>

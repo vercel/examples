@@ -9,7 +9,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="Bot Protection with DataDome" path="bot-protection-datadome">
+    <Layout
+      title="Bot Protection with DataDome"
+      path="bot-protection-datadome"
+      deployButton={{
+        env: ['NEXT_PUBLIC_DATADOME_CLIENT_KEY', 'DATADOME_SERVER_KEY'],
+      }}
+    >
       <Component {...pageProps} />
 
       {/* datadome bot protection */}

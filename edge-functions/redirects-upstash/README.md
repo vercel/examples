@@ -14,9 +14,17 @@ https://edge-functions-redirects-upstash.vercel.sh
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-functions%2Ftree%2Fmain%2Fexamples%2Fredirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,UPSTASH_EDGE_API_DOMAIN,UPSTASH_EDGE_API_TOKEN&project-name=redirects-upstash&repo-name=redirects-upstash)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,UPSTASH_EDGE_API_DOMAIN,UPSTASH_EDGE_API_TOKEN&project-name=redirects-upstash&repo-name=redirects-upstash)
 
 ## Getting Started
+
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+
+```bash
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/redirects-upstash redirects-upstash
+# or
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/redirects-upstash redirects-upstash
+```
 
 You'll need to have an account with [Upstash](https://upstash.com/). Once that's done, copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
 
