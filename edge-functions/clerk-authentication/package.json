@@ -1,0 +1,31 @@
+{
+  "name": "clerk-authentication",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^2.0.2",
+    "@headlessui/react": "^1.4.1",
+    "@heroicons/react": "^1.0.4",
+    "@peculiar/webcrypto": "^1.1.7",
+    "add": "^2.0.6",
+    "jose": "^3.20.1",
+    "next": "12.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "swiper": "^7.0.9"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.3.7",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2",
+    "postcss": "^8.3.9",
+    "prettier": "^2.4.1",
+    "tailwindcss": "^2.2.17"
+  }
+}
