@@ -22,8 +22,10 @@ async function handler(req: NextRequest) {
 
   if (res && res.status !== 200) {
     // Bot detected!
-    res.headers.set('x-middleware-rewrite', '/bot-detected')
-    return new Response(null, { headers: res.headers })
+    const rewrite = NextResponse.rewrite('/bot-detected')
+    res.headers.forEach((v, k) => rewrite.headers.set(k, v))
+
+    return rewrite
   }
   return res
 }
