@@ -12,9 +12,17 @@ https://edge-functions-feature-flag-configcat.vercel.sh
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-configcat&env=NEXT_PUBLIC_CONFIGCAT_SDK_KEY&project-name=configcat&repo-name=configcat)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/feature-flag-configcat&env=NEXT_PUBLIC_CONFIGCAT_SDK_KEY&project-name=feature-flag-configcat&repo-name=feature-flag-configcat)
 
 ## Getting Started
+
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+
+```bash
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/feature-flag-configcat feature-flag-configcat
+# or
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/feature-flag-configcat feature-flag-configcat
+```
 
 You'll need to have an account with [ConfigCat](https://app.configcat.com/signup). Once that's done, copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
 

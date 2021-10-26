@@ -20,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Layout
         title="Bot Protection with Botd (by FingerprintJS)"
         path="bot-protection-botd"
+        deployButton={{ env: ['NEXT_PUBLIC_BOTD_API_TOKEN'] }}
       >
         <Component {...pageProps} />
       </Layout>

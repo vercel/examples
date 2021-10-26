@@ -42,6 +42,14 @@ if (pathname === '/blocked') {
 
 ## Getting Started
 
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+
+```bash
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/bot-protection-botd bot-protection-botd
+# or
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/bot-protection-botd bot-protection-botd
+```
+
 You'll need to have a token for the beta access of [Botd](https://github.com/fingerprintjs/botd), the token is free and there are instructions in their [github repo](https://github.com/fingerprintjs/botd) on how to get one.
 
 Once that's done, copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
