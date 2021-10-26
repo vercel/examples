@@ -1,9 +1,8 @@
-import { NextFetchEvent, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-export function middleware(ev: NextFetchEvent) {
-  const req = ev.request
+export function middleware(req: NextRequest) {
   const country = req.geo.country?.toLowerCase() || 'us'
 
   req.nextUrl.pathname = `/edge/${country}`
-  ev.respondWith(NextResponse.rewrite(req.nextUrl))
+  return NextResponse.rewrite(req.nextUrl)
 }

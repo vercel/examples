@@ -1,10 +1,6 @@
-import type { NextFetchEvent } from 'next/server'
+import type { NextRequest } from 'next/server'
 
-export function middleware(ev: NextFetchEvent) {
-  ev.respondWith(handler(ev))
-}
-
-async function handler(ev: NextFetchEvent) {
+export async function middleware(req: NextRequest) {
   // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/subtle
   const plainText = 'Hello from the Edge!'
   const password = 'hunter2'

@@ -3,9 +3,9 @@
 Below is the code from [pages/\_middleware.ts](pages/_middleware.ts) with multiple examples of adding headers at the edge:
 
 ```ts
-import type { NextFetchEvent } from 'next/server'
+import type { NextRequest } from 'next/server'
 
-export function middleware(ev: NextFetchEvent) {
+export function middleware(req: NextRequest) {
   // You can add and append headers in multiple ways,
   // below we'll explore some common patterns
 

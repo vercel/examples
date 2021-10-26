@@ -17,12 +17,15 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 We do bot detection at the edge with the following code:
 
 ```ts
-async function handler(ev: NextFetchEvent) {
-  const res = await botdEdge(ev.request)
+async function handler(req: NextRequest) {
+  const res = await botdEdge(req)
 
   if (res && res.status !== 200) {
     // Bot detected!
-    res.headers.set('x-middleware-rewrite', '/bot-detected')
+    const rewrite = NextResponse.rewrite('/bot-detected')
+    res.headers.forEach((v, k) => rewrite.headers.set(k, v))
+
+    return rewrite
   }
   return res
 }

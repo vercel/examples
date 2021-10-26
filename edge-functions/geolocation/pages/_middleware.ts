@@ -1,17 +1,13 @@
-import { NextFetchEvent, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import countries from '../lib/countries.json'
 
-export function middleware(ev: NextFetchEvent) {
-  ev.respondWith(handler(ev))
-}
-
-async function handler(ev: NextFetchEvent) {
-  const { nextUrl: url, geo } = ev.request
+export async function middleware(req: NextRequest) {
+  const { nextUrl: url, geo } = req
   const country = geo.country?.replace('%20', ' ') || 'US'
   const city = geo.city?.replace('%20', ' ') || 'San Francisco'
   const region = geo.region?.replace('%20', ' ') || 'CA'
 
-  const countryInfo = countries.find(x => x.cca2 === country )
+  const countryInfo = countries.find((x) => x.cca2 === country)
 
   const currencyCode = Object.keys(countryInfo.currencies)[0]
   const currency = countryInfo.currencies[currencyCode]

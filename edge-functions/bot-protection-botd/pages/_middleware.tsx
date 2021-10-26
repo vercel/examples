@@ -1,12 +1,12 @@
-import type { NextFetchEvent } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { first } from '@lib/utils'
 import { botdEdge } from '@lib/botd'
 import demoMiddleware from '@lib/demo-middleware'
 
-async function handler(ev: NextFetchEvent) {
+async function handler(req: NextRequest) {
   // Do light bot detection for all requests excluding
   // all static files but favicon.ico.
-  const res = await botdEdge(ev.request, {
+  const res = await botdEdge(req, {
     // The request id is excluded for demo purposes because
     // Botd remembers your request id and will always show
     // you the /bot-detected page if you're a bot, and
@@ -16,8 +16,10 @@ async function handler(ev: NextFetchEvent) {
 
   if (res && res.status !== 200) {
     // Bot detected!
-    res.headers.set('x-middleware-rewrite', '/bot-detected')
-    return new Response(null, { headers: res.headers })
+    const rewrite = NextResponse.rewrite('/bot-detected')
+    res.headers.forEach((v, k) => rewrite.headers.set(k, v))
+
+    return rewrite
   }
   return res
 }
