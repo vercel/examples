@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "update-next": "node scripts/update-next.js",
     "prettier": "prettier --write ."
   },
   "devDependencies": {
