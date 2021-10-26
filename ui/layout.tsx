@@ -18,7 +18,7 @@ const Layout: FC<LayoutProps> = ({ title, path, deployButton, children }) => {
 
       <Nav path={path} deployButton={deployButton} />
 
-      <div className="px-8 bg-accents-0">{children}</div>
+      <div className="px-8 bg-accents-0 h-full">{children}</div>
 
       <footer className="py-10 w-full mt-auto border-t flex items-center justify-center bg-accents-1 z-20">
         <span className="text-primary">Created by</span>
