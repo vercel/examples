@@ -1,6 +1,6 @@
 # Image Response Example
 
-You can return a blob from a middleware directly responding it:
+Below is the code from pages/_middleware.ts that parses a png to a blog and returns it as the response body:
 ```js
 import { b64toBlob } from "../lib/parse";
 
@@ -21,7 +21,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel-customer-feedback/edge-functions/tree/main/examples/image-response&project-name=image-response&repository-name=image-response)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/image-response&project-name=image-response&repository-name=image-response)
 
 ### Clone and Deploy
 
