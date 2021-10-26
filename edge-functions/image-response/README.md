@@ -1,5 +1,18 @@
 # Image Response Example
 
+You can return a blob from a middleware directly responding it:
+```js
+import { b64toBlob } from "../lib/parse";
+
+export default function middleware() {
+  const png = "..."; // Base 64 image
+  const blob = b64toBlob(png, "image/png"); // Transform it to a blob
+  
+  return new Response(blob); // Return it as a response
+}
+
+```
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:
