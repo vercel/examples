@@ -7,7 +7,7 @@ export interface DeployButtonProps {
   repositoryUrl: string
   env?: string[]
   projectName?: string
-  repoName?: string
+  repositoryName?: string
 }
 
 const DeployButton: FC<DeployButtonProps> = (props) => {
@@ -15,7 +15,7 @@ const DeployButton: FC<DeployButtonProps> = (props) => {
     ['repository-url', props.repositoryUrl],
     ['env', props.env?.join(',')],
     ['project-name', props.projectName],
-    ['repo-name', props.repoName],
+    ['repository-name', props.repositoryName],
   ]
   const query = params
     .reduce<string[]>((arr, [k, v]) => {

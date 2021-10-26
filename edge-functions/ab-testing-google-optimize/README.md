@@ -12,7 +12,7 @@ https://edge-functions-ab-testing-google-optimize.vercel.sh
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-google-optimize&project-name=ab-testing-google-optimize&repo-name=ab-testing-google-optimize)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-google-optimize&project-name=ab-testing-google-optimize&repository-name=ab-testing-google-optimize)
 
 ## Getting Started
 

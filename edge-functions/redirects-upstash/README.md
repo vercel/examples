@@ -14,7 +14,7 @@ https://edge-functions-redirects-upstash.vercel.sh
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,UPSTASH_EDGE_API_DOMAIN,UPSTASH_EDGE_API_TOKEN&project-name=redirects-upstash&repo-name=redirects-upstash)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,UPSTASH_EDGE_API_DOMAIN,UPSTASH_EDGE_API_TOKEN&project-name=redirects-upstash&repository-name=redirects-upstash)
 
 ## Getting Started
 

@@ -15,7 +15,7 @@ https://edge-functions-ip-blocking-datadome.vercel.sh
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-middleware%2Ftree%2Fmain%2Fexamples%2Fip-blocking-datadome&env=NEXT_PUBLIC_DATADOME_CLIENT_KEY,DATADOME_SERVER_KEY,DATADOME_MANAGEMENT_KEY&project-name=ip-blocking-datadome&repo-name=ip-blocking-datadome)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-middleware%2Ftree%2Fmain%2Fexamples%2Fip-blocking-datadome&env=NEXT_PUBLIC_DATADOME_CLIENT_KEY,DATADOME_SERVER_KEY,DATADOME_MANAGEMENT_KEY&project-name=ip-blocking-datadome&repository-name=ip-blocking-datadome)
 
 ## Getting Started
 

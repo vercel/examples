@@ -39,7 +39,7 @@ export async function setUserCookie(
 
   if (!cookie) {
     const token = await jwt.sign(
-      <UserJwtPayload>{
+      {
         jti: nanoid(),
         iat: Date.now() / 1000,
       },

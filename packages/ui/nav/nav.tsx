@@ -66,7 +66,7 @@ export default function Nav({ path, deployButton }: NavProps) {
                   `${REPO_URL}${REPO_DIR}/${path}`
                 }
                 projectName={deployButton?.projectName || path}
-                repoName={deployButton?.repoName || path}
+                repositoryName={deployButton?.repositoryName || path}
               />
             </span>
           </nav>
