@@ -7,7 +7,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="JWT Authentication" path="jwt-authentication">
+    <Layout
+      title="JWT Authentication"
+      path="jwt-authentication"
+      deployButton={{ env: ['JWT_SECRET_KEY'] }}
+    >
       <Component {...pageProps} />
     </Layout>
   )

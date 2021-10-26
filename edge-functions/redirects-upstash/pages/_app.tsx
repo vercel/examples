@@ -7,7 +7,18 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="Edge Redirects" path="redirects-upstash">
+    <Layout
+      title="Edge Redirects"
+      path="redirects-upstash"
+      deployButton={{
+        env: [
+          'UPSTASH_REST_API_DOMAIN',
+          'UPSTASH_REST_API_TOKEN',
+          'UPSTASH_EDGE_API_DOMAIN',
+          'UPSTASH_EDGE_API_TOKEN',
+        ],
+      }}
+    >
       <Component {...pageProps} />
     </Layout>
   )

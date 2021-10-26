@@ -18,6 +18,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <Layout
         title="API Rate Limiting and IP Blocking"
         path="api-rate-limit-and-tokens"
+        deployButton={{
+          env: [
+            'UPSTASH_REST_API_DOMAIN',
+            'UPSTASH_REST_API_TOKEN',
+            'API_KEYS_JWT_SECRET_KEY',
+          ],
+        }}
       >
         <Component {...pageProps} />
       </Layout>
