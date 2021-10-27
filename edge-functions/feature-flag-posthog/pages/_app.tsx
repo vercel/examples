@@ -10,8 +10,6 @@ import { PostHog } from 'posthog-js'
 export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
-  console.log('calling usePostHog')
-
   usePostHog(process.env.NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY, {
     api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
     loaded: (posthog: PostHog) => {
@@ -24,7 +22,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="AB testing with PostHog"
-      path="nextjs-feature-flags-middleware"
+      path="feature-flag-posthog"
       deployButton={{
         env: [
           'NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY',
