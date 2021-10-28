@@ -55,8 +55,8 @@ export default function Index() {
       {productPageAvailable && (
         <>
           <Text className="mb-4">
-            The product page will each render a different version depending
-            multi-variate feature flag set in PostHog (a, b, or c):
+            The product page will render a different version depending on the
+            multi-variate feature flag value set in PostHog (a, b, or c):
           </Text>
           <List className="mb-4">
             <li>

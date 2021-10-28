@@ -12,7 +12,8 @@ export const usePostHog = (
   const router = useRouter()
 
   if (config.loaded) {
-    // override the existing loaded function so we store get the PostHog instance
+    // override the existing loaded function so we can store a reference
+    // to the PostHog instance
     const oldLoaded = config.loaded
     config.loaded = (posthog: PostHog) => {
       setPostHogInstance(posthog)
