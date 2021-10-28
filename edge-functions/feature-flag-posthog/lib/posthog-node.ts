@@ -2,7 +2,7 @@ import { FEATURE_FLAGS } from './constants'
 
 /**
  * Checks if a feature flag is enabled.
- * 
+ *
  * @param distinctUserId A unique identifier for the user
  * @param featureName The name of the feature flag
  * @returns true if the feature flag is enabled. Otherwise, false.
@@ -13,9 +13,12 @@ export async function isFeatureFlagEnabled(
 ): Promise<boolean> {
   console.log('isFeatureEnabled', distinctUserId, featureName)
 
-  const featureFlagValue = await getFeatureFlagVariant(distinctUserId, featureName)
+  const featureFlagValue = await getFeatureFlagVariant(
+    distinctUserId,
+    featureName
+  )
 
-  const featureEnabled = featureFlagValue? true : false
+  const featureEnabled = featureFlagValue ? true : false
   console.log('featureEnabled', featureEnabled)
 
   return featureEnabled
@@ -23,7 +26,7 @@ export async function isFeatureFlagEnabled(
 
 /**
  * Retrieves the value of the feature flag.
- * 
+ *
  * @param distinctUserId A unique identifier for the user
  * @param featureName The name of the feature flag
  * @returns If the feature flag is an A/B test, then the value may be true or undefined.
@@ -32,7 +35,7 @@ export async function isFeatureFlagEnabled(
 export async function getFeatureFlagVariant(
   distinctUserId: string,
   featureName: FEATURE_FLAGS
-): Promise<string|boolean|undefined> {
+): Promise<string | boolean | undefined> {
   console.log('getFeatureFlagVariant', distinctUserId, featureName)
 
   const res = await fetch(
