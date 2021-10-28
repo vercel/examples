@@ -9,7 +9,6 @@ import {
 } from '@vercel/edge-functions-ui'
 
 export default function Index() {
-  
   const resetVariant = () => {
     const posthog = getPostHogInstance()
     posthog.reset(true)
@@ -22,7 +21,8 @@ export default function Index() {
         AB testing with PostHog
       </Text>
       <Text className="mb-4">
-        The about and marketing pages will each render a different version depending on the feature flag % of users set within PostHog:
+        The about and marketing pages will each render a different version
+        depending on the feature flag % of users set within PostHog:
       </Text>
       <List className="mb-4">
         <li>
@@ -33,7 +33,8 @@ export default function Index() {
         </li>
       </List>
       <Text className="text-lg mb-4">
-        Click the button below to reset the variant. Each variant will have a % chance based on the Feature Flag setting in PostHog.
+        Click the button below to reset the variant. Each variant will have a %
+        chance based on the Feature Flag setting in PostHog.
       </Text>
       <div>
         <Button

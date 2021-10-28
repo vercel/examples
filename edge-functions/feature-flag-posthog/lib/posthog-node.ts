@@ -3,7 +3,10 @@ import { FEATURE_FLAGS } from './constants'
 /**
  * Checks if a feature flag is enabeld.
  */
-export async function isFeatureFlagEnabled(distinctUserId: string, featureName: FEATURE_FLAGS): Promise<boolean> {
+export async function isFeatureFlagEnabled(
+  distinctUserId: string,
+  featureName: FEATURE_FLAGS
+): Promise<boolean> {
   console.log('isFeatureEnabled', distinctUserId, featureName)
 
   const res = await fetch(

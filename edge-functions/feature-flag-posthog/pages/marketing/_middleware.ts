@@ -8,9 +8,15 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect('/marketing')
   }
 
-  console.log('req.cookies[DISTINCT_ID_COOKIE_NAME]', req.cookies[DISTINCT_ID_COOKIE_NAME])
+  console.log(
+    'req.cookies[DISTINCT_ID_COOKIE_NAME]',
+    req.cookies[DISTINCT_ID_COOKIE_NAME]
+  )
 
-  const newMarketingPageFlagEnabled = await isFeatureFlagEnabled(req.cookies[DISTINCT_ID_COOKIE_NAME], FEATURE_FLAGS.NEW_MARKETING_PAGE)
+  const newMarketingPageFlagEnabled = await isFeatureFlagEnabled(
+    req.cookies[DISTINCT_ID_COOKIE_NAME],
+    FEATURE_FLAGS.NEW_MARKETING_PAGE
+  )
 
   const res = NextResponse.rewrite(
     newMarketingPageFlagEnabled ? '/marketing/b' : '/marketing'

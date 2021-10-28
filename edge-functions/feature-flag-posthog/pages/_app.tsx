@@ -16,7 +16,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       // Set the distinct_id being used by PostHog on the client
       // so we can also use on the server.
       Cookies.set('distinct_id', posthog.get_distinct_id())
-    }
+    },
   })
 
   return (
@@ -24,13 +24,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       title="AB testing with PostHog"
       path="feature-flag-posthog"
       deployButton={{
-        env: [
-          'NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY',
-        ],
+        env: ['NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY'],
       }}
     >
       <Component {...pageProps} />
     </Layout>
   )
 }
-
