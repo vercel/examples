@@ -1,5 +1,5 @@
 {
-  "name": "posthog-feature-flags",
+  "name": "feature-flag-posthog",
   "version": "1.0.0",
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
