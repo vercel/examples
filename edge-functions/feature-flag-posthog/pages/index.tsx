@@ -1,4 +1,6 @@
+import { FEATURE_FLAGS } from '@lib/constants'
 import { getPostHogInstance } from '@lib/posthog'
+import { getFeatureFlagVariant } from '@lib/posthog-node'
 import {
   Layout,
   Page,
@@ -7,13 +9,27 @@ import {
   Link,
   Button,
 } from '@vercel/edge-functions-ui'
+import Cookies from 'js-cookie'
+import { useEffect, useState } from 'react'
 
 export default function Index() {
+
   const resetVariant = () => {
     const posthog = getPostHogInstance()
     posthog.reset(true)
     window.location.reload()
   }
+
+  const [productPageAvailable, setProductPageAvailable] = useState(false)
+
+  useEffect(() => {
+    const checkProductPageAvailability = async () => {
+      const available = await getFeatureFlagVariant(Cookies.get('distinct_id'), FEATURE_FLAGS.NEW_PRODUCT_PAGE)? true : false
+      setProductPageAvailable(available)
+    }
+
+    checkProductPageAvailability()
+  }, [])
 
   return (
     <Page>
@@ -32,9 +48,21 @@ export default function Index() {
           <Link href="/marketing">/marketing</Link>
         </li>
       </List>
+      {productPageAvailable &&
+      <>
+        <Text className="mb-4">
+          The product page will each render a different version
+          depending multi-variate feature flag set in PostHog (a, b, or c):
+        </Text>
+        <List className="mb-4">   
+          <li>
+            <Link href="/product">/product</Link>
+          </li>
+        </List>
+      </>
+      }
       <Text className="text-lg mb-4">
-        Click the button below to reset the variant. Each variant will have a %
-        chance based on the Feature Flag setting in PostHog.
+        Click the button below to reset the variants for the current browser session.
       </Text>
       <div>
         <Button
