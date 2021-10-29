@@ -1,5 +1,18 @@
 # Hacker Next
 
+Below is the code from [pages/\_middleware.ts](pages/_middleware.ts):
+
+```ts
+import { NextResponse as Response } from "next/server";
+
+export default function middleware(req) {
+  if (req.nextUrl.pathname === "/") {
+    return Response.rewrite("/news/1");
+  }
+}
+```
+> This way you can rewrite the home page to the first news
+
 This is an example showing a hacker news clone using Next.js with edge functions
 
 ## Demo

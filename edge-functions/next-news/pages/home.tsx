@@ -1,1 +1,3 @@
-export default () => <div>Home</div>;
+export default function Home() {
+  return <div>Home</div>
+};

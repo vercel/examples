@@ -1,2 +1,6 @@
-export default () => <div>user page (WIP)</div>
+export default function User() {
+  return (
+    <div>user page (WIP)</div>
+  )
+}
 
