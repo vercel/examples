@@ -4,7 +4,7 @@ This is an example showing a hacker news clone using Next.js with edge functions
 
 ## Demo
 
-https://edge-next-news.vercel.app
+https://edge-functions-next-news.vercel.app
 
 ## How to Use
 
@@ -14,16 +14,16 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/edge-next-news&project-name=edge-next-news&repository-name=edge-next-news)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/next-news&project-name=next-news&repository-name=next-news)
 
 ### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/edge-next-news edge-next-news
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/next-news next-news
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/edge-next-news edge-next-news
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/next-news next-news
 ```
 
 Next, run Next.js in development mode:
