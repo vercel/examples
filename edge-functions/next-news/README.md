@@ -1,6 +1,7 @@
 # Next News
 
-Below is the code from [pages/\_middleware.ts](pages/_middleware.ts):
+
+This is an example showing a hacker news clone using Next.js. Edge functions are used to show how a rewrite from `/` to `/news/1` works. Below is the code from [pages/\_middleware.ts](pages/_middleware.ts):
 
 ```ts
 import { NextResponse as Response } from "next/server";
@@ -11,9 +12,6 @@ export default function middleware(req) {
   }
 }
 ```
-> This way you can rewrite the home page to the first news
-
-This is an example showing a hacker news clone using Next.js with edge functions
 
 ## Demo
 
