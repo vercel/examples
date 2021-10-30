@@ -1,4 +1,4 @@
-# Hacker Next
+# Next News
 
 Below is the code from [pages/\_middleware.ts](pages/_middleware.ts):
 
