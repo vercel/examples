@@ -1,6 +1,5 @@
 # Next News
 
-
 This is an example showing a hacker news clone using Next.js. Edge functions are used to show how a rewrite from `/` to `/news/1` works. Below is the code from [pages/\_middleware.ts](pages/_middleware.ts):
 
 ```ts
