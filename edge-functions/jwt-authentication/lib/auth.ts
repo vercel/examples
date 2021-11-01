@@ -1,7 +1,7 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import { nanoid } from 'nanoid'
-import jwt from '@tsndr/cloudflare-worker-jwt'
+import { SignJWT, jwtVerify } from 'jose'
 import { USER_TOKEN, JWT_SECRET_KEY } from './constants'
 import { jsonResponse } from './utils'
 
@@ -21,11 +21,12 @@ export async function verifyAuth(request: NextRequest) {
     return jsonResponse(401, { error: { message: 'Missing user token' } })
   }
 
-  if (!(await jwt.verify(token, JWT_SECRET_KEY))) {
+  try {
+    const verified = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET_KEY))
+    return verified.payload as UserJwtPayload
+  } catch (err) {
     return jsonResponse(401, { error: { message: 'Your token has expired.' } })
   }
-
-  return jwt.decode(token) as UserJwtPayload
 }
 
 /**
@@ -38,13 +39,12 @@ export async function setUserCookie(
   const cookie = request.cookies[USER_TOKEN]
 
   if (!cookie) {
-    const token = await jwt.sign(
-      {
-        jti: nanoid(),
-        iat: Date.now() / 1000,
-      },
-      JWT_SECRET_KEY
-    )
+    const token = await new SignJWT({})
+      .setProtectedHeader({ alg: 'HS256' })
+      .setJti(nanoid())
+      .setIssuedAt()
+      .setExpirationTime('2h')
+      .sign(new TextEncoder().encode(JWT_SECRET_KEY))
     response.cookie(USER_TOKEN, token)
   }
 
