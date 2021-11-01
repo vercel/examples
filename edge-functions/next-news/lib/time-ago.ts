@@ -9,4 +9,4 @@ const map = {
 };
 
 export default (date) =>
-  ms(new Date() - date).replace(/[a-z]+/, (str) => " " + map[str]);
+  ms(+new Date() - date).replace(/[a-z]+/, (str) => " " + map[str]);
