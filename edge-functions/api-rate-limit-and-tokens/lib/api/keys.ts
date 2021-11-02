@@ -36,7 +36,7 @@ export const tokenRateLimit = initRateLimit(async (request) => {
   let payload: ApiTokenPayload
   try {
     const verified = await jwtVerify(token, new TextEncoder().encode(API_KEYS_JWT_SECRET_KEY))
-    payload = <ApiTokenPayload>verified.payload
+    payload = verified.payload as ApiTokenPayload
   } catch (err) {
     return tokenExpired()
   }
