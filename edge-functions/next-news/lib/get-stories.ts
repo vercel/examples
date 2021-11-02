@@ -7,7 +7,7 @@ export default async (type = 'topstories', { page=1, max=30 } = {}) => {
   const ids = await db
     .child(type)
     .once('value')
-  const stories = await Promise.all(
+  const stories = await Promise.all<any>(
     ids.val().slice(start, end).map(id => db
       .child('item')
       .child(id)

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { verify, JwtPayload } from 'jsonwebtoken'
+import { jwtVerify } from 'jose'
 import { nanoid } from 'nanoid'
 import { USER_TOKEN, JWT_SECRET_KEY } from '@lib/constants'
 
@@ -14,7 +14,7 @@ export default async function handler(
   }
   try {
     const token = req.cookies[USER_TOKEN]
-    const payload = verify(token, JWT_SECRET_KEY) as JwtPayload
+    const { payload } = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET_KEY))
     res.status(200).json({ nanoid: nanoid(), jwtID: payload.jti })
   } catch (err) {
     res.status(401).json({ error: { message: 'Your token has expired.' } })

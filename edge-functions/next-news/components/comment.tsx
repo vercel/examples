@@ -1,7 +1,7 @@
 import React from "react";
 import timeAgo from "../lib/time-ago";
 
-export default class Comment extends React.Component {
+export default class Comment extends React.Component<any, any> {
   constructor(props) {
     super(props);
     this.state = { toggled: false };

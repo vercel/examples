@@ -1,9 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { sign, decode } from 'jsonwebtoken'
+import { base64url, SignJWT } from 'jose'
 import { nanoid } from 'nanoid'
 import { API_KEYS, API_KEYS_JWT_SECRET_KEY } from '@lib/api/constants'
 import type { ApiTokenPayload } from '@lib/api/keys'
 import { upstashRest } from '@lib/upstash'
+
+const decode = (jwt: string) => JSON.parse(new TextDecoder().decode(base64url.decode(jwt.split('.')[1])))
 
 export default async function keys(req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -16,7 +18,9 @@ export default async function keys(req: NextApiRequest, res: NextApiResponse) {
           limit: 500,
           timeframe: 60,
         }
-        const token = sign(payload, API_KEYS_JWT_SECRET_KEY)
+        const token = await new SignJWT(payload)
+          .setProtectedHeader({ alg: 'HS256' })
+          .sign(new TextEncoder().encode(API_KEYS_JWT_SECRET_KEY))
         const data = await upstashRest(['HSET', API_KEYS, payload.jti, token])
 
         return res.status(200).json({ done: data.result === 1 })

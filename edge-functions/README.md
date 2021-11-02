@@ -15,6 +15,7 @@
 - [Basic Auth Password Protection](./basic-auth-password)
 - [Bot Protection Botd](./bot-protection-botd)
 - [Bot Protection Datadome](./bot-protection-datadome)
+- [Clerk Authentication](./clerk-authentication)
 - [CORS](./cors)
 - [Crypto Web APIs](./crypto)
 - [Feature Flags Apple Store](./feature-flag-apple-store)

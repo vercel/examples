@@ -1,4 +1,4 @@
-import jwt from '@tsndr/cloudflare-worker-jwt'
+import { jwtVerify } from 'jose'
 import { initRateLimit } from '@lib/rate-limit'
 import { upstashRest } from '@lib/upstash'
 import { API_KEYS, API_KEYS_JWT_SECRET_KEY } from './constants'
@@ -33,10 +33,13 @@ export const tokenRateLimit = initRateLimit(async (request) => {
   // Fallback to IP rate limiting if no bearer token is present
   if (!token) return ipRateLimit(request)
 
-  const isValid = await jwt.verify(token, API_KEYS_JWT_SECRET_KEY)
-  if (!isValid) return tokenExpired()
-
-  const payload = jwt.decode(token) as ApiTokenPayload
+  let payload: ApiTokenPayload
+  try {
+    const verified = await jwtVerify(token, new TextEncoder().encode(API_KEYS_JWT_SECRET_KEY))
+    payload = verified.payload as ApiTokenPayload
+  } catch (err) {
+    return tokenExpired()
+  }
 
   return {
     ...payload,
