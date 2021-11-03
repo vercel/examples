@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-import Cookies from 'js-cookie'
 import { Layout, Page, Text, Code, Link } from '@vercel/edge-functions-ui'
 import { USER_TOKEN } from '@lib/constants'
 import SwrResponse from '@components/swr-response'
@@ -8,12 +6,6 @@ const sampleFetch = `await fetch('/api?edge')
 await fetch('/api')`
 
 export default function Index() {
-  const [token, setToken] = useState(Cookies.get('token'))
-
-  useEffect(() => {
-    setToken(Cookies.get(USER_TOKEN))
-  }, [])
-
   return (
     <Page>
       <div className="text-center mb-6">
@@ -29,12 +21,9 @@ export default function Index() {
 
       <div className="mb-6">
         <Text className="mb-4 text-center">
-          Below is your assigned user token (a JWT), saved under the
-          <Code>{USER_TOKEN}</Code> cookie
+          Your assigned token is a JWT saved under the <Code>{USER_TOKEN}</Code>{' '}
+          cookie.
         </Text>
-        <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 mb-2">
-          {token}
-        </pre>
       </div>
 
       <div className="mb-6">
