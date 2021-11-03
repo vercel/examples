@@ -22,7 +22,10 @@ export async function verifyAuth(request: NextRequest) {
   }
 
   try {
-    const verified = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET_KEY))
+    const verified = await jwtVerify(
+      token,
+      new TextEncoder().encode(JWT_SECRET_KEY)
+    )
     return verified.payload as UserJwtPayload
   } catch (err) {
     return jsonResponse(401, { error: { message: 'Your token has expired.' } })
@@ -45,7 +48,7 @@ export async function setUserCookie(
       .setIssuedAt()
       .setExpirationTime('2h')
       .sign(new TextEncoder().encode(JWT_SECRET_KEY))
-    response.cookie(USER_TOKEN, token)
+    response.cookie(USER_TOKEN, token, { httpOnly: true })
   }
 
   return response
