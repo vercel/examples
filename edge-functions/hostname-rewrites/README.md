@@ -34,7 +34,7 @@ To give a bit of context of how this can be applied in a real-world context, her
 - [vercel.pub](https://vercel.pub) (custom domain)
 - [retreat.vercel.pub](https://retreat.vercel.pub) (custom subdomain)
 
-We will be releasing this starter kit very soon, so stay tuned!
+We're rolling out the example above + more complex boilerplates (e-commerce storefront builders, website builders) + supplementary code snippets (static tweets, Vercel domains API, OG image generator) in an [early access program](https://eap.vercel.sh/) – feel free to join if you're interested (click "sign up" on the Platforms on Vercel program).
 
 ## How to Use
 
