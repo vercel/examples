@@ -1,0 +1,16 @@
+.main {
+  background-color: #FAF9FF;
+  height: 100%;
+  overflow: auto;
+  text-align: center;
+}
+
+.section {
+  max-width: 1024px;
+  text-align: left;
+  margin: auto;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+}
