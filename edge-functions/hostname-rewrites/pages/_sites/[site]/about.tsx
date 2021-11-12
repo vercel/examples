@@ -72,7 +72,7 @@ export async function getStaticPaths() {
   ]
   return {
     paths: paths,
-    fallback: 'blocking', // fallback blocking allows sites to be generated using ISR
+    fallback: true, // fallback true allows sites to be generated using ISR
   }
 }
 
