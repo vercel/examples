@@ -8,7 +8,7 @@ export async function middleware(req: NextRequest) {
   const pwUtf8 = new TextEncoder().encode(password)
   const pwHash = await crypto.subtle.digest('SHA-256', pwUtf8)
 
-  // Encrpyt
+  // Encrypt
   const iv = crypto.getRandomValues(new Uint8Array(12))
   const alg = { name: 'AES-GCM', iv: iv }
   const encrpytKey = await crypto.subtle.importKey('raw', pwHash, alg, false, [
