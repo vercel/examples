@@ -1,7 +1,6 @@
-import type { NextPage } from 'next'
-
 import Head from 'next/head'
 import Image from "next/image";
+import { Layout, Text } from '@vercel/edge-functions-ui';
 
 import Card from "../components/Card"
 
@@ -21,16 +20,16 @@ const CARDS = [{
   "thumbnail": "/logo.jpg",
 }]
 
-const Home: NextPage = () => {
+function Home() {
   return (
-    <main className={styles.main}>
+    <main className="mt-4 text-center">
       <Head>
         <title>Reduce next/image bandwidth demo</title>
         <meta name="description" content="Reduce next/image bandwidth demo" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Using width and height</h1>
+      <Text variant="h2">Using width and height</Text>
       <section className={styles.section}>
         {CARDS.map(card => (
           <Card key={card.id} title={card.title}>
@@ -39,7 +38,7 @@ const Home: NextPage = () => {
         ))}
       </section>
 
-      <h1>Using fill with sizes</h1>
+      <Text variant="h2">Using fill with sizes</Text>
       <section className={styles.section}>
         {CARDS.map(card => (
           <Card key={card.id} title={card.title}>
@@ -48,7 +47,7 @@ const Home: NextPage = () => {
         ))}
       </section>
 
-      <h1>Using fill without sizes</h1>
+      <Text variant="h2">Using fill without sizes</Text>
       <section className={styles.section}>
         {CARDS.map(card => (
           <Card key={card.id} title={card.title}>
@@ -59,5 +58,7 @@ const Home: NextPage = () => {
     </main>
   )
 }
+
+Home.Layout = Layout
 
 export default Home
