@@ -1,6 +1,9 @@
 # Share Dependencies
 
-
+```
+npm i @company/ui -w=app
+npm link ./packages/ui -w=app
+```
 
 ## Demo
 
