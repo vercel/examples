@@ -8,7 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@company/ui": "file:packages/ui",
     "@vercel/edge-functions-ui": "^0.2.1",
     "next": "latest",
     "react": "latest",
