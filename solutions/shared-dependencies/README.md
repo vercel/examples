@@ -1,5 +1,7 @@
 # Share Dependencies
 
+This is a monorepo example
+
 ```
 npm i @company/ui -w=app
 npm link ./packages/ui -w=app

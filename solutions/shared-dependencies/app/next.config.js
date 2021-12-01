@@ -1,3 +1,7 @@
-const withTM = require('@vercel/edge-functions-ui/transpile')()
+const ntm = require('next-transpile-modules')
 
-module.exports = withTM()
+module.exports = ntm([
+  '@vercel/edge-functions-ui',
+  '@company/ui',
+  '@company/utils',
+])
