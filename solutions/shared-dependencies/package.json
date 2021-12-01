@@ -1,0 +1,8 @@
+{
+  "name": "shared-dependencies",
+  "workspaces": [
+    "app",
+    "packages/ui",
+    "packages/utils"
+  ]
+}
