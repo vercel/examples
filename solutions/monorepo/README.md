@@ -9,7 +9,7 @@ npm link ./packages/ui -w=app
 
 ## Demo
 
-https://solutions-shared-dependencies.vercel.sh
+https://solutions-monorepo.vercel.sh
 
 Since the different variants are generated statically on the server side, it mitigates any potential layout shift that could happen when a variant is inserted into the DOM client side, hence improving your site's performance.
 

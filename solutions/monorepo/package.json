@@ -1,5 +1,5 @@
 {
-  "name": "shared-dependencies",
+  "name": "monorepo",
   "workspaces": [
     "app",
     "packages/ui",
