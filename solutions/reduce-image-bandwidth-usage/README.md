@@ -6,7 +6,7 @@ This example shows how to reduce bandwidth and processing costs using the `sizes
 
 Using [`layout=fill`](https://nextjs.org/docs/api-reference/next/image#layout) in `next/image` is one of the most common patterns as it lets us use responsive parents and (along with the [`objectFit`](https://nextjs.org/docs/api-reference/next/image#objectfit) prop) our images will resize to it perfectly. But this leads to a common problem; as we don't know how large our parent might be, we can't serve an optimized image.
 
-We have this UI:
+Consider the UI of our [demo](https://solutions-reduce-image-bandwidth-usage.vercel.sh):
 
 ![00](./public/docs/screenshot-0.png)
 > A grid of cards where every card has a thumbnail
