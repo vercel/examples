@@ -17,19 +17,23 @@ export default function Index() {
   return (
     <Page>
       <Text variant="h1" className="mb-6">
-        Shared Dependencies
+        Monorepo
       </Text>
       <Text className="mb-4">
-        In this demo we have two dependencies that are installed in this app and
-        available in the same repository.
+        In this monorepo app we have a single site with two installed
+        dependencies that are available in the same repository.
       </Text>
       <List className="mb-4">
         <li>
-          <Code>packages/ui</Code> exports the button you see below
+          <Code>app</Code> is the current Next.js site you're looking at
         </li>
         <li>
-          <Code>packages/utils</Code> exports functions to generate random
-          colors.
+          <Code>packages/ui</Code> is a package that exports the button you see
+          below
+        </li>
+        <li>
+          <Code>packages/utils</Code> is a package that exports functions to
+          generate random colors. Click the button to see it in action
         </li>
       </List>
       {bgColor && textColor && (

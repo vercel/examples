@@ -9,7 +9,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="AB Testing with buckets" path="ab-testing-simple">
+    <Layout
+      title="Monorepo"
+      path="monorepo"
+      deployButton={{
+        repositoryUrl:
+          'https://github.com/vercel/examples/tree/main/solutions/reduce-image-bandwidth-usage',
+      }}
+    >
       <Component {...pageProps} />
     </Layout>
   )
