@@ -1,7 +1,7 @@
 module.exports = {
   presets: [
     require('@vercel/edge-functions-ui/tailwind'),
-    require('@company/ui'),
+    require('@company/ui/tailwind'),
   ],
   purge: [
     './pages/**/*.{js,ts,jsx,tsx}',
