@@ -11,7 +11,7 @@ import {
   Button,
 } from '@vercel/edge-functions-ui'
 
-const Home: NextPage = () => {
+const Home = () => {
   return (
     <Page>
       <Text variant="h2">Products sorted alphabetically</Text>

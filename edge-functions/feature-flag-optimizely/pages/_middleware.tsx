@@ -1,7 +1,8 @@
 import { NextRequest, NextFetchEvent, NextResponse } from "next/server";
+//@ts-ignore
 import { createInstance } from '@optimizely/optimizely-sdk/dist/optimizely.lite.min.js';
 
-import optimizelyDatafile from '../lib/optimizely/datafile';
+import optimizelyDatafile from '../lib/optimizely/datafile.json';
 
 const COOKIE_NAME = 'optimizely_visitor_id';
 
