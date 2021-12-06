@@ -12,7 +12,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       title="Feature Flagging with Optimizely"
       path="feature-flag-optimizely"
       deployButton={{
-        repositoryUrl: ''
+        env: ['OPTIMIZELY_SDK_KEY'],
+        repositoryUrl: 'https://github.com/optimizely/vercel-examples/tree/zeeshan/optimizely-example/edge-functions'
       }}
     >
       <Component {...pageProps} />
