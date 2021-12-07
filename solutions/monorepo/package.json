@@ -1,5 +1,8 @@
 {
   "name": "monorepo",
+  "scripts": {
+    "build": "npm run build -w=app"
+  },
   "workspaces": [
     "app",
     "packages/ui",

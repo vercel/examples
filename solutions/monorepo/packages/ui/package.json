@@ -10,8 +10,7 @@
     "react-dom": "^17.0.0"
   },
   "dependencies": {
-    "clsx": "^1.1.1",
-    "next-transpile-modules": "^8.0.0"
+    "clsx": "^1.1.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.27",
