@@ -1,0 +1,32 @@
+.root {
+  font-family: inherit;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0 14px;
+  border-radius: 7px;
+  border: 1px solid #000;
+  background-color: #000;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-shadow: 0 5px 10px rgb(0 68 255 / 12%);
+  vertical-align: middle;
+  white-space: nowrap;
+  line-height: 40px;
+  height: 40px;
+  transition: border 0.2s ease 0s, color 0.2s ease 0s, background 0.2s ease;
+}
+
+.root:hover {
+  background-color: rgb(32, 32, 32);
+  color: #fff;
+}
