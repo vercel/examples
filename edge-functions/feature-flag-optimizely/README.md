@@ -4,16 +4,47 @@
 
 In this example, you will be able to use optimizely feature flags at the edge with [NextJS](https://nextjs.org/) applications deployed on [Vercel](https://vercel.com/).
 
-## Get a free account
+## One-Click Deploy
+
+**Note:** Before clicking `Deploy`, Please follow the section [Set up Optimizely](#set-up-optimizely) to create an account, set up feature flags and obtain the Optimizely *SDK Key*.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/optimizely/vercel-examples/tree/main/edge-functions/feature-flag-optimizely&env=OPTIMIZELY_SDK_KEY&project-name=feature-flag-optimizely&repository-name=feature-flag-optimizely)
+
+## Run Locally
+
+**Note:** Before running locally, Please follow the section [Set up Optimizely](#set-up-optimizely) to create an account, set up feature flags and obtain the Optimizely *SDK Key*.
+
+1. generate the Next JS app using this example
+    ```
+    npx create-next-app --example https://github.com/optimizely/vercel-examples/tree/main/edge-functions/feature-flag-optimizely feature-flag-optimizely
+    # or    
+    yarn create-next-app --example https://github.com/optimizely/vercel-examples/tree/main/edge-functions/feature-flag-optimizely feature-flag-optimizely
+    ```
+
+2. create a local environment file from example and add your optimizely *SDK Key*.
+    ```
+    cp .env.example .env.local
+    ```
+
+3. Run locally
+    ```
+    npm run dev
+    # or
+    yarn dev
+    ```
+
+## Set up Optimizely
+
+### Get a free account
 You need an account to follow this example. If you do not have an account, you can [register for a free account](https://www.optimizely.com/campaigns/feature-detail-pages/free-feature-flagging/). If you already have an account navigate to your Flags-enabled project.
 
-## Get your SDK Key
+### Get your SDK Key
 To find your SDK Key in your Optimizely project:
 1. Go to **Settings > Primary Environment**
 2. Copy and save the **SDK Key** for your primary environment. **Note:** Each environment has its own SDK key.
   ![Copy SDK Key](https://files.readme.io/e392205-sdk_key.png)
 
-## Create the feature flag
+### Create the feature flag
 A feature flag lets you control the users that are exposed to a new feature code in your app. For this quickstart, imagine that you are rolling out a redesigned sorting feature for displaying products.
 
 Create a flag in Optimizely named **product_sort** and give it a variable named **sort_method**:
@@ -31,7 +62,7 @@ Create a flag in Optimizely named **product_sort** and give it a variable named 
   ![variation popular](https://files.readme.io/7c41848-variation_popular.png)
 10. Click **Save**.
 
-## Create the flag delivery rule
+### Create the flag delivery rule
 Make a targeted delivery rule for the "on" variation for the *product_sort* flag. A targeted delivery lets you gradually release a feature flag to users, but with the flexibility to roll it back if you encounter bugs.
 
 1. Verify that you are in your primary environment (since you are using the primary environment SDK key):

@@ -20,9 +20,9 @@ function withOptimizely(nextConfig = {}) {
   return {
     ... nextConfig,
     // Not actually overwriting rewrites. Just using the async function to fetch optimizely datafile.
-    rewrites: async (...args) => {
+    rewrites: async () => {
       await fetchDatafile()
-      return nextConfig.rewrites?.(...args) ?? {}
+      return nextConfig.rewrites ? nextConfig.rewrites() : {}
     },
   }
 }
