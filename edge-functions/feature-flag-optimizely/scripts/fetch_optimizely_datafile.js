@@ -17,14 +17,14 @@ async function fetchDatafile() {
 }
 
 function withOptimizely(nextConfig = {}) {
-  const { rewrites } = nextConfig
-
-  nextConfig.rewrites = async (...args) => {
-    await fetchDatafile()
-    return rewrites?.(...args) ?? {}
+  return {
+    ... nextConfig,
+    // Not actually overwriting rewrites. Just using the async function to fetch optimizely datafile.
+    rewrites: async (...args) => {
+      await fetchDatafile()
+      return nextConfig.rewrites?.(...args) ?? {}
+    },
   }
-
-  return nextConfig
 }
 
 module.exports = withOptimizely;
