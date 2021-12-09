@@ -17,7 +17,9 @@ In this example, you will be able to use optimizely feature flags at the edge wi
 1. generate the Next JS app using this example
     ```
     npx create-next-app --example https://github.com/optimizely/vercel-examples/tree/main/edge-functions/feature-flag-optimizely feature-flag-optimizely
-    # or    
+    ```
+    or    
+    ```
     yarn create-next-app --example https://github.com/optimizely/vercel-examples/tree/main/edge-functions/feature-flag-optimizely feature-flag-optimizely
     ```
 
@@ -29,9 +31,29 @@ In this example, you will be able to use optimizely feature flags at the edge wi
 3. Run locally
     ```
     npm run dev
-    # or
+    ```
+    or
+    ```
     yarn dev
     ```
+
+## Auto update with Optimizely Webhooks
+
+This example fetches the latest datafile from the optimizely CDN during every build. [Deploy Hooks](https://vercel.com/docs/concepts/git/deploy-hooks) from Vercel can be used with [Optimizely Webhooks](https://docs.developers.optimizely.com/full-stack/docs/configure-webhooks#section-2-create-a-webhook-in-optimizely) to keep the application up to date with the latest changes in the optimizely project.
+
+### Create a Deploy Hook in Vercel
+
+1. Navigate to **Settings** tab in your vercel deployment.
+2. Look for the **Deploy Hooks** section and create a **Hook**.
+3. This will generate a url that can be used to trigger a rebuild of the deployment.
+
+### Create a Webhook in Optimizely
+
+1. Follow the instructions [here](https://docs.developers.optimizely.com/full-stack/docs/configure-webhooks#section-2-create-a-webhook-in-optimizely) to create a Webhook in your optimizely project.
+2. Use the `Deploy Hook` Url Generated from the previous section to create the Optimizely Webhook.
+
+### How it works
+When a user will make any change to the Optimizely Project using the UI, the Webhook will hit vercel's `Deploy Hook` Url. This will trigger a new build on Vercel. Every new build fetches the latest version of the Optimizely datafile and uses it in the application.
 
 ## Set up Optimizely
 
@@ -45,15 +67,15 @@ To find your SDK Key in your Optimizely project:
   ![Copy SDK Key](https://files.readme.io/e392205-sdk_key.png)
 
 ### Create the feature flag
-A feature flag lets you control the users that are exposed to a new feature code in your app. For this quickstart, imagine that you are rolling out a redesigned sorting feature for displaying products.
+A feature flag lets you control the users that are exposed to a new feature code in your app. For this example, imagine that you are rolling out a redesigned sorting feature for displaying products.
 
 Create a flag in Optimizely named **product_sort** and give it a variable named **sort_method**:
 
 1. Go to **Flags > Create Flag**.
-2. Name the flag key *product_sort* and click **Create Flag**, which corresponds to the flag key in your sample app.
+2. Name the flag key *product_sort* and click **Create Flag**, which corresponds to the flag key in this example.
 3. Go to **Default Variables** and click **New (+)**.
 4. Set the variable type to "String".
-5. Name the variable *sort_method*, which corresponds to the variable key in your sample app.
+5. Name the variable *sort_method*, which corresponds to the variable key in this example.
 6. Set the variable default value to alphabetical, which represents your old sorting method.
   ![variable sort method](https://files.readme.io/5367828-variable_sort_method.png)
 7. Click **Save** at the lower right corner to save the variable.
