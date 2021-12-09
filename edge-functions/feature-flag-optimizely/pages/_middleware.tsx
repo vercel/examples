@@ -1,9 +1,10 @@
 //@ts-ignore
-import { createInstance } from '@optimizely/optimizely-sdk/dist/optimizely.lite.min.js';
-import { NextRequest, NextFetchEvent, NextResponse } from "next/server";
-import optimizelyDatafile from '../lib/optimizely/datafile.json';
+import { createInstance } from '@optimizely/optimizely-sdk/dist/optimizely.lite.min.js'
+import { NextRequest, NextFetchEvent, NextResponse } from "next/server"
+import optimizelyDatafile from '../lib/optimizely/datafile.json'
 
-const COOKIE_NAME = 'optimizely_visitor_id';
+const VERCEL_EDGE_CLIENT_ENGINE = 'javascript-sdk/vercel-edge'
+const COOKIE_NAME = 'optimizely_visitor_id'
 
 function generateRandomUserId(): string {
   return Math.floor(Math.random() * 899999 + 100000) as unknown as string
@@ -18,7 +19,19 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
   const userId = req.cookies[COOKIE_NAME] || generateRandomUserId()
 
   // Create Optimizely instance using datafile downloaded at build time.
-  const instance = createInstance({ datafile: optimizelyDatafile })
+  const instance = createInstance({
+    datafile: optimizelyDatafile,
+    clientEngine: VERCEL_EDGE_CLIENT_ENGINE,
+    eventDispatcher: {
+      dispatchEvent: ({url, params}: {url:string, params:any}) => {        
+        // Tell edge function to wait for this promise to fullfill.
+        ev.waitUntil(fetch(url, {
+          method: "POST",
+          body: JSON.stringify(params)
+        }))
+      }
+    },
+  })
 
   // Create Optimizely User Context
   const userContext = instance.createUserContext(userId.toString())
