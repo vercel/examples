@@ -8,7 +8,7 @@ https://edge-functions-cookies.vercel.sh
 
 Since you can read cookies on the edge and rewrite the user to a statically generated page, eliminates the need of using getServerSideProps + redirect just to access the cookie, hence improving your site's performance and mantaining the same url.
 
-The magic happens in the [`_middleware.ts` file](pages/index/_middleware.ts):
+The magic happens in the [`_middleware.ts` file](pages/_middleware.ts):
 
 ```javascript
 import { NextRequest, NextResponse } from 'next/server'
