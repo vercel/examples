@@ -1,11 +1,44 @@
 {
   "name": "monorepo",
+  "license": "MIT",
   "scripts": {
-    "build": "npm run build -w=app"
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "turbo run start"
   },
   "workspaces": [
     "app",
-    "packages/ui",
-    "packages/utils"
-  ]
+    "packages/*"
+  ],
+  "turbo": {
+    "baseBranch": "origin/main",
+    "pipeline": {
+      "build": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          ".next/**"
+        ]
+      },
+      "test": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": []
+      },
+      "lint": {
+        "outputs": []
+      },
+      "dev": {
+        "cache": false
+      },
+      "start": {
+        "cache": false
+      }
+    }
+  },
+  "devDependencies": {
+    "turbo": "^1.0.4"
+  }
 }
