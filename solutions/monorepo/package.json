@@ -1,11 +1,7 @@
 {
   "name": "monorepo",
   "license": "MIT",
-  "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build",
-    "start": "turbo run start"
-  },
+  "private": true,
   "workspaces": [
     "app",
     "packages/*"
