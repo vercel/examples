@@ -2429,10 +2429,10 @@ tty-browserify@0.0.1:
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.1.tgz#3f05251ee17904dfd0677546670db9651682b811"
   integrity sha512-C3TaO7K81YvjCgQH9Q1S3R3P3BtN3RIM8n+OvX4il1K1zgE8ZhI0op7kClgkxtutIE8hQrcrHBXvIheqKUUCxw==
 
-turbo@^1.0.4:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/turbo/-/turbo-1.0.7.tgz#59816a0cd6df4467732b76a2cf28115b4eeb79d4"
-  integrity sha512-EJRTi3UamxaeXHsSvZxio4DfOv392dt7P7EDGfQ24F3P9oJdD6ffLJhBdQZN2EmCNq5qRnePzzKwNNL2TldmuA==
+turbo@^1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/turbo/-/turbo-1.0.12.tgz#268254ccd58303a3756eddeaf37a270d69acf36e"
+  integrity sha512-Bw8cUAcz58+9IVyfotYOF3J6+oumCftetq9r+caop0vztRXSQ/O4Iv58tNPjGyZ9RNee6OjZb6KhV/csWD+p0Q==
   dependencies:
     zlib "^1.0.5"
 
