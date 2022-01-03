@@ -5,7 +5,6 @@ import type { AppProps } from 'next/app'
 
 function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
-  console.log('layout', Layout)
 
   return (
     <Layout
@@ -13,7 +12,7 @@ function App({ Component, pageProps }: AppProps) {
       path="Auth, Login, Registration with Ory"
       deployButton={{
         repositoryUrl:
-          'https://github.com/vercel/examples/tree/main/solutions/auth-with-ory'
+          '/edge-functions/auth-with-ory'
       }}
     >
       <Component {...pageProps} />
