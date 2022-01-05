@@ -63,8 +63,8 @@ export default createApiHandler({
       </a>
     </Text>
     <Text className="mb-6">
-      and Vercel's Edge Functions. To learn more about the integration, check
-      one of the recommended guides:
+      and Vercel&apos;s Edge Functions. To learn more about the integration,
+      check one of the recommended guides:
     </Text>
   </>
 )
@@ -138,7 +138,7 @@ const Home = () => {
           {session ? (
             <>
               <Text className="mb-4">
-                That was easy, you're signed in! You can now
+                That was easy, you&apos;re signed in! You can now
                 <a href={'/api/.ory/self-service/settings/browser'}>
                   update your profile and user settings
                 </a>{' '}
