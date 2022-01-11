@@ -8,7 +8,7 @@ import {
   Text,
   Link,
   Code,
-} from '@vercel/edge-functions-ui'
+} from '@vercel/examples-ui'
 import fetchAPI from '@lib/fetch-api'
 
 function Index() {

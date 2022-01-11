@@ -1,6 +1,6 @@
-import { getLayout } from '@vercel/edge-functions-ui'
-import '@vercel/edge-functions-ui/globals.css'
-import type { LayoutProps } from '@vercel/edge-functions-ui/layout'
+import { getLayout } from '@vercel/examples-ui'
+import '@vercel/examples-ui/globals.css'
+import type { LayoutProps } from '@vercel/examples-ui/layout'
 import type { AppProps } from 'next/app'
 
 function App({ Component, pageProps }: AppProps) {
@@ -9,11 +9,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="Add login and registration to your Next.js app!"
-      path="Auth, Login, Registration with Ory"
-      deployButton={{
-        repositoryUrl:
-          '/edge-functions/auth-with-ory'
-      }}
+      path="solutions/auth-with-ory"
     >
       <Component {...pageProps} />
     </Layout>

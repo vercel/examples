@@ -1,4 +1,4 @@
-import { Layout, Page, Text } from '@vercel/edge-functions-ui'
+import { Layout, Page, Text } from '@vercel/examples-ui'
 
 export default function Blocked() {
   return (

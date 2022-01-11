@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from "next/image";
-import { Layout, Text, Page, Code, Link } from '@vercel/edge-functions-ui';
+import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui';
 
 import Card from "../components/Card"
 import Snippet from '../components/Snippet';

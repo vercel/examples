@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Cookies from 'js-cookie'
-import { Text, Button } from '@vercel/edge-functions-ui'
+import { Text, Button } from '@vercel/examples-ui'
 import { getCurrentExperiment } from '@lib/optimize'
 import { COOKIE_NAME } from '@lib/constants'
 import { useGa } from '@lib/useGa'

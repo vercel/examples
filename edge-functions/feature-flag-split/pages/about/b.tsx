@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Layout, Page, Text, Code, Link } from '@vercel/edge-functions-ui'
+import { Layout, Page, Text, Code, Link } from '@vercel/examples-ui'
 import { SPLITS, track } from '@lib/split'
 
 export default function About() {

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Layout } from '@vercel/edge-functions-ui'
+import { Layout } from '@vercel/examples-ui'
 
 function NotFoundPage(): JSX.Element {
   return (

@@ -4,7 +4,7 @@ import type { Country, Product } from '../types'
 import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Layout } from '@vercel/edge-functions-ui'
+import { Layout } from '@vercel/examples-ui'
 
 import api from '../api'
 import { getDiscountedPrice } from '../utils'

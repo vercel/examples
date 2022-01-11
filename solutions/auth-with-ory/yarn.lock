@@ -719,9 +719,9 @@
     "@typescript-eslint/types" "4.33.0"
     eslint-visitor-keys "^2.0.0"
 
-"@vercel/edge-functions-ui@^0.2.1":
+"@vercel/examples-ui@^0.2.1":
   version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@vercel/edge-functions-ui/-/edge-functions-ui-0.2.1.tgz#8af0a5d8d4d544364fa79c4d075564e3a5bd972e"
+  resolved "https://registry.yarnpkg.com/@vercel/examples-ui/-/edge-functions-ui-0.2.1.tgz#8af0a5d8d4d544364fa79c4d075564e3a5bd972e"
   integrity sha512-dBomNbO5IuWGEP0OB8deIpjNm+ZeG7Ex5WXIUsVfJihE6CtBXoZi0zWDOlyWxRW1rogqFLnSjgItzDA7G4ADkg==
   dependencies:
     clsx "^1.1.1"

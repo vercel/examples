@@ -8,7 +8,7 @@ import {
   List,
   Link,
   Button,
-} from '@vercel/edge-functions-ui'
+} from '@vercel/examples-ui'
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 

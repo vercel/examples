@@ -6,7 +6,7 @@ import {
   List,
   Link,
   Button,
-} from '@vercel/edge-functions-ui'
+} from '@vercel/examples-ui'
 import { SPLITS } from '@lib/split'
 
 export default function Index() {

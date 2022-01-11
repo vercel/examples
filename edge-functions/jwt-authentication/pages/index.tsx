@@ -1,4 +1,4 @@
-import { Layout, Page, Text, Code, Link } from '@vercel/edge-functions-ui'
+import { Layout, Page, Text, Code, Link } from '@vercel/examples-ui'
 import { USER_TOKEN } from '@lib/constants'
 import SwrResponse from '@components/swr-response'
 

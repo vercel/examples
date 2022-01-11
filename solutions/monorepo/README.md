@@ -5,7 +5,7 @@ This is a monorepo example with a single Next.js site ([./app](./app)) that has 
 - [./packages/ui](./packages/ui): Exports UI components that use TypeScript, CSS Modules and Tailwind CSS
 - [./packages/utils](./packages/utils): Exports utilty functions that use TypeScript
 
-By using `next-transpile-modules` in untranspiled packages Next.js will take care of building the package alongside your pages ([./app/next.config.js](./app/next.config.js)). We already do this for all examples in this repository where they share a common UI package ([@vercel/edge-functions-ui](../../packages/ui)).
+By using `next-transpile-modules` in untranspiled packages Next.js will take care of building the package alongside your pages ([./app/next.config.js](./app/next.config.js)). We already do this for all examples in this repository where they share a common UI package ([@vercel/examples-ui](../../packages/ui)).
 
 The monorepo is using [npm workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces#using-workspaces) to link packages together, but it can also work with [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) and [Lerna](https://github.com/lerna/lerna).
 

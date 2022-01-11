@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 import { createClient } from 'configcat-node'
-import { Text, Code, List, Link, Button } from '@vercel/edge-functions-ui'
+import { Text, Code, List, Link, Button } from '@vercel/examples-ui'
 import { useValue } from '@lib/use-configcat'
 import ConfigcatLayout from '@components/layout'
 

@@ -1,4 +1,4 @@
-const withTM = require('@vercel/edge-functions-ui/transpile')()
+const withTM = require('@vercel/examples-ui/transpile')()
 const { withCountryInfo } = require('./scripts/countries')
 
 module.exports = withTM(
