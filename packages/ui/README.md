@@ -13,9 +13,9 @@ The UI components exported here are being used in every edge example that has an
 Install the package with npm or yarn:
 
 ```bash
-npm i @vercel/edge-functions-ui
+npm i @vercel/examples-ui
 // or
-yarn add @vercel/edge-functions-ui
+yarn add @vercel/examples-ui
 ```
 
 If the app doesn't already have the required dev dependencies install them like so:
@@ -31,7 +31,7 @@ yarn add typescript tailwindcss postcss autoprefixer
 Because **the package is untranspiled**, in order to get it working in your next.js app you'll need to add the following to `next.config.js`:
 
 ```js
-const withTM = require('@vercel/edge-functions-ui/transpile')()
+const withTM = require('@vercel/examples-ui/transpile')()
 
 module.exports = withTM({
   // Your next.js config
@@ -42,8 +42,8 @@ Now, if the app already has a `tailwind.config.js` file, open it and add the fol
 
 ```js
 module.exports = {
-  presets: [require('@vercel/edge-functions-ui/tailwind')],
-  purge: ['node_modules/@vercel/edge-functions-ui/**/*.{js,ts,jsx,tsx}'],
+  presets: [require('@vercel/examples-ui/tailwind')],
+  purge: ['node_modules/@vercel/examples-ui/**/*.{js,ts,jsx,tsx}'],
 }
 ```
 
@@ -51,10 +51,10 @@ Otherwise, create it with:
 
 ```js
 module.exports = {
-  presets: [require('@vercel/edge-functions-ui/tailwind')],
+  presets: [require('@vercel/examples-ui/tailwind')],
   purge: [
     './pages/**/*.{js,ts,jsx,tsx}',
-    'node_modules/@vercel/edge-functions-ui/**/*.{js,ts,jsx,tsx}',
+    'node_modules/@vercel/examples-ui/**/*.{js,ts,jsx,tsx}',
     // Include other paths where you use tailwind
   ],
   darkMode: false, // or 'media' or 'class'
@@ -84,14 +84,14 @@ module.exports = {
 Open `_app.tsx` and add the following import to include the global CSS of the package and Tailwind base CSS:
 
 ```tsx
-import '@vercel/edge-functions-ui/globals.css'
+import '@vercel/examples-ui/globals.css'
 ```
 
 If you don't have a `_app.tsx` already it should look like this:
 
 ```tsx
 import type { AppProps } from 'next/app'
-import '@vercel/edge-functions-ui/globals.css'
+import '@vercel/examples-ui/globals.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
@@ -102,15 +102,15 @@ Now, if I wanted to add the default layout used in all examples, I can import th
 
 ```tsx
 import type { AppProps } from 'next/app'
-import type { LayoutProps } from '@vercel/edge-functions-ui/layout'
-import { getLayout } from '@vercel/edge-functions-ui'
-import '@vercel/edge-functions-ui/globals.css'
+import type { LayoutProps } from '@vercel/examples-ui/layout'
+import { getLayout } from '@vercel/examples-ui'
+import '@vercel/examples-ui/globals.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="API Rate Limiting with Upstash" path="api-rate-limit">
+    <Layout title="API Rate Limiting with Upstash" path="edge-functions/api-rate-limit">
       <Component {...pageProps} />
     </Layout>
   )

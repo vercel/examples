@@ -6,7 +6,7 @@ import DeployButton, { DeployButtonProps } from '../deploy-button'
 import s from './nav.module.css'
 
 const REPO_URL = 'https://github.com/vercel/examples'
-const REPO_DIR = '/tree/main/edge-functions'
+const REPO_DIR = '/tree/main/'
 
 export interface NavProps {
   path: string
