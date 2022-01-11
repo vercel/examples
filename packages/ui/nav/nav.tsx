@@ -43,7 +43,7 @@ export default function Nav({ path, deployButton }: NavProps) {
           </li>
           <li className="font-medium" style={{ letterSpacing: '.01px' }}>
             <Link href="/" className={s.link}>
-              Edge Functions Examples{path ? ` / ${path}` : ''}
+              Vercel Examples{path ? ` / ${path}` : ''}
             </Link>
           </li>
         </div>
