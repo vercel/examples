@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@vercel/examples-ui": "^0.2.3",
+    "@vercel/examples-ui": "^0.2.4",
     "configcat-js": "^5.5.0",
     "configcat-node": "^6.5.8",
     "js-cookie": "^2.2.1",

@@ -594,7 +594,7 @@
     "@typescript-eslint/types" "4.33.0"
     "eslint-visitor-keys" "^2.0.0"
 
-"@vercel/examples-ui@^0.2.3":
+"@vercel/examples-ui@^0.2.4":
   "integrity" "sha512-b4uHoz8Dbx4oV6Ihj0bNo88h5g/ZtQ/TK7+CcnjmK318AgvUWKgO4+JZ3xi5PPtaxrRXVfuSUajRnYqtdT1ntw=="
   "resolved" "https://registry.npmjs.org/@vercel/examples-ui/-/examples-ui-0.2.3.tgz"
   "version" "0.2.3"
