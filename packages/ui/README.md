@@ -1,6 +1,6 @@
-# UI components for Edge examples
+# UI components for Vercel examples
 
-The UI components exported here are being used in every edge example that has an UI. The package ships untranspiled code and **only works for Next.js apps** that include the following dev dependencies:
+The UI components exported here are being used in every example that has an UI. The package ships untranspiled code and **only works for Next.js apps** that include the following dev dependencies:
 
 - TypeScript
 - Tailwindcss
