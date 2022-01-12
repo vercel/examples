@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import useSWR from 'swr'
-import { Layout, Page, Button, Text, Link } from '@vercel/edge-functions-ui'
+import { Layout, Page, Button, Text, Link } from '@vercel/examples-ui'
 import fetchAPI from '@lib/fetch-api'
 import ApiRequest from '@components/api-request'
 

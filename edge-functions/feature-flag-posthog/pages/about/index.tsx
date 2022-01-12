@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Layout, Page, Text, Link } from '@vercel/edge-functions-ui'
+import { Layout, Page, Text, Link } from '@vercel/examples-ui'
 
 export default function About() {
   return (

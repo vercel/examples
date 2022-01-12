@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import type { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import type { ParsedUrlQuery } from 'querystring'
-import { Layout } from '@vercel/edge-functions-ui'
+import { Layout } from '@vercel/examples-ui'
 
 import type { Country } from '../types'
 import shirt from '../public/shirt.png'

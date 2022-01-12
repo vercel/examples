@@ -1,4 +1,4 @@
-import { Layout, Page, Text, Code, Link, List } from '@vercel/edge-functions-ui'
+import { Layout, Page, Text, Code, Link, List } from '@vercel/examples-ui'
 import Headers from '@components/headers'
 import BotdResult from '@components/botd-result'
 

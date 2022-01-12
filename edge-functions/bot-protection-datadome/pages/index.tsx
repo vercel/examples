@@ -1,4 +1,4 @@
-import { Layout, Page, Text, Link, List } from '@vercel/edge-functions-ui'
+import { Layout, Page, Text, Link, List } from '@vercel/examples-ui'
 import Headers from '@components/headers'
 
 export default function Index() {

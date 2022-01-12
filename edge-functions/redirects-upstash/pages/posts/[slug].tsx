@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment } from 'react'
 import { useRouter } from 'next/router'
-import { Layout, Page, Text, Code, Link } from '@vercel/edge-functions-ui'
+import { Layout, Page, Text, Code, Link } from '@vercel/examples-ui'
 
 export default function Slug() {
   const [links, setLinks] = useState([8000, 800])
