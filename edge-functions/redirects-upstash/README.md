@@ -8,7 +8,7 @@ Redirects in a JSON file are faster to evaluate, but they can only be edited at 
 
 ## Demo
 
-https://edge-functions-redirects-upstash.vercel.sh
+https://edge-functions-redirects-upstash.vercel.app
 
 ### One-Click Deploy
 

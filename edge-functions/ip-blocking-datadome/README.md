@@ -9,7 +9,7 @@ This demo shows features:
 
 ## Demo
 
-https://edge-functions-ip-blocking-datadome.vercel.sh
+https://edge-functions-ip-blocking-datadome.vercel.app
 
 ### One-Click Deploy
 
