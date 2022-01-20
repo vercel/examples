@@ -47,7 +47,7 @@ export default function Home() {
         }}
       />
       <a
-        href="https://github.com/vercel-customer-feedback/platforms/tree/main/code-snippets/domains-api"
+        href="https://github.com/vercel/examples/tree/main/solutions/domains-api"
         target="_blank"
         className="fixed top-5 right-5"
       >

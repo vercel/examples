@@ -18,7 +18,7 @@ export default function Home(props) {
       </Head>
       {/* added link to github repo */}
       <a
-        href="https://github.com/vercel-customer-feedback/platforms/tree/main/code-snippets/static-tweets-tailwind"
+        href="https://github.com/vercel/examples/tree/main/solutions/static-tweets-tailwind"
         target="_blank"
         className="fixed top-5 right-5"
       >
