@@ -51,7 +51,7 @@ export default function Home() {
         target="_blank"
         className="fixed top-5 right-5"
       >
-        <Image src="/github.svg" alt="Github" width={24} height={24} />
+        <Image src="/github.svg" alt="Github" width={25} height={25} />
       </a>
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center my-20">
