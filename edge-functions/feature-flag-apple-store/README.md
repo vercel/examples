@@ -4,7 +4,7 @@ This examples uses [Upstash](https://upstash.com/) (Edge Redis Database) as stor
 
 ## Demo
 
-https://edge-functions-feature-flag-apple-store.vercel.sh
+https://edge-functions-feature-flag-apple-store.vercel.app
 
 ## Running Locally
 

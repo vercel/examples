@@ -4,4 +4,4 @@ Middleware demo of IP blocking also featuring API rate limiting with Upstash, wi
 
 ## Demo
 
-https://edge-functions-api-rate-limit-and-tokens.vercel.sh
+https://edge-functions-api-rate-limit-and-tokens.vercel.app/

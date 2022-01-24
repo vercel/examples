@@ -4,7 +4,7 @@ You can read and write cookies directly on the edge and action as needed.
 
 ## Demo
 
-https://edge-functions-cookies.vercel.sh
+https://edge-functions-cookies.vercel.app/
 
 Since you can read cookies on the edge and rewrite the user to a statically generated page, eliminates the need of using getServerSideProps + redirect just to access the cookie, hence improving your site's performance and mantaining the same url.
 

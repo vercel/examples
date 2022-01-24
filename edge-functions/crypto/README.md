@@ -13,7 +13,7 @@ Includes:
 
 ## Demo
 
-https://edge-functions-crypto.vercel.sh
+https://edge-functions-crypto.vercel.app
 
 ## How to Use
 

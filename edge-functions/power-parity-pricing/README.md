@@ -4,7 +4,7 @@ This example shows how to implement PPP using information from the request geolo
 
 ## Demo
 
-https://edge-functions-power-parity-pricing.vercel.sh
+https://edge-functions-power-parity-pricing.vercel.app
 
 ## How to Use
 

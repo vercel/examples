@@ -6,7 +6,7 @@ By A/B testing directly on the server-side, you'll reduce layout shift from clie
 
 ## Demo
 
-https://edge-functions-ab-testing-google-optimize.vercel.sh
+https://edge-functions-ab-testing-google-optimize.vercel.app
 
 ### One-Click Deploy
 

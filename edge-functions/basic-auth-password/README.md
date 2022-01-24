@@ -11,7 +11,7 @@ Login credentials:
 
 ## Demo
 
-https://edge-functions-basic-auth-password.vercel.sh
+https://edge-functions-basic-auth-password.vercel.app
 
 ## How to Use
 
