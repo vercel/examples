@@ -1,6 +1,6 @@
 {
   "name": "@company/ui",
-  "version": "0.2.1",
+  "version": "0.0.1",
   "main": "index.tsx",
   "license": "MIT",
   "scripts": {},

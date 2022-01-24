@@ -43,14 +43,6 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
-"@company/ui@file:packages/ui":
-  version "0.2.1"
-  dependencies:
-    clsx "^1.1.1"
-
-"@company/utils@file:packages/utils":
-  version "1.0.0"
-
 "@next/env@12.0.8":
   version "12.0.8"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-12.0.8.tgz#a32ca0a97d464307f2e6ff106ce09b19aac108cf"
