@@ -1,7 +1,7 @@
 import { FC, useCallback } from 'react'
 import Script from 'next/script'
-import { Layout, Page } from '@vercel/edge-functions-ui'
-import type { LayoutProps } from '@vercel/edge-functions-ui/layout'
+import { Layout, Page } from '@vercel/examples-ui'
+import type { LayoutProps } from '@vercel/examples-ui/layout'
 import { GaProvider } from '@lib/useGa'
 
 function throwIfSSR() {

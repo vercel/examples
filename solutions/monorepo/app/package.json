@@ -10,7 +10,7 @@
   "dependencies": {
     "@company/ui": "file:../packages/ui",
     "@company/utils": "file:../packages/utils",
-    "@vercel/edge-functions-ui": "^0.2.1",
+    "@vercel/examples-ui": "^0.2.5",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

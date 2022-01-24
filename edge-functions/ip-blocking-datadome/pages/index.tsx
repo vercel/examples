@@ -1,7 +1,7 @@
 import React from 'react'
 import fetchAPI from '@lib/fetch-api'
 import useSWR from 'swr'
-import { Layout, Page, Text, Input, Button } from '@vercel/edge-functions-ui'
+import { Layout, Page, Text, Input, Button } from '@vercel/examples-ui'
 
 export default function Index() {
   const [loading, setLoading] = React.useState<boolean>(false)

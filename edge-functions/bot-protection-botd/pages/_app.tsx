@@ -1,8 +1,8 @@
 import type { AppProps } from 'next/app'
 import Botd from '@lib/botd/script'
-import type { LayoutProps } from '@vercel/edge-functions-ui/layout'
-import { getLayout } from '@vercel/edge-functions-ui'
-import '@vercel/edge-functions-ui/globals.css'
+import type { LayoutProps } from '@vercel/examples-ui/layout'
+import { getLayout } from '@vercel/examples-ui'
+import '@vercel/examples-ui/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     >
       <Layout
         title="Bot Protection with Botd (by FingerprintJS)"
-        path="bot-protection-botd"
+        path="edge-functions/bot-protection-botd"
         deployButton={{ env: ['NEXT_PUBLIC_BOTD_API_TOKEN'] }}
       >
         <Component {...pageProps} />

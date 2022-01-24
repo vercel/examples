@@ -15,7 +15,7 @@ export function middleware(req: NextRequest) {
 
 ## Demo
 
-https://edge-functions-json-response.vercel.sh
+https://edge-functions-json-response.vercel.app
 
 ## How to Use
 

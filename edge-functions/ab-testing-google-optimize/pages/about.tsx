@@ -1,4 +1,4 @@
-import { Text } from '@vercel/edge-functions-ui'
+import { Text } from '@vercel/examples-ui'
 import OptimizeLayout from '@components/layout'
 
 export default function About() {

@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import type { AppProps } from 'next/app'
-import type { LayoutProps } from '@vercel/edge-functions-ui/layout'
-import { getLayout, Text } from '@vercel/edge-functions-ui'
-import '@vercel/edge-functions-ui/globals.css'
+import type { LayoutProps } from '@vercel/examples-ui/layout'
+import { getLayout, Text } from '@vercel/examples-ui'
+import '@vercel/examples-ui/globals.css'
 import map from '../public/map.svg'
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="Power parity pricing strategies"
-      path="power-parity-pricing-strategies"
+      path="edge-functions/power-parity-pricing-strategies"
     >
       <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-50">
         <div className="fixed inset-0 overflow-hidden opacity-75 bg-[#f8fafb]">

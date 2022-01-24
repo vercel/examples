@@ -4,7 +4,7 @@ By A/B testing directly on the server-side, you'll reduce layout shift from clie
 
 ## Demo
 
-https://edge-functions-ab-testing-simple.vercel.sh
+https://edge-functions-ab-testing-simple.vercel.app
 
 Since the different variants are generated statically on the server side, it mitigates any potential layout shift that could happen when a variant is inserted into the DOM client side, hence improving your site's performance.
 

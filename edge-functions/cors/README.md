@@ -26,7 +26,7 @@ curl -i -X OPTIONS -H 'origin: https://vercel.com' https://edge-functions-cors.v
 
 ## Demo
 
-https://edge-functions-cors.vercel.sh
+https://edge-functions-cors.vercel.app
 
 ## How to Use
 

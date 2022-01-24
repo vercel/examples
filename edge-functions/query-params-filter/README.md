@@ -23,7 +23,7 @@ export function middleware(req: NextRequest) {
 
 ## Demo
 
-https://edge-functions-query-params-filter.vercel.sh
+https://edge-functions-query-params-filter.vercel.app
 
 ## How to Use
 

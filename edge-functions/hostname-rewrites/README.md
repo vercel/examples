@@ -27,12 +27,9 @@ When deploying your own clone of this example, you will need to replace the data
 
 To give a bit of context of how this can be applied in a real-world context, here's a starter kit that we're currently working on – it's basically a Substack clone with subdomains + custom domains functionality:
 
-- [steven.platformize.co](https://steven.platformize.co)
-- [vercel.platformize.co](https://vercel.platformize.co)
-- [retreat.platformize.co](https://retreat.platformize.co)
-- [stey.me](https://stey.me) (custom domain)
-- [vercel.pub](https://vercel.pub) (custom domain)
-- [retreat.vercel.pub](https://retreat.vercel.pub) (custom subdomain)
+- [demo.vercel.pub](https://demo.vercel.pub)
+- [platformize.co](https://platformize.co) (custom domain that maps to [demo.vercel.pub](https://demo.vercel.pub))
+- [app.vercel.pub](https://app.vercel.pub) (editing backend)
 
 We're rolling out the example above + more complex boilerplates (e-commerce storefront builders, website builders) + supplementary code snippets (static tweets, Vercel domains API, OG image generator) in an [early access program](https://eap.vercel.sh/) – feel free to join if you're interested (click "sign up" on the Platforms on Vercel program).
 

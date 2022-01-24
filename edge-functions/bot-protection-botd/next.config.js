@@ -1,5 +1,5 @@
 const withTM = require('next-transpile-modules')(
-  ['@vercel/edge-functions-ui'],
+  ['@vercel/examples-ui'],
   {
     resolveSymlinks: false,
   }

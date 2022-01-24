@@ -1,4 +1,4 @@
-import { Text, Link } from '@vercel/edge-functions-ui'
+import { Text, Link } from '@vercel/examples-ui'
 import ConfigcatLayout from '@components/layout'
 
 export default function About() {

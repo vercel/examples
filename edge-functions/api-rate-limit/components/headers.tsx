@@ -1,5 +1,5 @@
 import { useState, FC } from 'react'
-import { Button } from '@vercel/edge-functions-ui'
+import { Button } from '@vercel/examples-ui'
 
 const Headers: FC<{ path: string }> = ({ path, children }) => {
   const [loading, setLoading] = useState(false)
