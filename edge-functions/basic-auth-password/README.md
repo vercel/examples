@@ -2,7 +2,7 @@
 
 Password protect pages in your application using Edge Functions.
 
-Working example: [password-protection.vercel.app](https://password-protection.vercel.app/)
+Working example: [https://edge-functions-basic-auth-password.vercel.app](https://edge-functions-basic-auth-password.vercel.app)
 
 Login credentials:
 
