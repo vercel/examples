@@ -44,7 +44,7 @@ export const SessionItem = ({ userSession, index }) => {
           <dl className="grid grid-cols-1 gap-x-4 gap-y-6 grid-cols-2">
             <div className="sm:col-span-1">
               <dt className="text-sm font-medium text-gray-500">IP Address</dt>
-              <dd className="mt-1 text-gray-900 overflow-ellipsis">
+              <dd className="mt-1 text-gray-900 text-ellipsis">
                 {activity.ipAddress}
               </dd>
             </div>
