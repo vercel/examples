@@ -36,7 +36,6 @@ function Home() {
           beforeInteractive examples
         </Text>
         <List>
-          <li>Cookie consent: <Link href="/cookie-consent">Demo</Link> - <Link href="https://github.com/vercel/examples/blob/main/solutions/script-component-strategies/pages/cookie-consent.tsx">Code</Link></li>
           <li>Polyfill: <Link href="/polyfill">Demo</Link> - <Link href="https://github.com/vercel/examples/blob/main/solutions/script-component-strategies/pages/polyfill.tsx">Code</Link></li>
         </List>
       </section>
@@ -48,7 +47,7 @@ function Home() {
           afterInteractive examples
         </Text>
         <List>
-          <li>Stripe: <Link href="/stripe">Demo</Link> - <Link href="https://github.com/vercel/examples/blob/main/solutions/script-component-strategies/pages/stripe.tsx">Code</Link></li>
+          <li>Stripe sdk: <Link href="/stripe">Demo</Link> - <Link href="https://github.com/vercel/examples/blob/main/solutions/script-component-strategies/pages/stripe.tsx">Code</Link></li>
         </List>
       </section>
 
