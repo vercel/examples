@@ -13,7 +13,7 @@ export const SessionMock = () => {
             </span>
           </h3>
         </div>
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           <div style={{ height: '34px' }} />
         </div>
       </div>
