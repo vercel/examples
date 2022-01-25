@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "npm run build -- --watch",
-    "build": "rm -fr dist/* && tsc",
-    "prettier-fix": "prettier --write ."
+    "build": "rm -fr dist/* && tsc"
   },
   "sideEffects": false,
   "type": "module",
