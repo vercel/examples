@@ -14,7 +14,7 @@ export default function middleware() {
 
 ## Demo
 
-https://edge-functions-image-response.vercel.sh
+https://edge-functions-image-response.vercel.app
 
 ## How to Use
 
