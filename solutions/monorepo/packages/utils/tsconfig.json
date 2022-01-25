@@ -5,6 +5,7 @@
     "outDir": "dist",
     "baseUrl": "src",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "declaration": true,
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -14,8 +15,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    "jsx": "preserve"
+    "jsx": "react-jsx"
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
