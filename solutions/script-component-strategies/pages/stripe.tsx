@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useState } from 'react'
 import Script from 'next/script'
-import { Code, List, Page, Text } from '@vercel/examples-ui'
+import { Code, Layout, List, Page, Text } from '@vercel/examples-ui'
 
 interface Log {
   time: Date;
   text: string;
 }
 
-export default function Lazyload() {
+function StripeAfterInteractive() {
   const [log, setLog] = useState<Log[]>([])
 
   const addLog = useCallback(
@@ -23,10 +23,10 @@ export default function Lazyload() {
 
   return (
     <>
-      {/* We lazy load the Stripe SDK */}
+      {/* We load the Stripe SDK afterInteractive */}
       <Script
         src="https://js.stripe.com/v3/"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
         onLoad={() =>
           addLog(`script loaded correctly, window.Stripe has been populated`)
         }
@@ -48,3 +48,7 @@ export default function Lazyload() {
     </>
   )
 }
+
+StripeAfterInteractive.Layout = Layout;
+
+export default StripeAfterInteractive;

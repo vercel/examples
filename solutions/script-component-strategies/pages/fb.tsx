@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useState } from 'react'
 import Script from 'next/script'
-import { Code, List, Page, Text } from '@vercel/examples-ui'
+import { Code, Layout, List, Page, Text } from '@vercel/examples-ui'
 
 interface Log {
   time: Date;
   text: string;
 }
 
-export default function Lazyload() {
+function FBLazyLoad() {
   const [log, setLog] = useState<Log[]>([])
 
   const addLog = useCallback(
@@ -48,3 +48,7 @@ export default function Lazyload() {
     </>
   )
 }
+
+FBLazyLoad.Layout = Layout;
+
+export default FBLazyLoad;
