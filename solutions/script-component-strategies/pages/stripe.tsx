@@ -1,43 +1,54 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Script from 'next/script'
-import { Layout, List, Page, Text } from '@vercel/examples-ui'
+import { Code, Layout, List, Page, Text } from '@vercel/examples-ui'
 
-function Stripe() {
-  const [stripe, setStripe] = useState(null)
-  const methods = useMemo(
-    () =>
-      stripe
-        ? Object.entries(stripe).filter(([_key, value]) => typeof value === 'function')
-        : [],
-    [stripe]
+interface Log {
+  time: Date;
+  text: string;
+}
+
+function StripeAfterInteractive() {
+  const [log, setLog] = useState<Log[]>([])
+
+  const addLog = useCallback(
+    (text) => {
+      setLog((log) => log.concat({ time: new Date(), text }))
+    },
+    [setLog]
   )
 
+  useEffect(() => {
+    addLog(`Page loaded window.Stripe is undefined`)
+  }, [addLog])
+
   return (
-    <Page>
-      {/* We load Stripe sdk afterInteractive */}
+    <>
+      {/* We load the Stripe SDK afterInteractive */}
       <Script
-        id="stripe-js"
         src="https://js.stripe.com/v3/"
-        onLoad={() => setStripe((window as any).Stripe('pk_test_1234'))}
+        strategy="afterInteractive"
+        onLoad={() =>
+          addLog(`script loaded correctly, window.Stripe has been populated`)
+        }
       />
 
-      <main className="flex flex-col gap-6">
-        <Text variant="h1">afterInteractive Stripe demo</Text>
-        {stripe ? (
-        <section className="flex flex-col gap-2">
-          <Text>Stripe instance methods: </Text>
+      <Page>
+        <section className="flex flex-col gap-6">
+          <Text variant="h1">lazyOnload Stripe sdk</Text>
+          <Text>You can check <Code>window.Stripe</Code> on browser console</Text>
           <List>
-            {methods.map(([method]) => (
-              <li key={method}>{method}</li>
+            {log.map(({ time, text }) => (
+              <li key={+time}>
+                <span className="font-medium">{time.toISOString()}</span>: {text}
+              </li>
             ))}
           </List>
         </section>
-        ) : <Text>Loading...</Text>}
-      </main>
-    </Page>
+      </Page>
+    </>
   )
 }
 
-Stripe.Layout = Layout;
+StripeAfterInteractive.Layout = Layout;
 
-export default Stripe;
+export default StripeAfterInteractive;
