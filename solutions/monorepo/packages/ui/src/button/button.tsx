@@ -1,13 +1,15 @@
 import type { FC, ButtonHTMLAttributes } from 'react'
 import cn from 'clsx'
-import s from './button.module.css'
 
 const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
   children,
   className,
   ...props
 }) => {
-  const rootClassName = cn(s.root, className)
+  const rootClassName = cn(
+    'relative inline-flex items-center justify-center cursor-pointer no-underline py-0 px-3.5 rounded-md border border-solid border-black bg-black text-white text-base font-medium outline-none select-none align-middle whitespace-nowrap',
+    className
+  )
 
   return (
     <button className={rootClassName} {...props}>
