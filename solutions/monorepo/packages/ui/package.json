@@ -9,6 +9,9 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
+    "./tailwind": {
+      "require": "./dist/tailwind.cjs"
+    },
     ".": "./dist/index.js",
     "./*": [
       "./dist/*.js",
@@ -20,6 +23,9 @@
       "*": [
         "src/*",
         "src/*/index"
+      ],
+      "tailwind": [
+        "dist/tailwind.d.cts"
       ]
     }
   },
@@ -29,6 +35,9 @@
         "*": [
           "dist/*.d.ts",
           "dist/*/index.d.ts"
+        ],
+        "tailwind": [
+          "dist/tailwind.d.cts"
         ]
       }
     }
