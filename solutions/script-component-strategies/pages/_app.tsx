@@ -13,7 +13,7 @@ function App({ Component, pageProps, router }: AppProps) {
 
   return (
     <Layout
-      title="next/image offset example"
+      title="script component strategies"
       path="solutions/script-component-strategies"
     >
       <Component {...pageProps} />
