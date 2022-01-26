@@ -1,13 +1,13 @@
 # Monorepo
 
-This is a monorepo example with a single Next.js site ([./app](./app)) that has installed two local packages that get transpiled with [`next-transpile-modules`](https://www.npmjs.com/package/next-transpile-modules):
+This is a monorepo example with a single Next.js site ([./app](./app)) that has installed two local packages:
 
-- [./packages/ui](./packages/ui): Exports UI components that use TypeScript, CSS Modules and Tailwind CSS
+- [./packages/ui](./packages/ui): Exports UI components that use TypeScript and Tailwind CSS
 - [./packages/utils](./packages/utils): Exports utilty functions that use TypeScript
 
-By using `next-transpile-modules` in untranspiled packages Next.js will take care of building the package alongside your pages ([./app/next.config.js](./app/next.config.js)). We already do this for all examples in this repository where they share a common UI package ([@vercel/examples-ui](../../packages/ui)).
+The monorepo is using [Turborepo](https://turborepo.org/) and [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) to link packages together, but it can also work with [npm workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces#using-workspaces).
 
-The monorepo is using [npm workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces#using-workspaces) to link packages together, but it can also work with [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) and [Lerna](https://github.com/lerna/lerna).
+> In addition to the local packages, it's also using a external package called [`@vercel/examples-ui`](../../packages/ui) that's inside this same repository, it uses `next-transpile-modules` to transpile its UI components that use CSS Modules. `next-transpile-modules` has an impact in build times so when possible, we recommend transpiling packages instead, like shown in the `packages` folder in this example.
 
 ## Demo
 
@@ -36,8 +36,13 @@ yarn create next-app --example https://github.com/vercel/examples/tree/main/solu
 Next, run `app` in development mode:
 
 ```bash
+yarn
+yarn turbo run dev
+
+# or
+
 npm install
-npm run dev -w=app
+npx turbo run dev
 ```
 
 The app should be up and running at http://localhost:3000.

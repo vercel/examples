@@ -124,7 +124,7 @@ export default function CountryPage({ country, parity }) {
                   className="bg-gray-200 inline-flex"
                   width={16}
                   height={12}
-                  src={`https://lipis.github.io/flag-icon-css/flags/4x3/${country.toLowerCase()}.svg`}
+                  src={`https://country-flags.vercel.sh/s/${country.toUpperCase()}.svg`}
                 />
                 <span>
                   . We are offering purchasing power parity pricing. If that is

@@ -8,8 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@company/ui": "file:../packages/ui",
-    "@company/utils": "file:../packages/utils",
+    "@company/ui": "^0.0.1",
+    "@company/utils": "^0.0.1",
     "@vercel/examples-ui": "^0.2.5",
     "next": "latest",
     "react": "latest",
