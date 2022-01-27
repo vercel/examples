@@ -141,8 +141,7 @@ function Home({product}: Props) {
           <li><Link href="https://nextjs.org/docs/basic-features/pages#static-generation-recommended">Static Generation</Link> is the pre-rendering method that generates the HTML at build time. The pre-rendered HTML is then reused on each request.</li>
           <li><Link href="https://nextjs.org/docs/basic-features/pages#server-side-rendering">Server-side Rendering</Link> is the pre-rendering method that generates the HTML on each request.</li>
         </List>
-        <Text>We recommend using Static Generation over Server-side Rendering. Statically generated pages can be cached by CDN with no extra configuration.</Text>
-        <Text>However, sometimes we need to have data in our page that is not static and we tend to move away from <Code>getStaticProps</Code> to <Code>getServerSideProps</Code>.</Text>
+        <Text>Sometimes we need to have data in our page that is not static and we tend to move away from <Code>getStaticProps</Code> to <Code>getServerSideProps</Code>.</Text>
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
