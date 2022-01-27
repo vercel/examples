@@ -42,8 +42,9 @@ function ProductCard({product}: Props) {
   const { data: stock } = useSWR(
     `/api/product/${product.id}/stock`,
     fetcher,
-    { refreshInterval: 5000, fallbackData: product.stock }
+    { refreshInterval: 5000 }
   )
+  const isLoading = stock === undefined;
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -74,40 +75,49 @@ function ProductCard({product}: Props) {
           <div className="flex justify-between w-full items-baseline">
             <div className="ml-4 mr-auto text-left flex flex-col">
               <h4 className="font-semibold text-xl">{product.title}</h4>
-              <h5 className="text-gray-700">{product.description} ({stock} left)</h5>
+              <h5 className="text-gray-700">{product.description} {isLoading ? `` : `(${stock} left)`}</h5>
             </div>
             <h4 className="font-bold text-lg">USD {product.price}</h4>
           </div>
         </div>
         <div className="p-4 gap-4 flex flex-col justify-center items-center border-b">
-          {stock > 0 ? isAdded ? (
+          {isLoading ? (
             <a
               role="button"
-              rel="noopener noreferrer"
-              target="_blank"
-              className="py-4 px-6 text-lg w-full bg-green-500 text-center text-white rounded-md"
-            >
-              Added!
-            </a>
-          ) : (
-            <a
-              role="button"
-              onClick={() => toggleAdded(true)}
-              rel="noopener noreferrer"
-              target="_blank"
-              className="py-4 px-6 text-lg w-full bg-black text-center text-white hover:text-white rounded-md hover:bg-gray-900"
-            >
-              Add to cart
-            </a>
-          ) : (
-            <a
-              role="button"
-              rel="noopener noreferrer"
-              target="_blank"
               className="py-4 px-6 text-lg w-full bg-gray-500 cursor-not-allowed disabled text-center text-white rounded-md"
             >
-              No stock available
+              Loading...
             </a>
+          ) : (
+            <>
+              {isAdded ? (
+                <a
+                  role="button"
+                  className="py-4 px-6 text-lg w-full bg-green-500 text-center text-white rounded-md"
+                >
+                  Added!
+                </a>
+              ) : (
+                <>
+                  {stock > 0 ? (
+                    <a
+                      role="button"
+                      onClick={() => toggleAdded(true)}
+                      className="py-4 px-6 text-lg w-full bg-black text-center text-white hover:text-white rounded-md hover:bg-gray-900"
+                    >
+                      Add to cart
+                    </a>
+                  ) : (
+                    <a
+                      role="button"
+                      className="py-4 px-6 text-lg w-full bg-gray-500 cursor-not-allowed disabled text-center text-white rounded-md"
+                    >
+                      No stock available
+                    </a>
+                  )}
+                </>
+              )}
+            </>
           )}
         </div>
       </section>
@@ -131,7 +141,7 @@ function Home({product}: Props) {
           <li><Link href="https://nextjs.org/docs/basic-features/pages#static-generation-recommended">Static Generation</Link> is the pre-rendering method that generates the HTML at build time. The pre-rendered HTML is then reused on each request.</li>
           <li><Link href="https://nextjs.org/docs/basic-features/pages#server-side-rendering">Server-side Rendering</Link> is the pre-rendering method that generates the HTML on each request.</li>
         </List>
-        <Text>We recommend using Static Generation over Server-side Rendering for performance reasons. Statically generated pages can be cached by CDN with no extra configuration to boost performance.</Text>
+        <Text>We recommend using Static Generation over Server-side Rendering. Statically generated pages can be cached by CDN with no extra configuration.</Text>
         <Text>However, sometimes we need to have data in our page that is not static and we tend to move away from <Code>getStaticProps</Code> to <Code>getServerSideProps</Code>.</Text>
       </section>
 
