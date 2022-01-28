@@ -142,6 +142,7 @@ function Home({product}: Props) {
           <li><Link href="https://nextjs.org/docs/basic-features/pages#server-side-rendering">Server-side Rendering</Link> is the pre-rendering method that generates the HTML on each request.</li>
         </List>
         <Text>Sometimes we need to have data in our page that is not static and we tend to move away from <Code>getStaticProps</Code> to <Code>getServerSideProps</Code>.</Text>
+        <Text><Code>getStaticProps</Code> will cache pages at the edge, giving you the best performance, the same is possible with SSR adding proper <Link href="https://nextjs.org/docs/going-to-production#caching">cache headers</Link>.</Text>
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
