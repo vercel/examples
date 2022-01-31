@@ -16,8 +16,8 @@
   "dependencies": {
     "@vercel/examples-ui": "^0.2.5",
     "js-cookie": "^3.0.1",
-    "next": "^12.0.8",
-    "posthog-js": "^1.17.3",
+    "next": "^12.0.9",
+    "posthog-js": "^1.17.6",
     "react": "latest",
     "react-dom": "latest"
   },
@@ -27,7 +27,7 @@
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
-    "tailwindcss": "^3.0.16",
+    "tailwindcss": "^3.0.18",
     "typescript": "^4.5.5"
   }
 }

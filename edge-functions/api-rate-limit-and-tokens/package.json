@@ -10,18 +10,18 @@
   },
   "dependencies": {
     "@vercel/examples-ui": "^0.2.5",
-    "jose": "^4.3.9",
+    "jose": "^4.4.0",
     "nanoid": "^3.2.0",
-    "next": "^12.0.8",
+    "next": "^12.0.9",
     "react": "latest",
     "react-dom": "latest",
-    "swr": "^1.1.2"
+    "swr": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.38",
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.5",
-    "tailwindcss": "^3.0.16",
+    "tailwindcss": "^3.0.18",
     "typescript": "^4.5.5"
   }
 }
