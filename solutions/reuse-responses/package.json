@@ -1,0 +1,26 @@
+{
+  "name": "reuse-responses",
+  "version": "1.0.0",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@vercel/examples-ui": "^0.2.5",
+    "next": "12.0.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "16.11.7",
+    "@types/react": "17.0.34",
+    "autoprefixer": "^10.3.7",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.17",
+    "typescript": "4.4.4"
+  }
+}
