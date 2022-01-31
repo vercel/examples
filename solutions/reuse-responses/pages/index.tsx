@@ -2,6 +2,7 @@ import type { GetStaticProps } from 'next'
 import type { Product } from '../types'
 import type { FC } from 'react'
 
+import { PHASE_PRODUCTION_BUILD } from 'next/constants'
 import Head from 'next/head'
 import Image from 'next/image'
 import { Layout, Text, Page, Code, Link, List } from '@vercel/examples-ui'
@@ -26,6 +27,10 @@ const Snippet: FC = ({children}) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const products = await api.list();
+
+  if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) {
+    await api.cache.set(products)
+  }
 
   return {
     props: {
@@ -105,15 +110,30 @@ export const getStaticProps = async ({params}) => {
   }
 }`}
         </Snippet>
-        <Text>Lets add a <Code>Map</Code> to use it as cache.</Text>
-        <Snippet>{`const cache = new Map();
+        <Text>Lets add a cache using <Code>fs</Code> to share state at build time between <Code>getStaticPaths</Code> and <Code>getStaticProps</Code>. We will add a <Code>cache</Code> property to <Code>api</Code> with a <Code>get</Code> and a <Code>set</Code> method to interact with the cache.</Text>
+        <Snippet>{`import {promises as fs} from 'fs'
 
-export const getStaticPaths = async () => {
+...
+
+const api = {
+  list: async () => ...,
+  fetch: async (id) => ...,
+  cache: {
+    get: async (id) => {
+      const data = await fs.readFile(path.join(process.cwd(), 'products.db'))
+      const products = JSON.parse(data)
+
+      return products.find(product => product.id === id)
+    },
+    set: async (products) => fs.writeFile(path.join(process.cwd(), 'products.db'), JSON.stringify(products))
+  }
+}`}
+        </Snippet>
+        <Text>And we will use this methods in <Code>getStaticPaths</Code> and <Code>getStaticProps</Code>:</Text>
+        <Snippet>{`export const getStaticPaths = async () => {
   const products = await api.list()
 
-  for (let product of products) {
-    cache.set(product.id, product);
-  }
+  await api.cache.set(products)
 
   return {
     paths: products.map(product => ({
@@ -126,7 +146,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({params}) => {
-  let product = cache.get(params.id);
+  let product = await cache.get(params.id);
 
   if (!product) {
     product = await api.fetch(params.id)
@@ -149,15 +169,12 @@ export const getStaticProps = async ({params}) => {
         <Text>But there is something else we should take care of. Our current code might collide with our our revalidation process in case we do ISR, so we want to ensure to only read from cache if we are at build time.</Text>
         <Snippet>{`import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 ...
-const cache = new Map();
 
 export const getStaticPaths = async () => {
   const products = await api.list()
 
   if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) {
-    for (let product of products) {
-      cache.set(product.id, product);
-    }
+    await api.cache.set(products)
   }
 
   return {
@@ -171,7 +188,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({params}) => {
-  let product = cache.get(params.id);
+  let product = await cache.get(params.id);
 
   if (!product) {
     product = await api.fetch(params.id)
@@ -190,7 +207,7 @@ export const getStaticProps = async ({params}) => {
   }
 }`}
         </Snippet>
-        <Text>Now we check if <Code>NEXT_PHASE</Code> is <Code>PHASE_PRODUCTION_BUILD</Code> so we know we only write to cache at build time.</Text>
+        <Text>Now we check if <Code>NEXT_PHASE</Code> is <Code>PHASE_PRODUCTION_BUILD</Code> so we know we only write to cache at build time. If you want to always cache build-time responses instead of manually caching at page level, you can move the usage of the cache methods to the level needed for your application.</Text>
       </section>
 
       <hr className="border-t border-accents-2 my-6" />

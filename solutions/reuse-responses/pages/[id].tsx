@@ -2,6 +2,7 @@ import type { ParsedUrlQuery } from 'querystring'
 import type { GetStaticPaths, GetStaticProps } from 'next'
 import type { Product } from '../types'
 
+import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { Layout, Page, Link } from '@vercel/examples-ui'
 
 import api from '../api'
@@ -15,13 +16,11 @@ interface Query extends ParsedUrlQuery {
   id: string;
 }
 
-const cache: Map<string, Product> = new Map();
-
 export const getStaticPaths: GetStaticPaths<Query> = async () => {
   const products = await api.list()
 
-  for (let product of products) {
-    cache.set(product.id, product);
+  if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) {
+    await api.cache.set(products)
   }
 
   return {
@@ -35,7 +34,7 @@ export const getStaticPaths: GetStaticPaths<Query> = async () => {
 }
 
 export const getStaticProps: GetStaticProps<Props, Query> = async ({params}) => {
-  let product = cache.get(params?.id as string);
+  let product = await api.cache.get(params?.id as string);
 
   if (!product) {
     product = await api.fetch(params?.id as string)
@@ -49,7 +48,7 @@ export const getStaticProps: GetStaticProps<Props, Query> = async ({params}) => 
 
   return {
     props: {
-      product
+      product,
     }
   }
 }

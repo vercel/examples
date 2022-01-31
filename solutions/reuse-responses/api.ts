@@ -1,3 +1,5 @@
+import {promises as fs} from "fs"
+import path from 'path'
 import { Product } from "./types"
 
 const PRODUCTS: Product[] = [{
@@ -14,14 +16,21 @@ const PRODUCTS: Product[] = [{
 
 const api = {
   list: async () => {
-    console.log('api list method called')
-
     return PRODUCTS
   },
   fetch: async (id: Product['id']) => {
-    console.log('api fetch method called')
-
     return PRODUCTS.find(product => product.id === id)
+  },
+  cache: {
+    get: async (id: string): Promise<Product | null | undefined> => {
+      const data = await fs.readFile(path.join(process.cwd(), 'products.db'))
+      const products: Product[] = JSON.parse(data as unknown as string)
+
+      return products.find(product => product.id === id)
+    },
+    set: async (products: Product[]) => {
+      return fs.writeFile(path.join(process.cwd(), 'products.db'), JSON.stringify(products))
+    }
   }
 }
 
