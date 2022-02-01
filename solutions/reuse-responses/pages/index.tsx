@@ -49,7 +49,7 @@ function Home({products}: Props) {
       </Head>
 
       <section className="flex flex-col gap-6">
-        <Text variant="h1">Reusing responses</Text>
+        <Text variant="h1">Reusing responses at build time</Text>
         <Text>In some applications, like an e-commerce we have to query our database for <Code>list</Code> and <Code>fetch</Code> operations that returns the same data schema. But given that we usually have to call this methods inside <Code>getStaticProps</Code> and <Code>getStaticPaths</Code> we end up querying our services way more times than needed.</Text>
         <Text>Imagine the following scenario. We have an e-commerce with 100 products and two routes that we statically generate at build time, an <Code>/</Code> route that list all the products and a <Code>/[id]</Code> route that shows the product details. We asume that we have an endpoint that returns all the products with the relevant data we need to pre-render our page. Every roundtrip to our service take 150ms and consumes 1kb of bandwidth per product.</Text>
         <Text>Calling the <Code>/api/product</Code> endpoint in <Code>getStaticPaths</Code> and calling <Code>/api/product/[id]</Code> endpoint in <Code>getStaticProps</Code> for each product:</Text>
@@ -166,7 +166,7 @@ export const getStaticProps = async ({params}) => {
 }`}
         </Snippet>
         <Text>That way we ensure to use always information cache-first and if we don't find it, we fallback to calling the API. If you want to optimize this to be cross-page you can move the cache to other file and reuse it.</Text>
-        <Text>But there is something else we should take care of. Our current code might collide with our our revalidation process in case we do ISR, so we want to ensure to only read from cache if we are at build time.</Text>
+        <Text>But there is something else we should take care of. Our current code might collide with our revalidation process in case we do ISR, so we want to ensure to only read from cache if we are at build time.</Text>
         <Snippet>{`import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 ...
 
