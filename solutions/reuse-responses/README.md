@@ -1,6 +1,6 @@
-# Combining data fetching strategies example
+# Reusing responses
 
-This example shows how to use different data fetching strategies to avoid switching from static pre-rendering.
+This example shows how to use file system cache to share responses across calls.
 
 ## Demo
 
