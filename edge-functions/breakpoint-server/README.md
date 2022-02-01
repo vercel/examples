@@ -1,10 +1,10 @@
-# i18n example
+# Breakpoint server example
 
-This example shows how to redirect users based on i18n configuration.
+This example shows how to use the user-agent and serve from our server a best educated guess on its breakpoint
 
 ## Demo
 
-https://edge-functions-i18n.vercel.app
+https://edge-functions-breakpoint-server.vercel.app
 
 ## How to Use
 
@@ -14,16 +14,16 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/i18n&project-name=i18n&repository-name=i18n)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/breakpoint-server&project-name=breakpoint-server&repository-name=breakpoint-server)
 
 ### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/i18n i18n
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/breakpoint-server breakpoint-server
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/i18n i18n
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/breakpoint-server breakpoint-server
 ```
 
 Next, run Next.js in development mode:
