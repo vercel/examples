@@ -1,3 +1,5 @@
 {
-  "github": "silent"
+  "github": {
+    "silent": true
+  }
 }
