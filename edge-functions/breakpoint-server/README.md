@@ -1,6 +1,10 @@
 # Breakpoint server example
 
-This example shows how to use the user-agent and serve from our server a best educated guess on its breakpoint
+This example shows how to use the user-agent and serve from our server a best educated guess on its breakpoint. So pages gets rendered server-side in the best educated size as possible. This results in less layout shift when client-side only rendering is not an option.
+
+The breakpoint provider takes the breakpoint the middleware detected and use it for components to render their specific UI. Then client-side MatchMedia is used to detect its real breakpoint and listen on any resize event.
+
+Now this BreakPointProvider can be mocked for tests where you can set the exact breakpoint which, as a side-effect, makes your testings even easier (no need to mock MatchMedia anymore).
 
 ## Demo
 

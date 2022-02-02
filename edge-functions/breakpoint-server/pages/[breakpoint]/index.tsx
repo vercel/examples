@@ -38,7 +38,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-50">
       <Head>
-        <title>Server generated breakpoint – Vercel Edge Functions</title>
+        <title>Breakpoint-server – Vercel Edge Functions</title>
       </Head>
 
       {isSmall ? <>SMALL COMPONENT</> : <>LARGE COMPONENT</>}
