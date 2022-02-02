@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "update": "node update-dep.mjs"
   },
   "devDependencies": {
     "prettier": "^2.4.0"
