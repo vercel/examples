@@ -6,12 +6,16 @@
 </p>
 
 Enjoy our curated collection of examples and solutions. Use these patterns to build your own robust and scalable applications.
-Find our examples here: https://examples.vercel.live/ we're going to be shipping new examples weekly. Stay tuned! 
+Find our examples here: https://examples.vercel.live/ we're going to be shipping new examples weekly. Stay tuned!
 
 ## Examples
 
 - [Edge Functions](/edge-functions) – Edge Functions are currently in Public Beta on Vercel. [Read the docs here.](https://vercel.com/docs/concepts/functions/edge-functions)
 - [Solutions](/solutions) – Demos, Architectures and Best Practices
+
+## Adding new example
+
+Use `npm run new-example` to generate scaffolding for new example.
 
 ## Read the Docs
 
