@@ -259,10 +259,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     "fastq" "^1.6.0"
 
-"@types/node@*":
-  "integrity" "sha512-S/3xB4KzyFxYGCppyDt68yzBU9ysL88lSdIah4D6cptdcltc4NCPCAMc0+PCpg/lLIyC7IPvj2Z52OJWeIUkog=="
-  "resolved" "https://registry.npmjs.org/@types/node/-/node-17.0.10.tgz"
-  "version" "17.0.10"
+"@types/node@*", "@types/node@^17.0.14":
+  "integrity" "sha512-SbjLmERksKOGzWzPNuW7fJM7fk3YXVTFiZWB/Hs99gwhk+/dnrQRPBQjPW9aO+fi1tAffi9PrwFvsmOKmDTyng=="
+  "resolved" "https://registry.npmjs.org/@types/node/-/node-17.0.14.tgz"
+  "version" "17.0.14"
 
 "@types/parse-json@^4.0.0":
   "integrity" "sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA=="
@@ -350,8 +350,8 @@
   "resolved" "file:app"
   "version" "1.0.0"
   dependencies:
-    "@company/ui" "file:../packages/ui"
-    "@company/utils" "file:../packages/utils"
+    "@company/ui" "^0.0.1"
+    "@company/utils" "^0.0.1"
     "@vercel/examples-ui" "^0.2.5"
     "next" "latest"
     "react" "latest"

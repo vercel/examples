@@ -14,10 +14,10 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@vercel/examples-ui": "^0.2.5",
+    "@vercel/examples-ui": "^0.2.6",
     "js-cookie": "^3.0.1",
-    "next": "^12.0.9",
-    "posthog-js": "^1.17.6",
+    "next": "^12.0.10",
+    "posthog-js": "^1.17.8",
     "react": "latest",
     "react-dom": "latest"
   },
@@ -25,7 +25,7 @@
     "@types/js-cookie": "^3.0.1",
     "@types/react": "^17.0.38",
     "autoprefixer": "^10.4.2",
-    "postcss": "^8.4.5",
+    "postcss": "^8.4.6",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.18",
     "typescript": "^4.5.5"

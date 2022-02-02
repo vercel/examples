@@ -9,22 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^2.9.1",
+    "@clerk/nextjs": "^2.10.1",
     "@headlessui/react": "^1.4.3",
     "@heroicons/react": "^1.0.5",
     "@peculiar/webcrypto": "^1.2.3",
     "add": "^2.0.6",
     "jose": "^4.4.0",
-    "next": "12.0.9",
+    "next": "12.0.10",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "swiper": "^7.4.1"
+    "swiper": "^8.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
     "eslint": "8.8.0",
-    "eslint-config-next": "12.0.9",
-    "postcss": "^8.4.5",
+    "eslint-config-next": "12.0.10",
+    "postcss": "^8.4.6",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.18"
   }
