@@ -2,7 +2,7 @@ import type { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import type { ParsedUrlQuery } from 'querystring'
 import { Layout } from '@vercel/examples-ui'
-import { Breakpoint, BreakpointServer } from '../../config/breakpoints'
+import { Breakpoint, BreakpointServer, serverBreakpoints } from '../../config/breakpoints'
 import { useBreakpoint } from '../../hooks/use-breakpoint/use-breakpoint'
 
 interface Params extends ParsedUrlQuery {
@@ -10,7 +10,7 @@ interface Params extends ParsedUrlQuery {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = ['sm', 'md', 'lg'].map((breakpoint) => ({
+  const paths = serverBreakpoints.map((breakpoint) => ({
     params: { breakpoint },
   }))
 

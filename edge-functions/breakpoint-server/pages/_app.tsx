@@ -8,12 +8,16 @@ import { BreakpointServer } from '../config/breakpoints'
 export default function MyApp({
   Component,
   pageProps,
-  breakpoint,
-}: AppProps & { breakpoint: BreakpointServer }) {
+  router: {
+    query: {
+      breakpoint 
+    }
+  }
+}: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <BreakpointProvider initialBreakpoint={breakpoint}>
+    <BreakpointProvider initialBreakpoint={breakpoint as BreakpointServer}>
       <Layout path="edge-functions/i18n">
         <Component {...pageProps} />
       </Layout>
