@@ -16,8 +16,8 @@
   },
   "devDependencies": {
     "@types/node": "^16.11.11",
-    "autoprefixer": "^10.2.6",
-    "postcss": "^8.3.5",
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.6",
     "tailwindcss": "^3.0.18"
   }
 }
