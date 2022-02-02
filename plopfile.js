@@ -63,21 +63,50 @@ module.exports = function (plop) {
       ]
       const TailwindFiles = ['postcss.config.js', 'tailwind.config.js']
 
+      const actions = []
+
+      // Copy over basic files
+      filesToAlwaysCopyOver.forEach((file) => {
+        actions.push({
+          type: 'add',
+          path: `{{exampleScopeFolder}}/${plopExampleName}/${file}`,
+          templateFile: `plop-templates/example/${file}`,
+        })
+      })
+
+      if (data.options.includes('tailwind')) {
+        // Tailwind files
+        TailwindFiles.forEach((file) => {
+          actions.push({
+            type: 'add',
+            path: `{{exampleScopeFolder}}/${plopExampleName}/${file}`,
+            templateFile: `plop-templates/example/${file}`,
+          })
+        })
+      } else {
+        // remove tailind deps
+        actions.push({
+          type: 'modify',
+          path: `{{exampleScopeFolder}}/${plopExampleName}/package.json`,
+          transform: (fileContents, data) => {
+            const packageData = JSON.parse(fileContents)
+            const removePackages = ['autoprefixer', 'postcss', 'tailwindcss']
+            packageData.devDependencies = Object.keys(
+              packageData.devDependencies
+            )
+              .filter((package) => !removePackages.includes(package))
+              .reduce((obj, key) => {
+                obj[key] = packageData.devDependencies[key]
+                return obj
+              }, {})
+
+            return JSON.stringify(packageData, null, 2)
+          },
+        })
+      }
+
       return [
-        ...filesToAlwaysCopyOver.map((file) => {
-          return {
-            type: 'add',
-            path: `{{exampleScopeFolder}}/${plopExampleName}/${file}`,
-            templateFile: `plop-templates/example/${file}`,
-          }
-        }),
-        ...TailwindFiles.map((file) => {
-          return {
-            type: 'add',
-            path: `{{exampleScopeFolder}}/${plopExampleName}/${file}`,
-            templateFile: `plop-templates/example/${file}`,
-          }
-        }),
+        ...actions,
         // README.md
         {
           type: 'modify',
