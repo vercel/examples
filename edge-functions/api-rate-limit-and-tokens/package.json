@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@vercel/examples-ui": "^0.2.5",
+    "@vercel/examples-ui": "^0.2.6",
     "jose": "^4.1.4",
     "nanoid": "^3.1.31",
     "next": "^12.0.2",
