@@ -17,8 +17,8 @@ module.exports = function (plop) {
         name: 'exampleScopeFolder',
         message: 'Scope (Example folder): ',
         choices: [
-          { name: 'Edge Functions', value: 'edge-functions' },
           { name: 'Solutions', value: 'solutions' },
+          { name: 'Edge Functions', value: 'edge-functions' },
         ],
       },
       {
@@ -26,17 +26,19 @@ module.exports = function (plop) {
         name: 'options',
         message: 'What options do you like?',
         choices: [
-          { name: 'Next.js Middleware Function', value: 'middleware' },
           { name: 'Tailwind CSS', value: 'tailwind', checked: true },
-          {
-            name: 'Vercel Serverless Functions: Hello world',
-            value: 'vercel-api',
-          },
           {
             name: 'Next.js API Routes - Serverless Functions: Hello world',
             value: 'next-api-pages',
             checked: true,
           },
+          { name: 'Next.js Middleware Function', value: 'middleware' },
+
+          {
+            name: 'Vercel Serverless Functions: Hello world',
+            value: 'vercel-api',
+          },
+
           {
             name: 'Vercel.json file',
             value: 'vercel.json',
@@ -59,9 +61,17 @@ module.exports = function (plop) {
         'pages/index.tsx',
         'pages/_app.tsx',
       ]
+      const TailwindFiles = ['postcss.config.js', 'tailwind.config.js']
 
       return [
         ...filesToAlwaysCopyOver.map((file) => {
+          return {
+            type: 'add',
+            path: `{{exampleScopeFolder}}/${plopExampleName}/${file}`,
+            templateFile: `plop-templates/example/${file}`,
+          }
+        }),
+        ...TailwindFiles.map((file) => {
           return {
             type: 'add',
             path: `{{exampleScopeFolder}}/${plopExampleName}/${file}`,
@@ -97,13 +107,13 @@ module.exports = function (plop) {
         // _app.tsx
         {
           type: 'modify',
-          path: `{{exampleScopeFolder}}/${plopExampleName}/_app.tsx`,
+          path: `{{exampleScopeFolder}}/${plopExampleName}/pages/_app.tsx`,
           pattern: /(-- PLOP TITLE HERE --)/gi,
           template: `${data.name}`,
         },
         {
           type: 'modify',
-          path: `{{exampleScopeFolder}}/${plopExampleName}/_app.tsx`,
+          path: `{{exampleScopeFolder}}/${plopExampleName}/pages/_app.tsx`,
           pattern: /(-- PLOP PATH HERE --)/gi,
           template: `${plopPath}`,
         },
