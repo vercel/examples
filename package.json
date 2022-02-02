@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "new-example": "plop example"
   },
   "devDependencies": {
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "plop": "^3.0.5"
   }
 }
