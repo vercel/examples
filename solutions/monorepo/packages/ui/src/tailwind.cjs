@@ -3,7 +3,7 @@ const path = require('path')
 module.exports = {
   // `purge` is replaced instead of extended, so this line has to be added in
   // the `purge` of each app' tailwind.config.js
-  purge: [path.join(path.dirname(require.resolve('@company/ui')), '**/*.js')],
+  content: [path.join(path.dirname(require.resolve('@company/ui')), '**/*.js')],
   theme: {
     extend: {
       colors: {
