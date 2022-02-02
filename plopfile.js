@@ -74,6 +74,22 @@ module.exports = function (plop) {
         })
       })
 
+      if (data.options.includes('next-api-pages')) {
+        actions.push({
+          type: 'add',
+          path: `{{exampleScopeFolder}}/${plopExampleName}/pages/api/hello.ts`,
+          templateFile: `plop-templates/example/pages/api/hello.ts`,
+        })
+      }
+
+      if (data.options.includes('middleware')) {
+        actions.push({
+          type: 'add',
+          path: `{{exampleScopeFolder}}/${plopExampleName}/pages/_middleware.ts`,
+          templateFile: `plop-templates/example/pages/_middleware.ts`,
+        })
+      }
+
       if (data.options.includes('tailwind')) {
         // Tailwind files
         TailwindFiles.forEach((file) => {
