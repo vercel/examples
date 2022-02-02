@@ -14,21 +14,24 @@ function Home() {
       </Head>
 
       <section className="flex flex-col gap-6">
-        <Text variant="h1">-- PLOP TITLE HERE -- usage</Text>
-        <Text>This example shows how -----------------------</Text>
+        <Text variant="h1">-- PLOP TITLE HERE -- usage example</Text>
+        <Text>
+          This example shows how to Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Voluptas eligendi aliquam officiis aliquid neque
+          consequuntur ipsam iste, id, minima sit nulla quidem numquam, vitae
+          hic quae sapiente nostrum vel ut.
+        </Text>
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
 
       <section className="flex flex-col gap-3">
-        <Text variant="h2">test</Text>
+        <Text variant="h2">Header</Text>
         <Text>
-          When using the{' '}
-          <Link href="https://nextjs.org/docs/api-reference/next/image#priority">
-            <Code>priority</Code>
-          </Link>{' '}
-          prop the image will be considered high priority and preload. Lazy
-          loading is automatically disabled for images using priority.
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error quasi{' '}
+          <code>dolorum natus</code>, quaerat voluptatum laboriosam minima quis
+          consectetur quam architecto veniam! Ex atque rem, unde tempora eaque
+          quasi mollitia tenetur.
         </Text>
       </section>
     </Page>
