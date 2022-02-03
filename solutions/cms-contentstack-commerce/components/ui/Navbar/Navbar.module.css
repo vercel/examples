@@ -1,0 +1,31 @@
+.root {
+  @apply bg-white z-40 transition-all duration-150;
+}
+
+.link {
+  @apply inline-flex items-center leading-6
+  font-medium transition ease-in-out duration-75
+  cursor-pointer text-accents-6 text-black underline text-sm;
+}
+
+.link:hover {
+  @apply text-accents-9;
+}
+
+.link:focus {
+  @apply outline-none text-accents-8;
+}
+
+.logo {
+  @apply cursor-pointer rounded-full border transform duration-100 ease-in-out;
+}
+
+.logo:hover {
+  @apply shadow-md;
+  transform: scale(1.05);
+}
+
+.mobileNav {
+  @apply border-t border-b bg-gray-200 grid grid-cols-4
+  text-center uppercase text-sm tracking-widest md:hidden;
+}

@@ -1,22 +1,20 @@
-import type {
-  GetStaticProps,
-  GetStaticPropsContext,
-  GetStaticPropsResult,
-} from 'next'
+import type { GetStaticPropsContext, GetStaticPropsResult } from 'next'
 import Head from 'next/head'
-import * as Contentstack from 'contentstack'
-import { Layout, Text, Page, Code, Link, List } from '@vercel/examples-ui'
-import { defatultPageProps } from '@lib/defaults'
+
+import cs from '@lib/contentstack'
+import { Layout, Link, Page } from '@vercel/examples-ui'
 import Container from '@components/ui/Container'
 import UIComponent from '@components/ui/UIComponent'
+import Navbar from '@components/ui/Navbar'
+import Footer from '@components/ui/Footer'
 import type { UIComponentEntity } from '@components/ui/UIComponent'
-import cs from '@lib/contentstack'
 
 interface PageProps {
-  locale: string
+  title: string
   seo: Record<string, string>
   blocks: UIComponentEntity[]
   header: HeaderEntity[]
+  locale: string
 }
 
 interface HeaderEntity {
@@ -34,25 +32,23 @@ export async function getStaticProps({
 }: GetStaticPropsContext): Promise<
   GetStaticPropsResult<PageProps> | undefined
 > {
-  const { modular_blocks } = await cs.getEntryWithAssets(
+  const page = await cs.getEntryWithAssets(
     'home_page',
     'blt5c760b6ce70ae18b',
     nextLocale?.toLocaleLowerCase() as string
   )
 
-  console.log('blocks', modular_blocks)
-
   return {
     props: {
-      blocks: modular_blocks,
+      ...page,
     },
     revalidate: 1,
   }
 }
 
-function Home({ title, seo, locale, blocks = [] }: PageProps) {
+function Home({ title, seo, locale, blocks = [], header }: PageProps) {
   return (
-    <Page>
+    <Page className="max-w-5xl">
       <Head>
         <title>
           {title} - ContentStack Commerce Demo using Next.js and Vercel
@@ -64,6 +60,7 @@ function Home({ title, seo, locale, blocks = [] }: PageProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
+        <Navbar data={header} />
         {blocks.map(({ component }, i) => {
           const { component_type, component_variant, ...rest } = component
           return (
@@ -77,6 +74,7 @@ function Home({ title, seo, locale, blocks = [] }: PageProps) {
           )
         })}
       </Container>
+      <Footer pages={[]} />
     </Page>
   )
 }

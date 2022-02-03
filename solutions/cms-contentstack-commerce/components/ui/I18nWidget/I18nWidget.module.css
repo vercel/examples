@@ -1,0 +1,45 @@
+.root {
+  @apply relative;
+}
+
+.button {
+  @apply h-10 px-2 rounded-md flex items-center justify-center;
+}
+
+.button:focus {
+  @apply outline-none;
+}
+
+.dropdownMenu {
+  @apply fixed right-0 top-10 mt-2 origin-top-right
+  outline-none bg-white z-40 w-full h-full;
+}
+
+.item {
+  @apply flex cursor-pointer px-6 py-3 flex transition
+  ease-in-out duration-150 text-black leading-6 font-medium 
+  items-center;
+  text-transform: capitalize;
+}
+
+.item:hover {
+  @apply bg-accents-1;
+}
+
+.closeButton {
+  @apply transition ease-in-out duration-150;
+}
+
+.closeButton:hover {
+  @apply text-gray-500;
+}
+
+@screen md {
+  .dropdownMenu {
+    @apply absolute border border-accents-1 shadow-lg w-56 h-auto;
+  }
+
+  .closeButton {
+    @apply hidden;
+  }
+}

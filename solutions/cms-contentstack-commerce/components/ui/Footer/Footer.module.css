@@ -1,0 +1,7 @@
+.link > svg {
+  @apply transform duration-75 ease-linear;
+}
+
+.link:hover > svg {
+  @apply scale-110;
+}

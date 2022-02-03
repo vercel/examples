@@ -13,8 +13,8 @@
 
 .toR {
   @apply relative flex flex-col mb-4 md:flex-row;
+}
 
-  & .description {
-    @apply w-72 mb-4 text-center;
-  }
+.toR.description {
+  @apply w-72 mb-4 text-center;
 }

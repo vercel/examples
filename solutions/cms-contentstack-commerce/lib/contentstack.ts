@@ -38,7 +38,7 @@ export default {
 
     return {
       ...rest,
-      modular_blocks: await Promise.all(
+      blocks: await Promise.all(
         blocks.map(async (c: any) => ({
           component: await this.includeAssets(c.component, 'background_image'),
         }))
