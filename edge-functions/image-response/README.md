@@ -1,14 +1,15 @@
 # Image Response Example
 
-Below is the code from pages/_middleware.ts that parses a png to a blob and returns it as the response body:
+Below is the code from pages/\_middleware.ts that parses a png to a blob and returns it as the response body:
+
 ```js
-import { b64toBlob } from "../lib/parse";
+import { b64toBlob } from '../lib/parse'
 
 export default function middleware() {
-  const png = "..."; // Base 64 image
-  const blob = b64toBlob(png, "image/png"); // Transform it to a blob
-  
-  return new Response(blob); // Return it as a response
+  const png = '...' // Base 64 image
+  const blob = b64toBlob(png, 'image/png') // Transform it to a blob
+
+  return new Response(blob) // Return it as a response
 }
 ```
 
