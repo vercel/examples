@@ -4,7 +4,7 @@ This example shows how -------------------------
 
 ## Demo
 
-https://-----------------------.vercel.app
+https://-- PLOP EXAMPLE NAME HERE --.vercel.app
 
 ## How to Use
 

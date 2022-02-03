@@ -1,4 +1,4 @@
-module.exports = function (plop) {
+export default function (plop) {
   const transformName = (str) => {
     return str.toLowerCase().replace(/ /g, '-')
   }
@@ -58,10 +58,15 @@ module.exports = function (plop) {
         '.gitignore',
         'next-env.d.ts',
         'package.json',
+
+        'public/favicon.ico',
+      ]
+      const TailwindFiles = [
         'pages/index.tsx',
         'pages/_app.tsx',
+        'postcss.config.js',
+        'tailwind.config.js',
       ]
-      const TailwindFiles = ['postcss.config.js', 'tailwind.config.js']
 
       const actions = []
 
@@ -99,7 +104,28 @@ module.exports = function (plop) {
             templateFile: `plop-templates/example/${file}`,
           })
         })
+
+        // modify _app.tsx
+        actions.push({
+          type: 'modify',
+          path: `{{exampleScopeFolder}}/${plopExampleName}/pages/_app.tsx`,
+          pattern: /(-- PLOP PATH HERE --)/gi,
+          template: `${plopPath}`,
+        })
+        actions.push({
+          type: 'modify',
+          path: `{{exampleScopeFolder}}/${plopExampleName}/pages/_app.tsx`,
+          pattern: /(-- PLOP TITLE HERE --)/gi,
+          template: `${data.name}`,
+        })
       } else {
+        // add blank index page without tailwind
+        actions.push({
+          type: 'add',
+          path: `{{exampleScopeFolder}}/${plopExampleName}/pages/index.tsx`,
+          templateFile: `plop-templates/example/pages/index_blank.tsx`,
+        })
+
         // remove tailind deps
         actions.push({
           type: 'modify',
@@ -110,7 +136,7 @@ module.exports = function (plop) {
             packageData.devDependencies = Object.keys(
               packageData.devDependencies
             )
-              .filter((package) => !removePackages.includes(package))
+              .filter((item) => !removePackages.includes(item))
               .reduce((obj, key) => {
                 obj[key] = packageData.devDependencies[key]
                 return obj
@@ -149,19 +175,7 @@ module.exports = function (plop) {
           pattern: /(-- PLOP EXAMPLE NAME HERE --)/gi,
           template: `${plopExampleName}`,
         },
-        // _app.tsx
-        {
-          type: 'modify',
-          path: `{{exampleScopeFolder}}/${plopExampleName}/pages/_app.tsx`,
-          pattern: /(-- PLOP TITLE HERE --)/gi,
-          template: `${data.name}`,
-        },
-        {
-          type: 'modify',
-          path: `{{exampleScopeFolder}}/${plopExampleName}/pages/_app.tsx`,
-          pattern: /(-- PLOP PATH HERE --)/gi,
-          template: `${plopPath}`,
-        },
+
         // pages/index.tsx
         {
           type: 'modify',
