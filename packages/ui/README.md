@@ -38,7 +38,7 @@ module.exports = withTM({
 })
 ```
 
-Now, if the app already has a `tailwind.config.js` file, open it and add the following preset and purge path:
+Now, if the app already has a `tailwind.config.js` file, open it and add the following preset and content path:
 
 ```js
 module.exports = {
