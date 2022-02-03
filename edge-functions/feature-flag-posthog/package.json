@@ -15,19 +15,20 @@
   },
   "dependencies": {
     "@vercel/examples-ui": "^0.2.6",
-    "js-cookie": "^2.2.1",
-    "next": "^12.0.2",
-    "posthog-js": "^1.15.3",
+    "js-cookie": "^3.0.1",
+    "next": "^12.0.10",
+    "posthog-js": "^1.17.8",
     "react": "latest",
     "react-dom": "latest"
   },
   "devDependencies": {
-    "@types/js-cookie": "^2.2.7",
-    "@types/react": "^17.0.18",
+    "@types/js-cookie": "^3.0.1",
+    "@types/node": "^17.0.14",
+    "@types/react": "^17.0.38",
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.6",
-    "prettier": "^2.4.1",
+    "prettier": "^2.5.1",
     "tailwindcss": "^3.0.18",
-    "typescript": "^4.3.5"
+    "typescript": "^4.5.5"
   }
 }

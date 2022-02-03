@@ -7,6 +7,6 @@
     "update": "node update-dep.mjs"
   },
   "devDependencies": {
-    "prettier": "^2.4.0"
+    "prettier": "^2.5.1"
   }
 }

@@ -25,13 +25,16 @@ const mockDB = [
 
 When deploying your own clone of this example, you will need to replace the data fetching methods in `getStaticPaths` and `getStaticProps` with your own database of choice (BYOD, _Bring-Your-Own-Database_).
 
-To give a bit of context of how this can be applied in a real-world context, here's a starter kit that we're currently working on – it's basically a Substack clone with subdomains + custom domains functionality:
+To give a bit of context of how this can be applied in a real-world context, we recently launched the [Platforms Starter Kit](https://demo.vercel.pub/platforms-starter-kit) – a comprehensive template for site builders, multi-tenant platforms, and low-code tools:
 
 - [demo.vercel.pub](https://demo.vercel.pub)
 - [platformize.co](https://platformize.co) (custom domain that maps to [demo.vercel.pub](https://demo.vercel.pub))
 - [app.vercel.pub](https://app.vercel.pub) (editing backend)
 
-We're rolling out the example above + more complex boilerplates (e-commerce storefront builders, website builders) + supplementary code snippets (static tweets, Vercel domains API, OG image generator) in an [early access program](https://eap.vercel.sh/) – feel free to join if you're interested (click "sign up" on the Platforms on Vercel program).
+For more info on the Platforms Starter Kit:
+- [Twitter Announcement](https://twitter.com/vercel/status/1484237805941403655)
+- [Github Repo](https://github.com/vercel/platforms)
+- [Official Guide](https://vercel.com/guides/nextjs-multi-tenant-application)
 
 ## How to Use
 

@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps<unknown, never> = async () => {
 function StaticProductPage({ product }: Props) {
   return (
     <>
-      <div className="lg:h-[440px] lg:w-[440px] h-[260px] w-[260px] ml-14 lg:ml-24 -mb-40 lg:-mb-56">
+      <div className="ml-14 lg:ml-24 -mb-40 lg:-mb-56">
         <Image
           className="pointer-events-none"
           alt={product.name}
@@ -35,7 +35,7 @@ function StaticProductPage({ product }: Props) {
           layout="responsive"
         />
       </div>
-      <section className="border border-gray-300 bg-white rounded-lg shadow-lg mt-16 w-full max-w-[480px] hover:shadow-2xl transition pt-16 lg:pt-24">
+      <section className="border border-gray-300 bg-white rounded-lg shadow-lg mt-16 w-full hover:shadow-2xl transition pt-16 lg:pt-24">
         <div className="p-4 flex flex-col justify-center items-center border-b">
           <div className="flex justify-between w-full items-baseline">
             <div className="ml-4 mr-auto text-left flex flex-col">
