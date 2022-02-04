@@ -7,16 +7,8 @@ import Logo from '@components/ui/Logo'
 import UserNav from '@components/ui/UserNav'
 import cn from 'classnames'
 import { Menu, MapPin, Search, Bag } from '@components/icons'
-interface Props {
-  data: HeaderEntity
-}
-
-interface HeaderEntity {
-  links: LinksEntity[]
-}
-
-interface LinksEntity {
-  link: Link
+export interface HeaderEntity {
+  links: Array<Record<string, Link>>
 }
 
 interface Link {
@@ -24,7 +16,9 @@ interface Link {
   url: string
 }
 
-const Navbar: FC<Props> = ({ data = {} }) => {
+const Navbar: FC<{
+  data: HeaderEntity
+}> = ({ data = {} }) => {
   return (
     <div className={cn(s.root)}>
       <Container>

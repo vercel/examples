@@ -8,24 +8,14 @@ import UIComponent from '@components/ui/UIComponent'
 import Navbar from '@components/ui/Navbar'
 import Footer from '@components/ui/Footer'
 import type { UIComponentEntity } from '@components/ui/UIComponent'
-
+import type { HeaderEntity } from '@components/ui/Navbar/Navbar'
 interface PageProps {
   title: string
   seo: Record<string, string>
   blocks: UIComponentEntity[]
-  header: HeaderEntity[]
+  header: HeaderEntity
   locale: string
 }
-
-interface HeaderEntity {
-  links: Link[]
-}
-
-interface Link {
-  title: string
-  url: string
-}
-
 export async function getStaticProps({
   locale: nextLocale,
   locales,
@@ -46,7 +36,13 @@ export async function getStaticProps({
   }
 }
 
-function Home({ title, seo, locale, blocks = [], header }: PageProps) {
+function Home({
+  title,
+  seo,
+  locale,
+  blocks = [],
+  header = { links: [] },
+}: PageProps) {
   return (
     <>
       <Head>
