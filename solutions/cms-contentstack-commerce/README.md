@@ -4,7 +4,7 @@ This examples shows how to use ContentStack SDK to create apps with Next.js and 
 
 ## Demo
 
-https://<>.vercel.app
+https://solutions-cms-contentstack-commerce.vercel.app
 
 ## How to Use
 
