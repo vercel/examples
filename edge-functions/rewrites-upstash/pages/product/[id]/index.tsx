@@ -1,5 +1,5 @@
 import type { ParsedUrlQuery } from 'querystring'
-import type { GetStaticProps } from 'next'
+import type { GetStaticPaths, GetStaticProps } from 'next'
 import type { Product } from '../../../types'
 
 import { Layout, Page, Link, Button, Text } from '@vercel/examples-ui'
@@ -30,6 +30,19 @@ export const getStaticProps: GetStaticProps<Props, Query> = async ({params}) => 
     props: {
       product
     }
+  }
+}
+
+export const getStaticPaths: GetStaticPaths<Query> = async () => {
+  const products = await api.list()
+
+  return {
+    paths: products.map(product => ({
+      params: {
+        id: product.id
+      },
+    })),
+    fallback: 'blocking'
   }
 }
 
