@@ -74,13 +74,13 @@ const Grid: FC<Props> = ({ className, children, variant, data = {} }) => {
           {grid.map(({ item }, i) => (
             <div
               className="flex flex-col items-center text-center mb-4"
-              key={`${item.img.url}${i}`}
+              key={`${item.img}${i}`}
             >
               <div className="mb-2">
-                {item.img.url && (
+                {item.img && (
                   <Image
                     alt="img"
-                    src={item.img.url}
+                    src={item.img}
                     layout="fixed"
                     {...meassureProps}
                   />
@@ -97,15 +97,13 @@ const Grid: FC<Props> = ({ className, children, variant, data = {} }) => {
                   dangerouslySetInnerHTML={{ __html: item.description }}
                 />
               )}
-              <Link
-                href={
-                  item!.link.url
-                    ? item!.link.url
-                    : 'https://www.chicos.com/store/'
-                }
-                passHref
-              >
-                <a className="uppercase font-semibold tracking-wide underline text-sm">
+              <Link href={item!.link.url ? item!.link.url : '/'} passHref>
+                <a
+                  className="mt-4 uppercase font-semibold tracking-wide 
+            text-xs text-slate-900 bg-white rounded-full 
+            px-4 py-3 border  border-slate-400 hover:border-black
+            transition ease-linear duration-150"
+                >
                   {item!.link.title}
                 </a>
               </Link>

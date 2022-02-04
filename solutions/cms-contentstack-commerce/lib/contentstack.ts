@@ -39,9 +39,14 @@ export default {
     return {
       ...rest,
       blocks: await Promise.all(
-        blocks.map(async (c: any) => ({
-          component: await this.includeAssets(c.component, 'background_image'),
-        }))
+        blocks.map(async (c: any) => {
+          return {
+            component: await this.includeAssets(
+              c.component,
+              'background_image'
+            ),
+          }
+        })
       ),
     }
   },
@@ -56,7 +61,7 @@ export default {
     fieldName: string = 'imgUrl'
   ) {
     const Stack = createClient()
-    const { [fieldName]: imgId, ...rest } = entry
+    let { [fieldName]: imgId, ...rest } = entry
 
     if (imgId) {
       try {
@@ -73,7 +78,21 @@ export default {
           [fieldName]: null,
         }
       }
+    } else {
+      if (rest.component_type === 'grid') {
+        return {
+          ...rest,
+          grid: await Promise.all(
+            rest.grid.map(async (c: any) => {
+              return {
+                item: await this.includeAssets(c.item, 'img'),
+              }
+            })
+          ),
+        }
+      }
     }
+
     return entry
   },
 }
