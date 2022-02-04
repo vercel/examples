@@ -13,10 +13,14 @@ Find our examples here: https://examples.vercel.live/ we're going to be shipping
 - [Edge Functions](/edge-functions) – Edge Functions are currently in Public Beta on Vercel. [Read the docs here.](https://vercel.com/docs/concepts/functions/edge-functions)
 - [Solutions](/solutions) – Demos, Architectures and Best Practices
 
-## Adding new example
+### Adding a new example
 
-Use `npm run new-example` to generate scaffolding for new example.
+To quickly start contributing with a new example, run the following commands:
 
+```bash
+npm i
+npm run new-example
+```
 ## Read the Docs
 
 - [Vercel Docs](https://docs.vercel.com/)
