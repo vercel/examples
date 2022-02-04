@@ -44,12 +44,12 @@ function Home({products}: Props) {
 
       <section className="flex flex-col gap-6">
         <Text variant="h1">Rewriting at the edge using Upstash</Text>
-        <Text>It's a common case to have a details page of a product or item and request our database every time a user requests the page.</Text>
-        <Text>Sometimes we don't have stock but we still hit our services, which may take a good amount of time depending on where the source is and it can be expensive depending on how many requests for that page we have.</Text>
-        <Text>We can take some strategies to get faster responses using the edge, checking with a Redis cache if we have stock for our product and rewriting to a previously generated static no stock page of our product. That way we not only reduce the TTFB due to low latency responses and serving static content, but also reduces the amount of connections to our database and we avoid redirects (improving SEO) and improves UX (avoiding spinners / skeletons while we check if we have stock or not)</Text>
-        <Text>Lets imagine the flow of an e-commerce site that use <Code>getServerSideProps</Code> to get the latest data for a product details page:</Text>
+        <Text>It's a common case to have a details page of a product or item and request our database for stock every time a user requests the page (althought our page might be using ISR and we fetch the stock client side).</Text>
+        <Text>Sometimes we don't have stock but we still hit our DB (API then DB if doing CSR), which may take a good amount of time depending on where the source and our API are and it may be expensive depending on how many requests for that page we have.</Text>
+        <Text>We can take some strategies to get faster responses using the edge, storing and checking in Upstash (a Redis cache service) if we have ran out of stock for a product and rewriting to a previously generated static no-stock page for that specific product. That way we reduce the amount of connections to our database, avoid uninteractive page due to disabled buy buttons, reduce layout shift in case the UI for no-stock page changes a lot, while having low latency by embracing the edge.</Text>
+        <Text>Imagine the next flow of an e-commerce site product details page:</Text>
         <Image src={notOptimizing} />
-        <Text>Now, lets check at the edge if we have stock with a Redis cache and rewrite in case we don't have stock:</Text>
+        <Text>Now, lets check at the edge if we have stock using Upstash and rewrite to the correct page:</Text>
         <Image src={optimizing} />
         <Text>Thats it, we only have to toggle the flag when we add an item or run out of stock.</Text>
       </section>
@@ -61,8 +61,8 @@ function Home({products}: Props) {
           Implementing the solution
         </Text>
         <Text>For this example we will have 3 files related to the product details page. <Code>/pages/product/[id]/no-stock.js</Code>, <Code>/pages/product/[id]/index.js</Code> and <Code>/pages/product/[id]/_middleware.js</Code>.</Text>
-        <Text>Lets start with our <Code>/pages/product/[id]/index.js</Code> <Code>getServerSideProps</Code> function:</Text>
-        <Snippet>{`export const getServerSideProps = async ({params}) => {
+        <Text>Lets start with our <Code>/pages/product/[id]/index.js</Code>:</Text>
+        <Snippet>{`export const getStaticProps = async ({params}) => {
   const product = await api.fetch(params.id)
 
   if (!product) {
@@ -72,6 +72,7 @@ function Home({products}: Props) {
   }
 
   return {
+    revalidate: 10,
     props: {
       product
     }
@@ -100,12 +101,13 @@ export async function middleware(req) {
 }
 `}
         </Snippet>
+        <Text>Now we will only get to the details screen if we have stock.</Text>
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
 
       <section className="flex flex-col gap-6">
-        <Text>Go to this products and play around with their stock, you should be rewrited correctly based on its stock.</Text>
+        <Text>Go to this products and play around with their stock and you will be rewrited to the correct page.</Text>
         <article className="flex flex-col gap-3">
           {products.map(product => (
             <Link key={product.id} href={`/product/${product.id}`}>
