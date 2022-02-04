@@ -48,7 +48,7 @@ export async function getStaticProps({
 
 function Home({ title, seo, locale, blocks = [], header }: PageProps) {
   return (
-    <Page className="max-w-5xl">
+    <>
       <Head>
         <title>
           {title} - ContentStack Commerce Demo using Next.js and Vercel
@@ -75,7 +75,7 @@ function Home({ title, seo, locale, blocks = [], header }: PageProps) {
         })}
       </Container>
       <Footer pages={[]} />
-    </Page>
+    </>
   )
 }
 

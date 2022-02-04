@@ -28,7 +28,7 @@ const Navbar: FC<Props> = ({ data = {} }) => {
   return (
     <div className={cn(s.root)}>
       <Container>
-        <div className="flex items-center bg-accents-3 py-2 px-6">
+        <div className="flex items-center bg-slate-300 py-2 px-6">
           <div className="mr-2">
             <svg
               viewBox="0 0 24 24"
@@ -44,17 +44,17 @@ const Navbar: FC<Props> = ({ data = {} }) => {
               <path d="M6 9l6 6 6-6" />
             </svg>
           </div>
-          <span className="text-base uppercase tracking-wider font-medium">
+          <span className="text-sm uppercase tracking-wider font-medium">
             Sale | Up To 50% Off Select Full-priced Styles
           </span>
         </div>
         <div className="flex justify-between items-center flex-row px-2 py-2 md:py-2 relative">
           <div className="flex flex-1 md:flex">
-            <a className={s.link}>My Chico Closet</a>
+            <a className={s.link}>My Closet</a>
           </div>
           <div>
             <Link href="/">
-              <span className="cursor-pointer">
+              <span className="cursor-pointer ">
                 <Logo />
               </span>
             </Link>
@@ -97,22 +97,26 @@ const Navbar: FC<Props> = ({ data = {} }) => {
         </div>
       </Container>
 
-      <div className=" border-b border-gray-300 px-4 md:pb-1">
+      <div className=" border-b border-gray-300 px-4 md:py-4">
         <Container>
-          <nav className="hidden lg:flex flex-row space-x-8 items-center justify-center font-semibold tracking-widest text-sm uppercase">
+          <nav className="hidden lg:flex flex-row space-x-8 items-center justify-center">
             {data.links?.map(({ link }) => (
               <a
-                className="cursor-pointer hover:text-gray-600 text-center"
+                className="cursor-pointer hover:text-gray-600 text-center text-sm uppercase font-medium tracking-widest"
                 href={link.url}
                 key={link.title}
               >
                 {link.title}
               </a>
             ))}
-
-            <a className="cursor-pointer hover:text-gray-600" href="/">
-              Search
-            </a>
+            <div className="flex-1">
+              <a
+                className="cursor-pointer hover:text-gray-600 uppercase font-medium text-sm"
+                href="/"
+              >
+                Search
+              </a>
+            </div>
             <UserNav />
           </nav>
         </Container>

@@ -13,74 +13,152 @@ interface Props {
   pages?: Array<any>
 }
 
+const footerNavigation = {
+  shop: [
+    { name: 'Bags', href: '#' },
+    { name: 'Tees', href: '#' },
+    { name: 'Objects', href: '#' },
+    { name: 'Home Goods', href: '#' },
+    { name: 'Accessories', href: '#' },
+  ],
+  company: [
+    { name: 'Who we are', href: '#' },
+    { name: 'Sustainability', href: '#' },
+    { name: 'Press', href: '#' },
+    { name: 'Careers', href: '#' },
+    { name: 'Terms & Conditions', href: '#' },
+    { name: 'Privacy', href: '#' },
+  ],
+  account: [
+    { name: 'Manage Account', href: '#' },
+    { name: 'Returns & Exchanges', href: '#' },
+    { name: 'Redeem a Gift Card', href: '#' },
+  ],
+  connect: [
+    { name: 'Contact Us', href: '#' },
+    { name: 'Twitter', href: '#' },
+    { name: 'Instagram', href: '#' },
+    { name: 'Pinterest', href: '#' },
+  ],
+}
+
 const LEGAL_PAGES = ['terms-of-use', 'shipping-returns', 'privacy-policy']
 
-const Footer: FC<Props> = ({ className, pages = [] }) => {
+const Footer: FC<Props> = () => {
   return (
-    <footer className={cn(className, 'border-gray-200 border-t px-6 md:px-2')}>
+    <footer
+      className="border-gray-200 border-t"
+      aria-labelledby="footer-heading"
+    >
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 border-b border-accents-2 py-12 text-black bg-white transition-colors duration-150">
-          <div className="col-span-1 lg:col-span-2">
-            <Link href="/">
-              <a
-                className="flex flex-initial items-center font-bold md:mr-24"
-                aria-label="Logo"
-              >
-                <span className="mr-2">
-                  <Logo width="100px" />
-                </span>
-              </a>
-            </Link>
+        <h2 id="footer-heading" className="sr-only">
+          Footer
+        </h2>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="py-20 xl:grid xl:grid-cols-3 xl:gap-8">
+            <div className="grid grid-cols-2 gap-8 xl:col-span-2">
+              <div className="space-y-16 md:space-y-0 md:grid md:grid-cols-2 md:gap-8">
+                <div>
+                  <h3 className="text-sm font-medium text-gray-900">Shop</h3>
+                  <ul role="list" className="mt-6 space-y-6">
+                    {footerNavigation.shop.map((item) => (
+                      <li key={item.name} className="text-sm">
+                        <a
+                          href={item.href}
+                          className="text-gray-500 hover:text-gray-600"
+                        >
+                          {item.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-sm font-medium text-gray-900">Company</h3>
+                  <ul role="list" className="mt-6 space-y-6">
+                    {footerNavigation.company.map((item) => (
+                      <li key={item.name} className="text-sm">
+                        <a
+                          href={item.href}
+                          className="text-gray-500 hover:text-gray-600"
+                        >
+                          {item.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="space-y-16 md:space-y-0 md:grid md:grid-cols-2 md:gap-8">
+                <div>
+                  <h3 className="text-sm font-medium text-gray-900">Account</h3>
+                  <ul role="list" className="mt-6 space-y-6">
+                    {footerNavigation.account.map((item) => (
+                      <li key={item.name} className="text-sm">
+                        <a
+                          href={item.href}
+                          className="text-gray-500 hover:text-gray-600"
+                        >
+                          {item.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-sm font-medium text-gray-900">Connect</h3>
+                  <ul role="list" className="mt-6 space-y-6">
+                    {footerNavigation.connect.map((item) => (
+                      <li key={item.name} className="text-sm">
+                        <a
+                          href={item.href}
+                          className="text-gray-500 hover:text-gray-600"
+                        >
+                          {item.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="mt-16 md:mt-16 xl:mt-0">
+              <h3 className="text-sm font-medium text-gray-900">
+                Sign up for our newsletter
+              </h3>
+              <p className="mt-6 text-sm text-gray-500">
+                The latest deals and savings, sent to your inbox weekly.
+              </p>
+              <form className="mt-2 flex sm:max-w-md">
+                <label htmlFor="email-address" className="sr-only">
+                  Email address
+                </label>
+                <input
+                  id="email-address"
+                  type="text"
+                  autoComplete="email"
+                  required
+                  className="appearance-none min-w-0 w-full bg-white border border-gray-300 shadow-sm py-2 px-4 text-base text-slate-500 placeholder-gray-500 focus:outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-500"
+                />
+                <div className=" flex-shrink-0">
+                  <button
+                    type="submit"
+                    className="w-full bg-black border border-transparent shadow-sm py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
+                  >
+                    Sign up
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-          <div className="col-span-1 lg:col-span-2">
-            <ul className="flex flex-initial flex-col md:flex-1">
-              <li className="py-3 md:py-0 md:pb-4">
-                <Link href="/">
-                  <a className="text-black hover:text-accents-6 transition ease-in-out duration-150">
-                    Home
-                  </a>
-                </Link>
-              </li>
-              <li className="py-3 md:py-0 md:pb-4">
-                <Link href="/">
-                  <a className="text-black hover:text-accents-6 transition ease-in-out duration-150">
-                    Careers
-                  </a>
-                </Link>
-              </li>
-              <li className="py-3 md:py-0 md:pb-4">
-                <Link href="/blog">
-                  <a className="text-black hover:text-accents-6 transition ease-in-out duration-150">
-                    Blog
-                  </a>
-                </Link>
-              </li>
-              {pages.map((page) => (
-                <li key={page} className="py-3 md:py-0 md:pb-4">
-                  <Link href={page}>
-                    <a className="text-black hover:text-accents-6 transition ease-in-out duration-150">
-                      {page}
-                    </a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="col-span-1 lg:col-span-2">
-            <ul className="flex flex-initial flex-col md:flex-1">
-              {LEGAL_PAGES.map((page) => (
-                <li key={page.url} className="py-3 md:py-0 md:pb-4">
-                  <Link href={page.url!}>
-                    <a className="text-black hover:text-accents-6 transition ease-in-out duration-150">
-                      {page.name}
-                    </a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="col-span-1 lg:col-span-6 flex items-start lg:justify-end text-black">
-            <div className="flex space-x-6 items-center h-10">
+
+          <div className="flex flex-row border-t border-gray-200 py-10">
+            <div className="flex-1">
+              <p className="text-sm text-gray-500">
+                &copy; 2020 ACME, Inc. All rights reserved.
+              </p>
+            </div>
+            <div className="flex flex-1 space-x-6 items-center h-10 justify-end">
               <a
                 aria-label="Github Repository"
                 href="https://github.com/vercel/commerce"
@@ -90,21 +168,6 @@ const Footer: FC<Props> = ({ className, pages = [] }) => {
               </a>
               <I18nWidget />
             </div>
-          </div>
-        </div>
-        <div className="py-12 flex flex-col md:flex-row justify-between items-center space-y-4">
-          <div>
-            <span>&copy; 2020 ACME, Inc. All rights reserved.</span>
-          </div>
-          <div className="flex items-center">
-            <span className="text-black">Crafted by</span>
-            <a href="https://vercel.com" aria-label="Vercel.com Link">
-              <img
-                src="/vercel.svg"
-                alt="Vercel.com Logo"
-                className="inline-block h-6 ml-4 text-black"
-              />
-            </a>
           </div>
         </div>
       </Container>

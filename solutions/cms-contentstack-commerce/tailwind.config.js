@@ -5,4 +5,12 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
     'node_modules/@vercel/examples-ui/**/*.{js,ts,jsx,tsx}',
   ],
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Inter', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
+      },
+    },
+  },
 }
