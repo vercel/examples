@@ -8,61 +8,95 @@ import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
 import api from '../api'
 import ProductCard from '../components/ProductCard'
 
-import notOptimizing from "../public/no-optimizing-board.jpg"
-import optimizing from "../public/optimizing-board.jpg"
+import notOptimizing from '../public/no-optimizing-board.jpg'
+import optimizing from '../public/optimizing-board.jpg'
 
 interface Props {
-  products: Product[];
+  products: Product[]
 }
 
-const Snippet: FC = ({children}) => {
+const Snippet: FC = ({ children }) => {
   return (
     <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 transition-all">
       {children}
     </pre>
-  );
+  )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const products = await api.list();
+  const products = await api.list()
 
   return {
     props: {
-      products
-    }
+      products,
+    },
   }
 }
 
-function Home({products}: Props) {
+function Home({ products }: Props) {
   return (
     <Page>
       <Head>
         <title>Rewrite at the edge using Upstash</title>
-        <meta name="description" content="How to avoid calling several services by pre-checking stock at the edge using a redis cache" />
+        <meta
+          name="description"
+          content="How to avoid calling several services by pre-checking stock at the edge using a redis cache"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <section className="flex flex-col gap-6">
         <Text variant="h1">Rewriting at the edge using Upstash</Text>
-        <Text>It's a common case to have a details page of a product or item and request our database for stock every time a user requests the page (althought our page might be using ISR and we fetch the stock client side).</Text>
-        <Text>Sometimes we don't have stock but we still hit our DB (API then DB if doing CSR), which may take a good amount of time depending on where the source and our API are and it may be expensive depending on how many requests for that page we have.</Text>
-        <Text>We can take some strategies to get faster responses using the edge, storing and checking in Upstash (a Redis cache service) if we have ran out of stock for a product and rewriting to a previously generated static no-stock page for that specific product. That way we reduce the amount of connections to our database, avoid uninteractive page due to disabled buy buttons, reduce layout shift in case the UI for no-stock page changes a lot, while having low latency by embracing the edge.</Text>
-        <Text>Imagine the next flow of an e-commerce site product details page:</Text>
+        <Text>
+          It's a common case to have a details page of a product or item and
+          request our database for stock every time a user requests the page
+          (even if our page is using ISR and we fetch the stock client side).
+        </Text>
+        <Text>
+          Sometimes we don't have stock but we still hit our DB (API then DB if
+          doing CSR), which can take a good amount of time depending on where
+          the source and our API are and it can be expensive depending on how
+          many requests for that page we have.
+        </Text>
+        <Text>
+          We can get faster responses using the edge, by storing and checking in
+          Redis if we have ran out of stock for a product and rewriting to a
+          previously generated static no-stock page for that specific product.
+          That way we reduce the amount of connections to our database, avoid
+          uninteractive page due to disabled buy buttons while checking stock
+          and reduce content changes when the UI has to change if there's no
+          stock, all while having low latency by embracing the edge.
+        </Text>
+        <Text>
+          Imagine the next flow of an e-commerce site product details page:
+        </Text>
         <Image src={notOptimizing} />
-        <Text>Now, lets check at the edge if we have stock using Upstash and rewrite to the correct page:</Text>
+        <Text>
+          Now, lets check at the edge if we have stock using Upstash (a Redis
+          service) and rewrite to the correct page:
+        </Text>
         <Image src={optimizing} />
-        <Text>Thats it, we only have to toggle the flag when we add an item or run out of stock.</Text>
+        <Text>
+          Thats it, we only have to toggle the flag when we add an item or run
+          out of stock.
+        </Text>
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
 
       <section className="flex flex-col gap-3">
-        <Text variant="h2">
-          Implementing the solution
+        <Text variant="h2">Implementing the solution</Text>
+        <Text>
+          For this example we will have 3 files related to the product details
+          page. <Code>/pages/product/[id]/no-stock.js</Code>,{' '}
+          <Code>/pages/product/[id]/index.js</Code> and{' '}
+          <Code>/pages/product/[id]/_middleware.js</Code>.
         </Text>
-        <Text>For this example we will have 3 files related to the product details page. <Code>/pages/product/[id]/no-stock.js</Code>, <Code>/pages/product/[id]/index.js</Code> and <Code>/pages/product/[id]/_middleware.js</Code>.</Text>
-        <Text>Lets start with our <Code>/pages/product/[id]/index.js</Code>:</Text>
-        <Snippet>{`export const getStaticProps = async ({params}) => {
+        <Text>
+          Lets start with our <Code>/pages/product/[id]/index.js</Code>:
+        </Text>
+        <Snippet>
+          {`export const getStaticProps = async ({params}) => {
   const product = await api.fetch(params.id)
 
   if (!product) {
@@ -79,9 +113,16 @@ function Home({products}: Props) {
   }
 }`}
         </Snippet>
-        <Text>This way we render the product is found or redirect the user to a 404 page otherwise.</Text>
-        <Text>Now lets handle the rewrite logic in <Code>/pages/product/[id]/_middleware.js</Code> :</Text>
-        <Snippet>{`import { NextResponse } from 'next/server'
+        <Text>
+          This way we render the product is found or redirect the user to a 404
+          page otherwise.
+        </Text>
+        <Text>
+          Now lets handle the rewrite logic in{' '}
+          <Code>/pages/product/[id]/_middleware.js</Code> :
+        </Text>
+        <Snippet>
+          {`import { NextResponse } from 'next/server'
 
 import api from "../../../api"
 
@@ -95,21 +136,26 @@ export async function middleware(req) {
   // Rewrite to the correct url
   return NextResponse.rewrite(
     hasStock
-      ? \`/product/\${id}/\` 
+      ? \`/product/\${id}/\`
       : \`/product/\${id}/no-stock\`
   )
 }
 `}
         </Snippet>
-        <Text>Now we will only get to the details screen if we have stock.</Text>
+        <Text>
+          Now we will only get to the details screen if we have stock.
+        </Text>
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
 
       <section className="flex flex-col gap-6">
-        <Text>Go to this products and play around with their stock and you will be rewrited to the correct page.</Text>
+        <Text>
+          Go to this products and play around with their stock and you will be
+          rewrited to the correct page.
+        </Text>
         <article className="flex flex-col gap-3">
-          {products.map(product => (
+          {products.map((product) => (
             <Link key={product.id} href={`/product/${product.id}`}>
               <ProductCard product={product} />
             </Link>
