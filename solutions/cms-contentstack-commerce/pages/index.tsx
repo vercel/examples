@@ -23,16 +23,12 @@ export async function getStaticProps({
 }: GetStaticPropsContext): Promise<
   GetStaticPropsResult<PageProps> | undefined
 > {
-  console.log('LOCALEEEEEE', nextLocale)
-
   try {
     const page = await cs.getEntryWithAssets(
       'home_page',
       'blt5c760b6ce70ae18b',
       nextLocale ? (nextLocale.toLocaleLowerCase() as string) : 'en-US'
     )
-
-    console.log('page', page)
 
     return {
       props: {
@@ -43,10 +39,6 @@ export async function getStaticProps({
     }
   } catch (err) {
     console.error(err)
-
-    return {
-      notFound: true,
-    }
   }
 }
 

@@ -3,11 +3,6 @@ let Stack: null | Contentstack.Stack = null
 
 function createClient() {
   if (!Stack) {
-    console.log(
-      process.env.CONTENTSTACK_API_KEY as string,
-      process.env.CONTENTSTACK_ACCESS_TOKEN as string,
-      process.env.NODE_ENV
-    )
     Stack = Contentstack.Stack({
       api_key: process.env.CONTENTSTACK_API_KEY as string,
       delivery_token: process.env.CONTENTSTACK_ACCESS_TOKEN as string,
