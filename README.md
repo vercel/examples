@@ -21,6 +21,7 @@ To quickly start contributing with a new example, run the following commands:
 npm i
 npm run new-example
 ```
+
 ## Read the Docs
 
 - [Vercel Docs](https://docs.vercel.com/)
