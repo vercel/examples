@@ -9,6 +9,7 @@ import Navbar from '@components/ui/Navbar'
 import Footer from '@components/ui/Footer'
 import type { UIComponentEntity } from '@components/ui/UIComponent'
 import type { HeaderEntity } from '@components/ui/Navbar/Navbar'
+import { defatultPageProps } from '@lib/defaults'
 interface PageProps {
   title: string
   seo: Record<string, string>
@@ -22,17 +23,30 @@ export async function getStaticProps({
 }: GetStaticPropsContext): Promise<
   GetStaticPropsResult<PageProps> | undefined
 > {
-  const page = await cs.getEntryWithAssets(
-    'home_page',
-    'blt5c760b6ce70ae18b',
-    nextLocale?.toLocaleLowerCase() as string
-  )
+  console.log('LOCALEEEEEE', nextLocale)
 
-  return {
-    props: {
-      ...page,
-    },
-    revalidate: 1,
+  try {
+    const page = await cs.getEntryWithAssets(
+      'home_page',
+      'blt5c760b6ce70ae18b',
+      nextLocale ? (nextLocale.toLocaleLowerCase() as string) : 'en-US'
+    )
+
+    console.log('page', page)
+
+    return {
+      props: {
+        ...defatultPageProps,
+        ...page,
+      },
+      revalidate: 1,
+    }
+  } catch (err) {
+    console.error(err)
+
+    return {
+      notFound: true,
+    }
   }
 }
 
