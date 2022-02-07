@@ -2,11 +2,22 @@ import * as Contentstack from 'contentstack'
 let Stack: null | Contentstack.Stack = null
 
 function createClient() {
+  console.log({
+    api_key: process.env.CONTENTSTACK_API_KEY as string,
+    delivery_token: process.env.CONTENTSTACK_ACCESS_TOKEN as string,
+    environment:
+      process.env.NODE_ENV ||
+      process.env.VERCEL_ENV ||
+      ('development' as string),
+  })
   if (!Stack) {
     Stack = Contentstack.Stack({
       api_key: process.env.CONTENTSTACK_API_KEY as string,
       delivery_token: process.env.CONTENTSTACK_ACCESS_TOKEN as string,
-      environment: process.env.NODE_ENV,
+      environment:
+        process.env.NODE_ENV ||
+        process.env.VERCEL_ENV ||
+        ('development' as string),
     })
   }
   return Stack
