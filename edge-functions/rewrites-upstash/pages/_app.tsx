@@ -11,7 +11,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="Rewrite on the edge"
-      path="solutions/rewrites-upstash"
+      path="edge/rewrites-upstash"
     >
       <Component {...pageProps} />
     </Layout>
