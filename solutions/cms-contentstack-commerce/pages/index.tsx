@@ -23,22 +23,18 @@ export async function getStaticProps({
 }: GetStaticPropsContext): Promise<
   GetStaticPropsResult<PageProps> | undefined
 > {
-  try {
-    const page = await cs.getEntryWithAssets(
-      'home_page',
-      'blt5c760b6ce70ae18b',
-      nextLocale ? (nextLocale.toLocaleLowerCase() as string) : 'en-US'
-    )
+  const page = await cs.getEntryWithAssets(
+    'home_page',
+    'blt5c760b6ce70ae18b',
+    nextLocale ? (nextLocale.toLocaleLowerCase() as string) : 'en-US'
+  )
 
-    return {
-      props: {
-        ...defatultPageProps,
-        ...page,
-      },
-      revalidate: 1,
-    }
-  } catch (err) {
-    console.error(err)
+  return {
+    props: {
+      ...defatultPageProps,
+      ...page,
+    },
+    revalidate: 1,
   }
 }
 
