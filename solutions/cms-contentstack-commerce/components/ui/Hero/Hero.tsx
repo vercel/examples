@@ -1,4 +1,3 @@
-import React, { FC } from 'react'
 import Image from 'next/image'
 import s from './Hero.module.css'
 import cn from 'classnames'
@@ -10,22 +9,25 @@ interface Props {
   priority?: boolean
 }
 
-const Hero: FC<Props> = ({ data, variant, priority = false }) => {
+const Hero: React.FC<Props> = ({ data, variant, priority = false }) => {
+  const image =
+    data.background_image && data.background_image.url
+      ? data.background_image.url
+      : '/placeholder.png'
+
   if (variant === 'to-r') {
     return (
       <div className={s.toR} style={{ height: '467px' }}>
-        {data.background_image ? (
-          <div className="absolute inset-0 overflow-hidden">
-            <Image
-              className="object-fill"
-              alt="img"
-              src={data.background_image}
-              layout="fill"
-              quality="75"
-              priority={priority}
-            />
-          </div>
-        ) : null}
+        <div className="absolute inset-0 overflow-hidden">
+          <Image
+            className="object-fill"
+            alt="img"
+            src={image}
+            layout="fill"
+            quality="75"
+            priority={priority}
+          />
+        </div>
         <div className="flex-1" />
         <div className="flex flex-1 flex-col items-center justify-center z-10 bg-gray-50 md:bg-transparent px-6 m-6 md:p-0 md:m-0">
           {data.title && (
@@ -66,7 +68,7 @@ const Hero: FC<Props> = ({ data, variant, priority = false }) => {
             <Image
               className="object-fill"
               alt="img"
-              src={data.background_image}
+              src={image}
               layout="fill"
               quality="75"
               priority={priority}
@@ -102,17 +104,15 @@ const Hero: FC<Props> = ({ data, variant, priority = false }) => {
       className="relative flex items-center justify-center text-center mb-4 bg-red"
       style={{ minHeight: '467px' }}
     >
-      {data.background_image ? (
-        <div className="absolute inset-0 overflow-hidden">
-          <Image
-            className="object-cover"
-            alt="img"
-            src={data.background_image}
-            layout="fill"
-            priority
-          />
-        </div>
-      ) : null}
+      <div className="absolute inset-0 overflow-hidden">
+        <Image
+          className="object-cover"
+          alt="img"
+          src={image}
+          layout="fill"
+          priority
+        />
+      </div>
       <div className="bg-white bg-opacity-90 p-10 m-6 max-w-2xl z-10">
         <h2 className="text-2xl font-bold px-12 mb-2">{data.title}</h2>
         <p
@@ -130,4 +130,3 @@ const Hero: FC<Props> = ({ data, variant, priority = false }) => {
 }
 
 export default Hero
-// export default () => null

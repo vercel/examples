@@ -1,65 +1,50 @@
 import type { GetStaticPropsContext, GetStaticPropsResult } from 'next'
 import Head from 'next/head'
-
 import cs from '@lib/contentstack'
-import { Layout, Link, Page } from '@vercel/examples-ui'
-import Container from '@components/ui/Container'
-import UIComponent from '@components/ui/UIComponent'
-import Navbar from '@components/ui/Navbar'
-import Footer from '@components/ui/Footer'
-import type { UIComponentEntity } from '@components/ui/UIComponent'
-import type { HeaderEntity } from '@components/ui/Navbar/Navbar'
-import { defatultPageProps } from '@lib/defaults'
-interface PageProps {
-  title: string
-  seo: Record<string, string>
-  blocks: UIComponentEntity[]
-  header: HeaderEntity
-  locale: string
-}
+import { Layout } from '@vercel/examples-ui'
+import { Navbar, Footer, UIComponent, Container } from '@components/ui'
+
 export async function getStaticProps({
   locale: nextLocale,
-  locales,
 }: GetStaticPropsContext): Promise<
-  GetStaticPropsResult<PageProps> | undefined
+  GetStaticPropsResult<Entry | null> | undefined
 > {
-  const page = await cs.getEntryWithAssets(
-    'home_page',
-    'blt5c760b6ce70ae18b',
-    nextLocale ? (nextLocale.toLocaleLowerCase() as string) : 'en-US'
-  )
+  try {
+    const entity = await cs.getEntry(
+      'home_page',
+      'blt5c760b6ce70ae18b',
+      nextLocale ? (nextLocale.toLocaleLowerCase() as string) : 'en-US'
+    )
 
-  return {
-    props: {
-      ...defatultPageProps,
-      ...page,
-    },
-    revalidate: 1,
+    if (entity) {
+      return {
+        props: {
+          ...entity,
+        },
+        revalidate: 1,
+      }
+    }
+
+    throw new Error('Entry is not valid')
+  } catch (err) {
+    console.log(err)
   }
 }
 
-function Home({
-  title,
-  seo,
-  locale,
-  blocks = [],
-  header = { links: [] },
-}: PageProps) {
+function Index(props: Entry) {
+  const { title, seo, modular_blocks = [], header = { links: [] } } = props
   return (
     <>
       <Head>
         <title>
-          {title} - ContentStack Commerce Demo using Next.js and Vercel
+          {seo.title ? seo.title : title} - {seo.description}
         </title>
-        <meta
-          name="description"
-          content="ContentStack Commerce Demo using Next.js and Vercel"
-        />
+        <meta name="description" content={seo.description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
         <Navbar data={header} />
-        {blocks.map(({ component }, i) => {
+        {modular_blocks.map(({ component }, i) => {
           const { component_type, component_variant, ...rest } = component
           return (
             <UIComponent
@@ -77,6 +62,6 @@ function Home({
   )
 }
 
-Home.Layout = Layout
+Index.Layout = Layout
 
-export default Home
+export default Index

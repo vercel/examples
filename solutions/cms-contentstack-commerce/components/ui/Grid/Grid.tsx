@@ -74,13 +74,13 @@ const Grid: FC<Props> = ({ className, children, variant, data = {} }) => {
           {grid.map(({ item }, i) => (
             <div
               className="flex flex-col items-center text-center mb-4"
-              key={`${item.img}${i}`}
+              key={`item__${i}`}
             >
               <div className="mb-2">
-                {item.img && (
+                {item.img.url && (
                   <Image
-                    alt="img"
-                    src={item.img}
+                    src={item.img.url}
+                    alt={item.img.title}
                     layout="fixed"
                     {...meassureProps}
                   />

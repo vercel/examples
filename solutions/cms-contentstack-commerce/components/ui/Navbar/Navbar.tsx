@@ -1,45 +1,32 @@
-import { FC, useState, useEffect } from 'react'
+import cn from 'classnames'
 import Link from 'next/link'
 import s from './Navbar.module.css'
 import Container from '@components/ui/Container'
 import I18nWidget from '@components/ui/I18nWidget'
 import Logo from '@components/ui/Logo'
 import UserNav from '@components/ui/UserNav'
-import cn from 'classnames'
-import { Menu, MapPin, Search, Bag } from '@components/icons'
-export interface HeaderEntity {
-  links: Array<Record<string, Link>>
-}
+import { Menu, MapPin, Search, Bag, ChevronDown } from '@components/icons'
 
-interface Link {
-  title: string
-  url: string
-}
-
-const Navbar: FC<{
-  data: HeaderEntity
-}> = ({ data = {} }) => {
+const Navbar: React.FC<{
+  data: {
+    bannerText: string
+    links: Array<Record<string, Link>>
+  }
+}> = ({
+  data = {
+    bannerText: 'Sale | Up To 50% Off Select Full-priced Styles',
+    links: [],
+  },
+}) => {
   return (
     <div className={cn(s.root)}>
       <Container>
         <div className="flex items-center bg-slate-300 py-2 px-6">
           <div className="mr-2">
-            <svg
-              viewBox="0 0 24 24"
-              width="20"
-              height="20"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-              shapeRendering="geometricPrecision"
-            >
-              <path d="M6 9l6 6 6-6" />
-            </svg>
+            <ChevronDown />
           </div>
           <span className="text-sm uppercase tracking-wider font-medium">
-            Sale | Up To 50% Off Select Full-priced Styles
+            {data.bannerText}
           </span>
         </div>
         <div className="flex justify-between items-center flex-row px-2 py-2 md:py-2 relative">
