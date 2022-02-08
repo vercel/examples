@@ -115,7 +115,7 @@ const Hero: React.FC<Props> = ({ data, variant, priority = false }) => {
       </div>
       <div className="bg-white bg-opacity-90 p-10 m-6 max-w-2xl z-10">
         <h2 className="text-2xl font-bold px-12 mb-2">{data.title}</h2>
-        <p
+        <div
           className="mb-6"
           dangerouslySetInnerHTML={{ __html: data.description }}
         />

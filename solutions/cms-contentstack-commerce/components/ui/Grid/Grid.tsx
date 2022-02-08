@@ -62,9 +62,9 @@ const Grid: FC<Props> = ({ className, children, variant, data = {} }) => {
 
     return (
       <div>
-        <div className="text-center mb-6">
+        <div className="text-center my-12">
           {data.title && (
-            <h2 className="mb-2 text-xl font-medium tracking-wide uppercase">
+            <h2 className="mb-2 text-4xl font-semibold tracking-wide uppercase">
               {data.title}
             </h2>
           )}
@@ -73,7 +73,7 @@ const Grid: FC<Props> = ({ className, children, variant, data = {} }) => {
         <div className={rootClassName}>
           {grid.map(({ item }, i) => (
             <div
-              className="flex flex-col items-center text-center mb-4"
+              className="flex flex-col items-center text-center mb-10"
               key={`item__${i}`}
             >
               <div className="mb-2">
@@ -92,7 +92,7 @@ const Grid: FC<Props> = ({ className, children, variant, data = {} }) => {
                 </h2>
               )}
               {item.description && (
-                <p
+                <div
                   className="mb-2 px-4"
                   dangerouslySetInnerHTML={{ __html: item.description }}
                 />

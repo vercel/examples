@@ -5,21 +5,21 @@ import { Layout } from '@vercel/examples-ui'
 import { Navbar, Footer, UIComponent, Container } from '@components/ui'
 
 export async function getStaticProps({
-  locale: nextLocale,
+  locale,
 }: GetStaticPropsContext): Promise<
   GetStaticPropsResult<Entry | null> | undefined
 > {
   try {
-    const entity = await cs.getEntry(
+    const entry = await cs.getEntry(
       'home_page',
       'blt5c760b6ce70ae18b',
-      nextLocale ? (nextLocale.toLocaleLowerCase() as string) : 'en-US'
+      locale ? (locale.toLocaleLowerCase() as string) : 'en-US'
     )
 
-    if (entity) {
+    if (entry) {
       return {
         props: {
-          ...entity,
+          ...entry,
         },
         revalidate: 1,
       }
