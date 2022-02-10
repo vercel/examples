@@ -11,12 +11,18 @@ import { NotConnectedAvatar } from './NotConnectedAvatar'
 export const ConnectWallet: React.VFC = () => {
   const [avatarAnimationData, setAvatarAnimationData] = useState<any>()
   // start at true since we need the hooks from wagmi to get propagated by metamask before showing wrong chain warning
-  const { isRightChain, handleSwitchNetwork } = useRightChain()
+  const { isRightChain, handleSwitchNetwork } = useRightChain(true)
   const [{ data: connectData }, connect] = useConnect()
   const [{ data: accountData }, disconnect] = useAccount({
     fetchEns: true,
   })
   const { authenticate } = useMoralis()
+
+  useEffect(() => {
+    if (accountData?.address && !isRightChain) {
+      setTimeout(handleSwitchNetwork, 1500)
+    }
+  }, [isRightChain, accountData?.address])
 
   const handleConnect = async () => {
     await authenticate({

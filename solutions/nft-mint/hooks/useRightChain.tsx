@@ -6,12 +6,6 @@ export const useRightChain = () => {
   const [isRightChain, setIsRightChain] = useState(true)
   const [{ data }, switchNetwork] = useNetwork()
 
-  useEffect(() => {
-    if (data.chain) {
-      setIsRightChain(data?.chain?.id === NETWORK_ID)
-    }
-  }, [data.chain])
-
   const handleSwitchNetwork = () => {
     if (
       typeof data.chain !== 'undefined' &&
@@ -20,6 +14,12 @@ export const useRightChain = () => {
       switchNetwork(NETWORK_ID)
     }
   }
+
+  useEffect(() => {
+    if (data.chain) {
+      setIsRightChain(data?.chain?.id === NETWORK_ID)
+    }
+  }, [data.chain])
 
   return { isRightChain, handleSwitchNetwork }
 }

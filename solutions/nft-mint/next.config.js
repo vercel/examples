@@ -1,5 +1,7 @@
+const withTM = require('@vercel/examples-ui/transpile')()
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = withTM({
   reactStrictMode: true,
   images: {
     domains: [
@@ -12,6 +14,4 @@ const nextConfig = {
       'link.us1.storjshare.io',
     ],
   },
-}
-
-module.exports = nextConfig
+})

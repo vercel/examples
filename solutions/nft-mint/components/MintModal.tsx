@@ -7,8 +7,8 @@ import Moralis from 'moralis'
 import { NftImage } from './NftImage'
 import Lottie from 'react-lottie-player'
 import { ConnectWallet } from './ConnectWallet'
-import { isImageSafe, resizeImage } from '../helpers/sanitize.helpers'
-import { useMoralis } from 'react-moralis'
+import { isImageSafe } from '../helpers/sanitize.helpers'
+import { Button, LoadingDots } from '@vercel/examples-ui'
 
 type props = {
   open: boolean
@@ -208,15 +208,14 @@ export const MintModal: React.VFC<props> = ({ open, setOpen }) => {
                 )}
 
                 <section className="mt-8 flex justify-center">
-                  <button
+                  <Button
+                    size="lg"
+                    variant="black"
                     onClick={handleMint}
                     disabled={!accountData || !asset || loading}
-                    className="cursor-pointer border-2 border-gray-500  inline-block bg-white border border-transparent rounded-md py-3 px-8 text-base font-medium text-gray-900 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 disabled:bg-slate-50disabled:border-slate-200 disabled:shadow-none
-                  invalid:border-pink-500 invalid:text-pink-600 disabled:cursor-not-allowed
-                  focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
                   >
                     Mint now!
-                  </button>
+                  </Button>
                 </section>
               </div>
             </Transition.Child>

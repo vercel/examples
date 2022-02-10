@@ -1,14 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import useSWRInfinite from 'swr/infinite'
-import useSWR from 'swr'
 import fetcher, { getKey } from '../lib/fetcher'
 import { NftMeta } from './api/nft'
 import { NftImage } from '../components/NftImage'
 import { Transition } from '@headlessui/react'
 import { useInView } from 'react-intersection-observer'
 import { MintModal } from '../components/MintModal'
+import { Button } from '@vercel/examples-ui'
 
 export default function Home() {
   const { data, size, setSize } = useSWRInfinite(getKey, fetcher)
@@ -47,33 +46,31 @@ export default function Home() {
   return (
     <div className="bg-white">
       <MintModal open={open} setOpen={setOpen} />
-      <div className="relative bg-gray-900">
-        <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-          <Image
-            src="https://images.unsplash.com/photo-1642609199263-23dcbef81e16?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3131&q=80"
-            layout="fill"
-          />
-        </div>
+      <div className="relative ">
         <div
           aria-hidden="true"
-          className="absolute h-full inset-0 bg-gray-900 opacity-50"
+          className="absolute h-full inset-0  opacity-50"
         />
 
-        <div className="relative max-w-3xl mx-auto py-32 px-6 flex flex-col items-center text-center sm:py-64 lg:px-0">
-          <h1 className="text-4xl font-extrabold tracking-tight text-white lg:text-6xl">
+        <div className="relative max-w-3xl mx-auto py-32 px-6 flex flex-col items-center text-center sm:py-40 lg:px-0">
+          <Image src="/vercel-icon-dark.svg" width={100} height={100} />
+
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl">
             Explore and Mint Non Fungible Tokens
           </h1>
-          <p className="mt-4 text-xl text-white">
+          <p className="mt-4 text-xl t">
             Explore the latest art by four favorist artists and upload your art
             to the blockchain!
           </p>
 
-          <button
+          <Button
+            size="lg"
             onClick={handleMintModal}
+            variant="black"
             className="mt-8 cursor-pointer inline-block bg-white border border-transparent rounded-md py-3 px-8 text-base font-medium text-gray-900 hover:bg-gray-100"
           >
             Mint now!
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -90,12 +87,6 @@ export default function Home() {
             >
               Explore popular NFT collections
             </h2>
-            <a
-              href="#"
-              className="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block"
-            >
-              Mint your own!<span aria-hidden="true"> &rarr;</span>
-            </a>
           </div>
 
           <ul
