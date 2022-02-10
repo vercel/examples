@@ -1,6 +1,8 @@
-# Feature Flags Optimizely
+# Optimizely Full Stack Feature Flags and Experimentation
 
-[Optimizely](https://www.optimizely.com/company/) provides a leading digital experience platform (DXP), that empowers teams with the tools and insights they need to create and optimize in new and novel ways. With Optimizely, you can operate with data-driven confidence to create hyper-personalized experiences. Our content, commerce, intelligence and experimentation capabilities make even the most complex scenarios simple. Optimizely has more than 900 partners around the globe.
+[Optimizely Full Stack](https://docs.developers.optimizely.com/full-stack/docs) is a feature flagging and experimentation platform for websites, mobile apps, chatbots, APIs, smart devices, and anything else with a network connection.
+
+You can deploy code behind feature flags, experiment with A/B tests, and roll out or roll back features immediately. All of this functionality is available with minimal performance impact via easy-to-use, open source SDKs.
 
 In this example, you will be able to use optimizely feature flags at the edge with [NextJS](https://nextjs.org/) applications deployed on [Vercel](https://vercel.com/).
 
