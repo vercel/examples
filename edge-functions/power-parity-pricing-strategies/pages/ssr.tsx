@@ -4,7 +4,7 @@ import type { Country, Product } from '../types'
 import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Layout } from '@vercel/edge-functions-ui'
+import { Layout } from '@vercel/examples-ui'
 
 import api from '../api'
 import { getDiscountedPrice } from '../utils'
@@ -41,7 +41,7 @@ function SSRProductPage({ country, product }: Props) {
 
   return (
     <>
-      <div className="lg:h-[440px] lg:w-[440px] h-[260px] w-[260px] ml-14 lg:ml-24 -mb-40 lg:-mb-56">
+      <div className="ml-14 lg:ml-24 -mb-40 lg:-mb-56">
         <Image
           className="pointer-events-none"
           alt={product.name}
@@ -51,7 +51,7 @@ function SSRProductPage({ country, product }: Props) {
           layout="responsive"
         />
       </div>
-      <section className="border border-gray-300 bg-white rounded-lg shadow-lg mt-16 w-full max-w-[480px] hover:shadow-2xl transition pt-16 lg:pt-24">
+      <section className="border border-gray-300 bg-white rounded-lg shadow-lg mt-16 w-full hover:shadow-2xl transition pt-16 lg:pt-24">
         <div className="p-4 flex flex-col justify-center items-center border-b">
           <div className="flex justify-between w-full items-baseline">
             <div className="ml-4 mr-auto text-left flex flex-col">
@@ -96,7 +96,11 @@ function SSRProductPage({ country, product }: Props) {
             </label>
           </div>
           <a
-            href={isParityEnabled ? product.link : `${STORE_URL}/cart/${REGIONS['default'].id}:1`}
+            href={
+              isParityEnabled
+                ? product.link
+                : `${STORE_URL}/cart/${REGIONS['default'].id}:1`
+            }
             rel="noopener noreferrer"
             target="_blank"
             className="py-4 px-6 text-lg w-full bg-black text-center text-white hover:text-white rounded-md hover:bg-gray-900"

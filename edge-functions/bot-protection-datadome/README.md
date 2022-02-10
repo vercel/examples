@@ -4,7 +4,7 @@
 
 ## Demo
 
-https://edge-functions-bot-protection-datadome.vercel.sh
+https://edge-functions-bot-protection-datadome.vercel.app
 
 ### One-Click Deploy
 

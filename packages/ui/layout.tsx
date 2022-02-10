@@ -12,7 +12,7 @@ const Layout: FC<LayoutProps> = ({ title, path, deployButton, children }) => {
     <div className="mx-auto h-screen flex flex-col">
       {title && (
         <Head>
-          <title>{title} - Vercel Edge Functions</title>
+          <title>{title} - Vercel Examples</title>
         </Head>
       )}
 

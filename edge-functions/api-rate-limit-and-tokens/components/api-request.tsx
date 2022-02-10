@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { Button, Text } from '@vercel/edge-functions-ui'
+import { Button, Text } from '@vercel/examples-ui'
 
 function fetchDemo(key: string) {
   if (!key) return `const res = await fetch('/api')`

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { Layout, Page, Text, Link } from '@vercel/edge-functions-ui'
+import { Layout, Page, Text, Link } from '@vercel/examples-ui'
 
 export default function About(props) {
   

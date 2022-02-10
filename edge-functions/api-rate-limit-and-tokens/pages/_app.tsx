@@ -1,8 +1,8 @@
 import type { AppProps } from 'next/app'
 import { SWRConfig } from 'swr'
-import type { LayoutProps } from '@vercel/edge-functions-ui/layout'
-import { getLayout } from '@vercel/edge-functions-ui'
-import '@vercel/edge-functions-ui/globals.css'
+import type { LayoutProps } from '@vercel/examples-ui/layout'
+import { getLayout } from '@vercel/examples-ui'
+import '@vercel/examples-ui/globals.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
@@ -17,7 +17,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     >
       <Layout
         title="API Rate Limiting and IP Blocking"
-        path="api-rate-limit-and-tokens"
+        path="edge-functions/api-rate-limit-and-tokens"
         deployButton={{
           env: [
             'UPSTASH_REST_API_DOMAIN',

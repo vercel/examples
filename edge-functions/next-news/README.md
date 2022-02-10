@@ -14,7 +14,7 @@ export default function middleware(req) {
 
 ## Demo
 
-https://edge-functions-next-news.vercel.app
+https://next-news.vercel.app/
 
 ## How to Use
 

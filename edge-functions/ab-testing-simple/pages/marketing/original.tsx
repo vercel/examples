@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
-import { Layout, Page, Text, Button } from '@vercel/edge-functions-ui'
+import { Layout, Page, Text, Button } from '@vercel/examples-ui'
 import { MARKETING_BUCKETS } from '@lib/buckets'
 
 export default function Marketing() {

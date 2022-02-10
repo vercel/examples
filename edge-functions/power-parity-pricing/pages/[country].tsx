@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import type { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import type { ParsedUrlQuery } from 'querystring'
-import { Layout } from '@vercel/edge-functions-ui'
+import { Layout } from '@vercel/examples-ui'
 
 import type { Country } from '../types'
 import shirt from '../public/shirt.png'
@@ -124,7 +124,7 @@ export default function CountryPage({ country, parity }) {
                   className="bg-gray-200 inline-flex"
                   width={16}
                   height={12}
-                  src={`https://lipis.github.io/flag-icon-css/flags/4x3/${country.toLowerCase()}.svg`}
+                  src={`https://country-flags.vercel.sh/s/${country.toUpperCase()}.svg`}
                 />
                 <span>
                   . We are offering purchasing power parity pricing. If that is

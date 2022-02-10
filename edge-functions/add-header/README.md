@@ -35,7 +35,7 @@ export function middleware(req: NextRequest) {
 
 ## Demo
 
-https://edge-functions-add-header.vercel.sh
+https://edge-functions-add-header.vercel.app
 
 ## How to Use
 

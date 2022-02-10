@@ -6,7 +6,7 @@ import DeployButton, { DeployButtonProps } from '../deploy-button'
 import s from './nav.module.css'
 
 const REPO_URL = 'https://github.com/vercel/examples'
-const REPO_DIR = '/tree/main/edge-functions'
+const REPO_DIR = '/tree/main/'
 
 export interface NavProps {
   path: string
@@ -43,7 +43,7 @@ export default function Nav({ path, deployButton }: NavProps) {
           </li>
           <li className="font-medium" style={{ letterSpacing: '.01px' }}>
             <Link href="/" className={s.link}>
-              Edge Functions Examples{path ? ` / ${path}` : ''}
+              Vercel Examples{path ? ` / ${path}` : ''}
             </Link>
           </li>
         </div>

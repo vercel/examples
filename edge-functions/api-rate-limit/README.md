@@ -6,7 +6,7 @@ The pattern for rate limiting is inspired by the [GitHub API](https://docs.githu
 
 ## Demo
 
-https://edge-functions-api-rate-limit.vercel.sh
+https://edge-functions-api-rate-limit.vercel.app
 
 ### One-Click Deploy
 

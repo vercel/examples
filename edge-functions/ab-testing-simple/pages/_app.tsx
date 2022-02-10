@@ -1,13 +1,13 @@
 import type { AppProps } from 'next/app'
-import type { LayoutProps } from '@vercel/edge-functions-ui/layout'
-import { getLayout } from '@vercel/edge-functions-ui'
-import '@vercel/edge-functions-ui/globals.css'
+import type { LayoutProps } from '@vercel/examples-ui/layout'
+import { getLayout } from '@vercel/examples-ui'
+import '@vercel/examples-ui/globals.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="AB Testing with buckets" path="ab-testing-simple">
+    <Layout title="AB Testing with buckets" path="edge-functions/ab-testing-simple">
       <Component {...pageProps} />
     </Layout>
   )

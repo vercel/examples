@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import map from '../public/map.svg'
-import { Layout } from '@vercel/edge-functions-ui'
+import { Layout } from '@vercel/examples-ui'
 
 // Forward properties from `_middleware.tsx`
 // When support for configuring gSSP to use Edge Functions lands,
