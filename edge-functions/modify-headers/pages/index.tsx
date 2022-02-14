@@ -33,7 +33,7 @@ function IndexPage() {
       <section className="flex flex-col gap-6">
         <Text variant="h1">Modifying headers at the edge</Text>
         <Text>
-          In some cases we might want to modify the headers from an incoming request for different reasons, AB testing, personalization, analytics, etc. To have access to the tenative response whe can call <Code>NextResponse.next()</Code> and then modify its headers:
+          In some cases we might want to modify the headers from an incoming request for different reasons, AB testing, personalization, analytics, etc. To have access to the tenative response we can call <Code>NextResponse.next()</Code> and then modify its headers:
         </Text>
         <Snippet>
           {`// Store the response so we can modify its headers
