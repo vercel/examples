@@ -10,8 +10,8 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="Modify headers"
-      path="edge-functions/modify-headers"
+      title="Add header"
+      path="edge-functions/add-header"
     >
       <Component {...pageProps} />
     </Layout>

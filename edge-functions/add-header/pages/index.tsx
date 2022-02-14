@@ -23,17 +23,17 @@ function IndexPage() {
   return (
     <Page>
       <Head>
-        <title>Modifying headers at the edge</title>
+        <title>Adding headers at the edge</title>
         <meta
           name="description"
-          content="How to modify headers from an incoming request"
+          content="How to add headers to an incoming request"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section className="flex flex-col gap-6">
-        <Text variant="h1">Modifying headers at the edge</Text>
+        <Text variant="h1">Adding headers at the edge</Text>
         <Text>
-          In some cases we might want to modify the headers from an incoming request for different reasons, AB testing, personalization, analytics, etc. To have access to the tenative response we can call <Code>NextResponse.next()</Code> and then modify its headers:
+          In some cases we might want to add or modify the headers from an incoming request for different reasons, AB testing, personalization, analytics, etc. To have access to the tenative response we can call <Code>NextResponse.next()</Code> and then modify its headers:
         </Text>
         <Snippet>
           {`// Store the response so we can modify its headers
