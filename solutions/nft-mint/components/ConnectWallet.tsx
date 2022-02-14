@@ -1,80 +1,53 @@
-import { useState, useEffect } from 'react'
-import Lottie from 'react-lottie-player'
+import { useState } from 'react'
 import { useMoralis } from 'react-moralis'
-import { useAccount, useConnect, useNetwork } from 'wagmi'
+import { useConnect } from 'wagmi'
 
-import { getShortenedAddress } from '../helpers/address.helpers'
-import { currentChainLabel } from '../helpers/constant.helpers'
-import { useRightChain } from '../hooks/useRightChain'
-import { NotConnectedAvatar } from './NotConnectedAvatar'
+import { Button, Text, LoadingDots } from '@vercel/examples-ui'
 
 export const ConnectWallet: React.VFC = () => {
-  const [avatarAnimationData, setAvatarAnimationData] = useState<any>()
-  // start at true since we need the hooks from wagmi to get propagated by metamask before showing wrong chain warning
-  const { isRightChain, handleSwitchNetwork } = useRightChain(true)
+  const [loading, setLoading] = useState(false)
+
   const [{ data: connectData }, connect] = useConnect()
-  const [{ data: accountData }, disconnect] = useAccount({
-    fetchEns: true,
-  })
+
   const { authenticate } = useMoralis()
 
-  useEffect(() => {
-    if (accountData?.address && !isRightChain) {
-      setTimeout(handleSwitchNetwork, 1500)
-    }
-  }, [isRightChain, accountData?.address])
-
   const handleConnect = async () => {
+    setLoading(true)
     await authenticate({
       signingMessage: 'Authorize linking of your wallet to',
     })
     await connect(connectData.connectors[0])
+    setLoading(false)
   }
 
-  // lazy load avatar animation
-  useEffect(() => {
-    import('../lottie.avatar.json').then(setAvatarAnimationData)
-  }, [])
-
   return (
-    <span className="flex justify-center flex-col items-center">
-      <button
-        onClick={accountData ? disconnect : handleConnect}
-        className="flex-shrink-0 group block"
-      >
-        <div className="flex items-center">
-          <div>
-            {accountData ? (
-              <Lottie
-                animationData={avatarAnimationData}
-                style={{ height: 100, width: 100 }}
-                play
-                loop
-              />
-            ) : (
-              <NotConnectedAvatar />
-            )}
-          </div>
-          <div className="ml-3">
-            <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-              {accountData
-                ? getShortenedAddress(accountData.address)
-                : 'No Wallet Connected'}
-            </p>
-            <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-              {accountData ? 'disconnect' : 'connect your wallet'}
-            </p>
-          </div>
+    <div className="px-4 py-5 sm:p-6 flex flex-col ">
+      <h3 className="text-lg leading-6 font-medium text-gray-900">
+        Connecting your wallet
+      </h3>
+      <div className="mt-2 items-start justify-between">
+        <Text className="max-w-xl text-sm text-gray-500">
+          In order to mint your NFT you must connect your wallet using the{' '}
+          <a className="underline" href="https://metamask.io/" target="_blank">
+            Metamask extension.
+          </a>{' '}
+          This will also be used to authenticate you to{' '}
+          <a href="https://moralis.io/" className="underline" target="_blank">
+            Moralis
+          </a>{' '}
+          anonymously.
+        </Text>
+        <div className="mt-12  flex justify-center">
+          <Button
+            type="button"
+            size="lg"
+            variant="black"
+            onClick={handleConnect}
+          >
+            {loading ? <LoadingDots /> : 'Connect Wallet'}
+          </Button>
         </div>
-      </button>
-      {!isRightChain && (
-        <button
-          onClick={handleSwitchNetwork}
-          className="font-extrabold underline text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600"
-        >
-          Switch to {currentChainLabel}
-        </button>
-      )}
-    </span>
+      </div>
+    </div>
   )
 }

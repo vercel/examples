@@ -1,35 +1,51 @@
-import { Fragment, useCallback, useState, useEffect } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { useRouter } from 'next/router'
-import { DropZone } from './DropZone'
-import { useAccount, useConnect } from 'wagmi'
+import { useAccount, useConnect, useNetwork } from 'wagmi'
 import Moralis from 'moralis'
-import { NftImage } from './NftImage'
-import Lottie from 'react-lottie-player'
 import { ConnectWallet } from './ConnectWallet'
-import { isImageSafe } from '../helpers/sanitize.helpers'
-import { Button, LoadingDots } from '@vercel/examples-ui'
+import { SwitchNetwork } from './SwitchNetwork'
+import { UploadNft } from './UploadNft'
+import { Button, LoadingDots, Text } from '@vercel/examples-ui'
+import { NETWORK_ID } from '../helpers/constant.helpers'
+import { NftImage } from './NftImage'
 
 type props = {
   open: boolean
   setOpen: (open: boolean) => void
 }
 
+enum MintState {
+  Connect,
+  ConfirmNetwork,
+  Upload,
+  ConfirmMint,
+  Loading,
+}
+
 export const MintModal: React.VFC<props> = ({ open, setOpen }) => {
-  const notConnectedWarning = 'Please connect your wallet first'
-  const imageNotSafeWarning = "Oops! We can't mint this!"
   const router = useRouter()
-  const [loadingAnimationData, setLoadingAnimationData] = useState<any>()
+  const [state, setState] = useState<MintState>(MintState.Connect)
+
   const [loading, setLoading] = useState(false)
-  const [imageWarning, setImageWarning] = useState('')
 
   const [asset, setAsset] = useState<Moralis.File | null>(null)
-  const [{ data: connectData }, connect] = useConnect()
-  const [{ data: accountData }] = useAccount({
-    fetchEns: true,
-  })
+  const [{ data: accountData }] = useAccount()
+  const [{ data: networkData }] = useNetwork()
 
-  console.log(accountData)
+  useEffect(() => {
+    if (accountData?.address) {
+      setState(MintState.ConfirmNetwork)
+    } else {
+      setState(MintState.Connect)
+    }
+  }, [accountData?.address])
+
+  useEffect(() => {
+    if (networkData?.chain?.id === NETWORK_ID) {
+      setState(MintState.Upload)
+    }
+  }, [networkData.chain?.id])
 
   const handleReset = () => {
     setLoading(false)
@@ -37,53 +53,9 @@ export const MintModal: React.VFC<props> = ({ open, setOpen }) => {
     setOpen(false)
   }
 
-  useEffect(() => {
-    import('../lottie.animation.json').then(setLoadingAnimationData)
-  }, [])
-
-  useEffect(() => {
-    if (accountData?.address && imageWarning === notConnectedWarning) {
-      setImageWarning('')
-    }
-  }, [accountData?.address])
-
-  const onDrop = useCallback(
-    async (acceptedFiles) => {
-      try {
-        if (!accountData?.address) {
-          setImageWarning('Please connect your wallet first')
-          return
-        }
-        await connect(connectData.connectors[0])
-        setLoading(true)
-        setImageWarning('')
-
-        const data = acceptedFiles[0]
-
-        const imageSafety = await isImageSafe(data)
-
-        if (Object.values(imageSafety).some((safe) => !safe)) {
-          setImageWarning(imageNotSafeWarning)
-          setLoading(false)
-          return
-        }
-
-        const imageFile = new Moralis.File(data.name, data)
-
-        await imageFile.saveIPFS()
-        setLoading(false)
-        setAsset(imageFile)
-      } catch (e) {
-        console.error(e)
-      }
-    },
-    [accountData?.address]
-  )
-
   const handleMint = async () => {
     try {
       setLoading(true)
-      setImageWarning('')
       await Moralis.enableWeb3()
 
       const metadata = {
@@ -121,6 +93,11 @@ export const MintModal: React.VFC<props> = ({ open, setOpen }) => {
     }
   }
 
+  const onUploadComplete = async (asset: Moralis.File) => {
+    setAsset(asset)
+    setState(MintState.ConfirmMint)
+  }
+
   return (
     <>
       <Transition.Root show={open} as={Fragment}>
@@ -129,7 +106,7 @@ export const MintModal: React.VFC<props> = ({ open, setOpen }) => {
           className="fixed z-10 inset-0 overflow-y-auto"
           onClose={setOpen}
         >
-          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0 ">
+          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-96 text-center sm:block sm:p-0 ">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -157,66 +134,41 @@ export const MintModal: React.VFC<props> = ({ open, setOpen }) => {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle  sm:p-6 h-[85vh] min-w-[50vw]">
-                <ConnectWallet />
+              <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle  sm:p-6 min-h-[40vh] min-w-[50vw]">
+                {state === MintState.Connect && <ConnectWallet />}
 
-                {!asset && !loading && <DropZone onDrop={onDrop} />}
+                {state === MintState.ConfirmNetwork && <SwitchNetwork />}
 
-                {imageWarning.length > 0 && !loading && (
-                  <aside
-                    role="alert"
-                    className="flex w-full justify-center mt-4 text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600"
-                  >
-                    {imageWarning}
-                  </aside>
+                {state === MintState.Upload && (
+                  <UploadNft onDone={onUploadComplete} />
                 )}
 
-                {asset && !loading && (
-                  <ul className="h-80 flex items-center justify-center">
+                {state === MintState.ConfirmMint && (
+                  <>
+                    <h3 className="text-lg leading-6 font-medium text-gray-900">
+                      Confirm your mint
+                    </h3>
+                    <Text className="max-w-xl mt-6 text-sm text-gray-500">
+                      Your image will be minted as an ERC721 Token.
+                    </Text>
                     <NftImage
-                      height={300}
-                      width={300}
-                      href="/"
-                      alt="your newly uploaded nft"
-                      imageSrc={asset.url()}
+                      src={String(asset?._url)}
+                      width={400}
+                      height={400}
+                      alt="Your recently uploaded NFT"
                     />
-                  </ul>
+                    <section className="mt-8 flex justify-center">
+                      <Button
+                        size="lg"
+                        variant="black"
+                        onClick={handleMint}
+                        disabled={!accountData || !asset || loading}
+                      >
+                        {loading ? <LoadingDots /> : 'Mint'}
+                      </Button>
+                    </section>
+                  </>
                 )}
-
-                {asset && loading && (
-                  <div className="h-80 flex items-center justify-center flex-col">
-                    Minting...
-                    <Lottie
-                      style={{ width: 300, height: 300 }}
-                      animationData={loadingAnimationData}
-                      play
-                      loop
-                    />
-                  </div>
-                )}
-
-                {!asset && loading && (
-                  <div className="h-80 flex items-center justify-center flex-col">
-                    Uploading to IPFS...
-                    <Lottie
-                      style={{ width: 300, height: 300 }}
-                      animationData={loadingAnimationData}
-                      play
-                      loop
-                    />
-                  </div>
-                )}
-
-                <section className="mt-8 flex justify-center">
-                  <Button
-                    size="lg"
-                    variant="black"
-                    onClick={handleMint}
-                    disabled={!accountData || !asset || loading}
-                  >
-                    Mint now!
-                  </Button>
-                </section>
               </div>
             </Transition.Child>
           </div>
