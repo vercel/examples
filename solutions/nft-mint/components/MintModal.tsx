@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { useRouter } from 'next/router'
-import { useAccount, useConnect, useNetwork } from 'wagmi'
+import { useAccount, useNetwork } from 'wagmi'
 import Moralis from 'moralis'
 import { ConnectWallet } from './ConnectWallet'
 import { SwitchNetwork } from './SwitchNetwork'
