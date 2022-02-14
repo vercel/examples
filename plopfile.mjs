@@ -26,23 +26,12 @@ export default function (plop) {
         name: 'options',
         message: 'What options do you like?',
         choices: [
-          { name: 'Tailwind CSS', value: 'tailwind', checked: true },
           {
             name: 'Next.js API Routes - Serverless Functions: Hello world',
             value: 'next-api-pages',
             checked: true,
           },
           { name: 'Next.js Middleware Function', value: 'middleware' },
-
-          {
-            name: 'Vercel Serverless Functions: Hello world',
-            value: 'vercel-api',
-          },
-
-          {
-            name: 'Vercel.json file',
-            value: 'vercel.json',
-          },
         ],
       },
     ],
@@ -58,14 +47,11 @@ export default function (plop) {
         '.gitignore',
         'next-env.d.ts',
         'package.json',
-
-        'public/favicon.ico',
-      ]
-      const TailwindFiles = [
         'pages/index.tsx',
         'pages/_app.tsx',
         'postcss.config.js',
         'tailwind.config.js',
+        'public/favicon.ico',
       ]
 
       const actions = []
@@ -77,6 +63,20 @@ export default function (plop) {
           path: `{{exampleScopeFolder}}/${plopExampleName}/${file}`,
           templateFile: `plop-templates/example/${file}`,
         })
+      })
+
+      // modify _app.tsx
+      actions.push({
+        type: 'modify',
+        path: `{{exampleScopeFolder}}/${plopExampleName}/pages/_app.tsx`,
+        pattern: /(-- PLOP PATH HERE --)/gi,
+        template: `${plopPath}`,
+      })
+      actions.push({
+        type: 'modify',
+        path: `{{exampleScopeFolder}}/${plopExampleName}/pages/_app.tsx`,
+        pattern: /(-- PLOP TITLE HERE --)/gi,
+        template: `${data.name}`,
       })
 
       if (data.options.includes('next-api-pages')) {
@@ -92,58 +92,6 @@ export default function (plop) {
           type: 'add',
           path: `{{exampleScopeFolder}}/${plopExampleName}/pages/_middleware.ts`,
           templateFile: `plop-templates/example/pages/_middleware.ts`,
-        })
-      }
-
-      if (data.options.includes('tailwind')) {
-        // Tailwind files
-        TailwindFiles.forEach((file) => {
-          actions.push({
-            type: 'add',
-            path: `{{exampleScopeFolder}}/${plopExampleName}/${file}`,
-            templateFile: `plop-templates/example/${file}`,
-          })
-        })
-
-        // modify _app.tsx
-        actions.push({
-          type: 'modify',
-          path: `{{exampleScopeFolder}}/${plopExampleName}/pages/_app.tsx`,
-          pattern: /(-- PLOP PATH HERE --)/gi,
-          template: `${plopPath}`,
-        })
-        actions.push({
-          type: 'modify',
-          path: `{{exampleScopeFolder}}/${plopExampleName}/pages/_app.tsx`,
-          pattern: /(-- PLOP TITLE HERE --)/gi,
-          template: `${data.name}`,
-        })
-      } else {
-        // add blank index page without tailwind
-        actions.push({
-          type: 'add',
-          path: `{{exampleScopeFolder}}/${plopExampleName}/pages/index.tsx`,
-          templateFile: `plop-templates/example/pages/index_blank.tsx`,
-        })
-
-        // remove tailind deps
-        actions.push({
-          type: 'modify',
-          path: `{{exampleScopeFolder}}/${plopExampleName}/package.json`,
-          transform: (fileContents, data) => {
-            const packageData = JSON.parse(fileContents)
-            const removePackages = ['autoprefixer', 'postcss', 'tailwindcss']
-            packageData.devDependencies = Object.keys(
-              packageData.devDependencies
-            )
-              .filter((item) => !removePackages.includes(item))
-              .reduce((obj, key) => {
-                obj[key] = packageData.devDependencies[key]
-                return obj
-              }, {})
-
-            return JSON.stringify(packageData, null, 2)
-          },
         })
       }
 
