@@ -25,22 +25,15 @@ export const SwitchNetwork: React.VFC = () => {
   }
 
   return (
-    <div className="px-4 py-5 sm:p-6 flex flex-col">
-      <h3 className="text-lg leading-6 font-medium text-gray-900">
-        Connecting to Rinkeby
-      </h3>
+    <div className="flex flex-col">
+      <Text variant="h2">Connecting to Rinkeby</Text>
       <div className="mt-2 flex flex-col items-start justify-between">
-        <Text className="max-w-xl text-sm text-gray-500">
+        <Text>
           This example uses the Ethereum test network called Rinkeby. You must
           set your wallet to use this network before you can mint an NFT.
         </Text>
         <div className="mt-5 sm:flex-shrink-0 sm:flex sm:items-center">
-          <Button
-            onClick={handleSwitchNetwork}
-            type="button"
-            size="lg"
-            variant="black"
-          >
+          <Button onClick={handleSwitchNetwork} size="lg" variant="black">
             {loading ? <LoadingDots /> : 'Switch to Rinkeby'}
           </Button>
         </div>

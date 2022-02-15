@@ -21,12 +21,10 @@ export const ConnectWallet: React.VFC = () => {
   }
 
   return (
-    <div className="px-4 py-5 sm:p-6 flex flex-col ">
-      <h3 className="text-lg leading-6 font-medium text-gray-900">
-        Connecting your wallet
-      </h3>
+    <div className="flex flex-col ">
+      <Text variant="h2">Connecting your wallet</Text>
       <div className="mt-2 items-start justify-between">
-        <Text className="max-w-xl text-sm text-gray-500">
+        <Text className="my-6">
           In order to mint your NFT you must connect your wallet using the{' '}
           <a
             className="underline"
@@ -47,13 +45,13 @@ export const ConnectWallet: React.VFC = () => {
           </a>{' '}
           anonymously.
         </Text>
+        <Text>
+          Metamask sometimes presents some UX issues where it will not open
+          properly. It is good to guide users trough this process to keep
+          accessibility in mind.
+        </Text>
         <div className="mt-12  flex justify-center">
-          <Button
-            type="button"
-            size="lg"
-            variant="black"
-            onClick={handleConnect}
-          >
+          <Button variant="black" size="lg" onClick={handleConnect}>
             {loading ? <LoadingDots /> : 'Connect Wallet'}
           </Button>
         </div>

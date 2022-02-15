@@ -12,6 +12,7 @@ type Props = {
 export const UploadNft: React.VFC<Props> = ({ onDone }) => {
   const [loading, setLoading] = useState(false)
   const [imageWarning, setImageWarning] = useState('')
+  const [disabled, setDisabled] = useState(true)
 
   const onDrop = async (acceptedFiles: File[]) => {
     try {
@@ -32,6 +33,7 @@ export const UploadNft: React.VFC<Props> = ({ onDone }) => {
 
       await imageFile.saveIPFS()
       setLoading(false)
+      setDisabled(false)
       onDone(imageFile)
     } catch (e) {
       console.error(e)
@@ -41,19 +43,14 @@ export const UploadNft: React.VFC<Props> = ({ onDone }) => {
   const { getRootProps, getInputProps } = useDropzone({ onDrop })
 
   return (
-    <div className="px-4 py-5 sm:p-6 flex flex-col">
-      <h3 className="text-lg leading-6 font-medium text-gray-900">
-        Select the image you want to mint as an NFT
-      </h3>
-      <Text className="max-w-xl mt-6 text-sm text-gray-500">
+    <div className="flex flex-col">
+      <Text variant="h2">Select the image you want to mint as an NFT</Text>
+      <Text className="mt-6">
         This image will be validated and stored on IPFS.
       </Text>
       <div className="mt-2 ">
-        <div
-          {...getRootProps()}
-          className="mt-6 sm:col-span-2 flex justify-center"
-        >
-          <div className="w-5/6 flex flex-col items-center justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+        <div {...getRootProps()} className="mt-6 sm:col-span-2 ">
+          <div className="flex flex-col items-center justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
             <div className="space-y-1 text-center">
               <svg
                 className="mx-auto h-12 w-12 text-gray-400"
@@ -100,7 +97,7 @@ export const UploadNft: React.VFC<Props> = ({ onDone }) => {
           </aside>
         )}
         <div className="mt-6 sm:items-center flex justify-center">
-          <Button type="button" size="lg" variant="black">
+          <Button disabled={disabled} size="lg" variant="black">
             {loading ? <LoadingDots /> : 'Confirm'}
           </Button>
         </div>
