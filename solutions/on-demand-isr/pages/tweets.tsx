@@ -1,7 +1,7 @@
 import type { Tweet as ITweet } from "../types"
 
 import Head from "next/head"
-import { Layout, Text, Page, Code } from "@vercel/examples-ui"
+import { Layout, Text, Page, Code, Link } from "@vercel/examples-ui"
 
 import { GetStaticProps } from "next"
 import api from "../api"
@@ -56,6 +56,14 @@ function Tweets({ tweets, date }: Props) {
             <Tweet key={tweet.id} tweet={tweet} />
           ))}
         </article>
+      </section>
+
+      <hr className="border-t border-accents-2 my-6" />
+
+      <section className="flex flex-col gap-6">
+        <Link href="/">
+          Back to home
+        </Link>
       </section>
     </Page>
   )
