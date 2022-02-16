@@ -49,7 +49,7 @@ function Tweets({ tweets, date }: Props) {
         <Text variant="h1">Latest #nextjs tweets</Text>
         <Text>
           Updated on <Code>{date}</Code>, this page is being revalidated by a
-          webhook that fires when relevant weets for #nextjs are made.
+          webhook that fires when relevant tweets for #nextjs are made.
         </Text>
         <article className="grid gap-6 grid-cols-1 md:grid-cols-2">
           {tweets.map((tweet) => (
