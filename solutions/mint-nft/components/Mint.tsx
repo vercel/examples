@@ -82,6 +82,7 @@ export const Mint: React.VFC = () => {
   const onUploadComplete = async (asset: Moralis.File) => {
     setAsset(asset)
     setState(MintState.ConfirmMint)
+    setLoading(false)
   }
 
   return (
@@ -99,15 +100,18 @@ export const Mint: React.VFC = () => {
             Your image will be minted as an ERC721 Token. It can happen that
             images stored on IPFS as it is a distributed file hosting system
             that can fail. This is still the prefered method of choice to host
-            in the NFT community as it is decentralized
+            in the NFT community as it is decentralized.{' '}
+            <span className="underline italic">
+              This process might take up to 1 minute to complete
+            </span>
           </Text>
-          <section className="flex justify-center mt-6">
+          <section className="relative w-full pb-[20%] h-48 pb-6 mt-12">
             <Image
               className="rounded-xl"
               src={String(asset?._url)}
               alt="The image that will be minted as an NFT"
-              height={400}
-              width={400}
+              layout="fill"
+              objectFit="contain"
             />
           </section>
 
