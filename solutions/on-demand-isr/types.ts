@@ -7,3 +7,7 @@ export interface Product {
   category: string;
   hasStock: boolean;
 }
+
+export interface Tweet extends Record<any, any> {
+
+}
