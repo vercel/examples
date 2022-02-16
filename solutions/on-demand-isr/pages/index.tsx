@@ -180,7 +180,9 @@ export async function getStaticProps() {
           Below you can see an example of a #nextjs
           tweet feed that is being revalidated by a protected webhook.
         </Text>
-        <Button className="m-auto" size="lg">#nextjs tweets feed example</Button>
+        <Link href="/tweets">
+          <Button className="m-auto" size="lg">#nextjs tweets feed example</Button>
+        </Link>
       </section>
     </Page>
   )
