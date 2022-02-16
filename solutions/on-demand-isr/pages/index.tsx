@@ -116,7 +116,7 @@ export async function getStaticProps() {
         </Snippet>
         <Text>
           Would not be great if we only regenerate this page when our data
-          changes? Wince Next.js 12.1 we can do that using the{" "}
+          changes? Since Next.js 12.1 we can do that using the{" "}
           <Code>res.revalidate</Code> function in our{" "}
           <Link href="https://nextjs.org/docs/api-routes/introduction">
             api routes
