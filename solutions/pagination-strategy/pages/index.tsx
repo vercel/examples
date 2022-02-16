@@ -20,6 +20,10 @@ function Home() {
       <section className="flex flex-col gap-6">
         <Text variant="h1">SSG Pagination Strategy usage example</Text>
         <Text>
+          - How to implement pagination using SSG/ISR? <br />- How to reduce
+          next.js build time for Listing Pages with pagination?
+        </Text>
+        <Text>
           The following example illustrates how pagination strategies can be
           used to handle large amounts of pages, such as store categories (PLP -
           Product Listing Pages).
@@ -73,7 +77,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
       <section className="flex flex-col gap-3">
         <Link href="/category">
-          <Button>Go to category page (PLP) </Button>
+          <Button>DEMO: Go to category page (PLP) </Button>
         </Link>
       </section>
     </Page>
