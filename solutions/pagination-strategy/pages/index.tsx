@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
+import { Layout, Text, Page, Button, Link } from '@vercel/examples-ui'
 
 function Home() {
   return (
@@ -33,6 +33,9 @@ function Home() {
           consectetur quam architecto veniam! Ex atque rem, unde tempora eaque
           quasi mollitia tenetur.
         </Text>
+        <Link href="/category" passHref>
+          <Button>Go to category page (PLP) </Button>
+        </Link>
       </section>
     </Page>
   )

@@ -1,6 +1,21 @@
 # Pagination Strategy example
 
-This example shows how -------------------------
+The following example illustrates how pagination strategies can be used to handle large amounts of pages, such as store categories (PLP - Product Listing Pages).
+
+### Example situation:
+
+- 1000 categories (PLPs)
+- each category has 1000 products
+- there are 10 results per page
+- therefore each category will have 100 pages
+
+### Problem:
+
+Long build due to SEO requirement all pages are SSG (`getStaticPaths`)
+
+### Solution:
+
+On the build phase, only build the first few paginated pages and rest on the fly.
 
 ## Demo
 
