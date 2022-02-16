@@ -3,8 +3,6 @@
  * Note: We use this lib in multiple demos, feel free to
  * use it in your own projects.
  */
-import type { NextRequest } from 'next/server'
-
 export interface RateLimitContextBase {
   id: string
   limit: number
@@ -13,18 +11,18 @@ export interface RateLimitContextBase {
 }
 
 export interface RateLimitContext extends RateLimitContextBase {
-  request: NextRequest
+  request: Request
   headers: readonly [string | null, string | null, string | null]
   onRateLimit: OnRateLimit
 }
 
 export type RateLimitHandler = (
-  request: NextRequest
+  request: Request
 ) => Promise<RateLimitResult> | RateLimitResult
 
 export type RateLimitResult =
   | (RateLimitContextBase & {
-      request?: NextRequest
+      request?: Request
       headers?: RateLimitHeaders
       onRateLimit?: OnRateLimit
     })
@@ -114,10 +112,12 @@ async function rateLimit(context: RateLimitContext) {
 }
 
 export const initRateLimit = (fn: RateLimitHandler) =>
-  async function isRateLimited(request: NextRequest) {
+  async function isRateLimited(request: Request) {
     const ctx = await fn(request)
 
-    if (ctx instanceof Response) return ctx
+    if (ctx instanceof Response) {
+      return ctx
+    }
 
     return rateLimit({
       ...ctx,
