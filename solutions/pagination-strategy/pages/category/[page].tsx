@@ -56,7 +56,6 @@ export const getStaticProps: GetStaticProps = async ({
     }
   }
 
-  // This can be also set in next.config.js but it's better to keep it here
   if (currentPageNumber === 1) {
     return {
       redirect: {
