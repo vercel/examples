@@ -9,10 +9,10 @@ function Home() {
   return (
     <Page>
       <Head>
-        <title>SSG Pagination Strategy - Vercel Example</title>
+        <title>SSG Pagination example</title>
         <meta
           name="description"
-          content="Vercel example how to use Pagination Strategy"
+          content="Vercel example how to use Pagination with SSG"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
