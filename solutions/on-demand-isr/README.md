@@ -1,6 +1,6 @@
 # On demand ISR
 
-This example shows how to use on demand ISR to revalidate content when a user clicks a button or a webhook calls an api route.
+This example shows how to use on demand ISR to revalidate content when a user clicks a button or a webhook calls an API route.
 
 ## Demo
 

@@ -111,7 +111,7 @@ export async function getStaticProps() {
           changes? Since Next.js 12.1 we can do that using the{" "}
           <Code>res.revalidate</Code> function in our{" "}
           <Link href="https://nextjs.org/docs/api-routes/introduction">
-            api routes
+            API Routes
           </Link>
           .
         </Text>
@@ -126,7 +126,7 @@ export async function getStaticProps() {
 `}
         </Snippet>
         <Text>
-          Calling this api route will revalidate our content on demand, allowing
+          Calling this API route will revalidate our content on demand, allowing
           us to increment or even remove the time revalidation in our pages.
           On demand revalidation might be useful for commerce providers,
           webhooks, bots, etc. That might fire when our content has been changed.
