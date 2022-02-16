@@ -55,7 +55,7 @@ function Tweets({ tweets, date }: Props) {
           to avoid DDOS attacks:
         </Text>
         <Snippet>
-          {`export default async function handler(_req, res) {
+          {`export default async function handler(req, res) {
   // Check the secret
   if (process.env.SECRET === req.headers["x-secret-key"]) {
     // Revalidate /tweets route
