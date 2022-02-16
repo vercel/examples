@@ -72,12 +72,13 @@ export const getStaticProps: GetStaticProps = async ({
       currentPage: currentPageNumber,
       totalProducts,
     },
-    revalidate: 60 * 60 * 24, // once a day
+    revalidate: 60 * 60 * 24, // <--- ISR cache: once a day
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const prerenderPages = 5
+  const prerenderPages = 5 // <--- number of pages to prerender and rest leave to build on the fly
+
   const pagesCount = Array.from(Array(prerenderPages).keys()).map(
     (page) => page + 1
   )
@@ -91,7 +92,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: urlsArray,
-    fallback: 'blocking',
+    fallback: 'blocking', // <--- this will build on the fly but blocking
   }
 }
 
