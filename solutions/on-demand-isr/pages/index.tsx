@@ -1,24 +1,16 @@
-import type { Product } from "../types"
-import type { FC } from "react"
+import type { Product } from "../types";
 
-import Head from "next/head"
-import { Layout, Text, Page, Code, Link, Button } from "@vercel/examples-ui"
+import Head from "next/head";
+import { Layout, Text, Page, Code, Link, Button } from "@vercel/examples-ui";
 
-import { GetStaticProps } from "next"
-import api from "../api"
-import Image from "next/image"
+import { GetStaticProps } from "next";
+import api from "../api";
+import Image from "next/image";
+import Snippet from "../components/Snippet";
 
 interface Props {
-  products: Product[]
-  date: string
-}
-
-const Snippet: FC = ({ children }) => {
-  return (
-    <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 transition-all">
-      {children}
-    </pre>
-  )
+  products: Product[];
+  date: string;
 }
 
 const ProductCard: React.VFC<{ product: Product }> = ({ product }) => {
@@ -53,11 +45,11 @@ const ProductCard: React.VFC<{ product: Product }> = ({ product }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export const getStaticProps: GetStaticProps = async () => {
-  const products = await api.list()
+  const products = await api.list();
 
   return {
     props: {
@@ -65,14 +57,14 @@ export const getStaticProps: GetStaticProps = async () => {
       date: new Date().toTimeString(),
     },
     revalidate: 3600,
-  }
-}
+  };
+};
 
 function Home({ products, date }: Props) {
   async function handleRevalidate() {
-    await fetch("/api/revalidate")
+    await fetch("/api/revalidate");
 
-    window.location.reload()
+    window.location.reload();
   }
 
   return (
@@ -135,9 +127,10 @@ export async function getStaticProps() {
         </Snippet>
         <Text>
           Calling this api route will revalidate our content on demand, allowing
-          us to increment or even remove the time revalidation in our pages. On
-          demand revalidation might be useful for commerce providers, webhooks,
-          bots, etc. That might fire when our content has been changed.
+          us to increment or even remove the time revalidation in our pages
+          (using <Code>revalidate: 0</Code>). On demand revalidation might be
+          useful for commerce providers, webhooks, bots, etc. That might fire
+          when our content has been changed.
         </Text>
       </section>
 
@@ -176,18 +169,18 @@ export async function getStaticProps() {
         <Text>
           Remember to always be careful when exposing endpoints as they may be
           vulnerable to DDOS attacks. You can request a key, token, etc. to
-          protect the endpoint from unwanted requests.{" "}
-          Below you can see an example of a #nextjs
-          tweet feed that is being revalidated by a protected webhook.
+          protect the endpoint from unwanted requests. Below you can see an
+          example of a #nextjs tweet feed that is being revalidated by a
+          protected webhook.
         </Text>
         <Link href="/tweets" className="m-auto">
           <Button size="lg">#nextjs tweets feed example</Button>
         </Link>
       </section>
     </Page>
-  )
+  );
 }
 
-Home.Layout = Layout
+Home.Layout = Layout;
 
-export default Home
+export default Home;
