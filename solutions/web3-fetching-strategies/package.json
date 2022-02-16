@@ -1,0 +1,33 @@
+{
+  "name": "vercel-example--web3-fetching-strategies",
+  "version": "1.0.0",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "contract-factories": "typechain --target=ethers-v5  ./lib/BAYC.abi.json"
+  },
+  "dependencies": {
+    "@vercel/examples-ui": "^0.2.6",
+    "ethers": "^5.5.4",
+    "next": "12.0.10",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "swr": "^1.2.1"
+  },
+  "devDependencies": {
+    "@typechain/ethers-v5": "^9.0.0",
+    "@types/node": "17.0.14",
+    "@types/react": "17.0.38",
+    "autoprefixer": "^10.4.2",
+    "eslint": "^8.9.0",
+    "eslint-config-next": "^12.0.10",
+    "postcss": "^8.4.6",
+    "tailwindcss": "^3.0.18",
+    "typechain": "^7.0.0",
+    "typescript": "4.5.5"
+  }
+}
