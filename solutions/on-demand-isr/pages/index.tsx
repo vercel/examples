@@ -109,7 +109,8 @@ export async function getStaticProps() {
         <Text>
           Would not be great if we only regenerate this page when our data
           changes? Since Next.js 12.1 we can do that using the{" "}
-          <Code>res.revalidate</Code> function in our{" "}
+          <Code>res.unstable_revalidate</Code> (res.revalidate if you come from
+          a future where this feature is already stable) function in our{" "}
           <Link href="https://nextjs.org/docs/api-routes/introduction">
             API Routes
           </Link>
@@ -127,9 +128,9 @@ export async function getStaticProps() {
         </Snippet>
         <Text>
           Calling this API route will revalidate our content on demand, allowing
-          us to increment or even remove the time revalidation in our pages.
-          On demand revalidation might be useful for commerce providers,
-          webhooks, bots, etc. That might fire when our content has been changed.
+          us to increment or even remove the time revalidation in our pages. On
+          demand revalidation might be useful for commerce providers, webhooks,
+          bots, etc. That might fire when our content has been changed.
         </Text>
       </section>
 
