@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
+import { Layout, Text, Page, Link } from '@vercel/examples-ui'
 import { BAYCAbi__factory } from '../types/ethers-contracts'
 import { ethers } from 'ethers'
 import useSWR from 'swr'
@@ -36,8 +36,8 @@ function Home({ contractName }: { contractName: string }) {
           </Link>
           . These functions can be queries without any transaction costs and are
           a convenient way to get current information from a smart contract.
-          <br />
-          <br />
+        </Text>
+        <Text>
           Unless they reqire a user to be authenticaed trough his wallet, these
           functions can be called both from the client and the server.
         </Text>
@@ -45,7 +45,7 @@ function Home({ contractName }: { contractName: string }) {
 
       <hr className="border-t border-accents-2 my-6" />
 
-      <section className="flex flex-col gap-3">
+      <section className="flex flex-col gap-6">
         <Text variant="h2">
           The name {contractName} was fetched serverside. The same name:
           {data} is also fetcheable via SWR in the client.
@@ -61,8 +61,8 @@ function Home({ contractName }: { contractName: string }) {
           would be suggested to use the SWR library to validate changed
           information as smart contract view functions normally indicate the
           current state of a smart contract.
-          <br />
-          <br />
+        </Text>
+        <Text>
           The same strategy of using SWR should be used when dealing with
           information that required the user to be authenticated using a wallet
           such as Metamask as this Data becomes only available Client Side.
