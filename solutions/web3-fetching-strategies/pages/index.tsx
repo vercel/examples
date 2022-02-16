@@ -28,12 +28,12 @@ function Home({ contractName }: { contractName: string }) {
         <Text>
           This example shows diffetent ways of fetching data from the
           blockchain. Smart contracts often expose{' '}
-          <a
+          <Link
             className="underline"
             href="https://www.tutorialspoint.com/solidity/solidity_view_functions.htm"
           >
             View functions
-          </a>
+          </Link>
           . These functions can be queries without any transaction costs and are
           a convenient way to get current information from a smart contract.
           <br />
@@ -53,9 +53,9 @@ function Home({ contractName }: { contractName: string }) {
 
         <Text>
           Achieving so was done by using the library{' '}
-          <a className="underline" href="https://docs.ethers.io/v5/">
+          <Link className="underline" href="https://docs.ethers.io/v5/">
             Ethers.js
-          </a>{' '}
+          </Link>{' '}
           and passing the informatin of a Smart Contract such as its ABI and the
           smart contract Address. The same could be achieved client side. It
           would be suggested to use the SWR library to validate changed
