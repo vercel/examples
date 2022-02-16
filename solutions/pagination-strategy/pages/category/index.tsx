@@ -1,5 +1,5 @@
-import { Layout, Page } from '@vercel/examples-ui'
 import { GetStaticProps } from 'next'
+import { Layout, Page } from '@vercel/examples-ui'
 import { getProducts } from '../../utils/getProducts'
 import { createPagination } from '../../utils/createPagination'
 import { PER_PAGE } from '../category/[page]'

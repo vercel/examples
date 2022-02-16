@@ -1,5 +1,5 @@
-import products from "../mocks/products.json";
+import products from '../mocks/products.json'
 
 export const getProducts = (count: number) => {
-  return products.slice(0, count);
-};
+  return products.slice(0, count)
+}

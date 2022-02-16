@@ -1,10 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Layout, Text, Page, Button, Link } from '@vercel/examples-ui'
-
 import Snippet from '../components/Snippet'
-
 import buildScreenShot from '../public/build.png'
+
 function Home() {
   return (
     <Page>
