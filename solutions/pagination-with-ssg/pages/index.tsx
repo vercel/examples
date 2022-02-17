@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Layout, Text, Page, Button, Link } from '@vercel/examples-ui'
+import { Layout, Text, Page, Button, Link, Code } from '@vercel/examples-ui'
 import Snippet from '../components/Snippet'
 import buildScreenShot from '../public/build.png'
 
@@ -40,7 +40,8 @@ function Home() {
         </Text>
         <Text variant="h2">Problem:</Text>
         <Text>
-          Long build due to SEO requirement all pages are SSG (`getStaticPaths`){' '}
+          Long build due to SEO requirement all pages are SSG{' '}
+          <Code>getStaticPaths</Code>{' '}
         </Text>
         <Text variant="h2">Solution:</Text>
         <Text>
