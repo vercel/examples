@@ -1,14 +1,21 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Layout, Text, Page, Button, Link } from '@vercel/examples-ui'
-import Snippet from '../components/Snippet'
+import {
+  Layout,
+  Text,
+  Page,
+  Button,
+  Link,
+  List,
+  Code,
+} from '@vercel/examples-ui'
 import buildScreenShot from '../public/build.png'
 
 function Home() {
   return (
     <Page>
       <Head>
-        <title>SSG Pagination example</title>
+        <title>Pagination with SSG</title>
         <meta
           name="description"
           content="Vercel example how to use Pagination with SSG"
@@ -16,56 +23,50 @@ function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <section className="flex flex-col gap-6">
-        <Text variant="h1">SSG Pagination Strategy usage example</Text>
-        <Text>
-          - How to implement pagination using SSG/ISR? <br />- How to reduce
-          next.js build time for Listing Pages with pagination?
+      <section>
+        <Text variant="h1" className="mb-6">
+          Pagination with SSG
         </Text>
-        <Text>
-          The following example illustrates how pagination strategies can be
-          used to handle large amounts of pages, such as store categories (PLP -
-          Product Listing Pages).
+        <Text className="mb-4">
+          This example shows how to implement page based pagination with{' '}
+          <Link href="https://nextjs.org/docs/basic-features/data-fetching/get-static-props">
+            SSG
+          </Link>{' '}
+          in Next.js.
         </Text>
-        <Text variant="h2">Example situation:</Text>
-        <Text>
-          - 1000 categories (PLPs)
-          <br />
-          - each category has 1000 products
-          <br />
-          - there are 10 results per page
-          <br />
-          - therefore each category will have 100 pages
-          <br />
+        <Text className="mb-4">
+          The first 5 paginated pages are cached in the edge at build time, and
+          the rest are incrementally cached using{' '}
+          <Link href="https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration">
+            ISR
+          </Link>
+          , that way we can avoid increasing build times no matter how many
+          pages we have while still keeping essential pages cached from the
+          start.
         </Text>
-        <Text variant="h2">Problem:</Text>
-        <Text>
-          Long build due to SEO requirement all pages are SSG (`getStaticPaths`){' '}
+        <Text className="mb-4">
+          The example showcases a PLP (Product Listing Pages) where:
         </Text>
-        <Text variant="h2">Solution:</Text>
-        <Text>
-          - On the build phase, only build the first few paginated pages and
-          rest on the fly.
-          <br />
-          - This example shows how to create SSG Pagination for the first 5
-          pages, and use ISR for the rest.
-          <br />- For SEO reasons page 1 is redirected to index page to avoid
-          duplicate content
-        </Text>
-        <Snippet>
+        <List className="mb-4">
+          <li>There are 100 test products and 1 category (PLP)</li>
+          <li>
+            There are 10 results per page, for a total of 10 pages, where 5 are
+            pre-generated with <Code>getStaticPaths</Code>
+          </li>
+        </List>
+        <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 transition-all text-sm mb-4">
           {`// pages/category/[page].tsx
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const prerenderPages = 5 // <--- number of pages to prerender
-
-  ...
-
+export const getStaticPaths = async () => {
   return {
-    ...
-    fallback: 'blocking', // <--- this will build on the fly
+    // Prerender the next 5 pages after the first page, which is handled by the index page.
+    // Other pages will be prerendered at runtime.
+    paths: Array.from({ length: 5 }).map((_, i) => \`/category/\${i + 2}\`),
+    // Block the request for non-generated pages and cache them in the background
+    fallback: 'blocking',
   }
 }`}
-        </Snippet>
+        </pre>
         <Image
           src={buildScreenShot}
           alt="build time for pagination strategy"

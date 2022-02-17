@@ -48,6 +48,7 @@ export const getStaticProps: GetStaticProps = async ({
     }
   }
 
+  // Redirect the first page to `/category` to avoid duplicated content
   if (page === 1) {
     return {
       redirect: {
@@ -69,10 +70,11 @@ export const getStaticProps: GetStaticProps = async ({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    // prerender the next 5 pages afther the first page, which is handled by the index page.
-    // other pages will be prerendered at runtime.
+    // Prerender the next 5 pages after the first page, which is handled by the index page.
+    // Other pages will be prerendered at runtime.
     paths: Array.from({ length: 5 }).map((_, i) => `/category/${i + 2}`),
-    fallback: 'blocking', // <--- this will build on the fly but blocking
+    // Block the request for non-generated pages and cache them in the background
+    fallback: 'blocking',
   }
 }
 
