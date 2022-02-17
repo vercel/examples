@@ -4,7 +4,7 @@ This example shows how to fetch data from the blockchain in Next.js
 
 ## Demo
 
-https://web3-fetching-strategies-i1xsawift-vercel-solutions-vtest314.vercel.app/
+https://web3-fetching-strategies-guivercel-vercel-solutions-vtest314.vercel.app/
 
 ## How to Use
 
