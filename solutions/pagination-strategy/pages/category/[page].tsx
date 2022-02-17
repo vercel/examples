@@ -1,9 +1,8 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import React from 'react'
-import { getProducts } from '../../utils/getProducts'
+import getProducts from '../../lib/getProducts'
 import { Layout, Page } from '@vercel/examples-ui'
 import Head from 'next/head'
-import { createPagination } from '../../utils/createPagination'
 import PaginationPage from '../../components/PaginatedPage'
 
 type PageProps = {
@@ -40,23 +39,16 @@ PaginatedPage.Layout = Layout
 export const getStaticProps: GetStaticProps = async ({
   params,
 }: GetStaticPropsContext) => {
-  const products = await getProducts(1000)
-  const totalProducts = products.length
+  const page = Number(params?.page) || 1
+  const { products, total } = await getProducts({ limit: PER_PAGE, page })
 
-  const currentPage = params?.page as string
-  const currentPageNumber = parseInt(currentPage, 10) || 1
-
-  const currentProducts = await createPagination(products, PER_PAGE)[
-    currentPage
-  ]
-
-  if (!currentProducts) {
+  if (!products.length) {
     return {
       notFound: true,
     }
   }
 
-  if (currentPageNumber === 1) {
+  if (page === 1) {
     return {
       redirect: {
         destination: '/category',
@@ -67,9 +59,9 @@ export const getStaticProps: GetStaticProps = async ({
 
   return {
     props: {
-      products: currentProducts,
-      currentPage: currentPageNumber,
-      totalProducts,
+      products,
+      totalProducts: total,
+      currentPage: page,
     },
     revalidate: 60 * 60 * 24, // <--- ISR cache: once a day
   }
