@@ -1,4 +1,4 @@
-# Pagination With SSH example
+# Pagination With SSG example
 
 The following example illustrates how pagination strategies can be used to handle large amounts of pages, such as store categories (PLP - Product Listing Pages).
 
