@@ -13,7 +13,7 @@ type PageProps = {
 
 export const PER_PAGE = 10
 
-const PaginatedPage = ({ products, currentPage, totalProducts }: PageProps) => {
+function PaginatedPage({ products, currentPage, totalProducts }: PageProps) {
   return (
     <Page>
       <Head>
@@ -68,21 +68,10 @@ export const getStaticProps: GetStaticProps = async ({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const prerenderPages = 5 // <--- number of pages to prerender and rest leave to build on the fly
-
-  const pagesCount = Array.from(Array(prerenderPages).keys()).map(
-    (page) => page + 1
-  )
-  const urlsArray = []
-
-  for (const url of pagesCount) {
-    if (url !== 1) {
-      urlsArray.push(`/category/${url}`)
-    }
-  }
-
   return {
-    paths: urlsArray,
+    // prerender the next 5 pages afther the first page, which is handled by the index page.
+    // other pages will be prerendered at runtime.
+    paths: Array.from({ length: 5 }).map((_, i) => `/category/${i + 2}`),
     fallback: 'blocking', // <--- this will build on the fly but blocking
   }
 }

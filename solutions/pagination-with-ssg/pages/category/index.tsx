@@ -4,7 +4,7 @@ import getProducts from '../../lib/getProducts'
 import { PER_PAGE } from '../category/[page]'
 import PaginationPage from '../../components/PaginatedPage'
 
-function Home({ products, totalProducts, currentPage }: any) {
+function Category({ products, totalProducts, currentPage }: any) {
   return (
     <Page>
       <PaginationPage
@@ -29,6 +29,6 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-Home.Layout = Layout
+Category.Layout = Layout
 
-export default Home
+export default Category
