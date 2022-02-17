@@ -37,8 +37,8 @@ const PaginationPage = ({
         renderPageLink={(page) => `/category/${page}`}
       />
       <div className="grid grid-cols-3 gap-8">
-        {products.map((product) => (
-          <ProductCard key={product.id} {...product} />
+        {products.map((product, i) => (
+          <ProductCard key={i} {...product} />
         ))}
       </div>
     </div>
