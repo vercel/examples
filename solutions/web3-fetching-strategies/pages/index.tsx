@@ -68,7 +68,10 @@ function Home({ contractName }: { contractName: string }) {
         <Text>
           A first step needed to contact these smart contract via RPC is to
           instanciate a connection to them using a library like{' '}
-          <Link href="https://docs.ethers.io/v5/">Ethers.js</Link>.
+          <Link href="https://docs.ethers.io/v5/">Ethers.js</Link>. There are
+          also convenience libraries like{' '}
+          <Link href="https://github.com/dethcrypto/TypeChain">Typechain</Link>{' '}
+          to help in this process.
         </Text>
         <Text>
           The ABI contains information about the available function. Get it from
