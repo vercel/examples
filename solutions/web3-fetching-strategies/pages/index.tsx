@@ -58,7 +58,8 @@ function Home({ contractName }: { contractName: string }) {
             {' '}
             gas or fees
           </Link>{' '}
-          to be executed. Let's explore how to get that information in Next.js
+          to be executed. Now we will explore how to get that information in
+          Next.js
         </Text>
 
         <Text variant="h2">
@@ -108,7 +109,7 @@ export async function getServerSideProps() {
 const { data } = useSWR('name', () => contract.name())
 `}
         </Snippet>
-        <Text>It's not more complicated than this!</Text>
+        <Text>Not more complicated than this!</Text>
       </section>
     </Page>
   )
