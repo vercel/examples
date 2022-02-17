@@ -127,8 +127,10 @@ export async function getStaticProps() {
 `}
         </Snippet>
         <Text>
-          Calling this API route will revalidate our content on demand, allowing
-          us to increment or even remove the time revalidation in our pages. On
+          Calling this API route will revalidate our content on demand, not just
+          purging the old content but running <Code>getStaticProps</Code> again,
+          generating new content and caching it for the next user, allowing us
+          to increment or even remove the time revalidation in our pages. On
           demand revalidation might be useful for commerce providers, webhooks,
           bots, etc. That might fire when our content has been changed.
         </Text>
