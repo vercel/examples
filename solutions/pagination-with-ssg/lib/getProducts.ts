@@ -1,7 +1,7 @@
 import products from '../mocks/products.json'
 
 /**
- * Paginates the list of products by group, this is one of the ways of doing pagination
+ * Paginates the list of products by page, this is one of the ways of doing pagination
  * when you know the total of products and jumping to X page is fast in your DB.
  */
 export default async function getProducts({

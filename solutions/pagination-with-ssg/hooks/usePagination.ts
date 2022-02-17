@@ -1,23 +1,25 @@
 import { dotts } from '../components/Pagination'
 
-const usePagination = (
+export default function usePagination(
   totalItems: number,
   currentPage: number,
   itemsPerPage: number
-) => {
+) {
   const totalPages = Math.ceil(totalItems / itemsPerPage)
-  const pageNumbersArray = Array.from({ length: totalPages }, (v, i) => i + 1)
-  const firstPage = 1
+  const pages = Array.from({ length: totalPages }, (v, i) => i + 1)
 
-  let currentArray: (string | number)[] = [...pageNumbersArray]
-
+  // -> 1 2 3 4 5
   if (totalPages <= 5) {
-    currentArray = pageNumbersArray
-  } else if (currentPage >= 1 && currentPage <= 3 && totalPages > 5) {
-    currentArray = [firstPage, 2, 3, 4, dotts, totalPages]
-  } else if (currentPage < totalPages - 1 && totalPages > 5) {
-    currentArray = [
-      firstPage,
+    return pages
+  }
+  // -> 1 2 3 4 ... 10
+  if (currentPage <= 3) {
+    return [1, 2, 3, 4, dotts, totalPages]
+  }
+  // -> 1 ... 4 5 6 ... 10
+  if (currentPage < totalPages - 2) {
+    return [
+      1,
       dotts,
       currentPage - 1,
       currentPage,
@@ -25,11 +27,7 @@ const usePagination = (
       dotts,
       totalPages,
     ]
-  } else if (currentPage >= totalPages - 2 && totalPages > 5) {
-    currentArray = [firstPage, dotts, ...pageNumbersArray.slice(totalPages - 3)]
   }
-
-  return { currentArray }
+  // -> 1 ... 7 8 9 10
+  return [1, dotts, ...pages.slice(totalPages - 4)]
 }
-
-export { usePagination }
