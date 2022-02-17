@@ -21,20 +21,16 @@ const Pagination = ({
 
   return (
     <div className="flex items-center justify-center my-8">
-      {pages.map((pageNumber) =>
+      {pages.map((pageNumber, i) =>
         pageNumber === dotts ? (
           <span
-            key={pageNumber}
+            key={i}
             className="px-4 py-2 rounded-full text-sm font-semibold text-black"
           >
             {pageNumber}
           </span>
         ) : (
-          <Link
-            href={renderPageLink(pageNumber as number)}
-            passHref
-            key={pageNumber}
-          >
+          <Link key={i} href={renderPageLink(pageNumber as number)} passHref>
             <a
               className={`${
                 pageNumber === currentPage ? 'text-success-dark' : 'text-black'
