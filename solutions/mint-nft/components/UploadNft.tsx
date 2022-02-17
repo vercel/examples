@@ -50,7 +50,7 @@ export const UploadNft: React.VFC<Props> = ({ onDone }) => {
       </Text>
       <div className="mt-2 ">
         <div {...getRootProps()} className="mt-6 sm:col-span-2 ">
-          <div className="flex flex-col items-center justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+          <div className="flex flex-col items-center m justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
             <div className="space-y-1 text-center">
               <svg
                 className="mx-auto h-12 w-12 text-gray-400"
@@ -66,25 +66,34 @@ export const UploadNft: React.VFC<Props> = ({ onDone }) => {
                   strokeLinejoin="round"
                 />
               </svg>
-              <div className="flex text-sm items-center text-gray-600">
-                <label
-                  htmlFor="file-upload"
-                  className="relative cursor-pointer bg-white rounded-md font-medium  focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                >
-                  <Text className="text-bold" variant="body">
-                    Upload a file
-                  </Text>
-                  <input
-                    {...getInputProps()}
-                    id="file-upload"
-                    name="file-upload"
-                    type="file"
-                    className="sr-only"
-                  />
-                </label>
-                <p className="pl-1">or drag and drop</p>
-              </div>
-              <p className="text-xs text-gray-500">PNG, JPG up to 10MB</p>
+
+              {loading ? (
+                <div className="h-12">
+                  <LoadingDots />
+                </div>
+              ) : (
+                <>
+                  <div className="flex text-sm items-center text-gray-600">
+                    <label
+                      htmlFor="file-upload"
+                      className="relative cursor-pointer bg-white rounded-md font-medium  focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                    >
+                      <Text className="text-bold underline" variant="body">
+                        Upload a file
+                      </Text>
+                      <input
+                        {...getInputProps()}
+                        id="file-upload"
+                        name="file-upload"
+                        type="file"
+                        className="sr-only"
+                      />
+                    </label>
+                    <p className="pl-1">or drag and drop</p>
+                  </div>
+                  <p className="text-xs text-gray-500">PNG, JPG up to 10MB</p>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -96,11 +105,7 @@ export const UploadNft: React.VFC<Props> = ({ onDone }) => {
             {imageWarning}
           </aside>
         )}
-        <div className="mt-6 sm:items-center flex justify-center">
-          <Button disabled={disabled} size="lg" variant="black">
-            {loading ? <LoadingDots /> : 'Confirm'}
-          </Button>
-        </div>
+        <div className="mt-6 sm:items-center flex justify-center"></div>
       </div>
     </div>
   )
