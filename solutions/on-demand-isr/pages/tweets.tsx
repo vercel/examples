@@ -30,7 +30,6 @@ export const getStaticProps: GetStaticProps = async () => {
       tweets,
       date: new Date().toTimeString(),
     },
-    revalidate: 3600,
   };
 };
 

@@ -56,7 +56,6 @@ export const getStaticProps: GetStaticProps = async () => {
       products,
       date: new Date().toTimeString(),
     },
-    revalidate: 3600,
   };
 };
 

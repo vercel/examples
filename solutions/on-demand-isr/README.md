@@ -8,15 +8,21 @@ https://solutions-on-demand-isr.vercel.app
 
 ## How to Use
 
+### Fill environment variables
+
+Rename .env.example to .env and fill `SECRET` (the secret protecting your `tweets` API route) and `TWITTER_TOKEN` (your app token from https://developer.twitter.com).
+
+### Deploy
+
 You can choose from one of the following two methods to use this repository:
 
-### One-Click Deploy
+#### One-Click Deploy
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/on-demand-isr&project-name=on-demand-isr&repository-name=on-demand-isr
 
-### Clone and Deploy
+#### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
