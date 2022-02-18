@@ -28,7 +28,7 @@ function Home() {
       <section className="flex flex-col gap-6">
         <Text variant="h1">Logging from the edge</Text>
         <Text>
-          Logging gives us visibility on usage, errors, etc. The edge has plenty information about the request and loggin calls are often non-blocking so this makes the edge a perfect place for implementing it. All we have to do is call our logging service api using fetch from our `_middleware` file:
+          Logging gives us visibility on usage, errors, etc. The edge has plenty of information about the request and logging calls are often non-blocking, so this makes the Edge a perfect place for implementing logging. All we have to do is call our logging API using fetch from our `_middleware` file:
         </Text>
         <Snippet>
           {`export default function middleware(req) {
