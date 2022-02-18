@@ -8,6 +8,7 @@ export interface Product {
   hasStock: boolean;
 }
 
-export interface Tweet extends Record<any, any> {
-
+export interface Tweet {
+  id: string;
+  text: string;
 }
