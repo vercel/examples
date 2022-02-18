@@ -105,7 +105,6 @@ export const UploadNft: React.VFC<Props> = ({ onDone }) => {
             {imageWarning}
           </aside>
         )}
-        <div className="mt-6 sm:items-center flex justify-center"></div>
       </div>
     </div>
   )

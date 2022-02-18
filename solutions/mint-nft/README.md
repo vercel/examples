@@ -4,7 +4,7 @@ This example shows how to mint an NFT using Next.js and [Moralis](https://morali
 
 ## Demo
 
-https://mint-nft-kappa.vercel.app/
+https://solutions-mint-nft.vercel.app
 
 ## How to Use
 
