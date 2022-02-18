@@ -50,7 +50,7 @@ function Home() {
         <List className="mb-4">
           <li>There are 100 test products and 1 category (PLP)</li>
           <li>
-            There are 10 results per page, for a total of 10 pages, where 5 are
+            There are 10 results per page for a total of 10 pages, where 5 are
             pre-generated with <Code>getStaticPaths</Code>
           </li>
         </List>
