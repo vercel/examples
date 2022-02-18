@@ -1,5 +1,5 @@
 {
-  "name": "-- PLOP EXAMPLE NAME HERE --",
+  "name": "on-demand-isr",
   "version": "1.0.0",
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@vercel/examples-ui": "^0.2.6",
-    "next": "12.0.10",
+    "next": "^12.0.11-canary.15",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
