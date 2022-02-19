@@ -1,10 +1,10 @@
 # mint-nft example
 
-This example shows how -------------------------
+This example shows how to mint an NFT using Next.js and [Moralis](https://moralis.io/)
 
 ## Demo
 
-https://mint-nft.vercel.app
+https://solutions-mint-nft.vercel.app
 
 ## How to Use
 
