@@ -1,21 +1,18 @@
 import Head from 'next/head'
 import { Layout, Text, Page, Link } from '@vercel/examples-ui'
-import { BAYCAbi__factory } from '../types/ethers-contracts'
 import { ethers } from 'ethers'
 import useSWR from 'swr'
 import { FC } from 'react'
+import abi from '../lib/BAYC.abi.json'
 
-// import abi from '../lib/BAYC.abi.json'
+const contractAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
 
-// const contractAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
-
-// const contract = new ethers.Contract(contractAddress, abi)
-
-/**
- *
- * @param param0
- * @returns
- */
+// If you prefer to not typechain, you can also import manually the abi and send it to ethers
+const contract = new ethers.Contract(
+  contractAddress,
+  abi,
+  ethers.getDefaultProvider()
+)
 
 const Snippet: FC = ({ children }) => {
   return (
@@ -25,21 +22,16 @@ const Snippet: FC = ({ children }) => {
   )
 }
 
-const contract = BAYCAbi__factory.connect(
-  '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D',
-  ethers.providers.getDefaultProvider()
-)
-
 function Home({ contractName }: { contractName: string }) {
   const { data } = useSWR('name', () => contract.name())
 
   return (
     <Page>
       <Head>
-        <title>web3-fetching-strategies - Vercel Example</title>
+        <title>Data from smart contracts - Vercel Example</title>
         <meta
           name="description"
-          content="Vercel example how to use web3-fetching-strategies"
+          content="Vercel example how to use data from smart contracts"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -124,6 +116,7 @@ export default Home
 
 export async function getServerSideProps() {
   const contractName = await contract.name()
+
   return {
     props: {
       contractName,

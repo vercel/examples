@@ -6,6 +6,12 @@ This example shows how to fetch data from the blockchain in Next.js
 
 https://web3-fetching-strategies.vercel.app/
 
+This demo will show how to do the following:
+
+- Instanciate a connection to a smart contract
+- Retreive smart contract information serverside
+- Retreive smart contract information with SWR for revalidation
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:
