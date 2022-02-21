@@ -38,12 +38,12 @@ module.exports = withTM({
 })
 ```
 
-Now, if the app already has a `tailwind.config.js` file, open it and add the following preset and purge path:
+Now, if the app already has a `tailwind.config.js` file, open it and add the following preset and content path:
 
 ```js
 module.exports = {
   presets: [require('@vercel/examples-ui/tailwind')],
-  purge: ['node_modules/@vercel/examples-ui/**/*.{js,ts,jsx,tsx}'],
+  content: ['node_modules/@vercel/examples-ui/**/*.{js,ts,jsx,tsx}'],
 }
 ```
 
@@ -52,15 +52,11 @@ Otherwise, create it with:
 ```js
 module.exports = {
   presets: [require('@vercel/examples-ui/tailwind')],
-  purge: [
+  content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     'node_modules/@vercel/examples-ui/**/*.{js,ts,jsx,tsx}',
     // Include other paths where you use tailwind
   ],
-  darkMode: false, // or 'media' or 'class'
-  variants: {
-    extend: {},
-  },
 }
 ```
 
@@ -110,7 +106,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="API Rate Limiting with Upstash" path="edge-functions/api-rate-limit">
+    <Layout
+      title="API Rate Limiting with Upstash"
+      path="edge-functions/api-rate-limit"
+    >
       <Component {...pageProps} />
     </Layout>
   )

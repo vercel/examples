@@ -14,6 +14,10 @@ export interface NavProps {
 }
 
 export default function Nav({ path, deployButton }: NavProps) {
+  const displayPath = ['Vercel Examples']
+    .concat(path?.split('/').filter(Boolean) || [])
+    .join(' / ')
+
   return (
     <nav className={s.root}>
       <div className={cn('flex items-center lg:px-6 px-8', s.container)}>
@@ -43,7 +47,7 @@ export default function Nav({ path, deployButton }: NavProps) {
           </li>
           <li className="font-medium" style={{ letterSpacing: '.01px' }}>
             <Link href="/" className={s.link}>
-              Vercel Examples{path ? ` / ${path}` : ''}
+              {displayPath}
             </Link>
           </li>
         </div>
