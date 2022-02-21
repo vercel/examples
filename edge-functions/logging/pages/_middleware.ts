@@ -1,8 +1,10 @@
 import { NextRequest } from 'next/server'
 
+const PUBLIC_FILE = /\.(.*)$/
+
 export default function middleware(req: NextRequest) {
   // Only log for visited pages
-  if (req.page) {
+  if (!PUBLIC_FILE.test(req.nextUrl.pathname)) {
     // We just fire and forget this request as we don't want to block the request until completion
     fetch('https://in.logtail.com', {
       method: 'POST',
