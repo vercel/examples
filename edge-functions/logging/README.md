@@ -10,7 +10,7 @@ https://edge-logging.vercel.app
 
 ### Fill environment variables
 
-Rename `.env.example` to `.env` and fill `LOGTAIL_TOKEN` with your [Logtail](https://logtail.com) token.
+Rename `.env.example` to `.env.local` and fill `LOGTAIL_TOKEN` with your [Logtail](https://logtail.com) token.
 
 ### Deploy
 
