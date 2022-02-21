@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "prettier": "prettier --write .",
+    "update": "node update-dep.mjs",
     "new-example": "plop example"
   },
   "devDependencies": {
