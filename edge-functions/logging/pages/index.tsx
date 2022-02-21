@@ -67,9 +67,12 @@ export default function middleware(req) {
           This way our call will not block the execution (because we do not want
           to block the request until completion as we do not need the response)
           while logging the information in our service of choice. This example
-          uses <Link href="https://logtail.com/">Logtail</Link> but you can use
-          whatever service you like as soon as it has a rest-based approach or
-          an edge compatible SDK.
+          uses{" "}
+          <Link target="_blank" href="https://logtail.com/">
+            Logtail
+          </Link>{" "}
+          but you can use whatever service you like as soon as it has a
+          rest-based approach or an edge compatible SDK.
         </Text>
       </section>
     </Page>
