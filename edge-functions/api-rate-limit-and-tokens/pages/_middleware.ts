@@ -3,12 +3,15 @@ import { NextResponse } from 'next/server'
 import { blockedIp } from '@lib/rules/ip'
 
 export async function middleware(req: NextRequest) {
+  const url = req.nextUrl.clone()
+
   // Rewrite to /blocked if the IP is blocked
-  const url = req.nextUrl
   if (url.pathname === '/am-i-blocked') {
-    return (await blockedIp(req))
-      ? NextResponse.rewrite('/blocked')
-      : NextResponse.next()
+    if (await blockedIp(req)) {
+      url.pathname = '/blocked'
+      return NextResponse.rewrite(url)
+    }
+    return NextResponse.next()
   }
 
   // Trying to access the /blocked page manually is disallowed
