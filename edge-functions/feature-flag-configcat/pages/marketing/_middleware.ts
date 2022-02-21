@@ -8,7 +8,8 @@ export function middleware(req: NextRequest) {
 
   // Redirect paths that go directly to the variant
   if (url.pathname != '/marketing') {
-    return NextResponse.redirect('/marketing')
+    url.pathname = '/marketing'
+    return NextResponse.redirect(url)
   }
 
   const cookie =

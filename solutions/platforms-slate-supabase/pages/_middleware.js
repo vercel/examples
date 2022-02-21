@@ -24,7 +24,8 @@ export default function middleware(req) {
     (req.cookies['next-auth.session-token'] ||
       req.cookies['__Secure-next-auth.session-token'])
   ) {
-    return NextResponse.redirect('/')
+    url.pathname = '/'
+    return NextResponse.redirect(url)
   }
   if (currentHost == 'app') {
     url.pathname = `/app${pathname}`

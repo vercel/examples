@@ -7,7 +7,8 @@ export async function middleware(req: NextRequest) {
 
   // Redirect paths that go directly to the variant
   if (url.pathname != '/about') {
-    return NextResponse.redirect('/about')
+    url.pathname = '/about'
+    return NextResponse.redirect(url)
   }
 
   const newAboutPageFlagEnabled = await isFeatureFlagEnabled(
