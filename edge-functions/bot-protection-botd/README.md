@@ -22,7 +22,9 @@ async function handler(req: NextRequest) {
 
   if (res && res.status !== 200) {
     // Bot detected!
-    const rewrite = NextResponse.rewrite('/bot-detected')
+    const url = req.nextUrl.clone()
+    url.pathname = '/bot-detected'
+    const rewrite = NextResponse.rewrite(url)
     res.headers.forEach((v, k) => rewrite.headers.set(k, v))
 
     return rewrite

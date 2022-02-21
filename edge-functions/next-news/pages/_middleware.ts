@@ -1,7 +1,9 @@
-import { NextResponse as Response } from "next/server";
+import { NextResponse, NextRequest } from 'next/server'
 
-export default function middleware(req) {
-  if (req.nextUrl.pathname === "/") {
-    return Response.rewrite("/news/1");
+export default function middleware(req: NextRequest) {
+  const url = req.nextUrl.clone()
+  if (url.pathname === '/') {
+    url.pathname = '/news/1'
+    return NextResponse.rewrite(url)
   }
 }

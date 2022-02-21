@@ -20,7 +20,9 @@ const COOKIE_NAME = 'bucket-home'
 export function middleware(req: NextRequest) {
   // Get the bucket cookie
   const bucket = req.cookies[COOKIE_NAME] || getBucket(HOME_BUCKETS)
-  const res = NextResponse.rewrite(`/home/${bucket}`)
+  const url = req.nextUrl.clone()
+  url.pathname = `/home/${bucket}`
+  const res = NextResponse.rewrite(url)
 
   // Add the bucket to cookies if it's not there
   if (!req.cookies[COOKIE_NAME]) {

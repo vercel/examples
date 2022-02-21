@@ -18,13 +18,14 @@ export function middleware(req: NextRequest) {
   }
 
   const [, variantId] = cookie.split('.')
-  const { pathname } = req.nextUrl
+  const url = req.nextUrl.clone()
 
-  if (['/marketing', '/about'].includes(pathname)) {
-    res = NextResponse.rewrite(
-      // `0` is the original version
-      variantId === '0' ? pathname : pathname.replace('/', `/${cookie}/`)
-    )
+  if (['/marketing', '/about'].includes(url.pathname)) {
+    // `0` is the original version
+    if (variantId !== '0') {
+      url.pathname = url.pathname.replace('/', `/${cookie}/`)
+    }
+    res = NextResponse.rewrite(url)
   }
 
   // Add the cookie if it's not there

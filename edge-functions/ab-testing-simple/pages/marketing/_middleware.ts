@@ -7,9 +7,9 @@ const COOKIE_NAME = 'bucket-marketing'
 export function middleware(req: NextRequest) {
   // Get the bucket cookie
   const bucket = req.cookies[COOKIE_NAME] || getBucket(MARKETING_BUCKETS)
-  const destination = req.nextUrl.clone()
-  destination.pathname = `/marketing/${bucket}`
-  const res = NextResponse.rewrite(destination)
+  const url = req.nextUrl.clone()
+  url.pathname = `/marketing/${bucket}`
+  const res = NextResponse.rewrite(url)
 
   // Add the bucket to cookies if it's not there
   if (!req.cookies[COOKIE_NAME]) {

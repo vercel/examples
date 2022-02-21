@@ -13,7 +13,7 @@
     "configcat-js": "^5.7.1",
     "configcat-node": "^6.7.1",
     "js-cookie": "^3.0.1",
-    "next": "^12.0.10",
+    "next": "^12.1.0",
     "prettier": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
