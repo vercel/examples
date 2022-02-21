@@ -3,6 +3,7 @@ import { NextRequest } from 'next/server'
 export default function middleware(req: NextRequest) {
   // Only log for visited pages
   if (req.page) {
+    // We just fire and forget this request as we don't want to block the request until completion
     fetch('https://in.logtail.com', {
       method: 'POST',
       headers: {
