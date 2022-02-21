@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server'
 
+// Regex for public files
 const PUBLIC_FILE = /\.(.*)$/
 
 export default function middleware(req: NextRequest) {

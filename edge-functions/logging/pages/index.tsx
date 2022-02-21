@@ -35,9 +35,12 @@ function Home() {
           our <Code>_middleware</Code> file:
         </Text>
         <Snippet>
-          {`export default function middleware(req) {
+          {`// Regex for public files
+const PUBLIC_FILE = /\.(.*)$/
+
+export default function middleware(req) {
   // Only log for visited pages
-  if (req.page) {
+  if (!PUBLIC_FILE.test(req.nextUrl.pathname)) {
     fetch('https://in.logtail.com', {
       method: 'POST',
       headers: {
