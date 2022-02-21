@@ -6,7 +6,8 @@ const PUBLIC_FILE = /\.(.*)$/
 export default function middleware(req: NextRequest) {
   // Only log for visited pages
   if (!PUBLIC_FILE.test(req.nextUrl.pathname)) {
-    // We just fire and forget this request as we don't want to block the request until completion
+    // We fire and forget this request to avoid blocking the request until completion
+    // and let logging occur in the background
     fetch('https://in.logtail.com', {
       method: 'POST',
       headers: {
