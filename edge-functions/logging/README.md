@@ -1,6 +1,6 @@
 # logging example
 
-This example shows how to implement logging at the edge using logtail.
+This example shows how to implement logging at the edge using [Logtail](https://betterstack.com/logtail).
 
 ## Demo
 
