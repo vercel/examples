@@ -1,4 +1,4 @@
-# logging example
+# Logging at the edge
 
 This example shows how to implement logging at the edge using [Logtail](https://betterstack.com/logtail).
 
