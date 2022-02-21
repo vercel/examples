@@ -9,7 +9,7 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="web3-fetching-strategies" path="solutions/web3-fetching-strategies">
+    <Layout title="web3-data-fetching" path="solutions/web3-data-fetching">
       <Component {...pageProps} />
     </Layout>
   )

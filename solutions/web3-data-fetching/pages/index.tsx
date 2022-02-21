@@ -4,12 +4,10 @@ import { ethers } from 'ethers'
 import useSWR from 'swr'
 import { FC } from 'react'
 import abi from '../lib/BAYC.abi.json'
+import { BORED_APE_YATCH_CLUB_ADDRESS } from '../constants'
 
-const contractAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
-
-// If you prefer to not typechain, you can also import manually the abi and send it to ethers
 const contract = new ethers.Contract(
-  contractAddress,
+  BORED_APE_YATCH_CLUB_ADDRESS,
   abi,
   ethers.getDefaultProvider()
 )
