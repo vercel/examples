@@ -1,14 +1,14 @@
 {
-  "name": "edge-functions",
+  "name": "vercel-examples",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "update": "node update-dep.mjs",
+    "new-example": "plop example"
   },
   "devDependencies": {
-    "prettier": "^2.5.1"
-  },
-  "dependencies": {
-    "contentstack": "^3.15.0"
+    "prettier": "^2.5.1",
+    "plop": "^3.0.5"
   }
 }

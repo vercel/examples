@@ -26,6 +26,13 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/solut
 yarn create next-app --example https://github.com/vercel/examples/tree/main/solutions/reuse-responses reuse-responses
 ```
 
+Copy the `.env.example` file in this directory to `.env.local` and set your Contentstack settings
+
+```bash
+cp .env.example .env.local
+```
+
+
 Next, run Next.js in development mode:
 
 ```bash

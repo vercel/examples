@@ -6,35 +6,6 @@
     "app",
     "packages/*"
   ],
-  "turbo": {
-    "baseBranch": "origin/main",
-    "pipeline": {
-      "build": {
-        "dependsOn": [
-          "^build"
-        ],
-        "outputs": [
-          ".next/**",
-          "dist/**"
-        ]
-      },
-      "test": {
-        "dependsOn": [
-          "^build"
-        ],
-        "outputs": []
-      },
-      "lint": {
-        "outputs": []
-      },
-      "dev": {
-        "cache": false
-      },
-      "start": {
-        "cache": false
-      }
-    }
-  },
   "devDependencies": {
     "@types/node": "^17.0.14",
     "turbo": "^1.1.2"

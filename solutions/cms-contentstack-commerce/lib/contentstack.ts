@@ -20,10 +20,10 @@ export default {
   ): Promise<Entry | null> {
     // https://www.contentstack.com/docs/developers/apis/content-delivery-api/#get-a-single-entry
     try {
+      const cmsEnv = process.env.CONTENTSTACK_ENV ?? process.env.NODE_ENV;
+      const entryApiUrl = `${API_URL}/content_types/${contentType}/entries/${entryId}?locale=${locale.toLocaleLowerCase()}&environment=${cmsEnv}`;
       const res: any = await fetch(
-        `${API_URL}/content_types/${contentType}/entries/${entryId}?locale=${locale.toLocaleLowerCase()}&environment=${
-          process.env.NODE_ENV
-        }`,
+        entryApiUrl,
         {
           method: 'GET',
           headers: {
