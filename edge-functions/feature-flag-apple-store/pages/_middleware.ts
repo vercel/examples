@@ -3,6 +3,8 @@ import get from 'lib/redis'
 
 export async function middleware(req: NextRequest) {
   if (await get('store-closed')) {
-    return NextResponse.rewrite(`/_closed`)
+    const url = req.nextUrl.clone()
+    url.pathname = `/_closed`
+    return NextResponse.rewrite(url)
   }
 }

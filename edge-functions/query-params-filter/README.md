@@ -7,14 +7,20 @@ const allowedParams = ['allowed']
 
 export function middleware(req: NextRequest) {
   const url = req.nextUrl
+  let changed = false
 
   url.searchParams.forEach((_, key) => {
     if (!allowedParams.includes(key)) {
       url.searchParams.delete(key)
+      changed = true
     }
   })
 
-  return NextResponse.rewrite(url)
+  // Avoid infinite loop by only redirecting if the query
+  // params were changed
+  if (changed) {
+    return NextResponse.redirect(url)
+  }
 }
 ```
 
