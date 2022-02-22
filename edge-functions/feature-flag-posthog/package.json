@@ -16,7 +16,7 @@
   "dependencies": {
     "@vercel/examples-ui": "^0.2.6",
     "js-cookie": "^3.0.1",
-    "next": "^12.0.10",
+    "next": "^12.1.0",
     "posthog-js": "^1.17.8",
     "react": "latest",
     "react-dom": "latest"

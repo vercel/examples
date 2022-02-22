@@ -57,8 +57,11 @@ async function updateDependency() {
         const hasPackageLock = await fs
           .access(`./${filePath}/package-lock.json`, constants.F_OK)
           .catch((err) => (err ? false : true))
+        const hasYarnLock = await fs
+          .access(`./${filePath}/yarn.lock`, constants.F_OK)
+          .catch((err) => (err ? false : true))
 
-        return hasPackageLock !== false
+        return hasPackageLock !== false || !hasYarnLock
           ? exec(`npm install ${packageName}`, { cwd: filePath })
           : exec(`yarn add ${packageName}`, { cwd: filePath })
       })
