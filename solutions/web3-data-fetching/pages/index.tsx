@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Layout, Text, Page, Link } from '@vercel/examples-ui'
+import { Layout, Text, Page, Link, Code } from '@vercel/examples-ui'
 import { ethers } from 'ethers'
 import useSWR from 'swr'
 import { FC } from 'react'
@@ -39,12 +39,25 @@ function Home({ contractName }: { contractName: string }) {
         <Text>
           Smart contracts contain relevant information to applications built on
           top of blockchains that can run the{' '}
-          <Link href="https://ethereum.org/en/developers/docs/evm/">
+          <Link
+            target="_blank"
+            href="https://ethereum.org/en/developers/docs/evm/"
+          >
             Ethereum Virtual Machine
           </Link>
-          . Some of these contracts informations can be exposed in the form of
-          View functions that do not need{' '}
-          <Link href="https://ethereum.org/en/developers/docs/gas/">
+          . Some of the information in these contracts can be exposed in the
+          form of{' '}
+          <Link
+            target="_blank"
+            href="https://www.tutorialspoint.com/solidity/solidity_view_functions.htm"
+          >
+            View functions{' '}
+          </Link>
+          that do not need{' '}
+          <Link
+            target="_blank"
+            href="https://ethereum.org/en/developers/docs/gas/"
+          >
             {' '}
             gas or fees
           </Link>{' '}
@@ -56,20 +69,39 @@ function Home({ contractName }: { contractName: string }) {
           Instanciating a connection to the smart contract
         </Text>
         <Text>
-          A first step needed to contact these smart contract via RPC is to
-          instanciate a connection to them using a library like{' '}
-          <Link href="https://docs.ethers.io/v5/">Ethers.js</Link>. There are
-          also convenience libraries like{' '}
-          <Link href="https://github.com/dethcrypto/TypeChain">Typechain</Link>{' '}
+          A first step needed to contact these smart contracts via{' '}
+          <Link
+            target="_blank"
+            href="https://en.wikipedia.org/wiki/Remote_procedure_call"
+          >
+            RPC
+          </Link>{' '}
+          is to instanciate a connection with them using a library like{' '}
+          <Link target="_blank" href="https://docs.ethers.io/v5/">
+            Ethers.js
+          </Link>
+          . There are also convenient libraries like{' '}
+          <Link target="_blank" href="https://github.com/dethcrypto/TypeChain">
+            Typechain
+          </Link>{' '}
           to help in this process.
         </Text>
         <Text>
-          The ABI contains information about the available function. Get it from
-          Etherscan like explained{' '}
-          <Link href="https://cryptomarketpool.com/how-to-get-a-smart-contracts-abi-for-use-in-python-web3-py/">
-            Here
+          The{' '}
+          <Link
+            href="https://www.quicknode.com/guides/solidity/what-is-an-abi"
+            target="_blank"
+          >
+            ABI
           </Link>
-          . We will use the Bored Ape Yatch Club popular NFT contract.
+          {''} contains information about the available function and{' '}
+          <Link
+            target="_blank"
+            href="https://cryptomarketpool.com/how-to-get-a-smart-contracts-abi-for-use-in-python-web3-py/"
+          >
+            can be obtained through Etherscan.
+          </Link>{' '}
+          We will use the Bored Ape Yatch Club popular NFT contract.
         </Text>
         <Snippet>
           {`
@@ -83,9 +115,13 @@ const contract = new ethers.Contract(contractAddress, abi)
         <Text variant="h2">Fetching the data</Text>
 
         <Text>
-          This can now be used in getServerSideProps or getStaticProps and even
-          SWR if you are dealing with a smart contract that is quite active and
-          has a lot of usage.
+          This can now be used in <Code>getStaticProps</Code> or
+          <Code>getServerSideProps </Code> to pre-render the contract
+          information, or client-side with{' '}
+          <Link href="https://swr.vercel.app/" target="_blank">
+            SWR
+          </Link>
+          , which might be better for active contracts with a lot of usage.
         </Text>
         <Snippet>
           {`// Server side
@@ -102,7 +138,7 @@ export async function getServerSideProps() {
 const { data } = useSWR('name', () => contract.name())
 `}
         </Snippet>
-        <Text>Not more complicated than this!</Text>
+        <Text>That's it!</Text>
       </section>
     </Page>
   )
@@ -112,10 +148,11 @@ Home.Layout = Layout
 
 export default Home
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const contractName = await contract.name()
 
   return {
+    revalidate: 3600,
     props: {
       contractName,
     },
