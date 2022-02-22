@@ -72,8 +72,7 @@ function Home({ contractName }: { contractName: string }) {
           . We will use the Bored Ape Yatch Club popular NFT contract.
         </Text>
         <Snippet>
-          {`
-import abi from '../lib/BAYC.abi.json'
+          {`import abi from '../lib/BAYC.abi.json'
 
 const contractAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
 
