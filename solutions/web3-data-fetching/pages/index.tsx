@@ -1,7 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
 import Head from 'next/head'
 import { Layout, Text, Page, Link, Code } from '@vercel/examples-ui'
 import { ethers } from 'ethers'
-import useSWR from 'swr'
 import { FC } from 'react'
 import abi from '../lib/BAYC.abi.json'
 import { BORED_APE_YATCH_CLUB_ADDRESS } from '../constants'
@@ -21,7 +21,7 @@ const Snippet: FC = ({ children }) => {
 }
 
 function Home({ contractName }: { contractName: string }) {
-  const { data } = useSWR('name', () => contract.name())
+  // const { data } = useSWR('name', () => contract.name())
 
   return (
     <Page>
@@ -124,9 +124,11 @@ const contract = new ethers.Contract(contractAddress, abi)
         </Text>
         <Snippet>
           {`// Server side
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const contractName = await contract.name()
+
   return {
+    revalidate: 3600,
     props: {
       contractName,
     },
@@ -137,7 +139,11 @@ export async function getServerSideProps() {
 const { data } = useSWR('name', () => contract.name())
 `}
         </Snippet>
-        <Text>That's it!</Text>
+        <Text>
+          That's it! Now if we use the <Code>contractName</Code> prop its value
+          should be:
+        </Text>
+        <Snippet>{contractName}</Snippet>
       </section>
     </Page>
   )
