@@ -21,8 +21,6 @@ const Snippet: FC = ({ children }) => {
 }
 
 function Home({ contractName }: { contractName: string }) {
-  // const { data } = useSWR('name', () => contract.name())
-
   return (
     <Page>
       <Head>
