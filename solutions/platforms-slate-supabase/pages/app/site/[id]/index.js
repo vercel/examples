@@ -1,19 +1,19 @@
-import { useState } from "react";
-import Layout from "@/components/app/Layout";
-import BlurImage from "@/components/BlurImage";
-import LoadingDots from "@/components/app/loading-dots";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import useSWR from "swr";
+import { useState } from 'react'
+import Layout from '@/components/app/Layout'
+import BlurImage from '@/components/BlurImage'
+import LoadingDots from '@/components/app/loading-dots'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import useSWR from 'swr'
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export default function SiteIndex() {
-  const [creatingPost, setCreatingPost] = useState(false);
+  const [creatingPost, setCreatingPost] = useState(false)
 
-  const router = useRouter();
-  const { id } = router.query;
-  const siteId = id;
+  const router = useRouter()
+  const { id } = router.query
+  const siteId = id
 
   const { data } = useSWR(
     siteId && `/api/post?siteId=${siteId}&published=true`,
@@ -21,22 +21,22 @@ export default function SiteIndex() {
     {
       onSuccess: (data) => {
         if (!data?.site) {
-          router.push("/");
+          router.push('/')
         }
       },
     }
-  );
+  )
 
   async function createPost(siteId) {
     const res = await fetch(`/api/post?siteId=${siteId}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-    });
+    })
     if (res.ok) {
-      const data = await res.json();
-      router.push(`/post/${data.postId}`);
+      const data = await res.json()
+      router.push(`/post/${data.postId}`)
     }
   }
 
@@ -45,17 +45,17 @@ export default function SiteIndex() {
       <div className="py-20 max-w-screen-xl mx-auto px-10 sm:px-20">
         <div className="flex flex-col sm:flex-row space-y-5 sm:space-y-0 justify-between items-center">
           <h1 className="font-cal text-5xl">
-            Posts for {data ? data?.site?.name : "..."}
+            Posts for {data ? data?.site?.name : '...'}
           </h1>
           <button
             onClick={() => {
-              setCreatingPost(true);
-              createPost(siteId);
+              setCreatingPost(true)
+              createPost(siteId)
             }}
             className={`${
               creatingPost
-                ? "cursor-not-allowed bg-gray-300 border-gray-300"
-                : "text-white bg-black hover:bg-white hover:text-black border-black"
+                ? 'cursor-not-allowed bg-gray-300 border-gray-300'
+                : 'text-white bg-black hover:bg-white hover:text-black border-black'
             } font-cal text-lg w-3/4 sm:w-40 tracking-wide border-2 px-5 py-3 transition-all ease-in-out duration-150`}
           >
             {creatingPost ? (
@@ -137,6 +137,5 @@ export default function SiteIndex() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }
- 

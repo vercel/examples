@@ -6,9 +6,7 @@ export default ({ children }) => (
     <Meta />
     <Header />
 
-    <div className="page">
-      { children }
-    </div>
+    <div className="page">{children}</div>
 
     <style jsx>{`
       .main {

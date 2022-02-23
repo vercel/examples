@@ -1,55 +1,55 @@
-import { useState, useEffect } from "react";
-import Layout from "@/components/app/Layout";
-import BlurImage from "@/components/BlurImage";
-import Modal from "@/components/Modal";
-import LoadingDots from "@/components/app/loading-dots";
-import Link from "next/link";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
-import useSWR from "swr";
-import { useDebounce } from "use-debounce";
+import { useState, useEffect } from 'react'
+import Layout from '@/components/app/Layout'
+import BlurImage from '@/components/BlurImage'
+import Modal from '@/components/Modal'
+import LoadingDots from '@/components/app/loading-dots'
+import Link from 'next/link'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
+import useSWR from 'swr'
+import { useDebounce } from 'use-debounce'
 
 const fetcher = (...args) => {
-  console.log("fetching", ...args);
-  return fetch(...args).then((res) => res.json());
-};
+  console.log('fetching', ...args)
+  return fetch(...args).then((res) => res.json())
+}
 
 export default function AppIndex() {
-  const [showModal, setShowModal] = useState(false);
-  const [creatingSite, setCreatingSite] = useState(false);
-  const [subdomain, setSubdomain] = useState("");
-  const [debouncedSubdomain] = useDebounce(subdomain, 1500);
-  const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false)
+  const [creatingSite, setCreatingSite] = useState(false)
+  const [subdomain, setSubdomain] = useState('')
+  const [debouncedSubdomain] = useDebounce(subdomain, 1500)
+  const [error, setError] = useState(null)
 
   useEffect(async () => {
     if (debouncedSubdomain.length > 0) {
       const response = await fetch(
         `/api/check-subdomain?subdomain=${debouncedSubdomain}`
-      );
-      const available = await response.json();
+      )
+      const available = await response.json()
       if (available) {
-        setError(null);
+        setError(null)
       } else {
-        setError(`${debouncedSubdomain}.vercel.im`);
+        setError(`${debouncedSubdomain}.vercel.im`)
       }
     }
-  }, [debouncedSubdomain]);
+  }, [debouncedSubdomain])
 
-  const router = useRouter();
+  const router = useRouter()
 
-  const { data: session } = useSession();
-  const userId = session?.user?.email;
+  const { data: session } = useSession()
+  const userId = session?.user?.email
 
   const { data: sites } = useSWR(
     userId && `/api/site?userId=${userId}`,
     fetcher
-  );
+  )
 
   async function createSite(e) {
-    const res = await fetch("/api/site", {
-      method: "POST",
+    const res = await fetch('/api/site', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         userId: userId,
@@ -57,10 +57,10 @@ export default function AppIndex() {
         subdomain: e.target.subdomain.value,
         description: e.target.description.value,
       }),
-    });
+    })
     if (res.ok) {
-      const data = await res.json();
-      router.push(`/site/${data.siteId}`);
+      const data = await res.json()
+      router.push(`/site/${data.siteId}`)
     }
   }
 
@@ -69,9 +69,9 @@ export default function AppIndex() {
       <Modal showModal={showModal} setShowModal={setShowModal}>
         <form
           onSubmit={(event) => {
-            event.preventDefault();
-            setCreatingSite(true);
-            createSite(event);
+            event.preventDefault()
+            setCreatingSite(true)
+            createSite(event)
           }}
           className="inline-block w-full max-w-md pt-8 overflow-hidden text-center align-middle transition-all bg-white shadow-xl rounded-lg"
         >
@@ -121,8 +121,8 @@ export default function AppIndex() {
               type="button"
               className="w-full px-5 py-5 text-sm text-gray-600 hover:text-black border-t border-gray-300 rounded-bl focus:outline-none focus:ring-0 transition-all ease-in-out duration-150"
               onClick={() => {
-                setError(null);
-                setShowModal(false);
+                setError(null)
+                setShowModal(false)
               }}
             >
               CANCEL
@@ -133,11 +133,11 @@ export default function AppIndex() {
               disabled={creatingSite || error}
               className={`${
                 creatingSite || error
-                  ? "cursor-not-allowed text-gray-400 bg-gray-50"
-                  : "bg-white text-gray-600 hover:text-black"
+                  ? 'cursor-not-allowed text-gray-400 bg-gray-50'
+                  : 'bg-white text-gray-600 hover:text-black'
               } w-full px-5 py-5 text-sm border-t border-l border-gray-300 rounded-br focus:outline-none focus:ring-0 transition-all ease-in-out duration-150`}
             >
-              {creatingSite ? <LoadingDots /> : "CREATE SITE"}
+              {creatingSite ? <LoadingDots /> : 'CREATE SITE'}
             </button>
           </div>
         </form>
@@ -223,5 +223,5 @@ export default function AppIndex() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }

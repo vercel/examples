@@ -1,10 +1,10 @@
-import type { Product } from "../types"
+import type { Product } from '../types'
 
 interface Props {
-  product: Product;
+  product: Product
 }
 
-export default function ProductCard({product}: Props) {
+export default function ProductCard({ product }: Props) {
   return (
     <div className="w-full max-w-xl mx-auto">
       <section className="border border-gray-300 bg-white rounded-lg shadow-lg w-full max-w-[480px] hover:shadow-2xl transition">
@@ -19,5 +19,5 @@ export default function ProductCard({product}: Props) {
         </div>
       </section>
     </div>
-  );
+  )
 }

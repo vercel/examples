@@ -1,19 +1,19 @@
-import Layout from "@/components/sites/Layout";
-import supabase from "@/lib/supabase";
-import { useRouter } from "next/router";
-import BlurImage from "@/components/BlurImage";
-import BlogCard from "@/components/BlogCard";
-import Loader from "@/components/sites/Loader";
-import Date from "@/components/Date";
-import Link from "next/link";
+import Layout from '@/components/sites/Layout'
+import supabase from '@/lib/supabase'
+import { useRouter } from 'next/router'
+import BlurImage from '@/components/BlurImage'
+import BlogCard from '@/components/BlogCard'
+import Loader from '@/components/sites/Loader'
+import Date from '@/components/Date'
+import Link from 'next/link'
 
 export default function Index(props) {
-  const router = useRouter();
+  const router = useRouter()
   if (router.isFallback) {
-    return <Loader />;
+    return <Loader />
   }
 
-  const data = JSON.parse(props.data);
+  const data = JSON.parse(props.data)
 
   const meta = {
     title: data.name,
@@ -22,8 +22,8 @@ export default function Index(props) {
       ? data.customDomain
       : `https://${data.subdomain}.vercel.im`,
     ogImage: data.image,
-    logo: "/logo.png",
-  };
+    logo: '/logo.png',
+  }
 
   return (
     <Layout meta={meta} subdomain={data.subdomain}>
@@ -53,7 +53,7 @@ export default function Index(props) {
                   <div className="flex justify-start items-center space-x-4 w-full">
                     <p className="inline-block font-semibold text-sm md:text-base align-middle whitespace-nowrap">
                       {data.userId}
-                    </p> 
+                    </p>
                     <div className="border-l border-gray-600 h-6" />
                     <p className="text-sm md:text-base font-light text-gray-500 w-10/12 m-auto my-5">
                       <Date dateString={data.posts[0].createdAt} />
@@ -89,64 +89,62 @@ export default function Index(props) {
         </div>
       )}
     </Layout>
-  );
+  )
 }
 
 export async function getStaticPaths() {
-  console.log("hello");
+  console.log('hello')
 
-  const { data } = await supabase
-    .from("site")
-    .select("subdomain, customDomain");
+  const { data } = await supabase.from('site').select('subdomain, customDomain')
 
   const subdomains = data
     .filter((site) => site.subdomain)
-    .map((site) => site.subdomain);
+    .map((site) => site.subdomain)
   const domains = data
     .filter((site) => site.customDomain)
-    .map((site) => site.customDomain);
+    .map((site) => site.customDomain)
 
-  const allPaths = [...subdomains, ...domains];
+  const allPaths = [...subdomains, ...domains]
   return {
     paths: allPaths.map((path) => {
-      return { params: { site: path } };
+      return { params: { site: path } }
     }),
     fallback: true,
-  };
+  }
 }
 
 export async function getStaticProps({ params: { site } }) {
   let filter = {
     subdomain: site,
-  };
-  if (site.includes(".")) {
+  }
+  if (site.includes('.')) {
     filter = {
       customDomain: site,
-    };
+    }
   }
 
-  const eq = site.includes(".") ? "customDomain" : "subdomain";
+  const eq = site.includes('.') ? 'customDomain' : 'subdomain'
 
-  const { data } = await supabase.from("site").select("*").eq(eq, site);
+  const { data } = await supabase.from('site').select('*').eq(eq, site)
 
   if (data.length === 0) {
-    return { notFound: true, revalidate: 10 };
+    return { notFound: true, revalidate: 10 }
   }
 
   const { data: posts } = await supabase
-    .from("post")
-    .select("*")
-    .eq("siteId", data[0].id);
+    .from('post')
+    .select('*')
+    .eq('siteId', data[0].id)
 
   const siteWithPosts = {
     ...data[0],
     posts,
-  };
+  }
 
   return {
     props: {
       data: JSON.stringify(siteWithPosts),
     },
     revalidate: 10,
-  };
+  }
 }

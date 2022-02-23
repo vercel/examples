@@ -9,10 +9,7 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout
-      title="Rewrite on the edge"
-      path="edge-functions/rewrites-upstash"
-    >
+    <Layout title="Rewrite on the edge" path="edge-functions/rewrites-upstash">
       <Component {...pageProps} />
     </Layout>
   )

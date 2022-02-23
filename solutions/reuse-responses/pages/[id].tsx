@@ -2,18 +2,18 @@ import type { ParsedUrlQuery } from 'querystring'
 import type { GetStaticPaths, GetStaticProps } from 'next'
 import type { Product } from '../types'
 
-import { PHASE_PRODUCTION_BUILD } from 'next/constants';
+import { PHASE_PRODUCTION_BUILD } from 'next/constants'
 import { Layout, Page, Link } from '@vercel/examples-ui'
 
 import api from '../api'
 import ProductCard from '../components/ProductCard'
 
 interface Props {
-  product: Product;
+  product: Product
 }
 
 interface Query extends ParsedUrlQuery {
-  id: string;
+  id: string
 }
 
 export const getStaticPaths: GetStaticPaths<Query> = async () => {
@@ -24,17 +24,19 @@ export const getStaticPaths: GetStaticPaths<Query> = async () => {
   }
 
   return {
-    paths: products.map(product => ({
+    paths: products.map((product) => ({
       params: {
-        id: product.id
+        id: product.id,
       },
     })),
-    fallback: 'blocking'
+    fallback: 'blocking',
   }
 }
 
-export const getStaticProps: GetStaticProps<Props, Query> = async ({params}) => {
-  let product = await api.cache.get(params?.id as string);
+export const getStaticProps: GetStaticProps<Props, Query> = async ({
+  params,
+}) => {
+  let product = await api.cache.get(params?.id as string)
 
   if (!product) {
     product = await api.fetch(params?.id as string)
@@ -42,18 +44,18 @@ export const getStaticProps: GetStaticProps<Props, Query> = async ({params}) => 
 
   if (!product) {
     return {
-      notFound: true
+      notFound: true,
     }
   }
 
   return {
     props: {
       product,
-    }
+    },
   }
 }
 
-function Home({product}: Props) {
+function Home({ product }: Props) {
   return (
     <Page>
       <section className="flex flex-col gap-6 items-center">

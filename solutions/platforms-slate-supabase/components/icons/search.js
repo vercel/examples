@@ -16,7 +16,7 @@ const SearchIcon = ({ color, width, height, className }) => {
         className="st0"
       ></path>
     </svg>
-  );
-};
+  )
+}
 
-export default SearchIcon;
+export default SearchIcon

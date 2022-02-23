@@ -7,7 +7,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="Power parity pricing" path="edge-functions/power-parity-pricing">
+    <Layout
+      title="Power parity pricing"
+      path="edge-functions/power-parity-pricing"
+    >
       <Component {...pageProps} />
     </Layout>
   )

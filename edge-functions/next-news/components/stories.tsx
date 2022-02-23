@@ -1,5 +1,5 @@
-import Story from "./updating-story";
-import Link from "next/link";
+import Story from './updating-story'
+import Link from 'next/link'
 
 export default ({ stories, page = 1, offset = null }) => (
   <div>
@@ -37,7 +37,7 @@ export default ({ stories, page = 1, offset = null }) => (
       }
 
       .count::after {
-        content: ".";
+        content: '.';
       }
 
       .story {
@@ -57,4 +57,4 @@ export default ({ stories, page = 1, offset = null }) => (
       }
     `}</style>
   </div>
-);
+)

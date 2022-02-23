@@ -1,16 +1,16 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from 'next'
 
-import api from "../../../../api"
+import api from '../../../../api'
 
 interface Request extends NextApiRequest {
   query: {
-    id: string;
+    id: string
   }
 }
 
 export default async function handler(req: Request, res: NextApiResponse) {
   // If req.method is "POST", add stock, remove it otherwise
-  const hasStock = req.method === "POST"
+  const hasStock = req.method === 'POST'
 
   // Add or remove stock
   await api.cache.set(req.query.id, hasStock)

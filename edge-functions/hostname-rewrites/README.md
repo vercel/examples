@@ -32,6 +32,7 @@ To give a bit of context of how this can be applied in a real-world context, we 
 - [app.vercel.pub](https://app.vercel.pub) (editing backend)
 
 For more info on the Platforms Starter Kit:
+
 - [Twitter Announcement](https://twitter.com/vercel/status/1484237805941403655)
 - [Github Repo](https://github.com/vercel/platforms)
 - [Official Guide](https://vercel.com/guides/nextjs-multi-tenant-application)

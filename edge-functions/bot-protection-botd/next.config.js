@@ -1,9 +1,6 @@
-const withTM = require('next-transpile-modules')(
-  ['@vercel/examples-ui'],
-  {
-    resolveSymlinks: false,
-  }
-)
+const withTM = require('next-transpile-modules')(['@vercel/examples-ui'], {
+  resolveSymlinks: false,
+})
 
 module.exports = withTM({
   typescript: {

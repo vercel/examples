@@ -7,7 +7,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="Password Protected" path="edge-functions/basic-auth-password">
+    <Layout
+      title="Password Protected"
+      path="edge-functions/basic-auth-password"
+    >
       <Component {...pageProps} />
     </Layout>
   )

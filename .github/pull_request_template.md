@@ -5,12 +5,10 @@
 
 -->
 
- - <!-- Link to readme.md on feature branch -->
- - <!-- deployed example link -->
+- <!-- Link to readme.md on feature branch -->
+- <!-- deployed example link -->
 
 ### Screenshot
-
-
 
 ### Best Way to Test
 

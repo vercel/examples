@@ -1,66 +1,65 @@
-import React, { useCallback, useMemo, useState } from "react";
-import isHotkey from "is-hotkey";
-import { Editable, withReact, useSlate, Slate } from "slate-react";
-import { Editor, createEditor } from "slate";
-import { withHistory } from "slate-history";
+import React, { useCallback, useMemo, useState } from 'react'
+import isHotkey from 'is-hotkey'
+import { Editable, withReact, useSlate, Slate } from 'slate-react'
+import { Editor, createEditor } from 'slate'
+import { withHistory } from 'slate-history'
 import Element from './Element'
 import Leaf from './Leaf'
 
 const HOTKEYS = {
-  "cmd+b": "bold",
-  "cmd+i": "italic",
-  "cmd+u": "underline",
-  "cmd+c": "code",
-};
+  'cmd+b': 'bold',
+  'cmd+i': 'italic',
+  'cmd+u': 'underline',
+  'cmd+c': 'code',
+}
 
 const isMarkActive = (editor, format) => {
-  const marks = Editor.marks(editor);
-  return marks ? marks[format] === true : false;
-};
-
+  const marks = Editor.marks(editor)
+  return marks ? marks[format] === true : false
+}
 
 const Button = React.forwardRef(({ active, ...children }) => (
   <span
     {...children}
-    className={`${active && "font-bold"} cursor-pointer mr-3 p-1`}
+    className={`${active && 'font-bold'} cursor-pointer mr-3 p-1`}
   />
-));
+))
 
 const TextEditor = (props) => {
-  const [value, setValue] = useState(props.initialValue);
-  const renderElement = useCallback((props) => <Element {...props} />, []);
-  const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
-  const editor = useMemo(() => withHistory(withReact(createEditor())), []);
-  const [currentMark, setCurrentMark] = useState(null);
+  const [value, setValue] = useState(props.initialValue)
+  const renderElement = useCallback((props) => <Element {...props} />, [])
+  const renderLeaf = useCallback((props) => <Leaf {...props} />, [])
+  const editor = useMemo(() => withHistory(withReact(createEditor())), [])
+  const [currentMark, setCurrentMark] = useState(null)
 
   const toggleMark = (editor, format) => {
-    const isActive = isMarkActive(editor, format);
+    const isActive = isMarkActive(editor, format)
     if (isActive) {
-      Editor.removeMark(editor, format);
+      Editor.removeMark(editor, format)
     } else {
-      Editor.addMark(editor, format, true);
+      Editor.addMark(editor, format, true)
     }
-  };
+  }
 
   const ToolbarButton = ({ format, icon }) => {
-    const editor = useSlate();
+    const editor = useSlate()
 
     if (isMarkActive(editor, format)) {
-      setCurrentMark(format);
+      setCurrentMark(format)
     }
 
     return (
       <Button
         active={isMarkActive(editor, format)}
         onMouseDown={(event) => {
-          event.preventDefault();
-          toggleMark(editor, format);
+          event.preventDefault()
+          toggleMark(editor, format)
         }}
       >
         {icon}
       </Button>
-    );
-  };
+    )
+  }
 
   return (
     <Slate editor={editor} value={value} onChange={(value) => setValue(value)}>
@@ -88,22 +87,22 @@ const TextEditor = (props) => {
         spellCheck
         autoFocus
         onKeyDown={(event) => {
-          if (event.key === "Enter") {
-            toggleMark(editor, currentMark);
-            setCurrentMark(null);
+          if (event.key === 'Enter') {
+            toggleMark(editor, currentMark)
+            setCurrentMark(null)
           }
           for (const hotkey in HOTKEYS) {
             if (isHotkey(hotkey, event)) {
-              event.preventDefault();
-              const mark = HOTKEYS[hotkey];
-              toggleMark(editor, mark);
-              setCurrentMark(mark);
+              event.preventDefault()
+              const mark = HOTKEYS[hotkey]
+              toggleMark(editor, mark)
+              setCurrentMark(mark)
             }
           }
         }}
       />
     </Slate>
-  );
-};
+  )
+}
 
-export default TextEditor;
+export default TextEditor

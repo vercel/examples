@@ -13,5 +13,5 @@ export default function Logo() {
         }
       `}</style>
     </span>
-  )  
+  )
 }

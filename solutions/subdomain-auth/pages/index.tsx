@@ -1,12 +1,12 @@
-import { signIn, signOut, useSession } from "next-auth/react"
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 export default function Home() {
   const { data, status } = useSession()
 
-  if (status === "authenticated") {
+  if (status === 'authenticated') {
     return (
       <div>
-        Welcome {data.user.name}!{" "}
+        Welcome {data.user.name}!{' '}
         <button
           onClick={(e) => {
             e.preventDefault()
@@ -27,7 +27,7 @@ export default function Home() {
         </ul>
       </div>
     )
-  } else if (status === "loading") {
+  } else if (status === 'loading') {
     return <div>Loading...</div>
   }
   return (
@@ -35,7 +35,7 @@ export default function Home() {
       <button
         onClick={(e) => {
           e.preventDefault()
-          signIn("github")
+          signIn('github')
         }}
       >
         Sign in with GitHub

@@ -1,79 +1,79 @@
-import React from "react";
-import supabase from "@/lib/supabase";
-import Layout from "@/components/sites/Layout";
-import BlurImage from "@/components/BlurImage";
-import Date from "@/components/Date";
-import { Text } from "slate";
-import Highlight from "react-highlight";
-import { useRouter } from "next/router";
-import Loader from "@/components/sites/Loader";
+import React from 'react'
+import supabase from '@/lib/supabase'
+import Layout from '@/components/sites/Layout'
+import BlurImage from '@/components/BlurImage'
+import Date from '@/components/Date'
+import { Text } from 'slate'
+import Highlight from 'react-highlight'
+import { useRouter } from 'next/router'
+import Loader from '@/components/sites/Loader'
 
 const serialize = (node) => {
   if (Text.isText(node)) {
     if (node.code) {
-      return <Highlight className="h-full">{node.text}</Highlight>;
+      return <Highlight className="h-full">{node.text}</Highlight>
     }
-    if (node["heading-one"]) {
+    if (node['heading-one']) {
       return (
         <h1 className="text-3xl font-cal md:text-6xl mb-10 text-gray-800">
           {node.text}
         </h1>
-      );
+      )
     }
 
     if (node.bold && node.italic) {
-      return <p className="font-bold italic font-cal">{node.text}</p>;
+      return <p className="font-bold italic font-cal">{node.text}</p>
     }
 
     if (node.bold) {
-      return <p className="font-bold font-cal">{node.text}</p>;
+      return <p className="font-bold font-cal">{node.text}</p>
     }
 
     if (node.italic) {
-      return <p className="font-italic font-cal">{node.text}</p>;
+      return <p className="font-italic font-cal">{node.text}</p>
     }
 
-    if (node["heading-two"]) {
-      return <p className="text-2xl font-cal">{node.text}</p>;
+    if (node['heading-two']) {
+      return <p className="text-2xl font-cal">{node.text}</p>
     }
 
-    return node.text;
+    return node.text
   }
 
-  const children = node?.children.map((n) => serialize(n));
+  const children = node?.children.map((n) => serialize(n))
 
   switch (node.type) {
-    case "block-quote":
-      return <blockquote>{children}</blockquote>;
-    case "italic":
-      return <em className="italic">{children}</em>;
-    case "underline":
-      return <p className="underline">{children}</p>;
+    case 'block-quote':
+      return <blockquote>{children}</blockquote>
+    case 'italic':
+      return <em className="italic">{children}</em>
+    case 'underline':
+      return <p className="underline">{children}</p>
 
-    case "heading-one":
-      return <h1 className="text-4xl">{children}</h1>;
-    case "heading-two":
-      return <h2 className="text-2xl">{children}</h2>;
-    case "code":
-      return <code className="bg-gray-50 p-2 m-2">{children}</code>;
+    case 'heading-one':
+      return <h1 className="text-4xl">{children}</h1>
+    case 'heading-two':
+      return <h2 className="text-2xl">{children}</h2>
+    case 'code':
+      return <code className="bg-gray-50 p-2 m-2">{children}</code>
 
-    case "list-item":
-      return <li>{children}</li>;
-    case "numbered-list":
-      return <ol>{children}</ol>;
+    case 'list-item':
+      return <li>{children}</li>
+    case 'numbered-list':
+      return <ol>{children}</ol>
     default:
-      return <p>{children}</p>;
+      return <p>{children}</p>
   }
-};
+}
 export default function Post(props) {
-  console.log(props);
-  const router = useRouter();
+  console.log(props)
+  const router = useRouter()
   if (router.isFallback) {
-    return <Loader />;
+    return <Loader />
   }
 
-  const data = JSON.parse(props.stringifiedData);
-  console.log(data);
+  const data = JSON.parse(props.stringifiedData)
+  console.log(data)
   // const adjacentPosts = JSON.parse(props.stringifiedAdjacentPosts);
 
   const meta = {
@@ -81,8 +81,8 @@ export default function Post(props) {
     description: data.description,
     ogUrl: `https://${data.site.subdomain}.vercel.im/${data.slug}`,
     ogImage: data.image,
-    logo: "/logo.png",
-  };
+    logo: '/logo.png',
+  }
 
   return (
     <Layout meta={meta} subdomain={data.site.subdomain}>
@@ -136,41 +136,41 @@ export default function Post(props) {
         </div>
       )} */}
     </Layout>
-  );
+  )
 }
 
 export async function getStaticPaths() {
-  const { data } = await supabase.from("post").select(
+  const { data } = await supabase.from('post').select(
     `slug,
   site (
     subdomain,
     customDomain
   )  
   `
-  );
+  )
 
   return {
     paths: data.flatMap((post) => {
-      const params = [];
+      const params = []
 
       if (post.site.subdomain) {
-        params.push({ params: { site: post.site.subdomain, slug: post.slug } });
+        params.push({ params: { site: post.site.subdomain, slug: post.slug } })
       }
 
       if (post.site.customDomain) {
         params.push({
           params: { site: post.site.customDomain, slug: post.slug },
-        });
+        })
       }
-      return params;
+      return params
     }),
     fallback: true,
-  };
+  }
 }
 
 export async function getStaticProps({ params: { site, slug } }) {
   const { data } = await supabase
-    .from("post")
+    .from('post')
     .select(
       `*,
     site (
@@ -179,10 +179,10 @@ export async function getStaticProps({ params: { site, slug } }) {
     )
     `
     )
-    .eq("slug", slug);
+    .eq('slug', slug)
 
   if (data.length === 0) {
-    return { notFound: true, revalidate: 10 };
+    return { notFound: true, revalidate: 10 }
   }
 
   return {
@@ -190,5 +190,5 @@ export async function getStaticProps({ params: { site, slug } }) {
       stringifiedData: JSON.stringify(data[0]),
     },
     revalidate: 10,
-  };
+  }
 }

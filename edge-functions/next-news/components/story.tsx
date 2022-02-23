@@ -1,9 +1,9 @@
-import Link from "next/link";
-import timeAgo from "../lib/time-ago";
-import parse from "url-parse";
+import Link from 'next/link'
+import timeAgo from '../lib/time-ago'
+import parse from 'url-parse'
 
 export default ({ id, title, date, url, user, score, commentsCount }: any) => {
-  const { host } = parse(url);
+  const { host } = parse(url)
   return (
     <div>
       <div className="title">
@@ -16,28 +16,28 @@ export default ({ id, title, date, url, user, score, commentsCount }: any) => {
         )}
         {url && (
           <span className="source">
-            <a href={`http://${host}`}>{host.replace(/^www\./, "")}</a>
+            <a href={`http://${host}`}>{host.replace(/^www\./, '')}</a>
           </span>
         )}
       </div>
       <div className="meta">
-        {score} {plural(score, "point")} by{" "}
+        {score} {plural(score, 'point')} by{' '}
         <Link href={`/user?id=${user}`}>
           <a>{user}</a>
-        </Link>{" "}
+        </Link>{' '}
         <Link href={`/item/${id}`}>
           <a>
             {
               date &&
                 timeAgo(new Date(date)) /* note: we re-hydrate due to ssr */
-            }{" "}
+            }{' '}
             ago
           </a>
-        </Link>{" "}
-        |{" "}
+        </Link>{' '}
+        |{' '}
         <Link href={`/item/${id}`}>
           <a>
-            {commentsCount} {plural(commentsCount, "comment")}
+            {commentsCount} {plural(commentsCount, 'comment')}
           </a>
         </Link>
       </div>
@@ -78,7 +78,7 @@ export default ({ id, title, date, url, user, score, commentsCount }: any) => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-const plural = (n, s) => s + (n === 0 || n > 1 ? "s" : "");
+const plural = (n, s) => s + (n === 0 || n > 1 ? 's' : '')
