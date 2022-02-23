@@ -1,16 +1,16 @@
-import useSWR, { mutate } from "swr";
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-import { useState } from "react";
-import LoadingDots from "@/components/app/loading-dots";
+import useSWR, { mutate } from 'swr'
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
+import { useState } from 'react'
+import LoadingDots from '@/components/app/loading-dots'
 
 const DomainCard = ({ data, setData }) => {
   const { data: valid, isValidating } = useSWR(
     `/api/check-domain?domain=${data.customDomain}`,
     fetcher,
     { revalidateOnMount: true, refreshInterval: 5000 }
-  );
-  const [recordType, setRecordType] = useState("CNAME");
-  const [removing, setRemoving] = useState(false);
+  )
+  const [recordType, setRecordType] = useState('CNAME')
+  const [removing, setRemoving] = useState(false)
 
   return (
     <div className="w-full max-w-2xl mt-10 border border-black rounded-lg py-10">
@@ -42,37 +42,37 @@ const DomainCard = ({ data, setData }) => {
         <div className="flex space-x-3">
           <button
             onClick={() => {
-              mutate(`/api/check-domain?domain=${data.customDomain}`);
+              mutate(`/api/check-domain?domain=${data.customDomain}`)
             }}
             disabled={isValidating}
             className={`${
               isValidating
-                ? "cursor-not-allowed bg-gray-100"
-                : "bg-white hover:text-black hover:border-black"
+                ? 'cursor-not-allowed bg-gray-100'
+                : 'bg-white hover:text-black hover:border-black'
             } text-gray-500 border-gray-200 py-1.5 w-24 text-sm border-solid border rounded-md focus:outline-none transition-all ease-in-out duration-150`}
           >
-            {isValidating ? <LoadingDots /> : "Refresh"}
+            {isValidating ? <LoadingDots /> : 'Refresh'}
           </button>
           <button
             onClick={async () => {
-              setRemoving(true);
+              setRemoving(true)
               await fetch(
                 `/api/remove-domain?domain=${data.customDomain}&siteId=${data.id}`
               ).then((res) => {
-                setRemoving(false);
+                setRemoving(false)
                 if (res.ok) {
-                  setData({ ...data, customDomain: null });
+                  setData({ ...data, customDomain: null })
                 } else {
-                  alert("Error removing domain");
+                  alert('Error removing domain')
                 }
-              });
+              })
             }}
             disabled={removing}
             className={`${
-              removing ? "cursor-not-allowed bg-gray-100" : ""
+              removing ? 'cursor-not-allowed bg-gray-100' : ''
             }bg-red-500 text-white border-red-500 hover:text-red-500 hover:bg-white py-1.5 w-24 text-sm border-solid border rounded-md focus:outline-none transition-all ease-in-out duration-150`}
           >
-            {removing ? <LoadingDots /> : "Remove"}
+            {removing ? <LoadingDots /> : 'Remove'}
           </button>
         </div>
       </div>
@@ -87,7 +87,7 @@ const DomainCard = ({ data, setData }) => {
           strokeLinejoin="round"
           shapeRendering="geometricPrecision"
         >
-          <circle cx="12" cy="12" r="10" fill={valid ? "#1976d2" : "#d32f2f"} />
+          <circle cx="12" cy="12" r="10" fill={valid ? '#1976d2' : '#d32f2f'} />
           {valid ? (
             <>
               <path
@@ -105,10 +105,10 @@ const DomainCard = ({ data, setData }) => {
         </svg>
         <p
           className={`${
-            valid ? "text-black font-normal" : "text-red-700 font-medium"
+            valid ? 'text-black font-normal' : 'text-red-700 font-medium'
           } text-sm`}
         >
-          {valid ? "Valid" : "Invalid"} Configuration
+          {valid ? 'Valid' : 'Invalid'} Configuration
         </p>
       </div>
 
@@ -119,21 +119,21 @@ const DomainCard = ({ data, setData }) => {
           <div className="px-10">
             <div className="flex justify-start space-x-4">
               <button
-                onClick={() => setRecordType("CNAME")}
+                onClick={() => setRecordType('CNAME')}
                 className={`${
-                  recordType == "CNAME"
-                    ? "text-black border-black"
-                    : "text-gray-400 border-white"
+                  recordType == 'CNAME'
+                    ? 'text-black border-black'
+                    : 'text-gray-400 border-white'
                 } text-sm border-b-2 pb-1 transition-all ease duration-150`}
               >
                 CNAME Record (subdomains)
               </button>
               <button
-                onClick={() => setRecordType("A")}
+                onClick={() => setRecordType('A')}
                 className={`${
-                  recordType == "A"
-                    ? "text-black border-black"
-                    : "text-gray-400 border-white"
+                  recordType == 'A'
+                    ? 'text-black border-black'
+                    : 'text-gray-400 border-white'
                 } text-sm border-b-2 pb-1 transition-all ease duration-150`}
               >
                 A Record (apex domain)
@@ -151,13 +151,13 @@ const DomainCard = ({ data, setData }) => {
                 <div>
                   <p className="text-sm font-bold">Name</p>
                   <p className="text-sm font-mono mt-2">
-                    {recordType == "CNAME" ? "www" : "@"}
+                    {recordType == 'CNAME' ? 'www' : '@'}
                   </p>
                 </div>
                 <div>
                   <p className="text-sm font-bold">Value</p>
                   <p className="text-sm font-mono mt-2">
-                    {recordType == "CNAME" ? `cname.vercel.im` : `76.76.21.21`}
+                    {recordType == 'CNAME' ? `cname.vercel.im` : `76.76.21.21`}
                   </p>
                 </div>
               </div>
@@ -166,7 +166,7 @@ const DomainCard = ({ data, setData }) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default DomainCard;
+export default DomainCard

@@ -1,13 +1,13 @@
-import Head from "next/head";
-import Image from "next/image";
-import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemote } from "next-mdx-remote";
-import Tweet from "@/components/Tweet";
-import { getTweets } from "@/lib/twitter";
+import Head from 'next/head'
+import Image from 'next/image'
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote } from 'next-mdx-remote'
+import Tweet from '@/components/Tweet'
+import { getTweets } from '@/lib/twitter'
 
 const components = {
   Tweet,
-};
+}
 
 export default function Home(props) {
   return (
@@ -38,12 +38,12 @@ export default function Home(props) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
+          Powered by{' '}
           <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
         </a>
       </footer>
     </div>
-  );
+  )
 }
 
 export async function getStaticProps() {
@@ -66,40 +66,40 @@ export async function getStaticProps() {
   <p>https://twitter.com/steventey/status/1467713086459047940?s=20</p>
   <h2>Poll Tweet</h2>
   <p>https://twitter.com/DAOCentral/status/1475184169588125699</p>
-  `;
+  `
 
   // Replace all Twitter URLs with their MDX counterparts
   const finalContentHtml = await replaceAsync(
     contentHtml,
     /<p>(https?:\/\/twitter\.com\/(?:#!\/)?(\w+)\/status(?:es)?\/(\d+)([^\?])(\?.*)?<\/p>)/g,
     getTweetMetadata
-  );
+  )
 
   // serialize the content string into MDX
-  const mdxSource = await serialize(finalContentHtml);
+  const mdxSource = await serialize(finalContentHtml)
 
   return {
     props: {
       content: mdxSource,
     },
-  };
+  }
 }
 
 const replaceAsync = async (str, regex, asyncFn) => {
-  const promises = [];
+  const promises = []
   str.replace(regex, (match, ...args) => {
-    const promise = asyncFn(match, ...args);
-    promises.push(promise);
-  });
-  const data = await Promise.all(promises);
-  return str.replace(regex, () => data.shift());
-};
+    const promise = asyncFn(match, ...args)
+    promises.push(promise)
+  })
+  const data = await Promise.all(promises)
+  return str.replace(regex, () => data.shift())
+}
 
 const getTweetMetadata = async (tweetUrl) => {
-  const regex = /\/status\/(\d+)/gm;
-  const id = regex.exec(tweetUrl)[1];
-  const tweetData = await getTweets(id);
+  const regex = /\/status\/(\d+)/gm
+  const id = regex.exec(tweetUrl)[1]
+  const tweetData = await getTweets(id)
   const tweetMDX =
-    "<Tweet id='" + id + "' metadata={`" + JSON.stringify(tweetData) + "`}/>";
-  return tweetMDX;
-};
+    "<Tweet id='" + id + "' metadata={`" + JSON.stringify(tweetData) + '`}/>'
+  return tweetMDX
+}

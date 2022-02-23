@@ -15,13 +15,8 @@ export default function Beta() {
       <Text variant="h1" className="mb-6">
         Cookies example
       </Text>
-      <Text className="mb-4">
-        You are currently in beta!
-      </Text>
-      <Button
-        variant="secondary"
-        onClick={optOut}
-      >
+      <Text className="mb-4">You are currently in beta!</Text>
+      <Button variant="secondary" onClick={optOut}>
         Opt out
       </Button>
     </Page>

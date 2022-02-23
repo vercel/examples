@@ -3,8 +3,8 @@ import Script from 'next/script'
 import { Code, Layout, List, Page, Text } from '@vercel/examples-ui'
 
 interface Log {
-  time: Date;
-  text: string;
+  time: Date
+  text: string
 }
 
 function FBLazyLoad() {
@@ -35,11 +35,14 @@ function FBLazyLoad() {
       <Page>
         <section className="flex flex-col gap-6">
           <Text variant="h1">lazyOnload FB sdk</Text>
-          <Text>You can check <Code>window.FB</Code> on browser console</Text>
+          <Text>
+            You can check <Code>window.FB</Code> on browser console
+          </Text>
           <List>
             {log.map(({ time, text }) => (
               <li key={+time}>
-                <span className="font-medium">{time.toISOString()}</span>: {text}
+                <span className="font-medium">{time.toISOString()}</span>:{' '}
+                {text}
               </li>
             ))}
           </List>
@@ -49,6 +52,6 @@ function FBLazyLoad() {
   )
 }
 
-FBLazyLoad.Layout = Layout;
+FBLazyLoad.Layout = Layout
 
-export default FBLazyLoad;
+export default FBLazyLoad

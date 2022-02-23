@@ -9,27 +9,29 @@ import ProductCard from '../../../components/ProductCard'
 import { useState } from 'react'
 
 interface Props {
-  product: Product;
+  product: Product
 }
 
 interface Query extends ParsedUrlQuery {
-  id: string;
+  id: string
 }
 
-export const getStaticProps: GetStaticProps<Props, Query> = async ({params}) => {
+export const getStaticProps: GetStaticProps<Props, Query> = async ({
+  params,
+}) => {
   const product = await api.fetch((params as Query).id)
 
   if (!product) {
     return {
-      notFound: true
+      notFound: true,
     }
   }
 
   return {
     revalidate: 10,
     props: {
-      product
-    }
+      product,
+    },
   }
 }
 
@@ -37,22 +39,24 @@ export const getStaticPaths: GetStaticPaths<Query> = async () => {
   const products = await api.list()
 
   return {
-    paths: products.map(product => ({
+    paths: products.map((product) => ({
       params: {
-        id: product.id
+        id: product.id,
       },
     })),
-    fallback: 'blocking'
+    fallback: 'blocking',
   }
 }
 
-function ProductDetails({product}: Props) {
-  const [isLoading, toggleLoading] = useState<boolean>(false);
+function ProductDetails({ product }: Props) {
+  const [isLoading, toggleLoading] = useState<boolean>(false)
 
   function handleBuy() {
     toggleLoading(true)
 
-    fetch(`/api/product/${product.id}/stock`, {method: 'DELETE'}).then(() => window.location.reload())
+    fetch(`/api/product/${product.id}/stock`, { method: 'DELETE' }).then(() =>
+      window.location.reload()
+    )
   }
 
   return (
@@ -61,7 +65,9 @@ function ProductDetails({product}: Props) {
         {product.stock ? (
           <>
             <ProductCard product={product} />
-            <Button loading={isLoading} onClick={handleBuy}>Buy all stock</Button>
+            <Button loading={isLoading} onClick={handleBuy}>
+              Buy all stock
+            </Button>
           </>
         ) : (
           <article className="flex flex-col gap-1 items-center">

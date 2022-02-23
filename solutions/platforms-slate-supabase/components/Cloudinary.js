@@ -1,33 +1,33 @@
-import { Component } from "react";
-import Head from "next/head";
+import { Component } from 'react'
+import Head from 'next/head'
 
 export default class CloudinaryUploadWidget extends Component {
   constructor(props) {
-    super(props);
-    this.uploader = null;
+    super(props)
+    this.uploader = null
   }
 
   showWidget = () => {
-    const { callback } = this.props;
+    const { callback } = this.props
     let widget = window.cloudinary.createUploadWidget(
       {
-        cloudName: "vercel-platforms",
-        uploadPreset: "w0vnflc6",
+        cloudName: 'vercel-platforms',
+        uploadPreset: 'w0vnflc6',
         cropping: true,
       },
       (error, result) => {
-        if (!error && result && result.event === "success") {
-          callback(result.info);
+        if (!error && result && result.event === 'success') {
+          callback(result.info)
         }
       }
-    );
-    widget.open();
-  };
+    )
+    widget.open()
+  }
 
   open = (e) => {
-    e.preventDefault();
-    this.showWidget();
-  };
+    e.preventDefault()
+    this.showWidget()
+  }
 
   render() {
     return (
@@ -43,6 +43,6 @@ export default class CloudinaryUploadWidget extends Component {
         </Head>
         {this.props.children({ open: this.open })}
       </>
-    );
+    )
   }
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function LinkIcon({ width, height, color }) {
   return (
@@ -20,7 +20,7 @@ function LinkIcon({ width, height, color }) {
         className="st0"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default LinkIcon;
+export default LinkIcon

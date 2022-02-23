@@ -1,23 +1,23 @@
-import React from "react";
-import timeAgo from "../lib/time-ago";
+import React from 'react'
+import timeAgo from '../lib/time-ago'
 
 export default class Comment extends React.Component<any, any> {
   constructor(props) {
-    super(props);
-    this.state = { toggled: false };
-    this.toggle = this.toggle.bind(this);
+    super(props)
+    this.state = { toggled: false }
+    this.toggle = this.toggle.bind(this)
   }
 
   render() {
-    const { user, text, date, comments } = this.props;
+    const { user, text, date, comments } = this.props
     return (
       <div className="comment">
         <div className="meta">
-          {user} {timeAgo(new Date(date))} ago{" "}
+          {user} {timeAgo(new Date(date))} ago{' '}
           <span onClick={this.toggle} className="toggle">
             {this.state.toggled
               ? `[+${(this.props.commentsCount || 0) + 1}]`
-              : "[-]"}
+              : '[-]'}
           </span>
         </div>
 
@@ -79,10 +79,10 @@ export default class Comment extends React.Component<any, any> {
           }
         `}</style>
       </div>
-    );
+    )
   }
 
   toggle() {
-    this.setState({ toggled: !this.state.toggled });
+    this.setState({ toggled: !this.state.toggled })
   }
 }

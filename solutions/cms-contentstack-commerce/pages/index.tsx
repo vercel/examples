@@ -13,7 +13,7 @@ export async function getStaticProps({
     const entry = await cs.getEntry(
       // hardcoded example
       'home_page',
-      'blt5c760b6ce70ae18b', 
+      'blt5c760b6ce70ae18b',
       locale ? (locale.toLocaleLowerCase() as string) : 'en-US'
     )
 

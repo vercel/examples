@@ -15,13 +15,8 @@ export default function NonBeta() {
       <Text variant="h1" className="mb-6">
         Cookies example
       </Text>
-      <Text className="mb-4">
-        You are currently not in beta!
-      </Text>
-      <Button
-        variant="secondary"
-        onClick={optIn}
-      >
+      <Text className="mb-4">You are currently not in beta!</Text>
+      <Button variant="secondary" onClick={optIn}>
         Opt in
       </Button>
     </Page>

@@ -33,8 +33,3 @@
 - [Power Parity Pricing](./power-parity-pricing)
 - [Query Parameters Filter](./query-params-filter)
 - [Scalable redirects with Upstash](./redirects-upstash)
-
-
-
-
-

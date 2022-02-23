@@ -32,7 +32,6 @@ Copy the `.env.example` file in this directory to `.env.local` and set your Cont
 cp .env.example .env.local
 ```
 
-
 Next, run Next.js in development mode:
 
 ```bash

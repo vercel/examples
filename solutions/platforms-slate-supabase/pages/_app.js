@@ -1,6 +1,6 @@
-import "@/styles/globals.css";
-import { SessionProvider } from "next-auth/react";
-import PlausibleProvider from "next-plausible";
+import '@/styles/globals.css'
+import { SessionProvider } from 'next-auth/react'
+import PlausibleProvider from 'next-plausible'
 
 export default function App({
   Component,
@@ -12,5 +12,5 @@ export default function App({
         <Component {...pageProps} />
       </SessionProvider>
     </PlausibleProvider>
-  );
+  )
 }

@@ -1,68 +1,68 @@
-import React from 'react';
-import { useSession } from '@clerk/nextjs';
-import { Navigation, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { TokenCard } from './TokenCard';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
+import React from 'react'
+import { useSession } from '@clerk/nextjs'
+import { Navigation, Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { TokenCard } from './TokenCard'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 
 function useInterval(callback, delay) {
-  const savedCallback = React.useRef(callback);
+  const savedCallback = React.useRef(callback)
 
   React.useLayoutEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
+    savedCallback.current = callback
+  }, [callback])
 
   React.useEffect(() => {
     if (!delay) {
-      return;
+      return
     }
-    const id = setInterval(() => savedCallback.current(), delay);
-    return () => clearInterval(id);
-  }, [delay]);
+    const id = setInterval(() => savedCallback.current(), delay)
+    return () => clearInterval(id)
+  }, [delay])
 }
 
 export const JWTDemo = () => {
-  const session = useSession();
-  const [swiperRef, setSwiperRef] = React.useState(null);
-  const [tokens, setTokens] = React.useState([]);
+  const session = useSession()
+  const [swiperRef, setSwiperRef] = React.useState(null)
+  const [tokens, setTokens] = React.useState([])
 
   const prependAndSlideToStart = React.useCallback(() => {
     if (!swiperRef) {
-      return;
+      return
     }
-    swiperRef.slideTo(1, 0);
-    swiperRef.update();
-    swiperRef.slideTo(0);
-  }, [swiperRef]);
+    swiperRef.slideTo(1, 0)
+    swiperRef.update()
+    swiperRef.slideTo(0)
+  }, [swiperRef])
 
   const getToken = React.useCallback(async () => {
     try {
-      const token = await session.getToken();
+      const token = await session.getToken()
       if (tokens[0] !== token) {
-        setTokens([token, ...tokens]);
-        prependAndSlideToStart();
+        setTokens([token, ...tokens])
+        prependAndSlideToStart()
       }
     } catch (e) {
-      console.log('JWTDemo::getToken error', e);
+      console.log('JWTDemo::getToken error', e)
     }
-  }, [session, tokens, prependAndSlideToStart]);
+  }, [session, tokens, prependAndSlideToStart])
 
   React.useEffect(() => {
-    getToken();
-  }, [getToken]);
+    getToken()
+  }, [getToken])
 
   useInterval(async () => {
-    void getToken();
-  }, 1000);
+    void getToken()
+  }, 1000)
 
-  const tokenCount = tokens.length;
+  const tokenCount = tokens.length
   const generatedTokensText = `${tokenCount} ${
     tokenCount === 1 ? 'JWT' : 'JWTs'
-  } generated since page load`;
+  } generated since page load`
 
   return (
     <>
-      <div className='-mx-2 relative'>
+      <div className="-mx-2 relative">
         <Swiper
           modules={[Pagination, Navigation]}
           pagination={{
@@ -85,22 +85,22 @@ export const JWTDemo = () => {
             </SwiperSlide>
           ))}
           <button
-            id='newer_token'
-            className='prev absolute z-10 bg-opacity-5 hover:bg-opacity-20 bg-gray-900 top-0 bottom-8 rounded-l-xl left-0 w-8'
+            id="newer_token"
+            className="prev absolute z-10 bg-opacity-5 hover:bg-opacity-20 bg-gray-900 top-0 bottom-8 rounded-l-xl left-0 w-8"
           >
-            <ChevronLeftIcon className='text-white filter drop-shadow' />
+            <ChevronLeftIcon className="text-white filter drop-shadow" />
           </button>
           <button
-            id='older_token'
-            className='next absolute z-10 bg-opacity-5 hover:bg-opacity-20 bg-gray-900 top-0 bottom-8 rounded-r-xl right-0 w-8 '
+            id="older_token"
+            className="next absolute z-10 bg-opacity-5 hover:bg-opacity-20 bg-gray-900 top-0 bottom-8 rounded-r-xl right-0 w-8 "
           >
-            <ChevronRightIcon className='text-white filter drop-shadow' />
+            <ChevronRightIcon className="text-white filter drop-shadow" />
           </button>
         </Swiper>
       </div>
-      <div className='text-right text-gray-500 -mt-7'>
+      <div className="text-right text-gray-500 -mt-7">
         {generatedTokensText}
       </div>
     </>
-  );
-};
+  )
+}

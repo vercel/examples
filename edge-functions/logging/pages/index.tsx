@@ -1,17 +1,17 @@
-import { FC } from "react";
-import Image from "next/image";
-import Head from "next/head";
-import { Layout, Text, Page, Link, Code } from "@vercel/examples-ui";
+import { FC } from 'react'
+import Image from 'next/image'
+import Head from 'next/head'
+import { Layout, Text, Page, Link, Code } from '@vercel/examples-ui'
 
-import board from "../public/board.jpg";
+import board from '../public/board.jpg'
 
 const Snippet: FC = ({ children }) => {
   return (
     <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 transition-all">
       {children}
     </pre>
-  );
-};
+  )
+}
 
 function Home() {
   return (
@@ -67,18 +67,18 @@ export default function middleware(req) {
           This way our call will not block the execution (because we do not want
           to block the request until completion as we do not need the response)
           while logging the information in our service of choice. This example
-          uses{" "}
+          uses{' '}
           <Link target="_blank" href="https://logtail.com/">
             Logtail
-          </Link>{" "}
+          </Link>{' '}
           but you can use whatever service you like as soon as it has a
           rest-based approach or an edge compatible SDK.
         </Text>
       </section>
     </Page>
-  );
+  )
 }
 
-Home.Layout = Layout;
+Home.Layout = Layout
 
-export default Home;
+export default Home

@@ -5,10 +5,7 @@ export function middleware() {
   const response = NextResponse.next()
 
   // Set custom header
-  response.headers.set(
-    "x-modified-edge",
-    "true"
-  )
+  response.headers.set('x-modified-edge', 'true')
 
   // Return response
   return response
