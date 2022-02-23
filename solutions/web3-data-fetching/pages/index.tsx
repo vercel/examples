@@ -5,7 +5,6 @@ import { ethers } from 'ethers'
 import { FC } from 'react'
 import abi from '../lib/BAYC.abi.json'
 import { BORED_APE_YATCH_CLUB_ADDRESS } from '../constants'
-import useSWR from 'swr'
 
 const contract = new ethers.Contract(
   BORED_APE_YATCH_CLUB_ADDRESS,
@@ -22,8 +21,6 @@ const Snippet: FC = ({ children }) => {
 }
 
 function Home({ contractName }: { contractName: string }) {
-  const { data } = useSWR('name', () => contract.name())
-
   return (
     <Page>
       <Head>
