@@ -1,31 +1,27 @@
 ### Description
 
 <!--
-  ✍️ Write a short summary of your work.
-
+  ✍️ Write a short summary of your work. Screenshots and videos are welcome!
 -->
 
-- <!-- Link to readme.md on feature branch -->
-- <!-- deployed example link -->
-
-### Screenshot
+<!-- Link to readme.md on your branch -->
 
 ### Best Way to Test
 
 <!--
-  Give a quick description of steps to test your changes. Ideally with a URL we can hop straight to.
+  Give a quick description of steps to test your changes. For examples a deployment URL allows us to jump directly to it.
 -->
 
 ### Type of Change
 
 - [ ] Bug fix (non-breaking change that fixes an issue)
-- [ ] New Example (non-breaking change that adds new example)
+- [ ] New Example
+- [ ] New feature in existing example
 
 ### New Example Checklist
 
-- [ ] 📸 Screenshot or visial element explainging concept behind example
+- [ ] 🚀 Link to deployment URL on Vercel
 - [ ] 📱 Is it responsive? Are mobile and tablets considered?
 - [ ] 📚 `README.md` preview link in PR description (branch)
-- [ ] 🚀 link to deployed example on Vercel
-- [ ] ⚙️ list any used `ENV` variables
-- [ ] 🛫 `npm run new-example` as an initial commit for changes visibility
+- [ ] ⚙️ Secrets have instructions for how to set up in the readme
+- [ ] 🛫 `npm run new-example` was run to create the example
