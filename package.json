@@ -5,20 +5,24 @@
   "scripts": {
     "prettier": "prettier --write .",
     "update": "node update-dep.mjs",
-    "new-example": "plop example"
+    "new-example": "plop example",
+    "lint-staged": "lint-staged",
+    "prepare": "husky install"
   },
   "pre-commit": "lint-staged",
   "devDependencies": {
     "eslint": "^8.9.0",
+    "husky": "^7.0.4",
     "lint-staged": "^12.3.4",
     "plop": "^3.0.5",
-    "pre-commit": "^1.2.2",
     "prettier": "^2.5.1"
   },
   "lint-staged": {
-    "*.{js,css,md}": [
-      "prettier --write",
-      "eslint --no-ignore --max-warnings=0"
+    "**/*.{js,jsx,ts,tsx}": [
+      "prettier --write"
+    ],
+    "**/*.{json,md,mdx,css,html,yml,yaml,scss}": [
+      "prettier --write"
     ]
   }
 }
