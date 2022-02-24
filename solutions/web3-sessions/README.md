@@ -14,6 +14,12 @@ This Demo will show how to configure NextAuth.js and create a custom hook to pro
 
 You will need to add the proper variables in a `.env` file like show in the `.env.example` file.
 
+```
+// generate random secrets on https://passwordsgenerator.net/ or anywhere else similar
+NEXT_AUTH_SECRET=123
+JWT_SECRET=123
+```
+
 You can choose from one of the following two methods to use this repository:
 
 ### One-Click Deploy
