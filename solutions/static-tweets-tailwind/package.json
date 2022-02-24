@@ -21,6 +21,7 @@
     "@tailwindcss/typography": "^0.5.1",
     "@types/node": "^17.0.14",
     "autoprefixer": "^10.4.2",
+    "eslint-config-next": "^12.1.0",
     "postcss": "^8.4.6",
     "tailwindcss": "^3.0.18"
   }
