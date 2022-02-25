@@ -2,7 +2,7 @@ import Link from 'next/link'
 import timeAgo from '../lib/time-ago'
 import parse from 'url-parse'
 
-export default ({ id, title, date, url, user, score, commentsCount }: any) => {
+const Story = ({ id, title, date, url, user, score, commentsCount }: any) => {
   const { host } = parse(url)
   return (
     <div>
@@ -82,3 +82,5 @@ export default ({ id, title, date, url, user, score, commentsCount }: any) => {
 }
 
 const plural = (n, s) => s + (n === 0 || n > 1 ? 's' : '')
+
+export default Story

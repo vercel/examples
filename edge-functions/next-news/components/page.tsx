@@ -1,7 +1,7 @@
 import Header from './header'
 import Meta from './meta'
 
-export default ({ children }) => (
+const Page = ({ children }) => (
   <div className="main">
     <Meta />
     <Header />
@@ -30,3 +30,5 @@ export default ({ children }) => (
     `}</style>
   </div>
 )
+
+export default Page

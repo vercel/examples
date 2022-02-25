@@ -40,7 +40,9 @@ export default function Home(props) {
           rel="noreferrer"
         >
           Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
+          <div className="flex ml-2">
+            <Image src="/vercel.svg" alt="Vercel Logo" width={71} height={16} />
+          </div>
         </a>
       </footer>
     </div>

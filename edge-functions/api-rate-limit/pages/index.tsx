@@ -17,7 +17,7 @@ export default function Index() {
       </Text>
       <Headers path="/api">Make a request</Headers>
       <Text>
-        The pattern we're using in this example is inspired by the{' '}
+        The pattern we&apos;re using in this example is inspired by the{' '}
         <Link
           href="https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting"
           target="_blank"

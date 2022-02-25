@@ -12,7 +12,7 @@ if (
   )
 }
 
-export default {
+const contentStack = {
   async getEntry(
     contentType = '',
     entryId = '',
@@ -38,3 +38,5 @@ export default {
     }
   },
 }
+
+export default contentStack

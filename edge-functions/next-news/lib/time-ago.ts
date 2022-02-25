@@ -8,5 +8,7 @@ const map = {
   d: 'days',
 }
 
-export default (date) =>
+const timeAgo = (date) =>
   ms(+new Date() - date).replace(/[a-z]+/, (str) => ' ' + map[str])
+
+export default timeAgo

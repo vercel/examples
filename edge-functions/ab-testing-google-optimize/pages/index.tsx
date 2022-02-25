@@ -30,14 +30,14 @@ export default function Index() {
         AB testing with Google Optimize
       </Text>
       <Text className="mb-4">
-        Once you load this page, there's a new <Code>{COOKIE_NAME}</Code> cookie
-        set in the browser, it has the shape of{' '}
-        <Code>{'${experimentId}.${variantId}'}</Code>. You're assigned to:{' '}
+        Once you load this page, there&apos;s a new <Code>{COOKIE_NAME}</Code>{' '}
+        cookie set in the browser, it has the shape of{' '}
+        <Code>{'${experimentId}.${variantId}'}</Code>. You&apos;re assigned to:{' '}
         <b>{cookie}</b>
       </Text>
       <Text className="mb-4">
-        Based on a predefined experiment you'll be assigned one of 3 variants
-        (0, 1, 2), where 0 is the original page
+        Based on a predefined experiment you&apos;ll be assigned one of 3
+        variants (0, 1, 2), where 0 is the original page
       </Text>
       <Text className="mb-4">
         The about and marketing pages will render the version of the page that

@@ -2,7 +2,7 @@ import React from 'react'
 import Story from './story'
 import { observe } from '../lib/get-item'
 
-export default class extends React.Component<any, any> {
+export default class UpdatingStory extends React.Component<any, any> {
   unsubscribe: VoidFunction
 
   constructor(props) {

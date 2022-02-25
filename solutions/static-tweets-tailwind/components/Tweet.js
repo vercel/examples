@@ -162,8 +162,8 @@ export default function Tweet({ id, metadata, className }) {
               : 'inline-grid grid-cols-2 gap-x-2 gap-y-2 my-2'
           }
         >
-          {media.map((m) => (
-            <a href={tweetUrl} target="_blank" rel="noreferrer">
+          {media.map((m, i) => (
+            <a key={i} href={tweetUrl} target="_blank" rel="noreferrer">
               {m.type == 'video' || m.type == 'animated_gif' ? (
                 video ? (
                   <video
@@ -239,8 +239,9 @@ export default function Tweet({ id, metadata, className }) {
             )
             return poll.voting_status == 'open' ? (
               <div>
-                {poll.options.map((option) => (
+                {poll.options.map((option, i) => (
                   <a
+                    key={i}
                     href={tweetUrl}
                     target="_blank"
                     rel="noreferrer"

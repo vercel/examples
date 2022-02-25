@@ -65,7 +65,7 @@ export default function Index({ isMyFirstFeatureEnabled }) {
       {clientSideFeatureEnabled && (
         <Text>
           If you see this text is because the feature flag called{' '}
-          <Code>clientSideFeatureEnabled</Code> is enabled in ConfigCat'
+          <Code>clientSideFeatureEnabled</Code> is enabled in ConfigCat&apos;
           dashboard, and it was dinamically added to the page
         </Text>
       )}

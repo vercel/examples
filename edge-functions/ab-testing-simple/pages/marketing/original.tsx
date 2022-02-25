@@ -20,7 +20,7 @@ export default function Marketing() {
         Marketing page
       </Text>
       <Text className="text-lg mb-4">
-        You're currently on <b>/marketing/original</b>
+        You&apos;re currently on <b>/marketing/original</b>
       </Text>
       <Text className="mb-4">This is the original marketing page</Text>
       <Text className="mb-4">
