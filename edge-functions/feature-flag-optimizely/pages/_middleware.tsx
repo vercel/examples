@@ -48,13 +48,12 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
   console.log(`[OPTIMIZELY] User ${userId} was bucketed in to variation ${decision.variationKey}`)
   console.log(`[OPTIMIZELY] sort_method is ${decision.variables.sort_method}`)
 
-  // Default response is products sorted alphabetically
-  let res = NextResponse.rewrite('/')
-
-  if (decision.variables.sort_method === 'popular_first') {
-    res = NextResponse.rewrite('/popular')
-  }
+  const url = req.nextUrl.clone()
   
+  // Rewriting the path based on sort_method. The default is Alphabetical.
+  url.pathname = decision.variables.sort_method === 'popular_first' ? '/popular' : '/'  
+  let res = NextResponse.rewrite(url)
+
   if (!req.cookies[COOKIE_NAME]) {
     // Saving userId in the cookie so that the decision sticks for subsequent visits.
     res.cookie(COOKIE_NAME, userId)

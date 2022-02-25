@@ -8,9 +8,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@optimizely/optimizely-sdk": "^4.8.0",
+    "@optimizely/optimizely-sdk": "^4.9.1",
     "@vercel/edge-functions-ui": "^0.2.1",
-    "next": "12.0.7",
+    "next": "^12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
