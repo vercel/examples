@@ -84,7 +84,7 @@ export default function Tweet({ id, metadata, className }) {
           className="flex h-12 w-12 rounded-full overflow-hidden"
           href={authorUrl}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
           <BlurImage
             alt={author.username}
@@ -96,7 +96,7 @@ export default function Tweet({ id, metadata, className }) {
         <a
           href={authorUrl}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
           className="author flex flex-col ml-4 !no-underline"
         >
           <span
@@ -123,12 +123,7 @@ export default function Tweet({ id, metadata, className }) {
             @{author.username}
           </span>
         </a>
-        <a
-          className="ml-auto"
-          href={tweetUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a className="ml-auto" href={tweetUrl} target="_blank" rel="noreferrer">
           <svg
             viewBox="328 355 335 276"
             height="24"
@@ -149,6 +144,7 @@ export default function Tweet({ id, metadata, className }) {
             className="!no-underline !text-[#1da1f2]"
             href={`https://twitter.com/${repliedTo.author.username}`}
             target="_blank"
+            rel="noreferrer"
           >
             @{repliedTo.author.username}
           </a>
@@ -167,7 +163,7 @@ export default function Tweet({ id, metadata, className }) {
           }
         >
           {media.map((m) => (
-            <a href={tweetUrl} target="_blank">
+            <a href={tweetUrl} target="_blank" rel="noreferrer">
               {m.type == 'video' || m.type == 'animated_gif' ? (
                 video ? (
                   <video
@@ -214,6 +210,7 @@ export default function Tweet({ id, metadata, className }) {
           className="!no-underline"
           href={url_meta.unwound_url}
           target="_blank"
+          rel="noreferrer"
         >
           <div className="rounded-2xl overflow-hidden border border-gray-200 drop-shadow-sm mb-5">
             <BlurImage
@@ -243,7 +240,12 @@ export default function Tweet({ id, metadata, className }) {
             return poll.voting_status == 'open' ? (
               <div>
                 {poll.options.map((option) => (
-                  <a href={tweetUrl} target="_blank" className="!no-underline">
+                  <a
+                    href={tweetUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="!no-underline"
+                  >
                     <div className="text-center font-bold text-[#1da1f2] border border-[#1da1f2] rounded-3xl my-2 hover:bg-[#1da1f2] hover:bg-opacity-10 transition-all ease-in-out duration-150">
                       {option.label}
                     </div>
@@ -302,7 +304,7 @@ export default function Tweet({ id, metadata, className }) {
         className="block mt-3 mb-4 !text-gray-500 text-base hover:!underline !no-underline"
         href={tweetUrl}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noreferrer"
       >
         <time
           title={`Time Posted: ${createdAt.toUTCString()}`}
@@ -316,7 +318,7 @@ export default function Tweet({ id, metadata, className }) {
           className="flex items-center !text-gray-500 group transition !no-underline space-x-1"
           href={likeUrl}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
           <div className="group-hover:!text-red-600 rounded-full w-10 h-10 group-hover:bg-red-100 flex items-center justify-center">
             <svg width="24" height="24" viewBox="0 0 24 24">
@@ -334,7 +336,7 @@ export default function Tweet({ id, metadata, className }) {
           className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1"
           href={retweetUrl}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
           <div className="group-hover:!text-purple-600 rounded-full w-10 h-10 group-hover:bg-purple-100 flex items-center justify-center">
             <svg width="24" height="24" viewBox="0 0 24 24">
@@ -352,7 +354,7 @@ export default function Tweet({ id, metadata, className }) {
           className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1"
           href={replyUrl}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
           <div className="group-hover:!text-[#1da1f2] rounded-full w-10 h-10 group-hover:bg-blue-100 flex items-center justify-center">
             <svg width="24" height="24" viewBox="0 0 24 24">

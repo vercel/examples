@@ -28,18 +28,18 @@ export const ConnectWallet: React.VFC = () => {
           In order to mint your NFT you must connect your wallet using the{' '}
           <a
             className="underline"
-            rel="noreferrer"
             href="https://metamask.io/"
             target="_blank"
+            rel="noreferrer"
           >
             Metamask extension.
           </a>{' '}
           This will also be used to authenticate you to{' '}
           <a
             href="https://moralis.io/"
-            rel="noreferrer"
             className="underline"
             target="_blank"
+            rel="noreferrer"
           >
             Moralis
           </a>{' '}

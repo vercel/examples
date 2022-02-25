@@ -68,7 +68,7 @@ export default function middleware(req) {
           to block the request until completion as we do not need the response)
           while logging the information in our service of choice. This example
           uses{' '}
-          <Link target="_blank" href="https://logtail.com/">
+          <Link target="_blank" rel="noreferrer" href="https://logtail.com/">
             Logtail
           </Link>{' '}
           but you can use whatever service you like as soon as it has a

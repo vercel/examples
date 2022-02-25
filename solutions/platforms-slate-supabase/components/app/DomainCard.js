@@ -18,6 +18,7 @@ const DomainCard = ({ data, setData }) => {
         <a
           href={`http://${data.customDomain}`}
           target="_blank"
+          rel="noreferrer"
           className="text-xl font-semibold flex justify-center sm:justify-start items-center"
         >
           {data.customDomain}

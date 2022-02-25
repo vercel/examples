@@ -91,6 +91,7 @@ export default function SiteIndex() {
                           onClick={(e) => e.stopPropagation()}
                           href={`https://${data.site.subdomain}.vercel.im/${post.slug}`}
                           target="_blank"
+                          rel="noreferrer"
                           className="font-cal px-3 py-1 tracking-wide rounded bg-gray-200 text-gray-600 absolute bottom-5 left-10 whitespace-nowrap"
                         >
                           {data.site.subdomain}.vercel.im/{post.slug} ↗

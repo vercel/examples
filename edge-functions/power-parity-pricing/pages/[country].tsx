@@ -70,7 +70,7 @@ export default function CountryPage({ country, parity }) {
           className="flex items-center mt-4 text-md sm:text-lg text-blue-500 hover:underline"
           href="https://vercel.com/docs/edge-network/headers#request-headers?utm_source=geo-ip-demo&utm_campaign=geo-ip-demo"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
           View headers documentation
           <svg

@@ -83,6 +83,7 @@ export default function Layout({ meta, children, subdomain }) {
               <a
                 href="https://www.producthunt.com/posts/platforms-starter-kit?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-platforms-starter-kit"
                 target="_blank"
+                rel="noreferrer"
                 className="mt-1 sm:block hidden flex-shrink-0"
               >
                 <Image
@@ -95,6 +96,7 @@ export default function Layout({ meta, children, subdomain }) {
               <a
                 href="https://www.producthunt.com/posts/platforms-starter-kit?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-platforms-starter-kit"
                 target="_blank"
+                rel="noreferrer"
                 className="mt-2 sm:hidden flex-shrink-0"
               >
                 <Image
@@ -169,6 +171,7 @@ export default function Layout({ meta, children, subdomain }) {
               <a
                 href="https://platformize.co"
                 target="_blank"
+                rel="noreferrer"
                 className="text-black font-semibold underline"
               >
                 custom domain
@@ -184,6 +187,7 @@ export default function Layout({ meta, children, subdomain }) {
             <a
               href="https://app.vercel.im"
               target="_blank"
+              rel="noreferrer"
               className="flex-auto font-cal text-lg rounded-md py-1 sm:py-3 px-5 text-black border border-gray-200 hover:border-black transition-all ease-in-out duration-150 whitespace-no-wrap"
             >
               Create your publication
@@ -191,6 +195,7 @@ export default function Layout({ meta, children, subdomain }) {
             <a
               href="https://vercel.com/guides/nextjs-multi-tenant-application"
               target="_blank"
+              rel="noreferrer"
               className="flex-auto font-cal text-lg bg-black text-white border border-black rounded-md py-1 sm:py-3 px-5 hover:text-black hover:bg-white transition-all ease-in-out duration-150 whitespace-no-wrap"
             >
               Clone and deploy

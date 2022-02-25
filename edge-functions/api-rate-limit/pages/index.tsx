@@ -21,7 +21,7 @@ export default function Index() {
         <Link
           href="https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
           GitHub API
         </Link>

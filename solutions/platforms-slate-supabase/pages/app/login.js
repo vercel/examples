@@ -53,6 +53,7 @@ export default function Login() {
           <a
             href="https://demo.vercel.im/platforms-starter-kit"
             target="_blank"
+            rel="noreferrer"
             className="font-medium text-black hover:text-gray-800"
           >
             blog post

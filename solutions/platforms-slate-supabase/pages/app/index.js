@@ -177,6 +177,7 @@ export default function AppIndex() {
                           onClick={(e) => e.stopPropagation()}
                           href={`https://${site.subdomain}.vercel.im`}
                           target="_blank"
+                          rel="noreferrer"
                           className="font-cal px-3 py-1 tracking-wide rounded bg-gray-200 text-gray-600 absolute bottom-5 left-10 whitespace-nowrap"
                         >
                           {site.subdomain}.vercel.im ↗
