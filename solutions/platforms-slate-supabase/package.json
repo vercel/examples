@@ -5,8 +5,9 @@
     "dev": "next dev",
     "format:write": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
-    "lint": "next lint",
-    "start": "next start"
+    ,
+    "start": "next start",
+"lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.3",
