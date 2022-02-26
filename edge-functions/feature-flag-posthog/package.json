@@ -7,12 +7,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prettier-format": "prettier **/*.{ts,tsx} --write"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
+    "lint": "next lint"
   },
   "dependencies": {
     "@vercel/examples-ui": "^0.2.6",
@@ -30,7 +25,6 @@
     "eslint": "^8.9.0",
     "eslint-config-next": "^12.1.0",
     "postcss": "^8.4.6",
-    "prettier": "^2.5.1",
     "tailwindcss": "^3.0.18",
     "typescript": "^4.5.5"
   }
