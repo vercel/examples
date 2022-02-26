@@ -28,10 +28,10 @@ export default function Index() {
           IP Blocking with Datadome
         </Text>
         <Text>
-          With <i className="font-semibold">Vercel's Edge Middleware</i> we're
-          able to excecute functions at the edge level and act on mid-flight
-          requests instantly. This example uses DataDome's low-latency Custom
-          Rules API that allows us to block certain IPs.
+          With <i className="font-semibold">Vercel&apos;s Edge Middleware</i>{' '}
+          we&apos;re able to excecute functions at the edge level and act on
+          mid-flight requests instantly. This example uses DataDome&apos;s
+          low-latency Custom Rules API that allows us to block certain IPs.
         </Text>
       </div>
       <div className="flex py-8">

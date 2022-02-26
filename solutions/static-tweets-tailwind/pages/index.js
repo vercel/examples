@@ -20,6 +20,7 @@ export default function Home(props) {
       <a
         href="https://github.com/vercel/examples/tree/main/solutions/static-tweets-tailwind"
         target="_blank"
+        rel="noreferrer"
         className="fixed top-5 right-5"
       >
         <Image src="/github.svg" alt="Github" width={25} height={25} />
@@ -36,10 +37,12 @@ export default function Home(props) {
           className="flex items-center justify-center"
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
           Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
+          <div className="flex ml-2">
+            <Image src="/vercel.svg" alt="Vercel Logo" width={71} height={16} />
+          </div>
         </a>
       </footer>
     </div>
@@ -48,11 +51,11 @@ export default function Home(props) {
 
 export async function getStaticProps() {
   const contentHtml = `
-  <h2>Regular Tweets</h2> 
+  <h2>Regular Tweets</h2>
   <p>https://twitter.com/steventey/status/1438526338567081984?s=20</p>
-  <h2>Image Tweets</h2> 
+  <h2>Image Tweets</h2>
   <p>https://twitter.com/steventey/status/1460689767289405444?s=20</p>
-  <h2>GIF Tweets</h2> 
+  <h2>GIF Tweets</h2>
   <p>https://twitter.com/steventey/status/1473329920470355976?s=20</p>
   <h2>Video Tweets</h2>
   <p>https://twitter.com/DAOCentral/status/1474469391232237569</p>

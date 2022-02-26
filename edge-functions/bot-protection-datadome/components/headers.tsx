@@ -22,7 +22,7 @@ export default function Headers({ path }: { path: string }) {
         }
       })
       .finally(() => setLoading(false))
-  }, [])
+  }, [path])
 
   return (
     <pre

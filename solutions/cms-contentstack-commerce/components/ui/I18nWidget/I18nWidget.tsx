@@ -44,6 +44,7 @@ const I18nWidget: FC = () => {
     <nav className={s.root}>
       <div className="flex items-center relative">
         <button className={s.button} aria-label="Language selector" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="block mr-2 w-5"
           src={`/${LOCALES_MAP[currentLocale].img.filename}`}

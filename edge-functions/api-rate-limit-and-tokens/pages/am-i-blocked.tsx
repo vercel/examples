@@ -8,8 +8,8 @@ const Index = () => (
         IP Blocking with Upstash
       </Text>
       <Text>
-        You are not blocked. Otherwise you won't be able to see this page but
-        the <b>/blocked</b> page instead.
+        You are not blocked. Otherwise you won&apos;t be able to see this page
+        but the <b>/blocked</b> page instead.
       </Text>
     </div>
   </div>

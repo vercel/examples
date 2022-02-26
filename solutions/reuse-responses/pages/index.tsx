@@ -68,14 +68,16 @@ function Home({ products }: Props) {
           <Code>/[id]</Code> route that shows the product details. We asume that
           we have an endpoint that returns all the products with the relevant
           data we need to pre-render our page. Every roundtrip to our service
-          take 150ms and consumes 1kb of bandwidth per product.
+          takes 150ms and consumes 1kb of bandwidth per product.
         </Text>
         <Text>
-          Calling the <Code>/api/product</Code> endpoint in{' '}
-          <Code>getStaticPaths</Code> and calling <Code>/api/product/[id]</Code>{' '}
-          endpoint in <Code>getStaticProps</Code> for each product:
+          The graph below ilustrates how <Code>getStaticProps</Code> makes a
+          call to the DB for the listing page and for each product:
         </Text>
-        <Image src={notOptimizing} />
+        <Image
+          src={notOptimizing}
+          alt="A graph showing how fetching products without caching looks like"
+        />
         <List>
           <li>
             <span className="font-semibold">getStaticPaths</span>: 100kb
@@ -94,7 +96,10 @@ function Home({ products }: Props) {
           But what if we could reuse the response from{' '}
           <Code>getStaticPaths</Code> in our <Code>getStaticProps</Code> calls?
         </Text>
-        <Image src={pageOptimizing} />
+        <Image
+          src={pageOptimizing}
+          alt="A graph showing how caching product details makes a big difference"
+        />
         <List>
           <li>
             <span className="font-semibold">getStaticPaths</span>: 100kb
@@ -109,8 +114,11 @@ function Home({ products }: Props) {
             <span>100kb bandwidth, 150ms execution time, 1 call.</span>
           </li>
         </List>
-        <Text>And what if we can reuse that cache at aplication level?</Text>
-        <Image src={appOptimizing} />
+        <Text>And what if we can reuse that cache at application level?</Text>
+        <Image
+          src={appOptimizing}
+          alt="A graph showing how to cache the products across pages"
+        />
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
@@ -158,22 +166,27 @@ export const getStaticProps = async ({params}) => {
           cache.
         </Text>
         <Snippet>
-          {`import {promises as fs} from 'fs'
-
-...
-
-const api = {
-  list: async () => ...,
-  fetch: async (id) => ...,
+          {`const api = {
+  list: async () => {
+    return PRODUCTS
+  },
+  fetch: async (id: Product['id']) => {
+    return PRODUCTS.find((product) => product.id === id)
+  },
   cache: {
-    get: async (id) => {
+    get: async (id: string): Promise<Product | null | undefined> => {
       const data = await fs.readFile(path.join(process.cwd(), 'products.db'))
-      const products = JSON.parse(data)
+      const products: Product[] = JSON.parse(data as unknown as string)
 
-      return products.find(product => product.id === id)
+      return products.find((product) => product.id === id)
     },
-    set: async (products) => fs.writeFile(path.join(process.cwd(), 'products.db'), JSON.stringify(products))
-  }
+    set: async (products: Product[]) => {
+      return fs.writeFile(
+        path.join(process.cwd(), 'products.db'),
+        JSON.stringify(products)
+      )
+    },
+  },
 }`}
         </Snippet>
         <Text>
@@ -218,9 +231,9 @@ export const getStaticProps = async ({params}) => {
         </Snippet>
         <Text>
           That way we ensure to use always information cache-first and if we
-          don't find it, we fallback to calling the API. If you want to optimize
-          this to be cross-page you can move the cache to other file and reuse
-          it.
+          don&apos;t find it, we fallback to calling the API. If you want to
+          optimize this to be cross-page you can move the cache to other file
+          and reuse it.
         </Text>
         <Text>
           But there is something else we should take care of. Our current code

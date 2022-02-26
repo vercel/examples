@@ -173,18 +173,21 @@ function Home({ product }: Props) {
         <Text variant="h2">A real-world example</Text>
         <Text>
           We have an e-commerce product page that is statically generated, but
-          we need to disable the "Add to cart" button if we have no stock. We
-          can combine our data fetching strategies to get the best of both
-          worlds. We will still generate our product page statically but we will
-          fetch our stock periodically to update our UI.
+          we need to disable the &quot;Add to cart&quot; button if we have no
+          stock. We can combine our data fetching strategies to get the best of
+          both worlds. We will still generate our product page statically but we
+          will fetch our stock periodically to update our UI.
         </Text>
-        <Image src={board} />
+        <Image
+          src={board}
+          alt="Graph showing how the page is generated at build time and updated client-side"
+        />
         <Text>
           This page is statically generated so you can see the example below. We
           are using <Link href="https://swr.vercel.app">SWR</Link> to fetch the
-          stock status every 5 seconds and disable the "Add to cart" button if
-          we have no stock. The stock is a random number so you can see the
-          button getting disabled and enabled several times.
+          stock status every 5 seconds and disable the &quot;Add to cart&quot;
+          button if we have no stock. The stock is a random number so you can
+          see the button getting disabled and enabled several times.
         </Text>
       </section>
 

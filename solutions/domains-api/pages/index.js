@@ -4,8 +4,9 @@ import Cookies from 'js-cookie'
 import LoadingDots from '../components/loading-dots'
 import toast, { Toaster } from 'react-hot-toast'
 import useSWR, { mutate } from 'swr'
-const fetcher = (...args) => fetch(...args).then((res) => res.json())
 import Image from 'next/image'
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export default function Home() {
   const [domain, setDomain] = useState('')
@@ -49,6 +50,7 @@ export default function Home() {
       <a
         href="https://github.com/vercel/examples/tree/main/solutions/domains-api"
         target="_blank"
+        rel="noreferrer"
         className="fixed top-5 right-5"
       >
         <Image src="/github.svg" alt="Github" width={25} height={25} />
@@ -145,8 +147,8 @@ export default function Home() {
               </p>
             ) : (
               <p>
-                Cannot add <b>{error.domain}</b> since it's already assigned to
-                another project.
+                Cannot add <b>{error.domain}</b> since it&apos;s already
+                assigned to another project.
               </p>
             )}
           </div>
@@ -171,10 +173,12 @@ export default function Home() {
           className="flex items-center justify-center"
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
           Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
+          <div className="flex ml-2">
+            <Image src="/vercel.svg" alt="Vercel Logo" width={71} height={16} />
+          </div>
         </a>
       </footer>
     </div>
@@ -196,6 +200,7 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
         <a
           href={`http://${domain}`}
           target="_blank"
+          rel="noreferrer"
           className="text-xl font-semibold flex items-center"
         >
           {domain}
@@ -209,7 +214,7 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
               strokeLinecap="round"
               strokeLinejoin="round"
               fill="none"
-              shape-rendering="geometricPrecision"
+              shapeRendering="geometricPrecision"
             >
               <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
               <path d="M15 3h6v6" />

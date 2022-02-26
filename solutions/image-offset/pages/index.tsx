@@ -16,6 +16,7 @@ interface ImageCardProps extends Omit<ImageProps, 'src' | 'onLoadingComplete'> {
 const ImageCardWithOffset = memo<ImageCardProps>(function ImageCard({
   onLoadingComplete,
   src,
+  alt,
   ...props
 }) {
   return (
@@ -23,6 +24,7 @@ const ImageCardWithOffset = memo<ImageCardProps>(function ImageCard({
       <Image
         {...props}
         src={src}
+        alt={alt}
         onLoadingComplete={() => onLoadingComplete(src.src)}
       />
     </div>
@@ -76,22 +78,22 @@ function Home() {
         <Text variant="h2">Loading</Text>
         <Text>
           Images are lazy loaded by default when using next/image, this means
-          that the image won't be loaded until they are about to enter the
+          that the image won&apos;t be loaded until they are about to enter the
           viewport.
         </Text>
         <div className="shadow bg-white rounded h-64 w-64 relative">
           <Image loading="eager" src={logoBlack} alt="Vercel logo" />
         </div>
         <Text className="text-gray-500 border-l-4 pl-2">
-          This image has <Code>loading="eager"</Code> so it has been loaded
-          immediately.
+          This image has <Code>loading=&quot;eager&quot;</Code> so it has been
+          loaded immediately.
         </Text>
         <div className="shadow bg-white rounded h-64 w-64 relative">
           <Image src={logoBlack} alt="Vercel logo" />
         </div>
         <Text className="text-gray-500 border-l-4 pl-2">
-          This image has <Code>loading="lazy"</Code> (default) so it has been
-          lazy loaded.
+          This image has <Code>loading=&quot;lazy&quot;</Code> (default) so it
+          has been lazy loaded.
         </Text>
       </section>
 
@@ -145,7 +147,7 @@ function Home() {
             lazyBoundary="200px"
           />
           <Text className="text-gray-500">
-            This image has <Code>lazyBoundary="200px"</Code>
+            This image has <Code>lazyBoundary=&quot;200px&quot;</Code>
           </Text>
         </article>
         <article className="h-screen flex items-center justify-center flex-col gap-3">
@@ -156,7 +158,7 @@ function Home() {
             lazyBoundary="100px"
           />
           <Text className="text-gray-500">
-            This image has <Code>lazyBoundary="100px"</Code>
+            This image has <Code>lazyBoundary=&quot;100px&quot;</Code>
           </Text>
         </article>
         <article className="h-screen flex items-center justify-center flex-col gap-3">
@@ -167,7 +169,7 @@ function Home() {
             lazyBoundary="20px"
           />
           <Text className="text-gray-500">
-            This image has <Code>lazyBoundary="20px"</Code>
+            This image has <Code>lazyBoundary=&quot;20px&quot;</Code>
           </Text>
         </article>
       </section>

@@ -3,7 +3,7 @@ import Story from '../components/story'
 import Comment from '../components/comment'
 import CommentForm from '../components/comment-form'
 
-export default ({ story, comments = null }) => (
+const Item = ({ story, comments = null }) => (
   <div className="item">
     <Story {...story} />
 
@@ -44,3 +44,5 @@ export default ({ story, comments = null }) => (
     `}</style>
   </div>
 )
+
+export default Item

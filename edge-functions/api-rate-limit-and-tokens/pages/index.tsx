@@ -23,10 +23,10 @@ function Index() {
           IP Blocking with Upstash
         </Text>
         <Text className="mb-4">
-          With <i className="font-semibold">Vercel's Edge Middleware</i> we're
-          able to execute functions at the edge level and act on mid-flight
-          requests instantly. This example uses Upstash for API rate limiting
-          and to add rules that allows us to block certain IPs.
+          With <i className="font-semibold">Vercel&apos;s Edge Middleware</i>{' '}
+          we&apos;re able to execute functions at the edge level and act on
+          mid-flight requests instantly. This example uses Upstash for API rate
+          limiting and to add rules that allows us to block certain IPs.
         </Text>
         <Text className="mb-4">
           Visit <Link href="/rate-limit">/rate-limit</Link> to see API rate
@@ -37,7 +37,8 @@ function Index() {
           <Link href="/am-i-blocked" prefetch={false}>
             /am-i-blocked
           </Link>{' '}
-          under the IP and it'll be blocked. Your IP is: <Code>{myIp}</Code>.
+          under the IP and it&apos;ll be blocked. Your IP is:{' '}
+          <Code>{myIp}</Code>.
         </Text>
       </div>
 

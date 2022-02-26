@@ -70,7 +70,7 @@ export default function CountryPage({ country, parity }) {
           className="flex items-center mt-4 text-md sm:text-lg text-blue-500 hover:underline"
           href="https://vercel.com/docs/edge-network/headers#request-headers?utm_source=geo-ip-demo&utm_campaign=geo-ip-demo"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
           View headers documentation
           <svg
@@ -119,11 +119,13 @@ export default function CountryPage({ country, parity }) {
           <div className="p-4 gap-4 flex flex-col justify-center items-center border-b">
             <div className="bg-gray-50 text-gray-500 text-left py-2 px-4 rounded-md border-gray-200 border text-sm flex flex-col gap-4">
               <p className="inline-block">
-                <span>We noticed that you're from </span>
+                <span>We noticed that you&apos;re from </span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   className="bg-gray-200 inline-flex"
                   width={16}
                   height={12}
+                  alt={`Country flag for ${country.toUpperCase()}`}
                   src={`https://country-flags.vercel.sh/s/${country.toUpperCase()}.svg`}
                 />
                 <span>

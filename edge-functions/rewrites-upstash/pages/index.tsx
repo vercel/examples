@@ -48,15 +48,15 @@ function Home({ products }: Props) {
       <section className="flex flex-col gap-6">
         <Text variant="h1">Rewriting at the edge using Upstash</Text>
         <Text>
-          It's a common case to have a details page of a product or item and
-          request our database for stock every time a user requests the page
+          It&apos;s a common case to have a details page of a product or item
+          and request our database for stock every time a user requests the page
           (even if our page is using ISR and we fetch the stock client side).
         </Text>
         <Text>
-          Sometimes we don't have stock but we still hit our DB (API then DB if
-          doing CSR), which can take a good amount of time depending on where
-          the source and our API are and it can be expensive depending on how
-          many requests for that page we have.
+          Sometimes we don&apos;t have stock but we still hit our DB (API then
+          DB if doing CSR), which can take a good amount of time depending on
+          where the source and our API are and it can be expensive depending on
+          how many requests for that page we have.
         </Text>
         <Text>
           We can get faster responses using the edge, by storing and checking in
@@ -64,18 +64,24 @@ function Home({ products }: Props) {
           previously generated static no-stock page for that specific product.
           That way we reduce the amount of connections to our database, avoid
           uninteractive page due to disabled buy buttons while checking stock
-          and reduce content changes when the UI has to change if there's no
-          stock, all while having low latency by embracing the edge.
+          and reduce content changes when the UI has to change if there&apos;s
+          no stock, all while having low latency by embracing the edge.
         </Text>
         <Text>
           Imagine the next flow of an e-commerce site product details page:
         </Text>
-        <Image src={notOptimizing} />
+        <Image
+          src={notOptimizing}
+          alt="Graph showing the not optimized inventory flow"
+        />
         <Text>
           Now, lets check at the edge if we have stock using Upstash (a Redis
           service) and rewrite to the correct page:
         </Text>
-        <Image src={optimizing} />
+        <Image
+          src={optimizing}
+          alt="Graph showing the optimized flow using middleware"
+        />
         <Text>
           Thats it, we only have to toggle the flag when we add an item or run
           out of stock.

@@ -8,7 +8,7 @@ export default function About() {
         About page
       </Text>
       <Text className="text-lg mb-4">
-        You're currently on <b>/about</b>
+        You&apos;re currently on <b>/about</b>
       </Text>
       <Text>This is the original about page</Text>
     </>
