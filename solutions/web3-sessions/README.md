@@ -1,24 +1,14 @@
-# web3-sessions
+# Web3 Sessions
 
 This example shows how create sessions in Next.js with [Metamask](https://metamask.io/) and [NextAuth.js](https://next-auth.js.org/).
 
 ## Demo
-
-to do update
 
 https://web3-sessions.vercel.app
 
 This Demo will show how to configure NextAuth.js and create a custom hook to protect routes.
 
 ## How to Use
-
-You will need to add the proper variables in a `.env` file like show in the `.env.example` file.
-
-```
-// generate random secrets on https://passwordsgenerator.net/ or anywhere else similar
-NEXT_AUTH_SECRET=:2f6U'GW\"kc5v-r
-JWT_SECRET=7KY(6sMwVXmkqG@Q
-```
 
 You can choose from one of the following two methods to use this repository:
 
@@ -36,6 +26,14 @@ Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packag
 npx create-next-app --example https://github.com/vercel/examples/tree/main/solutions/web3-sessions
 # or
 yarn create next-app --example https://github.com/vercel/examples/tree/main/solutions/web3-sessions
+```
+
+Rename the `.env.example` file to `.env` and add your own secrets:
+
+```
+// generate random secrets on https://passwordsgenerator.net/ or anywhere else similar
+NEXT_AUTH_SECRET="eE*szYpDH@r.647zq*Vxd9vW..X!"
+JWT_SECRET="R9Hkbi2Ahoy9wNQH*7Jj4a*Y4NxF"
 ```
 
 Next, run Next.js in development mode:

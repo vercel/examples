@@ -56,58 +56,56 @@ function Home() {
           <Code>CredentialsProvider</Code>:
         </Text>
         <Snippet>
-          {`
-import NextAuth from 'next-auth'
+          {`import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-          
+
 export default NextAuth({
-providers: [
-  CredentialsProvider({
-    name: 'Credentials',
-    credentials: {
-      address: {
-        label: 'Address',
-        type: 'text',
-        placeholder: '0x0',
+  providers: [
+    CredentialsProvider({
+      name: 'Credentials',
+      credentials: {
+        address: {
+          label: 'Address',
+          type: 'text',
+          placeholder: '0x0',
+        },
       },
-    },
-    async authorize(credentials) {
-      return {
-        id: credentials?.address,
-      }
-    },
-  }),
-],
-session: {
-  strategy: 'jwt',
-},
-jwt: {
-  secret: process.env.JWT_SECRET,
-},
-callbacks: {
-  async session({ session, token }) {
-    session.address = token.sub
-    return session
+      async authorize(credentials) {
+        return {
+          id: credentials?.address,
+        }
+      },
+    }),
+  ],
+  session: {
+    strategy: 'jwt',
   },
-},
-secret: process.env.NEXT_AUTH_SECRET,
-pages: {
-  signIn: '/',
-  signOut: '/',
-  error: '/',
-  newUser: '/',
-},
+  jwt: {
+    secret: process.env.JWT_SECRET,
+  },
+  callbacks: {
+    async session({ session, token }) {
+      session.address = token.sub
+      return session
+    },
+  },
+  secret: process.env.NEXT_AUTH_SECRET,
+  pages: {
+    signIn: '/',
+    signOut: '/',
+    error: '/',
+    newUser: '/',
+  },
 })
 `}
         </Snippet>
-        <Text>Doing this will allow us to login users with a session</Text>
-        <Snippet>{`
-// NextAuth.js signIn will help us create a session
+        <Text>Doing this will allow us to login users with a session:</Text>
+        <Snippet>{`// NextAuth.js signIn will help us create a session
 import { signIn } from 'next-auth/react'
 // hooks that allow to use metamask informations
-import { useConnect, useAccount } from 'wagmi' 
+import { useConnect, useAccount } from 'wagmi'
 
-Function Login(){ 
+Function Login(){
   const [{ data: connectData }, connect] = useConnect()
   const [{ data: accountData }] = useAccount()
 
@@ -124,7 +122,6 @@ Function Login(){
     signIn('credentials', { address: data?.account, callbackUrl })
   }
   ... rest of your component
-
 `}</Snippet>
         Try it by logging in! (Metamask should be installed)
         <Button onClick={handleLogin}>Login</Button>

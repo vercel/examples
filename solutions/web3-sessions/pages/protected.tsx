@@ -12,24 +12,23 @@ function Protected() {
   return (
     <Page>
       <Head>
-        <title>Web3 Session Example</title>
+        <title>Web3 Session with NextAuth.js</title>
         <meta
           name="description"
-          content="Vercel example how to use web3-sessions"
+          content="Learn how to do Web3 sessions with NextAuth.js"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <section className="flex flex-col gap-6">
-        <Text variant="h1">Web3 Session Example, Protected Route</Text>
+        <Text variant="h1">Web3 Session with NextAuth.js, Protected Route</Text>
         <Text>
           We are now connected using our metamask account and can access
           connected routes. However, users can manually disconnect from the
           Metamask interface. To make sure we log them out, we can create a
           custom hook.
         </Text>
-        <Snippet>{`
-export function useProtected() {
+        <Snippet>{`export function useProtected() {
   const [{ data: accountData }, disconnect] = useAccount()
   const session = useSession()
   const address = accountData?.address
@@ -55,8 +54,7 @@ export function useProtected() {
         Now, we can use our hook in our Protected route to handle logout and
         watch users disconnect from the Metamask interface.
         <Text>We can also protect the route in server side props:</Text>
-        <Snippet>{`
-export async function getServerSideProps(context: NextPageContext) {
+        <Snippet>{`export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context)
   if (!session) {
     return {
@@ -70,7 +68,6 @@ export async function getServerSideProps(context: NextPageContext) {
     props: {},
   }
 }
-   
 `}</Snippet>
         <Button onClick={handleLogout}>Logout</Button>
       </section>
