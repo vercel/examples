@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Layout, Text, Page, Button, Link } from '@vercel/examples-ui'
+import { Layout, Text, Page, Button, Link, Code } from '@vercel/examples-ui'
 import { Snippet } from '../components/Snippet'
 
 import { signIn } from 'next-auth/react'
@@ -23,25 +23,25 @@ function Home() {
   return (
     <Page>
       <Head>
-        <title>Web3 Session Example</title>
+        <title>Web3 Session with NextAuth.js</title>
         <meta
           name="description"
-          content="Vercel example how to use web3-sessions"
+          content="Learn how to do Web3 sessions with NextAuth.js"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <section className="flex flex-col space-y-4 gap-6">
-        <Text variant="h1">Web3 Session Example</Text>
+        <Text variant="h1">Web3 Session with NextAuth.js</Text>
         <Text>
-          In a decentralized application, a user is often identifies by a
+          In a decentralized application, a user is often identified by a
           Cryptocurrency wallet such as{' '}
           <Link href="https://metamask.io/" target="_blank">
             Metamask
           </Link>
           . However, since Metamask works by injecting a script into the page,
-          it is only available on the client, cutting off the ability to use
-          `getServerSideProps` to fetch user data.
+          it is only available on the client, cutting off the ability to use{' '}
+          <Code>getServerSideProps</Code> to fetch user data.
         </Text>
         <Text>
           We can solve this by pairing a{' '}
@@ -52,8 +52,8 @@ function Home() {
           <Link href="https://github.com/tmm/wagmi" target="_blank">
             WAGMI
           </Link>
-          . We will need to configure NextAuth.js with the
-          `CredentialsProvider`:
+          . We will need to configure NextAuth.js with the{' '}
+          <Code>CredentialsProvider</Code>:
         </Text>
         <Snippet>
           {`

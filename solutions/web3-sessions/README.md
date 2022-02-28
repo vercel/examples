@@ -1,4 +1,4 @@
-# web3-sessions example
+# web3-sessions
 
 This example shows how create sessions in Next.js with [Metamask](https://metamask.io/) and [NextAuth.js](https://next-auth.js.org/).
 
@@ -16,8 +16,8 @@ You will need to add the proper variables in a `.env` file like show in the `.en
 
 ```
 // generate random secrets on https://passwordsgenerator.net/ or anywhere else similar
-NEXT_AUTH_SECRET=123
-JWT_SECRET=123
+NEXT_AUTH_SECRET=:2f6U'GW\"kc5v-r
+JWT_SECRET=7KY(6sMwVXmkqG@Q
 ```
 
 You can choose from one of the following two methods to use this repository:
