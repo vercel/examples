@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
             className="flex items-center mt-2 text-md sm:text-lg text-blue-500 hover:underline"
             href="https://vercel.com/docs"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noreferrer"
           >
             View Documentation
             <svg

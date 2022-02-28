@@ -1,6 +1,6 @@
-import Link from "next/link";
-import BlurImage from "./BlurImage";
-import Date from "./Date";
+import Link from 'next/link'
+import BlurImage from './BlurImage'
+import Date from './Date'
 
 export default function BlogCard({ data }) {
   return (
@@ -29,5 +29,5 @@ export default function BlogCard({ data }) {
         </div>
       </a>
     </Link>
-  );
+  )
 }

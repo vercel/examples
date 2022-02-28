@@ -7,7 +7,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="AB Testing with buckets" path="edge-functions/ab-testing-simple">
+    <Layout
+      title="AB Testing with buckets"
+      path="edge-functions/ab-testing-simple"
+    >
       <Component {...pageProps} />
     </Layout>
   )

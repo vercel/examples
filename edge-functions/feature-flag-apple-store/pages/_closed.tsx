@@ -13,10 +13,10 @@ export default function Closed() {
         />
       </svg>
       <h1 className="text-5xl tracking-tight max-w-3xl font-semibold mb-4 mt-10">
-        We'll be back.
+        We&apos;ll be back.
       </h1>
       <p className="ml-4 text-gray-500 text-xl">
-        We're busy updating the Apple Store for you and will be back soon.
+        We&apos;re busy updating the Apple Store for you and will be back soon.
       </p>
     </div>
   )

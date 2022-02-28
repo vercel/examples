@@ -1,18 +1,18 @@
 import Head from 'next/head'
-import Image from "next/image";
-import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui';
+import Image from 'next/image'
+import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
 
-import Card from "../components/Card"
-import Snippet from '../components/Snippet';
+import Card from '../components/Card'
+import Snippet from '../components/Snippet'
 
-import screenshot1 from "../public/docs/screenshot-1.jpg"
-import screenshot2 from "../public/docs/screenshot-2.jpg"
-import screenshot3 from "../public/docs/screenshot-3.jpg"
+import screenshot1 from '../public/docs/screenshot-1.jpg'
+import screenshot2 from '../public/docs/screenshot-2.jpg'
+import screenshot3 from '../public/docs/screenshot-3.jpg'
 
 const CARD = {
-  "id": "617a8bb9637d9400182bd6fe",
-  "title": "Next.js image example",
-  "thumbnail": "/logo.jpg",
+  id: '617a8bb9637d9400182bd6fe',
+  title: 'Next.js image example',
+  thumbnail: '/logo.jpg',
 }
 
 function Home() {
@@ -24,16 +24,33 @@ function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Text variant="h2" className="mb-6">Reduce next/image bandwidth usage</Text>
-      <Text>This example shows how to reduce bandwidth and processing costs when using different layouts.</Text>
+      <Text variant="h2" className="mb-6">
+        Reduce next/image bandwidth usage
+      </Text>
+      <Text>
+        This example shows how to reduce bandwidth and processing costs when
+        using different layouts.
+      </Text>
 
       <hr className="border-t border-accents-2 my-6" />
 
       <Text variant="h2">
-        Using <Code>layout="fill"</Code> or <Code>layout="responsive"</Code>
+        Using <Code>layout=&quot;fill&quot;</Code> or{' '}
+        <Code>layout=&quot;responsive&quot;</Code>
       </Text>
       <Text>
-        Using <Link href="https://nextjs.org/docs/api-reference/next/image#layout"><Code>layout=fill</Code></Link> in <Code>next/image</Code> is one of the most common patterns as it let us use responsive parents and (along with the <Link href="https://nextjs.org/docs/api-reference/next/image#objectfit"><Code>objectFit</Code></Link> prop) our images will resize to it perfectly. But this leads to a common problem; as we don't know how large our parent might be, we can't serve an optimized image.
+        Using{' '}
+        <Link href="https://nextjs.org/docs/api-reference/next/image#layout">
+          <Code>layout=fill</Code>
+        </Link>{' '}
+        in <Code>next/image</Code> is one of the most common patterns as it let
+        us use responsive parents and (along with the{' '}
+        <Link href="https://nextjs.org/docs/api-reference/next/image#objectfit">
+          <Code>objectFit</Code>
+        </Link>{' '}
+        prop) our images will resize to it perfectly. But this leads to a common
+        problem; as we don&apos;t know how large our parent might be, we
+        can&apos;t serve an optimized image.
       </Text>
       <section className="mt-6 flex flex-col gap-3">
         <Card>
@@ -45,47 +62,95 @@ function Home() {
   <Image layout="fill" src="..." />
 </Card>`}
         </Snippet>
-        <Text>But wait, given this code we end up with this 👇. Our element has a width of 256px but we are serving a 1000px image!</Text>
-        <Image src={screenshot1} />
         <Text>
-          The <Link href="https://nextjs.org/docs/api-reference/next/image#sizes"><Code>sizes</Code></Link> prop provides information about how wide the image will be at different breakpoints when using <Code>layout="responsive"</Code> or <Code>layout="fill"</Code>. In this case our card limits the width of the image to a maximum of <Code>256px</Code>. So if we update our code to use sizes like this:
+          But wait, given this code we end up with this 👇. Our element has a
+          width of 256px but we are serving a 1000px image!
+        </Text>
+        <Image
+          src={screenshot1}
+          alt="Image size when using layout fill or responsive is large"
+        />
+        <Text>
+          The{' '}
+          <Link href="https://nextjs.org/docs/api-reference/next/image#sizes">
+            <Code>sizes</Code>
+          </Link>{' '}
+          prop provides information about how wide the image will be at
+          different breakpoints when using{' '}
+          <Code>layout=&quot;responsive&quot;</Code> or{' '}
+          <Code>layout=&quot;fill&quot;</Code>. In this case our card limits the
+          width of the image to a maximum of <Code>256px</Code>. So if we update
+          our code to use sizes like this:
         </Text>
         <Card>
-          <Image sizes="256px" layout="fill" src={CARD.thumbnail} alt={CARD.title} />
+          <Image
+            sizes="256px"
+            layout="fill"
+            src={CARD.thumbnail}
+            alt={CARD.title}
+          />
         </Card>
         <Snippet>
           {`<Card>
   <Image layout="fill" sizes="256px" src="..." />
 </Card>`}
         </Snippet>
-        <Image src={screenshot2} />
+        <Image
+          src={screenshot2}
+          alt="Image using sizes to reduce its maximum size when using layout fill or responsive"
+        />
+        <Text>Now we are being served with an optimized image.</Text>
         <Text>
-          Now we are being served with an optimized image.
-        </Text>
-        <Text>
-          We also have a lot of images available for different viewport sizes that will be generated (and cached) on demand just when needed. By default, a variant will be available for every <Link href="https://nextjs.org/docs/api-reference/next/image#device-sizes"><Code>device size</Code></Link> configured. But we can also specify <Link href="https://nextjs.org/docs/api-reference/next/image#image-sizes"><Code>image sizes</Code></Link> that will be concatenated to the variants generated by device sizes when using <Code>layout="responsive"</Code> or <Code>layout="fill"</Code>.
+          We also have a lot of images available for different viewport sizes
+          that will be generated (and cached) on demand just when needed. By
+          default, a variant will be available for every{' '}
+          <Link href="https://nextjs.org/docs/api-reference/next/image#device-sizes">
+            <Code>device size</Code>
+          </Link>{' '}
+          configured. But we can also specify{' '}
+          <Link href="https://nextjs.org/docs/api-reference/next/image#image-sizes">
+            <Code>image sizes</Code>
+          </Link>{' '}
+          that will be concatenated to the variants generated by device sizes
+          when using <Code>layout=&quot;responsive&quot;</Code> or{' '}
+          <Code>layout=&quot;fill&quot;</Code>.
         </Text>
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
 
       <Text variant="h2">
-        Using <Code>layout="fixed"</Code> or <Code>layout="intrinsic"</Code>
+        Using <Code>layout=&quot;fixed&quot;</Code> or{' '}
+        <Code>layout=&quot;intrinsic&quot;</Code>
       </Text>
       <Text>
-        This layouts force us to define a width and height of the image so its easier to determine the size of the variants that has to be generated so we don't have to define any extra properties to get an optimized image.
+        This layouts force us to define a width and height of the image so its
+        easier to determine the size of the variants that has to be generated so
+        we don&apos;t have to define any extra properties to get an optimized
+        image.
       </Text>
       <section className="mt-6 flex flex-col gap-3">
         <Card>
-          <Image width={256} height={256} src={CARD.thumbnail} alt={CARD.title} />
+          <Image
+            width={256}
+            height={256}
+            src={CARD.thumbnail}
+            alt={CARD.title}
+          />
         </Card>
         <Snippet>
           {`<Card>
   <Image src="..." width={256} height={256} />
 </Card>`}
         </Snippet>
-        <Image src={screenshot3} />
-        <Text><Code>intrinsic</Code> is the default layout so we don't have to define it. We get back a correct optimized image.</Text>
+        <Image
+          src={screenshot3}
+          alt="Image with a fixed layout with known width and height"
+        />
+        <Text>
+          <Code>intrinsic</Code> is the default layout so we don&apos;t have to
+          define it. We get back a correct optimized image.
+        </Text>
       </section>
     </Page>
   )

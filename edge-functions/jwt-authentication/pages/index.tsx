@@ -13,9 +13,9 @@ export default function Index() {
           JWT Authentication
         </Text>
         <Text className="mb-4">
-          With <i className="font-semibold">Vercel's Edge Middleware</i> we're
-          able to authenticate users with JWT tokens before they hit any
-          endpoints, and even to respond directly from the edge.
+          With <i className="font-semibold">Vercel&apos;s Edge Middleware</i>{' '}
+          we&apos;re able to authenticate users with JWT tokens before they hit
+          any endpoints, and even to respond directly from the edge.
         </Text>
       </div>
 
@@ -28,10 +28,10 @@ export default function Index() {
 
       <div className="mb-6">
         <Text className="mb-4 text-center">
-          We'll make a request to <Link href="/api">/api</Link> and{' '}
+          We&apos;ll make a request to <Link href="/api">/api</Link> and{' '}
           <Link href="/api?edge">/api?edge</Link> using your token, where the
           first will hit an API route and the latter will be handled by the
-          edge, they'll return a <Code>nanoid</Code>
+          edge, they&apos;ll return a <Code>nanoid</Code>
         </Text>
         <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 mb-2">
           {sampleFetch}

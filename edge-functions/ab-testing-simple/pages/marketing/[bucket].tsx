@@ -21,7 +21,7 @@ export default function Marketing() {
         Marketing page variant
       </Text>
       <Text className="text-lg mb-4">
-        You're currently on <b>bucket {bucket.toUpperCase()}</b>
+        You&apos;re currently on <b>bucket {bucket.toUpperCase()}</b>
       </Text>
       <Text className="mb-4">
         You can use the buttons below to change your assigned bucket and refresh

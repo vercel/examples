@@ -1,12 +1,5 @@
 import Cookies from 'js-cookie'
-import {
-  Layout,
-  Page,
-  Text,
-  List,
-  Link,
-  Button,
-} from '@vercel/examples-ui'
+import { Layout, Page, Text, List, Link, Button } from '@vercel/examples-ui'
 import { SPLITS } from '@lib/split'
 
 export default function Index() {

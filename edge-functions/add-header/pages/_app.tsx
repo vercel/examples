@@ -9,10 +9,7 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout
-      title="Add header"
-      path="edge-functions/add-header"
-    >
+    <Layout title="Add header" path="edge-functions/add-header">
       <Component {...pageProps} />
     </Layout>
   )

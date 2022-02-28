@@ -1,5 +1,5 @@
-import NextAuth from "next-auth";
-import Github from "next-auth/providers/github";
+import NextAuth from 'next-auth'
+import Github from 'next-auth/providers/github'
 
 const options = {
   providers: [
@@ -9,6 +9,6 @@ const options = {
     }),
   ],
   secret: process.env.SECRET,
-};
+}
 
-export default (req, res) => NextAuth(req, res, options);
+export default (req, res) => NextAuth(req, res, options)

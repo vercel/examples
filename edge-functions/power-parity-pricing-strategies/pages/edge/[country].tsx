@@ -121,8 +121,8 @@ function EdgeProductPage({ country, product }: Props) {
                 ? product.link
                 : `${STORE_URL}/cart/${REGIONS['default'].id}:1`
             }
-            rel="noopener noreferrer"
             target="_blank"
+            rel="noreferrer"
             className="py-4 px-6 text-lg w-full bg-black text-center text-white hover:text-white rounded-md hover:bg-gray-900"
           >
             Buy now

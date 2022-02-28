@@ -1,21 +1,21 @@
-import Layout from "@/components/app/Layout";
-import useSWR from "swr";
-import BlurImage from "@/components/BlurImage";
-import CloudinaryUploadWidget from "@/components/Cloudinary";
-import LoadingDots from "@/components/app/loading-dots";
-import saveImage from "@/lib/save-image";
-import Modal from "@/components/Modal";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import Loader from "@/components/app/Loader";
-import toast, { Toaster } from "react-hot-toast";
+import Layout from '@/components/app/Layout'
+import useSWR from 'swr'
+import BlurImage from '@/components/BlurImage'
+import CloudinaryUploadWidget from '@/components/Cloudinary'
+import LoadingDots from '@/components/app/loading-dots'
+import saveImage from '@/lib/save-image'
+import Modal from '@/components/Modal'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import Loader from '@/components/app/Loader'
+import toast, { Toaster } from 'react-hot-toast'
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export default function PostSettings() {
-  const router = useRouter();
-  const { id } = router.query;
-  const postId = id;
+  const router = useRouter()
+  const { id } = router.query
+  const postId = id
 
   const { data: settings, isValidating } = useSWR(
     `/api/post?postId=${postId}`,
@@ -23,19 +23,19 @@ export default function PostSettings() {
     {
       revalidateOnFocus: false,
       onError: () => {
-        router.push("/");
+        router.push('/')
       },
     }
-  );
+  )
 
-  const [saving, setSaving] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [deletingPost, setDeletingPost] = useState(false);
+  const [saving, setSaving] = useState(false)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [deletingPost, setDeletingPost] = useState(false)
 
   const [data, setData] = useState({
     image: settings?.image,
     imageBlurhash: settings?.imageBlurhash,
-  });
+  })
 
   useEffect(() => {
     if (settings)
@@ -43,15 +43,15 @@ export default function PostSettings() {
         slug: settings.slug,
         image: settings.image,
         imageBlurhash: settings.imageBlurhash,
-      });
-  }, [settings]);
+      })
+  }, [settings])
 
   async function savePostSettings(data) {
-    setSaving(true);
-    const response = await fetch("/api/post", {
-      method: "PUT",
+    setSaving(true)
+    const response = await fetch('/api/post', {
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         id: postId,
@@ -59,20 +59,20 @@ export default function PostSettings() {
         image: data.image,
         imageBlurhash: data.imageBlurhash,
       }),
-    });
+    })
     if (response.ok) {
-      setSaving(false);
-      toast.success(`Changes Saved`);
+      setSaving(false)
+      toast.success(`Changes Saved`)
     }
   }
 
   async function deletePost(postId) {
-    setDeletingPost(true);
+    setDeletingPost(true)
     const response = await fetch(`/api/post?postId=${postId}`, {
-      method: "DELETE",
-    });
+      method: 'DELETE',
+    })
     if (response.ok) {
-      router.push(`/site/${settings.site.id}`);
+      router.push(`/site/${settings.site.id}`)
     }
   }
 
@@ -81,7 +81,7 @@ export default function PostSettings() {
       <Layout>
         <Loader />
       </Layout>
-    );
+    )
 
   return (
     <>
@@ -117,7 +117,7 @@ export default function PostSettings() {
               <h2 className="font-cal text-2xl">Thumbnail Image</h2>
               <div
                 className={`${
-                  data.image ? "" : "animate-pulse bg-gray-300 h-150"
+                  data.image ? '' : 'animate-pulse bg-gray-300 h-150'
                 } relative mt-5 w-full border-2 border-gray-800 border-dashed rounded-md`}
               >
                 <CloudinaryUploadWidget
@@ -166,7 +166,7 @@ export default function PostSettings() {
                 </p>
                 <button
                   onClick={() => {
-                    setShowDeleteModal(true);
+                    setShowDeleteModal(true)
                   }}
                   className="bg-red-500 text-white border-red-500 hover:text-red-500 hover:bg-white px-5 py-3 max-w-max font-cal border-solid border rounded-md focus:outline-none transition-all ease-in-out duration-150"
                 >
@@ -179,8 +179,8 @@ export default function PostSettings() {
         <Modal showModal={showDeleteModal} setShowModal={setShowDeleteModal}>
           <form
             onSubmit={async (event) => {
-              event.preventDefault();
-              await deletePost(postId);
+              event.preventDefault()
+              await deletePost(postId)
             }}
             className="inline-block w-full max-w-md pt-8 overflow-hidden text-center align-middle transition-all bg-white shadow-xl rounded-lg"
           >
@@ -205,11 +205,11 @@ export default function PostSettings() {
                 disabled={deletingPost}
                 className={`${
                   deletingPost
-                    ? "cursor-not-allowed text-gray-400 bg-gray-50"
-                    : "bg-white text-gray-600 hover:text-black"
+                    ? 'cursor-not-allowed text-gray-400 bg-gray-50'
+                    : 'bg-white text-gray-600 hover:text-black'
                 } w-full px-5 py-5 text-sm border-t border-l border-gray-300 rounded-br focus:outline-none focus:ring-0 transition-all ease-in-out duration-150`}
               >
-                {deletingPost ? <LoadingDots /> : "DELETE POST"}
+                {deletingPost ? <LoadingDots /> : 'DELETE POST'}
               </button>
             </div>
           </form>
@@ -218,20 +218,20 @@ export default function PostSettings() {
           <div className="max-w-screen-xl mx-auto px-10 sm:px-20 h-full flex justify-end items-center">
             <button
               onClick={() => {
-                savePostSettings(data);
+                savePostSettings(data)
               }}
               disabled={saving}
               className={`${
                 saving
-                  ? "cursor-not-allowed bg-gray-300 border-gray-300"
-                  : "bg-black hover:bg-white hover:text-black border-black"
+                  ? 'cursor-not-allowed bg-gray-300 border-gray-300'
+                  : 'bg-black hover:bg-white hover:text-black border-black'
               } mx-2 w-36 h-12 text-lg text-white border-2 focus:outline-none transition-all ease-in-out duration-150`}
             >
-              {saving ? <LoadingDots /> : "Save Changes"}
+              {saving ? <LoadingDots /> : 'Save Changes'}
             </button>
           </div>
         </footer>
       </Layout>
     </>
-  );
+  )
 }

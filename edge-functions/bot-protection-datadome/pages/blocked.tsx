@@ -9,7 +9,7 @@ export default function Blocked() {
       </Text>
       <Text className="text-lg mb-4">
         This page should ask you for captcha once, future refreshes or
-        navigations to this page won't ask you again, unless the{' '}
+        navigations to this page won&apos;t ask you again, unless the{' '}
         <Code>datadome</Code> cookie is removed
       </Text>
       <Text className="mb-4">

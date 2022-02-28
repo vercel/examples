@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 export default function Nav() {
   return (
@@ -8,7 +8,7 @@ export default function Nav() {
       <Item href="/ask">ask</Item>
       <Item href="/jobs">jobs</Item>
       <Item href="/submit">submit</Item>
-  
+
       <style jsx>{`
         ul {
           list-style-type: none;
@@ -16,7 +16,7 @@ export default function Nav() {
       `}</style>
     </ul>
   )
-};
+}
 
 const Item = ({ href, children }) => (
   <li>
@@ -43,4 +43,4 @@ const Item = ({ href, children }) => (
       }
     `}</style>
   </li>
-);
+)

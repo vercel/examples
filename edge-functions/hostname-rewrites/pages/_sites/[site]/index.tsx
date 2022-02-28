@@ -3,18 +3,17 @@ import { useRouter } from 'next/router'
 import { Layout, Page, Text, Link, List } from '@vercel/examples-ui'
 
 export default function Index(props) {
-  
   const router = useRouter()
-    if (router.isFallback) {
-        return (
-          <Page>
-            <Text variant="h1" className="mb-6">
-              Loading...
-            </Text>
-          </Page>
-        )
-    }
-  
+  if (router.isFallback) {
+    return (
+      <Page>
+        <Text variant="h1" className="mb-6">
+          Loading...
+        </Text>
+      </Page>
+    )
+  }
+
   return (
     <Page>
       <Head>

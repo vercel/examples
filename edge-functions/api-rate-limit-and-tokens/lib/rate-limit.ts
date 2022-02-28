@@ -3,6 +3,7 @@
  * Note: We use this lib in multiple demos, feel free to
  * use it in your own projects.
  */
+// eslint-disable-next-line @next/next/no-server-import-in-page
 import type { NextRequest } from 'next/server'
 
 export interface RateLimitContextBase {

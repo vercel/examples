@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react'
+import { FC } from 'react'
 import Script from 'next/script'
 import { Layout, Page } from '@vercel/examples-ui'
 import type { LayoutProps } from '@vercel/examples-ui/layout'
@@ -16,10 +16,7 @@ function gaHandler() {
 }
 
 const OptimizeLayout: FC<LayoutProps> = ({ children, ...props }) => {
-  const ga = useCallback(
-    typeof window === 'undefined' ? throwIfSSR : gaHandler,
-    []
-  )
+  const ga = typeof window === 'undefined' ? throwIfSSR : gaHandler
 
   return (
     <Layout {...props}>

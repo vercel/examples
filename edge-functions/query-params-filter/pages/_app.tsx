@@ -7,7 +7,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="Query params filter" path="edge-functions/query-params-filter">
+    <Layout
+      title="Query params filter"
+      path="edge-functions/query-params-filter"
+    >
       <Component {...pageProps} />
     </Layout>
   )

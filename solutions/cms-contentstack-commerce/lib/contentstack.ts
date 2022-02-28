@@ -12,7 +12,7 @@ if (
   )
 }
 
-export default {
+const contentStack = {
   async getEntry(
     contentType = '',
     entryId = '',
@@ -20,18 +20,15 @@ export default {
   ): Promise<Entry | null> {
     // https://www.contentstack.com/docs/developers/apis/content-delivery-api/#get-a-single-entry
     try {
-      const cmsEnv = process.env.CONTENTSTACK_ENV ?? process.env.NODE_ENV;
-      const entryApiUrl = `${API_URL}/content_types/${contentType}/entries/${entryId}?locale=${locale.toLocaleLowerCase()}&environment=${cmsEnv}`;
-      const res: any = await fetch(
-        entryApiUrl,
-        {
-          method: 'GET',
-          headers: {
-            api_key: process.env.CONTENTSTACK_API_KEY as string,
-            access_token: process.env.CONTENTSTACK_ACCESS_TOKEN as string,
-          },
-        }
-      )
+      const cmsEnv = process.env.CONTENTSTACK_ENV ?? process.env.NODE_ENV
+      const entryApiUrl = `${API_URL}/content_types/${contentType}/entries/${entryId}?locale=${locale.toLocaleLowerCase()}&environment=${cmsEnv}`
+      const res: any = await fetch(entryApiUrl, {
+        method: 'GET',
+        headers: {
+          api_key: process.env.CONTENTSTACK_API_KEY as string,
+          access_token: process.env.CONTENTSTACK_ACCESS_TOKEN as string,
+        },
+      })
 
       const { entry } = await res.json()
       return entry
@@ -41,3 +38,5 @@ export default {
     }
   },
 }
+
+export default contentStack

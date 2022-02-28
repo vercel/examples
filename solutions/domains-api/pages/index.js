@@ -1,38 +1,39 @@
-import Head from "next/head";
-import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import LoadingDots from "../components/loading-dots";
-import toast, { Toaster } from "react-hot-toast";
-import useSWR, { mutate } from "swr";
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-import Image from "next/image";
+import Head from 'next/head'
+import { useEffect, useState } from 'react'
+import Cookies from 'js-cookie'
+import LoadingDots from '../components/loading-dots'
+import toast, { Toaster } from 'react-hot-toast'
+import useSWR, { mutate } from 'swr'
+import Image from 'next/image'
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export default function Home() {
-  const [domain, setDomain] = useState("");
+  const [domain, setDomain] = useState('')
   const [domainList, setDomainList] = useState(
-    Cookies.get("domainList")
-      ? JSON.parse(Cookies.get("domainList"))
-      : ["platformizer.co", "vercel.pub"]
-  ); // initialize the state with two default domains
-  const [disabled, setDisabled] = useState(true);
-  const [adding, setAdding] = useState(false);
-  const [error, setError] = useState(null);
+    Cookies.get('domainList')
+      ? JSON.parse(Cookies.get('domainList'))
+      : ['platformizer.co', 'vercel.pub']
+  ) // initialize the state with two default domains
+  const [disabled, setDisabled] = useState(true)
+  const [adding, setAdding] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     if (domain.length == 0) {
-      setDisabled(true);
+      setDisabled(true)
     } else {
-      setDisabled(false);
+      setDisabled(false)
     }
-  }, [domain]);
+  }, [domain])
 
   useEffect(() => {
-    if (adding) setDisabled(true);
-  }, [adding]);
+    if (adding) setDisabled(true)
+  }, [adding])
 
   useEffect(() => {
-    Cookies.set("domainList", JSON.stringify(domainList));
-  }, [domainList]);
+    Cookies.set('domainList', JSON.stringify(domainList))
+  }, [domainList])
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -49,6 +50,7 @@ export default function Home() {
       <a
         href="https://github.com/vercel/examples/tree/main/solutions/domains-api"
         target="_blank"
+        rel="noreferrer"
         className="fixed top-5 right-5"
       >
         <Image src="/github.svg" alt="Github" width={25} height={25} />
@@ -59,19 +61,19 @@ export default function Home() {
 
         <form
           onSubmit={async (e) => {
-            e.preventDefault();
-            setAdding(true);
+            e.preventDefault()
+            setAdding(true)
             await fetch(`/api/add-domain?domain=${domain}`).then((res) => {
-              setAdding(false);
+              setAdding(false)
               if (res.ok) {
-                setError(null);
-                setDomainList([...domainList, domain]);
-                e.target.domain.value = "";
+                setError(null)
+                setDomainList([...domainList, domain])
+                e.target.domain.value = ''
               } else {
-                const errorDomain = domain;
-                setError({ code: res.status, domain: errorDomain });
+                const errorDomain = domain
+                setError({ code: res.status, domain: errorDomain })
               }
-            });
+            })
           }}
           className="flex justify-between space-x-4 w-full max-w-2xl h-10 mt-10"
         >
@@ -79,7 +81,7 @@ export default function Home() {
             type="text"
             name="domain"
             onInput={(e) => {
-              setDomain(e.target.value);
+              setDomain(e.target.value)
             }}
             autoComplete="off"
             placeholder="mydomain.com"
@@ -92,11 +94,11 @@ export default function Home() {
             disabled={disabled}
             className={`${
               disabled
-                ? "cursor-not-allowed bg-gray-100 text-gray-500 border-gray-300"
-                : "bg-black text-white border-black hover:text-black hover:bg-white"
+                ? 'cursor-not-allowed bg-gray-100 text-gray-500 border-gray-300'
+                : 'bg-black text-white border-black hover:text-black hover:bg-white'
             } py-2 w-28 text-sm border-solid border rounded-md focus:outline-none transition-all ease-in-out duration-150`}
           >
-            {adding ? <LoadingDots /> : "Add"}
+            {adding ? <LoadingDots /> : 'Add'}
           </button>
         </form>
 
@@ -112,7 +114,7 @@ export default function Home() {
               strokeLinejoin="round"
               fill="none"
               shapeRendering="geometricPrecision"
-              style={{ color: "#f44336" }}
+              style={{ color: '#f44336' }}
             >
               <circle cx="12" cy="12" r="10" fill="white" />
               <path d="M12 8v4" stroke="#f44336" />
@@ -124,20 +126,20 @@ export default function Home() {
                 <button
                   className="ml-1"
                   onClick={async (e) => {
-                    e.preventDefault();
+                    e.preventDefault()
                     await fetch(
                       `/api/request-delegation?domain=${error.domain}`
                     ).then((res) => {
                       if (res.ok) {
                         toast.success(
                           `Requested delegation for ${error.domain}`
-                        );
+                        )
                       } else {
                         alert(
-                          "There was an error requesting delegation. Please try again later."
-                        );
+                          'There was an error requesting delegation. Please try again later.'
+                        )
                       }
-                    });
+                    })
                   }}
                 >
                   <u>Click here to request access.</u>
@@ -145,8 +147,8 @@ export default function Home() {
               </p>
             ) : (
               <p>
-                Cannot add <b>{error.domain}</b> since it's already assigned to
-                another project.
+                Cannot add <b>{error.domain}</b> since it&apos;s already
+                assigned to another project.
               </p>
             )}
           </div>
@@ -161,7 +163,7 @@ export default function Home() {
                 domainList={domainList}
                 setDomainList={setDomainList}
               />
-            );
+            )
           })}
         </div>
       </main>
@@ -171,14 +173,16 @@ export default function Home() {
           className="flex items-center justify-center"
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
-          Powered by{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
+          Powered by{' '}
+          <div className="flex ml-2">
+            <Image src="/vercel.svg" alt="Vercel Logo" width={71} height={16} />
+          </div>
         </a>
       </footer>
     </div>
-  );
+  )
 }
 
 const DomainCard = ({ domain, domainList, setDomainList }) => {
@@ -186,9 +190,9 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
     `/api/check-domain?domain=${domain}`,
     fetcher,
     { revalidateOnMount: true, refreshInterval: 5000 }
-  );
-  const [recordType, setRecordType] = useState("CNAME");
-  const [removing, setRemoving] = useState(false);
+  )
+  const [recordType, setRecordType] = useState('CNAME')
+  const [removing, setRemoving] = useState(false)
 
   return (
     <div className="w-full mt-10 shadow-md border border-gray-50 rounded-lg py-10">
@@ -196,6 +200,7 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
         <a
           href={`http://${domain}`}
           target="_blank"
+          rel="noreferrer"
           className="text-xl font-semibold flex items-center"
         >
           {domain}
@@ -209,7 +214,7 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
               strokeLinecap="round"
               strokeLinejoin="round"
               fill="none"
-              shape-rendering="geometricPrecision"
+              shapeRendering="geometricPrecision"
             >
               <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
               <path d="M15 3h6v6" />
@@ -220,35 +225,35 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
         <div className="flex space-x-3">
           <button
             onClick={() => {
-              mutate(`/api/check-domain?domain=${domain}`);
+              mutate(`/api/check-domain?domain=${domain}`)
             }}
             disabled={isValidating}
             className={`${
               isValidating
-                ? "cursor-not-allowed bg-gray-100"
-                : "bg-white hover:text-black hover:border-black"
+                ? 'cursor-not-allowed bg-gray-100'
+                : 'bg-white hover:text-black hover:border-black'
             } text-gray-500 border-gray-200 py-1.5 w-24 text-sm border-solid border rounded-md focus:outline-none transition-all ease-in-out duration-150`}
           >
-            {isValidating ? <LoadingDots /> : "Refresh"}
+            {isValidating ? <LoadingDots /> : 'Refresh'}
           </button>
           <button
             onClick={async () => {
-              setRemoving(true);
+              setRemoving(true)
               await fetch(`/api/remove-domain?domain=${domain}`).then((res) => {
-                setRemoving(false);
+                setRemoving(false)
                 if (res.ok) {
-                  setDomainList(domainList.filter((item) => item !== domain));
+                  setDomainList(domainList.filter((item) => item !== domain))
                 } else {
-                  alert("Error removing domain");
+                  alert('Error removing domain')
                 }
-              });
+              })
             }}
             disabled={removing}
             className={`${
-              removing ? "cursor-not-allowed bg-gray-100" : ""
+              removing ? 'cursor-not-allowed bg-gray-100' : ''
             }bg-red-500 text-white border-red-500 hover:text-red-500 hover:bg-white py-1.5 w-24 text-sm border-solid border rounded-md focus:outline-none transition-all ease-in-out duration-150`}
           >
-            {removing ? <LoadingDots /> : "Remove"}
+            {removing ? <LoadingDots /> : 'Remove'}
           </button>
         </div>
       </div>
@@ -263,7 +268,7 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
           strokeLinejoin="round"
           shapeRendering="geometricPrecision"
         >
-          <circle cx="12" cy="12" r="10" fill={valid ? "#1976d2" : "#d32f2f"} />
+          <circle cx="12" cy="12" r="10" fill={valid ? '#1976d2' : '#d32f2f'} />
           {valid ? (
             <>
               <path
@@ -281,10 +286,10 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
         </svg>
         <p
           className={`${
-            valid ? "text-black font-normal" : "text-red-700 font-medium"
+            valid ? 'text-black font-normal' : 'text-red-700 font-medium'
           } text-sm`}
         >
-          {valid ? "Valid" : "Invalid"} Configuration
+          {valid ? 'Valid' : 'Invalid'} Configuration
         </p>
       </div>
 
@@ -295,21 +300,21 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
           <div className="px-10">
             <div className="flex justify-start space-x-4">
               <button
-                onClick={() => setRecordType("CNAME")}
+                onClick={() => setRecordType('CNAME')}
                 className={`${
-                  recordType == "CNAME"
-                    ? "text-black border-black"
-                    : "text-gray-400 border-white"
+                  recordType == 'CNAME'
+                    ? 'text-black border-black'
+                    : 'text-gray-400 border-white'
                 } text-sm border-b-2 pb-1 transition-all ease duration-150`}
               >
                 CNAME Record (subdomains)
               </button>
               <button
-                onClick={() => setRecordType("A")}
+                onClick={() => setRecordType('A')}
                 className={`${
-                  recordType == "A"
-                    ? "text-black border-black"
-                    : "text-gray-400 border-white"
+                  recordType == 'A'
+                    ? 'text-black border-black'
+                    : 'text-gray-400 border-white'
                 } text-sm border-b-2 pb-1 transition-all ease duration-150`}
               >
                 A Record (apex domain)
@@ -327,13 +332,13 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
                 <div>
                   <p className="text-sm font-bold">Name</p>
                   <p className="text-sm font-mono mt-2">
-                    {recordType == "CNAME" ? "www" : "@"}
+                    {recordType == 'CNAME' ? 'www' : '@'}
                   </p>
                 </div>
                 <div>
                   <p className="text-sm font-bold">Value</p>
                   <p className="text-sm font-mono mt-2">
-                    {recordType == "CNAME"
+                    {recordType == 'CNAME'
                       ? `cname.platformize.co`
                       : `76.76.21.21`}
                   </p>
@@ -344,5 +349,5 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}

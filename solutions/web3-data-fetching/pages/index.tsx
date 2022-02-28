@@ -21,8 +21,6 @@ const Snippet: FC = ({ children }) => {
 }
 
 function Home({ contractName }: { contractName: string }) {
-  // const { data } = useSWR('name', () => contract.name())
-
   return (
     <Page>
       <Head>
@@ -41,6 +39,7 @@ function Home({ contractName }: { contractName: string }) {
           top of blockchains that can run the{' '}
           <Link
             target="_blank"
+            rel="noreferrer"
             href="https://ethereum.org/en/developers/docs/evm/"
           >
             Ethereum Virtual Machine
@@ -49,6 +48,7 @@ function Home({ contractName }: { contractName: string }) {
           form of{' '}
           <Link
             target="_blank"
+            rel="noreferrer"
             href="https://www.tutorialspoint.com/solidity/solidity_view_functions.htm"
           >
             View functions{' '}
@@ -56,6 +56,7 @@ function Home({ contractName }: { contractName: string }) {
           that do not need{' '}
           <Link
             target="_blank"
+            rel="noreferrer"
             href="https://ethereum.org/en/developers/docs/gas/"
           >
             {' '}
@@ -72,16 +73,25 @@ function Home({ contractName }: { contractName: string }) {
           A first step needed to contact these smart contracts via{' '}
           <Link
             target="_blank"
+            rel="noreferrer"
             href="https://en.wikipedia.org/wiki/Remote_procedure_call"
           >
             RPC
           </Link>{' '}
           is to instanciate a connection with them using a library like{' '}
-          <Link target="_blank" href="https://docs.ethers.io/v5/">
+          <Link
+            target="_blank"
+            rel="noreferrer"
+            href="https://docs.ethers.io/v5/"
+          >
             Ethers.js
           </Link>
           . There are also convenient libraries like{' '}
-          <Link target="_blank" href="https://github.com/dethcrypto/TypeChain">
+          <Link
+            target="_blank"
+            rel="noreferrer"
+            href="https://github.com/dethcrypto/TypeChain"
+          >
             Typechain
           </Link>{' '}
           to help in this process.
@@ -91,12 +101,14 @@ function Home({ contractName }: { contractName: string }) {
           <Link
             href="https://www.quicknode.com/guides/solidity/what-is-an-abi"
             target="_blank"
+            rel="noreferrer"
           >
             ABI
           </Link>
           {''} contains information about the available function and{' '}
           <Link
             target="_blank"
+            rel="noreferrer"
             href="https://cryptomarketpool.com/how-to-get-a-smart-contracts-abi-for-use-in-python-web3-py/"
           >
             can be obtained through Etherscan.
@@ -117,7 +129,7 @@ const contract = new ethers.Contract(contractAddress, abi)
           This can now be used in <Code>getStaticProps</Code> or
           <Code>getServerSideProps </Code> to pre-render the contract
           information, or client-side with{' '}
-          <Link href="https://swr.vercel.app/" target="_blank">
+          <Link href="https://swr.vercel.app/" target="_blank" rel="noreferrer">
             SWR
           </Link>
           , which might be better for active contracts with a lot of usage.

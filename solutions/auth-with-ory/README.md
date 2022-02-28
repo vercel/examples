@@ -1,11 +1,15 @@
-# Add Auth\* with Open Source Ory
+# Authentication with Ory
 
 This example shows how to add authentication to your Lambda functions using the
 open source [Ory Kratos](https://github.com/ory/kratos) project.
 
-## Deployed Live on Vercel
+## Demo
 
 https://kratos-nextjs-react-example.vercel.app
+
+## How to Use
+
+You can choose from one of the following two methods to use this repository:
 
 ### One-Click Deploy
 
@@ -14,7 +18,7 @@ Deploy the example using
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/auth-with-ory&env=NEXT_PUBLIC_CLERK_FRONTEND_API,CLERK_API_KEY,CLERK_JWT_KEY&project-name=clerk-authentication&repo-name=clerk-authentication)
 
-## Getting Started
+### Clone and Deploy
 
 Execute
 [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)

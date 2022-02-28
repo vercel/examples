@@ -1,5 +1,5 @@
-import type { NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
+// eslint-disable-next-line @next/next/no-server-import-in-page
+import { NextRequest, NextResponse } from 'next/server'
 import { nanoid } from 'nanoid'
 import { SignJWT, jwtVerify } from 'jose'
 import { USER_TOKEN, JWT_SECRET_KEY } from './constants'

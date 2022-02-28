@@ -1,15 +1,15 @@
-import { signIn } from "next-auth/react";
-import Head from "next/head";
-import { useState } from "react";
-import LoadingDots from "@/components/app/loading-dots";
+import { signIn } from 'next-auth/react'
+import Head from 'next/head'
+import { useState } from 'react'
+import LoadingDots from '@/components/app/loading-dots'
 
-const pageTitle = "Login";
-const logo = "/favicon.ico";
+const pageTitle = 'Login'
+const logo = '/favicon.ico'
 const description =
-  "Platforms Starter Kit is a comprehensive template for building multi-tenant applications with custom domains.";
+  'Platforms Starter Kit is a comprehensive template for building multi-tenant applications with custom domains.'
 
 export default function Login() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -49,10 +49,11 @@ export default function Login() {
           Platforms Starter Kit
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Build multi-tenant applications with custom domains. <br /> Read the{" "}
+          Build multi-tenant applications with custom domains. <br /> Read the{' '}
           <a
             href="https://demo.vercel.im/platforms-starter-kit"
             target="_blank"
+            rel="noreferrer"
             className="font-medium text-black hover:text-gray-800"
           >
             blog post
@@ -65,11 +66,11 @@ export default function Login() {
           <button
             disabled={loading}
             onClick={() => {
-              setLoading(true);
-              signIn("github");
+              setLoading(true)
+              signIn('github')
             }}
             className={`${
-              loading ? "cursor-not-allowed" : ""
+              loading ? 'cursor-not-allowed' : ''
             } group flex justify-center items-center space-x-5 w-full sm:px-4 h-16 rounded-md focus:outline-none border-2 border-black`}
           >
             {loading ? (
@@ -78,7 +79,6 @@ export default function Login() {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6 group-hover:animate-wiggle"
-
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -90,5 +90,5 @@ export default function Login() {
         </div>
       </div>
     </div>
-  );
+  )
 }

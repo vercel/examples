@@ -1,30 +1,30 @@
-import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
-import { useState, useEffect, useCallback } from "react";
-import Cookies from "js-cookie";
+import Head from 'next/head'
+import Link from 'next/link'
+import Image from 'next/image'
+import { useState, useEffect, useCallback } from 'react'
+import Cookies from 'js-cookie'
 
 export default function Layout({ meta, children, subdomain }) {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false)
 
   const onScroll = useCallback(() => {
-    setScrolled(window.pageYOffset > 20);
-  }, []);
+    setScrolled(window.pageYOffset > 20)
+  }, [])
 
   useEffect(() => {
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [onScroll]);
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [onScroll])
 
-  const [closeModal, setCloseModal] = useState(Cookies.get("closeModal"));
+  const [closeModal, setCloseModal] = useState(Cookies.get('closeModal'))
 
   useEffect(() => {
     if (closeModal) {
-      Cookies.set("closeModal", true);
+      Cookies.set('closeModal', true)
     } else {
-      Cookies.remove("closeModal");
+      Cookies.remove('closeModal')
     }
-  }, [closeModal]);
+  }, [closeModal])
 
   return (
     <div>
@@ -54,16 +54,16 @@ export default function Layout({ meta, children, subdomain }) {
         <meta name="twitter:title" content={meta?.title} />
         <meta name="twitter:description" content={meta?.description} />
         <meta name="twitter:image" content={meta?.ogImage} />
-        {subdomain != "demo" && <meta name="robots" content="noindex" />}
+        {subdomain != 'demo' && <meta name="robots" content="noindex" />}
       </Head>
       <div
         className={`fixed w-full ${
-          scrolled ? "drop-shadow-md" : ""
+          scrolled ? 'drop-shadow-md' : ''
         }  top-0 left-0 right-0 h-16 bg-white z-30 transition-all ease duration-150 flex`}
       >
-        {" "}
+        {' '}
         <div className="flex justify-center items-center space-x-5 h-full max-w-screen-xl mx-auto px-10 sm:px-20">
-          {subdomain == "demo" ? (
+          {subdomain == 'demo' ? (
             <>
               <Link href="/">
                 <a className="flex justify-center items-center">
@@ -83,6 +83,7 @@ export default function Layout({ meta, children, subdomain }) {
               <a
                 href="https://www.producthunt.com/posts/platforms-starter-kit?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-platforms-starter-kit"
                 target="_blank"
+                rel="noreferrer"
                 className="mt-1 sm:block hidden flex-shrink-0"
               >
                 <Image
@@ -95,6 +96,7 @@ export default function Layout({ meta, children, subdomain }) {
               <a
                 href="https://www.producthunt.com/posts/platforms-starter-kit?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-platforms-starter-kit"
                 target="_blank"
+                rel="noreferrer"
                 className="mt-2 sm:hidden flex-shrink-0"
               >
                 <Image
@@ -128,17 +130,17 @@ export default function Layout({ meta, children, subdomain }) {
 
       <div className="mt-20">{children}</div>
 
-      {subdomain == "demo" && (
+      {subdomain == 'demo' && (
         <div
           className={`${
-            closeModal ? "h-14 lg:h-auto" : "lg:h-auto sm:h-40 h-60"
+            closeModal ? 'h-14 lg:h-auto' : 'lg:h-auto sm:h-40 h-60'
           } max-w-screen-xl xl:mx-auto mx-5 rounded-lg px-5 lg:pt-3 pt-0 pb-3 flex flex-col lg:flex-row space-y-3 lg:space-y-0 justify-between items-center sticky bottom-5 bg-white border-t-4 border-black
           drop-shadow-lg transition-all ease-in-out duration-150`}
         >
           <button
             onClick={() => setCloseModal(!closeModal)}
             className={`${
-              closeModal ? "rotate-180" : "rotate-0"
+              closeModal ? 'rotate-180' : 'rotate-0'
             } lg:hidden absolute top-2 right-3 text-black transition-all ease-in-out duration-150`}
           >
             <svg
@@ -161,29 +163,31 @@ export default function Layout({ meta, children, subdomain }) {
             </p>
             <p
               className={`${
-                closeModal ? "lg:block hidden" : ""
+                closeModal ? 'lg:block hidden' : ''
               } text-sm text-gray-700 mt-2 lg:mt-0`}
             >
               This is a demo site showcasing how to build a multi-tenant
-              application with{" "}
+              application with{' '}
               <a
                 href="https://platformize.co"
                 target="_blank"
+                rel="noreferrer"
                 className="text-black font-semibold underline"
               >
                 custom domain
-              </a>{" "}
+              </a>{' '}
               support.
             </p>
           </div>
           <div
             className={`${
-              closeModal ? "lg:flex hidden" : ""
+              closeModal ? 'lg:flex hidden' : ''
             } flex space-y-3 sm:space-y-0 sm:space-x-3 sm:flex-row flex-col lg:w-auto w-full text-center`}
           >
             <a
               href="https://app.vercel.im"
               target="_blank"
+              rel="noreferrer"
               className="flex-auto font-cal text-lg rounded-md py-1 sm:py-3 px-5 text-black border border-gray-200 hover:border-black transition-all ease-in-out duration-150 whitespace-no-wrap"
             >
               Create your publication
@@ -191,6 +195,7 @@ export default function Layout({ meta, children, subdomain }) {
             <a
               href="https://vercel.com/guides/nextjs-multi-tenant-application"
               target="_blank"
+              rel="noreferrer"
               className="flex-auto font-cal text-lg bg-black text-white border border-black rounded-md py-1 sm:py-3 px-5 hover:text-black hover:bg-white transition-all ease-in-out duration-150 whitespace-no-wrap"
             >
               Clone and deploy
@@ -199,5 +204,5 @@ export default function Layout({ meta, children, subdomain }) {
         </div>
       )}
     </div>
-  );
+  )
 }

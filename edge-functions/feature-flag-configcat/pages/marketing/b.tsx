@@ -8,7 +8,7 @@ export default function Marketing() {
         Marketing Variant
       </Text>
       <Text className="text-lg mb-4">
-        You're currently looking at the variant of the marketing page under{' '}
+        You&apos;re currently looking at the variant of the marketing page under{' '}
         <Code>pages/marketing/b.tsx</Code>
       </Text>
       <Link href="/">Go back to /</Link>

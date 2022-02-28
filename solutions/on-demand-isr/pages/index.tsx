@@ -1,23 +1,23 @@
-import type { Product } from "../types";
+import type { Product } from '../types'
 
-import Head from "next/head";
-import { Layout, Text, Page, Code, Link, Button } from "@vercel/examples-ui";
+import Head from 'next/head'
+import { Layout, Text, Page, Code, Link, Button } from '@vercel/examples-ui'
 
-import { GetStaticProps } from "next";
-import api from "../api";
-import Image from "next/image";
-import Snippet from "../components/Snippet";
+import { GetStaticProps } from 'next'
+import api from '../api'
+import Image from 'next/image'
+import Snippet from '../components/Snippet'
 
 interface Props {
-  products: Product[];
-  date: string;
+  products: Product[]
+  date: string
 }
 
 const ProductCard: React.VFC<{ product: Product }> = ({ product }) => {
   return (
     <div
       className={`flex flex-col shadow-lg overflow-hidden relative ${
-        product.hasStock ? "opacity-100" : "opacity-50 cursor-not-allowed"
+        product.hasStock ? 'opacity-100' : 'opacity-50 cursor-not-allowed'
       }`}
     >
       <Image
@@ -41,29 +41,29 @@ const ProductCard: React.VFC<{ product: Product }> = ({ product }) => {
           </p>
         </div>
         <div className="mt-4 text-xl leading-none font-extrabold text-gray-900">
-          <span>{product.hasStock ? product.price : "Not available"}</span>
+          <span>{product.hasStock ? product.price : 'Not available'}</span>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export const getStaticProps: GetStaticProps = async () => {
-  const products = await api.list();
+  const products = await api.list()
 
   return {
     props: {
       products,
       date: new Date().toTimeString(),
     },
-  };
-};
+  }
+}
 
 function Home({ products, date }: Props) {
   async function handleRevalidate() {
-    await fetch("/api/revalidate");
+    await fetch('/api/revalidate')
 
-    window.location.reload();
+    window.location.reload()
   }
 
   return (
@@ -107,9 +107,9 @@ export async function getStaticProps() {
         </Snippet>
         <Text>
           Would not be great if we only regenerate this page when our data
-          changes? Since Next.js 12.1 we can do that using the{" "}
+          changes? Since Next.js 12.1 we can do that using the{' '}
           <Code>res.unstable_revalidate</Code> (res.revalidate if you come from
-          a future where this feature is already stable) function in our{" "}
+          a future where this feature is already stable) function in our{' '}
           <Link href="https://nextjs.org/docs/api-routes/introduction">
             API Routes
           </Link>
@@ -179,9 +179,9 @@ export async function getStaticProps() {
         </Link>
       </section>
     </Page>
-  );
+  )
 }
 
-Home.Layout = Layout;
+Home.Layout = Layout
 
-export default Home;
+export default Home

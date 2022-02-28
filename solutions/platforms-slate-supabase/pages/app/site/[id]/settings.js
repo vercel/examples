@@ -1,37 +1,37 @@
-import Layout from "@/components/app/Layout";
-import toast, { Toaster } from "react-hot-toast";
-import BlurImage from "@/components/BlurImage";
-import CloudinaryUploadWidget from "@/components/Cloudinary";
-import LoadingDots from "@/components/app/loading-dots";
-import saveImage from "@/lib/save-image";
+import Layout from '@/components/app/Layout'
+import toast, { Toaster } from 'react-hot-toast'
+import BlurImage from '@/components/BlurImage'
+import CloudinaryUploadWidget from '@/components/Cloudinary'
+import LoadingDots from '@/components/app/loading-dots'
+import saveImage from '@/lib/save-image'
 
-import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
+import { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 
 export default function AppSettings() {
-  const { data: session } = useSession();
-  const [saving, setSaving] = useState(false);
+  const { data: session } = useSession()
+  const [saving, setSaving] = useState(false)
 
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(null)
 
   useEffect(() => {
     if (session)
       setData({
         ...session.user,
-      });
-  }, [session]);
+      })
+  }, [session])
 
   async function saveSettings(data) {
-    setSaving(true);
-    const response = await fetch("/api/save-settings", {
-      method: "POST",
+    setSaving(true)
+    const response = await fetch('/api/save-settings', {
+      method: 'POST',
       body: JSON.stringify({
         ...data,
       }),
-    });
+    })
     if (response.ok) {
-      setSaving(false);
-      toast.success(`Changes Saved`);
+      setSaving(false)
+      toast.success(`Changes Saved`)
     }
   }
 
@@ -81,7 +81,7 @@ export default function AppSettings() {
               <h2 className="font-cal text-2xl">Display Picture</h2>
               <div
                 className={`${
-                  data?.image ? "" : "animate-pulse bg-gray-300 h-150"
+                  data?.image ? '' : 'animate-pulse bg-gray-300 h-150'
                 } relative mt-5 w-48 border-2 border-gray-800 border-dashed rounded-md`}
               >
                 <CloudinaryUploadWidget
@@ -124,20 +124,20 @@ export default function AppSettings() {
           <div className="max-w-screen-xl mx-auto px-10 sm:px-20 h-full flex justify-end items-center">
             <button
               onClick={() => {
-                saveSettings(data);
+                saveSettings(data)
               }}
               disabled={saving}
               className={`${
                 saving
-                  ? "cursor-not-allowed bg-gray-300 border-gray-300"
-                  : "bg-black hover:bg-white hover:text-black border-black"
+                  ? 'cursor-not-allowed bg-gray-300 border-gray-300'
+                  : 'bg-black hover:bg-white hover:text-black border-black'
               } mx-2 w-36 h-12 text-lg text-white border-2 focus:outline-none transition-all ease-in-out duration-150`}
             >
-              {saving ? <LoadingDots /> : "Save Changes"}
+              {saving ? <LoadingDots /> : 'Save Changes'}
             </button>
           </div>
         </footer>
       </Layout>
     </>
-  );
+  )
 }

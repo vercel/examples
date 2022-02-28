@@ -1,27 +1,27 @@
-import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import React from "react";
-import { signOut } from "next-auth/react";
-import Loader from "./Loader";
-import useRequireAuth from "../../lib/useRequireAuth";
+import Head from 'next/head'
+import Link from 'next/link'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import React from 'react'
+import { signOut } from 'next-auth/react'
+import Loader from './Loader'
+import useRequireAuth from '../../lib/useRequireAuth'
 
 export default function Layout({ siteId, children }) {
-  const title = "Platforms on Vercel";
+  const title = 'Platforms on Vercel'
   const description =
-    "Create a fullstack application with multi-tenancy and custom domains support using Next.js, Supabase, and PostgreSQL";
-  const logo = "/favicon.ico";
-  const router = useRouter();
-  const sitePage = router.pathname.startsWith("/app/site/[id]");
-  const postPage = router.pathname.startsWith("/app/post/[id]");
-  const rootPage = !sitePage && !postPage;
+    'Create a fullstack application with multi-tenancy and custom domains support using Next.js, Supabase, and PostgreSQL'
+  const logo = '/favicon.ico'
+  const router = useRouter()
+  const sitePage = router.pathname.startsWith('/app/site/[id]')
+  const postPage = router.pathname.startsWith('/app/post/[id]')
+  const rootPage = !sitePage && !postPage
   const tab = rootPage
-    ? router.asPath.split("/")[1]
-    : router.asPath.split("/")[3];
+    ? router.asPath.split('/')[1]
+    : router.asPath.split('/')[3]
 
-  const session = useRequireAuth();
-  if (!session) return <Loader />;
+  const session = useRequireAuth()
+  if (!session) return <Loader />
 
   return (
     <>
@@ -81,6 +81,7 @@ export default function Layout({ siteId, children }) {
             <a
               href="https://github.com/vercel/platforms"
               target="_blank"
+              rel="noreferrer"
               className="font-cal flex items-center space-x-2 text-gray-700 px-5 py-3 sm:hover:text-black sm:hover:bg-white transition-all ease-in-out duration-150"
             >
               <p className="hidden sm:block">Build my own</p>
@@ -101,7 +102,7 @@ export default function Layout({ siteId, children }) {
             <Link href="/">
               <a
                 className={`border-b-2 ${
-                  tab == "" ? "border-black" : "border-transparent"
+                  tab == '' ? 'border-black' : 'border-transparent'
                 } py-3`}
               >
                 My Sites
@@ -121,7 +122,7 @@ export default function Layout({ siteId, children }) {
                 <Link href={`/site/${router.query.id}`}>
                   <a
                     className={`border-b-2 ${
-                      !tab ? "border-black" : "border-transparent"
+                      !tab ? 'border-black' : 'border-transparent'
                     } py-3`}
                   >
                     Posts
@@ -130,7 +131,7 @@ export default function Layout({ siteId, children }) {
                 <Link href={`/site/${router.query.id}/drafts`}>
                   <a
                     className={`border-b-2 ${
-                      tab == "drafts" ? "border-black" : "border-transparent"
+                      tab == 'drafts' ? 'border-black' : 'border-transparent'
                     } py-3`}
                   >
                     Drafts
@@ -152,7 +153,7 @@ export default function Layout({ siteId, children }) {
                 </Link>
               ) : (
                 <div>
-                  {" "}
+                  {' '}
                   ←<p className="md:inline-block ml-3 hidden">All Posts</p>
                 </div>
               )}
@@ -161,7 +162,7 @@ export default function Layout({ siteId, children }) {
                 <Link href={`/post/${router.query.id}`}>
                   <a
                     className={`border-b-2 ${
-                      !tab ? "border-black" : "border-transparent"
+                      !tab ? 'border-black' : 'border-transparent'
                     } py-3`}
                   >
                     Editor
@@ -170,7 +171,7 @@ export default function Layout({ siteId, children }) {
                 <Link href={`/post/${router.query.id}/settings`}>
                   <a
                     className={`border-b-2 ${
-                      tab == "settings" ? "border-black" : "border-transparent"
+                      tab == 'settings' ? 'border-black' : 'border-transparent'
                     } py-3`}
                   >
                     Settings
@@ -184,5 +185,5 @@ export default function Layout({ siteId, children }) {
         <div className="pt-28">{children}</div>
       </div>
     </>
-  );
+  )
 }

@@ -1,14 +1,12 @@
 import Header from './header'
 import Meta from './meta'
 
-export default ({ children }) => (
+const Page = ({ children }) => (
   <div className="main">
     <Meta />
     <Header />
 
-    <div className="page">
-      { children }
-    </div>
+    <div className="page">{children}</div>
 
     <style jsx>{`
       .main {
@@ -32,3 +30,5 @@ export default ({ children }) => (
     `}</style>
   </div>
 )
+
+export default Page

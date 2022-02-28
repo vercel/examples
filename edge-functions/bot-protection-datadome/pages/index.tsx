@@ -8,7 +8,7 @@ export default function Index() {
         Bot Protection with DataDome
       </Text>
       <Text className="text-lg mb-4">
-        This page has DataDome enabled, and you're not a bad bot.
+        This page has DataDome enabled, and you&apos;re not a bad bot.
       </Text>
       <Text className="mb-4">Navigate to other routes:</Text>
       <List className="mb-4">
@@ -27,8 +27,8 @@ export default function Index() {
       <Headers path="/omit" />
       <Text className="mb-4">
         By checking the request to this page in the network tab in devtools,
-        you'll be able to see how is latency affected by DataDome after looking
-        at the headers.
+        you&apos;ll be able to see how is latency affected by DataDome after
+        looking at the headers.
       </Text>
     </Page>
   )

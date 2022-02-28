@@ -14,7 +14,7 @@ const PlusIcon = ({ color, width, height, className }) => {
       <path d="M224 32v448c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32s-32 14.3-32 32"></path>
       <path d="M32 288h448c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32"></path>
     </svg>
-  );
-};
+  )
+}
 
-export default PlusIcon;
+export default PlusIcon

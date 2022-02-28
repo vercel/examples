@@ -4,6 +4,6 @@ const withTM = require('@vercel/examples-ui/transpile')()
 module.exports = withTM({
   reactStrictMode: true,
   images: {
-    domains: ['images.unsplash.com']
-  }
+    domains: ['images.unsplash.com'],
+  },
 })

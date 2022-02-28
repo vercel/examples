@@ -2,24 +2,23 @@ import React from 'react'
 import Story from './story'
 import { observe } from '../lib/get-item'
 
-export default class extends React.Component<any, any> {
-  unsubscribe: VoidFunction;
+export default class UpdatingStory extends React.Component<any, any> {
+  unsubscribe: VoidFunction
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = props
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.unsubscribe = observe(this.props.id, (data) => this.setState(data))
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.unsubscribe()
   }
 
-  render () {
+  render() {
     return <Story {...this.state} />
   }
-
 }

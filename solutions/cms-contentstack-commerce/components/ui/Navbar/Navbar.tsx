@@ -34,8 +34,8 @@ const Navbar: React.FC<{
             <a className={s.link}>My Closet</a>
           </div>
           <div>
-            <Link href="/">
-              <span className="cursor-pointer ">
+            <Link href="/" passHref>
+              <span className="cursor-pointer">
                 <Logo />
               </span>
             </Link>
@@ -91,12 +91,11 @@ const Navbar: React.FC<{
               </a>
             ))}
             <div className="flex-1">
-              <a
-                className="cursor-pointer hover:text-gray-600 uppercase font-medium text-sm"
-                href="/"
-              >
-                Search
-              </a>
+              <Link href="/">
+                <a className="cursor-pointer hover:text-gray-600 uppercase font-medium text-sm">
+                  Search
+                </a>
+              </Link>
             </div>
             <UserNav />
           </nav>

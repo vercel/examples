@@ -7,7 +7,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout path="edge-functions/hostname-rewrites" deployButton={{ env: ['ROOT_URL'] }}>
+    <Layout
+      path="edge-functions/hostname-rewrites"
+      deployButton={{ env: ['ROOT_URL'] }}
+    >
       <Component {...pageProps} />
     </Layout>
   )

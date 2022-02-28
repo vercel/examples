@@ -23,10 +23,10 @@ const Layout: FC<LayoutProps> = ({ title, path, deployButton, children }) => {
       <footer className="py-10 w-full mt-auto border-t flex items-center justify-center bg-accents-1 z-20">
         <span className="text-primary">Created by</span>
         <a
-          rel="noopener noreferrer"
           href="https://vercel.com"
           aria-label="Vercel.com Link"
           target="_blank"
+          rel="noreferrer"
           className="text-black"
         >
           <Vercel
