@@ -10,14 +10,20 @@ function Home() {
   const [{ data: accountData }] = useAccount()
 
   const handleLogin = async () => {
-    const callbackUrl = '/protected'
-    if (accountData?.address) {
-      signIn('credentials', { address: accountData.address, callbackUrl })
-      return
+    try {
+      const callbackUrl = '/protected'
+      if (accountData?.address) {
+        signIn('credentials', { address: accountData.address, callbackUrl })
+        return
+      }
+      const { data, error } = await connect(connectData.connectors[0])
+      if (error) {
+        throw error
+      }
+      signIn('credentials', { address: data?.account, callbackUrl })
+    } catch (error) {
+      window.alert(error)
     }
-    const { data } = await connect(connectData.connectors[0])
-
-    signIn('credentials', { address: data?.account, callbackUrl })
   }
 
   return (
@@ -110,20 +116,32 @@ Function Login(){
   const [{ data: accountData }] = useAccount()
 
   const handleLogin = async () => {
-    const callbackUrl = '/protected'
-    // if we detect a previous metamask connection we create the session
-    if (accountData?.address) {
-      signIn('credentials', { address: accountData.address, callbackUrl })
-      return
+    try {
+      const callbackUrl = '/protected'
+      if (accountData?.address) {
+        signIn('credentials', { address: accountData.address, callbackUrl })
+        return
+      }
+      const { data, error } = await connect(connectData.connectors[0])
+      if (error) {
+        throw error
+      }
+      signIn('credentials', { address: data?.account, callbackUrl })
+    } catch (error) {
+      window.alert(error)
     }
-    // otherwise we connect to the first available connector
-    const { data } = await connect(connectData.connectors[0])
-
-    signIn('credentials', { address: data?.account, callbackUrl })
   }
   ... rest of your component
 `}</Snippet>
-        Try it by logging in! (Metamask should be installed)
+        <Text>
+          {' '}
+          Try it by logging in! (
+          <Link href="https://metamask.io/" target="_blank">
+            Metamask
+          </Link>{' '}
+          should be installed)
+        </Text>
+
         <Button onClick={handleLogin}>Login</Button>
       </section>
 
