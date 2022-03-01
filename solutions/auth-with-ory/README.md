@@ -5,7 +5,7 @@ open source [Ory Kratos](https://github.com/ory/kratos) project.
 
 ## Demo
 
-https://kratos-nextjs-react-example.vercel.app
+https://example-auth-with-ory.vercel.app
 
 ## How to Use
 
