@@ -63,6 +63,7 @@ function Home() {
         </Text>
         <Snippet>
           {`import NextAuth from 'next-auth'
+import { utils } from 'ethers'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
 export default NextAuth({
@@ -77,6 +78,9 @@ export default NextAuth({
         },
       },
       async authorize(credentials) {
+        if (Boolean(utils.getAddress(credentials?.address!))) {
+          return null
+        }
         return {
           id: credentials?.address,
         }
