@@ -14,9 +14,10 @@ export default NextAuth({
         },
       },
       async authorize(credentials) {
-        if (Boolean(utils.getAddress(credentials?.address!))) {
+        if (!Boolean(utils.getAddress(credentials?.address!))) {
           return null
         }
+        console
         return {
           id: credentials?.address,
         }

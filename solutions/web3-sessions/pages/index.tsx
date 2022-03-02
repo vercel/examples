@@ -8,7 +8,9 @@ import { useConnect, useAccount } from 'wagmi'
 function Home() {
   const [{ data: connectData }, connect] = useConnect()
   const [{ data: accountData }] = useAccount()
-  const isMetamaskPresent = connectData.connectors[0].name === 'MetaMask'
+  const metamaskInstalled = connectData.connectors[0].name === 'MetaMask'
+
+  console.log(metamaskInstalled, connectData.connectors[0].name)
 
   const handleLogin = async () => {
     try {
@@ -40,13 +42,14 @@ function Home() {
 
       <section className="flex flex-col space-y-4 gap-6">
         <Text variant="h1">Web3 Session with NextAuth.js</Text>
-        {!isMetamaskPresent && (
-          <Text variant="description">
+        {!metamaskInstalled && (
+          <Text>
+            {' '}
             Please install{' '}
             <Link href="https://metamask.io/" target="_blank">
               Metamask
             </Link>{' '}
-            for this example
+            to use this example.
           </Text>
         )}
         <Text>
@@ -147,17 +150,24 @@ Function Login(){
   }
   ... rest of your component
 `}</Snippet>
-        {}
 
-        <Text> Try it by logging in!</Text>
-
-        <Button
-          className="disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
-          disabled={!isMetamaskPresent}
-          onClick={handleLogin}
-        >
-          Login
-        </Button>
+        {metamaskInstalled ? (
+          <>
+            <Text>Try it by logging in!</Text>
+            <Button onClick={handleLogin}>Login</Button>
+          </>
+        ) : (
+          <>
+            <Text>
+              {' '}
+              Please install{' '}
+              <Link href="https://metamask.io/" target="_blank">
+                Metamask
+              </Link>{' '}
+              to use this example.
+            </Text>
+          </>
+        )}
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
