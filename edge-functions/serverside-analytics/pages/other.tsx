@@ -1,0 +1,163 @@
+import Head from 'next/head'
+import { Layout, Text, Page, Code, Link, Button } from '@vercel/examples-ui'
+import useSwr from 'swr'
+
+import fetchAPI from '../lib/fetchApi'
+import { FC } from 'react'
+import { useRouter } from 'next/router'
+
+const Snippet: FC = ({ children }) => {
+  return (
+    <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 transition-all">
+      {children}
+    </pre>
+  )
+}
+
+function Other() {
+  const { data, error } = useSwr('/views', fetchAPI, { refreshInterval: 500 })
+  const router = useRouter()
+
+  return (
+    <Page>
+      <Head>
+        <title>Serverside Analytics - Vercel Example</title>
+        <meta
+          name="description"
+          content="Vercel example how to use Serverside Analytics"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <section className="flex flex-col gap-6">
+        <Text variant="h1">Serverside Analytics usage example</Text>
+        <Text>
+          Next.js Middleware provides a great way to track page views and
+          implement analytics. This example shows how you can use{' '}
+          <Link href="https://nextjs.org/docs/middleware">Middleware</Link> in
+          order to count the number of page views. This example contains two
+          pages: <Code>/</Code> and <Code>/other</Code>. We are using Middleware
+          to log each visit to the pages:
+        </Text>
+
+        <ul>
+          <li>
+            <Text variant="description">
+              Home page received {data?.home && data.home} views
+            </Text>
+          </li>
+          <li>
+            <Text variant="description">
+              Other page received {data?.other && data.other} views{' '}
+              {router.asPath === '/other' && '(Current page)'}
+            </Text>
+          </li>
+        </ul>
+        <Text>
+          <Button onClick={router.reload}>Reload Page</Button>
+          <Button className="ml-4" onClick={() => router.push('/  ')}>
+            Switch Page
+          </Button>
+        </Text>
+        <Text>
+          Our Middleware function sends the data in a{' '}
+          <Link href="https://supabase.com/" target="_blank">
+            Supabase
+          </Link>{' '}
+          table. To keep the function light and quick, we are using their rest
+          API endpoint instead of the{' '}
+          <Link href="https://github.com/supabase/supabase-js" target="_blank">
+            SDK
+          </Link>{' '}
+          to avoid the extra loading time to our function.
+        </Text>
+        <Snippet>
+          {`
+import type { NextFetchEvent, NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
+
+async function logPageView(req: NextRequest) {
+  // ignore static assets from being tracked,
+  if (
+    // process.env.NODE_ENV !== 'production' || // uncomment this line to track only production requests
+    req.nextUrl.pathname.startsWith('/api') ||
+    req.nextUrl.pathname.startsWith('/fonts') ||
+    req.nextUrl.pathname.startsWith('/logos') ||
+    req.nextUrl.pathname.startsWith('/images') ||
+    req.nextUrl.pathname.startsWith('/favicon.ico')
+  ) {
+    return
+  }
+
+  //  you can track extra information such as req.geo, req.userAgent, req.headers, etc.
+  const body = JSON.stringify({
+    slug: req.nextUrl.pathname,
+  })
+
+  const request = await fetch(process.env.SUPABASE_URL + "/rest/v1/analytics", {
+    headers: {
+      apikey: process.env.SUPABASE_ANON_KEY!,
+      'Content-Type': 'application/json',
+    },
+    body,
+    method: 'POST',
+  })
+
+  if (request.status !== 201) {
+    console.error('Error logging analytics: ', body)
+  }
+
+  return
+}
+
+export function middleware(req: NextRequest, ev: NextFetchEvent) {
+  const response = NextResponse.next()
+  // Runs after the response has been returned
+  // so tracking analytics doesn't block rendering
+  ev.waitUntil(
+    (async () => {
+      logPageView(req)
+    })()
+  )
+  return response
+}
+
+`}
+        </Snippet>
+        <Text variant="h2">Caveats</Text>
+        <ul>
+          <li>
+            - If you get a lot of traffic, use an appropriate database such as a{' '}
+            <Link
+              href="https://en.wikipedia.org/wiki/Column-oriented_DBMS"
+              target="_blank"
+            >
+              Column-oriented DBMS
+            </Link>
+            .
+          </li>
+          <li>
+            - You can get other information about the request in the{' '}
+            <Link
+              href="https://nextjs.org/docs/api-reference/next/server#nextrequest"
+              target="_blank"
+            >
+              NextRequest Object
+            </Link>
+            <Link
+              href="https://en.wikipedia.org/wiki/Column-oriented_DBMS"
+              target="_blank"
+            >
+              Column-oriented DBMS
+            </Link>
+            .
+          </li>
+        </ul>
+      </section>
+    </Page>
+  )
+}
+
+Other.Layout = Layout
+
+export default Other
