@@ -8,6 +8,7 @@ import { useConnect, useAccount } from 'wagmi'
 function Home() {
   const [{ data: connectData }, connect] = useConnect()
   const [{ data: accountData }] = useAccount()
+  const isMetamaskPresent = connectData.connectors[0].name === 'MetaMask'
 
   const handleLogin = async () => {
     try {
@@ -39,6 +40,15 @@ function Home() {
 
       <section className="flex flex-col space-y-4 gap-6">
         <Text variant="h1">Web3 Session with NextAuth.js</Text>
+        {!isMetamaskPresent && (
+          <Text variant="description">
+            Please install{' '}
+            <Link href="https://metamask.io/" target="_blank">
+              Metamask
+            </Link>{' '}
+            for this example
+          </Text>
+        )}
         <Text>
           In a decentralized application, a user is often identified by a
           Cryptocurrency wallet such as{' '}
@@ -137,16 +147,17 @@ Function Login(){
   }
   ... rest of your component
 `}</Snippet>
-        <Text>
-          {' '}
-          Try it by logging in! (
-          <Link href="https://metamask.io/" target="_blank">
-            Metamask
-          </Link>{' '}
-          should be installed)
-        </Text>
+        {}
 
-        <Button onClick={handleLogin}>Login</Button>
+        <Text> Try it by logging in!</Text>
+
+        <Button
+          className="disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
+          disabled={!isMetamaskPresent}
+          onClick={handleLogin}
+        >
+          Login
+        </Button>
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
