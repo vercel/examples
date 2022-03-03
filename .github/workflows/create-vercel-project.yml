@@ -11,5 +11,6 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
+      - run: git fetch origin main
       - run: npm install
       - run: node scripts/create-project.mjs ${{ github.sha }}
