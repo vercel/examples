@@ -8,6 +8,7 @@ import { useConnect, useAccount } from 'wagmi'
 function Home() {
   const [{ data: connectData }, connect] = useConnect()
   const [{ data: accountData }] = useAccount()
+  const metamaskInstalled = connectData.connectors[0].name === 'MetaMask'
 
   const handleLogin = async () => {
     try {
@@ -137,16 +138,24 @@ Function Login(){
   }
   ... rest of your component
 `}</Snippet>
-        <Text>
-          {' '}
-          Try it by logging in! (
-          <Link href="https://metamask.io/" target="_blank">
-            Metamask
-          </Link>{' '}
-          should be installed)
-        </Text>
 
-        <Button onClick={handleLogin}>Login</Button>
+        {metamaskInstalled ? (
+          <>
+            <Text>Try it by logging in!</Text>
+            <Button onClick={handleLogin}>Login</Button>
+          </>
+        ) : (
+          <>
+            <Text>
+              {' '}
+              Please install{' '}
+              <Link href="https://metamask.io/" target="_blank">
+                Metamask
+              </Link>{' '}
+              to use this example.
+            </Text>
+          </>
+        )}
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
