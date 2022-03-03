@@ -5,12 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@company/ui": "^0.0.1",
     "@company/utils": "^0.0.1",
-    "@vercel/examples-ui": "^0.2.5",
+    "@vercel/examples-ui": "^0.2.6",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

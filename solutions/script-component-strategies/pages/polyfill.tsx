@@ -39,7 +39,10 @@ function Polyfill() {
           <Text variant="h1">IntersectionObserver polyfill</Text>
           <Text>Scroll down to see when was the last intersection</Text>
         </section>
-        <section className="flex items-center justify-center" style={{height: '300vh'}}>
+        <section
+          className="flex items-center justify-center"
+          style={{ height: '300vh' }}
+        >
           <span ref={ref}>
             Last intersection at {lastIntersection.toTimeString()}
           </span>
@@ -49,6 +52,6 @@ function Polyfill() {
   )
 }
 
-Polyfill.Layout = Layout;
+Polyfill.Layout = Layout
 
-export default Polyfill;
+export default Polyfill

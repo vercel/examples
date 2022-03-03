@@ -29,7 +29,7 @@ const DeployButton: FC<DeployButtonProps> = (props) => {
       Component="a"
       href={`${VERCEL_CLONE}${query ? `?${query}` : ''}`}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noreferrer"
     >
       Clone & Deploy
     </Button>

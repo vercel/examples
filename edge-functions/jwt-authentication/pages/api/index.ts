@@ -14,7 +14,10 @@ export default async function handler(
   }
   try {
     const token = req.cookies[USER_TOKEN]
-    const { payload } = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET_KEY))
+    const { payload } = await jwtVerify(
+      token,
+      new TextEncoder().encode(JWT_SECRET_KEY)
+    )
     res.status(200).json({ nanoid: nanoid(), jwtID: payload.jti })
   } catch (err) {
     res.status(401).json({ error: { message: 'Your token has expired.' } })

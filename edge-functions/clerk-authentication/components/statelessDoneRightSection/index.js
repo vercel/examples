@@ -1,1 +1,1 @@
-export * from './StatelessDoneRightSection';
+export * from './StatelessDoneRightSection'

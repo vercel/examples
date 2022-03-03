@@ -7,7 +7,7 @@ export default function Product() {
         Product Variant
       </Text>
       <Text className="text-lg mb-4">
-        You're currently looking at the variant of the product page under{' '}
+        You&apos;re currently looking at the variant of the product page under{' '}
         <Code>pages/product/a.tsx</Code>
       </Text>
       <Link href="/">Go back to /</Link>

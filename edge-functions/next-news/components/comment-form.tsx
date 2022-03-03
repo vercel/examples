@@ -10,7 +10,7 @@ export default function CommentForm() {
           display: block;
           margin-bottom: 10px;
         }
-  
+
         button {
           padding: 3px 4px;
         }

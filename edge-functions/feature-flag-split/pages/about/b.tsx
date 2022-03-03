@@ -20,7 +20,7 @@ export default function About() {
         About Variant
       </Text>
       <Text className="text-lg mb-4">
-        You're currently looking at the variant of the about page under{' '}
+        You&apos;re currently looking at the variant of the about page under{' '}
         <Code>pages/about/b.tsx</Code>
       </Text>
       <Link href="/">Go back to /</Link>

@@ -8,7 +8,7 @@ const PRODUCT: Product = {
   price: 15,
   image: '/mug.png',
   discount: REGIONS['1'].discount,
-  link: `${STORE_URL}/cart/${REGIONS['1'].id}:1`
+  link: `${STORE_URL}/cart/${REGIONS['1'].id}:1`,
 }
 export const PRODUCTS: Record<string, Product> = {
   // Afghanistan
@@ -1512,7 +1512,7 @@ export const PRODUCTS: Record<string, Product> = {
     ...PRODUCT,
     discount: REGIONS['1'].discount,
     link: `${STORE_URL}/cart/${REGIONS['1'].id}:1`,
-  }
+  },
 }
 
 export default {
@@ -1533,6 +1533,7 @@ export default {
 
       return new Promise((resolve) => setTimeout(() => resolve(product), delay))
     },
-    countries: async (): Promise<Country[]> => Object.keys(PRODUCTS) as Country[]
-  }
+    countries: async (): Promise<Country[]> =>
+      Object.keys(PRODUCTS) as Country[],
+  },
 }

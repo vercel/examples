@@ -7,11 +7,11 @@ export const getTwitterMedia = async (id) => {
           Authorization: `Bearer ${process.env.TWITTER_AUTH_TOKEN}`,
         },
       }
-    );
-    const data = await response.json();
-    const videoData = data.extended_entities.media[0].video_info;
-    return videoData;
+    )
+    const data = await response.json()
+    const videoData = data.extended_entities.media[0].video_info
+    return videoData
   } catch (error) {
-    console.log(id, error);
+    console.log(id, error)
   }
-};
+}

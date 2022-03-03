@@ -8,7 +8,7 @@ const Index = () => (
         IP Blocking with Upstash
       </Text>
       <Text>
-        You're seeing this page because your IP has been blocked, go to the{' '}
+        You&apos;re seeing this page because your IP has been blocked, go to the{' '}
         <Link href="/">homepage</Link> to unblock your IP.
       </Text>
     </div>

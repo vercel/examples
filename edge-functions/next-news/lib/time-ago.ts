@@ -1,12 +1,14 @@
-import ms from "ms";
+import ms from 'ms'
 
 const map = {
-  s: "seconds",
-  ms: "milliseconds",
-  m: "minutes",
-  h: "hours",
-  d: "days",
-};
+  s: 'seconds',
+  ms: 'milliseconds',
+  m: 'minutes',
+  h: 'hours',
+  d: 'days',
+}
 
-export default (date) =>
-  ms(+new Date() - date).replace(/[a-z]+/, (str) => " " + map[str]);
+const timeAgo = (date) =>
+  ms(+new Date() - date).replace(/[a-z]+/, (str) => ' ' + map[str])
+
+export default timeAgo

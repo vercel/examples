@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       {/* datadome bot protection */}
 
-      <Script strategy="lazyOnload">{`
+      <Script strategy="lazyOnload" id="load-datadome">{`
         window.ddjskey = '${process.env.NEXT_PUBLIC_DATADOME_CLIENT_KEY}'
         window.ddoptions = {
           endpoint: '${DATADOME_JS}'

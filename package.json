@@ -1,15 +1,31 @@
 {
-  "name": "edge-functions",
+  "name": "vercel-examples",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "prettier": "prettier --write .",
+    "update": "node update-dep.mjs",
+    "new-example": "plop example",
+    "lint-staged": "lint-staged",
+    "prepare": "husky install",
     "create-project": "node -r dotenv/config scripts/setup-project.mjs"
   },
+  "pre-commit": "lint-staged",
   "devDependencies": {
-    "prettier": "^2.4.0"
+    "eslint": "^8.9.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
+    "node-fetch": "^3.2.1",
+    "plop": "^3.0.5",
+    "prettier": "^2.5.1"
   },
-  "dependencies": {
-    "node-fetch": "^3.1.1"
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --no-ignore --max-warnings=0 --fix"
+    ],
+    "**/*.{json,md,mdx,css,html,yml,yaml,scss}": [
+      "prettier --write"
+    ]
   }
 }

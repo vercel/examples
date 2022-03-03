@@ -6,12 +6,29 @@
 </p>
 
 Enjoy our curated collection of examples and solutions. Use these patterns to build your own robust and scalable applications.
-Find our examples here: https://examples.vercel.live/ we're going to be shipping new examples weekly. Stay tuned! 
+Find our examples here: https://examples.vercel.live/ we're going to be shipping new examples weekly. Stay tuned!
 
 ## Examples
 
 - [Edge Functions](/edge-functions) – Edge Functions are currently in Public Beta on Vercel. [Read the docs here.](https://vercel.com/docs/concepts/functions/edge-functions)
 - [Solutions](/solutions) – Demos, Architectures and Best Practices
+
+### Adding a new example
+
+To quickly start contributing with a new example, run the following commands:
+
+```bash
+npm i
+npm run new-example
+```
+
+#### The pre-commit hook
+
+We use [Husky](https://typicode.github.io/husky/#/) to manage the pre-commit [Git hook](https://git-scm.com/docs/githooks) in this repo. Husky configures hooks automatically during install, so you don't need to do anything special to get them working, but if it fails to install, you can run the following command to install it manually:
+
+```bash
+npm run prepare
+```
 
 ## Read the Docs
 

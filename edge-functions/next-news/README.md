@@ -3,11 +3,13 @@
 This is an example showing a hacker news clone using Next.js. Edge functions are used to show how a rewrite from `/` to `/news/1` works. Below is the code from [pages/\_middleware.ts](pages/_middleware.ts):
 
 ```ts
-import { NextResponse as Response } from "next/server";
+import { NextResponse, NextRequest } from 'next/server'
 
-export default function middleware(req) {
-  if (req.nextUrl.pathname === "/") {
-    return Response.rewrite("/news/1");
+export default function middleware(req: NextRequest) {
+  const url = req.nextUrl.clone()
+  if (url.pathname === '/') {
+    url.pathname = '/news/1'
+    return NextResponse.rewrite(url)
   }
 }
 ```

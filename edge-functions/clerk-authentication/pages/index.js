@@ -6,7 +6,7 @@ import {
   TryRenovationSection,
   TwoStrategiesSection,
   CTASection,
-} from 'components';
+} from 'components'
 
 export default function Home() {
   return (
@@ -18,5 +18,5 @@ export default function Home() {
       <TryRenovationSection />
       <CTASection />
     </Layout>
-  );
+  )
 }

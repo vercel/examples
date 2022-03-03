@@ -35,7 +35,8 @@ export const usePostHog = (
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
-  }, [router.events])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.events, apiKey, name])
 }
 
 const setPostHogInstance = (posthog: PostHog) => {

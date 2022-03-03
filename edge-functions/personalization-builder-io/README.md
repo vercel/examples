@@ -2,7 +2,6 @@
 
 This example walks you through personalizing Builder.io landing pages with Next.js.
 
-
 ## Overview
 
 To use this project, you need to do three things:

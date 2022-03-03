@@ -1,0 +1,38 @@
+.root {
+  @apply relative;
+}
+
+.list {
+  @apply flex flex-row items-center justify-items-end h-full;
+}
+
+.item {
+  @apply mr-6 cursor-pointer relative transition ease-in-out
+  duration-100 flex items-center outline-none text-black;
+}
+.item:hover {
+  @apply text-accents-6 transition scale-110 duration-100;
+}
+
+.item:last-child {
+  @apply mr-0;
+}
+
+.item:focus,
+.item:active {
+  @apply outline-none;
+}
+
+.bagCount {
+  @apply border border-accents-1 bg-black text-white
+  h-4 w-4 absolute rounded-full right-3 top-3 flex
+  items-center justify-center font-bold text-xs;
+}
+
+.avatarButton {
+  @apply inline-flex justify-center rounded-full;
+}
+
+.avatarButton:focus {
+  @apply outline-none;
+}

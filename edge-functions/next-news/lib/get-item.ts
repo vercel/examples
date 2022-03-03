@@ -1,20 +1,20 @@
-import db from "./db";
+import db from './db'
 
 export default async function getItem(id) {
-  const item = await db.child("item").child(id).once("value");
-  const val = item.val();
+  const item = await db.child('item').child(id).once('value')
+  const val = item.val()
   if (val) {
-    return transform(val);
+    return transform(val)
   } else {
-    return null;
+    return null
   }
 }
 
 export function observe(id, fn) {
-  const onval = (data) => fn(transform(data.val()));
-  const item = db.child("item").child(id);
-  item.on("value", onval);
-  return () => item.off("value", onval);
+  const onval = (data) => fn(transform(data.val()))
+  const item = db.child('item').child(id)
+  item.on('value', onval)
+  return () => item.off('value', onval)
 }
 
 export function transform(val) {
@@ -29,5 +29,5 @@ export function transform(val) {
     commentsCount: val.descendants || 0,
     score: val.score,
     title: val.title,
-  };
+  }
 }

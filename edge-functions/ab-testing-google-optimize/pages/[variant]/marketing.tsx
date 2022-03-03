@@ -33,8 +33,8 @@ export default function Marketing({ experiment, variant }) {
         Marketing page
       </Text>
       <Text className="text-lg mb-4">
-        You're currently looking at the variant <b>{variant.name}</b> in the
-        experiment <b>{experiment.name}</b>
+        You&apos;re currently looking at the variant <b>{variant.name}</b> in
+        the experiment <b>{experiment.name}</b>
       </Text>
       <Text className="mb-4">
         Click the button below to register an event with GA for this variant:

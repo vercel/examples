@@ -9,10 +9,7 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout
-      title="reusing responses"
-      path="solutions/reuse-responses"
-    >
+    <Layout title="reusing responses" path="solutions/reuse-responses">
       <Component {...pageProps} />
     </Layout>
   )

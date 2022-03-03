@@ -17,11 +17,11 @@ function RateLimit() {
           API Rate Limiting with Upstash
         </Text>
         <Text className="mb-4">
-          With <i className="font-semibold">Vercel's Edge Middleware</i> we're
-          able to do API rate limiting by keeping a counter of requests by IP or
-          API token. For the demo below you can send a maximum of <b>5</b>{' '}
-          requests every <b>10</b> seconds, which increases if using an API
-          token.
+          With <i className="font-semibold">Vercel&apos;s Edge Middleware</i>{' '}
+          we&apos;re able to do API rate limiting by keeping a counter of
+          requests by IP or API token. For the demo below you can send a maximum
+          of <b>5</b> requests every <b>10</b> seconds, which increases if using
+          an API token.
         </Text>
         <Text className="mb-4">
           Visit the <Link href="/">homepage</Link> to see IP blocking instead.
