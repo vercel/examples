@@ -12,4 +12,4 @@ jobs:
           node-version: '16'
           cache: 'npm'
       - run: npm install
-      - run: node scripts/create-project.mjs {{ github.sha }}
+      - run: node scripts/create-project.mjs ${{ github.sha }}

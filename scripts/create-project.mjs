@@ -12,6 +12,7 @@ async function createProject() {
     throw new Error('Missing SHA')
   }
 
+  console.log('SHA', sha)
   const { stdout: diff } = await exec(
     `git diff --exit-code --name-status ${sha} origin/main`
   ).catch((err) => {
@@ -20,6 +21,7 @@ async function createProject() {
     }
     throw err
   })
+  console.log('DIFF', diff)
 
   if (!diff.length) return
 
@@ -35,7 +37,7 @@ async function createProject() {
           // name: '',
         }
         // TODO: create the Vercel project
-        fetch(
+        console.log(
           'https://vercel.com/api/v5/projects/edge-functions-ab-testing-simple?teamId=team_nLlpyC6REAqxydlFKbrMDlud',
           {
             method: 'POST',
