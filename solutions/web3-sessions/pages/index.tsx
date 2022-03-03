@@ -40,16 +40,6 @@ function Home() {
 
       <section className="flex flex-col space-y-4 gap-6">
         <Text variant="h1">Web3 Session with NextAuth.js</Text>
-        {!metamaskInstalled && (
-          <Text>
-            {' '}
-            Please install{' '}
-            <Link href="https://metamask.io/" target="_blank">
-              Metamask
-            </Link>{' '}
-            to use this example.
-          </Text>
-        )}
         <Text>
           In a decentralized application, a user is often identified by a
           Cryptocurrency wallet such as{' '}
