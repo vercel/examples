@@ -81,7 +81,6 @@ export default Protected
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context)
-  // console.log(session, 'ssr')
   if (!session) {
     return {
       redirect: {

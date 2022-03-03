@@ -10,8 +10,6 @@ function Home() {
   const [{ data: accountData }] = useAccount()
   const metamaskInstalled = connectData.connectors[0].name === 'MetaMask'
 
-  console.log(metamaskInstalled, connectData.connectors[0].name)
-
   const handleLogin = async () => {
     try {
       const callbackUrl = '/protected'

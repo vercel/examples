@@ -17,7 +17,6 @@ export default NextAuth({
         if (!Boolean(utils.getAddress(credentials?.address!))) {
           return null
         }
-        console
         return {
           id: credentials?.address,
         }
