@@ -33,7 +33,7 @@ function Other() {
         <Text variant="h1">Serverside Analytics usage example</Text>
         <Text>
           Next.js Middleware provides a great way to track page views and
-          implement analytics. This example shows how you can use{' '}
+          implement analytics. This example shows how to use{' '}
           <Link href="https://nextjs.org/docs/middleware">Middleware</Link> in
           order to count the number of page views. This example contains two
           pages: <Code>/</Code> and <Code>/other</Code>. We are using Middleware
@@ -123,6 +123,14 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
 }
 
 `}
+          <Text>
+            In order to also capture client-side navigations we can make use of
+            the <Code>routeChangeComplete</Code> event provided by{' '}
+            <Link href="https://nextjs.org/docs/api-reference/next/router#routerevents">
+              <Code>next/router</Code>
+            </Link>
+            .
+          </Text>
         </Snippet>
         <Text variant="h2">Caveats</Text>
         <ul>
@@ -143,12 +151,6 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
               target="_blank"
             >
               NextRequest Object
-            </Link>
-            <Link
-              href="https://en.wikipedia.org/wiki/Column-oriented_DBMS"
-              target="_blank"
-            >
-              Column-oriented DBMS
             </Link>
             .
           </li>
