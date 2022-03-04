@@ -30,7 +30,7 @@ export default function PageComponent({ title, products }: { title: string, prod
           <br />
           <b>Identity Management</b>
           <br />
-          Out of the box, Optimizely's Full Stack SDKs require a user-provided identifier to be passed in at runtime to drive experiment and feature flag decisions.
+          Out of the box, Optimizely&apos;s Full Stack SDKs require a user-provided identifier to be passed in at runtime to drive experiment and feature flag decisions.
           This example generates a unique id, stores it in a cookie and reuses it to make the decisions sticky. 
           Another common approach would be to use an existing unique identifier available within your application.
           <br />
