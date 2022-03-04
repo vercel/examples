@@ -4,7 +4,13 @@
 
 You can deploy code behind feature flags, experiment with A/B tests, and roll out or roll back features immediately. All of this functionality is available with minimal performance impact via easy-to-use, open source SDKs.
 
-In this example, you will be able to use optimizely feature flags at the edge with [NextJS](https://nextjs.org/) applications deployed on [Vercel](https://vercel.com/).
+In this example, you will be able to use optimizely feature flags at the edge with [NextJS](https://nextjs.org/) applications deployed on [Vercel](https://vercel.com/). This example uses Optimizely [Javascript SDK](https://docs.developers.optimizely.com/full-stack/v4.0/docs/javascript-node) inside a [Vercel Edge Function](https://vercel.com/docs/concepts/functions/edge-functions) to provide a starting point for you to implement experimentation and feature flagging for your experiences at the edge. For a guide to getting started with our platform more generally, this can be combined with the steps outlined in our Javascript Quickstart [here](https://docs.developers.optimizely.com/full-stack/v4.0/docs/javascript-node).
+
+### Identity Management
+Out of the box, Optimizely's Full Stack SDKs require a user-provided identifier to be passed in at runtime to drive experiment and feature flag decisions. This example generates a unique id, stores it in a cookie and reuses it to make the decisions sticky. Another common approach would be to use an existing unique identifier available within your application.
+
+### Bucketing
+For more information on how Optimizely Full Stack SDKs bucket visitors, see [here](https://docs.developers.optimizely.com/full-stack/v4.0/docs/how-bucketing-works).
 
 ## One-Click Deploy
 
