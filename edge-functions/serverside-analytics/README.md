@@ -4,7 +4,7 @@ This example shows how to implement analytics inside [Middleware Functions](http
 
 ## Demo
 
-https://serverside-analytics.vercel.app
+https://edge-serverside-analytics.vercel.app/
 
 ## How to Use
 

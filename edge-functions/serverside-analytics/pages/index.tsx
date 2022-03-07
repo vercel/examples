@@ -75,15 +75,13 @@ function Home() {
 import type { NextFetchEvent, NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
+const PUBLIC_FILE = /\.(.*)$/
+
 async function logPageView(req: NextRequest) {
   // ignore static assets from being tracked,
   if (
     // process.env.NODE_ENV !== 'production' || // uncomment this line to track only production requests
-    req.nextUrl.pathname.startsWith('/api') ||
-    req.nextUrl.pathname.startsWith('/fonts') ||
-    req.nextUrl.pathname.startsWith('/logos') ||
-    req.nextUrl.pathname.startsWith('/images') ||
-    req.nextUrl.pathname.startsWith('/favicon.ico')
+    PUBLIC_FILE.test(req.nextUrl.pathname)
   ) {
     return
   }

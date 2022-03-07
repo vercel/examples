@@ -22,8 +22,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   })
 
   if (request.status !== 201) {
-    res.status(request.status).json({ error: 'Error logging analytics' })
     console.error('Error logging analytics: ', body)
+    return res.status(request.status).json({ error: 'Error logging analytics' })
   }
   res.status(201).json({ success: true })
 }
