@@ -1,3 +1,6 @@
-const withTM = require('@vercel/edge-functions-ui/transpile')()
+const withTM = require('@vercel/examples-ui/transpile')()
 
-module.exports = withTM()
+/** @type {import('next').NextConfig} */
+module.exports = withTM({
+  reactStrictMode: true,
+})
