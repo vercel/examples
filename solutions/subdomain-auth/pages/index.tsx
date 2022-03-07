@@ -42,12 +42,12 @@ export default function Home() {
             <Button onClick={() => signOut()}>Sign out</Button>
             <List>
               <li>
-                <Link href="https://subdomain.solutions-subdomain-auth.vercel.app">
-                  subdomain.solutions-subdomain-auth.vercel.app
+                <Link href="https://subdomain.solutions-subdomain-auth.vercel.sh">
+                  subdomain.solutions-subdomain-auth.vercel.sh
                 </Link>
               </li>
               <li>
-                <Link href="https://solutions-subdomain-auth.vercel.app">solutions-subdomain-auth.vercel.app</Link>
+                <Link href="https://solutions-subdomain-auth.vercel.sh">solutions-subdomain-auth.vercel.sh</Link>
               </li>
             </List>
           </section>
