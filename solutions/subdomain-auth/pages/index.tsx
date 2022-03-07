@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <Page>
       <Head>
-        <title>Image fallback - Vercel Example</title>
+        <title>Auth subdomains - Vercel Example</title>
         <meta
           name="description"
           content="Vercel example on how to secure subdomains using next-auth"
@@ -42,12 +42,12 @@ export default function Home() {
             <Button onClick={() => signOut()}>Sign out</Button>
             <List>
               <li>
-                <Link href="https://sub1.subdomain-auth.com">
-                  sub1.subdomain-auth.com
+                <Link href="https://subdomain.solutions-subdomain-auth.vercel.app">
+                  subdomain.solutions-subdomain-auth.vercel.app
                 </Link>
               </li>
               <li>
-                <a href="https://subdomain-auth.com">subdomain-auth.com</a>
+                <Link href="https://solutions-subdomain-auth.vercel.app">solutions-subdomain-auth.vercel.app</Link>
               </li>
             </List>
           </section>
