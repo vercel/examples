@@ -1,7 +1,7 @@
 # Subdomain Auth Example
 
 - [solutions-subdomain-auth.vercel.sh](https://solutions-subdomain-auth.vercel.sh) (login from here)
-- [subdomain.solutions-subdomain-auth.vercel.sh](https://sub1.solutions-subdomain-auth.vercel.sh)
+- [subdomain.solutions-subdomain-auth.vercel.sh](https://subdomain.solutions-subdomain-auth.vercel.sh)
 
 ### Features
 
