@@ -1,15 +1,9 @@
 import Head from 'next/head'
 import { Layout, Page } from '@vercel/examples-ui'
-import useSwr from 'swr'
-
-import { useRouter } from 'next/router'
-import fetchAPI from '../lib/fetchApi'
 
 import { Screen } from '../components/screen'
 
 function Home() {
-  const { data, error } = useSwr('/views', fetchAPI, { refreshInterval: 500 })
-  const router = useRouter()
   return (
     <Page>
       <Head>

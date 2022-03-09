@@ -1,6 +1,6 @@
 # Serverside Analytics example
 
-This example shows how to implement analytics inside [Middleware Functions](https://nextjs.org/docs/middleware).
+This example shows how to implement serverside analytics inside [Middleware Functions](https://nextjs.org/docs/middleware).
 
 ## Demo
 
@@ -24,7 +24,16 @@ Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packag
 npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/serverside-analytics
 # or
 yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/serverside-analytics
+
 ```
+
+### Analytics setup
+
+[Segment](https://segment.com) is an analytics framework. It allows users to collect data from multiple sources and push them to multiple destination. We are using it in this example for it's flexibility.
+
+1.Register and create a workspace at [segment.com](https://segment.com)
+2.Add a [javascript source](https://segment.com/docs/connections/sources/catalog/libraries/website/javascript/) and grab the `writeKey`
+3.Add the write key in your `.env` file.
 
 Next, run Next.js in development mode:
 
@@ -39,19 +48,5 @@ yarn dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
-
-### Setting up:
-
-1. Create a project on [Supabase](https://supabase.com/)
-1. Get the API key and database URl and add them to `.env` and in your Vercel Project
-1. Create a Table in Supabase containing the following data.
-
-```
-create table analytics (
-  id bigint not null primary key,
-  created_at timestamp default now(),
-  slug character
-);
-```
 
 **Note: Supabase was used to showcase page views analytics. You should research an appropriate database based on the volume and format of your Data.**

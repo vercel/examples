@@ -19,7 +19,7 @@ export default async function fetchAPI(
   } catch (e: any) {
     if (e.message === 'cancelled') {
       // Cancelled by browser
-      console.log('Request Cancelled by the Browser', e)
+      // console.log('Request Cancelled by the Browser', e)
     } else {
       console.error('Network Error, CORS or timeout.')
     }
