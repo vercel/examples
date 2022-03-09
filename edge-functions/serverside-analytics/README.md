@@ -14,7 +14,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/serverside-analytics&project-name=serverside-analytics&repository-name=serverside-analytics&env=SEGMENT_WRITE_KEY&envDescription=A%20Segment%20write%20key&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Ffeat%2Fserverside-analytics%2Fedge-functions%2Fserverside-analytics%23setting-up-segment))
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/serverside-analytics&project-name=serverside-analytics&repository-name=serverside-analytics&env=SEGMENT_WRITE_KEY&envDescription=A%20Segment%20write%20key&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Ffeat%2Fserverside-analytics%2Fedge-functions%2Fserverside-analytics%23setting-up-segment)
 
 ### Clone and Deploy
 
