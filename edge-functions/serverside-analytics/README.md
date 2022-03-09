@@ -1,6 +1,6 @@
-# Serverside Analytics example
+# Serverside Analytics
 
-This example shows how to implement serverside analytics inside [Middleware Functions](https://nextjs.org/docs/middleware).
+This example shows how to use [Segment](https://segment.com) to implement server-side analytics at the edge with [Next.js Middleware](https://nextjs.org/docs/middleware).
 
 ## Demo
 
@@ -27,9 +27,7 @@ yarn create next-app --example https://github.com/vercel/examples/tree/main/edge
 
 ```
 
-### Analytics setup
-
-[Segment](https://segment.com) is an analytics framework. It allows users to collect data from multiple sources and push them to multiple destination. We are using it in this example for it's flexibility.
+### Setting up Segment
 
 1.Register and create a workspace at [segment.com](https://segment.com)
 2.Add a [javascript source](https://segment.com/docs/connections/sources/catalog/libraries/website/javascript/) and grab the `writeKey`
@@ -48,5 +46,3 @@ yarn dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
-
-**Note: Supabase was used to showcase page views analytics. You should research an appropriate database based on the volume and format of your Data.**

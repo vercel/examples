@@ -7,10 +7,10 @@ function Home() {
   return (
     <Page>
       <Head>
-        <title>Serverside Analytics - Vercel Example</title>
+        <title>Server-side Analytics at the edge</title>
         <meta
           name="description"
-          content="Vercel example how to use Serverside Analytics"
+          content="Learn how to do server-side analytics at the edge"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

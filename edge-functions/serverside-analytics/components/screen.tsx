@@ -1,9 +1,6 @@
-import Head from 'next/head'
-import { Layout, Text, Page, Code, Link, Button } from '@vercel/examples-ui'
-import useSwr from 'swr'
+import { Text, Code, Link } from '@vercel/examples-ui'
 
-import fetchAPI from '../lib/fetchApi'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { useRouter } from 'next/router'
 
 const Snippet: FC = ({ children }) => {
