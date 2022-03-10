@@ -7,10 +7,7 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout
-      title="Serverside Analytics"
-      path="edge-functions/serverside-analytics"
-    >
+    <Layout title="Analytics" path="edge-functions/analytics">
       <Component {...pageProps} />
     </Layout>
   )

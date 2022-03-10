@@ -13,15 +13,15 @@ const Snippet: FC = ({ children }) => {
 const Home = () => (
   <Page>
     <Head>
-      <title>Server-side Analytics at the edge</title>
+      <title>Analytics at the edge</title>
       <meta
         name="description"
-        content="Learn how to do server-side analytics at the edge"
+        content="Learn how to do analytics at the edge"
       />
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <section className="flex flex-col gap-6">
-      <Text variant="h1">Server-side Analytics at the edge</Text>
+      <Text variant="h1">Analytics at the edge</Text>
       <Text>
         Analytics are a great way to track user behavior and usage of your app.
         However, the most popular analytics scripts are often blocked by privacy
