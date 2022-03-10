@@ -1,8 +1,6 @@
-import { NextFetchEvent, NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
+import { NextFetchEvent, NextResponse, NextRequest } from 'next/server'
 
 const PUBLIC_FILE = /\.(.*)$/
-
 const SEGMENT_PAGE_ENDPOINT = 'https://api.segment.io/v1/page'
 
 function uuidv4() {
@@ -36,7 +34,7 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
   const isPageRequest =
     !PUBLIC_FILE.test(req.nextUrl.pathname) &&
     !req.nextUrl.pathname.startsWith('/api') &&
-    // headers added when next/link pre fetches a route
+    // headers added when next/link pre-fetches a route
     !req.headers.get('x-middleware-preflight')
 
   if (isPageRequest) {
@@ -49,7 +47,7 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
     }
 
     console.log(`User ${userId} is visiting ${req.nextUrl.pathname}`)
-    // non blocking call to let the middlware finish quickly
+    // non blocking call to let the middleware finish quickly
     logView(userId, req.nextUrl.pathname)
   }
   return response
