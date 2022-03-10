@@ -4,7 +4,7 @@ This example shows how to use [Segment](https://segment.com) to implement server
 
 ## Demo
 
-https://edge-serverside-analytics.vercel.app/
+https://edge-functions-serverside-analytics.vercel.app
 
 ## How to Use
 
@@ -29,9 +29,19 @@ yarn create next-app --example https://github.com/vercel/examples/tree/main/edge
 
 ### Setting up Segment
 
-1.Register and create a workspace at [segment.com](https://segment.com)
-2.Add a [javascript source](https://segment.com/docs/connections/sources/catalog/libraries/website/javascript/) and grab the `writeKey`
-3.Add the write key in your `.env` file.
+1. Register and create a workspace at [segment.com](https://segment.com)
+2. Add a [javascript source](https://segment.com/docs/connections/sources/catalog/libraries/website/javascript/) and grab the `writeKey`
+3. Copy `.env.example` into `.env` and
+
+```bash
+cp .env.example .env
+```
+
+4. set your write key in `SEGMENT_WRITE_KEY`
+
+```bash
+SEGMENT_WRITE_KEY="<your-write-key>"
+```
 
 Next, run Next.js in development mode:
 
