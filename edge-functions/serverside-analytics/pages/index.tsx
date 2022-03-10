@@ -21,7 +21,7 @@ const Home = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <section className="flex flex-col gap-6">
-      <Text variant="h1">Serverside Analytics usage example</Text>
+      <Text variant="h1">Server-side Analytics at the edge</Text>
       <Text>
         Analytics are a great way to track user behavior and usage of your app.
         However, the most popular analytics scripts are often blocked by privacy
@@ -30,7 +30,7 @@ const Home = () => (
           Next.js Middleware
         </Link>{' '}
         provides a great way to still track page views and other important
-        metrics since it will run on the server.
+        metrics directly from the edge.
       </Text>
       <Text variant="h2">Setup</Text>
       <Text>
