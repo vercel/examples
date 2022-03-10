@@ -7,7 +7,7 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="Analytics" path="edge-functions/analytics">
+    <Layout title="Analytics at the edge" path="edge-functions/analytics">
       <Component {...pageProps} />
     </Layout>
   )
