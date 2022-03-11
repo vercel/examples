@@ -34,51 +34,49 @@ const Home = () => (
       </Text>
       <Text variant="h2">Setup</Text>
       <Text>
-        We should create our <Code>_middleware.ts</Code> file at the root of the{' '}
-        <Code>Pages</Code> folder. This will ensure it runs on every request for
-        a page. In our example, we are using a <Code>logView</Code> function.
-        This function will be called to register a page view in your analytics
-        provider. In our case we are using{' '}
-        <Link href="https://segment.com/">Segment.io</Link> and are connecting
-        it to{' '}
-        <Link href="https://support.google.com/analytics/answer/10089681?hl=en">
-          Google Analytics V4
-        </Link>
-        . Let&lsquos explore a little bit this function:
+        Start by creating the <Code>pages/_middleware.ts</Code> file. It&apos;s
+        at the root of <Code>pages</Code> to ensure it runs on every page
+        request.
       </Text>
-      <Snippet>{`const logView = (userId: string, page: string) => {
+      <Text>
+        We have a <Code>logView</Code> function that will be called to register
+        a page view in your analytics provider, which in our case is using{' '}
+        <Link href="https://segment.com/" target="_blank">
+          Segment.io
+        </Link>
+        :
+      </Text>
+      <Snippet>{`const SEGMENT_PAGE_ENDPOINT = 'https://api.segment.io/v1/page'
+
+const logView = (userId: string, page: string) =>
   fetch(SEGMENT_PAGE_ENDPOINT, {
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       anonymousId: userId,
-      writeKey: Process.env.SEGMENT_WRITE_KEY,
+      writeKey: process.env.SEGMENT_WRITE_KEY,
       name: page,
     }),
     method: 'POST',
-  })
-}
-     `}</Snippet>
-      <Text>
-        As we can see, nothing fancy. The most important aspect of this function
-        is that it is not awaiting any promises. This is important because we
-        want our middleware function to run on every request but we don&lsquot
-        want it to slow the user experience.
-      </Text>
-      <Text variant="h2">Middleware code</Text>
+  }).catch((error) => {
+    console.log('An error happened trying to reach Segment:', error)
+  })`}</Snippet>
+      <Text>Now, let&apos;s use it inside our middleware handler:</Text>
 
       <Snippet>
-        {`const PUBLIC_FILE = /\.(.*)$/
+        {`import { NextResponse, NextRequest } from 'next/server'
 
-export function middleware(req: NextRequest, ev: NextFetchEvent) {
+const PUBLIC_FILE = /\.(.*)$/
+
+export function middleware(req: NextRequest) {
   const response = NextResponse.next()
 
   // we need to skip some request to ensure we are on a proper page view
   const isPageRequest =
     !PUBLIC_FILE.test(req.nextUrl.pathname) &&
     !req.nextUrl.pathname.startsWith('/api') &&
-    // headers added when next/link pre fetches a route
+    // header added when next/link pre-fetches a route
     !req.headers.get('x-middleware-preflight')
 
   if (isPageRequest) {
@@ -90,24 +88,30 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
       response.cookie('userId', userId)
     }
 
-    // non blocking call to let the middlware finish quickly
+    // non blocking call to let the middleware finish quickly
     logView(userId, req.nextUrl.pathname)
   }
   return response
-        `}
+}`}
       </Snippet>
 
       <Text>
-        A few things are going on here. First we are making sure to only log
-        server page requests. This regex, <Code>/\.(.*)$/</Code> will allow us
-        to skip assets being requested such as images. Another important part is
-        that we will skip the pages that are being prefetched by{' '}
-        <Link href="https://nextjs.org/docs/api-reference/next/link">
-          Next/Link
-        </Link>{' '}
-        by skipping the <Code>x-middleware-preflight</Code> header. This
-        implementation should be flexible enough to work with any analytics
-        provider that provides an api endpoint.
+        The middleware will send a log to Segment whenever a request isn&apos;t
+        for a public file (images, favicon, etc) or if it&apos;s not a preflight
+        request, which are made by the prefetching of{' '}
+        <Link
+          href="https://nextjs.org/docs/api-reference/next/link"
+          target="_blank"
+        >
+          next/link
+        </Link>
+        .
+      </Text>
+      <Text>
+        Note that the <Code>logView</Code> function isn&apos;t being called
+        using <Code>await</Code>, this is intentional because we don&apos;t want
+        to block the request or introduce latency to the response. You can also
+        use other analytics providers besides Segment.
       </Text>
     </section>
   </Page>
