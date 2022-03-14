@@ -25,7 +25,7 @@ export default function Index() {
       </Text>
       <List className="mb-4">
         <li>
-          <Code>app</Code> is the current Next.js site you're looking at
+          <Code>app</Code> is the current Next.js site you&apos;re looking at
         </li>
         <li>
           <Code>packages/ui</Code> is a package that exports the button you see

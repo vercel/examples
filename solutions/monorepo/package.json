@@ -9,7 +9,8 @@
   "scripts": {
     "build": "turbo run build --scope=app --include-dependencies --no-deps",
     "dev": "turbo run dev",
-    "start": "turbo run start"
+    "start": "turbo run start",
+    "lint": "turbo run lint"
   },
   "devDependencies": {
     "@types/node": "^17.0.14",
