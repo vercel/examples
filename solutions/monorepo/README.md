@@ -21,7 +21,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/monorepo&project-name=monorepo&repo-name=monorepo&root-directory=solutions%2Fmonorepo%2Fapp&build-command=cd%20..%20%26%26%20npm%20run%20build&install-command=cd%20..%2F%20%26%26%20npm%20i)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/monorepo&project-name=monorepo&repo-name=monorepo&root-directory=solutions%2Fmonorepo%2Fapp&build-command=cd%20..%20%26%26%20npm%20run%20build&install-command=cd%20..%20%26%26%20npm%20i)
 
 ## Getting Started
 
