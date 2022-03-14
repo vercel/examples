@@ -6,7 +6,7 @@
   --violet: #8524c3;
   --rosa: #f02888;
   --yellow: #f9c32a;
-  --orange: ##f97449;
+  --orange: #f97449;
 
   --font-sans: -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue',
     'Helvetica', sans-serif;
@@ -69,4 +69,12 @@
   --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
   --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.12);
   --shadow-large: rgba(0, 0, 0, 0.12) 0px 30px 60px 0px;
+
+  --snippet-class: #2d5e9d;
+  --snippet-identifier: var(--accents-8);
+  --snippet-sign: #8996a3;
+  --snippet-string: var(--geist-cyan-dark);
+  --snippet-keyword: var(--lightblue);
+  --snippet-comment: #8996a3;
+  --snipet-literals: #03066e;
 }
