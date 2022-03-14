@@ -17,6 +17,7 @@
 - [ ] Bug fix (non-breaking change that fixes an issue)
 - [ ] New Example
 - [ ] New feature in existing example
+- [ ] Repo Improvements (new components, plop updates, etc...)
 
 ### New Example Checklist
 
