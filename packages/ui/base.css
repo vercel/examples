@@ -37,6 +37,7 @@
   --geist-highlight-yellow: #fff500;
   --geist-foreground: #000;
   --geist-background: #fff;
+
   --geist-selection: var(--geist-cyan-light);
 
   --accents-0: #fff;
@@ -70,11 +71,11 @@
   --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.12);
   --shadow-large: rgba(0, 0, 0, 0.12) 0px 30px 60px 0px;
 
-  --snippet-class: #2d5e9d;
-  --snippet-identifier: var(--accents-8);
-  --snippet-sign: #8996a3;
-  --snippet-string: var(--geist-cyan-dark);
-  --snippet-keyword: var(--lightblue);
-  --snippet-comment: #8996a3;
-  --snipet-literals: #03066e;
+  --snippet-class: var(--geist-success);
+  --snippet-identifier: var(--geist-violet-dark);
+  --snippet-sign: var(--geist-success-dark);
+  --snippet-string: var(--geist-violet-dark);
+  --snippet-keyword: var(--geist-success-dark);
+  --snippet-comment: var(--accents-4);
+  --snipet-literals: var(--geist-violet-dark);
 }
