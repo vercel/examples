@@ -37,16 +37,18 @@ export default function Index() {
         </li>
       </List>
       {bgColor && textColor && (
-        <Button
-          style={{
-            backgroundColor: bgColor,
-            color: textColor,
-            borderColor: textColor,
-          }}
-          onClick={changeColor}
-        >
-          Change Color
-        </Button>
+        <>
+          <Button
+            style={{
+              backgroundColor: bgColor,
+              color: textColor,
+              borderColor: textColor,
+            }}
+            onClick={changeColor}
+          >
+            Change Color
+          </Button>
+        </>
       )}
     </Page>
   )

@@ -1,0 +1,64 @@
+{
+  "name": "@company/ui-compiled",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "npm run build -- --watch",
+    "build": "rm -fr dist/* && tsc",
+    "build2": "tsup src --format esm --dts --external react"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    "./tailwind": {
+      "require": "./dist/tailwind.cjs"
+    },
+    ".": "./dist/index.js",
+    "./*": [
+      "./dist/*.js",
+      "./dist/*/index.js"
+    ]
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*",
+        "src/*/index"
+      ],
+      "tailwind": [
+        "dist/tailwind.d.cts"
+      ]
+    }
+  },
+  "publishConfig": {
+    "typesVersions": {
+      "*": {
+        "*": [
+          "dist/*.d.ts",
+          "dist/*/index.d.ts"
+        ],
+        "tailwind": [
+          "dist/tailwind.d.cts"
+        ]
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "next": "^12.1.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "dependencies": {
+    "clsx": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.27",
+    "next": "latest",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "tsup": "^5.12.1",
+    "typescript": "^4.5.5"
+  }
+}
