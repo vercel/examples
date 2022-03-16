@@ -4,7 +4,7 @@ import { decodeJwt } from '../lib/jwt'
 import { utils } from 'ethers'
 const PROTECTED_ROUTES = new Set(['/member'])
 
-export async function middleware(req: NextRequest) {
+export function middleware(req: NextRequest) {
   let response = NextResponse.next()
   const url = req.nextUrl.clone()
 
