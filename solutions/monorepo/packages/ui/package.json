@@ -5,19 +5,17 @@
   "type": "module",
   "exports": {
     "./tailwind": {
-      "require": "./tailwind.cjs"
+      "require": "./src/tailwind.cjs"
     },
-    ".": "./index.tsx",
+    ".": "./src/index.tsx",
     "./*": [
-      "./*.tsx",
-      "./*.ts",
-      "./*/index.ts"
+      "./src/*.tsx",
+      "./src/*.ts",
+      "./src/*/index.ts"
     ]
   },
   "files": [
-    "button",
-    "index.tsx",
-    "tailwind.cjs"
+    "src"
   ],
   "peerDependencies": {
     "next": "^12.1.0",
