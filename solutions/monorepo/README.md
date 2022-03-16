@@ -7,7 +7,7 @@ This is a monorepo example with a single Next.js site ([./app](./app)) that has 
 
 The monorepo is using [Turborepo](https://turborepo.org/) and [npm workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces#using-workspaces) to link packages together, but it can also work with [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/).
 
-> In addition to the local packages, it's also using a external package called [`@vercel/examples-ui`](../../packages/ui) that's inside this same repository, it uses `next-transpile-modules` to transpile its UI components that use CSS Modules. `next-transpile-modules` has an impact in build times so when possible, we recommend transpiling packages instead, like shown in the `packages` folder in this example.
+> In addition to the local packages, it's also using a external package called [`@vercel/examples-ui`](../../packages/ui) that's inside this same repository, it uses `next-transpile-modules` to transpile its UI components that use CSS Modules. `next-transpile-modules` has an impact in build times, but that's okay for local packages, if you wish to publish you package you should compile it instead.
 
 ## Demo
 
