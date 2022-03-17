@@ -1,6 +1,6 @@
 # script-component-ad example
 
-This example shows how -------------------------
+This example shows how to lazy load ad scripts
 
 ## Demo
 
