@@ -51,7 +51,7 @@ function Home() {
       <hr className="border-t border-accents-2 my-6" />
 
       <section className="flex flex-col gap-3">
-        <Text variant="h2">Add will show below</Text>
+        <Text variant="h2">Ad will show below</Text>
 
         <AdBanner height={250} width={300} />
       </section>
