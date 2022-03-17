@@ -15,12 +15,12 @@ function App({ Component, pageProps }: AppProps) {
       path="solutions/script-component-ad"
     >
       <Script
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         id="script-component-ad"
         src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
       />
 
-      <Script id="define-slot" strategy="afterInteractive">{`
+      <Script id="define-slot" strategy="lazyOnload">{`
           window.googletag = window.googletag || {cmd: []};
           googletag.cmd.push(function() {
             googletag
