@@ -1,6 +1,8 @@
 import Head from 'next/head'
-import { Layout, Text, Page, Link } from '@vercel/examples-ui'
+import Image from 'next/image'
+import { Layout, Text, Page, Link, Code } from '@vercel/examples-ui'
 import Script from 'next/script'
+import { AdBanner } from '../components/AdBanner'
 
 function Home() {
   return (
@@ -12,25 +14,7 @@ function Home() {
           content="Vercel example how to use script-component-ad"
         />
         <link rel="icon" href="/favicon.ico" />
-        <Script
-          id="Adsense-id"
-          async
-          strategy="beforeInteractive"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        />
       </Head>
-      <Script>
-        {`
-    window.googletag = window.googletag || {cmd: []};
-    googletag.cmd.push(function() {
-      googletag
-          .defineSlot(
-              '/6355419/Travel/Europe/France/Paris', [300, 250], 'banner-ad')
-          .addService(googletag.pubads());
-      googletag.enableServices();
-    });
-      `}
-      </Script>
 
       <section className="flex flex-col gap-6">
         <Text variant="h1">Script Component with ads example</Text>
@@ -45,6 +29,19 @@ function Home() {
           </Link>{' '}
           comes into play.
         </Text>
+        <Text>
+          {' '}
+          It allows you to dictave when the script should be loaded using the{' '}
+          <Code>strategy</Code> prop. This example uses the{' '}
+          <Code>afterInteractive</Code> strategy. While our ads are loading, we
+          are reserving a space for them on the page. This allows us to avoid a
+          layoutshift.
+        </Text>
+
+        <Text>
+          This demo introduces a voluntary 3 second lag in loading the ad and
+          still receives a perfect lighthouse score.
+        </Text>
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
@@ -52,15 +49,7 @@ function Home() {
       <section className="flex flex-col gap-3">
         <Text variant="h2">Header</Text>
 
-        <div id="banner-ad">
-          <Script>
-            {`
-            googletag.cmd.push(function() {
-              googletag.display('banner-ad');
-            });
-      `}
-          </Script>
-        </div>
+        <AdBanner height={250} width={300} />
       </section>
     </Page>
   )
