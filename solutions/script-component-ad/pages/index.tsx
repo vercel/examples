@@ -42,12 +42,16 @@ function Home() {
           This demo introduces a voluntary 3 second lag in loading the ad and
           still receives a perfect lighthouse score.
         </Text>
+
+        <Text className="italic font-bold">
+          N.B. having an ad blocker will break this demo
+        </Text>
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
 
       <section className="flex flex-col gap-3">
-        <Text variant="h2">Header</Text>
+        <Text variant="h2">Add will show below</Text>
 
         <AdBanner height={250} width={300} />
       </section>
