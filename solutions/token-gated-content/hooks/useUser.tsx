@@ -4,6 +4,13 @@ import { utils } from 'ethers'
 import { usePrevious } from './usePrevious'
 import { useRouter } from 'next/router'
 
+type States =
+  | 'noMetamask'
+  | 'notConnected'
+  | 'wrongNetwork'
+  | 'signature'
+  | 'connected'
+
 /**
  * connecting flow
  * 1. check if metamask is installed
@@ -23,20 +30,21 @@ export const useUserState = () => {
     useNetwork()
 
   // states that are used to control the UI
-  const [state, setState] = useState<
-    'noMetamask' | 'notConnected' | 'wrongNetwork' | 'signature' | 'connected'
-  >('notConnected')
+  const [state, setState] = useState<States>('notConnected')
   const [signature, setSignature] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [isSigning, setIsSigning] = useState(false)
+  const [isSwitching, setIsSwitching] = useState(false)
 
   const previousWalletState = usePrevious(data?.address)
   const prevUserState = usePrevious(state)
 
   // derived conditions as to what the UI should show
+
   const shouldSign = state === 'signature' && loading && !isSigning
 
-  const shouldSwitchNetwork = state === 'wrongNetwork' && loading
+  const shouldSwitchNetwork =
+    state === 'wrongNetwork' && loading && !isSwitching
 
   const shouldValidateToken = state === 'connected' && loading
 
@@ -89,7 +97,7 @@ export const useUserState = () => {
     }
 
     if (shouldValidateToken) {
-      handleValiteToken()
+      handleValidateToken()
     }
   }, [state, prevUserState])
 
@@ -122,7 +130,9 @@ export const useUserState = () => {
 
   const handleSwitchNetwork = async () => {
     if (switchNetwork) {
+      setIsSwitching(true)
       await switchNetwork(4)
+      setIsSwitching(false)
     }
   }
 
@@ -133,7 +143,6 @@ export const useUserState = () => {
         await connect(connectData?.connectors[0])
       } catch (e) {
         setLoading(false)
-        console.log(e)
       }
     }
 
@@ -147,7 +156,7 @@ export const useUserState = () => {
     }
   }
 
-  const handleValiteToken = async () => {
+  const handleValidateToken = async () => {
     await fetch('/api/auth', {
       method: 'POST',
       body: JSON.stringify({
@@ -159,7 +168,6 @@ export const useUserState = () => {
   }
 
   const handleInvalidateToken = async () => {
-    console.log(document.cookie)
     localStorage.removeItem('userApproval')
     setSignature(null)
     await fetch('/api/auth', {
