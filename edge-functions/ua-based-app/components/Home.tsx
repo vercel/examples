@@ -87,11 +87,11 @@ export function middleware(req) {
   return NextResponse.rewrite(url)
 }
 `}</Snippet>
-        <Image src={board} alt="Middleware logging implementation" />
         <Text>
           Now, everytime a request comes in we will check the UA of the user and
           rewrite it to the correct page.
         </Text>
+        <Image src={board} alt="Middleware logging implementation" />
       </section>
 
       <section className="flex flex-col gap-6 mt-12">
