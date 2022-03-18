@@ -1,10 +1,10 @@
-# ua-based-app example
+# user-agent-based-rendering example
 
 This example shows how to load a different page based on users UA
 
 ## Demo
 
-https://edge-ua-based-app.vercel.app
+https://edge-user-agent-based-rendering.vercel.app
 
 ## How to Use
 
@@ -14,16 +14,16 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ua-based-app&project-name=ua-based-app&repository-name=ua-based-app)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/user-agent-based-rendering&project-name=user-agent-based-rendering&repository-name=user-agent-based-rendering)
 
 ### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/ua-based-app
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/user-agent-based-rendering
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/ua-based-app
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/user-agent-based-rendering
 ```
 
 Next, run Next.js in development mode:

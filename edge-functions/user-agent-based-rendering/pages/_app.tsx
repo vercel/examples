@@ -9,7 +9,7 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="ua-based-app" path="edge-functions/ua-based-app">
+    <Layout title="user-agent-based-rendering" path="edge-functions/user-agent-based-rendering">
       <Component {...pageProps} />
     </Layout>
   )
