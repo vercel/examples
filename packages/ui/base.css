@@ -75,7 +75,7 @@
   --snippet-identifier: var(--geist-violet-dark);
   --snippet-sign: var(--geist-success-dark);
   --snippet-string: var(--geist-violet-dark);
-  --snippet-keyword: var(--geist-success-dark);
+  --snippet-keyword: var(--geist-highlight-purple);
   --snippet-comment: var(--accents-4);
   --snipet-literals: var(--geist-violet-dark);
 }
