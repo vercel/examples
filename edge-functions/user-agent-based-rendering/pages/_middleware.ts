@@ -1,6 +1,4 @@
-import type { NextRequest } from 'next/server'
-
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 // RegExp for public files
 const PUBLIC_FILE = /\.(.*)$/
@@ -9,7 +7,7 @@ export function middleware(req: NextRequest) {
   // Clone the URL
   const url = req.nextUrl.clone()
 
-  // Prevent middleware to execute on public files
+  // Skip public files
   if (PUBLIC_FILE.test(url.pathname)) {
     return req
   }

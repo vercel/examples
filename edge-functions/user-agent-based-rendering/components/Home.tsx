@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { Layout, Text, Page, Code, Snippet } from '@vercel/examples-ui'
+import { Layout, Text, Page, Code, Link, Snippet } from '@vercel/examples-ui'
 
 import board from '../public/board.jpg'
 
@@ -12,59 +12,61 @@ function Home() {
   return (
     <Page>
       <Head>
-        <title>Load pages based on users UA - Vercel Example</title>
+        <title>User-Agent Based Rendering - Vercel Example</title>
         <meta
           name="description"
-          content="Vercel example on how to load pages based on users UA"
+          content="Learn to use the User-Agent header to render different pages"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <section className="flex flex-col gap-6">
-        <Text variant="h1">Load a pages based on users UA</Text>
+        <Text variant="h1">User-Agent Based Rendering</Text>
         <Text>
           Sometimes the desktop version of our application differs a lot from
           our mobile version, because the UI is different or because we load
           different scripts, styles, etc. We want to decide which page to load
-          based on users UA without loading unnecesary assets for the current
-          viewport.
+          based on the{' '}
+          <Link
+            href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent"
+            target="_blank"
+          >
+            User-Agent
+          </Link>{' '}
+          header without loading unnecesary assets for the current viewport.
         </Text>
       </section>
 
       <section className="flex flex-col gap-6 mt-12">
         <Text variant="h2">Folder structure</Text>
         <Text>
-          We will rewrite our user to different pages based on its UA so we have
-          to create a different page for every viewport we want to support. Lets
-          create a <Code>/_viewport</Code> folder and create a{' '}
-          <Code>mobile</Code> and <Code>desktop</Code> pages.
+          We will rewrite our user to different pages based on its User-Agent so
+          we need to have a different page for every viewport we want to
+          support.
+        </Text>
+        <Text>
+          The example has a <Code>pages/_viewport</Code> folder with pages for{' '}
+          <Code>mobile</Code> and <Code>desktop</Code>, alongside a root
+          middleware (<Code>pages/_middleware</Code>) that will handle all
+          requests to our pages:
         </Text>
         <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-4 transition-all font-mono">
           {`/pages
+  /_middleware.ts
   /_viewport
-    /mobile.(js|jsx|tsx)
-    /desktop.(js|jsx|tsx)`}
+    /mobile.tsx
+    /desktop.tsx`}
         </pre>
       </section>
 
       <section className="flex flex-col gap-6 mt-12">
-        <Text variant="h2">Checking user UA</Text>
+        <Text variant="h2">Checking the User-Agent</Text>
         <Text>
-          We will add a <Code>_middleware</Code> file in the root of our{' '}
-          <Code>pages</Code> directory so it can handle all requests in our
-          pages.
+          In the middleware, we now check the User-Agent header and rewrite to
+          the correct page:
         </Text>
-        <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-4 transition-all font-mono">
-          {`/pages
-  /_middleware.(js|ts)
-  /_viewport
-    /mobile.(js|jsx|tsx)
-    /desktop.(js|jsx|tsx)`}
-        </pre>
-        <Text>
-          Inside, we will check users UA and rewrite to the correct page:
-        </Text>
-        <Snippet>{`import { NextResponse } from 'next/server'
+        <Snippet>{`import { NextRequest, NextResponse } from 'next/server'
+
 // RegExp for public files
 const PUBLIC_FILE = /\.(.*)$/
 
@@ -72,7 +74,7 @@ export function middleware(req) {
   // Clone the URL
   const url = req.nextUrl.clone()
 
-  // Prevent middleware to execute on public files
+  // Skip public files
   if (PUBLIC_FILE.test(url.pathname)) {
     return req
   }
@@ -95,8 +97,8 @@ export function middleware(req) {
 }
 `}</Snippet>
         <Text>
-          Now, everytime a request comes in we will check the UA of the user and
-          rewrite it to the correct page.
+          Now, everytime a request comes in we will check the User-Agent and
+          rewrite the user to the correct page:
         </Text>
         <Image src={board} alt="Middleware logging implementation" />
       </section>
@@ -104,9 +106,8 @@ export function middleware(req) {
       <section className="flex flex-col gap-6 mt-12">
         <Text variant="h2">Result</Text>
         <Text>
-          In fact, this page is using this strategy, you can try this page from
-          different devices and you will see the message below changing
-          accordingly.
+          This page is using this strategy, try it out in different devices and
+          you will see the message below changing accordingly:
         </Text>
       </section>
 

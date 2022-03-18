@@ -1,6 +1,6 @@
-# User Agent Based Rendering
+# User-Agent Based Rendering
 
-This example shows how to render a different page based on users UA
+This example shows how to render a different page based on the [User-Agent header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent).
 
 ## Demo
 
