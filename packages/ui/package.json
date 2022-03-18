@@ -3,7 +3,9 @@
   "version": "0.2.6",
   "main": "index.tsx",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+  },
   "peerDependencies": {
     "next": "12.1.0",
     "react": "^17.0.2",
