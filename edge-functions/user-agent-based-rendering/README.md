@@ -1,6 +1,6 @@
-# user-agent-based-rendering example
+# User Agent Based Rendering
 
-This example shows how to load a different page based on users UA
+This example shows how to render a different page based on users UA
 
 ## Demo
 
