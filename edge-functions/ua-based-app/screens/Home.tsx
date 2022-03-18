@@ -3,7 +3,7 @@ import { Layout, Text, Page, Code, Snippet } from '@vercel/examples-ui'
 import { useRouter } from 'next/router'
 
 function Home() {
-  const { route } = useRouter();
+  const { route } = useRouter()
   const viewport = route.replace('/_viewport/', '')
 
   return (
@@ -20,14 +20,21 @@ function Home() {
       <section className="flex flex-col gap-6">
         <Text variant="h1">Load a pages based on users UA</Text>
         <Text>
-          Sometimes the desktop version of our application differs a lot from our mobile version, because the UI is different or because we load different scripts, styles, etc. We want to decide which page to load based on users UA without loading unnecesary assets for the current viewport.
+          Sometimes the desktop version of our application differs a lot from
+          our mobile version, because the UI is different or because we load
+          different scripts, styles, etc. We want to decide which page to load
+          based on users UA without loading unnecesary assets for the current
+          viewport.
         </Text>
       </section>
 
       <section className="flex flex-col gap-6 mt-12">
         <Text variant="h2">Folder structure</Text>
         <Text>
-          We will rewrite our user to different pages based on its UA so we have to create a different page for every viewport we want to support. Lets create a <Code>/_viewport</Code> folder and create a <Code>mobile</Code> and <Code>desktop</Code> pages.
+          We will rewrite our user to different pages based on its UA so we have
+          to create a different page for every viewport we want to support. Lets
+          create a <Code>/_viewport</Code> folder and create a{' '}
+          <Code>mobile</Code> and <Code>desktop</Code> pages.
         </Text>
         <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-4 transition-all font-mono">
           {`/pages
@@ -40,7 +47,9 @@ function Home() {
       <section className="flex flex-col gap-6 mt-12">
         <Text variant="h2">Checking user UA</Text>
         <Text>
-          We will add a <Code>_middleware</Code> file in the root of our <Code>pages</Code> directory so it can handle all requests in our pages.
+          We will add a <Code>_middleware</Code> file in the root of our{' '}
+          <Code>pages</Code> directory so it can handle all requests in our
+          pages.
         </Text>
         <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-4 transition-all font-mono">
           {`/pages
@@ -80,7 +89,9 @@ export function middleware(req) {
       <section className="flex flex-col gap-6 mt-12">
         <Text variant="h2">Result</Text>
         <Text>
-          In fact, this page is using this strategy, you can try this page from different devices and you will see the message below changing accordingly.
+          In fact, this page is using this strategy, you can try this page from
+          different devices and you will see the message below changing
+          accordingly.
         </Text>
       </section>
 
