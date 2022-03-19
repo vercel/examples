@@ -75,9 +75,7 @@ export function middleware(req) {
   const url = req.nextUrl.clone()
 
   // Skip public files
-  if (PUBLIC_FILE.test(url.pathname)) {
-    return req
-  }
+  if (PUBLIC_FILE.test(url.pathname)) return
 
   // Prevent internals from being accessed canonically
   if (url.pathname.startsWith(\`/_viewport\`)) {
