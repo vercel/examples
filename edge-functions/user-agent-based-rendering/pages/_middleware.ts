@@ -12,7 +12,8 @@ export function middleware(req: NextRequest) {
 
   // Prevent internals from being accessed canonically
   if (url.pathname.startsWith(`/_viewport`)) {
-    return new Response(null, { status: 404 })
+    url.pathname = '/404'
+    return NextResponse.rewrite(url)
   }
 
   // Check the viewport
