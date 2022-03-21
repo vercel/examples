@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { decodeJwt } from '../lib/jwt'
+import { decodeJwt } from '../../lib/jwt'
 import { utils } from 'ethers'
 const PROTECTED_ROUTES = new Set(['/member'])
 
@@ -13,15 +13,13 @@ export function middleware(req: NextRequest) {
     const publicKey = process.env.PUBLIC_KEY
     if (!publicKey) {
       console.error('PUBLIC_KEY environment variable is not set')
-      url.pathname = '/'
-      return NextResponse.redirect(url.origin)
+      return response
     }
 
     const cookie = req.cookies['allow-list']
 
     if (!cookie || cookie === 'deleted') {
-      url.pathname = '/'
-      return NextResponse.redirect(url)
+      return response
     }
 
     const data = decodeJwt(cookie)
@@ -32,10 +30,10 @@ export function middleware(req: NextRequest) {
     )
 
     if (approvedBy !== publicKey) {
-      url.pathname = '/'
-      return NextResponse.redirect(url)
+      return response
     }
   }
+  url.pathname = '/member/protected'
 
-  return response
+  return NextResponse.rewrite(url)
 }

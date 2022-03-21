@@ -20,10 +20,10 @@ type States =
  * 5. validate user ownership of the token
  * 6. redirect to the member area
  */
-export const useUserState = () => {
+export const useUserState = (route?: string) => {
   const router = useRouter()
   // wagmi hooks that handle talking to metamask
-  const [{ data }] = useAccount()
+  const [{ data }, disconnect] = useAccount()
   const [{ error: signError }, signMessage] = useSignMessage()
   const [{ data: connectData, error: connectError }, connect] = useConnect()
   const [{ data: networkData, error: networkError }, switchNetwork] =
@@ -164,16 +164,22 @@ export const useUserState = () => {
         userApproval: signature,
       }),
     })
-    router.push('/member')
+    setTimeout(() => {
+      router.reload()
+    }, 1500)
   }
 
   const handleInvalidateToken = async () => {
+    setLoading(true)
+
     localStorage.removeItem('userApproval')
     setSignature(null)
     await fetch('/api/auth', {
       method: 'DELETE',
     })
-    router.push('/')
+    setTimeout(() => {
+      router.reload()
+    }, 1500)
   }
 
   return {
