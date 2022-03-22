@@ -31,10 +31,10 @@ function Home() {
         </Text>
         <Text>
           {' '}
-          It allows you to dictave when the script should be loaded using the{' '}
+          It allows you to dictate when the script should be loaded using the{' '}
           <Code>strategy</Code> prop. This example uses the{' '}
-          <Code>afterInteractive</Code> strategy. While our ads are loading, we
-          are reserving a space for them on the page. This allows us to avoid a
+          <Code>lazyOnload</Code> strategy. While our ads are loading, we are
+          reserving a space for them on the page. This allows us to avoid a
           layoutshift.
         </Text>
 
