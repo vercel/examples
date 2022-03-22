@@ -4,7 +4,7 @@ This example shows how to lazy load ad scripts
 
 ## Demo
 
-https://script-component-ad.vercel.sh
+https://solutions-script-component-ad.vercel.app
 
 ## How to Use
 
