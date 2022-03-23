@@ -6,7 +6,6 @@ import {
   Page,
   Code,
   Link,
-  List,
   Snippet,
 } from '@vercel/examples-ui'
 import { useState } from 'react'
@@ -88,13 +87,6 @@ function Home() {
   type="font/woff2"
   crossorigin
 />`}</Snippet>
-        <Text className="border-l-4 pl-4">
-          If we use <Code>Google Fonts</Code> or <Code>Typekit</Code>,{' '}
-          <Link href="https://nextjs.org/docs/basic-features/font-optimization">
-            Next.js Font Optimization
-          </Link>{' '}
-          will automatically add the preconnect link.
-        </Text>
       </section>
 
       <section className="flex flex-col gap-3">
@@ -137,7 +129,8 @@ function Home() {
           <Link href="https://www.industrialempathy.com/perfect-ish-font-fallback/?font=Inter">
             this tool
           </Link>{' '}
-          to find which fallback font might match your custom font.
+          to find which fallback font might match your custom font and set the
+          correspondant <Code>line-height</Code> to it so it adjust accordingly.
         </Text>
         <Text>
           Here we can see the difference that using an adjusted fallback font
@@ -164,30 +157,44 @@ function Home() {
           that text will be displayed. For changing this behaviour we can use
           the CSS property <Code>font-display</Code>.
         </Text>
-        <List>
-          <li>
-            <Image src={displayAuto} alt="font-display: auto" />
-            <Code>font-display: auto</Code>: This is the default setting for{' '}
-            <Code>font-display</Code>. It will make the text invisible while the
-            custom is being loaded, the space reserved depends on the space that
-            the fallback font configured would have taken to fill show that
-            text.
-          </li>
-          <li>
-            <Image src={displaySwap} alt="font-display: swap" />
-            <Code>font-display: swap</Code>: Will display the text using the
-            fallback font until our custom font is loaded and will then swap the
-            fallback font with the custom font.
-          </li>
-          <li>
-            <Image src={displayOptional} alt="font-display: optional" />
-            <Code>font-display: optional</Code>: Will only display the custom
-            font if it is available really fast, it mostly requires it being
-            cached so the user will see the fallback font during its first visit
-            but will see the custom font from the beginning on subsequent
-            visits.
-          </li>
-        </List>
+
+        <hr className="border-t border-accents-2 my-6" />
+
+        <article>
+          <Image src={displayAuto} alt="font-display: auto" />
+          <Code>font-display: auto</Code>: This is the default setting for{' '}
+          <Code>font-display</Code>. It will make the text invisible while the
+          custom is being loaded, the space reserved depends on the space that
+          the fallback font configured would have taken to fill show that
+          text.
+        </article>
+
+        <hr className="border-t border-accents-2 my-6" />
+
+        <article>
+          <Image src={displaySwap} alt="font-display: swap" />
+          <Code>font-display: swap</Code>: Will display the text using the
+          fallback font until our custom font is loaded and will then swap the
+          fallback font with the custom font.
+        </article>
+
+        <hr className="border-t border-accents-2 my-6" />
+
+        <article>
+          <Image src={displayOptional} alt="font-display: optional" />
+          <Code>font-display: optional</Code>: Will only display the custom
+          font if it is available really fast, it mostly requires it being
+          cached so the user will see the fallback font during its first visit
+          but will see the custom font from the beginning on subsequent
+          visits.
+          <Text className="border-l-4 pl-4 mt-4">
+            If you don&apos;t add the{' '}
+            <Code>link rel=&quot;preload&quot;</Code> for this font (which
+            triggers a special heuristic) the font will never be shown in a
+            first page load, even if it is in disk cache (only when it is in
+            memory cache)
+          </Text>
+        </article>
       </section>
 
       <section className="flex flex-col gap-3">
@@ -197,7 +204,8 @@ function Home() {
           <Link href="https://www.industrialempathy.com/posts/high-performance-web-font-loading/">
             this post
           </Link>{' '}
-          by <Link href="https://twitter.com/cramforce">Malte Ubl</Link> and also to the{' '}
+          by <Link href="https://twitter.com/cramforce">Malte Ubl</Link> and
+          also to the{' '}
           <Link href="https://developer.mozilla.org/es/docs/Web/CSS/@font-face/font-display">
             MDN documentation
           </Link>{' '}
