@@ -1,23 +1,27 @@
-import React, { CSSProperties, useEffect } from 'react'
+import { CSSProperties, FC, useState, useEffect } from 'react'
 
 type Props = Pick<CSSProperties, 'height' | 'width'>
 
-export const AdBanner: React.FC<Props> = (props) => {
-  const [loading, setLoading] = React.useState(true)
+export const AdBanner: FC<Props> = (props) => {
+  const [loading, setLoading] = useState(true)
+
   useEffect(() => {
     setTimeout(() => {
-      if (typeof window !== 'undefined') {
-        const { googletag } = window
-        googletag.cmd.push(() => {
-          googletag.display('banner-ad')
-        })
-        setLoading(false)
-      }
+      const { googletag } = window
+
+      googletag.cmd.push(() => {
+        googletag.display('my-banner')
+      })
+
+      setLoading(false)
     }, 3000)
   }, [])
 
+  // It's a good idea to use an `id` that can't be easily detected as a banneable banner.
+  // That way adblockers won't remove your fallback state too and you could show a custom
+  // message in that case if the ad is blocked
   return (
-    <div id="banner-ad" style={{ ...props }}>
+    <div id="my-banner" style={{ ...props }}>
       {loading ? (
         <div className="w-full h-full border-2 rounded-md mx-auto">
           <div className="flex animate-pulse flex-row items-center h-full justify-center space-x-5">

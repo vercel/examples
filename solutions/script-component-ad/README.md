@@ -1,6 +1,6 @@
-# script-component-ad example
+# Loading Ads with the Script Component
 
-This example shows how to lazy load ad scripts
+This example shows how to lazy load ads using the [Next.js Script Component](https://nextjs.org/docs/basic-features/script).
 
 ## Demo
 
