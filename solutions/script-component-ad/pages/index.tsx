@@ -1,50 +1,72 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Layout, Text, Page, Link, Code } from '@vercel/examples-ui'
-import Script from 'next/script'
 import { AdBanner } from '../components/AdBanner'
 
 function Home() {
   return (
     <Page>
       <Head>
-        <title>Script Component with ads - Vercel Example</title>
+        <title>Loading Ads with the Script Component - Vercel Example</title>
         <meta
           name="description"
-          content="Vercel example how to use script-component-ad"
+          content="Learn how to lazy load ads with the Next.js Script Component"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <section className="flex flex-col gap-6">
-        <Text variant="h1">Script Component with ads example</Text>
+        <Text variant="h1">Loading Ads with the Script Component</Text>
         <Text>
-          Ads on web pages are typically loaded from script tags. This
-          introduces a delay before a page becomes interactive. This is where{' '}
+          Ads on web pages are typically loaded from script tags, but without
+          the proper attributes this can easily introduce a delay before a page
+          becomes interactive. This is where the{' '}
           <Link
             href="https://nextjs.org/docs/api-reference/next/script"
             target="_blank"
           >
-            Next/Script
+            Next.js Script Component
           </Link>{' '}
           comes into play.
         </Text>
         <Text>
-          {' '}
-          It allows you to dictate when the script should be loaded using the{' '}
-          <Code>strategy</Code> prop. This example uses the{' '}
-          <Code>lazyOnload</Code> strategy. While our ads are loading, we are
-          reserving a space for them on the page. This allows us to avoid a
-          layoutshift.
+          It allows you to change the loading priority of scripts. For this
+          example we set the <Code>strategy</Code> prop to{' '}
+          <Link
+            href="https://nextjs.org/docs/basic-features/script#lazyonload"
+            target="_blank"
+          >
+            &quot;lazyOnload&quot;
+          </Link>{' '}
+          so that ads load during idle time and don&apos;t hurt the{' '}
+          <Link href="https://web.dev/interactive/" target="_blank">
+            TTI
+          </Link>
+          .
+        </Text>
+        <Text>
+          We have a loading state for ads while they load While our ads are
+          loading, we show a fallback state to reserve a space for them and
+          avoid a{' '}
+          <Link href="https://web.dev/cls/" target="_blank">
+            layout shift (CLS)
+          </Link>
+          .
         </Text>
 
         <Text>
-          This demo introduces a voluntary 3 second lag in loading the ad and
-          still receives a perfect lighthouse score.
+          The example introduces a voluntary 3 second lag in loading the ad and
+          it doesn&apos;t affect its{' '}
+          <Link
+            href="https://lighthouse-metrics.com/lighthouse/checks/b65fc6a3-323c-43fe-add7-6b82e22fcdb6"
+            target="_blank"
+          >
+            lighthouse score
+          </Link>
+          .
         </Text>
 
         <Text className="italic font-bold">
-          N.B. having an ad blocker will break this demo
+          Note: Having an ad blocker will break this demo.
         </Text>
       </section>
 
