@@ -1,17 +1,15 @@
 import type { AppProps } from 'next/app'
-import type { LayoutProps } from '@vercel/examples-ui/layout'
-
-import { getLayout } from '@vercel/examples-ui'
-
-import '@vercel/examples-ui/globals.css'
 import Script from 'next/script'
+import type { LayoutProps } from '@vercel/examples-ui/layout'
+import { getLayout } from '@vercel/examples-ui'
+import '@vercel/examples-ui/globals.css'
 
 function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
     <Layout
-      title="Script Component with ads"
+      title="Loading Ads with the Script Component"
       path="solutions/script-component-ad"
     >
       <Script
@@ -19,13 +17,12 @@ function App({ Component, pageProps }: AppProps) {
         id="script-component-ad"
         src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
       />
-
       <Script id="define-slot" strategy="lazyOnload">{`
           window.googletag = window.googletag || {cmd: []};
           googletag.cmd.push(function() {
             googletag
                 .defineSlot(
-                    '/6355419/Travel/Europe/France/Paris', [300, 250], 'banner-ad')
+                    '/6355419/Travel/Europe/France/Paris', [300, 250], 'my-banner')
                 .addService(googletag.pubads());
             googletag.enableServices();
           });
