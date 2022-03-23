@@ -1,13 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import {
-  Layout,
-  Text,
-  Page,
-  Code,
-  Link,
-  Snippet,
-} from '@vercel/examples-ui'
+import { Layout, Text, Page, Code, Link, Snippet } from '@vercel/examples-ui'
 import { useState } from 'react'
 
 import displayAuto from '../public/display-auto.jpg'
@@ -165,8 +158,7 @@ function Home() {
           <Code>font-display: auto</Code>: This is the default setting for{' '}
           <Code>font-display</Code>. It will make the text invisible while the
           custom is being loaded, the space reserved depends on the space that
-          the fallback font configured would have taken to fill show that
-          text.
+          the fallback font configured would have taken to fill show that text.
         </article>
 
         <hr className="border-t border-accents-2 my-6" />
@@ -182,17 +174,15 @@ function Home() {
 
         <article>
           <Image src={displayOptional} alt="font-display: optional" />
-          <Code>font-display: optional</Code>: Will only display the custom
-          font if it is available really fast, it mostly requires it being
-          cached so the user will see the fallback font during its first visit
-          but will see the custom font from the beginning on subsequent
-          visits.
+          <Code>font-display: optional</Code>: Will only display the custom font
+          if it is available really fast, it mostly requires it being cached so
+          the user will see the fallback font during its first visit but will
+          see the custom font from the beginning on subsequent visits.
           <Text className="border-l-4 pl-4 mt-4">
-            If you don&apos;t add the{' '}
-            <Code>link rel=&quot;preload&quot;</Code> for this font (which
-            triggers a special heuristic) the font will never be shown in a
-            first page load, even if it is in disk cache (only when it is in
-            memory cache)
+            If you don&apos;t add the <Code>link rel=&quot;preload&quot;</Code>{' '}
+            for this font (which triggers a special heuristic) the font will
+            never be shown in a first page load, even if it is in disk cache
+            (only when it is in memory cache)
           </Text>
         </article>
       </section>
