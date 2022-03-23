@@ -177,7 +177,9 @@ function Home() {
           <Code>font-display: optional</Code>: Will only display the custom font
           if it is available really fast, it mostly requires it being cached so
           the user will see the fallback font during its first visit but will
-          see the custom font from the beginning on subsequent visits.
+          see the custom font from the beginning on subsequent visits. Because{' '}
+          <Code>font-display: optional</Code> does not change the fonts during
+          the session, it will never cause a font loading related layout shift.
           <Text className="border-l-4 pl-4 mt-4">
             If you don&apos;t add the <Code>link rel=&quot;preload&quot;</Code>{' '}
             for this font (which triggers a special heuristic) the font will
