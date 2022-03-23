@@ -197,7 +197,7 @@ function Home() {
           <Link href="https://www.industrialempathy.com/posts/high-performance-web-font-loading/">
             this post
           </Link>{' '}
-          by Malte Ubl and also to the{' '}
+          by <Link href="https://twitter.com/cramforce">Malte Ubl</Link> and also to the{' '}
           <Link href="https://developer.mozilla.org/es/docs/Web/CSS/@font-face/font-display">
             MDN documentation
           </Link>{' '}
