@@ -25,7 +25,7 @@ function Home() {
             href="https://nextjs.org/docs/api-reference/next/script"
             target="_blank"
           >
-            Next/Link
+            Next/Script
           </Link>{' '}
           comes into play.
         </Text>
