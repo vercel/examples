@@ -37,13 +37,11 @@ yarn create next-app --example https://github.com/vercel/examples/tree/main/edge
    1. confirm the creation of the source.
 1. After having created the source you can find the `writeKey` under `Settings` => `API keys` menu of your new source.
 
-Now, copy `.env.example` to `.env`:
-
 ```bash
 cp .env.example .env
 ```
 
-And set your write key in `SEGMENT_WRITE_KEY`
+4. set your write key in `SEGMENT_WRITE_KEY`
 
 ```bash
 SEGMENT_WRITE_KEY="<your-write-key>"

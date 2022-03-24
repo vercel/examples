@@ -1,4 +1,4 @@
-import { NextResponse, NextRequest } from 'next/server'
+import { NextFetchEvent, NextResponse, NextRequest } from 'next/server'
 
 const PUBLIC_FILE = /\.(.*)$/
 const SEGMENT_PAGE_ENDPOINT = 'https://api.segment.io/v1/page'
@@ -13,7 +13,7 @@ function uuidv4() {
   )
 }
 
-const logView = (userId: string, page: string) =>
+const logView = (userId: string, page: string) => {
   fetch(SEGMENT_PAGE_ENDPOINT, {
     headers: {
       'Content-Type': 'application/json',
@@ -24,11 +24,10 @@ const logView = (userId: string, page: string) =>
       name: page,
     }),
     method: 'POST',
-  }).catch((error) => {
-    console.log('An error happened trying to reach Segment:', error)
   })
+}
 
-export function middleware(req: NextRequest) {
+export function middleware(req: NextRequest, ev: NextFetchEvent) {
   const response = NextResponse.next()
 
   // we need to skip some request to ensure we are on a proper page view
