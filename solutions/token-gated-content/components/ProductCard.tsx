@@ -1,3 +1,5 @@
+import React from 'react'
+import { Button, LoadingDots } from '@vercel/examples-ui'
 import Image from 'next/image'
 
 export interface Product {
@@ -15,29 +17,58 @@ interface Props {
 }
 
 export function ProductCard({ product, blur }: Props) {
+  const [added, setAdded] = React.useState(false)
+  const [loading, setLoading] = React.useState(false)
+
+  const handleAddToCart = () => {
+    setLoading(true)
+    setTimeout(() => {
+      setAdded(true)
+      setLoading(false)
+    }, 750)
+  }
   return (
-    <div className={`w-full max-w-xl mx-auto ${blur && 'blur'}`}>
-      <div className="ml-14 lg:ml-24 -mb-40 lg:-mb-56">
-        <Image
-          className="pointer-events-none"
-          alt={product.title}
-          src={product.image}
-          width="440"
-          height="440"
-          layout="responsive"
-        />
-      </div>
-      <section className="border border-gray-300 bg-white rounded-lg shadow-lg mt-16 w-full hover:shadow-2xl transition pt-16 lg:pt-24">
-        <div className="p-4 flex flex-col justify-center items-center border-b">
-          <div className="flex justify-between w-full items-baseline">
-            <div className="ml-4 mr-auto text-left flex flex-col">
-              <h4 className="font-semibold text-xl">{product.title}</h4>
-              <h5 className="text-gray-700">{product.description}</h5>
-            </div>
-            <h4 className="font-bold text-lg">USD {product.price}</h4>
-          </div>
+    <div className="bg-dark-accents-0">
+      <div className="relative">
+        <div className="relative w-full  rounded-lg overflow-hidden">
+          <Image
+            className={`pointer-events-none w-full h-full object-center object-cover ${
+              blur ? 'blur' : ''
+            }`}
+            alt={product.title}
+            src={product.image}
+            width="2248"
+            height="1686"
+          />
         </div>
-      </section>
+        <div className="absolute top-0 inset-x-0 rounded-lg p-4 flex items-end justify-end overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 bottom-0 h-36 "
+          />
+          {!blur && (
+            <p className="relative text-lg font-semibold text-white">
+              {product.price} $
+            </p>
+          )}
+        </div>
+      </div>
+      {!blur && (
+        <div className="mt-6">
+          <span className="relative flex items-center justify-center ">
+            <Button
+              disabled={added}
+              onClick={handleAddToCart}
+              variant="pink"
+              className="w-full"
+            >
+              {loading && <LoadingDots />}
+              {!loading && !added && 'Add to cart'}
+              {!loading && added && 'In cart ✔'}
+            </Button>
+          </span>
+        </div>
+      )}
     </div>
   )
 }

@@ -12,7 +12,6 @@ import {
 } from '@vercel/examples-ui'
 import { GetStaticProps } from 'next'
 import { Product, ProductCard } from '../components/ProductCard'
-import styles from '../animation.module.css'
 
 export const features = [
   'Exclusive merchandise content',
@@ -25,10 +24,10 @@ type Props = {
 }
 
 function Home({ product }: Props) {
-  const { handleConnect, loading, userState } = useUserState()
+  const { handleDisconnect, loading, userState } = useUserState()
 
-  const handleLogin = () => {
-    handleConnect()
+  const handleLogout = () => {
+    handleDisconnect()
   }
 
   return (
@@ -90,7 +89,7 @@ function Home({ product }: Props) {
                   </ul>
                 </div>
 
-                <div className="fw-full mt-6 border-t border-dark-accents-4">
+                <div className="fw-full mt-6 border-t border-dark-accents-4 ">
                   {userState === 'noMetamask' ? (
                     <Link
                       href="https://metamask.io/"
@@ -102,10 +101,10 @@ function Home({ product }: Props) {
                   ) : (
                     <Button
                       variant="ghost"
-                      onClick={handleLogin}
+                      onClick={handleLogout}
                       className="text-highlight-pink hover:text-highlight-magenta mt-4"
                     >
-                      {loading ? <LoadingDots /> : 'Connect your wallets →'}
+                      {loading ? <LoadingDots /> : 'Disconnect your wallets →'}
                     </Button>
                   )}
                 </div>
@@ -115,7 +114,7 @@ function Home({ product }: Props) {
 
           <div className="lg:row-end-1 lg:col-span-4 mt-6 lg:mt-0 h-full flex flex-col ">
             <div className="aspect-w-3 aspect-h-2 rounded-lg bg-gray-900 overflow-hidden">
-              <ProductCard product={product} blur={true} />
+              <ProductCard product={product} blur={false} />
             </div>
           </div>
         </div>
@@ -136,9 +135,15 @@ export const getStaticProps: GetStaticProps = async () => {
         title: 'Vercel Mug',
         description: 'Limited Edition',
         image: '/mug2.png',
-        price: 0.0,
+        price: 150,
         stock: 0,
       },
     },
   }
+}
+
+{
+  /* <section className="w-full flex flex-23items-center justify-center">
+<ProductCard product={product} blur={false} />
+</section> */
 }

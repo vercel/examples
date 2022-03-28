@@ -156,6 +156,10 @@ export const useUserState = (route?: string) => {
     }
   }
 
+  const handleDisconnect = () => {
+    disconnect()
+  }
+
   const handleValidateToken = async () => {
     await fetch('/api/auth', {
       method: 'POST',
@@ -164,9 +168,7 @@ export const useUserState = (route?: string) => {
         userApproval: signature,
       }),
     })
-    setTimeout(() => {
-      router.reload()
-    }, 1500)
+    router.reload()
   }
 
   const handleInvalidateToken = async () => {
@@ -177,15 +179,14 @@ export const useUserState = (route?: string) => {
     await fetch('/api/auth', {
       method: 'DELETE',
     })
-    setTimeout(() => {
-      router.reload()
-    }, 1500)
+    router.reload()
   }
 
   return {
     handleMessage: handleSignature,
     handleSwitchNetwork,
     handleConnect,
+    handleDisconnect,
     userState: state,
     loading,
   }

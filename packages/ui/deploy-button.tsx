@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import Button from './button'
+import Button, { ButtonVariant } from './button'
 
 const VERCEL_CLONE = 'https://vercel.com/new/clone'
 
@@ -8,6 +8,7 @@ export interface DeployButtonProps {
   env?: string[]
   projectName?: string
   repositoryName?: string
+  variant?: ButtonVariant
 }
 
 const DeployButton: FC<DeployButtonProps> = (props) => {
@@ -30,6 +31,7 @@ const DeployButton: FC<DeployButtonProps> = (props) => {
       href={`${VERCEL_CLONE}${query ? `?${query}` : ''}`}
       target="_blank"
       rel="noreferrer"
+      variant={props.variant ?? 'primary'}
     >
       Clone & Deploy
     </Button>

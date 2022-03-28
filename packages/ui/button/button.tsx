@@ -8,6 +8,15 @@ import cn from 'clsx'
 import LoadingDots from '../loading-dots'
 import s from './button.module.css'
 
+export type ButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'ghost'
+  | 'violet'
+  | 'black'
+  | 'white'
+  | 'pink'
 /**
  * All the component types allowed by the Button component.
  */
@@ -19,14 +28,7 @@ export type ButtonComponentType = 'button' | 'a' | JSXElementConstructor<any>
 export interface ButtonProps<C extends ButtonComponentType = 'button'> {
   href?: string
   className?: string
-  variant?:
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'ghost'
-    | 'violet'
-    | 'black'
-    | 'white'
+  variant?: ButtonVariant
   size?: 'xs' | 'sm' | 'md' | 'lg'
   active?: boolean
   type?: 'submit' | 'reset' | 'button'
