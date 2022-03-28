@@ -17,6 +17,7 @@ export type ButtonVariant =
   | 'black'
   | 'white'
   | 'pink'
+
 /**
  * All the component types allowed by the Button component.
  */

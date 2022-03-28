@@ -1,12 +1,23 @@
 # token-gated-content example
 
-This example shows how how to created gated token content with Next.js
+This example shows how how to created gated token content with Next.js. It contains a sample NFT smart contract to get you started.
 
 ## Demo
 
 https://token-gated-content.vercel.app
 
 ## How to Use
+
+This example requires you to deploy a smart contract to the Rinkeby ethereum test network:
+
+1. Ensure your Metamask wallet is set to use Rinkeby like [explained here](https://gist.github.com/tschubotz/8047d13a2d2ac8b2a9faa3a74970c7ef).
+2. Grab your `address` in metamask and paste it in use it as the `PUBLIC_KEY` env var.![Metamask address](./address.png)
+3. In Metamask click the 3 dots icon -> `account details` -> `export private key` and export your key to add it to `PRIVATE_KEY` **If using Mainnet, secure this properly! It can be used to access your wallet**.
+   ![Metamask private key](./private.png)
+4. Deploy your own version of the [smart contract](./contract/vercel.sol) to the Rinkeby network and grab the smart contract address to add it to `CONTRACT_ADDRESS` env variable. See this [tutorial](https://medium.com/quick-programming/how-to-deploy-a-smart-contract-using-remix-9e270b253249) on how to deploy smart contracts.
+5. Give your application a proper name and add it to `NEXT_PUBLIC_APP_NAME` env var.
+
+Then proceed to deploy as usual to Vercel.
 
 You can choose from one of the following two methods to use this repository:
 

@@ -12,7 +12,7 @@
   "dependencies": {
     "@heroicons/react": "^1.0.6",
     "@tsndr/cloudflare-worker-jwt": "^1.1.6",
-    "@vercel/examples-ui": "^0.2.7-beta.0",
+    "@vercel/examples-ui": "^0.2.7-beta.2",
     "ethers": "^5.6.0",
     "heroicons": "^1.0.6",
     "jsonwebtoken": "^8.5.1",

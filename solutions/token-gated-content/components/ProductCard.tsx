@@ -27,18 +27,19 @@ export function ProductCard({ product, blur }: Props) {
       setLoading(false)
     }, 750)
   }
+
   return (
     <div className="bg-dark-accents-0">
       <div className="relative">
-        <div className="relative w-full  rounded-lg overflow-hidden">
+        <div className="w-full flex justify-center  rounded-lg overflow-hidden">
           <Image
             className={`pointer-events-none w-full h-full object-center object-cover ${
               blur ? 'blur' : ''
             }`}
             alt={product.title}
             src={product.image}
-            width="2248"
-            height="1686"
+            width="500"
+            height="500"
           />
         </div>
         <div className="absolute top-0 inset-x-0 rounded-lg p-4 flex items-end justify-end overflow-hidden">

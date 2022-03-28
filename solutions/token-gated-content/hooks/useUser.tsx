@@ -75,6 +75,18 @@ export const useUserState = (route?: string) => {
 
     // if we're on the right network, we need to check if we're signed
     if (data?.address && networkData.chain?.name === 'Rinkeby') {
+      const localData = localStorage.getItem('userApproval')
+      if (localData) {
+        const signedWith = utils.verifyMessage(
+          `I approve connecting to ${process.env.NEXT_PUBLIC_APP_NAME}`,
+          localData
+        )
+
+        if (signedWith === data?.address) {
+          setSignature(localData)
+          return
+        }
+      }
       setState('signature')
       return
     }
