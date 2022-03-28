@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import parser from 'ua-parser-js'
 
 // RegExp for public files
 const PUBLIC_FILE = /\.(.*)$/
@@ -16,10 +17,11 @@ export function middleware(req: NextRequest) {
     return NextResponse.rewrite(url)
   }
 
+  // Parse user agent
+  const ua = parser(req.headers.get('user-agent')!)
+
   // Check the viewport
-  const viewport = ['android', 'ios'].includes(req.ua?.os.name?.toLowerCase()!)
-    ? 'mobile'
-    : 'desktop'
+  const viewport = ua.device.type === 'mobile' ? 'mobile' : 'desktop'
 
   // Update the expected url
   url.pathname = `_viewport/${viewport}${url.pathname}`
