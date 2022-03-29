@@ -19,6 +19,8 @@
   "devDependencies": {
     "@types/react": "17.0.8",
     "autoprefixer": "^10.3.7",
+    "eslint": "^8.11.0",
+    "eslint-config-next": "^12.1.0",
     "next-transpile-modules": "^9.0.0",
     "postcss": "^8.3.11",
     "tailwindcss": "^2.2.17",
