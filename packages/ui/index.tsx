@@ -9,6 +9,7 @@ export { default as LoadingDots } from './loading-dots'
 export { default as Link } from './link'
 export { default as Code } from './code'
 export { default as List } from './list'
+export { default as Snippet } from './snippet'
 
 const Noop: FC = ({ children }) => <>{children}</>
 

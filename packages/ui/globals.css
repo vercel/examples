@@ -48,3 +48,25 @@ body {
 li {
   list-style: none;
 }
+
+.sh__class {
+  color: var(--snippet-class);
+}
+.sh__identifier {
+  color: var(--snippet-identifier);
+}
+.sh__sign {
+  color: var(--snippet-sign);
+}
+.sh__string {
+  color: var(--snippet-string);
+}
+.sh__keyword {
+  color: var(--snippet-keyword);
+}
+.sh__comment {
+  color: var(--snippet-comment);
+}
+.sh__jsxliterals {
+  color: var(--snippet-literals);
+}

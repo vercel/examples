@@ -1,11 +1,11 @@
 # Subdomain Auth Example
 
-- [subdomain-auth.com](http://subdomain-auth.com) (login from here)
-- [sub1.subdomain-auth.com](http://sub1.subdomain-auth.com)
+- [solutions-subdomain-auth.vercel.sh](https://solutions-subdomain-auth.vercel.sh) (login from here)
+- [subdomain.solutions-subdomain-auth.vercel.sh](https://subdomain.solutions-subdomain-auth.vercel.sh)
 
 ### Features
 
-- 🔀 Hostname Rewrites
+- Secure sub domains
 
 ### How to Use
 
@@ -34,5 +34,3 @@ yarn create next-app --example https://github.com/vercel/examples/tree/main/solu
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
-
-> 💡 Do note that you will need to replace the `ROOT_URL` variable in the `.env.example` file with your domain of choice and add that domain as a wildcard domain your Vercel project.

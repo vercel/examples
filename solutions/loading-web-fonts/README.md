@@ -1,18 +1,12 @@
-# Logging at the edge
+# Loading custom web fonts
 
-This example shows how to implement logging at the edge using [Logtail](https://betterstack.com/logtail).
+This example shows how to load custom web fonts without compromising performance.
 
 ## Demo
 
-https://edge-logging.vercel.app
+https://solutions-loading-web-fonts.vercel.app
 
 ## How to Use
-
-### Fill environment variables
-
-Rename `.env.example` to `.env.local` and fill `LOGTAIL_TOKEN` with your [Logtail](https://logtail.com) token.
-
-### Deploy
 
 You can choose from one of the following two methods to use this repository:
 
@@ -20,16 +14,16 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/logging&project-name=logging&repository-name=logging)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/loading-web-fonts&project-name=loading-web-fonts&repository-name=loading-web-fonts)
 
 ### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/logging
+npx create-next-app --example https://github.com/vercel/examples/tree/main/solutions/loading-web-fonts
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/logging
+yarn create next-app --example https://github.com/vercel/examples/tree/main/solutions/loading-web-fonts
 ```
 
 Next, run Next.js in development mode:
