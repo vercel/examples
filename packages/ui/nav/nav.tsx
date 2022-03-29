@@ -18,8 +18,7 @@ export default function Nav({ path, deployButton }: NavProps) {
   const displayPath = ['Vercel Examples']
     .concat(path?.split('/').filter(Boolean) || [])
     .join(' / ')
-  const darkMode = true
-  // const test = useDarkMode()
+  const darkMode = useDarkMode()
   return (
     <nav className={darkMode ? s['root-dark'] : s.root}>
       <div className={cn('flex items-center lg:px-6 px-8', s.container)}>
