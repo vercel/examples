@@ -5,5 +5,4 @@
   background-color: var(--accents-1);
   overflow-x: auto;
   padding: 1.5rem;
-  @apply transition-all;
 }
