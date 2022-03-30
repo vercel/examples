@@ -38,14 +38,14 @@ export const Info = () => {
             >
               Wagmi
             </Link>{' '}
-            and
+            and{' '}
             <Link
               className="text-highlight-pink hover:text-highlight-magenta"
               href="https://docs.ethers.io/v5/"
               target="_blank"
             >
               Ethers
-            </Link>{' '}
+            </Link>
             . For the example, connecting a metamask wallet will demonstrate how
             token-gated content works for token holders.
           </Text>
@@ -72,13 +72,14 @@ export const Info = () => {
 
             <div className="fw-full mt-6 border-t border-accents-3 ">
               {noMetamask && (
-                <Link
-                  href="https://metamask.io/"
-                  target="_blank"
+                <Button
+                  variant="ghost"
                   className="text-highlight-pink hover:text-highlight-magenta mt-4"
                 >
-                  Install metamask to view the live example →
-                </Link>
+                  <Link href="https://metamask.io/">
+                    Install metamask to view the live example →
+                  </Link>
+                </Button>
               )}
 
               {showDisconnect && (
