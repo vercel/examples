@@ -56,8 +56,8 @@ export default function Home() {
         <Image src="/github.svg" alt="Github" width={25} height={25} />
       </a>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center my-20">
-        <h1 className="text-6xl font-bold">Domains API</h1>
+      <main className="flex flex-col items-center justify-center w-full flex-1 sm:px-20 text-center my-20">
+        <h1 className="text-4xl sm:text-6xl font-bold">Domains API</h1>
 
         <form
           onSubmit={async (e) => {
@@ -75,7 +75,7 @@ export default function Home() {
               }
             })
           }}
-          className="flex justify-between space-x-4 w-full max-w-2xl h-10 mt-10"
+          className="flex justify-between space-x-4 px-5 w-full max-w-2xl h-10 mt-10"
         >
           <input
             type="text"
@@ -195,8 +195,8 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
   const [removing, setRemoving] = useState(false)
 
   return (
-    <div className="w-full mt-10 shadow-md border border-gray-50 rounded-lg py-10">
-      <div className="flex justify-between space-x-4 px-10">
+    <div className="w-full mt-10 sm:shadow-md border-y sm:border border-black sm:border-gray-50 sm:rounded-lg py-10">
+      <div className="flex justify-between space-x-4 px-2 sm:px-10">
         <a
           href={`http://${domain}`}
           target="_blank"
@@ -258,7 +258,7 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
         </div>
       </div>
 
-      <div className="flex items-center space-x-3 my-3 px-10">
+      <div className="flex items-center space-x-3 my-3 px-2 sm:px-10">
         <svg
           viewBox="0 0 24 24"
           width="24"
@@ -297,7 +297,7 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
         <>
           <div className="w-full border-t border-gray-100 mt-5 mb-8" />
 
-          <div className="px-10">
+          <div className="px-2 sm:px-10">
             <div className="flex justify-start space-x-4">
               <button
                 onClick={() => setRecordType('CNAME')}
