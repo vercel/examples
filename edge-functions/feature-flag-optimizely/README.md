@@ -12,21 +12,19 @@ https://feature-flag-optimizely.vercel.app
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/optimizely/vercel-examples/tree/main/edge-functions/feature-flag-optimizely&env=OPTIMIZELY_SDK_KEY&project-name=feature-flag-optimizely&repository-name=feature-flag-optimizely)
 
-## Run Locally
+### Clone and Deploy
+
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 **Note:** Before running locally, Please follow the section [Set up Optimizely](#set-up-optimizely) to create an account, set up feature flags and obtain the Optimizely _SDK Key_.
 
-1. generate the Next JS app using this example
+generate the Next JS app using this example
 
-   ```
-   npx create-next-app --example https://github.com/optimizely/vercel-examples/tree/main/edge-functions/feature-flag-optimizely feature-flag-optimizely
-   ```
-
-   or
-
-   ```
-   yarn create-next-app --example https://github.com/optimizely/vercel-examples/tree/main/edge-functions/feature-flag-optimizely feature-flag-optimizely
-   ```
+```
+npx create-next-app --example https://github.com/optimizely/vercel-examples/tree/main/edge-functions/feature-flag-optimizely feature-flag-optimizely
+# or
+yarn create-next-app --example https://github.com/optimizely/vercel-examples/tree/main/edge-functions/feature-flag-optimizely feature-flag-optimizely
+```
 
 2. create a local environment file from example and add your optimizely _SDK Key_.
 
@@ -35,13 +33,18 @@ https://feature-flag-optimizely.vercel.app
    ```
 
 3. Run locally
-   ```
-   npm run dev
-   ```
-   or
-   ```
-   yarn dev
-   ```
+
+Next, run Next.js in development mode:
+
+```bash
+npm install
+npm run dev
+
+# or
+
+yarn
+yarn dev
+```
 
 # Optimizely Full Stack Feature Flags and Experimentation
 
