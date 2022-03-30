@@ -13,3 +13,19 @@
 .root:hover > .inlineCode {
   color: var(--geist-link-color-light);
 }
+
+.root-dark {
+  color: var(--geist-highlight-magenta);
+  text-decoration: none;
+  transition: color 0.2s ease 0s;
+}
+
+.root-dark > .inlineCode {
+  color: var(--geist-highlight-magenta);
+  transition: color 0.2s ease 0s;
+}
+
+.root-dark:hover,
+.root-dark:hover > .inlineCode {
+  color: var(--geist-highlight-pink);
+}

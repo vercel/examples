@@ -4,7 +4,7 @@ import Link from '../link'
 import Button from '../button'
 import DeployButton, { DeployButtonProps } from '../deploy-button'
 import s from './nav.module.css'
-import { useDarkMode } from '../UiContext'
+import { useTheme } from 'next-themes'
 
 const REPO_URL = 'https://github.com/vercel/examples'
 const REPO_DIR = '/tree/main/'
@@ -18,7 +18,10 @@ export default function Nav({ path, deployButton }: NavProps) {
   const displayPath = ['Vercel Examples']
     .concat(path?.split('/').filter(Boolean) || [])
     .join(' / ')
-  const darkMode = useDarkMode()
+
+  const { theme, forcedTheme } = useTheme()
+  const darkMode = forcedTheme === 'dark' || theme === 'dark'
+
   return (
     <nav className={darkMode ? s['root-dark'] : s.root}>
       <div className={cn('flex items-center lg:px-6 px-8', s.container)}>
