@@ -1,4 +1,4 @@
-# feature-flag-optimizely example
+# Feature Flags with Optimizely
 
 This example shows how to use optimizely to conduct experiments in edge-functions.
 
