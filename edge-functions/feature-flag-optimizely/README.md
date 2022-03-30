@@ -4,7 +4,7 @@ This example shows how to use optimizely to conduct experiments in edge-function
 
 ## Demo
 
-https://feature-flag-optimizely.vercel.app/
+https://feature-flag-optimizely.vercel.app
 
 ## One-Click Deploy
 
