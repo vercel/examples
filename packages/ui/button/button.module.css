@@ -64,17 +64,6 @@
   color: white;
 }
 
-.pink {
-  background-color: var(--geist-highlight-magenta);
-  color: white;
-  border-color: var(--geist-highlight-pink);
-}
-
-.pink:hover {
-  background-color: var(--geist-highlight-pink);
-  color: white;
-}
-
 .white {
   background-color: #fff;
   color: #000;

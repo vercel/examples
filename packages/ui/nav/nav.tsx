@@ -4,7 +4,6 @@ import Link from '../link'
 import Button from '../button'
 import DeployButton, { DeployButtonProps } from '../deploy-button'
 import s from './nav.module.css'
-import { useDarkMode } from '../UiContext'
 
 const REPO_URL = 'https://github.com/vercel/examples'
 const REPO_DIR = '/tree/main/'
@@ -18,28 +17,20 @@ export default function Nav({ path, deployButton }: NavProps) {
   const displayPath = ['Vercel Examples']
     .concat(path?.split('/').filter(Boolean) || [])
     .join(' / ')
-  const darkMode = useDarkMode()
+
   return (
-    <nav className={darkMode ? s['root-dark'] : s.root}>
+    <nav className={s.root}>
       <div className={cn('flex items-center lg:px-6 px-8', s.container)}>
         <div className="flex flex-row items-center">
           <Link href="/">
             <span>
-              <svg
-                height="26"
-                viewBox="0 0 75 65"
-                fill={darkMode ? 'white' : '#000'}
-              >
+              <svg height="26" viewBox="0 0 75 65" fill="#000">
                 <title>Vercel Logo</title>
                 <path d="M37.59.25l36.95 64H.64l36.95-64z"></path>
               </svg>
             </span>
           </Link>
-          <li
-            className={`ml-2 ${
-              darkMode ? 'text-dark-accents-9' : 'text-gray-200'
-            }`}
-          >
+          <li className="ml-2 text-gray-200">
             <svg
               viewBox="0 0 24 24"
               width="32"
@@ -55,7 +46,7 @@ export default function Nav({ path, deployButton }: NavProps) {
             </svg>
           </li>
           <li className="font-medium" style={{ letterSpacing: '.01px' }}>
-            <Link href="/" className={darkMode ? s['link-dark'] : s.link}>
+            <Link href="/" className={s.link}>
               {displayPath}
             </Link>
           </li>
@@ -66,7 +57,6 @@ export default function Nav({ path, deployButton }: NavProps) {
               <Button
                 variant="ghost"
                 Component="a"
-                className={darkMode ? s['link-pink'] : s.link}
                 href="https://github.com/vercel/examples/tree/main"
               >
                 More Examples →
@@ -74,7 +64,6 @@ export default function Nav({ path, deployButton }: NavProps) {
             </span>
             <span className="ml-2 h-full flex items-center cursor-not-allowed text-accents-5">
               <DeployButton
-                variant={darkMode ? 'pink' : 'primary'}
                 {...deployButton}
                 repositoryUrl={
                   deployButton?.repositoryUrl ||

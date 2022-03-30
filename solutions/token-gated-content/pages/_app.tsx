@@ -14,11 +14,7 @@ const connector = new InjectedConnector({
 function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
   return (
-    <Layout
-      darkMode
-      title="token-gated-content"
-      path="solutions/token-gated-content"
-    >
+    <Layout title="token-gated-content" path="solutions/token-gated-content">
       <WagmiProvider autoConnect connectors={[connector]}>
         <Component {...pageProps} />
       </WagmiProvider>

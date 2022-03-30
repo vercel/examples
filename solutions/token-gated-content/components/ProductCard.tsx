@@ -29,9 +29,9 @@ export function ProductCard({ product, blur }: Props) {
   }
 
   return (
-    <div className="bg-dark-accents-0">
+    <div>
       <div className="relative">
-        <div className="w-full flex justify-center  rounded-lg overflow-hidden">
+        <div className="w-full flex justify-center rounded-lg overflow-hidden">
           <Image
             className={`pointer-events-none w-full h-full object-center object-cover ${
               blur ? 'blur' : ''
@@ -47,21 +47,30 @@ export function ProductCard({ product, blur }: Props) {
             aria-hidden="true"
             className="absolute inset-x-0 bottom-0 h-36 "
           />
-          {!blur && (
-            <p className="relative text-lg font-semibold text-white">
-              {product.price} $
-            </p>
-          )}
         </div>
       </div>
       {!blur && (
-        <div className="mt-6">
+        <div>
+          <div className="flex justify-between">
+            <div>
+              <h3>
+                <div>
+                  <span
+                    aria-hidden="true"
+                    className="absolutefont-bold text-xl"
+                  />
+                  <p className="font-bold text-xl"> {product.title}</p>
+                </div>
+              </h3>
+              <p className="mt-1 ">Limited Edition</p>
+            </div>
+            <p className="font-bold text-xl ">{product.price} $</p>
+          </div>
           <span className="relative flex items-center justify-center ">
             <Button
               disabled={added}
               onClick={handleAddToCart}
-              variant="pink"
-              className="w-full"
+              className="w-full mt-4"
             >
               {loading && <LoadingDots />}
               {!loading && !added && 'Add to cart'}
