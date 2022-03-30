@@ -26,13 +26,11 @@ npx create-next-app --example https://github.com/optimizely/vercel-examples/tree
 yarn create-next-app --example https://github.com/optimizely/vercel-examples/tree/main/edge-functions/feature-flag-optimizely feature-flag-optimizely
 ```
 
-2. create a local environment file from example and add your optimizely _SDK Key_.
+create a local environment file from example and add your optimizely _SDK Key_.
 
-   ```
-   cp .env.example .env.local
-   ```
-
-3. Run locally
+```
+cp .env.example .env.local
+```
 
 Next, run Next.js in development mode:
 
