@@ -9,7 +9,7 @@
 
 .link {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  color: var(--accents-4);
+  color: var(--accents-6);
   -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-transition: color 0.2s ease;

@@ -30,26 +30,28 @@ export default function Nav({ path, deployButton }: NavProps) {
               </svg>
             </span>
           </Link>
-          <li className="ml-2 text-gray-200">
-            <svg
-              viewBox="0 0 24 24"
-              width="32"
-              height="32"
-              stroke="currentColor"
-              strokeWidth="1"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-              shapeRendering="geometricPrecision"
-            >
-              <path d="M16.88 3.549L7.12 20.451"></path>
-            </svg>
-          </li>
-          <li className="font-medium" style={{ letterSpacing: '.01px' }}>
-            <Link href="/" className={s.link}>
-              {displayPath}
-            </Link>
-          </li>
+          <ul className="flex items-center content-center">
+            <li className="ml-2 text-gray-200">
+              <svg
+                viewBox="0 0 24 24"
+                width="32"
+                height="32"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+                shapeRendering="geometricPrecision"
+              >
+                <path d="M16.88 3.549L7.12 20.451"></path>
+              </svg>
+            </li>
+            <li className="font-medium" style={{ letterSpacing: '.01px' }}>
+              <Link href="/" className={s.link}>
+                {displayPath}
+              </Link>
+            </li>
+          </ul>
         </div>
         <div className="flex-1 justify-end hidden md:flex">
           <nav className="flex-row inline-flex items-center">
