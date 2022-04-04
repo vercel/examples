@@ -12,7 +12,6 @@
 - [Add Header](./add-header)
 - [API Rate Limit and Tokens](./api-rate-limit-and-tokens)
 - [API Rate Limiting with Upstash](./api-rate-limit)
-- [Auth With Ory](./auth-with-ory)
 - [Basic Auth Password Protection](./basic-auth-password)
 - [Bot Protection Botd](./bot-protection-botd)
 - [Bot Protection Datadome](./bot-protection-datadome)
