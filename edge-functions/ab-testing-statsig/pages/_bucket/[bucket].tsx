@@ -10,12 +10,36 @@ import {
 } from '@vercel/examples-ui'
 import { useRouter } from 'next/router'
 import Cookie from 'js-cookie'
+import { GetStaticPaths, GetStaticProps } from 'next'
 
-function BucketPage() {
-  const {
-    query: { bucket },
-    reload,
-  } = useRouter()
+interface Props {
+  bucket: string;
+}
+
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  return {
+    props: {
+      bucket: params?.bucket as string
+    }
+  }
+}
+
+export const getStaticPaths: GetStaticPaths<{ bucket: string }> = async () => {
+  // Buckets that we want to statically generate
+  const buckets: string[] = ['a', 'b'];
+
+  return {
+    paths: buckets.map((bucket) => ({
+      params: {
+        bucket
+      }
+    })),
+    fallback: 'blocking'
+  }
+}
+
+function BucketPage({ bucket }: Props) {
+  const { reload } = useRouter()
 
   function resetBucket() {
     Cookie.remove('uid')
