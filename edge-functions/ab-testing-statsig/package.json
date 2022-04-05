@@ -15,7 +15,8 @@
     "next": "^12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "statsig-node": "^4.14.0"
+    "statsig-node": "^4.14.0",
+    "statsig-react": "^1.9.1"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.1",
