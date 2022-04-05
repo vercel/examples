@@ -137,24 +137,27 @@ export async function middleware(req: NextRequest) {
         <Button size="lg" onClick={resetBucket}>
           Reset bucket
         </Button>
+      </section>
 
+      <section className="flex flex-col gap-6">
         <Text variant="h2">Using metrics in your experiments</Text>
         <Text>
           <Link href="https://docs.statsig.com/metrics">Statsig Metrics</Link>{' '}
           are a way to track events that happen in your site. To enable them you
-          can can pass to{' '}
+          can pass the <Code>StatsigProvider</Code> to{' '}
           <Link href="https://nextjs.org/docs/advanced-features/custom-app">
             <Code>_app.tsx</Code>
-          </Link>{' '}
-          the <Code>StatsigProvider</Code>.
+          </Link>.
         </Text>
         <Snippet>{`import Cookies from 'js-cookie'
 import { StatsigProvider } from 'statsig-react'
 
 function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
+
   // middleware will automatically set a cookie for the user if they visit a page
   const userID = Cookies.get('uid')
+  
   return (
     <StatsigProvider
       sdkKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY!}
