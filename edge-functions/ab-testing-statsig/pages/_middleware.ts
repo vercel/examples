@@ -8,13 +8,6 @@ export async function middleware(req: NextRequest) {
   // Clone the URL
   const url = req.nextUrl.clone()
 
-  // Prevent users from accessing buckets directly
-  if (url.pathname.startsWith(`/_bucket`)) {
-    url.pathname = '/404'
-
-    return NextResponse.rewrite(url)
-  }
-
   // Just run for the / path
   if (req.nextUrl.pathname !== '/') {
     return NextResponse.next()
@@ -38,7 +31,7 @@ export async function middleware(req: NextRequest) {
   const bucket = experiment.get('name', 'a')
 
   // Change the pathname to point to the correct bucket
-  url.pathname = `/_bucket/${bucket}`
+  url.pathname = `/${bucket}`
 
   // Create a response
   const response = NextResponse.rewrite(url)

@@ -69,7 +69,7 @@ function BucketPage({ bucket }: Props) {
         </Text>
         <Text>
           Buckets are statically generated at build time in a{' '}
-          <Code>/_bucket/[bucket]</Code> page so its fast to rewrite to them.
+          <Code>/[bucket]</Code> page so its fast to rewrite to them.
         </Text>
         <Snippet>{`import { NextRequest, NextResponse } from 'next/server'
 import statsig from 'statsig-node'
@@ -80,13 +80,6 @@ const UID_COOKIE = 'uid'
 export async function middleware(req: NextRequest) {
   // Clone the URL
   const url = req.nextUrl.clone()
-
-  // Prevent users from access buckets directly
-  if (url.pathname.startsWith(\`/_bucket\`)) {
-    url.pathname = '/404'
-
-    return NextResponse.rewrite(url)
-  }
 
   // Just run for the / path
   if (req.nextUrl.pathname !== '/') {
@@ -105,13 +98,13 @@ export async function middleware(req: NextRequest) {
   }
 
   // Fetch experiment
-  const experiment = await statsig.getExperiment({ userID }, 'half_bucket')
+  const experiment = await statsig.getExperiment({ userID }, 'new_homepage')
 
   // Get bucket from experiment
   const bucket = experiment.get('name', 'a')
 
   // Change the pathname to point to the correct bucket
-  url.pathname = \`/_bucket/\${bucket}\`
+  url.pathname = \`/\${bucket}\`
 
   // Create a response
   const response = NextResponse.rewrite(url)
