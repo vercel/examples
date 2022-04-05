@@ -14,7 +14,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig&project-name=ab-testing-statsig&repository-name=ab-testing-statsig)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig&project-name=ab-testing-statsig&repository-name=ab-testing-statsig&env=STATSIG_SERVER_API_KEY)
 
 ### Clone and Deploy
 
@@ -25,6 +25,8 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-
 # or
 yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig
 ```
+
+Rename `.env.example` to `.env.local` and fill the variables. You can get your `STATSIG_SERVER_API_KEY` from https://console.statsig.com/ > settings > API Keys.
 
 Next, run Next.js in development mode:
 
