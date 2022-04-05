@@ -173,9 +173,20 @@ function App({ Component, pageProps }: AppProps) {
           <Code>Statsig.logEvent</Code> function to track events during your
           experiments.
         </Text>
-        <Snippet>{`import { Statsig } from 'statsig-react'
+        <Snippet>{`import { Statsig } from 'statsig-react';
 
-Statsig.logEvent('my-event')
+...
+
+export default function MyComponent(): JSX.Element {
+
+  return
+    <Button
+      onClick={() => {
+        // this can be any event like adding an item to a cart or clicking a CTA button.
+        Statsig.logEvent('button_clicked');
+      }}
+    />;
+}
 `}</Snippet>
       </section>
     </Page>
