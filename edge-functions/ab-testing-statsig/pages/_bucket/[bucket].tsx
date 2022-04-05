@@ -147,7 +147,8 @@ export async function middleware(req: NextRequest) {
           can pass the <Code>StatsigProvider</Code> to{' '}
           <Link href="https://nextjs.org/docs/advanced-features/custom-app">
             <Code>_app.tsx</Code>
-          </Link>.
+          </Link>
+          .
         </Text>
         <Snippet>{`import Cookies from 'js-cookie'
 import { StatsigProvider } from 'statsig-react'
