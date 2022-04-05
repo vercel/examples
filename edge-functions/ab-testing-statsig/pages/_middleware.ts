@@ -8,7 +8,7 @@ export async function middleware(req: NextRequest) {
   // Clone the URL
   const url = req.nextUrl.clone()
 
-  // Prevent users from access buckets directly
+  // Prevent users from accessing buckets directly
   if (url.pathname.startsWith(`/_bucket`)) {
     url.pathname = '/404'
 
@@ -32,7 +32,7 @@ export async function middleware(req: NextRequest) {
   }
 
   // Fetch experiment
-  const experiment = await statsig.getExperiment({ userID }, 'half_bucket')
+  const experiment = await statsig.getExperiment({ userID }, 'new_homepage')
 
   // Get bucket from experiment
   const bucket = experiment.get('name', 'a')
