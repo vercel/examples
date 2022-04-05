@@ -149,6 +149,7 @@ export async function middleware(req: NextRequest) {
           the <Code>StatsigProvider</Code>.
         </Text>
         <Snippet>{`import Cookies from 'js-cookie'
+import { StatsigProvider } from 'statsig-react'
 
 function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
