@@ -1,3 +1,4 @@
+import type { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import {
   Layout,
@@ -10,7 +11,6 @@ import {
 } from '@vercel/examples-ui'
 import { useRouter } from 'next/router'
 import Cookie from 'js-cookie'
-import { GetStaticPaths, GetStaticProps } from 'next'
 import { Statsig } from 'statsig-react'
 
 interface Props {
@@ -65,13 +65,17 @@ function BucketPage({ bucket }: Props) {
           In this demo we use Statsig&apos;s Edge SDK to pull experiment variant
           and show the resulting allocation. As long as you have a bucket
           assigned you will always see the same result, otherwise you will be
-          assigned a bucket to mantain the odds in 50/50.
+          assigned a bucket to maintain the odds in 50/50.
         </Text>
         <Text>
           Buckets are statically generated at build time in a{' '}
           <Code>/[bucket]</Code> page so its fast to rewrite to them.
         </Text>
+        <Text>
+          The middleware implementation is in <Code>pages/_middleware.ts</Code>:
+        </Text>
         <Snippet>{`import { NextRequest, NextResponse } from 'next/server'
+// \`statsig-node\` also works in the V8 environment of Edge Functions
 import statsig from 'statsig-node'
 
 // Store a cookie for the user
@@ -86,8 +90,12 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next()
   }
 
-  // Initialize statsig client
-  await statsig.initialize(process.env.STATSIG_SERVER_API_KEY as string)
+  // Initialize the statsig client, rules are fetched in this step
+  // and saved in memory for reuse in subsequent requests
+  await statsig.initialize(process.env.STATSIG_SERVER_API_KEY as string, {
+    // We only want to wait at a max 300ms for statsig to respond
+    initTimeoutMs: 300,
+  })
 
   // Get users UID from the cookie
   let userID = req.cookies[UID_COOKIE]
@@ -97,14 +105,14 @@ export async function middleware(req: NextRequest) {
     userID = crypto.randomUUID()
   }
 
-  // Fetch experiment
+  // Get the experiment from statsig
   const experiment = await statsig.getExperiment({ userID }, 'new_homepage')
 
   // Get bucket from experiment
   const bucket = experiment.get('name', 'a')
 
   // Change the pathname to point to the correct bucket
-  url.pathname = \`/\${bucket}\`
+  url.pathname = \`/${bucket}\`
 
   // Create a response
   const response = NextResponse.rewrite(url)
@@ -116,12 +124,11 @@ export async function middleware(req: NextRequest) {
 
   // Return the response
   return response
-}
-`}</Snippet>
+}`}</Snippet>
         <Text>
           You can reset the bucket multiple times to get a different bucket
           assigned. You can configure your experiments, see diagnostics and
-          results in your account .
+          results in the{' '}
           <Link href="https://console.statsig.com/">Statsig console</Link>.
         </Text>
         <pre className="bg-black text-white font-mono text-left py-2 px-4 rounded-lg text-sm leading-6">
@@ -136,12 +143,12 @@ export async function middleware(req: NextRequest) {
         <Text variant="h2">Using metrics in your experiments</Text>
         <Text>
           <Link href="https://docs.statsig.com/metrics">Statsig Metrics</Link>{' '}
-          are a way to track events that happen in your site. To enable them you
-          can pass the <Code>StatsigProvider</Code> to{' '}
+          are a way to track events that happen in your site. To enable them we
+          use the <Code>StatsigProvider</Code> in{' '}
           <Link href="https://nextjs.org/docs/advanced-features/custom-app">
-            <Code>_app.tsx</Code>
+            <Code>pages/_app.tsx</Code>
           </Link>
-          .
+          :
         </Text>
         <Snippet>{`import Cookies from 'js-cookie'
 import { StatsigProvider } from 'statsig-react'
@@ -151,7 +158,7 @@ function App({ Component, pageProps }: AppProps) {
 
   // middleware will automatically set a cookie for the user if they visit a page
   const userID = Cookies.get('uid')
-  
+
   return (
     <StatsigProvider
       sdkKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY!}
@@ -163,12 +170,10 @@ function App({ Component, pageProps }: AppProps) {
       </Layout>
     </StatsigProvider>
   )
-}
-`}</Snippet>
+}`}</Snippet>
         <Text>
-          After we can tracks events by calling using the{' '}
-          <Code>Statsig.logEvent</Code> function to track events during your
-          experiments.
+          Now we can use <Code>Statsig.logEvent</Code> to track events during
+          experiments:
         </Text>
         <Snippet>{`import { Statsig } from 'statsig-react';
 

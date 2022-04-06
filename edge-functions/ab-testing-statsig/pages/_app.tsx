@@ -8,9 +8,10 @@ import Cookies from 'js-cookie'
 import '@vercel/examples-ui/globals.css'
 
 function App({ Component, pageProps }: AppProps) {
+  const Layout = getLayout<LayoutProps>(Component)
+
   // middleware will automatically set a cookie for the user if they visit a page
   const userID = Cookies.get('uid')
-  const Layout = getLayout<LayoutProps>(Component)
 
   return (
     <StatsigProvider
