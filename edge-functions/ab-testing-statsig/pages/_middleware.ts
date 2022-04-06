@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import statsig from 'statsig-node' // This library also works in a V8 environment
+// `statsig-node` also works in the V8 environment of Edge Functions
+import statsig from 'statsig-node'
 
 // Store a cookie for the user
 const UID_COOKIE = 'uid'
@@ -13,8 +14,12 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next()
   }
 
-  // Initialize statsig client
-  await statsig.initialize(process.env.STATSIG_SERVER_API_KEY as string)
+  // Initialize the statsig client, rules are fetched in this step
+  // and saved in memory for reuse in subsequent requests
+  await statsig.initialize(process.env.STATSIG_SERVER_API_KEY as string, {
+    // We only want to wait at a max 300ms for statsig to respond
+    initTimeoutMs: 300,
+  })
 
   // Get users UID from the cookie
   let userID = req.cookies[UID_COOKIE]
@@ -24,7 +29,7 @@ export async function middleware(req: NextRequest) {
     userID = crypto.randomUUID()
   }
 
-  // Fetch experiment
+  // Get the experiment from statsig
   const experiment = await statsig.getExperiment({ userID }, 'new_homepage')
 
   // Get bucket from experiment
