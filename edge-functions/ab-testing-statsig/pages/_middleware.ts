@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
   // Clone the URL
   const url = req.nextUrl.clone()
 
-  // Just run for the / path
+  // test
   if (req.nextUrl.pathname !== '/') {
     return NextResponse.next()
   }
