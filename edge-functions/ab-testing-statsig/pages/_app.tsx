@@ -20,7 +20,7 @@ function App({ Component, pageProps }: AppProps) {
       user={{ userID }}
     >
       <Layout
-        title="ab-testing-statsig"
+        title="ab-testing-look-at-the-comment-bruh"
         path="edge-functions/ab-testing-statsig"
       >
         <Component {...pageProps} />
