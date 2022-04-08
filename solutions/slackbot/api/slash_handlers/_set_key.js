@@ -1,4 +1,4 @@
-import axios from 'axios'
+import fetch from 'node-fetch'
 import { redisURL, redisToken } from '../_constants'
 
 export async function setKey(res, commandArray) {
@@ -6,19 +6,21 @@ export async function setKey(res, commandArray) {
   let value = commandArray[2]
 
   try {
-    const response = await axios({
-      url: `${redisURL}/set/${key}/${value}`,
+    const url = `${redisURL}/set/${key}/${value}`
+    const response = await fetch(url, {
       headers: {
         Authorization: `Bearer ${redisToken}`,
       },
     })
-    console.log('data from axios:', response.data)
+    const data = await response.json()
+
+    console.log('data from fetch:', data)
     res.send({
       response_type: 'in_channel',
       text: `Successfully set ${key}=${value}`,
     })
   } catch (err) {
-    console.log('axios Error:', err)
+    console.log('fetch Error:', err)
     res.send({
       response_type: 'ephemeral',
       text: `${err.response.data.error}`,

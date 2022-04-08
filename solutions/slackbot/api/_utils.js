@@ -1,4 +1,4 @@
-import axios from 'axios'
+import fetch from 'node-fetch'
 import { token } from './_constants'
 
 export function tokenizeString(string) {
@@ -21,19 +21,21 @@ export async function postToChannel(channel, res, payload) {
   }
 
   try {
-    const response = await axios({
+    const url = 'https://slack.com/api/chat.postMessage'
+    const response = await fetch(url, {
       method: 'post',
-      url: 'https://slack.com/api/chat.postMessage',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
         Authorization: `Bearer ${token}`,
       },
-      data: message,
+      body: JSON.stringify(message),
     })
-    console.log('data from axios:', response.data)
+    const data = await response.json()
+
+    console.log('data from fetch:', data)
     res.json({ ok: true })
   } catch (err) {
-    console.log('axios Error:', err)
+    console.log('fetch Error:', err)
     res.send({
       response_type: 'ephemeral',
       text: `${err.response.data.error}`,
@@ -46,24 +48,27 @@ async function channelNameToId(channelName) {
   var id
 
   try {
-    const response = await axios({
+    const url = 'https://slack.com/api/conversations.list'
+    const response = await fetch(url, {
       method: 'post',
-      url: 'https://slack.com/api/conversations.list',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
         Authorization: `Bearer ${token}`,
       },
     })
-    response.data.channels.forEach((element) => {
+    const data = await response.json()
+
+    data.channels.forEach((element) => {
       if (element.name === channelName) {
         id = element.id
       }
       if (element.name === 'general') generalId = element.id
     })
-    if (id) return id
-    else return generalId
+    if (id) {
+      return id
+    } else return generalId
   } catch (err) {
-    console.log('axios Error:', err)
+    console.log('fetch Error:', err)
   }
   return id
 }
