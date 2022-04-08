@@ -5,7 +5,7 @@ import { listAll } from './slash_handlers/_list_all'
 import { getKey } from './slash_handlers/_get_key'
 import { removeFromList } from './slash_handlers/_remove_from_list'
 
-module.exports = (req, res) => {
+export default async function note(req, res) {
   const commandArray = tokenizeString(req.body.text)
   const action = commandArray[0]
 

@@ -57,11 +57,11 @@ async function channelNameToId(channelName) {
     response.data.channels.forEach((element) => {
       if (element.name === channelName) {
         id = element.id
-        return element.id
-      } else if (element.name === 'general') generalId = element.id
+      }
+      if (element.name === 'general') generalId = element.id
     })
-
-    return generalId
+    if (id) return id
+    else return generalId
   } catch (err) {
     console.log('axios Error:', err)
   }

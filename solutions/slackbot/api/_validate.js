@@ -2,7 +2,7 @@
 
 import crypto from 'crypto'
 
-exports.validateSlackRequest = (event, signingSecret) => {
+export function validateSlackRequest(event, signingSecret) {
   const requestBody = JSON.stringify(event['body'])
 
   const headers = event.headers

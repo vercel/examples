@@ -4,7 +4,7 @@ import { channel_created } from './events_handlers/_channel_created'
 import { validateSlackRequest } from './_validate'
 import { signingSecret } from './_constants'
 
-module.exports = async (req, res) => {
+export default async function events(req, res) {
   var type = req.body.type
 
   if (type === 'url_verification') {
