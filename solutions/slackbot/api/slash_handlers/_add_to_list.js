@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import { redisURL, redisToken } from '../_constants'
+import { redis } from '../_constants'
 
 export async function addToList(res, commandArray) {
   let listName = commandArray[1]
@@ -11,15 +11,9 @@ export async function addToList(res, commandArray) {
   }
 
   try {
-    const url = `${redisURL}/RPUSH/${listName}/${value}`
-    const response = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${redisToken}`,
-      },
-    })
-    const data = await response.json()
-
+    const data = await redis.rpush(listName, value)
     console.log('data from fetch:', data)
+
     res.send({
       response_type: 'in_channel',
       text: `Successfully added "${value}" to list: "${listName}".`,
@@ -28,7 +22,7 @@ export async function addToList(res, commandArray) {
     console.log('fetch Error:', err)
     res.send({
       response_type: 'ephemeral',
-      text: `${err.response.data.error}`,
+      text: `${err}`,
     })
   }
 }

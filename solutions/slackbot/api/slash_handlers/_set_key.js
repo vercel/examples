@@ -1,18 +1,11 @@
-import fetch from 'node-fetch'
-import { redisURL, redisToken } from '../_constants'
+import { redis } from '../_constants'
 
 export async function setKey(res, commandArray) {
   let key = commandArray[1]
   let value = commandArray[2]
 
   try {
-    const url = `${redisURL}/set/${key}/${value}`
-    const response = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${redisToken}`,
-      },
-    })
-    const data = await response.json()
+    const data = await redis.set(key, value)
 
     console.log('data from fetch:', data)
     res.send({
@@ -23,7 +16,7 @@ export async function setKey(res, commandArray) {
     console.log('fetch Error:', err)
     res.send({
       response_type: 'ephemeral',
-      text: `${err.response.data.error}`,
+      text: `${err}`,
     })
   }
 }

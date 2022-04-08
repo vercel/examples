@@ -38,7 +38,7 @@ export async function postToChannel(channel, res, payload) {
     console.log('fetch Error:', err)
     res.send({
       response_type: 'ephemeral',
-      text: `${err.response.data.error}`,
+      text: `${err}`,
     })
   }
 }

@@ -1,6 +1,4 @@
-import fetch from 'node-fetch'
-
-import { redisURL, redisToken } from '../_constants'
+import { redis } from '../_constants'
 
 export async function removeFromList(res, commandArray) {
   let listName = commandArray[1]
@@ -12,15 +10,9 @@ export async function removeFromList(res, commandArray) {
   }
 
   try {
-    const url = `${redisURL}/LREM/${listName}/0/${value}`
-    const response = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${redisToken}`,
-      },
-    })
-    const data = await response.json()
-
+    const data = await redis.lrem(listName, 0, value)
     console.log('data from fetch:', data)
+
     res.send({
       response_type: 'in_channel',
       text: `Successfully removed "${value}" entry from list: "${listName}".`,
@@ -29,7 +21,7 @@ export async function removeFromList(res, commandArray) {
     console.log('fetch Error:', err)
     res.send({
       response_type: 'ephemeral',
-      text: `${err.response.data.error}`,
+      text: `${err}`,
     })
   }
 }
