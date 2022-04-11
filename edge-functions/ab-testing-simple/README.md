@@ -1,14 +1,14 @@
-# A/B Testing Example
+# A/B Testing Simple
 
-By A/B testing directly on the server-side, you'll reduce layout shift from client-loaded experiments and improving your site's performance with smaller JavaScript bundles.
+By A/B testing at the edge, you'll reduce layout shift from client-loaded experiments and improve your site's performance with smaller JavaScript bundles.
 
 ## Demo
 
 https://edge-functions-ab-testing-simple.vercel.app
 
-Since the different variants are generated statically on the server side, it mitigates any potential layout shift that could happen when a variant is inserted into the DOM client side, hence improving your site's performance.
+Since the different variants are generated statically at the edge, it mitigates any potential layout shift that could happen when a variant is inserted into the DOM client side, hence improving your site's performance.
 
-The magic happens in the [`_middleware.ts` file](pages/home/_middleware.ts):
+Take a look at [`pages/home/_middleware.ts`](pages/home/_middleware.ts) to see how it works:
 
 ```javascript
 import { NextRequest, NextResponse } from 'next/server'
