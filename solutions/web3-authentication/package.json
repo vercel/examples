@@ -1,5 +1,5 @@
 {
-  "name": "web3-sessions",
+  "name": "web3-authentication",
   "version": "1.0.0",
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
@@ -10,13 +10,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.5.0",
     "@vercel/examples-ui": "^0.2.6",
-    "ethers": "^5.5.4",
+    "ethers": "^5.5.1",
     "next": "12.1.0",
-    "next-auth": "^4.2.1",
+    "next-auth": "^4.3.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "wagmi": "^0.2.16"
+    "siwe": "^1.1.6",
+    "wagmi": "^0.2.26"
   },
   "devDependencies": {
     "@types/node": "17.0.14",

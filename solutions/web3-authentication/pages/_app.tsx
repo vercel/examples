@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
+import { WagmiProvider } from 'wagmi'
 import { SessionProvider } from 'next-auth/react'
-import { Provider as WagmiProvider } from 'wagmi'
 
 import type { LayoutProps } from '@vercel/examples-ui/layout'
 
@@ -13,8 +13,11 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <WagmiProvider autoConnect>
-      <SessionProvider session={pageProps.session}>
-        <Layout title="web3-sessions" path="solutions/web3-sessions">
+      <SessionProvider session={pageProps.session} refetchInterval={0}>
+        <Layout
+          title="web3-authentication"
+          path="solutions/web3-authentication"
+        >
           <Component {...pageProps} />
         </Layout>
       </SessionProvider>
