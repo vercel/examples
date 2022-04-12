@@ -61,7 +61,7 @@ const rateLimited: OnRateLimit = ({ id }) => {
       error: { message: `API rate limit exceeded for ${id}` },
     }),
     {
-      status: 403,
+      status: 429,
       headers: {
         'Content-Type': 'application/json',
       },
