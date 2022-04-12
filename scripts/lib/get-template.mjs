@@ -2,71 +2,53 @@ import frontMatter from 'front-matter'
 
 const FRAMEWORKS = ['Next.js']
 const USE_CASES = ['Edge Functions']
-const CSS = ['Tailwind']
+const CSS = ['Tailwind', 'CSS Modules']
 
 export default function getTemplate(readme) {
-  const { attributes } = frontMatter(readme)
-  const {
-    name,
-    slug,
-    description,
-    framework,
-    useCase,
-    css,
-    demoUrl,
-    publisher = '▲ Vercel',
-  } = attributes
-
-  if (
-    !name ||
-    !slug ||
-    !description ||
-    !framework ||
-    !useCase ||
-    !css ||
-    !demoUrl
-  ) {
-    throw new Error(
-      `Missing required template fields:
-      {
-        name: ${name}
-        slug: ${slug}
-        description: ${description}
-        framework: ${framework}
-        use case: ${useCase}
-        css: ${css}
-        demoUrl: ${demoUrl}
-      }
-      `
-    )
+  const { body, attributes } = frontMatter(readme)
+  const template = {
+    name: attributes.name,
+    slug: attributes.slug,
+    description: attributes.description,
+    framework: [].concat(attributes.framework),
+    useCase: [].concat(attributes.useCase),
+    css: [].concat(attributes.css),
+    demoUrl: attributes.demoUrl,
+    publisher: attributes.publisher ?? '▲ Vercel',
   }
-  if (!FRAMEWORKS.includes(framework)) {
+
+  for (const field of Object.keys(template)) {
+    // Right now all fields are required
+    if (!template[field]?.length) {
+      throw new Error(
+        `Missing required template fields:
+        ${JSON.stringify(template, null, 2)}
+        `
+      )
+    }
+  }
+
+  if (!template.framework.every((val) => FRAMEWORKS.includes(val))) {
     throw new Error(
-      `The framework "${framework}" is not supported.
+      `The framework "${template.framework.join(', ')}" is not supported.
       Supported frameworks: ${FRAMEWORKS.join(', ')}`
     )
   }
-  if (!USE_CASES.includes(useCase)) {
+  if (!template.useCase.every((val) => USE_CASES.includes(val))) {
     throw new Error(
-      `The use case "${useCase}" is not supported.
+      `The use case "${template.useCase.join(', ')}" is not supported.
       Supported use cases: ${USE_CASES.join(', ')}`
     )
   }
-  if (!CSS.includes(css)) {
+  if (!template.css.every((val) => CSS.includes(val))) {
     throw new Error(
-      `The CSS option "${css}" is not supported.
+      `The CSS option "${template.css.join(', ')}" is not supported.
       Supported CSS options: ${CSS.join(', ')}`
     )
   }
 
-  return {
-    name,
-    slug,
-    description,
-    framework,
-    type: useCase,
-    css,
-    demoUrl,
-    publisher,
-  }
+  template.type = template.useCase
+  delete template.useCase
+
+  return { template, body }
 }

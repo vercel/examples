@@ -1,8 +1,6 @@
 import path from 'path'
-import fs from 'fs/promises'
-import { constants } from 'fs'
-import createFetch from '@vercel/fetch'
 import dotenv from 'dotenv'
+import initContentful from './lib/contentful.mjs'
 import getReadme from './lib/get-readme.mjs'
 import getTemplate from './lib/get-template.mjs'
 
@@ -40,48 +38,13 @@ if (!CONTENT_TYPE) {
   throw new Error('The env variable CONTENTFUL_CONTENT_TYPE is not set.')
 }
 
-const fetch = createFetch()
 const log = (...args) => {
   if (process.env.DEBUG !== '0') {
     console.log(...args)
   }
 }
-const DIRS = ['edge-functions', 'solutions', 'packages']
 const examplePath = process.argv[2]
-
-async function contentful(path, fetchOptions) {
-  let res
-
-  try {
-    res = await fetch(`https://api.contentful.com${path}`, {
-      ...fetchOptions,
-      headers: {
-        Authorization: `Bearer ${ACCESS_TOKEN}`,
-        ...fetchOptions?.headers,
-      },
-    })
-  } catch (err) {
-    console.error(
-      'There was a network error trying to fetch from Contentful:',
-      err
-    )
-  }
-
-  const body = await res.json()
-
-  if (res.status === 404) return null
-  if (res.status !== 200) {
-    throw new Error(
-      `Contentful returned a ${
-        res.status
-      } status code for \`${path}\` with:\n${JSON.stringify(body, null, 2)}`
-    )
-  }
-
-  return body
-}
-
-log('Example path:', examplePath)
+const contentful = initContentful(ACCESS_TOKEN)
 
 async function updateTemplate() {
   const readme = await getReadme(examplePath)
@@ -90,14 +53,12 @@ async function updateTemplate() {
     throw new Error('No readme.md found in example directory')
   }
 
-  const template = getTemplate(readme)
+  const { body: readmeBody, template } = getTemplate(readme)
 
   template.githubUrl = `https://github.com${path.join(
     '/vercel/examples/tree/main',
     examplePath
   )}`
-
-  console.log('ATTS', template)
 
   const envPath = `/spaces/${SPACE_ID}/environments/${ENVIRONMENT}`
   // We fetch the environment to validate that both the Space and the Environment exist
@@ -115,8 +76,6 @@ async function updateTemplate() {
   )
   const entry = entryRes?.items[0]
 
-  console.log('ENTRY', JSON.stringify(entry, null, 2))
-
   // If the `content_type` doesn't exist Contentful returns a `400` and we'll
   // throw an error, so we can assume that it exists and it's valid from here on
 
@@ -131,7 +90,8 @@ async function updateTemplate() {
       if (currentValue) {
         if (
           Array.isArray(currentValue)
-            ? !currentValue.includes(value)
+            ? value.length !== currentValue.length ||
+              value.some((val) => !currentValue.includes(val))
             : currentValue !== value
         ) {
           patch.push({
@@ -153,13 +113,17 @@ async function updateTemplate() {
       return patch
     }, [])
 
-    console.log('BODY', body)
-
     if (!body.length) {
       log('No changes to make in this entry.')
       return
     }
 
+    log(
+      `Updating the template "${template.slug}" with:`,
+      JSON.stringify(body, null, 2)
+    )
+
+    // Ref: https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry/patch-an-entry/console/curl
     const updatedEntry = await contentful(
       `${envPath}/entries/${entry.sys.id}`,
       {
@@ -172,44 +136,52 @@ async function updateTemplate() {
       }
     )
 
+    log('Updated entry!')
+
+    if (updatedEntry.sys.version < entry.sys.version) return
+
     // If the entry was updated successfully, we'll publish it.
-    if (updatedEntry.sys.version > entry.sys.version) {
-      const publishedEntry = await contentful(
-        `${envPath}/entries/${entry.sys.id}/published`,
-        {
-          method: 'PUT',
-          headers: {
-            'X-Contentful-Version': updatedEntry.sys.version,
-          },
-          body: JSON.stringify(body),
-        }
-      )
-
-      if (publishedEntry.sys.version > updatedEntry.sys.version) {
-        log('Entry published successfully!')
+    // Right now we don't validate fields, so this can fail with a 422
+    // if some fields are missing.
+    const publishedEntry = await contentful(
+      `${envPath}/entries/${entry.sys.id}/published`,
+      {
+        method: 'PUT',
+        headers: {
+          'X-Contentful-Version': updatedEntry.sys.version,
+        },
+        body: JSON.stringify(body),
       }
+    )
 
-      console.log('RES', publishedEntry)
+    if (publishedEntry.sys.version > updatedEntry.sys.version) {
+      log('Entry published successfully!')
     }
   }
   // Create a new template as a draft
   else {
-    const overview = readme
-    const newEntry = await contentful(`${envPath}/entries/${entry.sys.id}`, {
-      method: 'PUT',
+    log(`Creating a new template with: ${JSON.stringify(template, null, 2)}`)
+
+    // For new templates we'll use the readme as the initial overview
+    template.overview = readmeBody
+
+    const fields = Object.entries(template).reduce((fields, [field, value]) => {
+      fields[field] = { [LANG]: value }
+      return fields
+    }, {})
+
+    // Ref: https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry/create-update-an-entry/console/curl
+    // To add a new entry we use POST because it doesn't work with PUT as Contentful says
+    const newEntry = await contentful(`${envPath}/entries`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/vnd.contentful.management.v1+json',
         'X-Contentful-Content-Type': CONTENT_TYPE,
       },
-      body: JSON.stringify({
-        fields: Object.entries(template).reduce((fields, [field, value]) => {
-          fields[field] = { [LANG]: value }
-          return fields
-        }, {}),
-      }),
+      body: JSON.stringify({ fields }),
     })
 
-    console.log('NEW ENTRY', newEntry)
+    log('Created a new entry:', JSON.stringify(newEntry, null, 2))
   }
 }
 
