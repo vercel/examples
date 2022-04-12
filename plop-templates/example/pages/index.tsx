@@ -3,7 +3,7 @@ import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
 
 function Home() {
   return (
-    <Page>
+    <Page className="flex flex-col gap-12">
       <Head>
         <title>-- PLOP TITLE HERE -- - Vercel Example</title>
         <meta
@@ -22,8 +22,6 @@ function Home() {
           hic quae sapiente nostrum vel ut.
         </Text>
       </section>
-
-      <hr className="border-t border-accents-2 my-6" />
 
       <section className="flex flex-col gap-3">
         <Text variant="h2">Header</Text>
