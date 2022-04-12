@@ -6,6 +6,11 @@ const CSS = ['Tailwind', 'CSS Modules']
 
 export default function getTemplate(readme) {
   const { body, attributes } = frontMatter(readme)
+
+  if (attributes.marketplace === false) {
+    return { body }
+  }
+
   const template = {
     name: attributes.name,
     slug: attributes.slug,

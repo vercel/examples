@@ -4,21 +4,6 @@ import initContentful from './lib/contentful.mjs'
 import getReadme from './lib/get-readme.mjs'
 import getTemplate from './lib/get-template.mjs'
 
-/**
- * What's the plan here?
- *
- * Update templates after a PR is merged, for the template that changed.
- *
- * If the template doesn't exist yet, insert it as a Draft after a PR is merged.
- * It's likely that every template will require some manual updates before the
- * template is ready to be published.
- *
- * Allow certain templates to not be added.
- *
- * Have a way to update all of the templates in bulk, at least while we don't have
- * a way of using GH actions
- */
-
 // Add the contentful API from `.env.local` to env
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') })
 
@@ -54,6 +39,11 @@ async function updateTemplate() {
   }
 
   const { body: readmeBody, template } = getTemplate(readme)
+
+  if (!template) {
+    log(`Ignoring "${examplePath}" because it has Marketplace disabled.`)
+    return
+  }
 
   template.githubUrl = `https://github.com${path.join(
     '/vercel/examples/tree/main',
