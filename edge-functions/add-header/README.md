@@ -1,6 +1,6 @@
 ---
-name: Adding Headers
-slug: add-header
+name: Adding Headers in Edge Functions
+slug: edge-functions-add-header
 description: Learn to add headers at the edge.
 framework: Next.js
 useCase:

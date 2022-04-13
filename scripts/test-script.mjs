@@ -3,28 +3,47 @@ import fs from 'fs/promises'
 import log from './lib/log.mjs'
 
 const DIRS = ['edge-functions', 'solutions']
-
-console.log('DIFF', process.argv[2])
+const changedFiles = process.argv.slice(2)
 
 async function updateAllTemplates() {
-  const promises = DIRS.map(async (dirPath) => {
-    log(`Updating all templates in ${dirPath}...`)
+  // const promises = DIRS.map(async (dirPath) => {
+  //   log(`Updating all templates in ${dirPath}...`)
 
-    const files = await fs.readdir(dirPath)
+  //   const files = await fs.readdir(dirPath)
 
-    await Promise.all(
-      files.map(async (fileName) => {
-        const examplePath = path.join(dirPath, fileName)
-        const isDir = (await fs.lstat(examplePath)).isDirectory()
+  //   await Promise.all(
+  //     files.map(async (fileName) => {
+  //       const examplePath = path.join(dirPath, fileName)
+  //       const isDir = (await fs.lstat(examplePath)).isDirectory()
 
-        if (!isDir) return
+  //       if (!isDir) return
 
-        log(examplePath)
-      })
-    )
-  })
+  //       if (changedFiles.includes) {
 
-  return Promise.all(promises)
+  //       log(examplePath)
+  //     })
+  //   )
+  // })
+
+  await Promise.all(
+    changedFiles.map(async (fileName) => {
+      if (
+        !DIRS.some((dir) => fileName.startsWith(`${dir}/`)) ||
+        !fileName.test(/readme\.md$/i)
+      ) {
+        return
+      }
+
+      // const examplePath = path.dirname(dirPath)
+      // const isDir = (await fs.lstat(examplePath)).isDirectory()
+
+      // if (!isDir) return
+
+      log(fileName)
+    })
+  )
+
+  // return Promise.all(promises)
 }
 
 updateAllTemplates().catch((err) => {
