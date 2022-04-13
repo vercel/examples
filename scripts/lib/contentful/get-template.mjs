@@ -4,7 +4,7 @@ const FRAMEWORKS = ['Next.js']
 const USE_CASES = ['Edge Functions']
 const CSS = ['Tailwind', 'CSS Modules']
 
-export default function getTemplate(readme) {
+export default function getTemplate(readme, examplePath) {
   const { body, attributes } = frontMatter(readme)
 
   if (attributes.marketplace === false) {
@@ -26,7 +26,7 @@ export default function getTemplate(readme) {
     // Right now all fields are required
     if (!template[field]?.length) {
       throw new Error(
-        `Missing required template fields:
+        `Missing required template fields for ${examplePath}:
         ${JSON.stringify(template, null, 2)}
         `
       )

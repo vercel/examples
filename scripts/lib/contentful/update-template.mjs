@@ -28,7 +28,7 @@ export default async function updateTemplate({ lang, examplePath }) {
     throw new Error('No readme.md found in example directory')
   }
 
-  const { body: readmeBody, template } = getTemplate(readme)
+  const { body: readmeBody, template } = getTemplate(readme, examplePath)
 
   if (!template) {
     log(`Ignoring "${examplePath}" because it has Marketplace disabled.`)
