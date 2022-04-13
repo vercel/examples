@@ -1,4 +1,14 @@
-# DataDome
+---
+name: Bot Protection with DataDome
+slug: bot-protection-datadome
+description: DataDome can provide real-time bot protection and other security protections to any website. In this template we'll be using it at the edge.
+framework: Next.js
+useCase: Edge Functions
+css: Tailwind
+demoUrl: https://edge-functions-bot-protection-datadome.vercel.app
+---
+
+# Bot Protection with DataDome
 
 [DataDome](https://datadome.co/) can provide real-time bot protection and other security protections to any website. In this demo we'll be using it at the edge.
 

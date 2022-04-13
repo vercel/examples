@@ -1,3 +1,15 @@
+---
+name: Adding Headers
+slug: add-header
+description: Learn to add headers at the edge.
+framework: Next.js
+useCase:
+  - Edge Functions
+  - Documentation
+css: Tailwind
+demoUrl: https://edge-functions-add-header.vercel.app
+---
+
 # Add Header Example
 
 Below is the code from [pages/\_middleware.ts](pages/_middleware.ts) showing how to add headers at the edge:
