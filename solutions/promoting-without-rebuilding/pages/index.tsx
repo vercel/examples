@@ -34,7 +34,7 @@ function Home() {
         <Snippet>{`vercel alias <deployment> <domain>`}</Snippet>
         <Image src={aliased} alt="Vercel dashboard redeploy disclaimer" />
         <Text>
-          That will give us some air until we found and fix what is the problem with our app. The next time we deploy to production (using the CLI or merging to the production branch), the alias will be overwritten and the configured production domain will point to the new deployment.
+          That will give us some air until we found and fix the problem with our app. The next time we deploy to production (using the CLI or merging to the production branch), the alias will be overwritten and the configured production domain will point to the new deployment.
         </Text>
       </section>
     </Page>
