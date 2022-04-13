@@ -1,6 +1,6 @@
 # A/B testing with Statsig
 
-This example shows how to do A/B testing using [Statsig](https://www.statsig.com/).
+This example shows how to do A/B testing at the edge using [Statsig](https://www.statsig.com/).
 
 ## Demo
 
