@@ -1,0 +1,15 @@
+on: push
+jobs:
+  publish_template:
+    name: Publish Template
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Node Dependencies
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: Install npm Dependencies
+        run: npm install
+      - name: Publish template
+        run: npm run update-templates

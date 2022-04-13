@@ -1,3 +1,14 @@
+---
+name: API Rate Limiting with Upstash
+slug: api-rate-limit-upstash
+description: Template featuring API Rate limiting at the edge with Redis using Upstash.
+framework: Next.js
+useCase: Edge Functions
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN&project-name=api-rate-limit-upstash&repository-name=api-rate-limit-upstash
+demoUrl: https://edge-functions-api-rate-limit.vercel.app
+---
+
 # API Rate Limiting with Upstash
 
 This demo features API Rate limiting at the edge with Redis using [Upstash](https://upstash.com/).
@@ -12,7 +23,7 @@ https://edge-functions-api-rate-limit.vercel.app
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN&project-name=api-rate-limit&repository-name=api-rate-limit)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN&project-name=api-rate-limit-upstash&repository-name=api-rate-limit-upstash)
 
 ## Getting Started
 

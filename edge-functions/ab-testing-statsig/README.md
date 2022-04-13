@@ -1,3 +1,14 @@
+---
+name: A/B testing with Statsig
+slug: ab-testing-statsig
+description: Learn how to do A/B testing at the edge using Statsig.
+framework: Next.js
+useCase: Edge Functions
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig&project-name=ab-testing-statsig&repository-name=ab-testing-statsig&env=STATSIG_SERVER_API_KEY,NEXT_PUBLIC_STATSIG_CLIENT_KEY&envDescription=API%20keys%20used%20by%20statsig%20on%20the%20server%20and%20the%20client&envLink=https%3A%2F%2Fconsole.statsig.com
+demoUrl: https://edge-ab-testing-statsig.vercel.app
+---
+
 # A/B testing with Statsig
 
 This example shows how to do A/B testing at the edge using [Statsig](https://www.statsig.com/).

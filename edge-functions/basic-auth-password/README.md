@@ -1,3 +1,14 @@
+---
+name: Basic Auth Password Protection
+slug: basic-auth-password
+description: Password protect pages in your application using Edge Functions.
+framework: Next.js
+useCase: Edge Functions
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/basic-auth-password&project-name=basic-auth-password&repository-name=basic-auth-password
+demoUrl: https://edge-functions-basic-auth-password.vercel.app
+---
+
 # Basic Auth Password Protection
 
 Password protect pages in your application using Edge Functions.
