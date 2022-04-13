@@ -7,6 +7,7 @@
     "update": "node update-dep.mjs",
     "update-template": "node scripts/update-template.mjs",
     "update-all-templates": "node scripts/update-all-templates.mjs",
+    "update-all-templates-2": "node scripts/test-script.mjs",
     "new-example": "plop example",
     "lint-staged": "lint-staged",
     "prepare": "husky install"

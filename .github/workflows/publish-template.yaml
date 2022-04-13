@@ -6,11 +6,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Install Node Dependencies
         uses: actions/setup-node@v1
         with:
           node-version: 16.x
+
       - name: Install npm Dependencies
         run: npm install
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v18.7
+
       - name: Publish template
-        run: npm run update-all-templates
+        run: npm run update-all-templates-2 ${{ steps.changed-files.outputs.all_changed_files }}
