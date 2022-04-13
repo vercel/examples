@@ -51,11 +51,11 @@ export default async function updateTemplate({ lang, examplePath }) {
 
   // The entry is the "Template" we want to update
   const entryRes = await contentful(
-    `${envPath}/entries?CONTENT_TYPE=${CONTENT_TYPE}&fields.slug=${template.slug}`
+    `${envPath}/entries?content_type=${CONTENT_TYPE}&fields.slug=${template.slug}`
   )
   const entry = entryRes?.items[0]
 
-  // If the `CONTENT_TYPE` doesn't exist Contentful returns a `400` and we'll
+  // If the `content_type` doesn't exist Contentful returns a `400` and we'll
   // throw an error, so we can assume that it exists and it's valid from here on
 
   // Update the template
