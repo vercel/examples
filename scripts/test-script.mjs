@@ -29,7 +29,7 @@ async function updateAllTemplates() {
     changedFiles.map(async (fileName) => {
       if (
         !DIRS.some((dir) => fileName.startsWith(`${dir}/`)) ||
-        !fileName.test(/readme\.md$/i)
+        !/readme\.md$/i.test(fileName)
       ) {
         return
       }
