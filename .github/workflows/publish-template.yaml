@@ -1,3 +1,4 @@
+name: Publish Templates
 on: push
 jobs:
   publish_template:
@@ -12,4 +13,4 @@ jobs:
       - name: Install npm Dependencies
         run: npm install
       - name: Publish template
-        run: npm run update-templates
+        run: npm run update-all-templates
