@@ -8,7 +8,7 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env.local') })
 
 const DIRS = ['edge-functions', 'solutions']
 
-async function updateAllTemplates() {
+async function updateTemplates() {
   const promises = DIRS.map(async (dirPath) => {
     log(`Updating all templates in ${dirPath}...`)
 
@@ -31,7 +31,7 @@ async function updateAllTemplates() {
   return Promise.all(promises)
 }
 
-updateAllTemplates().catch((err) => {
+updateTemplates().catch((err) => {
   console.error(err)
   process.exit(1)
 })

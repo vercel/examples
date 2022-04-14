@@ -1,52 +1,51 @@
 import path from 'path'
 import fs from 'fs/promises'
+import dotenv from 'dotenv'
 import log from './lib/log.mjs'
+import updateTemplate from './lib/contentful/update-template.mjs'
+
+dotenv.config({ path: path.resolve(process.cwd(), '.env.local') })
 
 const DIRS = ['edge-functions', 'solutions']
+const IS_README = /readme\.md$/i
 const changedFiles = process.argv.slice(2)
 
-async function updateAllTemplates() {
-  // const promises = DIRS.map(async (dirPath) => {
-  //   log(`Updating all templates in ${dirPath}...`)
+async function updateTemplates() {
+  if (!changedFiles.length) {
+    log('No changed files.')
+    return
+  }
 
-  //   const files = await fs.readdir(dirPath)
+  const examplePaths = changedFiles.reduce((acc, fileName) => {
+    if (
+      // Check for changes in directories with examples
+      DIRS.some((dir) => fileName.startsWith(`${dir}/`)) &&
+      // Check for updates in the readme
+      IS_README.test(fileName)
+    ) {
+      const dirname = path.dirname(fileName)
 
-  //   await Promise.all(
-  //     files.map(async (fileName) => {
-  //       const examplePath = path.join(dirPath, fileName)
-  //       const isDir = (await fs.lstat(examplePath)).isDirectory()
+      // Check for readme updates that happened in example's root
+      if (dirname.split(path.sep).length === 2) {
+        acc.push(dirname)
+      }
+    }
+    return acc
+  }, [])
 
-  //       if (!isDir) return
-
-  //       if (changedFiles.includes) {
-
-  //       log(examplePath)
-  //     })
-  //   )
-  // })
+  if (!examplePaths.length) {
+    log('No changed readme.md files.')
+    return
+  }
 
   await Promise.all(
-    changedFiles.map(async (fileName) => {
-      if (
-        !DIRS.some((dir) => fileName.startsWith(`${dir}/`)) ||
-        !/readme\.md$/i.test(fileName)
-      ) {
-        return
-      }
-
-      // const examplePath = path.dirname(dirPath)
-      // const isDir = (await fs.lstat(examplePath)).isDirectory()
-
-      // if (!isDir) return
-
-      log(fileName)
-    })
+    examplePaths.map((examplePath) =>
+      updateTemplate({ lang: 'en-US', examplePath })
+    )
   )
-
-  // return Promise.all(promises)
 }
 
-updateAllTemplates().catch((err) => {
+updateTemplates().catch((err) => {
   console.error(err)
   process.exit(1)
 })
