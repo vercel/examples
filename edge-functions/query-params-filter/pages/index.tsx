@@ -8,7 +8,7 @@ export default function Index() {
       </Text>
       <Text>
         Any query param that&apos;s not <Code>allowed</Code> will be removed
-        from the URL
+        from the URL.
       </Text>
     </Page>
   )

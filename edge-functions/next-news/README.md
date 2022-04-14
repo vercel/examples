@@ -1,3 +1,14 @@
+---
+name: Next News
+slug: next-news
+description: Hacker news clone in Next.js.
+framework: Next.js
+useCase: Starter
+css: CSS-in-JSX
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/next-news&project-name=next-news&repository-name=next-news
+demoUrl: https://next-news.vercel.app
+---
+
 # Next News
 
 This is an example showing a hacker news clone using Next.js. Edge functions are used to show how a rewrite from `/` to `/news/1` works. Below is the code from [pages/\_middleware.ts](pages/_middleware.ts):
@@ -16,7 +27,7 @@ export default function middleware(req: NextRequest) {
 
 ## Demo
 
-https://next-news.vercel.app/
+https://next-news.vercel.app
 
 ## How to Use
 
@@ -26,7 +37,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/next-news&project-name=next-news&repository-name=next-news)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/next-news&project-name=next-news&repository-name=next-news)
 
 ### Clone and Deploy
 

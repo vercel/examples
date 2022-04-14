@@ -1,3 +1,16 @@
+---
+name: CORS in Edge Functions
+slug: edge-functions-cors
+description: Handle CORS at the edge.
+framework: Next.js
+useCase:
+  - Edge Functions
+  - Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/cors&project-name=cors&repository-name=cors
+demoUrl: https://edge-functions-cors.vercel.app
+---
+
 # CORS Example
 
 Below is the code from [pages/\_middleware.ts](pages/_middleware.ts):

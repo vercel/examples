@@ -23,9 +23,9 @@ You can choose from one of the following two methods to use this repository:
 
 ### One-Click Deploy
 
-After [setting up your environment variables](#set-up-environment-variables), deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig&project-name=ab-testing-statsig&repository-name=ab-testing-statsig&env=STATSIG_SERVER_API_KEY,NEXT_PUBLIC_STATSIG_CLIENT_KEY&envDescription=API%20keys%20used%20by%20statsig%20on%20the%20server%20and%20the%20client&envLink=https%3A%2F%2Fconsole.statsig.com)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig&project-name=ab-testing-statsig&repository-name=ab-testing-statsig&env=STATSIG_SERVER_API_KEY,NEXT_PUBLIC_STATSIG_CLIENT_KEY&envDescription=API%20keys%20used%20by%20statsig%20on%20the%20server%20and%20the%20client&envLink=https%3A%2F%2Fconsole.statsig.com)
 
 ### Clone and Deploy
 

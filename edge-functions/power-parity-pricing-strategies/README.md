@@ -1,6 +1,17 @@
-# Power parity pricing strategies example
+---
+name: Power Parity Pricing Strategies
+slug: power-parity-pricing-strategies
+description: Shows the differences between doing PPP at the edge using information from the geolocation object, Node.js SSR, and client-side rendering.
+framework: Next.js
+useCase: Edge Functions
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/power-parity-pricing-strategies&project-name=power-parity-pricing-strategies&repository-name=power-parity-pricing-strategies
+demoUrl: https://edge-mug.vercel.app
+---
 
-This example shows how to implement PPP using information from the request geolocation object on edge middleware to determine a user's location.
+# Power Parity Pricing Strategies
+
+The example shows the differences between doing PPP at the edge using information from the request geolocation object, Node.js SSR, and client-side rendering.
 
 ## Demo
 
@@ -14,7 +25,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/power-parity-pricing-strategies&project-name=power-parity-pricing-strategies&repository-name=power-parity-pricing-strategies)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/power-parity-pricing-strategies&project-name=power-parity-pricing-strategies&repository-name=power-parity-pricing-strategies)
 
 ### Clone and Deploy
 

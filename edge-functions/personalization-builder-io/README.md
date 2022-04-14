@@ -1,12 +1,50 @@
+---
+name: Builder.io Personalization Starter
+slug: personalization-builder-io
+description: Learn how to use Builder.io to personalize your Next.js pages.
+framework: Next.js
+useCase:
+  - Starter
+  - Edge Functions
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/personalization-builder-io&project-name=personalization-builder-io&env=BUILDER_PUBLIC_KEY,BUILDER_PRIVATE_KEY&project-name=personalization-builder-io&repo-name=personalization-builder-io
+demoUrl: https://nextjs-builder-edge-personalization.vercel.app
+---
+
 # Next.js + Builder.io Personalization Starter
 
 This example walks you through personalizing Builder.io landing pages with Next.js.
 
-## Overview
+## Demo
 
-To use this project, you need to do three things:
+https://nextjs-builder-edge-personalization.vercel.app
 
-1. Get a copy of this repo.
+[hold ctrl + right click to show all the different personalization options from your space]
+
+## How to Use
+
+You can choose from one of the following two methods to use this repository:
+
+### One-Click Deploy
+
+After [setting up your environment variables](#set-up-environment-variables), deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/personalization-builder-io&project-name=personalization-builder-io&env=BUILDER_PUBLIC_KEY,BUILDER_PRIVATE_KEY&project-name=personalization-builder-io&repo-name=personalization-builder-io)
+
+### Clone and Deploy
+
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+
+```bash
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig
+# or
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig
+```
+
+#### Set up environment variables
+
+To run this project, you need to do the following:
+
 1. Create a corresponding space in your account on [Builder.io](builder.io).
 1. Connect the two using the space's private and public keys.
 
@@ -60,25 +98,24 @@ To connect your Builder.io space and your application, set the site URL and get 
    <figcaption style="text-align: center">The Account icon takes you to important data about this space.</figcaption>
 </figure>
 
-1. Change the Site URL to `http://localhost:3000` and click to copy the Public API Key.
+2. Change the Site URL to `http://localhost:3000` and click to copy the Public API Key.
 
 <figure>
    <img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2Faec18bf8ccf543ab94c4230a7791c894" alt="Change the Site URL in account settings." width="400" style="display: block; margin: auto"/>
    <figcaption style="text-align: center">The Site URL and API Key are in the **Space** tab.</figcaption>
 </figure>
 
-1. In your code editor, configure `.env.production` and `.env.development` with the [Public API Key](https://builder.io/account/space) by adding a line to each file as follows, but using your Public API Key that you copied in the previous step.
-   For example:
+3. In your code editor, rename `.env.production.example` to `.env.production.local` and `.env.development.local` and update it with the [Public API Key](https://builder.io/account/space) as follows, but using your Public API Key that you copied in the previous step. For example:
 
-   ```shell
+   ```bash
    BUILDER_PUBLIC_KEY=08837cee608a405c806a3bed69acfe2d <-- replace this with your API Key
    ```
 
-Do the same for your private key
+   Do the same for your private key
 
-    ```shell
-    BUILDER_PRIVATE_KEY=xxx-xxxxx <-- replace this with your private API Key
-    ```
+   ```bash
+   BUILDER_PRIVATE_KEY=xxx-xxxxx <-- replace this with your private API Key
+   ```
 
 ## Running your application
 
@@ -86,13 +123,13 @@ To serve your application locally, install dependencies, serve, and view your pr
 
 1. Install dependencies by entering the follw\owing at the command line.
 
-   ```
+   ```bash
    npm install
    ```
 
 1. Serve your application by running the following at the command line:
 
-   ```
+   ```bash
    npm run dev
    ```
 
@@ -101,22 +138,9 @@ To serve your application locally, install dependencies, serve, and view your pr
 ### Experimenting
 
 Now that you have a configured Builder.io space and a running application, start by creating a page, assign any URL, publish and preview.
-For more detail and ideas on creating pages, see [Creating a landing page in Builder
-](https://www.builder.io/c/docs/creating-a-landing-page).
+For more detail and ideas on creating pages, see [Creating a landing page in Builder.io](https://www.builder.io/c/docs/creating-a-landing-page).
 
 \*[Create custom targeting attributes](https://www.builder.io/c/docs/guides/targeting-and-scheduling#custom-targeting), those targeting attributes can be used when creating new content specific for a target audience.
-
-## Demo
-
-https://nextjs-builder-edge-personalization.vercel.app/
-
-[hold ctrl + right click to show all the different personalization options from your space]
-
-### One-Click Deploy
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel-customer-feedback/edge-functions/tree/main/examples/ab-personalization-builder-io&project-name=ab-testing-simple&env=BUILDER_PUBLIC_KEY,BUILDER_PRIVATE_KEY&project-name=personalization-edge&repo-name=personalizatin-edge)
 
 ## Next steps
 

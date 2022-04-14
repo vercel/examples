@@ -1,7 +1,7 @@
 ---
 name: Bot Detection with Botd
 slug: bot-protection-botd
-description: Botd (by FingerprintJS) is a browser library for bot detection. In this template we'll be using it alongside botd-integrations for bot detection at the edge.
+description: Botd is a browser library for bot detection. In this template we'll be using it alongside botd-integrations for bot detection at the edge.
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind

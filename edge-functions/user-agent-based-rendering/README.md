@@ -1,3 +1,14 @@
+---
+name: User-Agent Based Rendering
+slug: edge-functions-user-agent-based-rendering
+description: Learn how to render a different page based on the User-Agent header.
+framework: Next.js
+useCase: Edge Functions
+css: Tailwind
+deployUrl: https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/user-agent-based-rendering&project-name=user-agent-based-rendering&repository-name=user-agent-based-rendering
+demoUrl: https://edge-user-agent-based-rendering.vercel.app
+---
+
 # User-Agent Based Rendering
 
 This example shows how to render a different page based on the [User-Agent header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent).
