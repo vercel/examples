@@ -1,7 +1,7 @@
 ---
 name: A/B Testing Simple
 slug: ab-testing-simple
-description: By A/B testing at the edge, you'll reduce layout shift from client-loaded experiments and improve your site's performance with smaller JavaScript bundles.
+description: By A/B testing at the edge, you'll reduce CLS from client-loaded experiments and improve your site's performance with smaller JS bundles.
 framework: Next.js
 useCase:
   - Edge Functions

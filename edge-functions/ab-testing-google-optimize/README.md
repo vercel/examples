@@ -1,7 +1,7 @@
 ---
 name: A/B Testing with Google Optimize
 slug: ab-testing-google-optimize
-description: Learn to use Google Optimize. Google' optimization tool and A/B testing solution, natively integrated with Google Analytics. In this template we'll do A/B testing with Optimize experiments at the edge.
+description: Learn to use Google Optimize as an A/B testing solution for experimentation at the edge.
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind
