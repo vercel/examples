@@ -1,3 +1,7 @@
+---
+marketplace: false
+---
+
 # A/B Testing with PostHog
 
 [PostHog](https://posthog.com/) is an open-source product analytics platform that offers a suite of tools, including funnels, heat maps, session recording, feature flags and more, all in a single platform.

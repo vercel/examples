@@ -1,4 +1,17 @@
-# Hostname Rewrites Example
+---
+name: Hostname Rewrites using Edge Functions
+slug: hostname-rewrites
+description: Learn how to programmatically create unique content pages for your users with a multi-tenant infrastructure using Edge Middleware. Each user gets assigned a unique subdomain when they create their account, with the (usually paid) option to add a custom domain.
+framework: Next.js
+useCase:
+  - Edge Functions
+  - Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/hostname-rewrites&env=ROOT_URL&project-name=hostname-rewrites&repository-name=hostname-rewrites
+demoUrl: https://custom-domain-1.com
+---
+
+# Hostname Rewrites
 
 > If you're building a Platforms on Vercel, this example is for you.
 

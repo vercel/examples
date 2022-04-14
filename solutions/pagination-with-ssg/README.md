@@ -1,3 +1,14 @@
+---
+name: Pagination with SSG
+slug: pagination-with-ssg
+description: Learn to implement page based pagination with Next.js and Vercel.
+framework: Next.js
+useCase: Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/pagination-with-ssg&project-name=pagination-with-ssg&repository-name=pagination-with-ssg
+demoUrl: https://pagination-with-ssg.vercel.app
+---
+
 # Pagination with SSG
 
 This example shows how to implement page based pagination with [SSG](https://nextjs.org/docs/basic-features/data-fetching/get-static-props) in Next.js.
@@ -38,7 +49,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/pagination-with-ssg&project-name=pagination-with-ssg&repository-name=pagination-with-ssg)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/pagination-with-ssg&project-name=pagination-with-ssg&repository-name=pagination-with-ssg)
 
 ### Clone and Deploy
 

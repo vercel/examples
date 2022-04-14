@@ -1,3 +1,16 @@
+---
+name: A/B Testing Simple
+slug: ab-testing-simple
+description: By A/B testing at the edge, you'll reduce CLS from client-loaded experiments and improve your site's performance with smaller JS bundles.
+framework: Next.js
+useCase:
+  - Edge Functions
+  - Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-simple&project-name=ab-testing-simple&repository-name=ab-testing-simple
+demoUrl: https://edge-functions-ab-testing-simple.vercel.app
+---
+
 # A/B Testing Simple
 
 By A/B testing at the edge, you'll reduce layout shift from client-loaded experiments and improve your site's performance with smaller JavaScript bundles.
@@ -37,7 +50,7 @@ export function middleware(req: NextRequest) {
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-simple&project-name=ab-testing-simple&repository-name=ab-testing-simple)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-simple&project-name=ab-testing-simple&repository-name=ab-testing-simple)
 
 ## Getting Started
 

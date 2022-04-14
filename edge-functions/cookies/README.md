@@ -1,10 +1,23 @@
+---
+name: Adding Cookies
+slug: cookies
+description: Read and write cookies directly at the edge.
+framework: Next.js
+useCase:
+  - Edge Functions
+  - Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/cookies&project-name=cookies&repository-name=cookies
+demoUrl: https://edge-functions-cookies.vercel.app
+---
+
 # Cookies Example
 
 You can read and write cookies directly on the edge and action as needed.
 
 ## Demo
 
-https://edge-functions-cookies.vercel.app/
+https://edge-functions-cookies.vercel.app
 
 Since you can read cookies on the edge and rewrite the user to a statically generated page, eliminates the need of using getServerSideProps + redirect just to access the cookie, hence improving your site's performance and mantaining the same url.
 

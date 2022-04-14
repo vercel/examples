@@ -1,4 +1,21 @@
+---
+name: Filtering Query Parameters
+slug: edge-functions-filter-query-params
+description: Learn how to filter query params in Edge Functions.
+framework: Next.js
+useCase:
+  - Edge Functions
+  - Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/query-params-filter&project-name=query-params-filter&repository-name=query-params-filter
+demoUrl: https://edge-functions-query-params-filter.vercel.app
+---
+
 # Filtering Query Parameters
+
+The example shows how to filter query parameters from the URL using Edge Functions.
+
+To see how it works, check the middleware function in [`pages/_middleware.ts`](pages/_middleware.ts):
 
 ```ts
 import { NextRequest, NextResponse } from 'next/server'
@@ -24,9 +41,6 @@ export function middleware(req: NextRequest) {
 }
 ```
 
-**Before URL:** http://localhost:3000?a=b&allowed=test
-**After URL:** http://localhost:3000?allowed=test
-
 ## Demo
 
 https://edge-functions-query-params-filter.vercel.app
@@ -39,7 +53,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/query-params-filter&project-name=query-params-filter&repository-name=query-params-filter)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/query-params-filter&project-name=query-params-filter&repository-name=query-params-filter)
 
 ### Clone and Deploy
 
@@ -62,5 +76,9 @@ npm run dev
 yarn
 yarn dev
 ```
+
+**Before URL:** http://localhost:3000?a=b&allowed=test
+
+**After URL:** http://localhost:3000?allowed=test
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).

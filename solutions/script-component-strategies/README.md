@@ -1,3 +1,7 @@
+---
+marketplace: false
+---
+
 # next/script strategies example
 
 This example shows how to use different strategies for next/script.
@@ -14,7 +18,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/script-component-strategies&project-name=script-component-strategies&repository-name=script-component-strategies)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/script-component-strategies&project-name=script-component-strategies&repository-name=script-component-strategies)
 
 ### Clone and Deploy
 

@@ -1,3 +1,16 @@
+---
+name: Geolocation in Edge functions
+slug: edge-functions-geolocation
+description: Learn how to use visitor's location in edge functions.
+framework: Next.js
+useCase:
+  - Edge Functions
+  - Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/geolocation&project-name=geolocation&repository-name=geolocation
+demoUrl: https://edge-functions-geolocation.vercel.sh
+---
+
 # Geolocation
 
 This example shows how to use the `event.request.geo` object to determine a user's location.

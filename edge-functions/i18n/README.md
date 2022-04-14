@@ -1,4 +1,15 @@
-# i18n example
+---
+name: i18n in Edge functions
+slug: edge-functions-i18n
+description: This template shows how to redirect users based on i18n configuration.
+framework: Next.js
+useCase: Edge Functions
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/i18n&project-name=i18n&repository-name=i18n
+demoUrl: https://edge-functions-i18n.vercel.app
+---
+
+# i18n
 
 This example shows how to redirect users based on i18n configuration.
 
@@ -14,7 +25,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/i18n&project-name=i18n&repository-name=i18n)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/i18n&project-name=i18n&repository-name=i18n)
 
 ### Clone and Deploy
 

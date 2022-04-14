@@ -1,3 +1,14 @@
+---
+name: Bot Detection with Botd
+slug: bot-protection-botd
+description: Botd is a browser library for bot detection. In this template we'll be using it alongside botd-integrations for bot detection at the edge.
+framework: Next.js
+useCase: Edge Functions
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/bot-protection-botd&env=NEXT_PUBLIC_BOTD_API_TOKEN&project-name=bot-protection-botd&repository-name=bot-protection-botd
+demoUrl: https://edge-functions-bot-protection-botd.vercel.app
+---
+
 # Bot Detection with Botd
 
 [Botd](https://github.com/fingerprintjs/botd) (by [FingerprintJS](https://fingerprintjs.com/)) is a browser library for bot detection. In this demo we'll be using it alongside [botd-integrations](https://github.com/fingerprintjs/botd-integrations) for bot detection at the edge.

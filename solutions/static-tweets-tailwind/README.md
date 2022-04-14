@@ -1,3 +1,7 @@
+---
+marketplace: false
+---
+
 # Static Tweets (Tailwind)
 
 This code snippet shows you how you can generate static tweets using Tailwind CSS & `getStaticProps` in Next.js.
@@ -27,7 +31,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=platforms-eap):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/static-tweets-tailwind&project-name=static-tweets-tailwind&repository-name=static-tweets-tailwind)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/static-tweets-tailwind&project-name=static-tweets-tailwind&repository-name=static-tweets-tailwind)
 
 **Clone and Deploy**
 

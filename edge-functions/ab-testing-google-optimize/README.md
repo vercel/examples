@@ -1,3 +1,14 @@
+---
+name: A/B Testing with Google Optimize
+slug: ab-testing-google-optimize
+description: Learn to use Google Optimize as an A/B testing solution for experimentation at the edge.
+framework: Next.js
+useCase: Edge Functions
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-google-optimize&project-name=ab-testing-google-optimize&repository-name=ab-testing-google-optimize
+demoUrl: https://edge-functions-ab-testing-google-optimize.vercel.app
+---
+
 # A/B Testing with Google Optimize
 
 [Google Optimize](https://marketingplatform.google.com/about/optimize/) is Google' optimization tool and A/B testing solution, natively integrated with Google Analytics. In this example we'll do A/B testing with Optimize experiments at the edge.

@@ -1,3 +1,7 @@
+---
+marketplace: false
+---
+
 # Clerk Authentication at the edge
 
 This demo features authentication at the edge using [Clerk](https://clerk.dev/?utm_source=vercel&utm_medium=github&utm_campaign=edge-authentication).

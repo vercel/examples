@@ -1,3 +1,14 @@
+---
+name: ContentStack Commerce
+slug: cms-contentstack-commerce
+description: Learn to use ContentStack SDK to create apps with Next.js and Vercel.
+framework: Next.js
+useCase: Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/cms-contentstack-commerce&project-name=cms-contentstack-commerce&repository-name=cms-contentstack-commerce&env=CONTENTSTACK_API_KEY,CONTENTSTACK_ACCESS_TOKEN,CONTENTSTACK_ENV
+demoUrl: https://solutions-cms-contentstack-commerce.vercel.app
+---
+
 # ContentStack Commerce Demo
 
 This examples shows how to use ContentStack SDK to create apps with Next.js and Vercel
@@ -14,16 +25,16 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/reuse-responses&project-name=reuse-responses&repository-name=reuse-responses)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/cms-contentstack-commerce&project-name=cms-contentstack-commerce&repository-name=cms-contentstack-commerce&env=CONTENTSTACK_API_KEY,CONTENTSTACK_ACCESS_TOKEN,CONTENTSTACK_ENV)
 
 ### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/solutions/reuse-responses reuse-responses
+npx create-next-app --example https://github.com/vercel/examples/tree/main/solutions/cms-contentstack-commerce cms-contentstack-commerce
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/solutions/reuse-responses reuse-responses
+yarn create next-app --example https://github.com/vercel/examples/tree/main/solutions/cms-contentstack-commerce cms-contentstack-commerce
 ```
 
 Copy the `.env.example` file in this directory to `.env.local` and set your Contentstack settings

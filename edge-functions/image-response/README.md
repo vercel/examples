@@ -1,3 +1,7 @@
+---
+marketplace: false
+---
+
 # Image Response Example
 
 Below is the code from pages/\_middleware.ts that parses a png to a blob and returns it as the response body:

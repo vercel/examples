@@ -1,3 +1,7 @@
+---
+marketplace: false
+---
+
 # JSON Response Example
 
 ```ts
