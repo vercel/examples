@@ -9,7 +9,7 @@ export default async function getReadme(path) {
   }
 
   return fs
-    .readFile(`./${path}/readme.md`, 'utf8')
+    .readFile(`./${path}/README.md`, 'utf8')
     .then((str) => str)
     .catch((err) => {
       if (err.code !== 'ENOENT') throw err

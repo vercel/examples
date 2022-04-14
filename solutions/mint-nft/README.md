@@ -1,3 +1,14 @@
+---
+name: Mint a single NFT with Moralis
+slug: mint-nft-moralis
+description: This example shows how to connect a Metamask wallet with a Next.js app and how to mint NFTs using Moralis, a popular backend service provider for Web3 apps.
+framework: Next.js
+useCase: Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/mint-nft&project-name=mint-nft&repository-name=mint-nft&env=NEXT_PUBLIC_APP_ID,NEXT_PUBLIC_SERVER_URL,NEXT_PUBLIC_SERVER_DOMAIN
+demoUrl: https://solutions-mint-nft.vercel.app
+---
+
 # mint-nft example
 
 This example shows how to mint an NFT using Next.js and [Moralis](https://moralis.io/)
@@ -14,7 +25,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/mint-nft&project-name=mint-nft&repository-name=mint-nft)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/mint-nft&project-name=mint-nft&repository-name=mint-nft&env=NEXT_PUBLIC_APP_ID,NEXT_PUBLIC_SERVER_URL,NEXT_PUBLIC_SERVER_DOMAIN)
 
 ### Clone and Deploy
 

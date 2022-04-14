@@ -1,3 +1,14 @@
+---
+name: Loading Ads with the Script Component
+slug: script-component-ad
+description: Learn to lazy load ads using the Next.js Script Component.
+framework: Next.js
+useCase: Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/script-component-ad&project-name=script-component-ad&repository-name=script-component-ad
+demoUrl: https://solutions-script-component-ad.vercel.app
+---
+
 # Loading Ads with the Script Component
 
 This example shows how to lazy load ads using the [Next.js Script Component](https://nextjs.org/docs/basic-features/script).
@@ -14,7 +25,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/script-component-ad&project-name=script-component-ad&repository-name=script-component-ad)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/script-component-ad&project-name=script-component-ad&repository-name=script-component-ad)
 
 ### Clone and Deploy
 

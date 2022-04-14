@@ -1,3 +1,7 @@
+---
+marketplace: false
+---
+
 # Authentication with Ory
 
 This example shows how to add authentication to your Lambda functions using the

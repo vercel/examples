@@ -1,3 +1,14 @@
+---
+name: Web3 Data Fetching
+slug: web3-data-fetching
+description: Smart contracts contain relevant information to applications built on top of blockchains that can run the Ethereum Virtual Machine. Some of the information in these contracts can be exposed in the form of View functions that do not need gas or fees to be executed. Now we will explore how to get that information in Next.js.
+framework: Next.js
+useCase: Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/web3-data-fetching&project-name=web3-data-fetching&repository-name=web3-data-fetching
+demoUrl: https://web3-data-fetching.vercel.app/
+---
+
 # web3-data-fetching example
 
 This example shows how to fetch data from the blockchain in Next.js
@@ -20,7 +31,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/web3-data-fetching&project-name=web3-data-fetching&repository-name=web3-data-fetching)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/web3-data-fetching&project-name=web3-data-fetching&repository-name=web3-data-fetching)
 
 ### Clone and Deploy
 

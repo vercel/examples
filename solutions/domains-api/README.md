@@ -1,3 +1,14 @@
+---
+name: Domains API
+slug: domains-api
+description: Learn to leverage Vercel's Domains API to add and remove domains programmatically from your Platforms on Vercel project.
+framework: Next.js
+useCase: Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/domains-api&project-name=domains-api&repository-name=domains-api&env=AUTH_BEARER_TOKEN,VERCEL_PROJECT_ID,VERCEL_TEAM_ID
+demoUrl: https://domains-api.vercel.app
+---
+
 # Domains API
 
 This code snippet shows you how you can leverage Vercel's Domains API to add and remove domains programmatically from your Platforms on Vercel project.
@@ -65,7 +76,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=platforms-eap):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/domains-api&project-name=domains-api&repository-name=domains-api)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/domains-api&project-name=domains-api&repository-name=domains-api&env=AUTH_BEARER_TOKEN,VERCEL_PROJECT_ID,VERCEL_TEAM_ID)
 
 **Clone and Deploy**
 

@@ -1,3 +1,7 @@
+---
+marketplace: false
+---
+
 # next/image offset example
 
 This example shows how lazy loading works on next/image.
@@ -14,7 +18,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/image-offset&project-name=image-offset&repository-name=image-offset)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/image-offset&project-name=image-offset&repository-name=image-offset)
 
 ### Clone and Deploy
 

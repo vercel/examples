@@ -1,3 +1,7 @@
+---
+marketplace: false
+---
+
 # Subdomain Auth Example
 
 - [solutions-subdomain-auth.vercel.sh](https://solutions-subdomain-auth.vercel.sh) (login from here)
@@ -15,7 +19,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/subdomain-auth&project-name=subdomain-auth&repository-name=subdomain-auth)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/subdomain-auth&project-name=subdomain-auth&repository-name=subdomain-auth)
 
 **Clone and Deploy**
 

@@ -1,3 +1,7 @@
+---
+marketplace: false
+---
+
 # On demand ISR
 
 This example shows how to use on demand ISR to revalidate content when a user clicks a button or a webhook calls an API route.
@@ -20,7 +24,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/on-demand-isr&project-name=on-demand-isr&repository-name=on-demand-isr)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/on-demand-isr&project-name=on-demand-isr&repository-name=on-demand-isr)
 
 #### Clone and Deploy
 

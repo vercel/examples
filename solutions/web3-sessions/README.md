@@ -1,3 +1,14 @@
+---
+name: Web3 Sessions
+slug: web3-sessions
+description: In a decentralized application, a user is often identified by a Cryptocurrency wallet such as Metamask. However, since Metamask works by injecting a script into the page, it is only available on the client, cutting off the ability to use getServerSideProps to fetch user data.
+framework: Next.js
+useCase: Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/web3-sessions&project-name=web3-sessions&repository-name=web3-sessions
+demoUrl: https://web3-sessions.vercel.app/
+---
+
 # Web3 Sessions
 
 This example shows how create sessions in Next.js with [Metamask](https://metamask.io/) and [NextAuth.js](https://next-auth.js.org/).
@@ -16,7 +27,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/web3-sessions&project-name=web3-sessions&repository-name=web3-sessions)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/web3-sessions&project-name=web3-sessions&repository-name=web3-sessions)
 
 ### Clone and Deploy
 
