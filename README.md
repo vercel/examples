@@ -40,5 +40,6 @@ If you have any questions or suggestions about the docs, feel free to [open a di
 
 ## Provide Feedback
 
+
 - [Start a Discussion](https://github.com/vercel/examples/discussions) with a question, piece of feedback, or idea you want to share with the team.
 - [Open an Issue](https://github.com/vercel/examples/issues) if you believe you've encountered a bug that you want to flag for the team.
