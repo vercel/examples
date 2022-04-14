@@ -5,9 +5,7 @@
   "scripts": {
     "prettier": "prettier --write .",
     "update": "node update-dep.mjs",
-    "update-template": "node scripts/update-template.mjs",
-    "update-all-templates": "node scripts/update-all-templates.mjs",
-    "update-all-templates-2": "node scripts/test-script.mjs",
+    "update-templates": "node scripts/update-templates.mjs",
     "new-example": "plop example",
     "lint-staged": "lint-staged",
     "prepare": "husky install"

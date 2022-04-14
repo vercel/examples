@@ -7,28 +7,42 @@ import updateTemplate from './lib/contentful/update-template.mjs'
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') })
 
 const DIRS = ['edge-functions', 'solutions']
+const IS_README = /readme\.md$/i
+const changedFiles = process.argv.slice(2)
 
 async function updateTemplates() {
-  const promises = DIRS.map(async (dirPath) => {
-    log(`Updating all templates in ${dirPath}...`)
+  if (!changedFiles.length) {
+    log('No changed files.')
+    return
+  }
 
-    const files = await fs.readdir(dirPath)
+  const examplePaths = changedFiles.reduce((acc, fileName) => {
+    if (
+      // Check for changes in directories with examples
+      DIRS.some((dir) => fileName.startsWith(`${dir}/`)) &&
+      // Check for updates in the readme
+      IS_README.test(fileName)
+    ) {
+      const dirname = path.dirname(fileName)
 
-    await Promise.all(
-      files.map(async (fileName) => {
-        const examplePath = path.join(dirPath, fileName)
-        const isDir = (await fs.lstat(examplePath)).isDirectory()
+      // Check for readme updates that happened in example's root
+      if (dirname.split(path.sep).length === 2) {
+        acc.push(dirname)
+      }
+    }
+    return acc
+  }, [])
 
-        if (!isDir) return
+  if (!examplePaths.length) {
+    log('No changed readme.md files.')
+    return
+  }
 
-        console.log('DUD', examplePath)
-
-        return updateTemplate({ lang: 'en-US', examplePath })
-      })
+  await Promise.all(
+    examplePaths.map((examplePath) =>
+      updateTemplate({ lang: 'en-US', examplePath })
     )
-  })
-
-  return Promise.all(promises)
+  )
 }
 
 updateTemplates().catch((err) => {
