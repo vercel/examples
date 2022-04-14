@@ -21,3 +21,8 @@ jobs:
 
       - name: Publish template
         run: npm run update-all-templates-2 ${{ steps.changed-files.outputs.all_changed_files }}
+        env:
+          CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          CONTENTFUL_ENVIRONMENT: ${{ secrets.CONTENTFUL_ENVIRONMENT }}
+          CONTENTFUL_CONTENT_TYPE: ${{ secrets.CONTENTFUL_CONTENT_TYPE }}
