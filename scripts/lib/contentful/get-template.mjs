@@ -2,7 +2,7 @@ import frontMatter from 'front-matter'
 
 const FRAMEWORKS = ['Next.js']
 const USE_CASES = ['Edge Functions', 'Documentation']
-const CSS = ['Tailwind', 'CSS Modules']
+const CSS = ['Tailwind', 'CSS Modules', 'CSS-in-JSX']
 
 export default function getTemplate(readme, examplePath) {
   const { body, attributes } = frontMatter(readme)
@@ -18,6 +18,7 @@ export default function getTemplate(readme, examplePath) {
     framework: [].concat(attributes.framework),
     useCase: [].concat(attributes.useCase),
     css: [].concat(attributes.css),
+    deployUrl: attributes.deployUrl,
     demoUrl: attributes.demoUrl,
     publisher: attributes.publisher ?? '▲ Vercel',
   }
