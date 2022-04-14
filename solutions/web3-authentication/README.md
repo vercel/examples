@@ -4,7 +4,7 @@ This example shows how to implement web3 authentication with Next.js
 
 ## Demo
 
-https://web3-authentication.vercel.app
+https://solutions-web3-authentication.vercel.app
 
 ## How to Use
 
