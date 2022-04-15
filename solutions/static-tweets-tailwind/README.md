@@ -1,5 +1,6 @@
 ---
 marketplace: false
+reason: A static tweet template was already added to templates
 ---
 
 # Static Tweets (Tailwind)
