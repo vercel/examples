@@ -43,6 +43,7 @@ This working demo site was built using the Platforms Starter Kit and:
 - [NextAuth.js](https://next-auth.js.org/) for authentication
 - [Vercel](http://vercel.com/) for deployment
 
+  
 ## Contributing
 
 - [Start a discussion](https://github.com/vercel/platforms/discussions) with a question, piece of feedback, or idea you want to share with the team.
