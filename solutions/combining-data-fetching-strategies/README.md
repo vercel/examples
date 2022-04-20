@@ -1,5 +1,12 @@
 ---
-marketplace: false
+name: Combining data fetching strategies
+slug: combining-data-fetching-strategies
+description: Learn how to use different data fetching strategies to avoid switching from static pre-rendering.
+framework: Next.js
+useCase: Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/combining-data-fetching-strategies&project-name=combining-data-fetching-strategies&repository-name=combining-data-fetching-strategies
+demoUrl: https://solutions-combining-data-fetching-strategies.vercel.app
 ---
 
 # Combining data fetching strategies example

@@ -1,5 +1,12 @@
 ---
-marketplace: false
+name: next/image loading offset
+slug: image-offset
+description: Learn how lazy loading works on next/image.
+framework: Next.js
+useCase: Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/image-offset&project-name=image-offset&repository-name=image-offset
+demoUrl: https://solutions-image-offset.vercel.app
 ---
 
 # next/image offset example

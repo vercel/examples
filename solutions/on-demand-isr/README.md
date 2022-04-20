@@ -1,5 +1,6 @@
 ---
 marketplace: false
+reason: We already have another template for on demand ISR
 ---
 
 # On demand ISR

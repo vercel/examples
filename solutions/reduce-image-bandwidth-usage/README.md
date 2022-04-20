@@ -1,5 +1,12 @@
 ---
-marketplace: false
+name: Reducing bandwidth usage with next/image
+slug: reduce-image-bandwidth-usage
+description: Learn how to reduce bandwidth and processing costs when using different layouts.
+framework: Next.js
+useCase: Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/reduce-image-bandwidth-usage&project-name=reduce-image-bandwidth-usage&repository-name=reduce-image-bandwidth-usage
+demoUrl: https://solutions-reduce-image-bandwidth-usage.vercel.sh
 ---
 
 # Reduce next/image bandwidth usage

@@ -1,5 +1,12 @@
 ---
-marketplace: false
+name: Reusing responses at build time
+slug: solutions-reuse-responses
+description: Learn how to use file system cache to share responses across calls.
+framework: Next.js
+useCase: Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/reuse-responses&project-name=reuse-responses&repository-name=reuse-responses
+demoUrl: https://solutions-reuse-responses.vercel.app
 ---
 
 # Reusing responses
