@@ -1,6 +1,6 @@
 ---
 marketplace: false
-reason: A static tweet template was already added to templates
+reason: https://github.com/lfades/static-tweet is very similar to this one
 ---
 
 # Static Tweets (Tailwind)
