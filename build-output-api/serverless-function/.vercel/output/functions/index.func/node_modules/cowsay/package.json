@@ -1,0 +1,63 @@
+{
+  "name": "cowsay",
+  "version": "1.5.0",
+  "description": "cowsay is a configurable talking cow",
+  "keywords": [
+    "cow",
+    "cowsay",
+    "cowthink",
+    "figlet",
+    "talking",
+    "ASCII"
+  ],
+  "homepage": "https://github.com/piuccio/cowsay",
+  "author": {
+    "name": "Fabio Crisci",
+    "email": "piuccio@gmail.com",
+    "url": "https://github.com/piuccio/"
+  },
+  "license": "MIT",
+  "main": "./index",
+  "types": "./index.d.ts",
+  "module": "./build/cowsay.es.js",
+  "browser": "./build/cowsay.umd.js",
+  "bin": {
+    "cowsay": "./cli.js",
+    "cowthink": "./cli.js"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "cli.js",
+    "build/",
+    "cows/",
+    "lib/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/piuccio/cowsay.git"
+  },
+  "scripts": {
+    "prepare": "rollup -c",
+    "test": "tape test/**/*.js | tap-dot"
+  },
+  "dependencies": {
+    "get-stdin": "8.0.0",
+    "string-width": "~2.1.1",
+    "strip-final-newline": "2.0.0",
+    "yargs": "15.4.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "15.0.0",
+    "@rollup/plugin-node-resolve": "9.0.0",
+    "execa": "5.0.0",
+    "rollup": "2.26.5",
+    "rollup-plugin-string": "3.0.0",
+    "tap-dot": "2.0.0",
+    "tape": "5.0.1"
+  },
+  "preferGlobal": true,
+  "engines": {
+    "node": ">= 4"
+  }
+}

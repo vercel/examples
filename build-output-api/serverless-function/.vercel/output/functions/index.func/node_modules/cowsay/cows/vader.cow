@@ -1,0 +1,13 @@
+##
+## Cowth Vader, from geordan@csua.berkeley.edu
+##
+$the_cow = <<EOC;
+        $thoughts    ,-^-.
+         $thoughts   !$eyeY$eye!
+          $thoughts /./=\\.\\______
+               ##      $tongue)\\/\\
+                ||-----w||
+                ||      ||
+
+               Cowth Vader
+EOC
