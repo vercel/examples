@@ -1,7 +1,7 @@
 import frontMatter from 'front-matter'
 
 const FRAMEWORKS = ['Next.js']
-const USE_CASES = ['Edge Functions', 'Documentation']
+const USE_CASES = ['Edge Functions', 'Documentation', 'Starter']
 const CSS = ['Tailwind', 'CSS Modules', 'CSS-in-JSX']
 
 export default function getTemplate(readme, examplePath) {
