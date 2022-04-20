@@ -12,7 +12,7 @@ that are listed below.
 
 ## Index
 
-- [Static Files](./static-files)
-- [Node.js Serverless Function](./serverless-function)
 - [Edge Function](./edge-function)
 - [Routes](./routes)
+- [Serverless Function](./serverless-function)
+- [Static Files](./static-files)
