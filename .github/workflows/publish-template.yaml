@@ -1,5 +1,8 @@
 name: Publish Templates
-on: push
+on:
+  push:
+    branches:
+      - main
 jobs:
   publish_template:
     name: Publish Template
