@@ -1,0 +1,23 @@
+# Cat
+#
+# used https://github.com/paulkaefer/flipFile.py
+#  python flipFile.py cat " "
+# and 
+#  cat cat_flipped | sed 's/\\/\\\\/g' > cat.cow
+#
+$the_cow = <<EOC;
+  $thoughts
+   $thoughts                       _
+                          / )      
+                         / /       
+      //|                \\ \\       
+   .-`^ \\   .-`````-.     \\ \\      
+ o` {|}  \\_/         \\    / /      
+ '--,  _ //   .---.   \\  / /       
+   ^^^` )/  ,/     \\   \\/ /        
+        (  /)      /\\/   /         
+        / / (     / (   /          
+    ___/ /) (  __/ __\\ (           
+   (((__)((__)((__(((___)          
+EOC
+
