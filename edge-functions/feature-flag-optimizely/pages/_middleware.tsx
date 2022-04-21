@@ -1,6 +1,5 @@
 //@ts-ignore
 import { createInstance } from '@optimizely/optimizely-sdk/dist/optimizely.lite.min.js'
-import { v4 } from 'uuid'
 import { NextRequest, NextFetchEvent, NextResponse } from "next/server"
 import optimizelyDatafile from '../lib/optimizely/datafile.json'
 
@@ -13,7 +12,7 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
   }
 
   // Fetch user Id from the cookie if available so a returning user from same browser session always sees the same variation.
-  const userId = req.cookies[COOKIE_NAME] || v4()
+  const userId = req.cookies[COOKIE_NAME] || crypto.randomUUID()
 
   // Create Optimizely instance using datafile downloaded at build time.
   const instance = createInstance({
