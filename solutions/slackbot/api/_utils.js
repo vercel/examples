@@ -11,7 +11,7 @@ export function tokenizeString(string) {
 
 export async function postToChannel(channel, res, payload) {
   console.log('channel:', channel)
-  var channelId = await channelNameToId(channel)
+  const channelId = await channelNameToId(channel)
 
   console.log('ID:', channelId)
 
@@ -44,8 +44,8 @@ export async function postToChannel(channel, res, payload) {
 }
 
 async function channelNameToId(channelName) {
-  var generalId
-  var id
+  let generalId
+  let id
 
   try {
     const url = 'https://slack.com/api/conversations.list'

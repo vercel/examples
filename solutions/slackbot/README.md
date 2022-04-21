@@ -96,6 +96,21 @@ Simply fill the environmental variables defined below and your serverless functi
 
 2. After these changes, Slack may require reinstalling of the app.
 
+---
+
+### Running Locally
+
+Use Vercel CLI to replicate serverless development environment:
+
+`vercel dev` --> localhost address will be given.
+
+- If you don't have a static IP, you will want to tunnel your localhost to a public IP. For that, you can use `ngrok`:
+
+- ./ngrok http 3000 --> Tunnels your localhost:3000
+- Provided address is the endpoint.
+
+---
+
 ### Additionally
 
 For additional explanations of the source code and how to run it locally, you can refer to [the blogpost](https://blog.upstash.com/vercel-note-taker-slackbot).

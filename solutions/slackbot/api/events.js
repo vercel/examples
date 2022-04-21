@@ -5,13 +5,13 @@ import { validateSlackRequest } from './_validate'
 import { signingSecret } from './_constants'
 
 export default async function events(req, res) {
-  var type = req.body.type
+  const type = req.body.type
 
   if (type === 'url_verification') {
     await challenge(req, res)
   } else if (validateSlackRequest(req, signingSecret)) {
     if (type === 'event_callback') {
-      var event_type = req.body.event.type
+      const event_type = req.body.event.type
 
       switch (event_type) {
         case 'app_mention':
