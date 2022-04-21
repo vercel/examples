@@ -22,7 +22,7 @@
     "prettier": "^2.5.1"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
+    "!(**/.vercel/**/*)**/*.{js,jsx,ts,tsx}": [
       "prettier --write",
       "eslint --no-ignore --max-warnings=0 --fix"
     ],

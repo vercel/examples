@@ -1,0 +1,17 @@
+# Dalek
+# from http://www.ascii-art.de/ascii/def/dr_who.txt (accessed 4/30/2014)
+$the_cow = <<EOC;
+   $thoughts
+    $thoughts
+              ___
+      D>=G==='   '.
+            |======|
+            |======|
+        )--/]IIIIII]
+           |_______|
+           C O O O D
+          C O  O  O D
+         C  O  O  O  D
+         C__O__O__O__D
+snd     [_____________]
+EOC

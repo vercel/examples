@@ -1,5 +1,12 @@
 ---
-marketplace: false
+name: Handling custom web fonts
+slug: loading-web-fonts
+description: Learn how to load custom web fonts without compromising performance.
+framework: Next.js
+useCase: Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/loading-web-fonts&project-name=loading-web-fonts&repository-name=loading-web-fonts
+demoUrl: https://solutions-loading-web-fonts.vercel.app
 ---
 
 # Loading custom web fonts

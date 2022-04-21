@@ -1,5 +1,6 @@
 ---
 marketplace: false
+reason: https://github.com/lfades/static-tweet is very similar to this one
 ---
 
 # Static Tweets (Tailwind)

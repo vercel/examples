@@ -1,5 +1,12 @@
 ---
-marketplace: false
+name: Auth for subdomains
+slug: subdomains-auth
+description: Learn how to secure sub domains using Next.js and NextAuth.
+framework: Next.js
+useCase: Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/subdomain-auth&project-name=subdomain-auth&repository-name=subdomain-auth&env=GITHUB_ID,GITHUB_SECRET,SECRET
+demoUrl: https://solutions-subdomain-auth.vercel.sh
 ---
 
 # Subdomain Auth Example
@@ -19,7 +26,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/subdomain-auth&project-name=subdomain-auth&repository-name=subdomain-auth)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/subdomain-auth&project-name=subdomain-auth&repository-name=subdomain-auth&env=GITHUB_ID,GITHUB_SECRET,SECRET)
 
 **Clone and Deploy**
 

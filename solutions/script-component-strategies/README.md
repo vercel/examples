@@ -1,5 +1,12 @@
 ---
-marketplace: false
+name: next/script strategies
+slug: script-component-strategies
+description: Learn how to use different strategies for next/script.
+framework: Next.js
+useCase: Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/script-component-strategies&project-name=script-component-strategies&repository-name=script-component-strategies
+demoUrl: https://solutions-script-component-strategies.vercel.app
 ---
 
 # next/script strategies example
