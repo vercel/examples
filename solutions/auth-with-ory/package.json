@@ -18,7 +18,7 @@
   "dependencies": {
     "@ory/integrations": "^0.2.1",
     "@ory/kratos-client": "^0.8.2-alpha.1",
-    "@vercel/examples-ui": "^0.2.6",
+    "@vercel/examples-ui": "^0.3.1",
     "next": "^12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
