@@ -49,24 +49,12 @@ li {
   list-style: none;
 }
 
-.sh__class {
-  color: var(--snippet-class);
-}
-.sh__identifier {
-  color: var(--snippet-identifier);
-}
-.sh__sign {
-  color: var(--snippet-sign);
-}
-.sh__string {
-  color: var(--snippet-string);
-}
-.sh__keyword {
-  color: var(--snippet-keyword);
-}
-.sh__comment {
-  color: var(--snippet-comment);
-}
-.sh__jsxliterals {
-  color: var(--snippet-literals);
+:root {
+  --sh-class: var(--snippet-class);
+  --sh-identifier: var(--snippet-identifier);
+  --sh-sign: var(--snippet-sign);
+  --sh-string: var(--snippet-string);
+  --sh-keyword: var(--snippet-keyword);
+  --sh-comment: var(--snippet-comment);
+  --sh-jsxliterals: var(--snippet-literals);
 }
