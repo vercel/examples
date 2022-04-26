@@ -1,11 +1,10 @@
 import type { Tweet as ITweet } from '../types'
 
 import Head from 'next/head'
-import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
+import { Layout, Text, Page, Code, Link, Snippet } from '@vercel/examples-ui'
 
 import { GetStaticProps } from 'next'
 import api from '../api'
-import Snippet from '../components/Snippet'
 
 interface Props {
   tweets: ITweet[]
