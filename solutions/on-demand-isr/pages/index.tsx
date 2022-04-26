@@ -164,16 +164,19 @@ export async function getStaticProps() {
         </Snippet>
         <Text>
           We have to also take in count that revalidating a path will run the{' '}
-          <Code>getStaticProps</Code> serverless function for that specific path
-          which will count for our{' '}
+          <Code>getStaticProps</Code> serverless function for that specific
+          path, which will count for our{' '}
           <Link href="https://vercel.com/docs/concepts/limits/overview#typical-monthly-usage-guidelines">
             function execution time
           </Link>
           . Also awaiting for every path to revalidate on our API route will
           make it run longer and that will also count for our function execution
-          time. Depending on you application needs you might not need to wait
-          for that validation to end and you can do a fire and forget request
-          for those paths:
+          time.
+        </Text>
+        <Text>
+          Depending on you application needs you might not need to wait for that
+          validation to end and you can do a fire and forget request for those
+          paths:
         </Text>
         <Snippet>
           {`export default async function handler(_req, res) {
