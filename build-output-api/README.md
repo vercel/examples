@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://vercel.com">
+  <a href="https://vercel.com/docs/build-output-api/v3">
     <img src="https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png" height="96">
     <h3 align="center">Build Output API Examples</h3>
   </a>
