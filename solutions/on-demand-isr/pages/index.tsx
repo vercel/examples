@@ -143,11 +143,8 @@ export async function getStaticProps() {
         <Text>
           Calling <Code>unstable_revalidate</Code> will run{' '}
           <Code>getStaticProps</Code> for that path synchronously so we can{' '}
-          <Code>await</Code> it.
-        </Text>
-        <Text>
-          If you need to revalidate several paths you need to run{' '}
-          <Code>unstable_revalidate</Code> once for each path:
+          <Code>await</Code> it. If you need to revalidate multiple paths you
+          will need to run <Code>unstable_revalidate</Code> once for every path:
         </Text>
         <Snippet>
           {`export default async function handler(_req, res) {
