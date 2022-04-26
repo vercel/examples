@@ -1,12 +1,19 @@
 import type { Product } from '../types'
 
 import Head from 'next/head'
-import { Layout, Text, Page, Code, Link, Button } from '@vercel/examples-ui'
+import {
+  Layout,
+  Text,
+  Page,
+  Code,
+  Link,
+  Button,
+  Snippet,
+} from '@vercel/examples-ui'
 
 import { GetStaticProps } from 'next'
 import api from '../api'
 import Image from 'next/image'
-import Snippet from '../components/Snippet'
 
 interface Props {
   products: Product[]
@@ -133,6 +140,54 @@ export async function getStaticProps() {
           demand revalidation might be useful for commerce providers, webhooks,
           bots, etc. That might fire when our content has been changed.
         </Text>
+        <Text>
+          Calling <Code>unstable_revalidate</Code> will run{' '}
+          <Code>getStaticProps</Code> for that path synchronously so we can{' '}
+          <Code>await</Code> it.
+        </Text>
+        <Text>
+          If you need to revalidate several paths you need to run{' '}
+          <Code>unstable_revalidate</Code> once for each path:
+        </Text>
+        <Snippet>
+          {`export default async function handler(_req, res) {
+  // Get paths to revalidate
+  const paths = await api.pathsToRevalidate()
+
+  // Revalidate every path
+  await Promise.all(paths.map(res.unstable_revalidate))
+
+  // Return a response to confirm everything went ok
+  return res.json({revalidated: true})
+}
+`}
+        </Snippet>
+        <Text>
+          We have to also take in count that revalidating a path will run the{' '}
+          <Code>getStaticProps</Code> serverless function for that specific path
+          which will count for our{' '}
+          <Link href="https://vercel.com/docs/concepts/limits/overview#typical-monthly-usage-guidelines">
+            function execution time
+          </Link>
+          . Also awaiting for every path to revalidate on our API route will
+          make it run longer and that will also count for our function execution
+          time. Depending on you application needs you might not need to wait
+          for that validation to end and you can do a fire and forget request
+          for those paths:
+        </Text>
+        <Snippet>
+          {`export default async function handler(_req, res) {
+  // Get paths to revalidate
+  const paths = await api.pathsToRevalidate()
+
+  // Revalidate every path without awaiting
+  paths.forEach(res.unstable_revalidate)
+
+  // Return a response to confirm everything went ok
+  return res.json({revalidated: true})
+}
+`}
+        </Snippet>
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
