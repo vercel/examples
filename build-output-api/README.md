@@ -13,6 +13,10 @@ that are listed below.
 ## Index
 
 - [Edge Function](./edge-function)
+- [Edge Middleware](./edge-middleware)
+- [Image Optimization](./image-optimization)
+- [Overrides](./overrides)
 - [Routes](./routes)
+- [Prerender Function](./prerender-function)
 - [Serverless Function](./serverless-function)
 - [Static Files](./static-files)
