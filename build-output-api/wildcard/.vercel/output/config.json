@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "wildcard": [
+        { "domain": "en.wildcard-example.n8.io", "value": "english" },
+        { "domain": "es.wildcard-example.n8.io", "value": "spanish" },
+        { "domain": "fr.wildcard-example.n8.io", "value": "french" },
+        { "domain": "pt.wildcard-example.n8.io", "value": "portuguese" }
+    ],
+    "routes": [
+        { "src": "/", "dest": "/$wildcard.html" }
+    ]
+}
