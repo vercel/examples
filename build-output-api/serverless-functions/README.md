@@ -2,7 +2,7 @@
 
 ### Build Output API
 
-This Prebuilt Deployment example demonstrates how to output Vercel Serverless Functions using the Build Output API.
+This Prebuilt Deployment example demonstrates how to output Vercel Serverless Functions using the [Build Output API](https://vercel.com/docs/build-output-api/v3#vercel-primitives/serverless-functions).
 
 In this case, the contents of the Serverless Function are located in the
 [`.vercel/output/functions/index.func`](./.vercel/output/functions/index.func) directory,

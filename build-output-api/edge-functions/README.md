@@ -2,7 +2,7 @@
 
 ### Build Output API
 
-This Prebuilt Deployment example demonstrates how to output Vercel Edge Functions using the Build Output API.
+This Prebuilt Deployment example demonstrates how to output Vercel Edge Functions using the [Build Output API](https://vercel.com/docs/build-output-api/v3#vercel-primitives/edge-functions).
 
 In this case, the contents of the Edge Function are located in the
 [`.vercel/output/functions/index.func`](./.vercel/output/functions/index.func) directory,
