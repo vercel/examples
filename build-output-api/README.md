@@ -18,5 +18,7 @@ that are listed below.
 - [Overrides](./overrides)
 - [Routes](./routes)
 - [Prerender Function](./prerender-functions)
+- [Preview Mode](./preview-mode)
 - [Serverless Function](./serverless-functions)
 - [Static Files](./static-files)
+- [i18n Wildcard Subdomains](./wildcard)
