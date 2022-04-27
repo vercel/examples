@@ -6,17 +6,13 @@ import optimizelyDatafile from '../lib/optimizely/datafile.json'
 const VERCEL_EDGE_CLIENT_ENGINE = 'javascript-sdk/vercel-edge'
 const COOKIE_NAME = 'optimizely_visitor_id'
 
-function generateRandomUserId(): string {
-  return Math.floor(Math.random() * 899999 + 100000) as unknown as string
-}
-
 export async function middleware(req: NextRequest, ev: NextFetchEvent) {
   if (!req.page.name) {
     return NextResponse.next()
   }
 
   // Fetch user Id from the cookie if available so a returning user from same browser session always sees the same variation.
-  const userId = req.cookies[COOKIE_NAME] || generateRandomUserId()
+  const userId = req.cookies[COOKIE_NAME] || crypto.randomUUID()
 
   // Create Optimizely instance using datafile downloaded at build time.
   const instance = createInstance({
