@@ -8,5 +8,11 @@ The [`.vercel/output/static`](./.vercel/output/static) directory contains static
 property in the [`.vercel/output/config.json`]('./.vercel/output/config.json) file, these files are _served_ by Vercel
 at different URL paths and/or with a different `Content-Type` header.
 
-This could similarly be achieved with "routes" configuration, but when possible it is better to use "overrides" since
+Specifically:
+
+- `/something-else`: serves "another.html"
+- `/another.html`: 404s
+- `/data`: serves the "data" file with `Content-Type: application/json`
+
+This could similarly be achieved with "routes" configuration, but when possible it is better to use "overrides" because
 they are implemented at a lower level than routes and don't count towards the total routes limit.

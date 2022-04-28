@@ -2,7 +2,8 @@
 
 ### Build Output API
 
-This Prebuilt Deployment example demonstrates how to use configure i18n subdomains when using the [Build Output API](https://vercel.com/docs/build-output-api/v3#build-output-configuration/wildcard).
+This Prebuilt Deployment example demonstrates how to use configure i18n subdomains (via wildcards) when using the
+[Build Output API](https://vercel.com/docs/build-output-api/v3#build-output-configuration/wildcard).
 
 The "wildcards" configuration in the [`.vercel/output/config.json`](./.vercel/output/config.json) file allows you to configure
 any number of domain names (or sub-domains) that point to the same Deployment to route to specific pages based on the domain

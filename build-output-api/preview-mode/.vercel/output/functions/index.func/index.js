@@ -8,7 +8,7 @@ module.exports = (req, res) => {
     typeof req.headers.cookie === 'string' &&
     req.headers.cookie.includes(`__prerender_bypass=${bypassToken}`)
   const contents = isPreviewMode
-    ? 'Preview mode is <strong>ENABLED</strong>. Notice how the "Server time" below gets updated every time you refresh!'
+    ? 'Preview Mode is <strong>ENABLED</strong>. Notice how the "Server time" below gets updated every time you refresh!'
     : 'Preview Mode is <strong>DISABLED</strong>. The "server time" below will only get updated once per minute.'
   const enable = isPreviewMode
     ? '<a href="/logout">Deactivate Preview Mode</a>'
