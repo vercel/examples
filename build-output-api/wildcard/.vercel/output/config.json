@@ -1,10 +1,13 @@
 {
   "version": 3,
   "wildcard": [
-    { "domain": "en.wildcard-example.n8.io", "value": "english" },
-    { "domain": "es.wildcard-example.n8.io", "value": "spanish" },
-    { "domain": "fr.wildcard-example.n8.io", "value": "french" },
-    { "domain": "pt.wildcard-example.n8.io", "value": "portuguese" }
+    { "domain": "en.build-output-api-wildcard.vercel.sh", "value": "english" },
+    { "domain": "es.build-output-api-wildcard.vercel.sh", "value": "spanish" },
+    { "domain": "fr.build-output-api-wildcard.vercel.sh", "value": "french" },
+    {
+      "domain": "pt.build-output-api-wildcard.vercel.sh",
+      "value": "portuguese"
+    }
   ],
   "routes": [{ "src": "/", "dest": "/$wildcard.html" }]
 }
