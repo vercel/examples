@@ -12,7 +12,13 @@ that are listed below.
 
 ## Index
 
-- [Edge Function](./edge-function)
+- [Domain-Based Routing](./wildcard)
+- [Edge Functions](./edge-functions)
+- [Edge Middleware](./edge-middleware)
+- [Image Optimization](./image-optimization)
+- [Overrides](./overrides)
 - [Routes](./routes)
-- [Serverless Function](./serverless-function)
+- [Prerender Functions](./prerender-functions)
+- [Preview Mode](./preview-mode)
+- [Serverless Functions](./serverless-functions)
 - [Static Files](./static-files)
