@@ -5,8 +5,8 @@
 This Prebuilt Deployment example demonstrates how to output Vercel Serverless Functions using the [Build Output API](https://vercel.com/docs/build-output-api/v3#vercel-primitives/serverless-functions).
 
 In this case, the contents of the Serverless Function are located in the
-[`.vercel/output/functions/index.func`](./.vercel/output/functions/index.func) directory,
-meaning that the Serverless Function will be accessible at the `/index` (or `/`) path of the Deployment.
+[`.vercel/output/functions/index.func`](./.vercel/output/functions/index.func) directory.
+This means that the Serverless Function will be accessible at the `/index` (or `/`) path of the Deployment.
 
 The [`.vc-config.json`](./.vercel/output/functions/index.func/.vc-config.json) file specifies `"runtime": "nodejs14.x"`
 which informs Vercel that the endpoint should be created as a Serverless Function, using Node.js version 14.

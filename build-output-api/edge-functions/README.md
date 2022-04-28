@@ -14,5 +14,5 @@ which informs Vercel that the endpoint should be created as an Edge Function.
 The `"entrypoint": "index.js"` field indicates that the [`index.js`](.vercel/output/functions/index.func/index.js)
 source code file will be the starting point of execution when the Edge Function is invoked.
 
-Additional JavaScript or TypeScript source files may placed within the `index.func` file as well (that export
-helper functions for the entrypoint to utilize, for example).
+Additional JavaScript or TypeScript source files may placed within the `index.func` directory as well.
+They can export helper functions for the entrypoint to utilize, for example.
