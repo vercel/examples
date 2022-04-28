@@ -7,7 +7,7 @@ This Prebuilt Deployment example demonstrates how to output Vercel Middleware us
 In this case, the contents of the Edge Middleware Function are located in the
 [`.vercel/output/functions/_middleware.func`](./.vercel/output/functions/_middleware.func) directory.
 An accompanying "route" is placed in the [`config.json`](./.vercel/output/config.json) file which
-specifies that the middleware function will be invoked for every HTTP request due to the `"src": "/(.\*)" clause.
+specifies that the middleware function will be invoked for every HTTP request due to the `"src": "/(.\*)"` clause.
 
 The [`.vc-config.json`](./.vercel/output/functions/_middleware.func/.vc-config.json) file specifies `"runtime": "edge"`
 which informs Vercel that the endpoint should be created as an Edge Function.
