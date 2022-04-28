@@ -4,7 +4,10 @@
     { "domain": "en.build-output-api-wildcard.vercel.sh", "value": "english" },
     { "domain": "es.build-output-api-wildcard.vercel.sh", "value": "spanish" },
     { "domain": "fr.build-output-api-wildcard.vercel.sh", "value": "french" },
-    { "domain": "pt.build-output-api-wildcard.vercel.sh", "value": "portuguese" }
+    {
+      "domain": "pt.build-output-api-wildcard.vercel.sh",
+      "value": "portuguese"
+    }
   ],
   "routes": [{ "src": "/", "dest": "/$wildcard.html" }]
 }
