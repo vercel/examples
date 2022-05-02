@@ -1,10 +1,14 @@
 # Static File Overrides
 
-### Build Output API
-
-#### [Demo](https://build-output-api-overrides.vercel.sh)
+## Build Output API
 
 This Prebuilt Deployment example demonstrates how to override configuration of static files in a Deployment using the [Build Output API](https://vercel.com/docs/build-output-api/v3#vercel-primitives/static-files).
+
+### Demo
+
+https://build-output-api-overrides.vercel.sh
+
+### How it Works
 
 The [`.vercel/output/static`](./.vercel/output/static) directory contains static files, _however_ due to the "overrides"
 property in the [`.vercel/output/config.json`]('./.vercel/output/config.json) file, these files are _served_ by Vercel

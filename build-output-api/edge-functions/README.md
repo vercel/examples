@@ -1,10 +1,14 @@
 # Edge Functions
 
-### Build Output API
-
-#### [Demo](https://build-output-api-edge-functions.vercel.sh)
+## Build Output API
 
 This Prebuilt Deployment example demonstrates how to output Vercel Edge Functions using the [Build Output API](https://vercel.com/docs/build-output-api/v3#vercel-primitives/edge-functions).
+
+### Demo
+
+https://build-output-api-edge-functions.vercel.sh
+
+### How it Works
 
 In this case, the contents of the Edge Function are located in the
 [`.vercel/output/functions/index.func`](./.vercel/output/functions/index.func) directory,
