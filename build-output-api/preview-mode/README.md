@@ -2,6 +2,8 @@
 
 ### Build Output API
 
+#### [Demo](https://build-output-api-preview-mode.vercel.sh)
+
 This Prebuilt Deployment example demonstrates how to implement "Preview Mode" when using the [Build Output API](https://vercel.com/docs/build-output-api/v3#features/preview-mode).
 
 When using Prerender Functions, you may want to implement "Preview Mode" which would allow you to bypass the caching

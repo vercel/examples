@@ -2,6 +2,8 @@
 
 ### Build Output API
 
+#### [Demo](https://build-output-api-image-optimization.vercel.sh)
+
 This Prebuilt Deployment example demonstrates how leverage the [Vercel Image Optimization](https://vercel.com/docs/concepts/image-optimization) platform feature using the [Build Output API](https://vercel.com/docs/build-output-api/v3#build-output-configuration/images).
 
 - The [`.vercel/output/static`](./.vercel/output/static) directory contains some (unoptimized) static image files, and an `index.html` page.

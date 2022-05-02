@@ -2,6 +2,8 @@
 
 ### Build Output API
 
+#### [Demo](https://build-output-api-edge-middleware.vercel.sh)
+
 This Prebuilt Deployment example demonstrates how to output Vercel Middleware using the [Build Output API](https://vercel.com/docs/build-output-api/v3#features/edge-middleware).
 
 In this case, the contents of the Edge Middleware Function are located in the

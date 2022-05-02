@@ -2,6 +2,8 @@
 
 ### Build Output API
 
+#### [Demo](https://build-output-api-static-files.vercel.sh)
+
 This Prebuilt Deployment example demonstrates how to output static files in a Deployment using the [Build Output API](https://vercel.com/docs/build-output-api/v3#vercel-primitives/static-files).
 
 The [`.vercel/output/static`](./.vercel/output/static) directory contains static files which will

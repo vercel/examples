@@ -2,6 +2,8 @@
 
 ### Build Output API
 
+#### [Demo](https://build-output-api-prerender-functions.vercel.sh)
+
 This Prebuilt Deployment example demonstrates how to output Vercel Serverless Functions that leverage the "prerender" feature using the [Build Output API](https://vercel.com/docs/build-output-api/v3#vercel-primitives/prerender-functions).
 
 In this example, the Prerender function renders blog posts from an imaginary CMS "backend service". There are a few "popular" blog posts that are prerendered at build-time and placed into the `static` directory.
