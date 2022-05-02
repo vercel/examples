@@ -1,5 +1,7 @@
 # Domain-Based Routing
 
+#### [Demo](https://build-output-api-wildcard.vercel.sh)
+
 ### Build Output API
 
 This Prebuilt Deployment example demonstrates how to use configure routing rules based on which domain name
