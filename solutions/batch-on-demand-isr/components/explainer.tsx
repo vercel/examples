@@ -40,8 +40,9 @@ export const Explainer: React.VFC<Props> = ({ joke }) => {
         <Text variant="h1">Update multiple static pages on demand example</Text>
         <Text>
           This example uses On-Demand Revalidation to illustrate how you can
-          update multiple pages in 1 API call. We have 3 static pages containing
-          a joke. We will revalidate the pages using a single call to{' '}
+          update multiple pages in 1 API call. We have 3 static pages each
+          containing a different joke. We will revalidate the pages using a
+          single call to{' '}
           <Link href="https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration#using-on-demand-revalidation">
             our <Code>On-Demand revalidation</Code>
           </Link>{' '}
