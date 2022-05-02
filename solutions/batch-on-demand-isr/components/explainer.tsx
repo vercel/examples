@@ -74,6 +74,11 @@ export const Explainer: React.VFC<Props> = ({ joke }) => {
           </Button>
           <Button onClick={handleRefresh}>Reload the page</Button>
         </section>
+        <Text className="italic">
+          Be cautious of revalidating too many pages at once. Hitting
+          conccurency limits could cause some of them to fail or your API
+          function to timeout.
+        </Text>
       </section>
 
       <section className="flex flex-col gap-3">
