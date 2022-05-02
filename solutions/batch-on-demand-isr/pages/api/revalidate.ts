@@ -18,8 +18,10 @@ export default async function handler(
     const files = await readdir(dir)
     // remove the extension from the file name
     const paths = files.map((file) => '/joke/' + file.replace('.tsx', ''))
-    // revalidate all the paths. We won't await these promises to avoid blocking the server
-    paths.forEach(res.unstable_revalidate)
+
+    // revalidate all the paths. Be careful about how many pages you revalidate.
+    // Revalidating too many pages can cause a timeout or hit the concurrent limit.
+    await Promise.all(paths.map(res.unstable_revalidate))
     // return a success message
     return res.json({ revalidated: true })
   } catch (err) {

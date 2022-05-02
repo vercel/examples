@@ -7,6 +7,7 @@ import {
   Link,
   Button,
   LoadingDots,
+  Snippet,
 } from '@vercel/examples-ui'
 
 type Props = {
@@ -84,7 +85,7 @@ export const Explainer: React.VFC<Props> = ({ joke }) => {
           </Link>{' '}
           function.
         </Text>
-        <Code>
+        <Snippet>
           {`
 export const getStaticProps: GetStaticProps = async () => {
   // Fetch your own data here
@@ -96,16 +97,16 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 `}
-        </Code>
+        </Snippet>
         <Text>
           To update all the <Code>joke</Code> static pages, we need to send an
           HTTP request to a revalidate endpoint that takes care of updating all
           the pages.
         </Text>
-        <Code>{`// This should normally be called from a server and this secret value should not be exposed.
+        <Snippet>{`// This should normally be called from a server and this secret value should not be exposed.
 const secret = 'PleaseWaterThePlants'
 fetch('/api/revalidate?secret=' + secret)
-        `}</Code>
+        `}</Snippet>
         <Text>
           Our API function will make Node&apos;s files system{' '}
           <Link href="https://nodejs.org/api/fs.html#fspromisesreaddirpath-options">
@@ -114,7 +115,7 @@ fetch('/api/revalidate?secret=' + secret)
           {''} method to list all the files in the directory and then update
           them all.
         </Text>
-        <Code>{`
+        <Snippet>{`
 import { NextApiRequest, NextApiResponse } from 'next'
 import { readdir } from 'fs/promises'
 
@@ -135,8 +136,10 @@ export default async function handler(
     const files = await readdir(dir)
     // remove the extension from the file name
     const paths = files.map((file) => '/joke/' + file.replace('.tsx', ''))
-    // revalidate all the paths. We won't await these promises to avoid blocking the server
-    paths.forEach(res.unstable_revalidate)
+
+    // revalidate all the paths. Be careful about how many pages you revalidate.
+    // Revalidating too many pages can cause a timeout or hit the concurrent limit.
+    await Promise.all(paths.map(res.unstable_revalidate))
     // return a success message
     return res.json({ revalidated: true })
   } catch (err) {
@@ -145,7 +148,8 @@ export default async function handler(
     return res.status(500).send('Error revalidating')
   }
 }
-        `}</Code>
+
+        `}</Snippet>
         <Text>
           You could also decide to keep an array of pages you want to edit if
           you prefer not to use the filesystem API.
