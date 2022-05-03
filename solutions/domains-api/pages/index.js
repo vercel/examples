@@ -6,15 +6,23 @@ import toast, { Toaster } from 'react-hot-toast'
 import useSWR, { mutate } from 'swr'
 import Image from 'next/image'
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json())
+const fetcher = async (...args) => {
+  const res = await fetch(...args)
+  const json = await res.json()
+  if (res.status === 200) {
+    return json
+  } else {
+    const error = new Error(`${res.status}: ${json.error.message}`)
+    error.error = json.error
+    throw error
+  }
+  return res.json()
+}
 
 export default function Home() {
   const [domain, setDomain] = useState('')
-  const [domainList, setDomainList] = useState(
-    Cookies.get('domainList')
-      ? JSON.parse(Cookies.get('domainList'))
-      : ['platformizer.co', 'vercel.pub']
-  ) // initialize the state with two default domains
+
+  const { data: domainList = [], mutate: revalidateDomains } = useSWR(`/api/get-domains`, fetcher)
   const [disabled, setDisabled] = useState(true)
   const [adding, setAdding] = useState(false)
   const [error, setError] = useState(null)
@@ -30,10 +38,6 @@ export default function Home() {
   useEffect(() => {
     if (adding) setDisabled(true)
   }, [adding])
-
-  useEffect(() => {
-    Cookies.set('domainList', JSON.stringify(domainList))
-  }, [domainList])
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -63,17 +67,14 @@ export default function Home() {
           onSubmit={async (e) => {
             e.preventDefault()
             setAdding(true)
-            await fetch(`/api/add-domain?domain=${domain}`).then((res) => {
+            try {
+              await fetch(`/api/add-domain?domain=${domain}`)
+              await revalidateDomains()
+            } catch (error) {
+              alert(error.message)
+            } finally {
               setAdding(false)
-              if (res.ok) {
-                setError(null)
-                setDomainList([...domainList, domain])
-                e.target.domain.value = ''
-              } else {
-                const errorDomain = domain
-                setError({ code: res.status, domain: errorDomain })
-              }
-            })
+            }
           }}
           className="flex justify-between space-x-4 px-5 w-full max-w-2xl h-10 mt-10"
         >
@@ -120,37 +121,10 @@ export default function Home() {
               <path d="M12 8v4" stroke="#f44336" />
               <path d="M12 16h.01" stroke="#f44336" />
             </svg>
-            {error.code == 403 ? (
-              <p>
-                <b>{error.domain}</b> is already owned by another team.
-                <button
-                  className="ml-1"
-                  onClick={async (e) => {
-                    e.preventDefault()
-                    await fetch(
-                      `/api/request-delegation?domain=${error.domain}`
-                    ).then((res) => {
-                      if (res.ok) {
-                        toast.success(
-                          `Requested delegation for ${error.domain}`
-                        )
-                      } else {
-                        alert(
-                          'There was an error requesting delegation. Please try again later.'
-                        )
-                      }
-                    })
-                  }}
-                >
-                  <u>Click here to request access.</u>
-                </button>
-              </p>
-            ) : (
-              <p>
+            <p>
                 Cannot add <b>{error.domain}</b> since it&apos;s already
                 assigned to another project.
               </p>
-            )}
           </div>
         )}
 
@@ -159,9 +133,8 @@ export default function Home() {
             return (
               <DomainCard
                 key={index}
-                domain={domain}
-                domainList={domainList}
-                setDomainList={setDomainList}
+                domain={domain.name}
+                revalidateDomains={revalidateDomains}
               />
             )
           })}
@@ -185,15 +158,13 @@ export default function Home() {
   )
 }
 
-const DomainCard = ({ domain, domainList, setDomainList }) => {
-  const { data: valid, isValidating } = useSWR(
+const DomainCard = ({ domain, revalidateDomains }) => {
+  const { data: domainInfo, isValidating } = useSWR(
     `/api/check-domain?domain=${domain}`,
     fetcher,
     { revalidateOnMount: true, refreshInterval: 5000 }
   )
-  const [recordType, setRecordType] = useState('CNAME')
   const [removing, setRemoving] = useState(false)
-
   return (
     <div className="w-full mt-10 sm:shadow-md border-y sm:border border-black sm:border-gray-50 sm:rounded-lg py-10">
       <div className="flex justify-between space-x-4 px-2 sm:px-10">
@@ -201,7 +172,7 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
           href={`http://${domain}`}
           target="_blank"
           rel="noreferrer"
-          className="text-xl font-semibold flex items-center"
+          className="text-xl text-left font-semibold flex items-center"
         >
           {domain}
           <span className="inline-block ml-2">
@@ -239,14 +210,14 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
           <button
             onClick={async () => {
               setRemoving(true)
-              await fetch(`/api/remove-domain?domain=${domain}`).then((res) => {
+              try {
+                await fetch(`/api/remove-domain?domain=${domain}`)
+                await revalidateDomains()
+              } catch (error) {
+                alert(`Error removing domain`)
+              } finally {
                 setRemoving(false)
-                if (res.ok) {
-                  setDomainList(domainList.filter((item) => item !== domain))
-                } else {
-                  alert('Error removing domain')
-                }
-              })
+              }
             }}
             disabled={removing}
             className={`${
@@ -258,6 +229,16 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
         </div>
       </div>
 
+      <ConfiguredSection domainInfo={domainInfo} />
+
+    </div>
+  )
+}
+
+const ConfiguredSection = ({ domainInfo }) => {
+  const [recordType, setRecordType] = useState('CNAME')
+  if (!domainInfo) {
+    return (
       <div className="flex items-center space-x-3 my-3 px-2 sm:px-10">
         <svg
           viewBox="0 0 24 24"
@@ -268,8 +249,106 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
           strokeLinejoin="round"
           shapeRendering="geometricPrecision"
         >
-          <circle cx="12" cy="12" r="10" fill={valid ? '#1976d2' : '#d32f2f'} />
-          {valid ? (
+          <circle cx="12" cy="12" r="10" fill="grey" />
+        </svg>
+        <p
+          className={`text-black text-gray-500 font-normal text-sm`}
+        >
+          Loading Configuration
+        </p>
+      </div>
+    )
+  }
+
+  if (!domainInfo.verified) {
+    const txtVerification = domainInfo.verification.find(x => x.type === 'TXT')
+    return (
+      <>
+        <div className="flex items-center space-x-3 my-3 px-2 sm:px-10">
+          <svg
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            shapeRendering="geometricPrecision"
+          >
+            <circle cx="12" cy="12" r="10" fill="#d32f2f" />
+              <>
+                <path d="M15 9l-6 6" stroke="white" />
+                <path d="M9 9l6 6" stroke="white" />
+              </>
+          </svg>
+          <p
+            className={`text-red-700 font-medium text-sm`}
+          >
+            Domain is pending verification
+          </p>
+        </div>
+
+        <div className="w-full border-t border-gray-100 mt-5 mb-8" />
+
+        <div className="px-2 sm:px-10">
+          <div className="flex justify-start space-x-4">
+            <div
+              onClick={() => setRecordType('CNAME')}
+              className={`${
+                recordType == 'CNAME'
+                  ? 'text-black border-black'
+                  : 'text-gray-400 border-white'
+              } text-sm border-b-2 pb-1 transition-all ease duration-150`}
+            >
+              Verify Domain Ownership
+            </div>
+          </div>
+          <div className="my-3 text-left">
+            <p className="my-5 text-sm">
+              Please set the following TXT record on {domainInfo.apexName} to prove ownership of {domainInfo.name}:
+            </p>
+            <div className="flex justify-start items-start space-x-10 bg-gray-50 p-2 rounded-md">
+              <div>
+                <p className="text-sm font-bold">Type</p>
+                <p className="text-sm font-mono mt-2">{txtVerification.type}</p>
+              </div>
+              <div>
+                <p className="text-sm font-bold">Name</p>
+                <p className="text-sm font-mono mt-2">
+                  {txtVerification.domain.slice(0, txtVerification.domain.length - domainInfo.apexName.length - 1)}
+                </p>
+              </div>
+              <div>
+                <p className="text-sm font-bold">Value</p>
+                <p className="text-sm font-mono mt-2">
+                  <span className='text-ellipsis'>
+                  {txtVerification.value}
+                  </span>
+                </p>
+              </div>
+            </div>
+            {getVerificationError(domainInfo.verificationResponse) && <p className="my-5 text-sm text-red-700">
+              {getVerificationError(domainInfo.verificationResponse)}
+            </p>}
+          </div>
+        </div>
+      </>
+    )
+  }
+
+  return (
+    <>
+      <div className="flex items-center space-x-3 my-3 px-2 sm:px-10">
+        <svg
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          shapeRendering="geometricPrecision"
+        >
+          <circle cx="12" cy="12" r="10" fill={domainInfo.configured ? '#1976d2' : '#d32f2f'} />
+          {domainInfo.configured ? (
             <>
               <path
                 d="M8 11.8571L10.5 14.3572L15.8572 9"
@@ -286,14 +365,14 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
         </svg>
         <p
           className={`${
-            valid ? 'text-black font-normal' : 'text-red-700 font-medium'
+            domainInfo.configured ? 'text-black font-normal' : 'text-red-700 font-medium'
           } text-sm`}
         >
-          {valid ? 'Valid' : 'Invalid'} Configuration
+          {domainInfo.configured ? 'Valid' : 'Invalid'} Configuration
         </p>
       </div>
 
-      {!valid && (
+      {!domainInfo.configured && (
         <>
           <div className="w-full border-t border-gray-100 mt-5 mb-8" />
 
@@ -348,6 +427,18 @@ const DomainCard = ({ domain, domainList, setDomainList }) => {
           </div>
         </>
       )}
-    </div>
+    </>
   )
+}
+
+function getVerificationError(verificationResponse) {
+  try {
+    const error = verificationResponse.error
+    if (error.code === "missing_txt_record") {
+      return null
+    }
+    return error.message
+  } catch {
+    return null
+  }
 }
