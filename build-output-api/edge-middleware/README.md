@@ -1,8 +1,14 @@
 # Edge Middleware
 
-### Build Output API
+## Build Output API
 
 This Prebuilt Deployment example demonstrates how to output Vercel Middleware using the [Build Output API](https://vercel.com/docs/build-output-api/v3#features/edge-middleware).
+
+### Demo
+
+https://build-output-api-edge-middleware.vercel.sh
+
+### How it Works
 
 In this case, the contents of the Edge Middleware Function are located in the
 [`.vercel/output/functions/_middleware.func`](./.vercel/output/functions/_middleware.func) directory.
