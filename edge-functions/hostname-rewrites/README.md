@@ -1,7 +1,7 @@
 ---
 name: Hostname Rewrites using Edge Functions
 slug: hostname-rewrites
-description: Learn how to programmatically create unique content pages for your users with a multi-tenant infrastructure using Edge Middleware. Each user gets assigned a unique subdomain when they create their account, with the (usually paid) option to add a custom domain.
+description: Learn how to programmatically create unique content pages for your users with a multi-tenant infrastructure using Edge Middleware.
 framework: Next.js
 useCase:
   - Edge Functions

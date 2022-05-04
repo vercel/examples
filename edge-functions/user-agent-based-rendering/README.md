@@ -5,7 +5,7 @@ description: Learn how to render a different page based on the User-Agent header
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind
-deployUrl: https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/user-agent-based-rendering&project-name=user-agent-based-rendering&repository-name=user-agent-based-rendering
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/user-agent-based-rendering&project-name=user-agent-based-rendering&repository-name=user-agent-based-rendering
 demoUrl: https://edge-user-agent-based-rendering.vercel.app
 ---
 
@@ -25,7 +25,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/user-agent-based-rendering&project-name=user-agent-based-rendering&repository-name=user-agent-based-rendering)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/user-agent-based-rendering&project-name=user-agent-based-rendering&repository-name=user-agent-based-rendering)
 
 ### Clone and Deploy
 
