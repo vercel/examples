@@ -32,7 +32,7 @@ const api = {
       return products.find((product) => product.id === id)
     },
     set: async (products: Product[]) => {
-      return fs.writeFile(
+      return await fs.writeFile(
         path.join(process.cwd(), 'products.db'),
         JSON.stringify(products)
       )
