@@ -11,12 +11,27 @@ const REPO_DIR = '/tree/main/'
 export interface NavProps {
   path: string
   deployButton?: Partial<DeployButtonProps>
+  title?: string
 }
 
-export default function Nav({ path, deployButton }: NavProps) {
-  const displayPath = ['Vercel Examples']
-    .concat(path?.split('/').filter(Boolean) || [])
-    .join(' / ')
+export interface BreadCrumb {
+  name: string
+  url?: string
+}
+
+export default function Nav({ path, deployButton, title }: NavProps) {
+  const displayPath = path?.split('/').filter(Boolean) || []
+  const breadCrumbs: BreadCrumb[] = []
+
+  for (let i = 0; i < displayPath.length; i++) {
+    const elementPath = displayPath.slice(0, i + 1).join('/')
+    breadCrumbs.push({
+      name: displayPath[i],
+      url: `https://github.com/vercel/examples/tree/main/${elementPath}`,
+    })
+  }
+  const lastElement: BreadCrumb = { name: title || '', url: '/' }
+  breadCrumbs.push(lastElement)
 
   return (
     <nav className={s.root}>
@@ -47,9 +62,20 @@ export default function Nav({ path, deployButton }: NavProps) {
               </svg>
             </li>
             <li className="font-medium" style={{ letterSpacing: '.01px' }}>
-              <Link href="/" className={s.link}>
-                {displayPath}
-              </Link>
+              Vercel Examples
+              {breadCrumbs.map((navItem) => (
+                <span key={navItem.name}>
+                  {' '}
+                  /{' '}
+                  {navItem.url ? (
+                    <Link href={navItem.url} className={s.link}>
+                      {navItem.name}
+                    </Link>
+                  ) : (
+                    navItem.name
+                  )}
+                </span>
+              ))}
             </li>
           </ul>
         </div>

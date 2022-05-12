@@ -16,7 +16,7 @@ const Layout: FC<LayoutProps> = ({ title, path, deployButton, children }) => {
         </Head>
       )}
 
-      <Nav path={path} deployButton={deployButton} />
+      <Nav path={path} title={title} deployButton={deployButton} />
 
       <div className="px-8 bg-accents-0">{children}</div>
 
