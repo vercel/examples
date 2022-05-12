@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import Tweet from '@/components/Tweet'
 import { getTweets } from '@/lib/twitter'
+import { serialize } from 'next-mdx-remote/serialize'
 
 const components = {
   Tweet,
@@ -23,7 +23,7 @@ export default function Home(props) {
         rel="noreferrer"
         className="fixed top-5 right-5"
       >
-        <Image src="/github.svg" alt="Github" width={25} height={25} />
+        <Image src="/github.svg" alt="Github" width={25} height={25} className="bg-white rounded-full" />
       </a>
 
       <main className="flex flex-col items-center justify-center w-full flex-1">
@@ -51,23 +51,23 @@ export default function Home(props) {
 
 export async function getStaticProps() {
   const contentHtml = `
-  <h2>Regular Tweets</h2>
+  <h2 className="text-black dark:text-white">Regular Tweets</h2>
   <p>https://twitter.com/steventey/status/1438526338567081984?s=20</p>
-  <h2>Image Tweets</h2>
+  <h2 className="text-black dark:text-white">Image Tweets</h2>
   <p>https://twitter.com/steventey/status/1460689767289405444?s=20</p>
-  <h2>GIF Tweets</h2>
+  <h2 className="text-black dark:text-white">GIF Tweets</h2>
   <p>https://twitter.com/steventey/status/1473329920470355976?s=20</p>
-  <h2>Video Tweets</h2>
+  <h2 className="text-black dark:text-white">Video Tweets</h2>
   <p>https://twitter.com/DAOCentral/status/1474469391232237569</p>
-  <h2>Multiple Images</h2>
+  <h2 className="text-black dark:text-white">Multiple Images</h2>
   <p>https://twitter.com/jstngraphics/status/1477021464620515328?s=20</p>
-  <h2>Link Preview</h2>
+  <h2 className="text-black dark:text-white">Link Preview</h2>
   <p>https://twitter.com/steventey/status/1463554409242062849?s=20</p>
-  <h2>Quote Retweet</h2>
+  <h2 className="text-black dark:text-white">Quote Retweet</h2>
   <p>https://twitter.com/steventey/status/1472640347914137606?s=20</p>
-  <h2>Quote Retweet with Image In Parent</h2>
+  <h2 className="text-black dark:text-white">Quote Retweet with Image In Parent</h2>
   <p>https://twitter.com/steventey/status/1467713086459047940?s=20</p>
-  <h2>Poll Tweet</h2>
+  <h2 className="text-black dark:text-white">Poll Tweet</h2>
   <p>https://twitter.com/DAOCentral/status/1475184169588125699</p>
   `
 
