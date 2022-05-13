@@ -1,7 +1,7 @@
 ---
 name: A/B Testing with Statsig
 slug: ab-testing-statsig
-description: By A/B testing at the edge, you'll reduce CLS from client-loaded experiments and improve your site's performance with smaller JS bundles.
+description: By A/B testing at the edge with Statsig, you'll reduce CLS and improve performance from client-loaded experiments while analyzing impact.
 framework: Next.js
 useCase:
   - Edge Functions
