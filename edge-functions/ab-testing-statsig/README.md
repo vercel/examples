@@ -13,7 +13,7 @@ demoUrl: https://edge-functions-ab-testing-statsig.vercel.app
 
 # A/B testing with Statsig
 
-This example shows how to do A/B testing using statsig
+This example shows how to do A/B testing using statsig.
 
 ## Demo
 
@@ -39,13 +39,15 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-
 yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig
 ```
 
-Set your environment variables.
+#### Set up environment variables
 
-1. Log in to the [Statsig console](https://console.statsig.com/) and navigate to
-   - Settings
-   - API KEYS
-2. Copy your Client API keys and paste it in [.env.example](./env.example)
-3. Rename `.env.example` to `.env.local`
+Log in to the [Statsig console](https://console.statsig.com/) and navigate to **Settings -> API KEYS**.
+
+Then, copy [.env.example](./env.example) to `.env.local` and fill it in with your Client API keys:
+
+```bash
+cp .env.example .env.local
+```
 
 Next, run Next.js in development mode:
 
