@@ -1,3 +1,16 @@
+---
+name: A/B Testing with Statsig
+slug: ab-testing-statsig
+description: By A/B testing at the edge, you'll reduce CLS from client-loaded experiments and improve your site's performance with smaller JS bundles.
+framework: Next.js
+useCase:
+  - Edge Functions
+  - Documentation
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig&project-name=ab-testing-statsig&repository-name=ab-testing-statsig
+demoUrl: https://edge-functions-ab-testing-statsig.vercel.app
+---
+
 # A/B testing with Statsig
 
 This example shows how to do A/B testing using statsig
