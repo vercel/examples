@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import statsig from '../api'
-
-// Store a cookie for the user
-const UID_COOKIE = 'uid'
+import statsig from '../lib/api'
+import { UID_COOKIE } from '../lib/constants'
 
 export async function middleware(req: NextRequest) {
   // Clone the URL
@@ -22,7 +20,12 @@ export async function middleware(req: NextRequest) {
   }
 
   // Fetch experiment
-  const bucket = await statsig.getExperiment(userID, 'statsig_example')
+  const bucket = await statsig
+    .getExperiment(userID, 'statsig_example')
+    .catch((err) => {
+      console.error(err)
+      return 'a'
+    })
 
   // Change the pathname to point to the correct bucket
   url.pathname = `/${bucket}`

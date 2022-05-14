@@ -76,9 +76,7 @@ const api = {
       data: {
         exposures: [
           {
-            user: {
-              userID,
-            },
+            user: { userID },
             experimentName: experiment,
             group,
           },

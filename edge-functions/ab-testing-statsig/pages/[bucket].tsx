@@ -13,7 +13,8 @@ import Cookie from 'js-cookie'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { Statsig } from 'statsig-react'
 import { useEffect } from 'react'
-import api from '../api'
+import { UID_COOKIE } from '../lib/constants'
+import api from '../lib/api'
 
 interface Props {
   bucket: string
@@ -45,14 +46,14 @@ function BucketPage({ bucket }: Props) {
   const { reload } = useRouter()
 
   function resetBucket() {
-    Cookie.remove('uid')
+    Cookie.remove(UID_COOKIE)
     Statsig.logEvent('reset-bucket')
     reload()
   }
 
   useEffect(() => {
     // Log exposure to statsig
-    api.logExposure(Cookie.get('uid')!, bucket, 'statsig_example')
+    api.logExposure(Cookie.get(UID_COOKIE)!, bucket, 'statsig_example')
   }, [bucket])
 
   return (
@@ -80,11 +81,8 @@ function BucketPage({ bucket }: Props) {
           <Code>/[bucket]</Code> page so its fast to rewrite to them.
         </Text>
         <Snippet>{`import { NextResponse } from 'next/server'
-
-import statsig from "../api"
-
-// Store a cookie for the user
-const UID_COOKIE = 'uid'
+import statsig from '../lib/api'
+import { UID_COOKIE } from '../lib/constants'
 
 export async function middleware(req) {
   // Clone the URL
@@ -119,8 +117,7 @@ export async function middleware(req) {
 
   // Return the response
   return response
-}
-`}</Snippet>
+}`}</Snippet>
         <Text>
           Once the page is fully functional, we have to log the exposure for the
           experiment, this will let Statsig know that the bucket was correctly
@@ -134,7 +131,7 @@ export async function middleware(req) {
 
 useEffect(() => {
   // Log exposure to statsig
-  api.logExposure(Cookie.get('uid'), bucket, 'statsig_example')
+  api.logExposure(Cookie.get(UID_COOKIE), bucket, 'statsig_example')
 }, [bucket])`}</Snippet>
         <Text className="text-gray-500 border-l-4 pl-2">
           Statsig REST Api calls were implemented in another file for sake of
@@ -177,8 +174,8 @@ function App({ Component, pageProps }) {
   const Layout = getLayout(Component)
 
   // middleware will automatically set a cookie for the user if they visit a page
-  const userID = Cookies.get('uid')
-  
+  const userID = Cookies.get(UID_COOKIE)
+
   return (
     <StatsigProvider
       sdkKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY!}
@@ -190,8 +187,7 @@ function App({ Component, pageProps }) {
       </Layout>
     </StatsigProvider>
   )
-}
-`}</Snippet>
+}`}</Snippet>
         <Text>
           After we can tracks events by calling using the{' '}
           <Code>Statsig.logEvent</Code> function to track events during your
@@ -209,8 +205,7 @@ export default function MyComponent() {
         Statsig.logEvent('button_clicked');
       }}
     />;
-}
-`}</Snippet>
+}`}</Snippet>
       </section>
     </Page>
   )

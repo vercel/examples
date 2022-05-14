@@ -1,15 +1,14 @@
 import type { AppProps } from 'next/app'
-import type { LayoutProps } from '@vercel/examples-ui/layout'
 import { StatsigProvider } from 'statsig-react'
-
-import { getLayout } from '@vercel/examples-ui'
 import Cookies from 'js-cookie'
-
+import type { LayoutProps } from '@vercel/examples-ui/layout'
+import { getLayout } from '@vercel/examples-ui'
 import '@vercel/examples-ui/globals.css'
+import { UID_COOKIE } from '../lib/constants'
 
 function App({ Component, pageProps }: AppProps) {
-  // middleware will automatically set a cookie for the user if they visit a page
-  const userID = Cookies.get('uid')
+  // Middleware will automatically set a cookie for the user if they visit a page
+  const userID = Cookies.get(UID_COOKIE)
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
