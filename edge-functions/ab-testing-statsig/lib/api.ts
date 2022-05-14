@@ -1,4 +1,4 @@
-const STATSIG_URL = 'https://api.statsig.com/v1'
+const STATSIG_URL = 'https://api.statsig.com'
 const STATSIG_CLIENT_KEY = process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY!
 
 type Experiment = {
@@ -56,22 +56,20 @@ async function statsig(
 
 const api = {
   getGroups: async () => ['a', 'b'],
-  async getExperiment(
-    userID: string,
-    experiment: string,
-    defaultGroup: string = 'a'
-  ) {
-    const { value }: Experiment = await statsig('/get_config', {
+  async getExperiment(userID: string, experiment: string) {
+    // https://docs.statsig.com/http-api#fetch-experiment-config
+    const { value }: Experiment = await statsig('/v1/get_config', {
       apiKey: STATSIG_CLIENT_KEY,
       data: {
         user: { userID },
         configName: experiment,
       },
     })
-    return value.name || defaultGroup
+    return value.name
   },
   logExposure(userID: string, group: string, experiment: string) {
-    return statsig('/log_custom_exposure', {
+    // https://docs.statsig.com/http-api#log-exposure-event
+    return statsig('/v1/log_custom_exposure', {
       apiKey: STATSIG_CLIENT_KEY,
       data: {
         exposures: [

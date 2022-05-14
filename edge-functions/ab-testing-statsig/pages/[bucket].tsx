@@ -1,4 +1,9 @@
+import { useEffect } from 'react'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
+import { Statsig } from 'statsig-react'
+import Cookie from 'js-cookie'
 import {
   Layout,
   Text,
@@ -8,11 +13,6 @@ import {
   Snippet,
   Code,
 } from '@vercel/examples-ui'
-import { useRouter } from 'next/router'
-import Cookie from 'js-cookie'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { Statsig } from 'statsig-react'
-import { useEffect } from 'react'
 import { UID_COOKIE } from '../lib/constants'
 import api from '../lib/api'
 
@@ -85,29 +85,28 @@ import statsig from '../lib/api'
 import { UID_COOKIE } from '../lib/constants'
 
 export async function middleware(req) {
-  // Clone the URL
-  const url = req.nextUrl.clone()
-
-  // Just run for the / path
-  if (req.nextUrl.pathname !== '/') {
-    return NextResponse.next()
-  }
+  // If the request is not for \`/\`, continue
+  if (req.nextUrl.pathname !== '/') return NextResponse.next()
 
   // Get users UID from the cookie
   let userID = req.cookies[UID_COOKIE]
 
   // Set a userID if not present
-  if (!userID) {
-    userID = crypto.randomUUID()
-  }
+  if (!userID) userID = crypto.randomUUID()
 
-  // Fetch experiment
-  const bucket = await statsig.getExperiment({ userID }, 'statsig_example')
+  // Fetch experiment from Statsig
+  const bucket =
+    (await statsig.getExperiment(userID, 'statsig_example').catch((error) => {
+      // Log the error but don't throw it, if Statsig fails, fallback to the default group
+      // so that the site doesn't go down
+      console.error(error)
+    })) || DEFAULT_GROUP
 
-  // Change the pathname to point to the correct bucket
-  url.pathname = \`/\${bucket}\`
+  // Clone the URL and change its pathname to point to a bucket
+  const url = req.nextUrl.clone()
+  url.pathname = \`/${bucket}\`
 
-  // Create a response
+  // Response that'll rewrite to the selected bucket
   const response = NextResponse.rewrite(url)
 
   // Set cookie if not present
@@ -119,13 +118,13 @@ export async function middleware(req) {
   return response
 }`}</Snippet>
         <Text>
-          Once the page is fully functional, we have to log the exposure for the
+          Once the page is fully functional we log the exposure for the
           experiment, this will let Statsig know that the bucket was correctly
           assigned and the user has been exposed to the experiment. If we
-          don&apos;t log the exposure, all users will get the same bucket and
-          the traffic won&apos;t be split.
+          don&apos;t log the exposure, Statsig won&apos;t be able to analyze and
+          track the progress of the experiment.
         </Text>
-        <Snippet>{`import statsig from "../api"
+        <Snippet>{`import statsig from '../lib/api'
 
 ...
 
@@ -133,20 +132,14 @@ useEffect(() => {
   // Log exposure to statsig
   api.logExposure(Cookie.get(UID_COOKIE), bucket, 'statsig_example')
 }, [bucket])`}</Snippet>
-        <Text className="text-gray-500 border-l-4 pl-2">
-          Statsig REST Api calls were implemented in another file for sake of
-          simplicity and exported as <Code>logExposure</Code> and{' '}
-          <Code>getExperiment</Code> methods. You can find those{' '}
-          <Link href="https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig/api.ts">
-            here
-          </Link>
-          .
-        </Text>
         <Text>
           You can reset the bucket multiple times to get a different bucket
           assigned. You can configure your experiments, see diagnostics and
           results in your account.{' '}
-          <Link href="https://console.statsig.com/">Statsig console</Link>.
+          <Link href="https://console.statsig.com/" target="_blank">
+            Statsig console
+          </Link>
+          .
         </Text>
         <pre className="bg-black text-white font-mono text-left py-2 px-4 rounded-lg text-sm leading-6">
           bucket: {bucket}
@@ -159,10 +152,15 @@ useEffect(() => {
       <section className="flex flex-col gap-6">
         <Text variant="h2">Using metrics in your experiments</Text>
         <Text>
-          <Link href="https://docs.statsig.com/metrics">Statsig Metrics</Link>{' '}
-          are a way to track events that happen in your site. To enable them you
-          can pass the <Code>StatsigProvider</Code> to{' '}
-          <Link href="https://nextjs.org/docs/advanced-features/custom-app">
+          <Link href="https://docs.statsig.com/metrics" target="_blank">
+            Statsig Metrics
+          </Link>{' '}
+          are a way to track events that happen in your site. One way to enable
+          them is to pass the <Code>StatsigProvider</Code> to{' '}
+          <Link
+            href="https://nextjs.org/docs/advanced-features/custom-app"
+            target="_blank"
+          >
             <Code>_app.tsx</Code>
           </Link>
           .
@@ -189,7 +187,7 @@ function App({ Component, pageProps }) {
   )
 }`}</Snippet>
         <Text>
-          After we can tracks events by calling using the{' '}
+          Now we can tracks events by calling using the{' '}
           <Code>Statsig.logEvent</Code> function to track events during your
           experiments.
         </Text>
