@@ -1,4 +1,4 @@
-export default async function addDomain(req, res) {
+export default async function handler(req, res) {
   const { domain } = req.query
 
   const response = await fetch(

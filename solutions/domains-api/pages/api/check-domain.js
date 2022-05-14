@@ -1,4 +1,4 @@
-export default async function checkDomain(req, res) {
+export default async function handler(req, res) {
   const { domain } = req.query
 
   const [configResponse, domainResponse] = await Promise.all([
@@ -21,7 +21,7 @@ export default async function checkDomain(req, res) {
           'Content-Type': 'application/json',
         },
       }
-    )
+    ),
   ])
 
   const configJson = await configResponse.json()
@@ -55,12 +55,12 @@ export default async function checkDomain(req, res) {
     return res.status(200).json({
       configured: !configJson.misconfigured,
       ...verificationResponse,
-    })  
+    })
   }
 
   return res.status(200).json({
     configured: !configJson.misconfigured,
     ...domainJson,
-    ...(verificationResponse ? {verificationResponse} : {}), 
+    ...(verificationResponse ? { verificationResponse } : {}),
   })
 }
