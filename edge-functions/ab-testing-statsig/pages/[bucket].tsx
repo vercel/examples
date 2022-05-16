@@ -14,7 +14,7 @@ import {
   Code,
 } from '@vercel/examples-ui'
 import { FLAG, UID_COOKIE } from '../lib/constants'
-import api from '../lib/api'
+import api from '../lib/statsig-api'
 
 interface Props {
   bucket: string
@@ -81,7 +81,7 @@ function BucketPage({ bucket }: Props) {
           <Code>/[bucket]</Code> page so its fast to rewrite to them.
         </Text>
         <Snippet>{`import { NextResponse } from 'next/server'
-import statsig from '../lib/api'
+import statsig from '../lib/statsig-api'
 import { UID_COOKIE } from '../lib/constants'
 
 export async function middleware(req) {
@@ -124,7 +124,7 @@ export async function middleware(req) {
           don&apos;t log the exposure, Statsig won&apos;t be able to analyze and
           track the progress of the experiment.
         </Text>
-        <Snippet>{`import statsig from '../lib/api'
+        <Snippet>{`import statsig from '../lib/statsig-api'
 
 ...
 
