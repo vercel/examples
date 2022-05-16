@@ -3,11 +3,9 @@ const STATSIG_CLIENT_KEY = process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY!
 
 type Experiment = {
   name: string
-  value: {
-    name: string
-  }
+  value: Record<string, any>
   group: string
-  rule_id?: string
+  rule_id: string | null
 }
 
 /**
@@ -27,7 +25,7 @@ async function statsig(
     )
   }
 
-  const res = await fetch(url, {
+  const res = await fetch(url.href, {
     ...init,
     // All Statsig APIs use POST
     method: 'POST',
@@ -65,7 +63,7 @@ const api = {
         configName: experiment,
       },
     })
-    return value.name
+    return value
   },
   logExposure(userID: string, group: string, experiment: string) {
     // https://docs.statsig.com/http-api#log-exposure-event
