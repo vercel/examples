@@ -1,33 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server'
-import statsig from '../api'
-
-// Store a cookie for the user
-const UID_COOKIE = 'uid'
+import statsig from '../lib/statsig-api'
+import { DEFAULT_GROUP, FLAG, UID_COOKIE } from '../lib/constants'
 
 export async function middleware(req: NextRequest) {
-  // Clone the URL
-  const url = req.nextUrl.clone()
-
-  // Just run for the / path
-  if (req.nextUrl.pathname !== '/') {
-    return NextResponse.next()
-  }
+  // If the request is not for `/`, continue
+  if (req.nextUrl.pathname !== '/') return NextResponse.next()
 
   // Get users UID from the cookie
   let userID = req.cookies[UID_COOKIE]
 
   // Set a userID if not present
-  if (!userID) {
-    userID = crypto.randomUUID()
-  }
+  if (!userID) userID = crypto.randomUUID()
 
-  // Fetch experiment
-  const bucket = await statsig.getExperiment(userID, 'statsig_example')
+  // Fetch experiment from Statsig
+  const bucket =
+    (await statsig
+      .getExperiment(userID, FLAG)
+      .then((value) => value.name)
+      .catch((error) => {
+        // Log the error but don't throw it, if Statsig fails, fallback to the default group
+        // so that the site doesn't go down
+        console.error(error)
+      })) || DEFAULT_GROUP
 
-  // Change the pathname to point to the correct bucket
+  // Clone the URL and change its pathname to point to a bucket
+  const url = req.nextUrl.clone()
   url.pathname = `/${bucket}`
 
-  // Create a response
+  // Response that'll rewrite to the selected bucket
   const response = NextResponse.rewrite(url)
 
   // Set cookie if not present
