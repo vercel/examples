@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import statsig from '../lib/api'
-import { DEFAULT_GROUP, UID_COOKIE } from '../lib/constants'
+import { DEFAULT_GROUP, FLAG, UID_COOKIE } from '../lib/constants'
 
 export async function middleware(req: NextRequest) {
   // If the request is not for `/`, continue
@@ -14,11 +14,14 @@ export async function middleware(req: NextRequest) {
 
   // Fetch experiment from Statsig
   const bucket =
-    (await statsig.getExperiment(userID, 'statsig_example').catch((error) => {
-      // Log the error but don't throw it, if Statsig fails, fallback to the default group
-      // so that the site doesn't go down
-      console.error(error)
-    })) || DEFAULT_GROUP
+    (await statsig
+      .getExperiment(userID, FLAG)
+      .then((value) => value.name)
+      .catch((error) => {
+        // Log the error but don't throw it, if Statsig fails, fallback to the default group
+        // so that the site doesn't go down
+        console.error(error)
+      })) || DEFAULT_GROUP
 
   // Clone the URL and change its pathname to point to a bucket
   const url = req.nextUrl.clone()

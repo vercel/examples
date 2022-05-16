@@ -13,7 +13,7 @@ import {
   Snippet,
   Code,
 } from '@vercel/examples-ui'
-import { UID_COOKIE } from '../lib/constants'
+import { FLAG, UID_COOKIE } from '../lib/constants'
 import api from '../lib/api'
 
 interface Props {
@@ -53,7 +53,7 @@ function BucketPage({ bucket }: Props) {
 
   useEffect(() => {
     // Log exposure to statsig
-    api.logExposure(Cookie.get(UID_COOKIE)!, bucket, 'statsig_example')
+    api.logExposure(Cookie.get(UID_COOKIE)!, bucket, FLAG)
   }, [bucket])
 
   return (
@@ -96,7 +96,7 @@ export async function middleware(req) {
 
   // Fetch experiment from Statsig
   const bucket =
-    (await statsig.getExperiment(userID, 'statsig_example').catch((error) => {
+    (await statsig.getExperiment(userID, FLAG).catch((error) => {
       // Log the error but don't throw it, if Statsig fails, fallback to the default group
       // so that the site doesn't go down
       console.error(error)
@@ -130,7 +130,7 @@ export async function middleware(req) {
 
 useEffect(() => {
   // Log exposure to statsig
-  api.logExposure(Cookie.get(UID_COOKIE), bucket, 'statsig_example')
+  api.logExposure(Cookie.get(UID_COOKIE), bucket, FLAG)
 }, [bucket])`}</Snippet>
         <Text>
           You can reset the bucket multiple times to get a different bucket
