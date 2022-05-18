@@ -6,14 +6,15 @@ import '@vercel/edge-functions-ui/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
-  
+
   return (
     <Layout
       title="Feature Flagging with Optimizely"
       path="feature-flag-optimizely"
       deployButton={{
         env: ['OPTIMIZELY_SDK_KEY'],
-        repositoryUrl: 'https://github.com/optimizely/vercel-examples/tree/main/edge-functions/feature-flag-optimizely'
+        repositoryUrl:
+          'https://github.com/optimizely/vercel-examples/tree/main/edge-functions/feature-flag-optimizely',
       }}
     >
       <Component {...pageProps} />

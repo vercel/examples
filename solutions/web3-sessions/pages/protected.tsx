@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { Layout, Text, Page, Button } from '@vercel/examples-ui'
 import { getSession } from 'next-auth/react'
 import { NextPageContext } from 'next'
@@ -11,15 +10,6 @@ function Protected() {
 
   return (
     <Page>
-      <Head>
-        <title>Web3 Session with NextAuth.js</title>
-        <meta
-          name="description"
-          content="Learn how to do Web3 sessions with NextAuth.js"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">Web3 Session with NextAuth.js, Protected Route</Text>
         <Text>

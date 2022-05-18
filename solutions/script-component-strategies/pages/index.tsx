@@ -1,19 +1,9 @@
-import Head from 'next/head'
 import { Layout, Text, Page, Code, Link, List } from '@vercel/examples-ui'
 import Snippet from '../components/Snippet'
 
 function Home() {
   return (
     <Page>
-      <Head>
-        <title>next/script strategies</title>
-        <meta
-          name="description"
-          content="A small guide on how to use next/script"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">next/script strategies</Text>
         <Text>

@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-import Head from 'next/head'
 import { Layout, Text, Page, Link, Code } from '@vercel/examples-ui'
 import { ethers } from 'ethers'
 import { FC } from 'react'
@@ -23,15 +22,6 @@ const Snippet: FC = ({ children }) => {
 function Home({ contractName }: { contractName: string }) {
   return (
     <Page>
-      <Head>
-        <title>Data from smart contracts - Vercel Example</title>
-        <meta
-          name="description"
-          content="Vercel example how to use data from smart contracts"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">Fetching data from smart contracts</Text>
         <Text>

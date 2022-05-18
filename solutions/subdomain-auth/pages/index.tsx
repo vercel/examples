@@ -8,21 +8,12 @@ import {
   List,
   Code,
 } from '@vercel/examples-ui'
-import Head from 'next/head'
 
 export default function Home() {
   const { data, status } = useSession()
 
   return (
     <Page>
-      <Head>
-        <title>Auth subdomains - Vercel Example</title>
-        <meta
-          name="description"
-          content="Vercel example on how to secure subdomains using next-auth"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <section className="flex flex-col gap-6">
         <Text variant="h1">Securing routes using next-auth</Text>
         <Text>
@@ -47,7 +38,9 @@ export default function Home() {
                 </Link>
               </li>
               <li>
-                <Link href="https://solutions-subdomain-auth.vercel.sh">solutions-subdomain-auth.vercel.sh</Link>
+                <Link href="https://solutions-subdomain-auth.vercel.sh">
+                  solutions-subdomain-auth.vercel.sh
+                </Link>
               </li>
             </List>
           </section>

@@ -9,7 +9,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="maintenance-page" path="edge-functions/maintenance-page">
+    <Layout
+      title="Maintenance Page"
+      path="edge-functions/maintenance-page"
+      description="Learn how to implement a maintenance page at the edge"
+    >
       <Component {...pageProps} />
     </Layout>
   )

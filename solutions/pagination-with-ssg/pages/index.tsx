@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import {
   Layout,
@@ -14,15 +13,6 @@ import buildScreenShot from '../public/build.png'
 function Home() {
   return (
     <Page>
-      <Head>
-        <title>Pagination with SSG</title>
-        <meta
-          name="description"
-          content="Vercel example how to use Pagination with SSG"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section>
         <Text variant="h1" className="mb-6">
           Pagination with SSG
