@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { Layout, Text, Page, Code, Link, Snippet } from '@vercel/examples-ui'
@@ -11,15 +10,6 @@ function Home() {
 
   return (
     <Page>
-      <Head>
-        <title>User-Agent Based Rendering - Vercel Example</title>
-        <meta
-          name="description"
-          content="Learn to use the User-Agent header to render different pages"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">User-Agent Based Rendering</Text>
         <Text>

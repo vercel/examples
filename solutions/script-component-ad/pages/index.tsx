@@ -1,19 +1,9 @@
-import Head from 'next/head'
 import { Layout, Text, Page, Link, Code } from '@vercel/examples-ui'
 import { AdBanner } from '../components/AdBanner'
 
 function Home() {
   return (
     <Page>
-      <Head>
-        <title>Loading Ads with the Script Component - Vercel Example</title>
-        <meta
-          name="description"
-          content="Learn how to lazy load ads with the Next.js Script Component"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">Loading Ads with the Script Component</Text>
         <Text>

@@ -10,7 +10,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="loading-web-fonts" path="solutions/loading-web-fonts">
+    <Layout
+      title="loading-web-fonts"
+      path="solutions/loading-web-fonts"
+      description="Vercel example on how to load web fonts"
+    >
       <Component {...pageProps} />
     </Layout>
   )

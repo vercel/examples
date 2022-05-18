@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import { Layout, Text, Page, Code, Link, Snippet } from '@vercel/examples-ui'
 import { useState } from 'react'
@@ -56,15 +55,6 @@ const FontMixer: React.VFC<FontMixerProps> = ({ fonts: [a, b], children }) => {
 function Home() {
   return (
     <Page className="flex flex-col gap-12">
-      <Head>
-        <title>Loading web fonts - Vercel Example</title>
-        <meta
-          name="description"
-          content="Vercel example on how to load web fonts"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">Loading web fonts</Text>
         <Text>

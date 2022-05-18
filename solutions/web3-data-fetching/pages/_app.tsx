@@ -9,7 +9,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="web3-data-fetching" path="solutions/web3-data-fetching">
+    <Layout
+      title="web3-data-fetching"
+      path="solutions/web3-data-fetching"
+      description="Vercel example how to use data from smart contracts"
+    >
       <Component {...pageProps} />
     </Layout>
   )

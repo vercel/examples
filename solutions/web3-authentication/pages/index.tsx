@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import {
   Layout,
   Text,
@@ -55,15 +54,6 @@ function Home() {
 
   return (
     <Page>
-      <Head>
-        <title>web3-authentication - Vercel Example</title>
-        <meta
-          name="description"
-          content="Vercel example how to use web3-authentication"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">Web 3 authentication example</Text>
         <Text>

@@ -17,6 +17,7 @@ function App({ Component, pageProps }: AppProps) {
         <Layout
           title="web3-authentication"
           path="solutions/web3-authentication"
+          description="Vercel example how to use web3-authentication"
         >
           <Component {...pageProps} />
         </Layout>

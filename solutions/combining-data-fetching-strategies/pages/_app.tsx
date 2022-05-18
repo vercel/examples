@@ -12,6 +12,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="combining data fetching strategies"
       path="solutions/combining-data-fetching-strategies"
+      description="How to adapt data fetching to avoid moving from static pre-rendering"
     >
       <Component {...pageProps} />
     </Layout>

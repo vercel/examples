@@ -9,7 +9,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="maintenance-page" path="edge-functions/maintenance-page">
+    <Layout
+      title="maintenance-page"
+      path="edge-functions/maintenance-page"
+      description="Vercel example how to implement a maintenance page on the edge"
+    >
       <Component {...pageProps} />
     </Layout>
   )

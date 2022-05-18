@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { Layout, Text, Page, Button, Link, Code } from '@vercel/examples-ui'
 import { Snippet } from '../components/Snippet'
 
@@ -29,15 +28,6 @@ function Home() {
 
   return (
     <Page>
-      <Head>
-        <title>Web3 Session with NextAuth.js</title>
-        <meta
-          name="description"
-          content="Learn how to do Web3 sessions with NextAuth.js"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col space-y-4 gap-6">
         <Text variant="h1">Web3 Session with NextAuth.js</Text>
         <Text>

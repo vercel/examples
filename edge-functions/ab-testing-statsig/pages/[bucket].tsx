@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import Head from 'next/head'
 import { Statsig } from 'statsig-react'
 import Cookie from 'js-cookie'
 import {
@@ -58,15 +57,6 @@ function BucketPage({ bucket }: Props) {
 
   return (
     <Page className="flex flex-col gap-12">
-      <Head>
-        <title>AB testing with Statsig - Vercel Example</title>
-        <meta
-          name="description"
-          content="Vercel example how to use ab-testing-statsig"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">AB testing with Statsig</Text>
         <Text>

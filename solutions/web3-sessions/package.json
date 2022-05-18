@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/examples-ui": "^0.3.1",
+    "@vercel/examples-ui": "^0.3.2",
     "ethers": "^5.5.4",
     "next": "12.1.0",
     "next-auth": "^4.2.1",

@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { Layout, Text, Page, Link, Code } from '@vercel/examples-ui'
 import Image, { ImageProps } from 'next/image'
 import { useEffect, useState } from 'react'
@@ -46,15 +45,6 @@ const Snippet: React.VFC<{ children: React.ReactChild }> = ({ children }) => {
 function Home() {
   return (
     <Page>
-      <Head>
-        <title>Image fallback - Vercel Example</title>
-        <meta
-          name="description"
-          content="Vercel example how to use a fallback image while using the next/image component"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">Fallbacking images from next/image</Text>
         <Text>

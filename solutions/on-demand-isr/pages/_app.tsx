@@ -9,7 +9,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="On demand ISR" path="solutions/on-demand-isr">
+    <Layout
+      title="On demand ISR"
+      path="solutions/on-demand-isr"
+      description="Vercel example how to use On demand ISR"
+    >
       <Component {...pageProps} />
     </Layout>
   )

@@ -10,6 +10,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="Add login and registration to your Next.js app!"
       path="solutions/auth-with-ory"
+      description="Add login and registration to your Next.js app!"
     >
       <Component {...pageProps} />
     </Layout>

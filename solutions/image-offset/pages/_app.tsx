@@ -9,7 +9,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="next/image offset example" path="solutions/image-offset">
+    <Layout
+      title="next/image offset example"
+      path="solutions/image-offset"
+      description="next/image offset loading demo"
+    >
       <Component {...pageProps} />
     </Layout>
   )

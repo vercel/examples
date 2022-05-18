@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import NProgress from 'nprogress'
 import Router from 'next/router'
-
 ;(Router as any).onRouteChangeStart = () =>
   (NProgress.start()(Router as any).onRouteChangeComplete = () =>
     (NProgress.done()(Router as any).onRouteChangeError = () =>

@@ -9,7 +9,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="-- PLOP TITLE HERE --" path="-- PLOP PATH HERE --">
+    <Layout
+      title="-- PLOP TITLE HERE --"
+      path="-- PLOP PATH HERE --"
+      description="Vercel example how to use -- PLOP TITLE HERE --"
+    >
       <Component {...pageProps} />
     </Layout>
   )

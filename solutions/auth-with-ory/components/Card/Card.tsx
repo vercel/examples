@@ -14,7 +14,7 @@ const Card: React.VFC<Props> = ({ title, children }: Props) => {
     <article className={styles.card}>
       <div className={styles.imageContainer}>
         {React.cloneElement(children, {
-          className: styles.thumbnail
+          className: styles.thumbnail,
         })}
         <div className={styles.imageFooter}>
           <Image

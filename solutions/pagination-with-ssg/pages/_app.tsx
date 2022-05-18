@@ -9,7 +9,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="Pagination Strategy" path="solutions/pagination-with-ssg">
+    <Layout
+      title="Pagination Strategy"
+      path="solutions/pagination-with-ssg"
+      description="Vercel example how to use Pagination with SSG"
+    >
       <Component {...pageProps} />
     </Layout>
   )
