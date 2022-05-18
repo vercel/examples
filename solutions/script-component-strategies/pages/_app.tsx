@@ -15,7 +15,7 @@ function App({ Component, pageProps, router }: AppProps) {
     <Layout
       title="script component strategies"
       path="solutions/script-component-strategies"
-      description="A small guide on how to use next/script"
+      description="A small guide on how to use next/script strategies"
     >
       <Component {...pageProps} />
       {pathname !== '/' && (

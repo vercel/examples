@@ -13,7 +13,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="subdomain-auth"
       path="solutions/subdomain-auth"
-      description="Vercel example on how to secure subdomains using next-auth"
+      description="How to secure subdomains using next-auth"
     >
       <SessionProvider>
         <Component {...pageProps} />

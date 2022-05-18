@@ -12,7 +12,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="On demand ISR"
       path="solutions/on-demand-isr"
-      description="Vercel example how to use On demand ISR"
+      description="Learn to use on demand ISR"
     >
       <Component {...pageProps} />
     </Layout>

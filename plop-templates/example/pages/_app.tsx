@@ -12,7 +12,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="-- PLOP TITLE HERE --"
       path="-- PLOP PATH HERE --"
-      description="Vercel example how to use -- PLOP TITLE HERE --"
+      description="-- PLOP TITLE HERE --"
     >
       <Component {...pageProps} />
     </Layout>

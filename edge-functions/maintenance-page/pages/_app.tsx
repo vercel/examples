@@ -12,7 +12,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="maintenance-page"
       path="edge-functions/maintenance-page"
-      description="Vercel example how to implement a maintenance page on the edge"
+      description="How to implement a maintenance page on the edge"
     >
       <Component {...pageProps} />
     </Layout>

@@ -12,7 +12,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="image-fallback"
       path="solutions/image-fallback"
-      description="Vercel example how to use a fallback image while using the next/image component"
+      description="How to use a fallback image while using the next/image component"
     >
       <Component {...pageProps} />
     </Layout>

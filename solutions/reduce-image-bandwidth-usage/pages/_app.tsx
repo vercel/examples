@@ -12,7 +12,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="Image bandwidth optimization"
       path="solutions/reduce-image-bandwidth-usage"
-      description="Reduce next/image bandwidth demo"
+      description="Learn how to reduce next/image bandwidth"
     >
       <Component {...pageProps} />
     </Layout>

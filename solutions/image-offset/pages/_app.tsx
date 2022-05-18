@@ -12,7 +12,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="next/image offset example"
       path="solutions/image-offset"
-      description="next/image offset loading demo"
+      description="Understanding next/image offset loading"
     >
       <Component {...pageProps} />
     </Layout>

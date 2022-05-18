@@ -12,7 +12,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="web3-data-fetching"
       path="solutions/web3-data-fetching"
-      description="Vercel example how to use data from smart contracts"
+      description="Learn how to fetch data from smart contracts"
     >
       <Component {...pageProps} />
     </Layout>

@@ -13,7 +13,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="loading-web-fonts"
       path="solutions/loading-web-fonts"
-      description="Vercel example on how to load web fonts"
+      description="How to correctly load web fonts"
     >
       <Component {...pageProps} />
     </Layout>

@@ -12,7 +12,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="Pagination Strategy"
       path="solutions/pagination-with-ssg"
-      description="Vercel example how to use Pagination with SSG"
+      description="Pagination with SSG"
     >
       <Component {...pageProps} />
     </Layout>

@@ -19,7 +19,7 @@ function App({ Component, pageProps }: AppProps) {
     >
       <Layout
         title="ab-testing-statsig"
-        description="Vercel example how to use ab-testing-statsig"
+        description="How to do A/B testing with Statsig"
         path="edge-functions/ab-testing-statsig"
       >
         <Component {...pageProps} />
