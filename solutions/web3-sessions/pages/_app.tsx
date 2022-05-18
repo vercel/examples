@@ -15,7 +15,7 @@ function App({ Component, pageProps }: AppProps) {
     <WagmiProvider autoConnect>
       <SessionProvider session={pageProps.session}>
         <Layout
-          title="web3-sessions"
+          title="Web3 Sessions with NextAuth.js"
           path="solutions/web3-sessions"
           description="Learn how to do Web3 sessions with NextAuth.js"
         >

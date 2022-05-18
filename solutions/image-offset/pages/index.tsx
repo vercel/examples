@@ -41,7 +41,7 @@ function Home() {
   return (
     <Page>
       <section className="flex flex-col gap-6">
-        <Text variant="h1">next/image offset loading usage</Text>
+        <Text variant="h1">next/image offset loading</Text>
         <Text>This example shows how lazy loading works on next/image.</Text>
       </section>
 

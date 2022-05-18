@@ -46,7 +46,7 @@ function Home() {
   return (
     <Page>
       <section className="flex flex-col gap-6">
-        <Text variant="h1">Fallbacking images from next/image</Text>
+        <Text variant="h1">Fallback images from next/image</Text>
         <Text>
           Broken images can break our users experience, managing error states
           gracefully lets us have more control over how our UI should look like

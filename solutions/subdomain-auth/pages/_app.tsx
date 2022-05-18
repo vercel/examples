@@ -11,7 +11,7 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="subdomain-auth"
+      title="Securing routes with next-auth"
       path="solutions/subdomain-auth"
       description="How to secure subdomains using next-auth"
     >

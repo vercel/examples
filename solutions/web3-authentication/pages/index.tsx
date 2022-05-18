@@ -55,7 +55,7 @@ function Home() {
   return (
     <Page>
       <section className="flex flex-col gap-6">
-        <Text variant="h1">Web 3 authentication example</Text>
+        <Text variant="h1">Web3 Authentication</Text>
         <Text>
           This example shows how to implement Web3 authentication using{' '}
           <Link href="https://next-auth.js.org/">NextAuth.js</Link>,{' '}

@@ -11,7 +11,7 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="loading-web-fonts"
+      title="Loading web fonts"
       path="solutions/loading-web-fonts"
       description="How to correctly load web fonts"
     >

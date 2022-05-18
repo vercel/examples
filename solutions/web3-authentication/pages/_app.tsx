@@ -15,9 +15,9 @@ function App({ Component, pageProps }: AppProps) {
     <WagmiProvider autoConnect>
       <SessionProvider session={pageProps.session} refetchInterval={0}>
         <Layout
-          title="web3-authentication"
+          title="Web3 Authentication"
           path="solutions/web3-authentication"
-          description="Learn how to use authentication for Web3 apps"
+          description="Learn how to do authentication for Web3 apps"
         >
           <Component {...pageProps} />
         </Layout>

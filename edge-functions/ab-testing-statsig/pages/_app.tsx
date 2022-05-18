@@ -18,7 +18,7 @@ function App({ Component, pageProps }: AppProps) {
       user={{ userID }}
     >
       <Layout
-        title="ab-testing-statsig"
+        title="AB testing with Statsig"
         description="How to do A/B testing with Statsig"
         path="edge-functions/ab-testing-statsig"
       >

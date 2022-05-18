@@ -10,9 +10,9 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="maintenance-page"
+      title="Maintenance Page"
       path="edge-functions/maintenance-page"
-      description="How to implement a maintenance page on the edge"
+      description="Learn how to implement a maintenance page at the edge"
     >
       <Component {...pageProps} />
     </Layout>

@@ -10,7 +10,7 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="image-fallback"
+      title="Fallback images from next/image"
       path="solutions/image-fallback"
       description="How to use a fallback image while using the next/image component"
     >
