@@ -11,6 +11,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="Loading Ads with the Script Component"
       path="solutions/script-component-ad"
+      description="Learn how to lazy load ads with the Next.js Script Component"
     >
       <Script
         strategy="lazyOnload"

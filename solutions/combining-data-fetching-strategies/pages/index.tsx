@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import { Layout, Text, Page, Code, Link, List } from '@vercel/examples-ui'
 import { GetStaticProps } from 'next'
@@ -129,15 +128,6 @@ function ProductCard({ product }: Props) {
 function Home({ product }: Props) {
   return (
     <Page>
-      <Head>
-        <title>Combining data fetching strategies</title>
-        <meta
-          name="description"
-          content="How to adapt data fetching to avoid moving from static pre-rendering"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">Combining data fetching strategies</Text>
         <Text>

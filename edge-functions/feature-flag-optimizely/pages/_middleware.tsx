@@ -1,6 +1,6 @@
 //@ts-ignore
 import { createInstance } from '@optimizely/optimizely-sdk/dist/optimizely.lite.min.js'
-import { NextRequest, NextFetchEvent, NextResponse } from "next/server"
+import { NextRequest, NextFetchEvent, NextResponse } from 'next/server'
 import optimizelyDatafile from '../lib/optimizely/datafile.json'
 
 const VERCEL_EDGE_CLIENT_ENGINE = 'javascript-sdk/vercel-edge'
@@ -19,13 +19,15 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
     datafile: optimizelyDatafile,
     clientEngine: VERCEL_EDGE_CLIENT_ENGINE,
     eventDispatcher: {
-      dispatchEvent: ({url, params}: {url:string, params:any}) => {        
+      dispatchEvent: ({ url, params }: { url: string; params: any }) => {
         // Tell edge function to wait for this promise to fullfill.
-        ev.waitUntil(fetch(url, {
-          method: "POST",
-          body: JSON.stringify(params)
-        }))
-      }
+        ev.waitUntil(
+          fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(params),
+          })
+        )
+      },
     },
   })
 
@@ -37,17 +39,24 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
 
   // Fetch datafile revision for debugging.
   const revision = instance.getOptimizelyConfig().revision
-  
+
   console.log(`[OPTIMIZELY] Datafile Revision: ${revision}`)
   console.log(`[OPTIMIZELY] userId: ${userId}`)
-  console.log(`[OPTIMIZELY] flag 'product_sort' is ${decision.enabled ? 'enabled' : 'disabled'} for the user ${userId}`)
-  console.log(`[OPTIMIZELY] User ${userId} was bucketed in to variation ${decision.variationKey}`)
+  console.log(
+    `[OPTIMIZELY] flag 'product_sort' is ${
+      decision.enabled ? 'enabled' : 'disabled'
+    } for the user ${userId}`
+  )
+  console.log(
+    `[OPTIMIZELY] User ${userId} was bucketed in to variation ${decision.variationKey}`
+  )
   console.log(`[OPTIMIZELY] sort_method is ${decision.variables.sort_method}`)
 
   const url = req.nextUrl.clone()
-  
+
   // Rewriting the path based on sort_method. The default is Alphabetical.
-  url.pathname = decision.variables.sort_method === 'popular_first' ? '/popular' : '/'  
+  url.pathname =
+    decision.variables.sort_method === 'popular_first' ? '/popular' : '/'
   let res = NextResponse.rewrite(url)
 
   if (!req.cookies[COOKIE_NAME]) {
@@ -55,5 +64,5 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
     res.cookie(COOKIE_NAME, userId)
   }
 
-  return res;
+  return res
 }

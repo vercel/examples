@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
 
@@ -18,12 +17,6 @@ const CARD = {
 function Home() {
   return (
     <Page>
-      <Head>
-        <title>Reduce next/image bandwidth demo</title>
-        <meta name="description" content="Reduce next/image bandwidth demo" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <Text variant="h2" className="mb-6">
         Reduce next/image bandwidth usage
       </Text>

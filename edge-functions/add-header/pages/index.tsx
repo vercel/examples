@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 
-import Head from 'next/head'
 import { Code, Layout, Page, Text } from '@vercel/examples-ui'
 
 const Snippet: FC = ({ children }) => {
@@ -22,14 +21,6 @@ const Console: FC = ({ children }) => {
 function IndexPage() {
   return (
     <Page>
-      <Head>
-        <title>Adding headers at the edge</title>
-        <meta
-          name="description"
-          content="How to add headers to an incoming request"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <section className="flex flex-col gap-6">
         <Text variant="h1">Adding headers at the edge</Text>
         <Text>

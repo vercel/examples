@@ -1,16 +1,9 @@
-import Head from 'next/head'
 import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
 import { Mint } from '../components/Mint'
 
 function Home() {
   return (
     <Page>
-      <Head>
-        <title>mint-nft - Vercel Example</title>
-        <meta name="description" content="Vercel example how to use mint-nft" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">mint-nft usage example</Text>
         <Text>
