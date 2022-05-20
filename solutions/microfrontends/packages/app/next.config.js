@@ -1,3 +1,3 @@
-const withTM = require('@vercel/examples-ui/transpile')()
+const ntm = require('next-transpile-modules')
 
-module.exports = withTM()
+module.exports = ntm(['@vercel/examples-ui', '@company/ui'])

@@ -8,8 +8,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="AB Testing with buckets"
-      path="edge-functions/ab-testing-simple"
+      title="Monorepo"
+      path="solutions/monorepo"
+      deployButton={{
+        repositoryUrl:
+          'https://github.com/vercel/examples/tree/main/solutions/reduce-image-bandwidth-usage',
+      }}
     >
       <Component {...pageProps} />
     </Layout>

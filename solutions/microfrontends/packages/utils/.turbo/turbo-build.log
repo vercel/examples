@@ -1,0 +1,5 @@
+[32m@company/utils:build: [0mcache hit, replaying output [2mfcc3990b0be8f68b[0m
+[32m@company/utils:build: [0m
+[32m@company/utils:build: [0m> @company/utils@0.0.1 build
+[32m@company/utils:build: [0m> rm -fr dist/* && tsc
+[32m@company/utils:build: [0m
