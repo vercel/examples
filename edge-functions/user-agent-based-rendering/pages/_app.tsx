@@ -10,8 +10,9 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="user-agent-based-rendering"
+      title="User-Agent Based Rendering"
       path="edge-functions/user-agent-based-rendering"
+      description="Learn to use the User-Agent header to render different pages"
     >
       <Component {...pageProps} />
     </Layout>

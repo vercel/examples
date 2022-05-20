@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { memo, useCallback, useState } from 'react'
 import Image, { ImageProps } from 'next/image'
 import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
@@ -41,14 +40,8 @@ function Home() {
 
   return (
     <Page>
-      <Head>
-        <title>next/image offset loading demo</title>
-        <meta name="description" content="next/image offset loading demo" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
-        <Text variant="h1">next/image offset loading usage</Text>
+        <Text variant="h1">next/image offset loading</Text>
         <Text>This example shows how lazy loading works on next/image.</Text>
       </section>
 

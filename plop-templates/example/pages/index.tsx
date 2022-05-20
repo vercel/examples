@@ -1,18 +1,8 @@
-import Head from 'next/head'
 import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
 
 function Home() {
   return (
     <Page className="flex flex-col gap-12">
-      <Head>
-        <title>-- PLOP TITLE HERE -- - Vercel Example</title>
-        <meta
-          name="description"
-          content="Vercel example how to use -- PLOP TITLE HERE --"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">-- PLOP TITLE HERE -- usage example</Text>
         <Text>

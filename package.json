@@ -4,7 +4,6 @@
   "license": "MIT",
   "scripts": {
     "prettier": "prettier --write .",
-    "update": "node update-dep.mjs",
     "update-templates": "node scripts/update-templates.mjs",
     "new-example": "plop example",
     "lint-staged": "lint-staged",
