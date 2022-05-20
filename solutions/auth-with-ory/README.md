@@ -49,7 +49,7 @@ npm run dev
 ```
 
 Learn more about this example in the
-[accompanying developer guide](https://www.ory.sh/login-spa-react-nextjs-authentication-example-api/?utm_source=vercel&utm_medium=github&utm_campaign=auth-with-ory)!
+[developer guide](https://www.ory.sh/login-spa-react-nextjs-authentication-example-api-open-source/?utm_source=vercel&utm_medium=github&utm_campaign=auth-with-ory)!
 
 ## Running End-to-End Tests
 
