@@ -32,8 +32,8 @@ export default function Index() {
           below
         </li>
         <li>
-          <Code>packages/utils</Code> is a package that exports functions to
-          generate random colors. Click the button to see it in action
+          <Code>packages/utils</Code> is a package that exports a function that
+          generates random colors. Click the button to see it in action
         </li>
       </List>
       {bgColor && textColor && (
