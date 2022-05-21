@@ -6,6 +6,7 @@ const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
   className,
   ...props
 }) => {
+  // All of these tailwind classes are watched by `tailwind.config.js` in the Next.js app
   const rootClassName = cn(
     'relative inline-flex items-center justify-center cursor-pointer',
     'no-underline py-0 px-3.5 rounded-md border border-solid border-black',
