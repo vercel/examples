@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@company/design-system": "^0.0.1",
+    "@company/pages": "^0.0.1",
     "@company/utils": "^0.0.1",
     "@vercel/examples-ui": "^0.3.2",
     "next": "latest",
