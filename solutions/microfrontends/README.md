@@ -74,7 +74,7 @@ The downside of depending in `next-transpile-modules` is that you have to ship u
 The only difference to take into account when taking this approach is that dead code elimination when there's server only code (for example when using `getStaticProps`, `getStaticPaths` or `getServerSideProps`) can't be properly distinguished by the Next.js app, so to avoid including server code in pages it's recommended to have data fetching methods in a different file and import them from the page.
 
 - [x] Shared components with npm and next-transpile-modules (CSS Modules, tailwind)
-- [] Shared pages with npm and next-transpile-modules (CSS Modules, tailwind)
+- [x] Shared pages with npm and next-transpile-modules (CSS Modules, tailwind)
 - [] URL imports, ideally with CSS Modules support too
 - [] bit.dev use case
 - [] Monorepo support / has to work with polyrepos too

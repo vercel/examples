@@ -1,0 +1,30 @@
+[33mapp:build: [0mcache hit, replaying output [2mb5419b96a7ac290e[0m
+[33mapp:build: [0m
+[33mapp:build: [0m> app@1.0.0 build
+[33mapp:build: [0m> next build
+[33mapp:build: [0m
+[33mapp:build: [0minfo  - Checking validity of types...
+[33mapp:build: [0minfo  - Creating an optimized production build...
+[33mapp:build: [0m
+[33mapp:build: [0mwarn - Tailwind is not purging unused styles because no template paths have been provided.
+[33mapp:build: [0mwarn - If you have manually configured PurgeCSS outside of Tailwind or are deliberately not removing unused styles, set `purge: false` in your Tailwind config file to silence this warning.
+[33mapp:build: [0mwarn - https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
+[33mapp:build: [0minfo  - Compiled successfully
+[33mapp:build: [0minfo  - Collecting page data...
+[33mapp:build: [0minfo  - Generating static pages (0/3)
+[33mapp:build: [0minfo  - Generating static pages (3/3)
+[33mapp:build: [0minfo  - Finalizing page optimization...
+[33mapp:build: [0m
+[33mapp:build: [0mPage                                       Size     First Load JS
+[33mapp:build: [0m┌ ○ /                                      1.36 kB        79.6 kB
+[33mapp:build: [0m├   /_app                                  0 B            78.2 kB
+[33mapp:build: [0m└ ○ /404                                   194 B          78.4 kB
+[33mapp:build: [0m+ First Load JS shared by all              78.2 kB
+[33mapp:build: [0m  ├ chunks/framework-c9d48730bbe34125.js   42 kB
+[33mapp:build: [0m  ├ chunks/main-b1302ea7ba591b7b.js        28.6 kB
+[33mapp:build: [0m  ├ chunks/pages/_app-fc6372d1a8a344b7.js  6.78 kB
+[33mapp:build: [0m  ├ chunks/webpack-69bfa6990bb9e155.js     769 B
+[33mapp:build: [0m  └ css/33a1e38714e03bb8.css               328 kB
+[33mapp:build: [0m
+[33mapp:build: [0m○  (Static)  automatically rendered as static HTML (uses no initial props)
+[33mapp:build: [0m
