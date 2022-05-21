@@ -87,7 +87,13 @@ Compared with the approaches above, there's an actual UX impact when doing multi
 
 For example, having a home app with your landing, marketing and legal pages and then having another app that handles all the pages related to documentation is a good separation of concerns, your users will only notice a slow transition once they move from your home app to view your documentation. Pro tip: Using `target="_blank"` in this situation is a nice improvement!
 
-[./packages/multi-zone](./packages/multi-zone) is a package that allows you to create a Next.js application with multiple zones.
+#### URL Imports
+
+TODO: `packages/utils` might be the best place to use this, a design system is likely not ideal because URL Imports won't handle atomic CSS without a considerable amount of work.
+
+### What About Polyrepos?
+
+TODO
 
 - [x] Shared components with npm and next-transpile-modules (CSS Modules, tailwind)
 - [x] Shared pages with npm and next-transpile-modules (CSS Modules, tailwind)
