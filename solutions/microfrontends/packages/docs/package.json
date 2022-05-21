@@ -3,16 +3,14 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@company/design-system": "^0.0.1",
     "@company/pages": "^0.0.1",
-    "@company/utils": "^0.0.1",
-    "@vercel/examples-ui": "^0.3.2",
+    "@vercel/examples-ui": "file:../../../packages/ui",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

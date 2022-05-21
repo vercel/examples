@@ -4,4 +4,6 @@ module.exports = ntm([
   '@vercel/examples-ui',
   '@company/design-system',
   '@company/pages',
-])
+])({
+  basePath: '/docs',
+})

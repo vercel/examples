@@ -1,5 +1,26 @@
-export { default } from '@company/pages/home'
-// `getStaticProps` and other data fetching methods are not imported from the page
-// to make sure dead code elimination works. This way `getStaticProps` will only be
-// included in the server build
-export { getStaticProps } from '@company/pages/get-static-props'
+import { Layout, Page, Text, Code, Link } from '@vercel/examples-ui'
+import Navbar from '@company/pages/components/navbar'
+
+export default function Index() {
+  return (
+    <Page>
+      <Navbar isDocsApp />
+      <Text variant="h1" className="mb-6">
+        Docs
+      </Text>
+      <Text>
+        This is the index page in the docs app (
+        <Code>packages/docs/pages/index.tsx</Code>)
+      </Text>
+      <Text className="mt-4">
+        Navigations between <Link href="/docs">Docs</Link> and{' '}
+        <Link href="/docs/about">About Docs</Link> are client-side transitions
+        because they&apos;re part of the same Next.js app. Navigating to{' '}
+        <Link href="/docs">Home (Multi Zones)</Link> requires a page refresh
+        because it lives in a different Next.js app.
+      </Text>
+    </Page>
+  )
+}
+
+Index.Layout = Layout
