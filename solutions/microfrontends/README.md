@@ -55,6 +55,12 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 ### What is included
 
+Everything is on TypeScript
+
+#### Design System with Tailwind and CSS Modules
+
+[./packages/design-system](./packages/design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/)
+
 - Shared components with npm and next-transpile-modules (CSS Modules, tailwind)
 - Shared pages with npm and next-transpile-modules (CSS Modules, tailwind)
 - URL imports, ideally with CSS Modules support too
