@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Layout, Page, Text, List, Code, Link } from '@vercel/examples-ui'
+import { Layout, Page, Text, List, Code } from '@vercel/examples-ui'
 import { Button, Quote } from '@company/design-system'
 import { matchingTextColor, randomColor } from '@company/utils'
+import Navbar from './components/navbar'
 
 export default function Home() {
   const [bgColor, setBgColor] = useState('')
@@ -16,17 +17,7 @@ export default function Home() {
 
   return (
     <Page>
-      <ul className="inline-flex mb-4">
-        <li>
-          <Link href="/external">External Page</Link>
-        </li>
-        <li className="ml-4">
-          <Link href="/about">About (External)</Link>
-        </li>
-        <li className="ml-4">
-          <Link href="/docs">Docs (Multi Zones)</Link>
-        </li>
-      </ul>
+      <Navbar />
       <Text variant="h1" className="mb-6">
         Microfrontends
       </Text>

@@ -31,7 +31,9 @@
     "react-dom": "^17.0.0"
   },
   "dependencies": {
+    "@company/design-system": "^0.0.1",
     "@company/utils": "^0.0.1",
+    "@vercel/examples-ui": "^0.3.2",
     "clsx": "^1.1.1"
   },
   "devDependencies": {
