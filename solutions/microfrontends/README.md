@@ -59,7 +59,13 @@ Everything is on TypeScript
 
 #### Design System with Tailwind and CSS Modules
 
-[./packages/design-system](./packages/design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/)
+[./packages/design-system](./packages/design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/). The components are installed in the app as a npm dependency and Next.js takes care of compiling them thanks to [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules).
+
+The benefits of using `next-transpile-modules` is that the CSS optimizations Next.js does (and CSS Modules support) is available to the components, that way you don't need to include global CSS files that usually have more CSS than needed.
+
+HMR and React Fast Refresh work as expected because the components are part of the Next.js build and tracked just like components defined in the app.
+
+The downside of depending in `next-transpile-modules` is that you have to ship uncompiled components to npm that will need to be compiled by the app where they're used. One way of shipping both compiled and uncompiled components is to create a wrapper package that exports the compiled version of the components.
 
 - Shared components with npm and next-transpile-modules (CSS Modules, tailwind)
 - Shared pages with npm and next-transpile-modules (CSS Modules, tailwind)
