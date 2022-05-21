@@ -53,13 +53,9 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 ## How it works
 
-There are many ways of doing Microfrontends, what you almost entirely depends on how do you want to structure your applications and teams. There is no one way to do it, so we'll share different approaches and how they work.
+There are many ways of doing Microfrontends, what you do depends almost entirely on how do you want to structure your applications and teams. There is no one way to do it, so we'll share different approaches and how they work.
 
-### What is included
-
-Everything is on TypeScript, and we'll go over the following use cases:
-
-#### Design System with Tailwind and CSS Modules
+### Design System with Tailwind and CSS Modules
 
 [./packages/design-system](./packages/design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/). The components are installed in the app as a npm dependency and Next.js takes care of compiling them thanks to [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules).
 
@@ -69,13 +65,13 @@ HMR and React Fast Refresh work as expected because the components are part of t
 
 The downside of depending in `next-transpile-modules` is that you have to ship uncompiled components to npm that will need to be compiled by the app where they're used. One way of shipping both compiled and uncompiled components is to create a wrapper package that exports the compiled version of the components.
 
-#### Pages Living Outside the Next.js App
+### Pages Living Outside the Next.js App
 
 [./packages/pages](./packages/pages) contains all the pages that are used in the Next.js app. They are all compiled with [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules) too and work in the same way as [./packages/design-system](./packages/design-system).
 
 The only difference to take into account when taking this approach is that dead code elimination when there's server only code (for example when using `getStaticProps`, `getStaticPaths` or `getServerSideProps`) can't be properly distinguished by the Next.js app, so to avoid including server code in pages it's recommended to have data fetching methods in a different file and import them from the page.
 
-#### Multi Zones
+### Multi Zones
 
 [Multi Zones](https://nextjs.org/docs/advanced-features/multi-zones) are a way of having independent Next.js applications that merge on a common domain, this is commonly seen as a way of separation of concerns in large teams.
 
@@ -87,7 +83,7 @@ Compared with the approaches above, there's an actual UX impact when doing multi
 
 For example, having a home app with your landing, marketing and legal pages and then having another app that handles all the pages related to documentation is a good separation of concerns, your users will only notice a slow transition once they move from your home app to view your documentation. Pro tip: Using `target="_blank"` in this situation is a nice improvement!
 
-#### URL Imports
+### URL Imports
 
 TODO: `packages/utils` might be the best place to use this, a design system is likely not ideal because URL Imports won't handle atomic CSS without a considerable amount of work.
 
