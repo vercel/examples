@@ -53,9 +53,11 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 ## How it works
 
+There are many ways of doing Microfrontends, what you almost entirely depends on how do you want to structure your applications and teams. There is no one way to do it, so we'll share different approaches and how they work.
+
 ### What is included
 
-Everything is on TypeScript
+Everything is on TypeScript, and we'll go over the following use cases:
 
 #### Design System with Tailwind and CSS Modules
 
@@ -73,12 +75,27 @@ The downside of depending in `next-transpile-modules` is that you have to ship u
 
 The only difference to take into account when taking this approach is that dead code elimination when there's server only code (for example when using `getStaticProps`, `getStaticPaths` or `getServerSideProps`) can't be properly distinguished by the Next.js app, so to avoid including server code in pages it's recommended to have data fetching methods in a different file and import them from the page.
 
+#### Multi Zones
+
+[Multi Zones](https://nextjs.org/docs/advanced-features/multi-zones) are a way of having independent Next.js applications that merge on a common domain, this is commonly seen as a way of separation of concerns in large teams.
+
+[./packages/app](./packages/app) is our main app, and [./packages/docs](./packages/docs) is the docs app that handles all routes for [`/docs/**`](./packages/app/next.config.js). In the demo you'll notice that navigating to `/docs` keeps you in the same domain, that's multi zones! We have multiple apps in the same domain, but they're independent of each other.
+
+You might have also noticed that transitions to `/docs` and back to `/` are not that smooth and it's doing a page refresh, this is because Next.js apps can't share their JS and don't have common chunks, i.e the build output of Next.js apps isn't interchangeable.
+
+Compared with the approaches above, there's an actual UX impact when doing multi zones, which might be or not a deal breaker depending on the use case. For that reason, we only recommend using Multi Zones for cases where you want to merge applications that could work on their own, and not as a way of arbitrarily moving pages out of an app.
+
+For example, having a home app with your landing, marketing and legal pages and then having another app that handles all the pages related to documentation is a good separation of concerns, your users will only notice a slow transition once they move from your home app to view your documentation. Pro tip: Using `target="_blank"` in this situation is a nice improvement!
+
+[./packages/multi-zone](./packages/multi-zone) is a package that allows you to create a Next.js application with multiple zones.
+
 - [x] Shared components with npm and next-transpile-modules (CSS Modules, tailwind)
 - [x] Shared pages with npm and next-transpile-modules (CSS Modules, tailwind)
 - [] URL imports, ideally with CSS Modules support too
 - [] bit.dev use case
-- [] Monorepo support / has to work with polyrepos too
-- [] Multi zones case in an ideal scenario to avoid hurting transitions (e.g only do /docs/\*)
+- [x] Monorepo support
+- [] Polyrepo support
+- [x] Multi zones case in an ideal scenario to avoid hurting transitions (e.g only do /docs/\*)
 - [] Multi tenants: component/page living in the website of a client (e.g embedded tweets), might be better on a different example
 
 ### What is not included

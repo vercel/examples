@@ -8,11 +8,11 @@ export default function Index() {
       <Text variant="h1" className="mb-6">
         Docs
       </Text>
-      <Text>
+      <Text className="mb-4">
         This is the index page in the docs app (
         <Code>packages/docs/pages/index.tsx</Code>)
       </Text>
-      <Text className="mt-4">
+      <Text>
         Navigations between <Link href="/docs">Docs</Link> and{' '}
         <Link href="/docs/about">About Docs</Link> are client-side transitions
         because they&apos;re part of the same Next.js app. Navigating to{' '}
