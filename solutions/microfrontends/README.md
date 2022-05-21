@@ -67,13 +67,15 @@ HMR and React Fast Refresh work as expected because the components are part of t
 
 The downside of depending in `next-transpile-modules` is that you have to ship uncompiled components to npm that will need to be compiled by the app where they're used. One way of shipping both compiled and uncompiled components is to create a wrapper package that exports the compiled version of the components.
 
-- Shared components with npm and next-transpile-modules (CSS Modules, tailwind)
-- Shared pages with npm and next-transpile-modules (CSS Modules, tailwind)
-- URL imports, ideally with CSS Modules support too
-- bit.dev use case
-- Monorepo support / has to work with polyrepos too
-- Multi zones case in an ideal scenario to avoid hurting transitions (e.g only do /docs/\*)
-- Multi tenants: component/page living in the website of a client (e.g embedded tweets), might be better on a different example
+#### Pages Living Outside the Next.js App
+
+- [x] Shared components with npm and next-transpile-modules (CSS Modules, tailwind)
+- [] Shared pages with npm and next-transpile-modules (CSS Modules, tailwind)
+- [] URL imports, ideally with CSS Modules support too
+- [] bit.dev use case
+- [] Monorepo support / has to work with polyrepos too
+- [] Multi zones case in an ideal scenario to avoid hurting transitions (e.g only do /docs/\*)
+- [] Multi tenants: component/page living in the website of a client (e.g embedded tweets), might be better on a different example
 
 ### What is not included
 
