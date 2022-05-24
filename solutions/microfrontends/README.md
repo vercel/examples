@@ -85,7 +85,13 @@ For example, having a home app with your landing, marketing and legal pages and 
 
 ### URL Imports
 
+> Note: [URL Imports](https://nextjs.org/docs/api-reference/next.config.js/url-imports) are stll experimental in Next.js.
+
 TODO: `packages/utils` might be the best place to use this, a design system is likely not ideal because URL Imports won't handle atomic CSS without a considerable amount of work.
+
+Idea: Rename `@company/utils` to `@vercel/mf-example-url-imports` and put it on npm, using CSS Modules doesn't work here but CSS-in-JS should.
+
+Update: Use github as the CDN to fetch the file.
 
 ### What About Polyrepos?
 
@@ -94,7 +100,6 @@ TODO
 - [x] Shared components with npm and next-transpile-modules (CSS Modules, tailwind)
 - [x] Shared pages with npm and next-transpile-modules (CSS Modules, tailwind)
 - [] URL imports, ideally with CSS Modules support too
-- [] bit.dev use case
 - [x] Monorepo support
 - [] Polyrepo support
 - [x] Multi zones case in an ideal scenario to avoid hurting transitions (e.g only do /docs/\*)
