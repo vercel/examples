@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Layout, Page, Text, List, Code, Link } from '@vercel/examples-ui'
+import { Layout, Page, Text, Code, Link } from '@vercel/examples-ui'
 import { Button, Quote } from '@company/design-system'
 import { matchingTextColor, randomColor } from '@company/utils'
-import Navbar from './components/navbar'
+import Navbar from '../components/navbar'
 
 export default function Home() {
   const [bgColor, setBgColor] = useState('')
