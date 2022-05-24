@@ -23,7 +23,8 @@ export default function Home() {
       </Text>
       <Text className="mb-4">
         In this Microfrontends app we have a Monorepo with multiple packages,
-        each going through a different Microfrontend tehnique:
+        each using TypeScript and going through a different Microfrontend
+        tehnique:
       </Text>
       <Text variant="h2" className="mb-6">
         packages/app
@@ -45,7 +46,7 @@ export default function Home() {
       </Text>
       <Text className="mb-4">
         Example of how you could build a Design System, it&apos;s a set of React
-        Components that ship with TS and CSS Modules.
+        Components that ship with CSS Modules.
       </Text>
       {bgColor && textColor && (
         <>
@@ -63,13 +64,18 @@ export default function Home() {
         of building a design system it&apos;s about having shared components
         that represent pages.
       </Text>
+      <Text className="mb-4">
+        You&apos;re currently looking at the Home page, defined in{' '}
+        <Code>packages/pages/src/home</Code> and imported by{' '}
+        <Code>packages/app/pages/index.tsx</Code>.
+      </Text>
       <Text variant="h2" className="mb-6">
         packages/utils
       </Text>
       <Text className="mb-4">
-        This package uses TS to export utility functions, the package ships
-        transpiled code so it&apos;s not needed to use{' '}
-        <Code>next-transpile-modules</Code> in this case.
+        This package exports utility functions, the package ships transpiled
+        code so it&apos;s not needed to use <Code>next-transpile-modules</Code>{' '}
+        in this case.
       </Text>
       <Text className="mb-4">
         The button below uses an utility function from this package to change
