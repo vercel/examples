@@ -55,6 +55,10 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 There are many ways of doing Microfrontends, what you do depends almost entirely on how do you want to structure your applications and teams. There is no one way to do it, so we'll share different approaches and how they work.
 
+### Monorepo Support
+
+One of the challenges of building Microfrontends is dependency management and a build system at the top, in the packages in this monorepo we'll be using Turborepo and Changesets to get the an amazing DX with minor configuration.
+
 ### Design System with Tailwind and CSS Modules
 
 [./packages/design-system](./packages/design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/). The components are installed in the app as a npm dependency and Next.js takes care of compiling them thanks to [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules).
@@ -95,13 +99,13 @@ Update: Use github as the CDN to fetch the file.
 
 ### What About Polyrepos?
 
-TODO
+All the tooling and approaches explained above should work with polyrepos out of the box with the difference that when the package is outside of the Monorepo, DX is a bit more tricky because Turborepo doesn't have access to them. So in this case you can install the package in the apps and control updates with versioning, everything should work as expected but HMR will be harder in this case.
 
 - [x] Shared components with npm and next-transpile-modules (CSS Modules, tailwind)
 - [x] Shared pages with npm and next-transpile-modules (CSS Modules, tailwind)
 - [] URL imports, ideally with CSS Modules support too
 - [x] Monorepo support
-- [] Polyrepo support
+- [x] Polyrepo support
 - [x] Multi zones case in an ideal scenario to avoid hurting transitions (e.g only do /docs/\*)
 - [] Multi tenants: component/page living in the website of a client (e.g embedded tweets), might be better on a different example
 

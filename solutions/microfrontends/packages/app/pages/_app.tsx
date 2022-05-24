@@ -7,14 +7,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout
-      title="Monorepo"
-      path="solutions/monorepo"
-      deployButton={{
-        repositoryUrl:
-          'https://github.com/vercel/examples/tree/main/solutions/reduce-image-bandwidth-usage',
-      }}
-    >
+    <Layout title="Microfrontends" path="solutions/microfrontends">
       <Component {...pageProps} />
     </Layout>
   )
