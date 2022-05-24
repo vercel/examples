@@ -10,7 +10,7 @@ export default function Index() {
       </Text>
       <Text className="mb-4">
         This is the index page in the docs app (
-        <Code>packages/docs/pages/index.tsx</Code>)
+        <Code>packages/docs/pages/index.tsx</Code>).
       </Text>
       <Text>
         Navigations between <Link href="/docs">Docs</Link> and{' '}

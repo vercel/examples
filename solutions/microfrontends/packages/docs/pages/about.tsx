@@ -10,7 +10,7 @@ export default function About() {
       </Text>
       <Text className="mb-4">
         This is the about page in the docs app (
-        <Code>packages/docs/pages/about.tsx</Code>)
+        <Code>packages/docs/pages/about.tsx</Code>).
       </Text>
       <Text>
         Navigations between <Link href="/docs">Docs</Link> and{' '}
