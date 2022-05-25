@@ -4,7 +4,7 @@
   "scripts": {
     "build": "tsup src/* --format esm,cjs --dts --external react",
     "dev": "tsup src/* --format esm,cjs --dts --external react --watch",
-    "lint": "TIMING=1 eslint src/**/*.ts* --fix",
+    "lint": "TIMING=1 eslint \"**/*.{ts*,js,jsx}\" --fix",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "sideEffects": false,

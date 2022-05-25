@@ -6,7 +6,7 @@
     "dev": "start-storybook -p 6006",
     "build": "build-storybook --docs",
     "preview-storybook": "serve storybook-static",
-    "lint": "TIMING=1 eslint src/**/*.ts* --fix",
+    "lint": "TIMING=1 eslint \"**/*.{ts*,js,jsx}\" --fix",
     "clean": "rm -rf .turbo && rm -rf node_modules"
   },
   "dependencies": {

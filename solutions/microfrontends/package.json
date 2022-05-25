@@ -11,10 +11,12 @@
     "build": "turbo run build --scope=apps/main --include-dependencies --no-deps",
     "dev": "turbo run dev",
     "start": "turbo run start",
-    "lint": "turbo run lint"
+    "lint": "turbo run lint",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@types/node": "^17.0.14",
+    "prettier": "^2.6.2",
     "turbo": "latest"
   }
 }
