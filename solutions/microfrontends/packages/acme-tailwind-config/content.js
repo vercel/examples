@@ -1,7 +1,11 @@
 const path = require('path')
 
 // Core packages that are using Tailwind CSS
-const CORE_PACKAGES = ['@vercel/examples-ui', '@acme/design-system']
+const CORE_PACKAGES = [
+  '@vercel/examples-ui',
+  '@acme/design-system',
+  '@acme/pages',
+]
 
 // Include the paths for the components inside packages
 function getContent(content, packages) {
