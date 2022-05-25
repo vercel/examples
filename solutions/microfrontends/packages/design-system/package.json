@@ -1,6 +1,10 @@
 {
   "name": "@acme/design-system",
   "version": "0.0.1",
+  "scripts": {
+    "lint": "TIMING=1 eslint src/**/*.ts* --fix",
+    "clean": "rm -rf .turbo && rm -rf node_modules"
+  },
   "sideEffects": false,
   "type": "module",
   "exports": {
@@ -34,7 +38,9 @@
     "clsx": "^1.1.1"
   },
   "devDependencies": {
-    "@types/react": "^17.0.27",
+    "@types/react": "latest",
+    "eslint": "^8.16.0",
+    "eslint-config-acme": "*",
     "typescript": "^4.5.5"
   }
 }
