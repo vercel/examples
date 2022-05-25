@@ -42,7 +42,7 @@ export default function Home() {
         pages used in this application.
       </Text>
       <Text variant="h2" className="mb-6">
-        packages/design-system
+        packages/acme-design-system
       </Text>
       <Text className="mb-4">
         Example of how you could build a Design System, it&apos;s a set of React
@@ -60,9 +60,9 @@ export default function Home() {
         packages/pages
       </Text>
       <Text className="mb-4">
-        Works in the same way as <Code>packages/design-system</Code> but instead
-        of building a design system it&apos;s about having shared components
-        that represent pages.
+        Works in the same way as <Code>packages/acme-design-system</Code> but
+        instead of building a design system it&apos;s about having shared
+        components that represent pages.
       </Text>
       <Text className="mb-4">
         You&apos;re currently looking at the Home page, defined in{' '}

@@ -61,7 +61,7 @@ One of the challenges of building Microfrontends is dependency management and a 
 
 ### Design System with Tailwind and CSS Modules
 
-[./packages/design-system](./packages/design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/). The components are installed in the app as a npm dependency and Next.js takes care of compiling them thanks to [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules).
+[./packages/acme-design-system](./packages/acme-design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/). The components are installed in the app as a npm dependency and Next.js takes care of compiling them thanks to [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules).
 
 The benefits of using `next-transpile-modules` is that the CSS optimizations Next.js does (and CSS Modules support) is available to the components, that way you don't need to include global CSS files that usually have more CSS than needed.
 
@@ -71,7 +71,7 @@ HMR and React Fast Refresh work as expected because the components are part of t
 
 ### Pages Living Outside the Next.js App
 
-[./packages/pages](./packages/pages) contains all the pages that are used in the Next.js app. They are all compiled with `next-transpile-modules` too and work in the same way as [./packages/design-system](./packages/design-system).
+[./packages/pages](./packages/pages) contains all the pages that are used in the Next.js app. They are all compiled with `next-transpile-modules` too and work in the same way as [./packages/acme-design-system](./packages/acme-design-system).
 
 The only difference to take into account when taking this approach is that dead code elimination when there's server only code (for example when using `getStaticProps`, `getStaticPaths` or `getServerSideProps`) can't be properly distinguished by the Next.js app, so to avoid including server code in pages it's recommended to have data fetching methods in a different file and import them from the page in the Next.js app.
 

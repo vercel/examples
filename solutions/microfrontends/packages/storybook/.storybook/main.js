@@ -5,7 +5,7 @@ module.exports = {
   stories: [
     {
       // 👇 The directory field sets the directory your stories
-      // directory: '../../packages/design-system',
+      // directory: '../../packages/acme-design-system',
       directory: '../stories',
       // 👇 The titlePrefix field will generate automatic titles for your stories
       titlePrefix: 'DesignSystem',
