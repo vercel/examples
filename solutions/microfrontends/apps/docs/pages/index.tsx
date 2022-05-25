@@ -1,16 +1,16 @@
 import { Layout, Page, Text, Code, Link } from '@vercel/examples-ui'
 import Navbar from '@company/pages/components/navbar'
 
-export default function About() {
+export default function Index() {
   return (
     <Page>
       <Navbar isDocsApp />
       <Text variant="h1" className="mb-6">
-        About Docs
+        Docs
       </Text>
       <Text className="mb-4">
-        This is the about page in the docs app (
-        <Code>packages/docs/pages/about.tsx</Code>).
+        This is the index page in the docs app (
+        <Code>apps/docs/pages/index.tsx</Code>).
       </Text>
       <Text>
         Navigations between <Link href="/docs">Docs</Link> and{' '}
@@ -23,4 +23,4 @@ export default function About() {
   )
 }
 
-About.Layout = Layout
+Index.Layout = Layout

@@ -97,7 +97,7 @@ export default function Home() {
         </>
       )}
       <Text variant="h2" className="mb-6">
-        packages/docs (Multi Zones)
+        apps/docs (Multi Zones)
       </Text>
       <Text className="mb-4">
         Next.js application that takes care of handling the pages for{' '}
@@ -116,7 +116,7 @@ export default function Home() {
       <Text className="mb-4">
         Local development can also be affected by HMR because changes to one app
         outside its domain don&apos;t live reload (<Code>apps/main</Code> lives
-        in port 3000, and <Code>packages/docs</Code> in 3001).
+        in port 3000, and <Code>apps/docs</Code> in 3001).
       </Text>
     </Page>
   )

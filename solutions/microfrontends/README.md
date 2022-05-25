@@ -79,7 +79,7 @@ The only difference to take into account when taking this approach is that dead 
 
 [Multi Zones](https://nextjs.org/docs/advanced-features/multi-zones) are a way of having independent Next.js applications that merge on a common domain, this is commonly seen as a way of separation of concerns in large teams.
 
-[./apps/main](./apps/main) is our main app, and [./packages/docs](./packages/docs) is the docs app that handles all routes for [`/docs/**`](./apps/main/next.config.js). In the demo you'll notice that navigating to `/docs` keeps you in the same domain, that's multi zones! We have multiple apps in the same domain, but they're independent of each other.
+[./apps/main](./apps/main) is our main app, and [./apps/docs](./apps/docs) is the docs app that handles all routes for [`/docs/**`](./apps/main/next.config.js). In the demo you'll notice that navigating to `/docs` keeps you in the same domain, that's multi zones! We have multiple apps in the same domain, but they're independent of each other.
 
 You might have also noticed that transitions to `/docs` and back to `/` are not that smooth and it's doing a page refresh, this is because Next.js apps can't share their JS and don't have common chunks, i.e the build output of Next.js apps isn't interchangeable.
 
