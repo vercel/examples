@@ -10,7 +10,7 @@ export default function About() {
       </Text>
       <Text>
         This is the about page, defined in <Code>packages/pages/src/about</Code>{' '}
-        and imported by <Code>packages/app/pages/about.tsx</Code>
+        and imported by <Code>apps/main/pages/about.tsx</Code>
       </Text>
       <Text className="mt-4">
         Navigations between <Link href="/">Home</Link> and{' '}

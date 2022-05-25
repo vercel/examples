@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build --scope=packages/app --include-dependencies --no-deps",
+    "build": "turbo run build --scope=apps/main --include-dependencies --no-deps",
     "dev": "turbo run dev",
     "start": "turbo run start",
     "lint": "turbo run lint"

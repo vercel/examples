@@ -27,7 +27,7 @@ export default function Home() {
         tehnique:
       </Text>
       <Text variant="h2" className="mb-6">
-        packages/app
+        apps/main
       </Text>
       <Text className="mb-4">
         This is the current Next.js site you&apos;re looking at. It uses{' '}
@@ -67,7 +67,7 @@ export default function Home() {
       <Text className="mb-4">
         You&apos;re currently looking at the Home page, defined in{' '}
         <Code>packages/pages/src/home</Code> and imported by{' '}
-        <Code>packages/app/pages/index.tsx</Code>.
+        <Code>apps/main/pages/index.tsx</Code>.
       </Text>
       <Text variant="h2" className="mb-6">
         packages/utils
@@ -115,8 +115,8 @@ export default function Home() {
       </Text>
       <Text className="mb-4">
         Local development can also be affected by HMR because changes to one app
-        outside its domain don&apos;t live reload (<Code>packages/app</Code>{' '}
-        lives in port 3000, and <Code>packages/docs</Code> in 3001).
+        outside its domain don&apos;t live reload (<Code>apps/main</Code> lives
+        in port 3000, and <Code>packages/docs</Code> in 3001).
       </Text>
     </Page>
   )
