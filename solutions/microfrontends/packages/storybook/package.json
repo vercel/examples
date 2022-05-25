@@ -1,0 +1,31 @@
+{
+  "name": "@acme/storybook",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "start-storybook -p 6006",
+    "build": "build-storybook --docs",
+    "preview-storybook": "serve storybook-static",
+    "clean": "rm -rf .turbo && rm -rf node_modules"
+  },
+  "dependencies": {
+    "@acme/design-system": "*",
+    "@acme/pages": "*",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^6.4.18",
+    "@storybook/addon-docs": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.18",
+    "@storybook/addon-links": "^6.4.18",
+    "@storybook/builder-vite": "^0.1.33",
+    "@storybook/react": "^6.4.18",
+    "@vitejs/plugin-react": "^1.3.2",
+    "autoprefixer": "^10.4.7",
+    "serve": "^13.0.2",
+    "tailwindcss": "^3.0.24",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.9"
+  }
+}
