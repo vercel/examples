@@ -57,7 +57,7 @@ There are many ways of doing Microfrontends, what you do depends almost entirely
 
 ### Monorepo Support
 
-One of the challenges of building Microfrontends is dependency management and a build system at the top, in the packages in this monorepo we'll be using Turborepo and Changesets to get the an amazing DX with minor configuration.
+One of the challenges of building Microfrontends is dependency management and a build system at the top, in the packages in this monorepo we'll be using Turborepo and Changesets to get an amazing DX with minor configuration.
 
 ### Design System with Tailwind and CSS Modules
 
@@ -67,13 +67,13 @@ The benefits of using `next-transpile-modules` is that the CSS optimizations Nex
 
 HMR and React Fast Refresh work as expected because the components are part of the Next.js build and tracked just like components defined in the app.
 
-The downside of depending in `next-transpile-modules` is that you have to ship uncompiled components to npm that will need to be compiled by the app where they're used. One way of shipping both compiled and uncompiled components is to create a wrapper package that exports the compiled version of the components.
+> The downside of depending in `next-transpile-modules` is that you have to ship uncompiled components to npm that will need to be compiled by the app where they're used. One way of shipping both compiled and uncompiled components is to create a wrapper package that exports the compiled version of the components.
 
 ### Pages Living Outside the Next.js App
 
-[./packages/pages](./packages/pages) contains all the pages that are used in the Next.js app. They are all compiled with [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules) too and work in the same way as [./packages/design-system](./packages/design-system).
+[./packages/pages](./packages/pages) contains all the pages that are used in the Next.js app. They are all compiled with `next-transpile-modules` too and work in the same way as [./packages/design-system](./packages/design-system).
 
-The only difference to take into account when taking this approach is that dead code elimination when there's server only code (for example when using `getStaticProps`, `getStaticPaths` or `getServerSideProps`) can't be properly distinguished by the Next.js app, so to avoid including server code in pages it's recommended to have data fetching methods in a different file and import them from the page.
+The only difference to take into account when taking this approach is that dead code elimination when there's server only code (for example when using `getStaticProps`, `getStaticPaths` or `getServerSideProps`) can't be properly distinguished by the Next.js app, so to avoid including server code in pages it's recommended to have data fetching methods in a different file and import them from the page in the Next.js app.
 
 ### Multi Zones
 
