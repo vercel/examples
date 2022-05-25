@@ -38,7 +38,7 @@ export default function Home() {
           next-transpile-modules
         </Link>{' '}
         to enable CSS Modules and HMR for packages that ship uncompiled code,
-        like is the case for <Code>packages/pages</Code> which contains the
+        like is the case for <Code>packages/acme-pages</Code> which contains the
         pages used in this application.
       </Text>
       <Text variant="h2" className="mb-6">
@@ -57,7 +57,7 @@ export default function Home() {
         This is the <Code>Quote</Code> component in the design system.
       </Quote>
       <Text variant="h2" className="mb-6">
-        packages/pages
+        packages/acme-pages
       </Text>
       <Text className="mb-4">
         Works in the same way as <Code>packages/acme-design-system</Code> but
@@ -66,7 +66,7 @@ export default function Home() {
       </Text>
       <Text className="mb-4">
         You&apos;re currently looking at the Home page, defined in{' '}
-        <Code>packages/pages/src/home</Code> and imported by{' '}
+        <Code>packages/acme-pages/src/home</Code> and imported by{' '}
         <Code>apps/main/pages/index.tsx</Code>.
       </Text>
       <Text variant="h2" className="mb-6">

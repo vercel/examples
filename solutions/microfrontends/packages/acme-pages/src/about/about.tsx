@@ -9,8 +9,9 @@ export default function About() {
         About
       </Text>
       <Text>
-        This is the about page, defined in <Code>packages/pages/src/about</Code>{' '}
-        and imported by <Code>apps/main/pages/about.tsx</Code>
+        This is the about page, defined in{' '}
+        <Code>packages/acme-pages/src/about</Code> and imported by{' '}
+        <Code>apps/main/pages/about.tsx</Code>
       </Text>
       <Text className="mt-4">
         Navigations between <Link href="/">Home</Link> and{' '}
