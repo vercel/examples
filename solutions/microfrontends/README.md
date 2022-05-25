@@ -93,7 +93,7 @@ For example, having a home app with your landing, marketing and legal pages and 
 
 TODO: `packages/utils` might be the best place to use this, a design system is likely not ideal because URL Imports won't handle atomic CSS without a considerable amount of work.
 
-Idea: Rename `@company/utils` to `@vercel/mf-example-url-imports` and put it on npm, using CSS Modules doesn't work here but CSS-in-JS should.
+Idea: Rename `@acme/utils` to `@vercel/mf-example-url-imports` and put it on npm, using CSS Modules doesn't work here but CSS-in-JS should.
 
 Update: Use github as the CDN to fetch the file.
 

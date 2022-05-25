@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@company/design-system": "^0.0.1",
-    "@company/pages": "^0.0.1",
-    "@company/utils": "^0.0.1",
+    "@acme/design-system": "^0.0.1",
+    "@acme/pages": "^0.0.1",
+    "@acme/utils": "^0.0.1",
     "@vercel/examples-ui": "file:../../../packages/ui",
     "next": "latest",
     "react": "latest",

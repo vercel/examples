@@ -1,5 +1,5 @@
 import { Layout, Page, Text, Code, Link } from '@vercel/examples-ui'
-import Navbar from '@company/pages/components/navbar'
+import Navbar from '@acme/pages/components/navbar'
 
 export default function About() {
   return (

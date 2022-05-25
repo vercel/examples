@@ -1,5 +1,5 @@
 {
-  "name": "@company/design-system",
+  "name": "@acme/design-system",
   "version": "0.0.1",
   "sideEffects": false,
   "type": "module",

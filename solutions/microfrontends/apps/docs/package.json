@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@company/pages": "^0.0.1",
+    "@acme/pages": "^0.0.1",
     "@vercel/examples-ui": "file:../../../packages/ui",
     "next": "latest",
     "react": "latest",
