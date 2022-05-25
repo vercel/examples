@@ -57,7 +57,7 @@ There are many ways of doing Microfrontends, what you do depends almost entirely
 
 ### Monorepo Support
 
-One of the challenges of building Microfrontends is dependency management and a build system at the top, in the packages in this monorepo we'll be using Turborepo and Changesets to get an amazing DX with minor configuration.
+One of the challenges of building Microfrontends is dependency management and a build system at the top, in the packages and apps in this monorepo we'll be using Turborepo and Changesets to get an amazing DX with minor configuration.
 
 ### Design System with Tailwind and CSS Modules
 
