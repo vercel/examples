@@ -19,6 +19,7 @@
     "react-dom": "latest"
   },
   "devDependencies": {
+    "@acme/tailwind-config": "*",
     "@types/react": "latest",
     "autoprefixer": "^10.3.7",
     "eslint": "^8.11.0",

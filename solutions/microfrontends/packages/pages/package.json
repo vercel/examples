@@ -43,7 +43,7 @@
   "devDependencies": {
     "@types/react": "latest",
     "eslint": "^8.16.0",
-    "eslint-config-acme": "^0.0.1",
+    "eslint-config-acme": "*",
     "typescript": "^4.5.5"
   }
 }

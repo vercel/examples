@@ -1,15 +1,9 @@
-const path = require('path')
-const ui = require('@acme/design-system/tailwind')
+const { getContent, CORE_PACKAGES } = require('@acme/tailwind-config/content')
 
 module.exports = {
-  presets: [require('@vercel/examples-ui/tailwind'), ui],
-  // `ui.content` includes a path to the components that are using tailwind in @acme/design-system
-  content: ui.content.concat([
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-    path.join(
-      path.dirname(require.resolve('@vercel/examples-ui')),
-      '**/*.{js,ts,jsx,tsx}'
-    ),
-  ]),
+  presets: [require('@acme/tailwind-config')],
+  content: getContent(
+    ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+    [...CORE_PACKAGES, '@acme/pages']
+  ),
 }
