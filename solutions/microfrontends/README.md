@@ -91,7 +91,7 @@ For example, having a home app with your landing, marketing and legal pages and 
 
 > Note: [URL Imports](https://nextjs.org/docs/api-reference/next.config.js/url-imports) are stll experimental in Next.js.
 
-TODO: `packages/utils` might be the best place to use this, a design system is likely not ideal because URL Imports won't handle atomic CSS without a considerable amount of work.
+TODO: `packages/acme-utils` might be the best place to use this, a design system is likely not ideal because URL Imports won't handle atomic CSS without a considerable amount of work.
 
 Idea: Rename `@acme/utils` to `@vercel/mf-example-url-imports` and put it on npm, using CSS Modules doesn't work here but CSS-in-JS should.
 

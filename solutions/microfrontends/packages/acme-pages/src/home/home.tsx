@@ -70,7 +70,7 @@ export default function Home() {
         <Code>apps/main/pages/index.tsx</Code>.
       </Text>
       <Text variant="h2" className="mb-6">
-        packages/utils
+        packages/acme-utils
       </Text>
       <Text className="mb-4">
         This package exports utility functions, the package ships transpiled
