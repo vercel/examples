@@ -81,7 +81,7 @@ The only difference to take into account when taking this approach is that dead 
 
 [./apps/main](./apps/main) is our main app, and [./apps/docs](./apps/docs) is the docs app that handles all routes for [`/docs/**`](./apps/main/next.config.js). In the demo you'll notice that navigating to `/docs` keeps you in the same domain, that's multi zones! We have multiple apps in the same domain, but they're independent of each other.
 
-You might have also noticed that transitions to `/docs` and back to `/` are not that smooth and it's doing a page refresh, this is because Next.js apps can't share their JS and don't have common chunks, i.e the build output of Next.js apps isn't interchangeable.
+You might have also noticed that transitions to `/docs` and back to `/` are not that smooth and it's doing a page refresh, this is because Next.js apps can't share their JS and don't have common chunks (and prefetching isn't possible either), i.e the build output of Next.js apps isn't interchangeable.
 
 Compared with the approaches above, there's an actual UX impact when doing multi zones, which might be or not a deal breaker depending on the use case. For that reason, we only recommend using Multi Zones for cases where you want to merge applications that could work on their own, and not as a way of arbitrarily moving pages out of an app.
 
@@ -101,15 +101,23 @@ Update: Use github as the CDN to fetch the file.
 
 All the tooling and approaches explained above should work with polyrepos out of the box with the difference that when the package is outside of the Monorepo, DX is a bit more tricky because Turborepo doesn't have access to them. So in this case you can install the package in the apps and control updates with versioning, everything should work as expected but HMR will be harder in this case.
 
-- [x] Shared components with npm and next-transpile-modules (CSS Modules, tailwind)
-- [x] Shared pages with npm and next-transpile-modules (CSS Modules, tailwind)
-- [] URL imports, ideally with CSS Modules support too
-- [x] Monorepo support
-- [x] Polyrepo support
-- [x] Multi zones case in an ideal scenario to avoid hurting transitions (e.g only do /docs/\*)
-- [] Multi tenants: component/page living in the website of a client (e.g embedded tweets), might be better on a different example
+### What About Module Federation?
 
-### What is not included
+> **What is Module Federation (MF)?**
+>
+> According to [Webpack docs](https://webpack.js.org/concepts/module-federation/): "Multiple separate builds should form a single application. These separate builds should not have dependencies between each other, so they can be developed and deployed individually."
 
-- Adding components or pages at runtime (not recommended)
-- Testing setup (This is important, but won't be included in the example)
+Next.js has been doing MF for a long time as pages are independent builds, optimized by having common chunks for shared libraries (react, components, etc), that way navigations only download the chunk of the new page. This is made possible thanks to Next.js owning the build system, it has full control over versioning, JS load, hashing (important for caching) and more.
+
+So, what's the issue with MF? It's similar to the downsides of [Multi Zones](#multi-zones), where a navigation requires a full page refresh with a higher JS load because there aren't common chunks between the apps. But that's not all.
+
+One of the popular use cases for MF we hear often is runtime injection of code, which is made with the intention of updating **the JS assets** of a site without rebuilding the site, to "improve development speed (DX) and ship faster", however, before diving into that route we highly recommend you to consider the following red flags of having independent build systems and merging them together:
+
+- There shouldn't be a way to ship new JS to your site without first testing the site as a whole, which requires building the site, deploying it and going through checks (CI/CD), or otherwise you'll risk breaking the site with every live change. This gets worse if CI/CD runs your testing and is ignored in order to deploy to production faster, and it gets exponentially worse as teams grow. **Always build your whole app and run your entire CI/CD pipeline to keep your team in [the pit of success](https://blog.codinghorror.com/falling-into-the-pit-of-success/)**
+- It's quite hard to keep the JS payload stable and in a reasonable size when builds don't have knowledge of each other, you'll need to figure a way to lock versions and define common chunks so that apps don't include different versions of the same libraries nor include them multiple times
+- Upgrading versions can prove to be a painful task especially on large teams where you'll need to wait for multiple approval of changes in apps outside your scope, defeating the initial purpose of improving DX.
+  - What ends up happening is teams start to diverge and ship their own libraries in their preferred versions, so now **what started as a way to improve DX will now hurt your performance and overrall UX**
+- MF often involves merging builds (JS scripts) in the browser and doesn't go further away from that, this is bad for performance because it means users need to wait for the browser to execute JS before interacting with the page, however it makes sense, because if you wanted to do something similar for pregenerated content (SSG, SSR) you would also need to do live changes to lambda functions, the CDN, Proxy, and likely more
+- [Multi Zones](#multi-zones) has an important constraint that stops if from falling easily in the issues mentioned above: The app has total control over the paths it's in charge of, so it's only when you navigate to paths owned by another app that you'll see an UX hit
+
+In general, MF is not a way to improve UX or performance in any way, it's all about DX and we don't think it does a good job at it. The approaches in this example are our take about trying to accomplish the same thing while skipping its downsides.
