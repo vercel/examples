@@ -1,21 +1,35 @@
-import { Button, Quote } from '@acme/design-system'
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs'
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { Button } from '@acme/design-system'
 
-<Meta title="Components/Button" component={Button} />
+<Meta title="button" component={Button} />
 
 # Button
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur tempor, nisl nunc egestas nisi, euismod aliquam nisl nunc euismod.
 
-## Props
+## Arguments
 
-<Props of={Box} />
+<ArgsTable of={Button} />
 
 ## Examples
 
-<Preview>
-  {console.log('X', Button)}
-  <Story name="Default">
-    <Button>This is a button</Button>
+export const Template = (args) => <Button {...args} />
+
+Primary
+
+<Canvas>
+  <Story name="Default" args={{ children: 'This is a button!' }}>
+    {Template.bind({})}
   </Story>
-</Preview>
+</Canvas>
+
+Secondary
+
+<Canvas>
+  <Story
+    name="Secondary"
+    args={{ children: 'This is a button!', secondary: true }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

@@ -8,7 +8,7 @@ module.exports = {
       // directory: '../../packages/acme-design-system',
       directory: '../stories',
       // 👇 The titlePrefix field will generate automatic titles for your stories
-      titlePrefix: 'DesignSystem',
+      // titlePrefix: 'DesignSystem',
       // 👇 Storybook will load all files that contain the stories extension
       files: '*.stories.*',
     },
@@ -17,5 +17,13 @@ module.exports = {
   framework: '@storybook/react',
   core: {
     builder: '@storybook/builder-vite',
+  },
+  // Faster start times but the initial paint is wrong and a page refresh takes a while.
+  // features: {
+  //   storyStoreV7: true,
+  // },
+  async viteFinal(config, { configType }) {
+    // customize the Vite config here
+    return config
   },
 }

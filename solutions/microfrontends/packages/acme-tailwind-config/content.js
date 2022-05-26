@@ -13,7 +13,7 @@ function getContent(content, packages) {
     packages = CORE_PACKAGES
   }
 
-  return content.concat(
+  return (content || []).concat(
     packages.map((name) => {
       // Every package in this list must have a `/tailwind` config file
       // otherwise this will throw an error, which is expected behavior
