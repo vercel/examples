@@ -37,7 +37,7 @@
   "dependencies": {
     "@acme/design-system": "^0.0.1",
     "@acme/utils": "^0.0.1",
-    "@vercel/examples-ui": "^0.3.3",
+    "@vercel/examples-ui": "^0.3.4",
     "clsx": "^1.1.1"
   },
   "devDependencies": {

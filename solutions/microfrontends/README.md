@@ -87,16 +87,6 @@ Compared with the approaches above, there's an actual UX impact when doing multi
 
 For example, having a home app with your landing, marketing and legal pages and then having another app that handles all the pages related to documentation is a good separation of concerns, your users will only notice a slow transition once they move from your home app to view your documentation. Pro tip: Using `target="_blank"` in this situation is a nice improvement!
 
-### URL Imports
-
-> Note: [URL Imports](https://nextjs.org/docs/api-reference/next.config.js/url-imports) are stll experimental in Next.js.
-
-TODO: `packages/acme-utils` might be the best place to use this, a design system is likely not ideal because URL Imports won't handle atomic CSS without a considerable amount of work.
-
-Idea: Rename `@acme/utils` to `@vercel/mf-example-url-imports` and put it on npm, using CSS Modules doesn't work here but CSS-in-JS should.
-
-Update: Use github as the CDN to fetch the file.
-
 ### What About Polyrepos?
 
 All the tooling and approaches explained above should work with polyrepos out of the box with the difference that when the package is outside of the Monorepo, DX is a bit more tricky because Turborepo doesn't have access to them. So in this case you can install the package in the apps and control updates with versioning, everything should work as expected but HMR will be harder in this case.
