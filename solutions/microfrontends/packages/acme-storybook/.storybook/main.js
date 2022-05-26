@@ -1,7 +1,6 @@
 const path = require('path')
 
 module.exports = {
-  // stories: ['../stories/**/*.stories.mdx', '../stories/**/*.stories.tsx'],
   stories: [
     {
       directory: '../../acme-design-system/src/**',
@@ -16,7 +15,6 @@ module.exports = {
   core: {
     builder: '@storybook/builder-vite',
   },
-  // Faster start times but the initial paint is wrong and a page refresh takes a while.
   features: {
     storyStoreV7: true,
   },

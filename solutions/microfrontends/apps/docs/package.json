@@ -12,7 +12,7 @@
   "dependencies": {
     "@acme/design-system": "^0.0.1",
     "@acme/pages": "^0.0.1",
-    "@vercel/examples-ui": "file:../../../packages/ui",
+    "@vercel/examples-ui": "^0.3.3",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
