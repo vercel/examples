@@ -1,9 +1,9 @@
-import React from 'react'
+import { FC, ReactNode, useMemo } from 'react'
 import s from './snippet.module.css'
 import { highlight } from 'sugar-high'
 
-const Snippet: React.FC = ({ children }) => {
-  const __html = React.useMemo(
+const Snippet: FC<{ children?: ReactNode }> = ({ children }) => {
+  const __html = useMemo(
     () => (children ? highlight(children.toString()!) : ''),
     [children]
   )

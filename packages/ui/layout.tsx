@@ -1,9 +1,10 @@
-import React, { FC } from 'react'
+import type { FC, ReactNode } from 'react'
 import Head from 'next/head'
 import Nav, { NavProps } from './nav'
 import { Vercel } from './icons'
 
 export interface LayoutProps extends NavProps {
+  children?: ReactNode
   title?: string
   description?: string
 }

@@ -1,4 +1,4 @@
-import type { FC, ComponentType, HTMLAttributes } from 'react'
+import type { FC, ReactNode, ComponentType, HTMLAttributes } from 'react'
 import cn from 'clsx'
 
 export { default as Layout } from './layout'
@@ -12,7 +12,7 @@ export { default as Code } from './code'
 export { default as List } from './list'
 export { default as Snippet } from './snippet'
 
-const Noop: FC = ({ children }) => <>{children}</>
+const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
 
 export const Page: FC<HTMLAttributes<HTMLElement>> = ({
   children,

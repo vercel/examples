@@ -13,7 +13,7 @@
     "build:docs": "turbo run build --filter=...docs",
     "dev": "turbo run dev",
     "start": "turbo run start",
-    "clean": "turbo run clean",
+    "clean": "turbo run clean && rm -rf node_modules",
     "lint": "turbo run lint",
     "format": "prettier --write ."
   },
