@@ -8,9 +8,12 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build --scope=apps/main --include-dependencies --no-deps",
+    "build": "turbo run build",
+    "build:main": "turbo run build --filter=...main",
+    "build:docs": "turbo run build --filter=...docs",
     "dev": "turbo run dev",
     "start": "turbo run start",
+    "clean": "turbo run clean",
     "lint": "turbo run lint",
     "format": "prettier --write ."
   },
