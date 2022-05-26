@@ -5,6 +5,10 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "dist/**"]
     },
+    "main#build": {
+      "dependsOn": ["^build", "$DOCS_URL"],
+      "outputs": [".next/**"]
+    },
     "test": {
       "dependsOn": ["^build"],
       "outputs": []
