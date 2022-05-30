@@ -1,13 +1,14 @@
+/* eslint-disable @next/next/no-server-import-in-page */
 import { NextRequest, NextResponse } from 'next/server'
-import statsig from '../lib/statsig-api'
-import { DEFAULT_GROUP, FLAG, UID_COOKIE } from '../lib/constants'
+import statsig from './lib/statsig-api'
+import { DEFAULT_GROUP, FLAG, UID_COOKIE } from './lib/constants'
 
 export async function middleware(req: NextRequest) {
   // If the request is not for `/`, continue
   if (req.nextUrl.pathname !== '/') return NextResponse.next()
 
   // Get users UID from the cookie
-  let userID = req.cookies[UID_COOKIE]
+  let userID = req.cookies.get(UID_COOKIE)
 
   // Set a userID if not present
   if (!userID) userID = crypto.randomUUID()
@@ -31,8 +32,8 @@ export async function middleware(req: NextRequest) {
   const response = NextResponse.rewrite(url)
 
   // Set cookie if not present
-  if (!req.cookies[UID_COOKIE]) {
-    response.cookie(UID_COOKIE, userID)
+  if (!req.cookies.get(UID_COOKIE)) {
+    response.cookies.set(UID_COOKIE, userID)
   }
 
   // Return the response
