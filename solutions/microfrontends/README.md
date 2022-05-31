@@ -15,7 +15,7 @@ Microfrontends allow teams to work independently of each other by splitting the 
 
 The main goal of microfrontends is to improve collaboration between teams and overall DX, and we should be able to do this without hurting performance (UX).
 
-We recomming reading the [How it works](#how-it-works) section to understand the reasoning behind our implementation.
+We recomming reading the [How it works](#how-it-works) section to understand the reasoning behind our implementation and the [What's Included](#whats-included) section to know more about the tools we used.
 
 ## Demo
 
@@ -51,13 +51,25 @@ yarn dev
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
 
+## What's included?
+
+The example is a monorepo with [Turborepo](https://turborepo.org/) with the following setup:
+
+- Everything is in [TypeScript](https://www.typescriptlang.org/)
+- Next.js is used for the applications in [./apps](./apps)
+- Packages used by the applications live in [./packages](./packages)
+- [Tailwind CSS](https://tailwindcss.com) is used in most React components and its setup is shared in the [`acme-tailwind-config`](./packages/acme-tailwind-config) package
+- Storybook is used for the components that are part of the [`acme-design-system`](./packages/acme-design-system) package and its setup is shared in the [`acme-storybook`](./packages/acme-storybook) package
+- [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules) is used for packages that use CSS Modules
+- The Eslint config lives in [eslint-config-acme](./packages/eslint-config-acme)
+
 ## How it works
 
 There are many ways of doing Microfrontends, what you do depends almost entirely on how do you want to structure your applications and teams. There is no one way to do it, so we'll share different approaches and how they work.
 
 ### Monorepo Support
 
-One of the challenges of building Microfrontends is dependency management and a build system at the top, in the packages and apps in this monorepo we'll be using Turborepo and Changesets to get an amazing DX with minor configuration.
+One of the challenges of building Microfrontends is dependency management and a build system at the top, in the packages and apps in this monorepo we'll be using [Turborepo](https://turborepo.org/) and Changesets to get an amazing DX with minor configuration.
 
 ### Design System with Tailwind and CSS Modules
 
