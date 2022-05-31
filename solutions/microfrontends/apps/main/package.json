@@ -13,7 +13,7 @@
     "@acme/design-system": "^0.0.1",
     "@acme/pages": "^0.0.1",
     "@acme/utils": "^0.0.1",
-    "@vercel/examples-ui": "^0.3.4",
+    "@vercel/examples-ui": "^0.3.44",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
