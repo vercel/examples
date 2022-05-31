@@ -1,9 +1,11 @@
 import { FC, HTMLAttributes, useMemo } from 'react'
-import s from './snippet.module.css'
+import cn from 'clsx'
 import { highlight } from 'sugar-high'
+import s from './snippet.module.css'
 
 const Snippet: FC<HTMLAttributes<HTMLPreElement>> = ({
   children,
+  className,
   ...props
 }) => {
   const __html = useMemo(
@@ -11,7 +13,7 @@ const Snippet: FC<HTMLAttributes<HTMLPreElement>> = ({
     [children]
   )
   return (
-    <pre className={s.root} {...props}>
+    <pre className={cn(s.root, className)} {...props}>
       <code dangerouslySetInnerHTML={{ __html }} />
     </pre>
   )
