@@ -1,6 +1,6 @@
 {
   "name": "@vercel/examples-ui",
-  "version": "0.3.41",
+  "version": "0.3.42",
   "main": "index.tsx",
   "license": "MIT",
   "scripts": {

@@ -1,8 +1,8 @@
-import { FC, ReactNode, useMemo } from 'react'
+import { FC, HTMLAttributes, useMemo } from 'react'
 import s from './snippet.module.css'
 import { highlight } from 'sugar-high'
 
-const Snippet: FC<{ children?: ReactNode }> = ({ children }) => {
+const Snippet: FC<HTMLAttributes<HTMLPreElement>> = ({ children }) => {
   const __html = useMemo(
     () => (children ? highlight(children.toString()!) : ''),
     [children]
