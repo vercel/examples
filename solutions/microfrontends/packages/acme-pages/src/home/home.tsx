@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Layout, Page, Text, Code, Link } from '@vercel/examples-ui'
+import { Layout, Page, Text, Code, Link, Snippet } from '@vercel/examples-ui'
 import { Button, Quote } from '@acme/design-system'
 import { matchingTextColor, randomColor } from '@acme/utils'
 import Navbar from '../components/navbar'
@@ -26,7 +26,7 @@ export default function Home() {
         each using TypeScript and going through a different Microfrontend
         tehnique:
       </Text>
-      <Text variant="h2" className="mb-6">
+      <Text variant="h2" className="mt-10 mb-6">
         apps/main
       </Text>
       <Text className="mb-4">
@@ -41,7 +41,7 @@ export default function Home() {
         like is the case for <Code>packages/acme-pages</Code> which contains the
         pages used in this application.
       </Text>
-      <Text variant="h2" className="mb-6">
+      <Text variant="h2" className="mt-10 mb-6">
         packages/acme-design-system
       </Text>
       <Text className="mb-4">
@@ -56,7 +56,7 @@ export default function Home() {
       <Quote className="mb-4">
         This is the <Code>Quote</Code> component in the design system.
       </Quote>
-      <Text variant="h2" className="mb-6">
+      <Text variant="h2" className="mt-10 mb-6">
         packages/acme-pages
       </Text>
       <Text className="mb-4">
@@ -69,7 +69,7 @@ export default function Home() {
         <Code>packages/acme-pages/src/home</Code> and imported by{' '}
         <Code>apps/main/pages/index.tsx</Code>.
       </Text>
-      <Text variant="h2" className="mb-6">
+      <Text variant="h2" className="mt-10 mb-6">
         packages/acme-utils
       </Text>
       <Text className="mb-4">
@@ -96,7 +96,7 @@ export default function Home() {
           </Button>
         </>
       )}
-      <Text variant="h2" className="mb-6">
+      <Text variant="h2" className="mt-10 mb-6">
         apps/docs (Multi Zones)
       </Text>
       <Text className="mb-4">
@@ -118,6 +118,67 @@ export default function Home() {
         outside its domain don&apos;t live reload (<Code>apps/main</Code> lives
         in port 3000, and <Code>apps/docs</Code> in 3001).
       </Text>
+      <Text variant="h2" className="mt-10 my-6">
+        packages/acme-tailwind-config
+      </Text>
+      <Text className="mb-4">
+        Exports the Tailwind CSS configuration that will be used by every app:
+      </Text>
+      <Snippet className="mb-4">{`mmodule.exports = {
+  presets: [
+    require('@vercel/examples-ui/tailwind'),
+    require('@acme/design-system/tailwind'),
+  ],
+}`}</Snippet>
+      <Text className="mb-4">
+        Every app then has a <Code>tailwind.config.js</Code> with:
+      </Text>
+      <Snippet className="mb-4">{`const { getContent } = require('@acme/tailwind-config/content')
+
+module.exports = {
+  presets: [require('@acme/tailwind-config')],
+  content: getContent([
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+  ]),
+}`}</Snippet>
+      <Text className="mb-4">
+        <Code>getContent</Code> will append the packages that use Tailwind CSS
+        so that they&apos;re scanned properly. Those packages are{' '}
+        <Code>@vercel/examples-ui</Code>, <Code>@acme/design-system</Code> and{' '}
+        <Code>@acme/pages</Code>.
+      </Text>
+      <Text variant="h2" className="mt-10 my-6">
+        packages/acme-storybook
+      </Text>
+      <Text className="mb-4">
+        This packages takes the stories in{' '}
+        <Code>packages/acme-design-system</Code> and opens them in{' '}
+        <Link href="https://storybook.js.org/" target="_blank">
+          Storybook
+        </Link>
+        .
+      </Text>
+      <Text variant="h2" className="mt-10 my-6">
+        packages/eslint-config-acme
+      </Text>
+      <Text className="mb-4">
+        Exports the Eslint configuration that will be used by all apps and
+        packages:
+      </Text>
+      <Snippet className="mb-4">{`module.exports = {
+  extends: ['next/core-web-vitals', 'prettier'],
+  rules: {
+    '@next/next/no-html-link-for-pages': 'off',
+  },
+}`}</Snippet>
+      <Text className="mb-4">
+        Every package then has a <Code>.eslintrc</Code> with:
+      </Text>
+      <Snippet className="mb-4">{`module.exports = {
+  root: true,
+  extends: ['acme'],
+}`}</Snippet>
     </Page>
   )
 }
