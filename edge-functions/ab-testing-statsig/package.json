@@ -12,7 +12,7 @@
   "dependencies": {
     "@vercel/examples-ui": "^0.3.2",
     "js-cookie": "^3.0.1",
-    "next": "12.1.7-canary.24",
+    "next": "canary",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "statsig-react": "^1.9.1"
