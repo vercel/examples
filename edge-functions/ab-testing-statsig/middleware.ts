@@ -3,20 +3,27 @@ import { NextRequest, NextResponse } from 'next/server'
 import statsig from './lib/statsig-api'
 import { DEFAULT_GROUP, FLAG, UID_COOKIE } from './lib/constants'
 
+// We'll use this to validate a random UUID
+const IS_UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{16}$/i
+
 export async function middleware(req: NextRequest) {
   // If the request is not for `/`, continue
-  if (req.nextUrl.pathname !== '/') return NextResponse.next()
+  if (req.nextUrl.pathname !== '/') return
 
-  // Get users UID from the cookie
-  let userID = req.cookies.get(UID_COOKIE)
+  // Get the user ID from the cookie or get a new one
+  let userId = req.cookies.get(UID_COOKIE)
+  let hasUserId = !!userId
 
-  // Set a userID if not present
-  if (!userID) userID = crypto.randomUUID()
+  // If there's no active user ID in cookies or its value is invalid, get a new one
+  if (!userId || !IS_UUID.test(userId)) {
+    userId = crypto.randomUUID()
+    hasUserId = false
+  }
 
   // Fetch experiment from Statsig
   const bucket =
     (await statsig
-      .getExperiment(userID, FLAG)
+      .getExperiment(userId, FLAG)
       .then((value) => value.name)
       .catch((error) => {
         // Log the error but don't throw it, if Statsig fails, fallback to the default group
@@ -29,13 +36,12 @@ export async function middleware(req: NextRequest) {
   url.pathname = `/${bucket}`
 
   // Response that'll rewrite to the selected bucket
-  const response = NextResponse.rewrite(url)
+  const res = NextResponse.rewrite(url)
 
-  // Set cookie if not present
-  if (!req.cookies.get(UID_COOKIE)) {
-    response.cookies.set(UID_COOKIE, userID)
+  // Add the user ID to the response cookies if it's not there or if its value was invalid
+  if (!hasUserId) {
+    res.cookies.set(UID_COOKIE, userId)
   }
 
-  // Return the response
-  return response
+  return res
 }
