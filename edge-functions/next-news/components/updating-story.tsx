@@ -1,24 +1,15 @@
-import React from 'react'
-import Story from './story'
+import { useEffect, useState } from 'react'
 import { observe } from '../lib/get-item'
+import Story from './story'
 
-export default class UpdatingStory extends React.Component<any, any> {
-  unsubscribe: VoidFunction
+const UpdatingStory = (props) => {
+  const [state, setState] = useState(props)
 
-  constructor(props) {
-    super(props)
-    this.state = props
-  }
+  useEffect(() => {
+    return observe(props.id, (data) => setState(data))
+  }, [props.id])
 
-  componentDidMount() {
-    this.unsubscribe = observe(this.props.id, (data) => this.setState(data))
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe()
-  }
-
-  render() {
-    return <Story {...this.state} />
-  }
+  return <Story {...state} />
 }
+
+export default UpdatingStory
