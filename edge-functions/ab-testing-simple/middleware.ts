@@ -24,12 +24,14 @@ export default function middleware(req: NextRequest) {
 
   const data = route[1]
   const url = req.nextUrl.clone()
-  // Get the bucket from the cookie or get a new one
-  let bucket = req.cookies.get(data.cookie) || getBucket(data.buckets)
+  // Get the bucket from the cookie
+  let bucketInCookie = req.cookies.get(data.cookie)
+  let bucket = bucketInCookie
 
-  // If the bucket is invalid, set it to the first bucket
-  if (!data.buckets.includes(bucket as any)) {
-    bucket = data.buckets[0]
+  // If there's no active bucket or its value is invalid, get a new one
+  if (!bucketInCookie || !data.buckets.includes(bucketInCookie as any)) {
+    bucket = getBucket(data.buckets)
+    bucketInCookie = undefined
   }
 
   // Create a rewrite to the page matching the bucket
@@ -37,7 +39,8 @@ export default function middleware(req: NextRequest) {
   const res = NextResponse.rewrite(url)
 
   // Add the bucket to the response cookies if it's not there
-  if (!req.cookies.has(data.cookie)) {
+  // or if its value was invalid
+  if (!bucketInCookie) {
     res.cookies.set(data.cookie, bucket)
   }
 
