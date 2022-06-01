@@ -23,13 +23,20 @@ export default function middleware(req: NextRequest) {
   if (!route) return
 
   const data = route[1]
-  // Get the bucket cookie
-  const bucket = req.cookies.get(data.cookie) || getBucket(data.buckets)
   const url = req.nextUrl.clone()
+  // Get the bucket from the cookie or get a new one
+  let bucket = req.cookies.get(data.cookie) || getBucket(data.buckets)
+
+  // If the bucket is invalid, set it to the first bucket
+  if (!data.buckets.includes(bucket as any)) {
+    bucket = data.buckets[0]
+  }
+
+  // Create a rewrite to the page matching the bucket
   url.pathname = `${data.page}/${bucket}`
   const res = NextResponse.rewrite(url)
 
-  // Add the bucket to cookies if it's not there
+  // Add the bucket to the response cookies if it's not there
   if (!req.cookies.has(data.cookie)) {
     res.cookies.set(data.cookie, bucket)
   }
