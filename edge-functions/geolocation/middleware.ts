@@ -1,7 +1,15 @@
+/* eslint-disable @next/next/no-server-import-in-page */
 import { NextRequest, NextResponse } from 'next/server'
-import countries from '../lib/countries.json'
+import countries from './lib/countries.json'
 
 export async function middleware(req: NextRequest) {
+  // TODO:
+  // this is a workaround before merging matcher
+  // run only on homepage
+  if (req.nextUrl.pathname !== '/') {
+    return
+  }
+
   const { nextUrl: url, geo } = req
   const country = geo.country || 'US'
   const city = geo.city || 'San Francisco'
