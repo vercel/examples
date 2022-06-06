@@ -11,7 +11,7 @@ demoUrl: https://next-news.vercel.app
 
 # Next News
 
-This is an example showing a hHcker News clone using Next.js.
+This is an example showing a Hacker News clone using Next.js.
 
 ## Demo
 
