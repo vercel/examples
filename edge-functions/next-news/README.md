@@ -1,7 +1,7 @@
 ---
 name: Next News
 slug: next-news
-description: Hacker news clone in Next.js.
+description: Hacker News clone in Next.js.
 framework: Next.js
 useCase: Starter
 css: CSS-in-JSX
@@ -11,22 +11,7 @@ demoUrl: https://next-news.vercel.app
 
 # Next News
 
-This is an example showing a hacker news clone using Next.js. Edge functions are used to show how a rewrite from `/` to `/news/1` works. Below is the code from [next.config.mjs](next.config.mjs):
-
-```ts
-export default {
-  reactStrictMode: true,
-  swcMinify: true,
-  async rewrites() {
-    return [
-      {
-        source: '/',
-        destination: '/news/1',
-      },
-    ]
-  },
-}
-```
+This is an example showing a hHcker News clone using Next.js.
 
 ## Demo
 
