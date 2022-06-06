@@ -11,17 +11,20 @@ demoUrl: https://next-news.vercel.app
 
 # Next News
 
-This is an example showing a hacker news clone using Next.js. Edge functions are used to show how a rewrite from `/` to `/news/1` works. Below is the code from [pages/\_middleware.ts](pages/_middleware.ts):
+This is an example showing a hacker news clone using Next.js. Edge functions are used to show how a rewrite from `/` to `/news/1` works. Below is the code from [next.config.mjs](next.config.mjs):
 
 ```ts
-import { NextResponse, NextRequest } from 'next/server'
-
-export default function middleware(req: NextRequest) {
-  const url = req.nextUrl.clone()
-  if (url.pathname === '/') {
-    url.pathname = '/news/1'
-    return NextResponse.rewrite(url)
-  }
+export default {
+  reactStrictMode: true,
+  swcMinify: true,
+  async rewrites() {
+    return [
+      {
+        source: '/',
+        destination: '/news/1',
+      },
+    ]
+  },
 }
 ```
 
