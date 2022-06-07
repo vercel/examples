@@ -7,7 +7,7 @@ const BLOCKED_COUNTRY = 'AT'
 
 // Limit middleware pathname config
 export const config = {
-  pathname: '/',
+  matcher: '/',
 }
 
 export function middleware(req: NextRequest) {
@@ -16,9 +16,6 @@ export function middleware(req: NextRequest) {
 
   // Clone URL
   const url = req.nextUrl.clone()
-
-  // Only rewrite requests to `/`, as _middleware on the `/pages` root will be executed in every request of the app.
-  if (url.pathname !== '/') return NextResponse.next()
 
   // Specify the correct pathname
   if (country === BLOCKED_COUNTRY) {
