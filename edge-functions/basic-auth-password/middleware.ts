@@ -1,11 +1,12 @@
 /* eslint-disable @next/next/no-server-import-in-page */
 import { NextRequest, NextResponse } from 'next/server'
 
-export function middleware(req: NextRequest) {
-  if (req.nextUrl.pathname !== '/') {
-    return
-  }
+// limit middleware to only home page
+export const config = {
+  matcher: '/',
+}
 
+export function middleware(req: NextRequest) {
   const basicAuth = req.headers.get('authorization')
   const url = req.nextUrl.clone()
 
