@@ -15,7 +15,7 @@ Microfrontends allow teams to work independently of each other by splitting the 
 
 The main goal of microfrontends is to improve collaboration between teams and overall DX, and we should be able to do this without hurting performance (UX).
 
-We recomming reading the [How it works](#how-it-works) section to understand the reasoning behind our implementation and the [What's Included](#whats-included) section to know more about the tools we used.
+We recommend reading the [How it works](#how-it-works) section to understand the reasoning behind our implementation and the [What's Included](#whats-included) section to know more about the tools we used.
 
 ## Demo
 
