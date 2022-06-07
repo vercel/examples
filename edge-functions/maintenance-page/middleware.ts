@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 // Set pathname were middleware will be executed
 export const config = {
-  pathname: '/big-promo',
+  matcher: '/big-promo',
 }
 
 export async function middleware(req: NextRequest) {
