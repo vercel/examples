@@ -1,7 +1,9 @@
 // eslint-disable-next-line @next/next/no-server-import-in-page
 import { NextRequest, NextResponse } from 'next/server'
 
-export const config = { matching: /\.(.*)$/ }
+export const config = {
+  matcher: '/:path*',
+}
 
 export function middleware(req: NextRequest) {
   const country = req.geo.country?.toLowerCase() || 'us'
