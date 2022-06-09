@@ -13,7 +13,7 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="mint-nft"
       path="solutions/mint-nft"
-      description="How to ming an NFT"
+      description="How to mint an NFT"
     >
       <MoralisProvider
         appId={process.env.NEXT_PUBLIC_APP_ID!}

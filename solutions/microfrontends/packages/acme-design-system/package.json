@@ -1,0 +1,46 @@
+{
+  "name": "@acme/design-system",
+  "version": "0.0.1",
+  "scripts": {
+    "lint": "TIMING=1 eslint \"**/*.{ts*,js,jsx}\" --fix",
+    "clean": "rm -rf .turbo && rm -rf node_modules"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    "./tailwind": {
+      "require": "./src/tailwind.cjs"
+    },
+    ".": "./src/index.tsx",
+    "./*": [
+      "./src/*.tsx",
+      "./src/*.ts",
+      "./src/*/index.ts"
+    ]
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*",
+        "src/*/index"
+      ]
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "peerDependencies": {
+    "next": "^12.1.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "dependencies": {
+    "clsx": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "eslint": "^8.16.0",
+    "eslint-config-acme": "*",
+    "typescript": "^4.5.5"
+  }
+}

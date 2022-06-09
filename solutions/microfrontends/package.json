@@ -1,0 +1,25 @@
+{
+  "name": "microfrontends",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "build:main": "turbo run build --filter=...main",
+    "build:docs": "turbo run build --filter=...docs",
+    "dev": "turbo run dev",
+    "start": "turbo run start",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "lint": "turbo run lint",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.14",
+    "prettier": "^2.6.2",
+    "turbo": "latest"
+  }
+}

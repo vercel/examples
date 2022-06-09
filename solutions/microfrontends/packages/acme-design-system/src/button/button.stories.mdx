@@ -1,0 +1,32 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { Button } from '@acme/design-system'
+import '@vercel/examples-ui/globals.css'
+
+<Meta title="button-mdx" component={Button} />
+
+# Button
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur tempor, nisl nunc egestas nisi, euismod aliquam nisl nunc euismod.
+
+## Arguments
+
+<ArgsTable of={Button} />
+
+## Examples
+
+export const Template = (args) => <Button {...args} />
+
+Primary
+
+<Story name="Primary" args={{ children: 'This is a button!' }}>
+  {Template.bind({})}
+</Story>
+
+Secondary
+
+<Story
+  name="Secondary"
+  args={{ children: 'This is a button!', secondary: true }}
+>
+  {Template.bind({})}
+</Story>
