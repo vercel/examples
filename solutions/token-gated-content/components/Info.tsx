@@ -30,7 +30,7 @@ export const Info = () => {
           </Text>
           <Text className=" mt-6">
             This example shows how you can create exclusive areas of your
-            website using Next.js Next.js.{' '}
+            website using Next.js.{' '}
             <Link
               href="https://github.com/tmm/wagmi"
               target="_blank"
