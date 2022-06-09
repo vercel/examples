@@ -1,9 +1,15 @@
+// eslint-disable-next-line @next/next/no-server-import-in-page
 import { NextResponse } from 'next/server'
+// eslint-disable-next-line @next/next/no-server-import-in-page
 import type { NextRequest } from 'next/server'
-import { decodeJwt } from '../lib/jwt'
+import { decodeJwt } from './lib/jwt'
 import { utils } from 'ethers'
 
 const PROTECTED_ROUTES = new Set(['/'])
+
+export const config = {
+  matcher: '/',
+}
 
 export function middleware(req: NextRequest) {
   let response = NextResponse.next()
@@ -20,7 +26,7 @@ export function middleware(req: NextRequest) {
     return response
   }
 
-  const cookie = req.cookies['allow-list']
+  const cookie = req.cookies.get('allow-list')
 
   if (!cookie || cookie === 'deleted') {
     return response
