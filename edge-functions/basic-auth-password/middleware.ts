@@ -1,3 +1,4 @@
+import { NextURL } from 'next/dist/server/web/next-url'
 /* eslint-disable @next/next/no-server-import-in-page */
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -8,7 +9,6 @@ export const config = {
 
 export function middleware(req: NextRequest) {
   const basicAuth = req.headers.get('authorization')
-  const url = req.nextUrl.clone()
 
   if (basicAuth) {
     const auth = basicAuth.split(' ')[1]
@@ -18,7 +18,8 @@ export function middleware(req: NextRequest) {
       return NextResponse.next()
     }
   }
-  url.pathname = `/auth`
+  const url = new NextURL(req.nextUrl)
+  url.pathname = '/auth'
 
   return NextResponse.rewrite(url)
 }
