@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/examples-ui": "^0.3.1",
+    "@vercel/examples-ui": "^0.3.2",
     "configcat-js": "^5.7.1",
     "configcat-node": "^6.7.1",
     "js-cookie": "^3.0.1",

@@ -1,5 +1,5 @@
 {
-  "name": "ab-testing",
+  "name": "ab-testing-google-optimize",
   "version": "1.0.0",
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/examples-ui": "^0.3.1",
+    "@vercel/examples-ui": "^0.3.2",
     "js-cookie": "^3.0.1",
     "next": "^12.1.0",
     "react": "^17.0.2",

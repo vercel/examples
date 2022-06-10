@@ -9,7 +9,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="reusing responses" path="solutions/reuse-responses">
+    <Layout
+      title="reusing responses"
+      path="solutions/reuse-responses"
+      description="How to reduce bandwidth and execution time reusing responses across calls"
+    >
       <Component {...pageProps} />
     </Layout>
   )

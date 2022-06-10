@@ -1,6 +1,5 @@
 import type { Tweet as ITweet } from '../types'
 
-import Head from 'next/head'
 import { Layout, Text, Page, Code, Link, Snippet } from '@vercel/examples-ui'
 
 import { GetStaticProps } from 'next'
@@ -35,15 +34,6 @@ export const getStaticProps: GetStaticProps = async () => {
 function Tweets({ tweets, date }: Props) {
   return (
     <Page>
-      <Head>
-        <title>On demand ISR (Tweets) - Vercel Example</title>
-        <meta
-          name="description"
-          content="Vercel example how to use On demand ISR - Tweets"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">Latest #nextjs tweets</Text>
         <Text>

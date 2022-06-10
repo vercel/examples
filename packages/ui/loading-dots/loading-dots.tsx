@@ -1,6 +1,7 @@
+import type { FC } from 'react'
 import s from './loading-dots.module.css'
 
-const LoadingDots: React.FC = () => {
+const LoadingDots: FC = () => {
   return (
     <span className={s.root}>
       <span className={s.dot} key={`dot_1`} />

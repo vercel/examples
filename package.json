@@ -4,7 +4,6 @@
   "license": "MIT",
   "scripts": {
     "prettier": "prettier --write .",
-    "update": "node update-dep.mjs",
     "update-templates": "node scripts/update-templates.mjs",
     "new-example": "plop example",
     "lint-staged": "lint-staged",
@@ -22,7 +21,7 @@
     "prettier": "^2.5.1"
   },
   "lint-staged": {
-    "!(**/.vercel/**/*)**/*.{js,jsx,ts,tsx}": [
+    "!(**/.vercel/**/*)**/*.{ts,tsx}": [
       "prettier --write",
       "eslint --no-ignore --max-warnings=0 --fix"
     ],

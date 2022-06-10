@@ -32,7 +32,7 @@ npm run prepare
 
 ## Read the Docs
 
-- [Vercel Docs](https://docs.vercel.com/)
+- [Vercel Docs](https://vercel.com/docs)
 - [Next.js Docs](https://nextjs.org/docs)
 
 If you have any questions or suggestions about the docs, feel free to [open a discussion](https://github.com/vercel/examples/discussions), or [submit a PR](https://github.com/vercel/examples/pulls) with your suggestions!
@@ -41,4 +41,3 @@ If you have any questions or suggestions about the docs, feel free to [open a di
 
 - [Start a Discussion](https://github.com/vercel/examples/discussions) with a question, piece of feedback, or idea you want to share with the team.
 - [Open an Issue](https://github.com/vercel/examples/issues) if you believe you've encountered a bug that you want to flag for the team.
-

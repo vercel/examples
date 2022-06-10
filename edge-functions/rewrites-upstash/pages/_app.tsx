@@ -9,7 +9,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="Rewrite on the edge" path="edge-functions/rewrites-upstash">
+    <Layout
+      title="Rewrite at the edge using Upstash"
+      path="edge-functions/rewrites-upstash"
+      description="How to avoid calling several services by pre-checking stock at the edge using a redis cache"
+    >
       <Component {...pageProps} />
     </Layout>
   )

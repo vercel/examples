@@ -3,7 +3,6 @@ import type { Product } from '../types'
 import type { FC } from 'react'
 
 import { PHASE_PRODUCTION_BUILD } from 'next/constants'
-import Head from 'next/head'
 import Image from 'next/image'
 import { Layout, Text, Page, Code, Link, List } from '@vercel/examples-ui'
 import api from '../api'
@@ -42,15 +41,6 @@ export const getStaticProps: GetStaticProps = async () => {
 function Home({ products }: Props) {
   return (
     <Page>
-      <Head>
-        <title>Reusing responses</title>
-        <meta
-          name="description"
-          content="How to reduce bandwidth and execution time reusing responses across calls"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">Reusing responses at build time</Text>
         <Text>
@@ -181,7 +171,7 @@ export const getStaticProps = async ({params}) => {
       return products.find((product) => product.id === id)
     },
     set: async (products: Product[]) => {
-      return fs.writeFile(
+      return await fs.writeFile(
         path.join(process.cwd(), 'products.db'),
         JSON.stringify(products)
       )

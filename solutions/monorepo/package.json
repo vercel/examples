@@ -13,8 +13,6 @@
     "lint": "turbo run lint"
   },
   "devDependencies": {
-    "@types/node": "^17.0.14",
-    "turbo": "^1.1.6"
-  },
-  "packageManager": "npm@8.3.2"
+    "turbo": "latest"
+  }
 }

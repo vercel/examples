@@ -1,7 +1,7 @@
 import BlurImage from './BlurImage'
+import cn from 'clsx'
 import { format } from 'date-fns'
 import { useState } from 'react'
-import cn from 'clsx'
 
 function getRemainingTime(ISOString) {
   const currentTime = new Date()
@@ -77,7 +77,7 @@ export default function Tweet({ id, metadata, className }) {
 
   return (
     <div
-      className={`${className} tweet rounded-lg border border-gray-300 dark:border-gray-800 bg-white px-8 pt-6 pb-2 my-4 w-full`}
+      className={`${className} tweet rounded-lg border border-gray-300 dark:border-gray-800 bg-white dark:bg-black px-8 pt-6 pb-2 my-4 w-full`}
     >
       <div className="flex items-center">
         <a

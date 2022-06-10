@@ -26,6 +26,14 @@ https://domains-api.vercel.app/
 
 ## Features
 
+### 0. Configure Env Vars
+
+You'll need to configure 3 different environment variables for this project to work:
+
+- `VERCEL_PROJECT_ID`: The ID of the Vercel project you want to add/remove domains from. You can find it under the "Settings" tab in your project's dashboard.
+- `VERCEL_TEAM_ID`: The ID of the Vercel team you want to add/remove domains from. You can find it under the "Settings" tab in your team's dashboard.
+- `AUTH_BEARER_TOKEN`: Your personal auth bearer token that gives you programmatic access to your Vercel account. You can create one under the "Tokens" tab in your personal account's settings tab.
+
 ### 1. Adding Domains
 
 To add a domain, you can use the `/v8/projects/{idOrName}/domains` endpoint as shown [here](./pages/api/add-domain.js) ([full documentation](https://vercel.com/docs/rest-api#endpoints/projects/add-a-domain-to-a-project)).
@@ -36,18 +44,9 @@ When a domain is added, there are 3 possible outcomes:
 2. Domains is already in use by another project and can't be added (response code `409`).
 3. Domains belongs to a different team but you can potentially request delegation for the domain (response code `403`).
 
-#### Request Delegation of Domains
+#### Verifying Project Domain
 
-Requesting delegation of domains can be done with the `/v6/domains/{domain}/request-delegation` endpoint as shown [here](./pages/api/request-delegation.js) ([full documentation](https://vercel.notion.site/Preview-Requesting-Subdomain-Access-79df63d854b24a0abd52da991d50cb81)).
-
-Below is an example of how to the request delegation flow is like for the end user:
-
-1. User runs into an error where a domain is already owned by a different team.
-   ![CleanShot 2021-12-08 at 18 26 31](https://user-images.githubusercontent.com/28986134/145327289-65f8cd47-e3ec-4f47-a1e2-00f3513fe8ed.png)
-2. User clicks on "Click here to request access" and receives a success toast notifiying that their request was successfully sent.
-   ![CleanShot 2021-12-08 at 18 29 07](https://user-images.githubusercontent.com/28986134/145327321-9962e927-d2e2-4937-be4c-b899f57ec402.png)
-3. When the user tries to add the domain again, it should get added automatically.
-   ![CleanShot 2021-12-08 at 18 25 17](https://user-images.githubusercontent.com/28986134/145327427-b750aa2d-6eb2-44f0-a2e0-cbf1661d153b.png)
+Verifying a project domain can be done with the `/v9/projeccts/{projectId}/domains/{domain}/verify` endpoint as shown [here](./pages/api/verify-domain.js) ([full documentation](https://vercel.com/docs/rest-api#endpoints/projects/verify-project-domain)).
 
 ### 2. Auto-checking Domain Configuration
 

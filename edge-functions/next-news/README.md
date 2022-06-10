@@ -1,7 +1,7 @@
 ---
 name: Next News
 slug: next-news
-description: Hacker news clone in Next.js.
+description: Hacker News clone in Next.js.
 framework: Next.js
 useCase: Starter
 css: CSS-in-JSX
@@ -11,19 +11,7 @@ demoUrl: https://next-news.vercel.app
 
 # Next News
 
-This is an example showing a hacker news clone using Next.js. Edge functions are used to show how a rewrite from `/` to `/news/1` works. Below is the code from [pages/\_middleware.ts](pages/_middleware.ts):
-
-```ts
-import { NextResponse, NextRequest } from 'next/server'
-
-export default function middleware(req: NextRequest) {
-  const url = req.nextUrl.clone()
-  if (url.pathname === '/') {
-    url.pathname = '/news/1'
-    return NextResponse.rewrite(url)
-  }
-}
-```
+This is an example showing a Hacker News clone using Next.js.
 
 ## Demo
 

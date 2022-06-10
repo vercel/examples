@@ -1,20 +1,28 @@
-import React, { FC } from 'react'
+import type { FC, ReactNode } from 'react'
 import Head from 'next/head'
 import Nav, { NavProps } from './nav'
 import { Vercel } from './icons'
 
 export interface LayoutProps extends NavProps {
+  children?: ReactNode
   title?: string
+  description?: string
 }
 
-const Layout: FC<LayoutProps> = ({ title, path, deployButton, children }) => {
+const Layout: FC<LayoutProps> = ({
+  title,
+  description,
+  path,
+  deployButton,
+  children,
+}) => {
   return (
     <div className="mx-auto h-screen flex flex-col">
-      {title && (
-        <Head>
-          <title>{title} - Vercel Examples</title>
-        </Head>
-      )}
+      <Head>
+        {title && <title>{title} - Vercel Examples</title>}
+        {description && <meta name="description" content={description} />}
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
       <Nav path={path} title={title} deployButton={deployButton} />
 

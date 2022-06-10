@@ -9,7 +9,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="Pagination Strategy" path="solutions/pagination-with-ssg">
+    <Layout
+      title="Pagination with SSG"
+      path="solutions/pagination-with-ssg"
+      description="Learn how to do pagination with SSG"
+    >
       <Component {...pageProps} />
     </Layout>
   )

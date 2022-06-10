@@ -1,0 +1,21 @@
+import { Meta, Story, ArgsTable, Canvas } from '@storybook/addon-docs'
+import { Quote } from '@acme/design-system'
+import '@vercel/examples-ui/globals.css'
+
+<Meta title="quote" component={Quote} />
+
+# Quote
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur tempor, nisl nunc egestas nisi, euismod aliquam nisl nunc euismod.
+
+## Arguments
+
+<ArgsTable of={Quote} />
+
+## Examples
+
+<Canvas>
+  <Story name="Default">
+    <Quote>This is a quote</Quote>
+  </Story>
+</Canvas>

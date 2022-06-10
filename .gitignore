@@ -5,6 +5,11 @@ node_modules
 .pnp
 .pnp.js
 
+# Examples
+package-lock.json
+yarn.lock
+!/package-lock.lock
+
 # Testing
 coverage
 
@@ -25,10 +30,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # Local ENV files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env*.local
 
 # Vercel
 .vercel
+

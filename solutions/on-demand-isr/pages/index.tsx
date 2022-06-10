@@ -1,6 +1,5 @@
 import type { Product } from '../types'
 
-import Head from 'next/head'
 import {
   Layout,
   Text,
@@ -75,15 +74,6 @@ function Home({ products, date }: Props) {
 
   return (
     <Page>
-      <Head>
-        <title>On demand ISR - Vercel Example</title>
-        <meta
-          name="description"
-          content="Vercel example how to use On demand ISR"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">On demand ISR usage example</Text>
         <Text>

@@ -2,7 +2,6 @@ import type { GetStaticProps } from 'next'
 import type { Product } from '../types'
 import type { FC } from 'react'
 
-import Head from 'next/head'
 import Image from 'next/image'
 import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
 import api from '../api'
@@ -36,15 +35,6 @@ export const getStaticProps: GetStaticProps = async () => {
 function Home({ products }: Props) {
   return (
     <Page>
-      <Head>
-        <title>Rewrite at the edge using Upstash</title>
-        <meta
-          name="description"
-          content="How to avoid calling several services by pre-checking stock at the edge using a redis cache"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">Rewriting at the edge using Upstash</Text>
         <Text>

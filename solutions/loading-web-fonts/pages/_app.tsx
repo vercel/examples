@@ -10,7 +10,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="loading-web-fonts" path="solutions/loading-web-fonts">
+    <Layout
+      title="Loading web fonts"
+      path="solutions/loading-web-fonts"
+      description="How to correctly load web fonts"
+    >
       <Component {...pageProps} />
     </Layout>
   )
