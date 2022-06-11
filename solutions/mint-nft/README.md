@@ -23,7 +23,7 @@ You can choose from one of the following two methods to use this repository:
 
 ### One-Click Deploy
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/mint-nft&project-name=mint-nft&repository-name=mint-nft&env=NEXT_PUBLIC_APP_ID,NEXT_PUBLIC_SERVER_URL,NEXT_PUBLIC_SERVER_DOMAIN)
 
