@@ -23,14 +23,15 @@ Retrieve your existing access key, secret key, S3 bucket region and name. Provid
 1. Create a new [IAM User](https://aws.amazon.com/iam/):
    1. Choose programatic access.
    2. Select "Attach existing policies directly"
-   3. Add `AWSCloudFormationFullAccess` and `AmazonS3FullAccess`.
+   3. Add `AmazonS3FullAccess`.
 1. Save the access key and secret key for the IAM User.
+   1. This is used for programmatic access in the API Route.
 1. Install the [AWS CLI](https://aws.amazon.com/cli/):
    1. Run `aws configure`.
-   2. Enter your access key and secret key.
+   2. Enter your root AWS user access key and secret key.
    3. Enter your default region.
-1. This will prompt you to enter the access key and secret key.
 1. Create an `.env.local` file similar to `.env.example`.
+   1. Enter your access key and secret key from the IAM user.
 1. Run `cdk bootstrap`.
 1. Run `cdk deploy` to create an S3 bucket with an IAM policy.
 1. Visit your newly created S3 bucket and retrieve the name and region.
