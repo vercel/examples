@@ -5,15 +5,12 @@ export const config = {
 }
 
 export function middleware(req: NextRequest) {
-  // Clone URL
-  const url = req.nextUrl.clone()
-
   // Parse the cookie
   const isInBeta = JSON.parse(req.cookies.get('beta') || 'false')
 
   // Update url pathname
-  url.pathname = `/${isInBeta ? 'beta' : 'non-beta'}`
+  req.nextUrl.pathname = `/${isInBeta ? 'beta' : 'non-beta'}`
 
   // Rewrite to url
-  return NextResponse.rewrite(url)
+  return NextResponse.rewrite(req.nextUrl)
 }
