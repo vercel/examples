@@ -14,16 +14,13 @@ export function middleware(req: NextRequest) {
   // Extract country
   const country = req.geo.country || 'US'
 
-  // Clone URL
-  const url = req.nextUrl.clone()
-
   // Specify the correct pathname
   if (country === BLOCKED_COUNTRY) {
-    url.pathname = '/blocked'
+    req.nextUrl.pathname = '/blocked'
   } else {
-    url.pathname = `/${country}`
+    req.nextUrl.pathname = `/${country}`
   }
 
   // Rewrite to URL
-  return NextResponse.rewrite(url)
+  return NextResponse.rewrite(req.nextUrl)
 }
