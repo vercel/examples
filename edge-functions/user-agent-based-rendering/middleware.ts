@@ -1,5 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
-import parser from 'ua-parser-js'
+import { NextRequest, NextResponse, userAgent } from 'next/server'
 
 // Set pathname were middleware will be executed
 export const config = {
@@ -7,18 +6,15 @@ export const config = {
 }
 
 export function middleware(req: NextRequest) {
-  // Clone the URL
-  const url = req.nextUrl.clone()
-
   // Parse user agent
-  const ua = parser(req.headers.get('user-agent')!)
+  const { device } = userAgent(req)
 
   // Check the viewport
-  const viewport = ua.device.type === 'mobile' ? 'mobile' : 'desktop'
+  const viewport = device.type === 'mobile' ? 'mobile' : 'desktop'
 
   // Update the expected url
-  url.pathname = `_viewport/${viewport}`
+  req.nextUrl.pathname = `_viewport/${viewport}`
 
   // Return rewrited response
-  return NextResponse.rewrite(url)
+  return NextResponse.rewrite(req.nextUrl)
 }
