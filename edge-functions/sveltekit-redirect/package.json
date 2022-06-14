@@ -34,7 +34,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@vercel/examples-ui-svelte": "^0.1.7",
-		"next": "^12.1.7-canary.39"
+		"@vercel/examples-ui-svelte": "^0.1.7"
 	}
 }
