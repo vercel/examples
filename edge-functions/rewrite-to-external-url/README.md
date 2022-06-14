@@ -9,7 +9,7 @@ deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel
 demoUrl: https://support-site.vercel.pub/
 ---
 
-# Rewrites to an External URL
+# Rewrite to an External URL
 
 This example shows how to rewrite a Next.js app to an external URL using Next.js middleware & Vercel Edge Functions.
 
