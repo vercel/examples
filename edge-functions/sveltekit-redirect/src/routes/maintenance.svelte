@@ -10,12 +10,9 @@
 		> file at the root of your project with the following content:</Text
 	>
 	<pre class="snippet"><code
-			>{`import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-
-export function middleware(request: NextRequest) {
+			>{`export function middleware(request) {
 	if (request.nextUrl.pathname === '/') {
-		return NextResponse.redirect(new URL('/maintenance', request.url));
+		return Response.redirect(new URL('/maintenance', request.url));
 	}
 }`}</code
 		></pre>
