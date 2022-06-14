@@ -2,7 +2,7 @@
     "name": "@vercel/examples-ui-svelte",
     "svelte": "src/index.js",
     "private": false,
-    "version": "0.1.5",
+    "version": "0.1.7",
     "license": "MIT",
     "scripts": {
     },
