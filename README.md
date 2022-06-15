@@ -40,6 +40,8 @@ We use [Husky](https://typicode.github.io/husky/#/) to manage the pre-commit [Gi
 npm run prepare
 ```
 
+Code changes automatically go through Prettier and Eslint when you make a commit, **please do not skip these steps** unless they're broken and in that case let us known by creating an issue.
+
 ## Read the Docs
 
 - [Vercel Docs](https://vercel.com/docs)
