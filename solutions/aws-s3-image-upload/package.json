@@ -7,7 +7,8 @@
     "cdk": "cdk",
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "devDependencies": {
     "@types/node": "17.0.42",
