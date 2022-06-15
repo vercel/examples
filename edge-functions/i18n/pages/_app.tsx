@@ -7,7 +7,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout path="edge-functions/i18n">
+    <Layout
+      title={pageProps.dictionary?.title || 'i18n'}
+      description={pageProps.dictionary?.subtitle}
+      path="edge-functions/i18n"
+    >
       <Component {...pageProps} />
     </Layout>
   )
