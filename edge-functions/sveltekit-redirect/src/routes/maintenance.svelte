@@ -10,10 +10,16 @@
 		> file at the root of your project with the following content:</Text
 	>
 	<pre class="snippet"><code
-			>{`export function middleware(request) {
-	if (request.nextUrl.pathname === '/') {
+			>{`export default function middleware(request, response) {
+	if (new URL(request.url).pathname === '/') {
 		return Response.redirect(new URL('/maintenance', request.url));
 	}
+
+	return new Response(null, {
+		headers: {
+		  'x-middleware-next': '1',
+		},
+	  });
 }`}</code
 		></pre>
 </section>

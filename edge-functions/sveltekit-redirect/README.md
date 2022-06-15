@@ -5,7 +5,7 @@ This example shows how to redirect users with Vercel Middleware in Sveltekit
 
 ## Demo
 
-https://edge-functions-i18n.vercel.app
+https://sveltekit-redirect-guivercel.vercel.sh
 
 ## How to Use
 
