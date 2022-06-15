@@ -1,4 +1,4 @@
-export default function middleware(request) {
+export default function middleware(request, response) {
 	if (new URL(request.url).pathname === '/') {
 		return Response.redirect(new URL('/maintenance', request.url));
 	}
