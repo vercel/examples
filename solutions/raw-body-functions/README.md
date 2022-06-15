@@ -12,7 +12,15 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/raw-body-functions&project-name=raw-body-functions&repository-name=raw-body-functions)
 
-### Running Locally
+### Clone and Deploy
+
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+
+```bash
+npx create-next-app --example https://github.com/vercel/examples/tree/main/solutions/raw-body-functions raw-body-functions
+# or
+yarn create next-app --example https://github.com/vercel/examples/tree/main/solutions/raw-body-functions raw-body-functions
+```
 
 Install the Vercel CLI:
 
@@ -20,7 +28,7 @@ Install the Vercel CLI:
 npm i -g vercel
 ```
 
-Then run the example at the root of the repository:
+Then run the app at the root of the repository:
 
 ```bash
 vercel dev
