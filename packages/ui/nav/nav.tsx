@@ -5,33 +5,18 @@ import Button from '../button'
 import DeployButton, { DeployButtonProps } from '../deploy-button'
 import s from './nav.module.css'
 
-const REPO_URL = 'https://github.com/vercel/examples'
-const REPO_DIR = '/tree/main/'
+const REPO_URL = 'https://github.com/vercel/examples/tree/main'
 
 export interface NavProps {
   path: string
   deployButton?: Partial<DeployButtonProps>
-  title?: string
 }
 
-export interface BreadCrumb {
-  name: string
-  url?: string
-}
-
-export default function Nav({ path, deployButton, title }: NavProps) {
-  const displayPath = path?.split('/').filter(Boolean) || []
-  const breadCrumbs: BreadCrumb[] = []
-
-  for (let i = 0; i < displayPath.length; i++) {
-    const elementPath = displayPath.slice(0, i + 1).join('/')
-    breadCrumbs.push({
-      name: displayPath[i],
-      url: `https://github.com/vercel/examples/tree/main/${elementPath}`,
-    })
-  }
-  const lastElement: BreadCrumb = { name: title || '', url: '/' }
-  breadCrumbs.push(lastElement)
+export default function Nav({ path, deployButton }: NavProps) {
+  const displayPath = ['Vercel Examples']
+    .concat(path?.split('/').filter(Boolean) || [])
+    .join(' / ')
+  const repositoryUrl = deployButton?.repositoryUrl || `${REPO_URL}/${path}`
 
   return (
     <nav className={s.root}>
@@ -62,20 +47,14 @@ export default function Nav({ path, deployButton, title }: NavProps) {
               </svg>
             </li>
             <li className="font-medium" style={{ letterSpacing: '.01px' }}>
-              Vercel Examples
-              {breadCrumbs.map((navItem) => (
-                <span key={navItem.name}>
-                  {' '}
-                  /{' '}
-                  {navItem.url ? (
-                    <Link href={navItem.url} className={s.link}>
-                      {navItem.name}
-                    </Link>
-                  ) : (
-                    navItem.name
-                  )}
-                </span>
-              ))}
+              <Link
+                href={repositoryUrl}
+                className={s.link}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {displayPath}
+              </Link>
             </li>
           </ul>
         </div>
@@ -86,6 +65,8 @@ export default function Nav({ path, deployButton, title }: NavProps) {
                 variant="ghost"
                 Component="a"
                 href="https://github.com/vercel/examples/tree/main"
+                target="_blank"
+                rel="noreferrer"
               >
                 More Examples →
               </Button>
@@ -93,10 +74,7 @@ export default function Nav({ path, deployButton, title }: NavProps) {
             <span className="ml-2 h-full flex items-center cursor-not-allowed text-accents-5">
               <DeployButton
                 {...deployButton}
-                repositoryUrl={
-                  deployButton?.repositoryUrl ||
-                  `${REPO_URL}${REPO_DIR}/${path}`
-                }
+                repositoryUrl={repositoryUrl}
                 projectName={deployButton?.projectName || path}
                 repositoryName={deployButton?.repositoryName || path}
               />
