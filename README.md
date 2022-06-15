@@ -22,6 +22,16 @@ npm i
 npm run new-example
 ```
 
+If the script above isn't used, make sure the example complies with the following:
+
+- It has to be located in either the `solutions` or `edge-functions` folder
+- It must have a `.gitignore` similar to [plop-templates/example/.gitignore](./plop-templates/example/.gitignore)
+- It must have a `package.json` similar to [plop-templates/example/package.json](./plop-templates/example/package.json) (usage of Next.js is optional). The license should be `MIT`
+- It must have a `README.md` similar to [plop-templates/example/README.md](./plop-templates/example/README.md). The example has to be able to include a demo URL (the Vercel team will deploy it!) and if it requires environment variables, it must have a `.env.example` file and instructions on how to set them up. Take [bot-protection-datadome](./edge-functions/bot-protection-datadome/README.md) as an example.
+  - To customize the Vercel Deploy Button take a look at the [docs](https://vercel.com/docs/deploy-button), useful if the deployment has required environment variables.
+- If using Next.js, it must have a `.eslintrc.json` similar to [plop-templates/example/.eslintrc.json](./plop-templates/example/.eslintrc.json)
+- All Next.js examples should be using the same styling and layout provided by `@vercel/examples-ui`, its usage can be seen in the [plop template](./plop-templates/example)
+
 #### The pre-commit hook
 
 We use [Husky](https://typicode.github.io/husky/#/) to manage the pre-commit [Git hook](https://git-scm.com/docs/githooks) in this repo. Husky configures hooks automatically during install, so you don't need to do anything special to get them working, but if it fails to install, you can run the following command to install it manually:
@@ -29,6 +39,8 @@ We use [Husky](https://typicode.github.io/husky/#/) to manage the pre-commit [Gi
 ```bash
 npm run prepare
 ```
+
+Code changes automatically go through Prettier and Eslint when you make a commit, **please do not skip these steps** unless they're broken and in that case let us known by creating an issue.
 
 ## Read the Docs
 
