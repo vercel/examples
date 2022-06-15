@@ -19,7 +19,7 @@ We recommend reading the [How it works](#how-it-works) section to understand the
 
 ## Demo
 
-https://microfrontends.vercel.app
+https://solutions-microfrontends.vercel.app
 
 ### One-Click Deploy
 
