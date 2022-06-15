@@ -9,7 +9,7 @@ deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel
 demoUrl: https://edge-api-route.vercel.app
 ---
 
-# Edge API Route (Experiemental)
+# Edge API Route (Experimental)
 
 Build your API using Vercel Edge Functions.
 
@@ -27,7 +27,15 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/edge-api-route&project-name=edge-api-route&repository-name=edge-api-route)
 
-### Running Locally
+### Clone and Deploy
+
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+
+```bash
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/api-route api-route
+# or
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/api-route api-route
+```
 
 Install the Vercel CLI:
 
@@ -35,7 +43,7 @@ Install the Vercel CLI:
 npm i -g vercel
 ```
 
-Then run the example at the root of the repository:
+Then run the app at the root of the repository:
 
 ```bash
 vercel dev
