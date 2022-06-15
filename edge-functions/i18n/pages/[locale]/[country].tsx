@@ -1,5 +1,4 @@
 import type { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
 import Image from 'next/image'
 import type { ParsedUrlQuery } from 'querystring'
 import { Layout } from '@vercel/examples-ui'
