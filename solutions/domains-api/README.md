@@ -29,6 +29,7 @@ https://domains-api.vercel.app/
 ### 0. Configure Env Vars
 
 You'll need to configure 3 different environment variables for this project to work:
+
 - `VERCEL_PROJECT_ID`: The ID of the Vercel project you want to add/remove domains from. You can find it under the "Settings" tab in your project's dashboard.
 - `VERCEL_TEAM_ID`: The ID of the Vercel team you want to add/remove domains from. You can find it under the "Settings" tab in your team's dashboard.
 - `AUTH_BEARER_TOKEN`: Your personal auth bearer token that gives you programmatic access to your Vercel account. You can create one under the "Tokens" tab in your personal account's settings tab.

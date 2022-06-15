@@ -5,8 +5,7 @@ import Button from '../button'
 import DeployButton, { DeployButtonProps } from '../deploy-button'
 import s from './nav.module.css'
 
-const REPO_URL = 'https://github.com/vercel/examples'
-const REPO_DIR = '/tree/main/'
+const REPO_URL = 'https://github.com/vercel/examples/tree/main'
 
 export interface NavProps {
   path: string
@@ -17,6 +16,7 @@ export default function Nav({ path, deployButton }: NavProps) {
   const displayPath = ['Vercel Examples']
     .concat(path?.split('/').filter(Boolean) || [])
     .join(' / ')
+  const repositoryUrl = deployButton?.repositoryUrl || `${REPO_URL}/${path}`
 
   return (
     <nav className={s.root}>
@@ -47,7 +47,12 @@ export default function Nav({ path, deployButton }: NavProps) {
               </svg>
             </li>
             <li className="font-medium" style={{ letterSpacing: '.01px' }}>
-              <Link href="/" className={s.link}>
+              <Link
+                href={repositoryUrl}
+                className={s.link}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {displayPath}
               </Link>
             </li>
@@ -60,6 +65,8 @@ export default function Nav({ path, deployButton }: NavProps) {
                 variant="ghost"
                 Component="a"
                 href="https://github.com/vercel/examples/tree/main"
+                target="_blank"
+                rel="noreferrer"
               >
                 More Examples →
               </Button>
@@ -67,10 +74,7 @@ export default function Nav({ path, deployButton }: NavProps) {
             <span className="ml-2 h-full flex items-center cursor-not-allowed text-accents-5">
               <DeployButton
                 {...deployButton}
-                repositoryUrl={
-                  deployButton?.repositoryUrl ||
-                  `${REPO_URL}${REPO_DIR}/${path}`
-                }
+                repositoryUrl={repositoryUrl}
                 projectName={deployButton?.projectName || path}
                 repositoryName={deployButton?.repositoryName || path}
               />
