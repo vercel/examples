@@ -8,7 +8,7 @@ type Route = {
   buckets: readonly string[]
 }
 
-const BUCKETS: Record<string, Route | undefined> = {
+const ROUTES: Record<string, Route | undefined> = {
   '/home': {
     page: '/home',
     cookie: 'bucket-home',
@@ -27,7 +27,7 @@ export const config = {
 
 export default function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
-  const route = BUCKETS[pathname]
+  const route = ROUTES[pathname]
 
   if (!route) return
 
