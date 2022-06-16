@@ -1,6 +1,5 @@
 export default {
   reactStrictMode: true,
-  swcMinify: true,
   async rewrites() {
     return [
       {
