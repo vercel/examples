@@ -4,7 +4,7 @@ import { getCurrentExperiment } from '@lib/optimize'
 
 export function middleware(req: NextRequest) {
   let res = NextResponse.next()
-  let cookie = req.cookies.get(COOKIE_NAME)
+  let cookie = req.cookies[COOKIE_NAME]
 
   if (!cookie) {
     let n = Math.random() * 100
@@ -18,7 +18,7 @@ export function middleware(req: NextRequest) {
   }
 
   const [, variantId] = cookie.split('.')
-  const url = new URL(req.nextUrl)
+  const url = req.nextUrl.clone()
 
   if (['/marketing', '/about'].includes(url.pathname)) {
     // `0` is the original version
@@ -30,7 +30,7 @@ export function middleware(req: NextRequest) {
 
   // Add the cookie if it's not there
   if (!req.cookies[COOKIE_NAME]) {
-    res.cookies.set(COOKIE_NAME, cookie)
+    res.cookie(COOKIE_NAME, cookie)
   }
 
   return res
