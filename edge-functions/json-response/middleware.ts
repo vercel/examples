@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-server-import-in-page */
 import { NextResponse, NextRequest } from 'next/server'
 
 export const config = {
