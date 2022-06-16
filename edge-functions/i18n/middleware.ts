@@ -10,7 +10,7 @@ export default function middleware(req: NextRequest) {
   const country = req.geo?.country?.toLowerCase() || 'us'
   const locale = req.headers.get('accept-language')?.split(',')?.[0] || 'en-US'
 
-  // Only rewrite files that don't have a file extension
+  // Rewrite the path (`/`) to the localized page (pages/[locale]/[country])
   req.nextUrl.pathname = `/${locale}/${country}`
   return NextResponse.rewrite(req.nextUrl)
 }
