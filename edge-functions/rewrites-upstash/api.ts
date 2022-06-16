@@ -33,7 +33,6 @@ const api = {
         .then((response) => response.result === 'true')
     },
     set: async (product: Product['id'], hasStock: boolean) => {
-      console.log({ product, hasStock })
       return await fetch(
         `${process.env.UPSTASH_REDIS_REST_URL}/set/${product}/${hasStock}?_token=${process.env.UPSTASH_REDIS_REST_TOKEN}`
       )
