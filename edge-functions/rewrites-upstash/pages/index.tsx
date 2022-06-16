@@ -14,7 +14,7 @@ interface Props {
   products: Product[]
 }
 
-const Snippet: FC = ({ children }) => {
+const Snippet: FC<{ children: string }> = ({ children }) => {
   return (
     <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 transition-all">
       {children}
