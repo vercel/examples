@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { COOKIE_NAME } from '@lib/constants'
 import { getCurrentExperiment } from '@lib/optimize'
 
+export const config = {
+  matcher: ['/marketing', '/about']
+}
+
 export function middleware(req: NextRequest) {
   let res = NextResponse.next()
   let cookie = req.cookies.get(COOKIE_NAME)
@@ -20,13 +24,11 @@ export function middleware(req: NextRequest) {
   const [, variantId] = cookie.split('.')
   const url = new URL(req.nextUrl)
 
-  if (['/marketing', '/about'].includes(url.pathname)) {
     // `0` is the original version
-    if (variantId !== '0') {
-      url.pathname = url.pathname.replace('/', `/${cookie}/`)
-    }
-    res = NextResponse.rewrite(url)
+  if (variantId !== '0') {
+    url.pathname = url.pathname.replace('/', `/${cookie}/`)
   }
+  res = NextResponse.rewrite(url) 
 
   // Add the cookie if it's not there
   if (!req.cookies[COOKIE_NAME]) {
