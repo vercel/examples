@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-server-import-in-page */
 import { NextRequest, NextResponse } from 'next/server'
 import { getBucket } from '@lib/ab-testing'
 import { HOME_BUCKETS, MARKETING_BUCKETS } from '@lib/buckets'
