@@ -6,9 +6,6 @@ export const config = {
 }
 
 export async function middleware(req: NextRequest) {
-  // Filter unwanted paths
-  if (req.nextUrl.pathname !== '/big-promo') return NextResponse.next()
-
   // Simulate connection with a redis cache
   const isInMaintenanceMode = Math.random() >= 0.5
 
