@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import api from './api'
 
-// Set pathname were middleware will be executed
 export const config = {
   matcher: '/product/:path',
 }
