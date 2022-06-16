@@ -1,11 +1,10 @@
 import type { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
 import Image from 'next/image'
 import type { ParsedUrlQuery } from 'querystring'
 import { Layout } from '@vercel/examples-ui'
-import { Dictionary } from '../../types'
+import { Dictionary } from '../../lib/types'
 import map from '../../public/map.svg'
-import api from '../../api'
+import api from '../../lib/api'
 
 interface Params extends ParsedUrlQuery {
   country: string
@@ -44,9 +43,6 @@ export const getStaticProps: GetStaticProps<unknown, Params> = async ({
 export default function CountryPage({ country, locale, dictionary }: Props) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-50">
-      <Head>
-        <title>{dictionary.title} – Vercel Edge Functions</title>
-      </Head>
       <div className="fixed inset-0 overflow-hidden opacity-75 bg-[#f8fafb]">
         <Image
           alt="World Map"
