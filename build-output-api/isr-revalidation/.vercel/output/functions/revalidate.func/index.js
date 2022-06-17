@@ -4,9 +4,11 @@ const fetch = require('node-fetch')
 // This is meant to be *private* - DO NOT expose this value on the client-side.
 const bypassToken = '87734ad8259d67c3c11747d3e4e112d0'
 
-const deployedUrl = 'https://isr-revalidation-endangeredmassa.vercel.app'
-
 module.exports = (req, res) => {
+  const proto = req.headers['x-forwarded-proto'];
+  const host = req.headers.host;
+  const deployedUrl = `${proto}://${host}`;
+
   fetch(deployedUrl, {
     headers: {
       'x-prerender-revalidate': bypassToken

@@ -1,7 +1,3 @@
-// The bypass token can be a randomly generated string of at least 32 characters.
-// This is meant to be *private* - DO NOT expose this value on the client-side.
-const bypassToken = '87734ad8259d67c3c11747d3e4e112d0'
-
 module.exports = (req, res) => {
   res.setHeader('Content-Type', 'text/html; charset=utf-8')
 
