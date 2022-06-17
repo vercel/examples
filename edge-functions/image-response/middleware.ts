@@ -5,7 +5,6 @@ export const config = {
 }
 
 export function middleware(req: NextRequest) {
-  const url = req.nextUrl
-  url.pathname = '/api/img'
-  return NextResponse.rewrite(url)
+  req.nextUrl.pathname = '/api/img'
+  return NextResponse.rewrite(req.nextUrl)
 }
