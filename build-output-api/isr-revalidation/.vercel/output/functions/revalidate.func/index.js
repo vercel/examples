@@ -1,4 +1,4 @@
-const fetch = require('node-fetch')
+const https = require('https');
 
 // The bypass token can be a randomly generated string of at least 32 characters.
 // This is meant to be *private* - DO NOT expose this value on the client-side.
@@ -9,21 +9,29 @@ module.exports = (req, res) => {
   const host = req.headers.host;
   const deployedUrl = `${proto}://${host}`;
 
-  fetch(deployedUrl, {
+  const options = {
+    hostname: host,
+    port: 443,
+    path: '/',
+    method: 'GET',
     headers: {
       'x-prerender-revalidate': bypassToken
     }
-  }).then(() => {
+  };
+  const revalidateRequest = https.request(options, revalidateResponse => {
     res.setHeader('Content-Type', 'text/html; charset=utf-8')
     res.end(`
 <h1>Cache Revalidated!</h1>
 <p>Redirecting you back.</p>
 <meta http-equiv="refresh" content="2; url=${deployedUrl}">
 `)
-    
-  }).catch((error) => {
+  });
+  
+  revalidateRequest.on('error', error => {
     console.error(error.stack);
     res.statusCode = 500
     res.end()
   });
+
+  revalidateRequest.end();
 }
