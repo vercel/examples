@@ -13,7 +13,7 @@ module.exports = (req, res) => {
     hostname: host,
     port: 443,
     path: '/',
-    method: 'GET',
+    method: 'GET', // MUST be "GET"; a "HEAD" request will not work
     headers: {
       'x-prerender-revalidate': bypassToken
     }
