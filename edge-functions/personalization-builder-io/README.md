@@ -117,30 +117,28 @@ To connect your Builder.io space and your application, set the site URL and get 
    BUILDER_PRIVATE_KEY=xxx-xxxxx <-- replace this with your private API Key
    ```
 
-## Running your application
+### Running your application
 
-To serve your application locally, install dependencies, serve, and view your preview.
+Next, run Next.js in development mode:
 
-1. Install dependencies by entering the follw\owing at the command line.
+```bash
+npm install
+npm run dev
 
-   ```bash
-   npm install
-   ```
+# or
 
-1. Serve your application by running the following at the command line:
+yarn
+yarn dev
+```
 
-   ```bash
-   npm run dev
-   ```
-
-1. In your browser, go to `http://localhost:3000` to see your application.
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
 
 ### Experimenting
 
 Now that you have a configured Builder.io space and a running application, start by creating a page, assign any URL, publish and preview.
 For more detail and ideas on creating pages, see [Creating a landing page in Builder.io](https://www.builder.io/c/docs/creating-a-landing-page).
 
-\*[Create custom targeting attributes](https://www.builder.io/c/docs/guides/targeting-and-scheduling#custom-targeting), those targeting attributes can be used when creating new content specific for a target audience.
+[Create custom targeting attributes](https://www.builder.io/c/docs/guides/targeting-and-scheduling#custom-targeting), those targeting attributes can be used when creating new content specific for a target audience.
 
 ## Next steps
 
