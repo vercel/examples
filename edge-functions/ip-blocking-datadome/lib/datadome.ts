@@ -50,7 +50,7 @@ export default async function datadome(req: NextRequest) {
     CookiesLen: getCookiesLength(req.cookies),
     AuthorizationLen: getAuthorizationLength(req),
     PostParamLen: req.headers.get('content-length'),
-    ClientID: req.cookies.datadome,
+    ClientID: req.cookies.get('datadome'),
     ServerRegion: 'sfo1',
   }
   const dataDomeReq = fetch(
