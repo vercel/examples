@@ -5,16 +5,10 @@ export const config = {
   // It's possible to run Datadome for all paths, but in reality it's
   // better to take advantage of pattern matching and only protect from bots
   // where required.
-  matcher: ['/', '/blocked'],
+  matcher: ['/'],
 }
 
 export default async function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl
-
-  // Force the page to be blocked by DataDome
-  if (pathname === '/blocked') {
-    req.headers.set('user-agent', 'BLOCKUA')
-  }
   // `datadome(req)` returns a promise that resolves to
   // a respones (NextResponse) or undefined
   //

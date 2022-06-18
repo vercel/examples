@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getAllRules } from '@lib/datadome-ip'
 
-export default async function index(req: NextApiRequest, res: NextApiResponse) {
+export default async function rules(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
     return res.status(405).json({
       error: {
