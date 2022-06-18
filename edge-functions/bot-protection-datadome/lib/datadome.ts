@@ -46,7 +46,7 @@ export default async function datadome(req: NextRequest) {
     ContentType: req.headers.get('content-type'),
     From: req.headers.get('from'),
     Via: req.headers.get('via'),
-    CookiesLen: getCookiesLength(req.cookies as any),
+    CookiesLen: getCookiesLength(req.cookies),
     AuthorizationLen: getAuthorizationLength(req),
     PostParamLen: req.headers.get('content-length'),
     ClientID: req.cookies.get('datadome'),
@@ -202,11 +202,10 @@ function stringify(obj: Record<string, string | number | null | undefined>) {
     : ''
 }
 
-// inspired in DataDome-Cloudflare-1.7.0
-function getCookiesLength(cookies: Record<string, string>) {
+function getCookiesLength(cookies: Map<string, string>) {
   let cookiesLength = 0
-  for (const k in cookies) {
-    cookiesLength += cookies[k].length
+  for (const value of cookies.values()) {
+    cookiesLength += value.length
   }
   return cookiesLength
 }
