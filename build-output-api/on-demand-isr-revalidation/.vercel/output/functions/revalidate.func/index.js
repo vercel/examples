@@ -7,7 +7,7 @@ const bypassToken = '87734ad8259d67c3c11747d3e4e112d0'
 
 module.exports = (req, res) => {
   const host = req.headers.host;
-  const deployedUrl = `${proto}://${host}`;
+  const deployedUrl = `https://${host}`;
 
   const options = {
     hostname: host,
