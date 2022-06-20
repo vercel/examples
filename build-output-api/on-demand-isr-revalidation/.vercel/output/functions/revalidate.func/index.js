@@ -1,7 +1,8 @@
 const https = require('https');
 
-// The bypass token can be a randomly generated string of at least 32 characters.
-// This is meant to be *private* - DO NOT expose this value on the client-side.
+// The bypass token should be a build-time randomly generated string of at least 32 characters.
+// This value should only be exposed in the function config and inside of the function itself.
+// DO NOT expose this value on the client-side or a malicious user could trigger boundless revalidations
 const bypassToken = '87734ad8259d67c3c11747d3e4e112d0'
 
 module.exports = (req, res) => {
