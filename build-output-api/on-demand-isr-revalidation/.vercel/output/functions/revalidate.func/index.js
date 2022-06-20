@@ -6,7 +6,6 @@ const https = require('https');
 const bypassToken = '87734ad8259d67c3c11747d3e4e112d0'
 
 module.exports = (req, res) => {
-  const proto = req.headers['x-forwarded-proto'];
   const host = req.headers.host;
   const deployedUrl = `${proto}://${host}`;
 
