@@ -59,6 +59,8 @@ yarn
 yarn dev
 ```
 
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
+
 ## Opening / Closing the Store
 
 We can use Upstash's REST API to update the kev/value store. Replace the URLs and Authorization tokens below with the values from your Upstash Redis instance.
