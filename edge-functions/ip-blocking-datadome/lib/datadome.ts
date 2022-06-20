@@ -18,10 +18,12 @@ export default async function datadome(req: NextRequest) {
     RequestModuleName: 'Next.js',
     ModuleVersion: '0.1',
     ServerName: 'vercel',
-    /* this should be `x-real-ip` but it doesn't currently work on Edge Functions */
+    // this should be `x-real-ip` but it doesn't currently work on Edge Functions
     IP: req.headers.get('x-forwarded-for')
       ? req.headers.get('x-forwarded-for')!.split(',')[0]
       : '127.0.0.1',
+    // localhost won't likely be blocked by Datadome unless you use your real IP
+    // IP: 'YOUR IP',
     Port: 0,
     TimeRequest: new Date().getTime() * 1000,
     Protocol: req.headers.get('x-forwarded-proto'),
@@ -32,7 +34,8 @@ export default async function datadome(req: NextRequest) {
     Host: req.headers.get('host'),
     UserAgent: req.headers.get('user-agent'),
     Referer: req.headers.get('referer'),
-    Accept: req.headers.get('accept'),
+    // Make sure Datadome always returns a JSON response in case of a 403
+    Accept: 'application/json',
     AcceptEncoding: req.headers.get('accept-encoding'),
     AcceptLanguage: req.headers.get('accept-language'),
     AcceptCharset: req.headers.get('accept-charset'),
@@ -47,7 +50,7 @@ export default async function datadome(req: NextRequest) {
     CookiesLen: getCookiesLength(req.cookies),
     AuthorizationLen: getAuthorizationLength(req),
     PostParamLen: req.headers.get('content-length'),
-    ClientID: req.cookies.datadome,
+    ClientID: req.cookies.get('datadome'),
     ServerRegion: 'sfo1',
   }
   const dataDomeReq = fetch(
@@ -88,53 +91,47 @@ export default async function datadome(req: NextRequest) {
   )
 
   switch (dataDomeRes.status) {
-    case 301:
-    case 302:
-    case 401:
-    case 403:
-      // blocked!
-      // in the future we can return the bot kind, bot name, etc.
-      const isBot = dataDomeRes.headers.get('x-datadome-isbot')
-      if (isBot) {
-        console.log(
-          'Bot detected. Name:',
-          dataDomeRes.headers.get('x-datadome-botname'),
-          '– Kind:',
-          dataDomeRes.headers.get('x-datadome-botfamily')
-        )
-      }
-
-      // Once `pipeTo` is available we could stream to the response instead
-      return new NextResponse(await dataDomeRes.text(), {
-        headers: Object.assign(
-          toHeaders(req.headers, dataDomeRes.headers, 'x-datadome-headers'),
-          // We're sending the latency for demo purposes, this is not something you need to do
-          { 'x-datadome-latency': `${Date.now() - dataDomeStart}` }
-        ),
-      })
-
     case 400:
       // Something is wrong with our authentication
       console.log('DataDome returned 400', dataDomeRes.statusText)
       return
 
-    case 200: {
+    case 200:
+    case 301:
+    case 302:
+    case 401:
+    case 403:
       // next() returns a null body and we'll use it to indicate
       // that the request is not blocked
-      const res = NextResponse.next()
+      let res = NextResponse.next()
+
+      if (dataDomeRes.status !== 200) {
+        // blocked!
+        const isBot = dataDomeRes.headers.get('x-datadome-isbot')
+        if (isBot) {
+          console.log(
+            'Bot detected. Name:',
+            dataDomeRes.headers.get('x-datadome-botname'),
+            '– Kind:',
+            dataDomeRes.headers.get('x-datadome-botfamily')
+          )
+        }
+
+        const data = await dataDomeRes.json()
+        res = NextResponse.rewrite(data.url)
+      }
 
       // Add Datadome headers to the response
-      Object.entries(
-        toHeaders(req.headers, dataDomeRes.headers, 'x-datadome-headers')
-      ).forEach(([k, v]) => {
-        res.headers.set(k, v)
-      })
+      toHeaders(req.headers, dataDomeRes.headers, 'x-datadome-headers').forEach(
+        (v, k) => {
+          res.headers.set(k, v)
+        }
+      )
 
       // We're sending the latency for demo purposes, this is not something you need to do
       res.headers.set('x-datadome-latency', `${Date.now() - dataDomeStart}`)
 
       return res
-    }
   }
 }
 
@@ -152,7 +149,7 @@ function toHeaders(
   dataDomeResHeaders: Headers,
   listKey: string
 ) {
-  const ret: Record<string, string> = {}
+  const map = new Map<string, string>()
   const list = dataDomeResHeaders.get(listKey)!
   for (const header of list.split(' ')) {
     const value = dataDomeResHeaders.get(header)!
@@ -163,15 +160,18 @@ function toHeaders(
       header.toLowerCase() === 'set-cookie' &&
       /domain=\.vercel\.app/i.test(value)
     ) {
-      ret[header] = value.replace(
-        /domain=\.vercel\.app/i,
-        `Domain=${reqHeaders.get('host')}`
+      map.set(
+        header,
+        value.replace(
+          /domain=\.vercel\.app/i,
+          `Domain=${reqHeaders.get('host')}`
+        )
       )
     } else {
-      ret[header] = value
+      map.set(header, value)
     }
   }
-  return ret
+  return map
 }
 
 // taken from DataDome-Cloudflare-1.7.0
@@ -203,11 +203,10 @@ function stringify(obj: Record<string, string | number | null | undefined>) {
     : ''
 }
 
-// inspired in DataDome-Cloudflare-1.7.0
-function getCookiesLength(cookies: Record<string, string>) {
+function getCookiesLength(cookies: Map<string, string>) {
   let cookiesLength = 0
-  for (const k in cookies) {
-    cookiesLength += cookies[k].length
+  for (const value of cookies.values()) {
+    cookiesLength += value.length
   }
   return cookiesLength
 }

@@ -1,7 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { removeRuleById } from '@lib/datadome-ip'
+import { BLOCKUA_RULE } from '@lib/constants'
 
-export default async function add(req: NextApiRequest, res: NextApiResponse) {
+export default async function remove(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== 'DELETE') {
     return res.status(405).json({
       error: {
@@ -10,18 +14,18 @@ export default async function add(req: NextApiRequest, res: NextApiResponse) {
     })
   }
 
-  const rule_id = req.query.id
+  const ruleId = req.query.id
 
-  if (!rule_id) {
-    return res.status(405).json({
-      error: {
-        message: 'Incomplete request.',
-      },
+  // The request is invalid if there's no rule to remove of if it's trying
+  // to remove the BLOCKUA rule.
+  if (!ruleId || ruleId === BLOCKUA_RULE) {
+    return res.status(400).json({
+      error: { message: 'Invalid request' },
     })
   }
 
   try {
-    await removeRuleById(rule_id as string)
+    await removeRuleById(ruleId as string)
     return res.status(200).json({
       message: 'Ok',
     })
