@@ -20,11 +20,20 @@ module.exports = (req, res) => {
   }
   const revalidateRequest = https.request(options, revalidateResponse => {
     res.setHeader('Content-Type', 'text/html charset=utf-8')
+
+    if (revalidateResponse.headers['x-vercel-cache'] !== 'REVALIDATED') {
+      res.statusCode = 500
+      res.end(`
+        <h1>Cache NOT Revalidated!</h1>
+        <p>Failed to revalidate. The \`x-vercel-cache\` header was not set to \`REVALIDATED\`.</p>
+      `)
+    }
+
     res.end(`
-<h1>Cache Revalidated!</h1>
-<p>Redirecting you back.</p>
-<meta http-equiv="refresh" content="2 url=${deployedUrl}">
-`)
+      <h1>Cache Revalidated!</h1>
+      <p>Redirecting you back.</p>
+      <meta http-equiv="refresh" content="2 url=${deployedUrl}">
+    `)
   })
 
   revalidateRequest.on('error', error => {
