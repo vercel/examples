@@ -2,7 +2,7 @@
 
 ## Build Output API
 
-This Prebuilt Deployment example demonstrates how to implement "On-demand Incremental Static Regeneration (ISR)" when using the [Build Output API](https://vercel.com/docs/build-output-api/v3).
+This Prebuilt Deployment example demonstrates how to implement "On-Demand Incremental Static Regeneration (ISR)" when using the [Build Output API](https://vercel.com/docs/build-output-api/v3).
 
 ### Demo
 
