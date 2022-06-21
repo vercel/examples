@@ -1,6 +1,8 @@
+import type { NextRequest } from 'next/server'
+
 import { NextResponse } from 'next/server'
 
-export async function middleware(req) {
+export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
   const hostname = req.headers.get('host')
 
@@ -12,6 +14,4 @@ export async function middleware(req) {
     // and has to include the `www` subdomain if it's present.
     return NextResponse.rewrite(`https://www.zendesk.com/${pathname}/`)
   }
-  // perform the rewrite anyways (just for this demo)
-  return NextResponse.rewrite(`https://www.zendesk.com/${pathname}/`)
 }
