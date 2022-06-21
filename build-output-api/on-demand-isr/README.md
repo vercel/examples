@@ -1,4 +1,4 @@
-# On-demand Incremental Static Regeneration (ISR)
+# On-Demand Incremental Static Regeneration (ISR)
 
 ## Build Output API
 
