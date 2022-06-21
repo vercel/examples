@@ -11,6 +11,7 @@ const authToken = 'a13f94f6-a441-47ca-95fc-9f44f3450295';
 
 module.exports = (req, res) => {
   const params = new URLSearchParams(req.query);
+  // Validate the request is allowed to trigger revalidation
   if (authToken !== params.get('authToken')) {
     res.statusCode = 403
     res.end('Not Authorized')
