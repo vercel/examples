@@ -1,4 +1,4 @@
-# On-demand Incremental Static Regeneration (ISR) Revalidation
+# On-demand Incremental Static Regeneration (ISR)
 
 ## Build Output API
 
