@@ -6,7 +6,7 @@ This Prebuilt Deployment example demonstrates how to implement "On-demand Increm
 
 ### Demo
 
-https://build-output-api-isr-revalidation.vercel.sh
+https://build-output-api-isr.vercel.sh
 
 ### How it Works
 
