@@ -15,7 +15,7 @@ function revalidate(host, path) {
       hostname: host,
       port: 443,
       path,
-      method: 'GET', // MUST be "GET"; a "HEAD" or "POST" request will not work
+      method: 'GET', // MUST be "GET" ("HEAD" and "POST" methods will not work)
       headers: {
         'x-prerender-revalidate': bypassToken
       }
