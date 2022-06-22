@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const allowedParams = ['allowed']
 
+export const config = {
+  matcher: '/',
+}
+
 export function middleware(req: NextRequest) {
   const url = req.nextUrl
   let changed = false
