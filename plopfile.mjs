@@ -90,8 +90,8 @@ export default function (plop) {
       if (data.options.includes('middleware')) {
         actions.push({
           type: 'add',
-          path: `{{exampleScopeFolder}}/${plopExampleName}/pages/_middleware.ts`,
-          templateFile: `plop-templates/example/pages/_middleware.ts`,
+          path: `{{exampleScopeFolder}}/${plopExampleName}/middleware.ts`,
+          templateFile: `plop-templates/example/middleware.ts`,
         })
       }
 
