@@ -4,14 +4,13 @@
   import Vercel from './Vercel.svelte'
 
   export let title = 'Vercel Examples'
-  export let description = 'Lear how to use Vercel Middleware in Sveltekit'
+  export let description = ''
   export let path = ''
 </script>
 
 <svelte:head>
   <title>{title} - Vercel Examples</title>
   <meta name="description" content={description} />
-  <link rel="icon" href="/favicon.ico" />
 </svelte:head>
 <div class="mx-auto h-screen flex flex-col">
   <Nav {path} />
