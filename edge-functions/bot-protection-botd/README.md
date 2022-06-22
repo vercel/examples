@@ -25,7 +25,7 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 ## How it works
 
-If you try and go to [/blocked](https://botd.vercel.sh/blocked) you'll see the [/bot-detected](pages/bot-detected.tsx) page being rendered instead, done by a rewrite from the edge after it identifies you as a bot. We do that by changing the user agent of the request before making a request to Botd.
+If you try and go to [/blocked](https://edge-functions-bot-protection-botd.vercel.app) you'll see the [/bot-detected](pages/bot-detected.tsx) page being rendered instead, done by a rewrite from the edge after it identifies you as a bot. We do that by changing the user agent of the request before making a request to Botd.
 
 ## Getting Started
 
