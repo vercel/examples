@@ -2,9 +2,8 @@ import type { NextRequest } from 'next/server'
 import datadome from '@lib/datadome'
 
 export const config = {
-  // It's possible to run Datadome for all paths, but in reality it's
-  // better to take advantage of pattern matching and only protect from bots
-  // where required.
+  // It's possible to run Datadome for all paths, but it's better to take
+  // advantage of pattern matching and only protect from bots where required.
   matcher: ['/', '/blocked'],
 }
 
