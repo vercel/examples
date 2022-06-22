@@ -3,9 +3,14 @@ import { first } from '@lib/utils'
 import { botdEdge } from '@lib/botd'
 import demoMiddleware from '@lib/demo-middleware'
 
+export const config = {
+  // It's possible to run Botd for all paths, but it's better to take
+  // advantage of pattern matching and only protect from bots where required.
+  matcher: ['/', '/blocked'],
+}
+
 async function handler(req: NextRequest) {
-  // Do light bot detection for all requests excluding
-  // all static files but favicon.ico.
+  // Do light bot detection for all paths
   const res = await botdEdge(req, {
     // The request id is excluded for demo purposes because
     // Botd remembers your request id and will always show
@@ -16,9 +21,9 @@ async function handler(req: NextRequest) {
 
   if (res && res.status !== 200) {
     // Bot detected!
-    const url = new URL(req.nextUrl)
-    url.pathname = '/bot-detected'
-    const rewrite = NextResponse.rewrite(url)
+    req.nextUrl.pathname = '/bot-detected'
+    const rewrite = NextResponse.rewrite(req.nextUrl)
+    // Move Botd headers to the rewrite response
     res.headers.forEach((v, k) => rewrite.headers.set(k, v))
 
     return rewrite
