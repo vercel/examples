@@ -7,7 +7,7 @@ useCase:
   - Edge Functions
   - Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/hostname-rewrites&env=ROOT_URL&project-name=hostname-rewrites&repository-name=hostname-rewrites
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/hostname-rewrites&project-name=hostname-rewrites&repository-name=hostname-rewrites
 demoUrl: https://custom-domain-1.com
 ---
 
@@ -58,7 +58,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/hostname-rewrites&env=ROOT_URL&project-name=hostname-rewrites&repository-name=hostname-rewrites)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/hostname-rewrites&env=ROOT_DOMAIN&project-name=hostname-rewrites&repository-name=hostname-rewrites)
 
 ### Clone and Deploy
 
@@ -70,11 +70,14 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-
 yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/hostname-rewrites hostname-rewrites
 ```
 
-You'll need to set the root , a wildcard domain in your Vercel project, as an environment variable. Copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
+[`.env`](.env) has the following defaults:
 
 ```bash
-cp .env.example .env.local
+ROOT_DOMAIN=vercel.app
+DEFAULT_DEV_HOST=subdomain-1
 ```
+
+Feel free to change `ROOT_DOMAIN` to your domain if your hostnames are not under `.vercel.app`. `DEFAULT_DEV_HOST` is the default hostname for development in localhost.
 
 Next, run Next.js in development mode:
 
@@ -90,4 +93,4 @@ yarn dev
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
 
-> 💡 Do note that you will need to replace the `ROOT_URL` variable in `.env.local` with your domain of choice and add that domain as a wildcard domain to your Vercel project.
+> 💡 Do note that you will need to replace the `ROOT_DOMAIN` variable in `.env.local` with your domain of choice and add that domain as a wildcard domain to your Vercel project.

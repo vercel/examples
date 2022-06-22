@@ -8,8 +8,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
+      title={pageProps.name}
+      description={pageProps.description}
       path="edge-functions/hostname-rewrites"
-      deployButton={{ env: ['ROOT_URL'] }}
     >
       <Component {...pageProps} />
     </Layout>

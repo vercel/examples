@@ -1,8 +1,7 @@
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Layout, Page, Text, Link, List } from '@vercel/examples-ui'
 
-import mockDB from '../../../lib/db'
+import { getHostnameDataBySubdomain, getSubdomainPaths } from '../../../lib/db'
 
 export default function Index(props) {
   const router = useRouter()
@@ -18,10 +17,6 @@ export default function Index(props) {
 
   return (
     <Page>
-      <Head>
-        <title>{props.name} - Vercel Edge Functions</title>
-        <meta itemProp="description" content={props.description} />
-      </Head>
       <Text variant="h1" className="mb-6">
         {props.name}
       </Text>
@@ -66,38 +61,15 @@ export default function Index(props) {
 Index.Layout = Layout
 
 export async function getStaticPaths() {
-  // get all sites that have subdomains set up
-  const subdomains = mockDB.filter((item) => item.subdomain)
-
-  // get all sites that have custom domains set up
-  const customDomains = mockDB.filter((item) => item.customDomain)
-
-  // build paths for each of the sites in the previous two lists
-  const paths = [
-    ...subdomains.map((item) => {
-      return { params: { site: item.subdomain } }
-    }),
-    ...customDomains.map((item) => {
-      return { params: { site: item.customDomain } }
-    }),
-  ]
   return {
-    paths: paths,
+    paths: await getSubdomainPaths(),
     fallback: true, // fallback true allows sites to be generated using ISR
   }
 }
 
 export async function getStaticProps({ params: { site } }) {
-  // check if site is a custom domain or a subdomain
-  const customDomain = site.includes('.') ? true : false
-
-  // fetch data from mock database using the site value as the key
-  const data = mockDB.filter((item) =>
-    customDomain ? item.customDomain == site : item.subdomain == site
-  )
-
   return {
-    props: { ...data[0] },
-    revalidate: 3600, // set revalidate interval of 1h
+    props: await getHostnameDataBySubdomain(site),
+    revalidate: 3600, // set revalidate interval of 1 hour
   }
 }
