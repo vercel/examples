@@ -29,6 +29,7 @@ https://domains-api.vercel.app/
 ### 0. Configure Env Vars
 
 You'll need to configure 3 different environment variables for this project to work:
+
 - `VERCEL_PROJECT_ID`: The ID of the Vercel project you want to add/remove domains from. You can find it under the "Settings" tab in your project's dashboard.
 - `VERCEL_TEAM_ID`: The ID of the Vercel team you want to add/remove domains from. You can find it under the "Settings" tab in your team's dashboard.
 - `AUTH_BEARER_TOKEN`: Your personal auth bearer token that gives you programmatic access to your Vercel account. You can create one under the "Tokens" tab in your personal account's settings tab.
@@ -78,18 +79,24 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 **Clone and Deploy**
 
-Download this repository via git:
-
-```bash
-git clone https://github.com/vercel-customer-feedback/platforms.git
-```
-
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
 npx create-next-app --example https://github.com/vercel/examples/tree/main/solutions/domains-api domains-api
 # or
 yarn create next-app --example https://github.com/vercel/examples/tree/main/solutions/domains-api domains-api
+```
+
+Next, run Next.js in development mode:
+
+```bash
+npm install
+npm run dev
+
+# or
+
+yarn
+yarn dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=platforms-eap) ([Documentation](https://nextjs.org/docs/deployment)).

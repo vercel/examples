@@ -2,7 +2,7 @@ import Image from 'next/image'
 import map from '../public/map.svg'
 import { Layout } from '@vercel/examples-ui'
 
-// Forward properties from `_middleware.tsx`
+// Forward properties from `middleware.ts`
 // When support for configuring gSSP to use Edge Functions lands,
 // We could add that logic here directly.
 export const getServerSideProps = ({ query }) => ({

@@ -11,9 +11,9 @@ export default async function add(req: NextApiRequest, res: NextApiResponse) {
   }
 
   const ip = req.body.ip?.trim()
-  const rule_response = req.body.rule_response?.trim()
+  const ruleResponse = req.body.rule_response?.trim()
 
-  if (!ip || !rule_response) {
+  if (!ip || !ruleResponse) {
     return res.status(405).json({
       error: {
         message: 'Incomplete request.',
@@ -22,7 +22,7 @@ export default async function add(req: NextApiRequest, res: NextApiResponse) {
   }
 
   try {
-    const response = await addIpRule(ip, rule_response)
+    const response = await addIpRule(ip, ruleResponse)
     return res.status(200).json({
       message: `Ok. Rule added. ${JSON.stringify(response)}`,
     })

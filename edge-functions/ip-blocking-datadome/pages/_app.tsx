@@ -1,7 +1,9 @@
 import type { AppProps } from 'next/app'
+import Script from 'next/script'
 import { SWRConfig } from 'swr'
 import type { LayoutProps } from '@vercel/examples-ui/layout'
 import { getLayout } from '@vercel/examples-ui'
+import { DATADOME_JS, DATADOME_TAGS } from '@lib/constants'
 import '@vercel/examples-ui/globals.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -28,6 +30,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         }}
       >
         <Component {...pageProps} />
+
+        <Script strategy="lazyOnload" id="load-datadome">{`
+          window.ddjskey = '${process.env.NEXT_PUBLIC_DATADOME_CLIENT_KEY}'
+          window.ddoptions = {
+            endpoint: '${DATADOME_JS}'
+          }
+        `}</Script>
+        <Script src={DATADOME_TAGS} strategy="lazyOnload" />
       </Layout>
     </SWRConfig>
   )

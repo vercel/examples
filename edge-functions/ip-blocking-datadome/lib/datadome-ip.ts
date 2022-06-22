@@ -2,7 +2,7 @@ type RULE_RESPONSE = 'block' | 'whitelist' | 'captcha'
 
 export async function addIpRule(
   ip: string,
-  rule_response: RULE_RESPONSE = 'block'
+  ruleResponse: RULE_RESPONSE = 'block'
 ) {
   // TODO: Check if IP is valid.
   try {
@@ -16,7 +16,7 @@ export async function addIpRule(
           data: {
             rule_name: `ip_rule_${ip}`, // Needs to be unique
             query: `ip:${ip}`,
-            rule_response: rule_response,
+            rule_response: ruleResponse,
             rule_priority: 'high',
           },
         }),

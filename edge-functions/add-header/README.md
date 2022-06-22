@@ -13,7 +13,7 @@ demoUrl: https://edge-functions-add-header.vercel.app
 
 # Add Header Example
 
-Below is the code from [pages/\_middleware.ts](pages/_middleware.ts) showing how to add headers at the edge:
+Below is the code from [/middleware.ts](/middleware.ts) showing how to add headers at the edge:
 
 ```ts
 import { NextResponse } from 'next/server'
@@ -40,7 +40,7 @@ You can choose from one of the following two methods to use this repository:
 
 ### One-Click Deploy
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/add-header&project-name=add-header&repository-name=add-header)
 

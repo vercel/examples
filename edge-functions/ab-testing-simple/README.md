@@ -21,34 +21,11 @@ https://edge-functions-ab-testing-simple.vercel.app
 
 Since the different variants are generated statically at the edge, it mitigates any potential layout shift that could happen when a variant is inserted into the DOM client side, hence improving your site's performance.
 
-Take a look at [`pages/home/_middleware.ts`](pages/home/_middleware.ts) to see how it works:
-
-```javascript
-import { NextRequest, NextResponse } from 'next/server'
-import { getBucket } from '@lib/ab-testing'
-import { HOME_BUCKETS } from '@lib/buckets'
-
-const COOKIE_NAME = 'bucket-home'
-
-export function middleware(req: NextRequest) {
-  // Get the bucket cookie
-  const bucket = req.cookies[COOKIE_NAME] || getBucket(HOME_BUCKETS)
-  const url = req.nextUrl.clone()
-  url.pathname = `/home/${bucket}`
-  const res = NextResponse.rewrite(url)
-
-  // Add the bucket to cookies if it's not there
-  if (!req.cookies[COOKIE_NAME]) {
-    res.cookie(COOKIE_NAME, bucket)
-  }
-
-  return res
-}
-```
+Take a look at [`middleware.ts`](middleware.ts) to see how it works.
 
 ### One-Click Deploy
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-simple&project-name=ab-testing-simple&repository-name=ab-testing-simple)
 

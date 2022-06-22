@@ -1,3 +1,4 @@
+// eslint-disable-next-line @next/next/no-server-import-in-page
 import { NextRequest, NextResponse } from 'next/server'
 import {
   BOTD_DEFAULT_URL,
@@ -33,6 +34,7 @@ export async function botdEdge(
 
   const { pathname } = req.nextUrl
 
+  // Light bot detection is not required for static files or for favicon.ico
   if (STATIC_REGEX_EXCLUSION.test(pathname) && !isFavicon(req)) return
 
   const headers = new Headers()
@@ -40,7 +42,7 @@ export async function botdEdge(
     headers: getHeadersDict(req.headers),
     path: pathname,
     previous_request_id:
-      (options.useRequestId && req.cookies[COOKIE_NAME]) || '',
+      (options.useRequestId && req.cookies.get(COOKIE_NAME)) || '',
     timestamp: Date.now(),
   }
   // `?header` is used to always get results in headers
@@ -120,7 +122,7 @@ export async function botdEdge(
         headers.forEach((v, k) => res.headers.set(k, v))
       }
 
-      res.cookie(COOKIE_NAME, requestId!)
+      res.cookies.set(COOKIE_NAME, requestId!)
 
       return res
     }

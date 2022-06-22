@@ -2,6 +2,7 @@ import React from 'react'
 import fetchAPI from '@lib/fetch-api'
 import useSWR from 'swr'
 import { Layout, Page, Text, Input, Button } from '@vercel/examples-ui'
+import { BLOCKUA_RULE } from '@lib/constants'
 
 export default function Index() {
   const [loading, setLoading] = React.useState<boolean>(false)
@@ -62,15 +63,17 @@ export default function Index() {
                     {r.rule_response}
                   </p>
                 </span>
-                <span className="w-48 flex justify-end">
-                  <Button
-                    onClick={() => handleRemove(r.id)}
-                    size="sm"
-                    variant="secondary"
-                  >
-                    Remove Rule
-                  </Button>
-                </span>
+                {String(r.id) !== BLOCKUA_RULE && (
+                  <span className="w-48 flex justify-end">
+                    <Button
+                      onClick={() => handleRemove(r.id)}
+                      size="sm"
+                      variant="secondary"
+                    >
+                      Remove Rule
+                    </Button>
+                  </span>
+                )}
               </li>
             ))}
           </ul>

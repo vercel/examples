@@ -8,7 +8,7 @@ export default function Blocked() {
       </Text>
       <Text>
         You should never see this page! Why? Because we intentionally change the
-        user agent to match a bot, and then our edge will rewrite your request
+        user agent to match a bot, and then the edge will rewrite your request
         to /bot-detected
       </Text>
     </Page>

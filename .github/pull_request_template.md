@@ -4,24 +4,20 @@
   ✍️ Write a short summary of your work. Screenshots and videos are welcome!
 -->
 
-<!-- Link to readme.md on your branch -->
-
-### Best Way to Test
+### Demo URL
 
 <!--
-  Give a quick description of steps to test your changes. For examples a deployment URL allows us to jump directly to it.
+  Provide a URL to a live deployment where we can test your PR. If a demo isn't possible feel free to omit this section.
 -->
 
 ### Type of Change
 
-- [ ] Bug fix (non-breaking change that fixes an issue)
 - [ ] New Example
-- [ ] New feature in existing example
+- [ ] Example updates (Bug fixes, new features, etc.)
+- [ ] Other (changes to the codebase, but not to examples)
 
 ### New Example Checklist
 
-- [ ] 🚀 Link to deployment URL on Vercel
+- [ ] 🛫 `npm run new-example` was used to create the example
+- [ ] 📚 The template wasn't used but I carefuly read the [Adding a new example](https://github.com/vercel/examples#adding-a-new-example) steps and implemented them in the example
 - [ ] 📱 Is it responsive? Are mobile and tablets considered?
-- [ ] 📚 `README.md` preview link in PR description (branch)
-- [ ] ⚙️ Secrets have instructions for how to set up in the readme
-- [ ] 🛫 `npm run new-example` was run to create the example
