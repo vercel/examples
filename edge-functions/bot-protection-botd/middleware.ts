@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { first } from '@lib/utils'
 import { botdEdge } from '@lib/botd'
-import demoMiddleware from '@lib/demo-middleware'
 
 export const config = {
   // It's possible to run Botd for all paths, but it's better to take
@@ -9,7 +7,15 @@ export const config = {
   matcher: ['/', '/blocked'],
 }
 
-async function handler(req: NextRequest) {
+export default async function middleware(req: NextRequest) {
+  // Force the page to be blocked by Botd
+  if (req.nextUrl.pathname === '/blocked') {
+    req.headers.set(
+      'user-agent',
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/90.0.4430.93 Safari/537.36'
+    )
+  }
+
   // Do light bot detection for all paths
   const res = await botdEdge(req, {
     // The request id is excluded for demo purposes because
@@ -30,8 +36,3 @@ async function handler(req: NextRequest) {
   }
   return res
 }
-
-// if you are using this example as reference,
-// feel free to remove the wrapping here which
-// is only here to serve this demo
-export const middleware = first(demoMiddleware, handler)
