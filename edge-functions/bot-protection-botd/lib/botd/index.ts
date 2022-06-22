@@ -1,3 +1,4 @@
+// eslint-disable-next-line @next/next/no-server-import-in-page
 import { NextRequest, NextResponse } from 'next/server'
 import {
   BOTD_DEFAULT_URL,
@@ -33,6 +34,7 @@ export async function botdEdge(
 
   const { pathname } = req.nextUrl
 
+  // Light bot detection is not required for static files or for favicon.ico
   if (STATIC_REGEX_EXCLUSION.test(pathname) && !isFavicon(req)) return
 
   const headers = new Headers()

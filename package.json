@@ -13,8 +13,8 @@
   "devDependencies": {
     "@vercel/fetch": "^6.2.0",
     "dotenv": "^16.0.0",
-    "eslint": "^8.9.0",
-    "eslint-config-next": "^12.1.6",
+    "eslint": "latest",
+    "eslint-config-next": "canary",
     "front-matter": "^4.0.2",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.4",
