@@ -2,6 +2,8 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Layout, Page, Text, Link } from '@vercel/examples-ui'
 
+import mockDB from '../../../lib/db'
+
 export default function About(props) {
   const router = useRouter()
   if (router.isFallback) {
@@ -44,27 +46,6 @@ export default function About(props) {
 }
 
 About.Layout = Layout
-
-const mockDB = [
-  {
-    name: 'Site 1',
-    description: 'Subdomain + custom domain',
-    subdomain: 'subdomain-1',
-    customDomain: 'custom-domain-1.com',
-  },
-  {
-    name: 'Site 2',
-    description: 'Subdomain only',
-    subdomain: 'subdomain-2',
-    customDomain: null,
-  },
-  {
-    name: 'Site 3',
-    description: 'Subdomain only',
-    subdomain: 'subdomain-3',
-    customDomain: null,
-  },
-]
 
 export async function getStaticPaths() {
   // get all sites that have subdomains set up

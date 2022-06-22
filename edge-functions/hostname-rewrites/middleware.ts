@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export const config = {
-  matcher: ['/', '/about'],
+  matcher: ['/', '/about', '/_sites/:path'],
 }
 
 export default function middleware(req: NextRequest) {
-  // Create a new URL object from the request URL
   const url = new URL(req.nextUrl)
 
   // Get hostname (e.g. vercel.com, test.vercel.app, etc.)
@@ -20,8 +19,7 @@ export default function middleware(req: NextRequest) {
       : process.env.CURR_HOST
 
   // Prevent security issues – users should not be able to canonically access
-  // the pages/sites folder and its respective contents. This can also be done
-  // via rewrites to a custom 404 page
+  // the pages/sites folder and its respective contents.
   if (url.pathname.startsWith(`/_sites`)) {
     url.pathname = `/404`
   } else {
@@ -30,6 +28,5 @@ export default function middleware(req: NextRequest) {
     url.pathname = `/_sites/${currentHost}${url.pathname}`
   }
 
-  // Rewrite to the url
   return NextResponse.rewrite(url)
 }
