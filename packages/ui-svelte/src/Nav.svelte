@@ -1,23 +1,23 @@
 <script>
-  import clsx from 'clsx'
-  import Link from './Link.svelte'
   export let path = ''
   const displayPath = ['Vercel Examples']
     .concat(path?.split('/').filter(Boolean) || [])
     .join(' / ')
 </script>
 
-<nav class="root">
-  <div class={clsx('flex items-center lg:px-6 px-8', 'container')}>
+<nav class="root border-b border-gray-200 py-5 relative z-20 bg-white">
+  <div
+    class="flex items-center lg:px-6 px-8 border-b border-gray-200 py-5 relative z-20 bg-white container"
+  >
     <div class="flex flex-row items-center">
-      <Link href="/">
+      <a href="/">
         <span>
           <svg height="26" viewBox="0 0 75 65" fill="#000">
             <title>Vercel Logo</title>
             <path d="M37.59.25l36.95 64H.64l36.95-64z" />
           </svg>
         </span>
-      </Link>
+      </a>
       <ul class="flex items-center content-center">
         <li class="ml-2 text-gray-200">
           <svg
@@ -35,9 +35,9 @@
           </svg>
         </li>
         <li class="font-medium" style={{ letterSpacing: '.01px' }}>
-          <Link href="/" className="link">
+          <a href="/">
             {displayPath}
-          </Link>
+          </a>
         </li>
       </ul>
     </div>
@@ -46,13 +46,13 @@
         <span
           class="ml-2 h-full flex items-center cursor-not-allowed text-accents-5"
         >
-          <Link
+          <a
             variant="ghost"
             Component="a"
             href="https://github.com/vercel/examples/tree/main"
           >
             More Examples →
-          </Link>
+          </a>
         </span>
         <span
           class="ml-2 h-full flex items-center cursor-not-allowed text-accents-5"
@@ -64,25 +64,6 @@
 
 <style>
   .root {
-    @apply border-b border-gray-200 py-5 relative z-20 bg-white;
     box-shadow: 0 0 15px 0 rgb(0 0 0 / 10%);
-  }
-
-  .container {
-    @apply mx-auto max-w-7xl px-14;
-  }
-
-  .link {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    color: var(--accents-6);
-    -webkit-text-decoration: none;
-    text-decoration: none;
-    -webkit-transition: color 0.2s ease;
-    transition: color 0.2s ease;
-  }
-
-  .link:hover {
-    color: var(--accents-8);
-    cursor: pointer;
   }
 </style>

@@ -1,9 +1,5 @@
-<script lang="ts">
-	import { Text, Link } from '@vercel/examples-ui-svelte';
-</script>
+<h1 class="h1">Vercel Middleware + Sveltekit</h1>
 
-<Text variant="h1">Vercel Middleware + Sveltekit</Text>
-
-<Text>
-	This page should reditect you to <Link href="/maintenance">maintenance</Link>
-</Text>
+<p>
+	This page should redirect you to <a class="link" href="/maintenance">maintenance</a>
+</p>

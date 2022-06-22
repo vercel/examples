@@ -1,27 +1,23 @@
 {
-    "name": "@vercel/examples-ui-svelte",
-    "svelte": "src/index.js",
-    "private": false,
-    "version": "0.1.7",
-    "license": "MIT",
-    "scripts": {
-    },
-    "dependencies": {
-        "clsx": "^1.1.1"
-    },
-    "devDependencies": {
-        "@rollup/plugin-node-resolve": "^9.0.0",
-        "rollup": "^2.0.0",
-        "rollup-plugin-import-css": "^3.0.3",
-        "rollup-plugin-svelte": "^7.0.0",
-        "svelte": "^3.5.0"
-    },
-    "keywords": [
-        "svelte"
-    ],
-    "files": [
-        "src",
-        "dist",
-        "tailwind.js"
-    ]
+  "name": "@vercel/examples-ui-svelte",
+  "svelte": "src/index.js",
+  "private": false,
+  "version": "0.1.7",
+  "license": "MIT",
+  "scripts": {},
+  "dependencies": {
+    "clsx": "^1.1.1"
+  },
+  "devDependencies": {
+    "svelte": "^3.5.0",
+    "tailwindcss-plugins": "^0.3.0"
+  },
+  "keywords": [
+    "svelte"
+  ],
+  "files": [
+    "src",
+    "dist",
+    "tailwind.js"
+  ]
 }

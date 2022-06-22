@@ -1,16 +1,9 @@
-<script>
-  import clsx from 'clsx'
-  export let className = ''
-  export let alt = 'Vercel.com Logo'
-</script>
-
 <svg
   width="89"
   height="20"
   viewBox="0 0 89 20"
   fill="none"
-  {alt}
-  class={clsx(className)}
+  alt="Vercel.com Logo"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path d="M11.5625 0L23.125 20H0L11.5625 0Z" fill="currentColor" />

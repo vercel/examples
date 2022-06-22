@@ -1,14 +1,10 @@
-<script lang="ts">
-	import { Text, Link, Code, Snippet } from '@vercel/examples-ui-svelte';
-</script>
-
 <section class="space-y-4">
-	<Text variant="h1">Sveltekit Maintenance page</Text>
-	<Text
-		>In order to create a redirect to a maintenance page, all you have to do is create a <Code
-			>middleware.ts</Code
-		> file at the root of your project with the following content:</Text
-	>
+	<h1>Sveltekit Maintenance page</h1>
+	<p>
+		In order to create a redirect to a maintenance page, all you have to do is create a <code
+			>middleware.ts</code
+		> file at the root of your project with the following content:
+	</p>
 	<pre class="snippet"><code
 			>{`export default function middleware(request, response) {
 	if (new URL(request.url).pathname === '/') {
