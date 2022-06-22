@@ -1,7 +1,10 @@
 module.exports = {
   // `content` is replaced instead of extended, so this line has to be added in
   // the `content` of each app' tailwind.config.js
-  content: ['node_modules/@vercel/examples-ui/ui/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './src/**/*.{html,js,svelte,ts}',
+    'node_modules/@vercel/examples-ui-svelte/**/*.{html,js,svelte,ts}',
+  ],
   theme: {
     extend: {
       colors: {
