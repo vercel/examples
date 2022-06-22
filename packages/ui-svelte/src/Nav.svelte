@@ -1,6 +1,6 @@
 <script>
   export let path = ''
-  const displayPath = ['Vercel Examples']
+  $: displayPath = ['Vercel Examples']
     .concat(path?.split('/').filter(Boolean) || [])
     .join(' / ')
 </script>
