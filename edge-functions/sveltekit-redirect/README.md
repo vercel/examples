@@ -1,6 +1,6 @@
-# Sveltekit Redirect
+# SvelteKit Redirect
 
-This example shows how to redirect users with Vercel Middleware in Sveltekit.
+This example shows how to redirect users with Vercel Middleware in Sveltekit
 
 ## Demo
 
@@ -8,7 +8,11 @@ https://sveltekit-redirect-guivercel.vercel.sh
 
 ## How to Use
 
-Depploy and clone using Vercel
+- Install the Vercel CLI `npm i -g vercel`
+- Install degit `npm install -g degit`
+- Clone the repository `degit https://github.com/vercel/examples/edge-functions/skeltekit-redirect sveltekit-redirect`
+- Run `vercel` in the directory `sveltekit-redirect` to connect to a Vercel project
+- run `Vercel dev` to start the development server
 
 ### One-Click Deploy
 

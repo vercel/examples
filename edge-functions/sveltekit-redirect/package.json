@@ -34,6 +34,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@vercel/examples-ui-svelte": "^0.1.7"
+		"@vercel/examples-ui-svelte": "^0.1.16"
 	}
 }

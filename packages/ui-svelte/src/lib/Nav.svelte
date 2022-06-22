@@ -7,7 +7,7 @@
 
 <nav class="root border-b border-gray-200 py-5 relative z-20 bg-white">
   <div
-    class="flex items-center lg:px-6 px-8 border-b border-gray-200 py-5 relative z-20 bg-white container"
+    class="flex items-center lg:px-6 px-8  py-5 relative z-20 bg-white container"
   >
     <div class="flex flex-row items-center">
       <a href="/">

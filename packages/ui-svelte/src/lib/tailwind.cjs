@@ -1,5 +1,3 @@
-const plugin = require('tailwindcss/plugin')
-
 module.exports = {
   // `content` is replaced instead of extended, so this line has to be added in
   // the `content` of each app' tailwind.config.js
@@ -24,11 +22,4 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    plugin(function ({ addComponents, theme }) {
-      addComponents({
-        '.card': {},
-      })
-    }),
-  ],
 }
