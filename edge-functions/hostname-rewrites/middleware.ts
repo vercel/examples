@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { DEFAULT_HOST, getHostnameData } from './lib/db'
+import { getHostnameDataOrDefault } from './lib/db'
 
 export const config = {
   matcher: ['/', '/about', '/_sites/:path'],
@@ -17,7 +17,7 @@ export default async function middleware(req: NextRequest) {
   const currentHost =
     process.env.NODE_ENV === 'production' &&
     hostname.replace(`.${process.env.ROOT_DOMAIN}`, '')
-  const data = currentHost ? await getHostnameData(currentHost) : DEFAULT_HOST
+  const data = await getHostnameDataOrDefault(currentHost)
 
   // Prevent security issues – users should not be able to canonically access
   // the pages/sites folder and its respective contents.

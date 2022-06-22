@@ -18,23 +18,27 @@ const hostnamesDB = [
     subdomain: 'subdomain-3',
   },
 ]
-
-export const DEFAULT_HOST = hostnamesDB.find((h) => h.defaultForPreview)
+const DEFAULT_HOST = hostnamesDB.find((h) => h.defaultForPreview)
 
 /**
- * Returns the data of the hostname based on its subdomain or custom domain.
+ * Returns the data of the hostname based on its subdomain or custom domain
+ * or the default host if there's no match.
  *
  * This method is used by middleware.ts
  */
-export async function getHostnameData(subdomainOrCustomDomain: string) {
+export async function getHostnameDataOrDefault(
+  subdomainOrCustomDomain: string = ''
+) {
   // check if site is a custom domain or a subdomain
   const customDomain = subdomainOrCustomDomain.includes('.')
 
   // fetch data from mock database using the site value as the key
-  return hostnamesDB.find((item) =>
-    customDomain
-      ? item.customDomain === subdomainOrCustomDomain
-      : item.subdomain === subdomainOrCustomDomain
+  return (
+    hostnamesDB.find((item) =>
+      customDomain
+        ? item.customDomain === subdomainOrCustomDomain
+        : item.subdomain === subdomainOrCustomDomain
+    ) ?? DEFAULT_HOST
   )
 }
 
