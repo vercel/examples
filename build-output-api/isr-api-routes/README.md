@@ -10,7 +10,7 @@ https://build-output-api-isr-api-routes.vercel.sh
 
 ### How it Works
 
-When using Serverless Functions that return data (not HTML), you can still take advcantage of On-Demand Incremental Static Regeneration (ISR).
+When using Serverless Functions that return data (not HTML), you can still take advantage of On-Demand Incremental Static Regeneration (ISR).
 
 To implement this, the `bypassToken` of the [`<name>.prerender-config.json`](./.vercel/output/config/data.prerender-config.json) file should be set to a randomized string that you generate at build-time. This string should not be exposed to users / the client-side, except under authenticated circumstances.
 
