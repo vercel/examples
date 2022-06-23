@@ -1,5 +1,4 @@
 import crypto from 'crypto'
-import { NextResponse } from 'next/server'
 // const crypto = require('node:crypto').webcrypto
 
 // ------------------
@@ -26,7 +25,7 @@ export default async function CryptoEdgeAPIRoute() {
   ])
   const ptBuffer = await crypto.subtle.decrypt(alg, decryptKey, encrypted)
   const decryptedText = new TextDecoder().decode(ptBuffer)
-  return new NextResponse(
+  return new Response(
     JSON.stringify({
       // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID
       uuid: crypto.randomUUID(),
