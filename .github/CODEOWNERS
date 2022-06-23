@@ -2,6 +2,6 @@
 # https://help.github.com/en/articles/about-code-owners
 
 * @okbel @lfades @goncy @GuiBibeau @dominiksipowicz
-solutions/monorepo @jaredpalmer @gaspar09 @gsoltis @becca
+solutions/monorepo @jaredpalmer @gaspar09 @gsoltis @becca @tknickman
 solutions/microfrontends @jaredpalmer @gaspar09 @gsoltis @becca
 build-output-api @tootallnate @styfle @EndangeredMassa
