@@ -6,7 +6,7 @@ framework: None
 useCase: Edge Functions
 css: None
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/edge-api-route&project-name=edge-api-route&repository-name=edge-api-route
-demoUrl: https://edge-api-route.vercel.app
+demoUrl: https://edge-api-route.vercel.app/api/edge
 ---
 
 # Edge API Route (Experimental)
@@ -15,7 +15,7 @@ Build your API using Vercel Edge Functions.
 
 ## Demo
 
-https://edge-api-route.vercel.app
+https://edge-api-route.vercel.app/api/edge
 
 ## How to Use
 
