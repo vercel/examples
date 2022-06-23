@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getHostnameDataOrDefault } from './lib/db'
 
 export const config = {
-  matcher: ['/', '/about', '/_sites/:path'],
+  matcher: ['/(index)?', '/about', '/_sites/:path'],
 }
 
 export default async function middleware(req: NextRequest) {
@@ -22,8 +22,10 @@ export default async function middleware(req: NextRequest) {
   // Prevent security issues – users should not be able to canonically access
   // the pages/sites folder and its respective contents.
   if (url.pathname.startsWith(`/_sites`)) {
+    console.log('URL', req.nextUrl.href)
     url.pathname = `/404`
   } else {
+    console.log('URL 2', req.nextUrl.href)
     // rewrite to the current subdomain under the pages/sites folder
     url.pathname = `/_sites/${data.subdomain}${url.pathname}`
   }
