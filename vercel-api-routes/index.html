@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vercel Edge Function API routes</title>
+  </head>
+  <body>
+    <h1>Vercel Edge Function API routes</h1>
+
+    <input type="text" id="name" />
+    <button id="submit">Try the route</button>
+  </body>
+
+  <script>
+    const button = document.getElementById('submit')
+    button.addEventListener('click', async () => {
+      const name = document.getElementById('name').value
+      fetch(`/api/hello?name=${name}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data)
+        })
+    })
+  </script>
+</html>
