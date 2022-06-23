@@ -6,5 +6,5 @@ export const config = {
 }
 
 export function middleware(request: NextRequest) {
-  return NextResponse.rewrite(new URL(`/api/crypto}`, request.url))
+  return NextResponse.rewrite(new URL(`/api/crypto`, request.url))
 }
