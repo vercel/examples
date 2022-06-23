@@ -1,5 +1,5 @@
 ---
-name: Using Crypto in Edge Functions
+name: Using Crypto in Edge Functions and Middleware
 slug: edge-functions-crypto
 description: Learn to utilize the crypto Web APIs at the edge.
 framework: Next.js
@@ -13,7 +13,7 @@ demoUrl: https://edge-functions-crypto.vercel.app
 
 # Crypto
 
-In this example, you'll see how you can utilize the `crypto` Web APIs.
+In this example, you'll see how you can utilize the `crypto` Web APIs with Edge Middleware and Edge Functions.
 
 Working example: [crypto.vercel.sh](https://crypto.vercel.sh/)
 

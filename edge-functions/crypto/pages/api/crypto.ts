@@ -1,8 +1,12 @@
+import type { NextRequest } from 'next/server'
+
 // ------------------
 // Using Crypto with Edge Functions
 // ------------------
+export default async function CryptoEdgeAPIRoute(request: NextRequest) {
+  const url = new URL(request.url)
+  const fromMiddleware = url.searchParams.get('token') ?? 'unset'
 
-export default async function CryptoEdgeAPIRoute() {
   const plainText = 'Hello from the Edge!'
   const password = 'hunter2'
   const ptUtf8 = new TextEncoder().encode(plainText)
@@ -36,6 +40,7 @@ export default async function CryptoEdgeAPIRoute() {
       password,
       decryptedText,
       iv,
+      fromMiddleware,
     }),
     { headers: { 'Content-Type': 'application/json' } }
   )

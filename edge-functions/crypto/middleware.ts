@@ -1,10 +1,18 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export const config = {
-  matcher: '/',
-}
+// ------------------
+// Using Crypto with Edge Middleware
+// ------------------
 
 export function middleware(request: NextRequest) {
-  return NextResponse.rewrite(new URL(`/api/crypto`, request.url))
+  const token = crypto.randomUUID()
+  const url = new URL(request.url)
+  url.pathname = '/api/crypto'
+  url.searchParams.set('token', token)
+  return NextResponse.redirect(url)
+}
+
+export const config = {
+  matcher: '/',
 }
