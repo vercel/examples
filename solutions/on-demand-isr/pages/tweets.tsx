@@ -47,7 +47,7 @@ function Tweets({ tweets, date }: Props) {
   // Check the secret
   if (process.env.SECRET === req.headers["x-secret-key"]) {
     // Revalidate /tweets route
-    await res.unstable_revalidate("/tweets")
+    await res.revalidate("/tweets")
 
     // Return a response for debugging
     return res.json({ revalidated: true })
