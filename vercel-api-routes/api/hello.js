@@ -1,5 +1,5 @@
-export default async function handler(request, response) {
-  console.log(request)
+export default async function handler(request) {
+  console.log(request.query)
   return new Response('Hello World!')
 }
 
