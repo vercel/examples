@@ -1,6 +1,18 @@
+import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export async function middleware(req: NextRequest) {
+import { webcrypto as crypto } from 'node:crypto'
+// const crypto = require('node:crypto').webcrypto
+
+export const config = {
+  runtime: 'experimental-edge',
+}
+
+export default async function CryptoEdgeRoute(req: NextRequest) {
+  // ------------------
+  // Using Crypto with Edge Functions
+  // ------------------
+
   // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/subtle
   const plainText = 'Hello from the Edge!'
   const password = 'hunter2'
@@ -23,7 +35,7 @@ export async function middleware(req: NextRequest) {
   const ptBuffer = await crypto.subtle.decrypt(alg, decryptKey, encrypted)
   const decryptedText = new TextDecoder().decode(ptBuffer)
 
-  return new Response(
+  return new NextResponse(
     JSON.stringify({
       // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID
       uuid: crypto.randomUUID(),
