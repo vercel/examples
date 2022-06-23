@@ -1,6 +1,3 @@
-import crypto from 'crypto'
-// const crypto = require('node:crypto').webcrypto
-
 // ------------------
 // Using Crypto with Edge Functions
 // ------------------
