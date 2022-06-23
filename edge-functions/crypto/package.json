@@ -10,7 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "canary",
+    "next": "12.1.7-canary.45",
     "react": "latest",
     "react-dom": "latest"
   },
