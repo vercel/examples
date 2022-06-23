@@ -27,8 +27,10 @@ const DEFAULT_HOST = hostnamesDB.find((h) => h.defaultForPreview)
  * This method is used by middleware.ts
  */
 export async function getHostnameDataOrDefault(
-  subdomainOrCustomDomain: string = ''
+  subdomainOrCustomDomain?: string
 ) {
+  if (!subdomainOrCustomDomain) return DEFAULT_HOST
+
   // check if site is a custom domain or a subdomain
   const customDomain = subdomainOrCustomDomain.includes('.')
 
