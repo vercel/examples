@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getHostnameDataOrDefault } from './lib/db'
 
 export const config = {
-  matcher: ['/(index)?', '/about', '/_sites/:path'],
+  matcher: ['/', '/about', '/_sites/:path'],
 }
 
 export default async function middleware(req: NextRequest) {
