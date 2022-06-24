@@ -45,6 +45,8 @@ Get your Upstash credentials from the Upstash's dashboard, then rename [`.env.ex
 cp .env.example .env.local
 ```
 
+And update it with your Upstash credentials.
+
 Next, run Next.js in development mode:
 
 ```bash
