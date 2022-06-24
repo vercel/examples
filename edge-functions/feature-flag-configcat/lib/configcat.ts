@@ -22,9 +22,9 @@ export function getValue<K extends Keys>(key: K): boolean {
 
   return (
     percentageItems.find((item) => {
-      n -= item[c.RolloutPercentageItems.Percentage]
+      n -= item[c.Setting.RolloutPercentageItems]
       return n <= 0
-    })?.[c.RolloutPercentageItems.Value] ?? setting[c.Setting.Value]
+    })?.[c.Setting.Value] ?? setting[c.Setting.Value]
   )
 }
 
