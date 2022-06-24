@@ -1,11 +1,19 @@
-import { FC, createContext, useContext, useState, useEffect } from 'react'
+import React, {
+  type FC,
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+} from 'react'
 import { createClient, createConsoleLogger } from 'configcat-js'
 
 type ConfigCatClient = ReturnType<typeof createClient>
 
 const configcatContext = createContext<ConfigCatClient>(null)
 
-export const ConfigcatProvider: FC = ({ children }) => {
+export const ConfigcatProvider: FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [client, setClient] = useState<ConfigCatClient>()
 
   useEffect(() => {
