@@ -1,9 +1,9 @@
 // eslint-disable-next-line @next/next/no-server-import-in-page
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
 import { nanoid } from 'nanoid'
 import { SignJWT, jwtVerify } from 'jose'
 import { USER_TOKEN, JWT_SECRET_KEY } from './constants'
-import { jsonResponse } from './utils'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 interface UserJwtPayload {
   jti: string
@@ -11,14 +11,13 @@ interface UserJwtPayload {
 }
 
 /**
- * Verifies the user's JWT token and returns the payload if
- * it's valid or a response if it's not.
+ * Verifies the user's JWT token
  */
 export async function verifyAuth(request: NextRequest) {
-  const token = request.cookies[USER_TOKEN]
+  const token = request.cookies.get(USER_TOKEN)
 
   if (!token) {
-    return jsonResponse(401, { error: { message: 'Missing user token' } })
+    return null
   }
 
   try {
@@ -28,28 +27,53 @@ export async function verifyAuth(request: NextRequest) {
     )
     return verified.payload as UserJwtPayload
   } catch (err) {
-    return jsonResponse(401, { error: { message: 'Your token has expired.' } })
+    console.error('Your token has expired.')
+    return null
   }
 }
 
 /**
- * Adds the user token cookie to a response.
+ * Adds the user token cookie to a response from api routes.
  */
-export async function setUserCookie(
-  request: NextRequest,
-  response: NextResponse
-) {
-  const cookie = request.cookies[USER_TOKEN]
+export async function setUserCookie(response: NextApiResponse) {
+  const token = await new SignJWT({})
+    .setProtectedHeader({ alg: 'HS256' })
+    .setJti(nanoid())
+    .setIssuedAt()
+    .setExpirationTime('2h')
+    .sign(new TextEncoder().encode(JWT_SECRET_KEY))
 
-  if (!cookie) {
-    const token = await new SignJWT({})
-      .setProtectedHeader({ alg: 'HS256' })
-      .setJti(nanoid())
-      .setIssuedAt()
-      .setExpirationTime('2h')
-      .sign(new TextEncoder().encode(JWT_SECRET_KEY))
-    response.cookie(USER_TOKEN, token, { httpOnly: true })
-  }
+  response.setHeader('Set-Cookie', [
+    `${USER_TOKEN}=${token}; Path=/ ; Secure ; HttpOnly ; SameSite=Strict ; Max-Age=${
+      // 2 hours in ms
+      2 * 60 * 60 * 1000
+    } ;`,
+  ])
 
   return response
+}
+
+/**
+ * Expires the jwt cookie
+ */
+export async function expireUserCookie(response: NextApiResponse) {
+  response.setHeader('Set-Cookie', [
+    `${USER_TOKEN}=deleted; Path=/ ; Secure ; HttpOnly ; SameSite=Strict ; expires=Thu, 01 Jan 1970 00:00:00 GMT ;`,
+  ])
+
+  return response
+}
+
+/**
+ * Sends an API request to be assigned a JWT
+ */
+export async function requestAuth() {
+  return fetch('/api/auth', { method: 'POST' })
+}
+
+/**
+ * Sends an API request to invalidate the cookie
+ */
+export async function invalidateAuth() {
+  return fetch('/api/expire', { method: 'POST' })
 }
