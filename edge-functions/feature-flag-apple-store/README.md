@@ -6,7 +6,7 @@ framework: Next.js
 useCase: Edge Functions
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Ffeature-flag-apple-store&env=UPSTASH_SECRET&envDescription=The%20Upstash%20secret%20from%20your%20Upstash%20console&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Ffeature-flag-apple-store%23set-up-environment-variables&project-name=feature-flag-apple-store&repo-name=feature-flag-apple-store
-demoUrl: https://edge-functions-feature-flag-apple-store.vercel.app
+demoUrl: https://edge-functions-feature-flag-apple-store.vercel.app/
 ---
 
 # Apple Store
@@ -15,9 +15,7 @@ This template uses [Upstash](https://upstash.com/) (Edge Redis Database) as fast
 
 ## Demo
 
-https://apple-store.vercel.sh
-https://edge-functions-feature-flag-apple-store.vercel.sh
-https://edge-functions-feature-flag-apple-store.vercel.app
+https://edge-functions-feature-flag-apple-store.vercel.app/
 
 ## How to Use
 
