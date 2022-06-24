@@ -4,11 +4,6 @@ import type { NextRequest } from 'next/server'
 // ------------------
 // Using Crypto with Edge Functions
 // ------------------
-
-export const config = {
-  runtime: 'experimental-edge',
-}
-
 export default async function CryptoEdgeAPIRoute(request: NextRequest) {
   const url = new URL(request.url)
   const fromMiddleware = url.searchParams.get('token') ?? 'unset'
@@ -50,4 +45,8 @@ export default async function CryptoEdgeAPIRoute(request: NextRequest) {
     }),
     { headers: { 'Content-Type': 'application/json' } }
   )
+}
+
+export const config = {
+  runtime: 'experimental-edge',
 }
