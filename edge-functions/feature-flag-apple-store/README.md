@@ -1,7 +1,7 @@
 ---
 name: Feature Flag Apple Store
 slug: feature-flag-apple-store
-description: This template uses Upstash API (Edge Redis Database) as fast storage to control whether an store is open or closed.
+description: This template uses Upstash (Edge Redis Database) as fast storage to control whether an store is open or closed.
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind
