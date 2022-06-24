@@ -1,6 +1,5 @@
 import { Layout } from '@vercel/examples-ui'
-import SwrResponse from '@components/swr-response'
-import Explainer from '@components/Explainer'
+import Explainer from '@components/explainer'
 
 export default function Protected() {
   return <Explainer />

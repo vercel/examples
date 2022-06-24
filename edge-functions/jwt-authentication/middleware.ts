@@ -8,7 +8,6 @@ export const config = {
 }
 
 export async function middleware(req: NextRequest, res: NextResponse) {
-  console.log(req.url)
   const url = new URL(req.url)
   const token = req.cookies.get(USER_TOKEN)
 

@@ -1,6 +1,6 @@
 import { invalidateAuth, requestAuth } from '@lib/auth'
 import { USER_TOKEN } from '@lib/constants'
-import { Layout, Page, Text, Code, Link, Button } from '@vercel/examples-ui'
+import { Page, Text, Code, Link, Button } from '@vercel/examples-ui'
 import { useRouter } from 'next/router'
 
 export default function Explainer() {
