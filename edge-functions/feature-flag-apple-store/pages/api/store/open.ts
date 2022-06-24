@@ -9,7 +9,7 @@ export default async function OpenStore() {
     const { result } = await set('store-closed', 'false')
 
     if (result !== 'OK') {
-      throw `Upstash throwed an error: ${result} `
+      throw new Error(`Unexpected result from Upstash: ${result}`)
     }
 
     return new Response(
