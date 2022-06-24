@@ -69,7 +69,6 @@ To open the store go to:
 http://localhost:3000/api/store/open
 ```
 
-**Close**
 To close the store go to:
 
 ```
