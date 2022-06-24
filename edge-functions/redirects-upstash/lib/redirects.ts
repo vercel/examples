@@ -20,7 +20,8 @@ export default async function redirects(req: NextRequest) {
   // large, as the space in Edge Functions is quite limited
   const localRedirect = (redirectsJson as LocalRedirects)[url.pathname]
   if (localRedirect) {
-    url.pathname = `${localRedirect.destination}?l=${Date.now() - start}`
+    url.pathname = localRedirect.destination
+    url.searchParams.set('l', `${Date.now() - start}`)
     return NextResponse.redirect(url)
   }
 
@@ -34,7 +35,8 @@ export default async function redirects(req: NextRequest) {
 
   if (result) {
     const redirect = JSON.parse(result)
-    url.pathname = `${redirect.destination}?l=${Date.now() - start}`
+    url.pathname = redirect.destination
+    url.searchParams.set('l', `${Date.now() - start}`)
     return NextResponse.redirect(url)
   }
 }
