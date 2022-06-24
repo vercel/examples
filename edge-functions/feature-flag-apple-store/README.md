@@ -63,7 +63,6 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 We can use Upstash's REST API to update the kev/value store or use API routes.
 
-**Open**
 To open the store go to:
 
 ```
