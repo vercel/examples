@@ -1,7 +1,7 @@
 ---
 name: Feature Flag Apple Store
 slug: feature-flag-apple-store
-description: This template uses Upstash (Edge Redis Database) as storage for controlling whether the Apple Store is open or closed.
+description: This template uses Upstash API (Edge Redis Database) as fast storage to control whether an store is open or closed.
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind
@@ -11,10 +11,12 @@ demoUrl: https://edge-functions-feature-flag-apple-store.vercel.app
 
 # Apple Store
 
-This examples uses [Upstash](https://upstash.com/) (Edge Redis Database) as storage for controlling whether the Apple Store is open or closed.
+This template uses [Upstash](https://upstash.com/) (Edge Redis Database) as fast storage to control whether an store is open or closed.
 
 ## Demo
 
+https://apple-store.vercel.sh
+https://edge-functions-feature-flag-apple-store.vercel.sh
 https://edge-functions-feature-flag-apple-store.vercel.app
 
 ## How to Use
@@ -39,13 +41,11 @@ yarn create next-app --example https://github.com/vercel/examples/tree/main/edge
 
 #### Set up environment variables
 
-Get your upstash secret from the console, then rename [`.env.example`](.env.example) to `.env.local`:
+Get your Upstash credentials from the Upstash's dashboard, add your credentials and rename [`.env.example`](.env.example) to `.env.local`:
 
 ```bash
 cp .env.example .env.local
 ```
-
-and update `UPSTASH_SECRET` with your secret.
 
 Next, run Next.js in development mode:
 
@@ -63,7 +63,23 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 ## Opening / Closing the Store
 
-We can use Upstash's REST API to update the kev/value store. Replace the URLs and Authorization tokens below with the values from your Upstash Redis instance.
+We can use Upstash's REST API to update the kev/value store or use API routes.
+
+**Open**
+To open the store go to:
+
+```
+http://localhost:3000/api/store/open
+```
+
+**Close**
+To close the store go to:
+
+```
+http://localhost:3000/api/store/close
+```
+
+For Upstash's REST API: Replace the URLs and Authorization tokens below with the values from your Upstash Redis instance.
 
 **Open**
 

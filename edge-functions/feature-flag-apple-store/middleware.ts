@@ -1,9 +1,14 @@
+// eslint-disable-next-line @next/next/no-server-import-in-page
 import { NextRequest, NextResponse } from 'next/server'
-import get from 'lib/redis'
+import { get } from 'lib/upstash-redis'
 
-export async function middleware(req: NextRequest) {
+export const config = {
+  matcher: '/',
+}
+
+export async function middleware(request: NextRequest) {
   if (await get('store-closed')) {
-    const url = req.nextUrl.clone()
+    const url = new URL(request.url)
     url.pathname = `/_closed`
     return NextResponse.rewrite(url)
   }
