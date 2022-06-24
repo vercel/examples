@@ -1,8 +1,8 @@
-import type { FC, ReactNode } from 'react'
+import type { FC } from 'react'
 
 import { Code, Layout, Page, Text } from '@vercel/examples-ui'
 
-const Snippet: FC<{ children: ReactNode }> = ({ children }) => {
+const Snippet: FC = ({ children }) => {
   return (
     <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 transition-all">
       {children}
@@ -10,7 +10,7 @@ const Snippet: FC<{ children: ReactNode }> = ({ children }) => {
   )
 }
 
-const Console: FC<{ children: ReactNode }> = ({ children }) => {
+const Console: FC = ({ children }) => {
   return (
     <pre className="bg-black text-white font-mono text-left py-2 px-4 rounded-lg text-sm leading-6">
       {children}
