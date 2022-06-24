@@ -4,21 +4,21 @@
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start"
   },
   "dependencies": {
-    "next": "^12.1.0",
+    "next": "canary",
     "react": "latest",
     "react-dom": "latest"
   },
   "devDependencies": {
-    "@types/node": "^17.0.14",
-    "@types/react": "17.0.38",
-    "eslint": "^8.9.0",
-    "eslint-config-next": "^12.1.0",
-    "typescript": "4.5.5"
+    "@types/node": "^18.0.0",
+    "@types/react": "latest",
+    "eslint": "^8.18.0",
+    "eslint-config-next": "canary",
+    "typescript": "4.7.4"
   }
 }
