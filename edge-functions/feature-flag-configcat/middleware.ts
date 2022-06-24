@@ -17,8 +17,7 @@ const middlewares: Middleware[] = [
       }
 
       const cookie =
-        req.cookies.get(COOKIE_NAME) ||
-        (getValue('newMarketingPage') ? '1' : '0')
+        req.cookies[COOKIE_NAME] || (getValue('newMarketingPage') ? '1' : '0')
       url.pathname = cookie === '1' ? '/marketing/b' : '/marketing'
 
       const res = NextResponse.rewrite(url)
@@ -44,7 +43,7 @@ const middlewares: Middleware[] = [
       }
 
       const cookie =
-        req.cookies.get(COOKIE_NAME) || (getValue('newAboutPage') ? '1' : '0')
+        req.cookies[COOKIE_NAME] || (getValue('newAboutPage') ? '1' : '0')
 
       url.pathname = cookie === '1' ? '/about/b' : '/about'
 
