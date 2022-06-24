@@ -33,13 +33,13 @@ export default function Index() {
         <Button
           variant="secondary"
           className="mr-2.5"
-          onClick={() => removeCookie(`flag-${SPLITS.NEW_ABOUT_PAGE}`)}
+          onClick={() => removeCookie(`flag-about`)}
         >
           Remove /about cookie & reload
         </Button>
         <Button
           variant="secondary"
-          onClick={() => removeCookie(`flag-${SPLITS.NEW_MARKETING_PAGE}`)}
+          onClick={() => removeCookie(`flag-marketing`)}
         >
           Remove /marketing cookie & reload
         </Button>
