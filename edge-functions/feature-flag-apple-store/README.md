@@ -39,7 +39,7 @@ yarn create next-app --example https://github.com/vercel/examples/tree/main/edge
 
 #### Set up environment variables
 
-Get your Upstash credentials from the Upstash's dashboard, add your credentials and rename [`.env.example`](.env.example) to `.env.local`:
+Get your Upstash credentials from the Upstash's dashboard, then rename [`.env.example`](.env.example) to `.env.local`:
 
 ```bash
 cp .env.example .env.local
