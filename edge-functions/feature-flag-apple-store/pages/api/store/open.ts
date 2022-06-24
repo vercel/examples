@@ -6,10 +6,14 @@ export const config = {
 
 export default async function OpenStore() {
   try {
-    const result = await set('store-closed', 'false')
-    console.log(result)
+    const { result } = await set('store-closed', 'false')
+
+    if (result !== 'OK') {
+      throw `Upstash throwed an error: ${result} `
+    }
+
     return new Response(
-      JSON.stringify({ status: 'ok', message: 'Store is now open.' }),
+      JSON.stringify({ status: 'ok', message: 'Store is now open' }),
       {
         headers: { 'Content-Type': 'application/json' },
       }
