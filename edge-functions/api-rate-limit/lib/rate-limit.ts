@@ -13,7 +13,7 @@ export interface RateLimitContextBase {
 
 export interface RateLimitContext extends RateLimitContextBase {
   request: Request
-  response?: Response
+  response: Response
   headers: readonly [string | null, string | null, string | null]
   onRateLimit: OnRateLimit
 }
@@ -56,7 +56,7 @@ function getHeaders(nameOrHeaders?: RateLimitHeaders) {
     : nameOrHeaders
 }
 
-const rateLimited: OnRateLimit = ({ id }) => {
+const rateLimited: OnRateLimit = ({ id, response }) => {
   return new Response(
     JSON.stringify({
       error: { message: `API rate limit exceeded for ${id}` },
@@ -64,6 +64,7 @@ const rateLimited: OnRateLimit = ({ id }) => {
     {
       status: 429,
       headers: {
+        ...Object.fromEntries(response.headers),
         'Content-Type': 'application/json',
       },
     }
@@ -73,8 +74,6 @@ const rateLimited: OnRateLimit = ({ id }) => {
 async function rateLimit(context: RateLimitContext): Promise<Response> {
   let { headers, id, limit, timeframe, count, onRateLimit, response } = context
 
-  // Temporal logging
-  const start = Date.now()
   // By removing the milliseconds our of the date and dividing by `timeframe`
   // we now have a time that changes every `timeframe` seconds
   const time = Math.floor(Date.now() / 1000 / timeframe)
@@ -94,10 +93,6 @@ async function rateLimit(context: RateLimitContext): Promise<Response> {
   const remaining = countOrRes instanceof Response ? 0 : limit - countOrRes
   const reset = (time + 1) * timeframe
 
-  // Temporal logging
-  const latency = Date.now() - start
-  h.set('x-upstash-latency', `${latency}`)
-
   if (headers[0]) h.set(headers[0], `${limit}`)
   if (headers[1]) h.set(headers[1], `${remaining < 0 ? 0 : remaining}`)
   if (headers[2]) h.set(headers[2], `${reset}`)
@@ -106,20 +101,19 @@ async function rateLimit(context: RateLimitContext): Promise<Response> {
     const res = await onRateLimit(context)
 
     // Concat the rate limiting headers
-    headers.concat('x-upstash-latency').forEach((key) => {
+    headers.forEach((key) => {
       if (key) res.headers.set(key, h.get(key)!)
     })
 
     return res
   }
-  // If there's a response in context, add the headers to it instead
-  if (response) {
-    for (const [key, value] of h) {
-      response.headers.set(key, value)
-    }
-    return response
+
+  // Add the headers to the response in context
+  for (const [key, value] of h) {
+    response.headers.set(key, value)
   }
-  return new Response(null, { headers: h })
+
+  return response
 }
 
 export const initRateLimit = (fn: RateLimitHandler) =>
@@ -131,7 +125,7 @@ export const initRateLimit = (fn: RateLimitHandler) =>
     return rateLimit({
       ...ctx,
       request: ctx.request ?? request,
-      response: ctx.response ?? response,
+      response: ctx.response ?? response ?? new Response(null),
       headers: getHeaders(ctx.headers),
       onRateLimit: ctx.onRateLimit ?? rateLimited,
     })
