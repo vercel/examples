@@ -14,7 +14,7 @@ interface Props {
   products: Product[]
 }
 
-const Snippet: FC = ({ children }) => {
+const Snippet: FC<{ children: string }> = ({ children }) => {
   return (
     <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 transition-all">
       {children}
@@ -86,7 +86,7 @@ function Home({ products }: Props) {
           For this example we will have 3 files related to the product details
           page. <Code>/pages/product/[id]/no-stock.js</Code>,{' '}
           <Code>/pages/product/[id]/index.js</Code> and{' '}
-          <Code>/pages/product/[id]/_middleware.js</Code>.
+          <Code>/middleware.js</Code>.
         </Text>
         <Text>
           Lets start with our <Code>/pages/product/[id]/index.js</Code>:
@@ -114,25 +114,32 @@ function Home({ products }: Props) {
           page otherwise.
         </Text>
         <Text>
-          Now lets handle the rewrite logic in{' '}
-          <Code>/pages/product/[id]/_middleware.js</Code> :
+          Now lets handle the rewrite logic in <Code>/middleware.js</Code> :
         </Text>
         <Snippet>
-          {`import { NextRequest, NextResponse } from 'next/server'
-import api from '../../../api'
+          {`import { NextResponse } from 'next/server'
+import api from './api'
 
-export async function middleware(req: NextRequest) {
-  // Get the product id from the URL
-  const url = req.nextUrl.clone()
-  const [, , id] = url.pathname.split('/')
+export const config = {
+  matcher: '/product/:path',
+}
+
+export async function middleware(req) {
+  // Extract id from pathname
+  const [, , id] = req.nextUrl.pathname.split('/')
 
   // Check on upstash if we have stock
   const hasStock = await api.cache.get(id)
 
   // Rewrite to the correct url
-  url.pathname = hasStock ? \`/product/\${id}/\` : \`/product/\${id}/no-stock\`
-  return NextResponse.rewrite(url)
+  req.nextUrl.pathname = hasStock
+    ? \`/product/\${id}/\`
+    : \`/product/\${id}/no-stock\`
+
+  // Return rewrited path
+  return NextResponse.rewrite(req.nextUrl)
 }
+
 `}
         </Snippet>
         <Text>

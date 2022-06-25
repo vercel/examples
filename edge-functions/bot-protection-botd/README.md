@@ -25,36 +25,7 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 ## How it works
 
-We do bot detection at the edge with the following code:
-
-```ts
-async function handler(req: NextRequest) {
-  const res = await botdEdge(req)
-
-  if (res && res.status !== 200) {
-    // Bot detected!
-    const url = req.nextUrl.clone()
-    url.pathname = '/bot-detected'
-    const rewrite = NextResponse.rewrite(url)
-    res.headers.forEach((v, k) => rewrite.headers.set(k, v))
-
-    return rewrite
-  }
-  return res
-}
-```
-
-If you try and go to [/blocked](https://botd.vercel.sh/blocked) you'll see the [/bot-detected](pages/bot-detected.tsx) page being rendered instead, done by a rewrite from the edge after it identifies you as a bot. We do that by changing the user agent of the request before calling `botdEdge`, like so:
-
-```ts
-// From lib/demo-middleware.ts
-if (pathname === '/blocked') {
-  ev.request.headers.set(
-    'user-agent',
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/90.0.4430.93 Safari/537.36'
-  )
-}
-```
+If you try and go to [/blocked](https://edge-functions-bot-protection-botd.vercel.app) you'll see the [/bot-detected](pages/bot-detected.tsx) page being rendered instead, done by a rewrite from the edge after it identifies you as a bot. We do that by changing the user agent of the request before making a request to Botd.
 
 ## Getting Started
 
@@ -87,3 +58,5 @@ npm run dev
 yarn
 yarn dev
 ```
+
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).

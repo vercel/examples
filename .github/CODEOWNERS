@@ -1,6 +1,7 @@
 # Learn how to add code owners here:
 # https://help.github.com/en/articles/about-code-owners
 
-* @okbel @lfades @goncy @gbibeaul @dominiksipowicz
-solutions/monorepo @jaredpalmer @gaspar09 @gsoltis @becca
+* @okbel @lfades @goncy @GuiBibeau @dominiksipowicz
+solutions/monorepo @jaredpalmer @gaspar09 @gsoltis @becca @tknickman
+solutions/microfrontends @jaredpalmer @gaspar09 @gsoltis @becca
 build-output-api @tootallnate @styfle @EndangeredMassa

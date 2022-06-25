@@ -16,6 +16,7 @@ that are listed below.
 - [Edge Functions](./edge-functions)
 - [Edge Middleware](./edge-middleware)
 - [Image Optimization](./image-optimization)
+- [On-Demand Incremental Static Regeneration (ISR)](./on-demand-isr)
 - [Overrides](./overrides)
 - [Prerender Functions](./prerender-functions)
 - [Preview Mode](./preview-mode)

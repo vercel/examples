@@ -1,9 +1,14 @@
-/* eslint-disable @next/next/no-server-import-in-page */
 import { NextRequest, NextResponse } from 'next/server'
 import { getBucket } from '@lib/ab-testing'
 import { HOME_BUCKETS, MARKETING_BUCKETS } from '@lib/buckets'
 
-const BUCKETS = {
+type Route = {
+  page: string
+  cookie: string
+  buckets: readonly string[]
+}
+
+const ROUTES: Record<string, Route | undefined> = {
   '/home': {
     page: '/home',
     cookie: 'bucket-home',
@@ -16,32 +21,35 @@ const BUCKETS = {
   },
 }
 
+export const config = {
+  matcher: ['/home', '/marketing'],
+}
+
 export default function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
-  const route = Object.entries(BUCKETS).find(([route]) => pathname === route)
+  const route = ROUTES[pathname]
 
   if (!route) return
 
-  const data = route[1]
   // Get the bucket from the cookie
-  let bucket = req.cookies.get(data.cookie)
+  let bucket = req.cookies.get(route.cookie)
   let hasBucket = !!bucket
 
   // If there's no active bucket in cookies or its value is invalid, get a new one
-  if (!bucket || !data.buckets.includes(bucket as any)) {
-    bucket = getBucket(data.buckets)
+  if (!bucket || !route.buckets.includes(bucket as any)) {
+    bucket = getBucket(route.buckets)
     hasBucket = false
   }
 
   // Create a rewrite to the page matching the bucket
   const url = req.nextUrl.clone()
-  url.pathname = `${data.page}/${bucket}`
+  url.pathname = `${route.page}/${bucket}`
   const res = NextResponse.rewrite(url)
 
   // Add the bucket to the response cookies if it's not there
   // or if its value was invalid
   if (!hasBucket) {
-    res.cookies.set(data.cookie, bucket)
+    res.cookies.set(route.cookie, bucket)
   }
 
   return res

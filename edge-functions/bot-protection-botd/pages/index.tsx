@@ -29,8 +29,8 @@ export default function Index() {
       <Headers path="/omit" />
       <Text className="mb-4">
         By checking the request to this page in the network tab in devtools,
-        you'll be able to see how is latency affected by Botd after looking at
-        the headers.
+        you&apos;ll be able to see how is latency affected by Botd after looking
+        at the headers.
       </Text>
       <Text className="mb-4">
         After the page loads, we load the botd script and then we can start

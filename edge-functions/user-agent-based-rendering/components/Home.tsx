@@ -37,12 +37,12 @@ function Home() {
         <Text>
           The example has a <Code>pages/_viewport</Code> folder with pages for{' '}
           <Code>mobile</Code> and <Code>desktop</Code>, alongside a root
-          middleware (<Code>pages/_middleware</Code>) that will handle all
-          requests to our pages:
+          middleware (<Code>/middleware.js</Code>) that will handle all requests
+          to our pages:
         </Text>
         <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-4 transition-all font-mono">
-          {`/pages
-  /_middleware.ts
+          {`/middleware.ts
+/pages
   /_viewport
     /mobile.tsx
     /desktop.tsx`}
@@ -55,36 +55,26 @@ function Home() {
           In the middleware, we now check the User-Agent header and rewrite to
           the correct page:
         </Text>
-        <Snippet>{`import { NextRequest, NextResponse } from 'next/server'
+        <Snippet>{`import { NextRequest, NextResponse, userAgent } from 'next/server'
 
-// RegExp for public files
-const PUBLIC_FILE = /\.(.*)$/
+// Set pathname were middleware will be executed
+export const config = {
+  matcher: '/',
+}
 
 export function middleware(req) {
-  // Clone the URL
-  const url = req.nextUrl.clone()
-
-  // Skip public files
-  if (PUBLIC_FILE.test(url.pathname)) return
-
-  // Prevent internals from being accessed canonically
-  if (url.pathname.startsWith(\`/_viewport\`)) {
-    url.pathname = '/404'
-    return NextResponse.rewrite(url)
-  }
+  // Parse user agent
+  const { device } = userAgent(req)
 
   // Check the viewport
-  const viewport = ['android', 'ios'].includes(req.ua?.os.name?.toLowerCase()!)
-    ? 'mobile'
-    : 'desktop'
+  const viewport = device.type === 'mobile' ? 'mobile' : 'desktop'
 
   // Update the expected url
-  url.pathname = \`_viewport/\${viewport}\${url.pathname}\`
+  req.nextUrl.pathname = \`_viewport/\${viewport}\`
 
   // Return rewrited response
-  return NextResponse.rewrite(url)
-}
-`}</Snippet>
+  return NextResponse.rewrite(req.nextUrl)
+}`}</Snippet>
         <Text>
           Now, everytime a request comes in we will check the User-Agent and
           rewrite the user to the correct page:

@@ -21,22 +21,24 @@ https://edge-functions-cookies.vercel.app
 
 Since you can read cookies on the edge and rewrite the user to a statically generated page, eliminates the need of using getServerSideProps + redirect just to access the cookie, hence improving your site's performance and mantaining the same url.
 
-The magic happens in the [`_middleware.ts` file](pages/_middleware.ts):
+The magic happens in the [`middleware.ts` file](middleware.ts):
 
 ```javascript
 import { NextRequest, NextResponse } from 'next/server'
 
-export function middleware(req: NextRequest) {
-  const url = req.nextUrl.clone()
-  // Only rewrite requests to `/`, as _middleware on the `/pages` root will be executed in every request of the app.
-  if (url.pathname === '/') {
-    // Parse the cookie
-    const isInBeta = JSON.parse(req.cookies['beta'] || 'false')
+export const config = {
+  matcher: '/',
+}
 
-    // Rewrite to the correct page
-    url.pathname = `/${isInBeta ? 'beta' : 'non-beta'}`
-    return NextResponse.rewrite(url)
-  }
+export function middleware(req: NextRequest) {
+  // Parse the cookie
+  const isInBeta = JSON.parse(req.cookies.get('beta') || 'false')
+
+  // Update url pathname
+  req.nextUrl.pathname = `/${isInBeta ? 'beta' : 'non-beta'}`
+
+  // Rewrite to url
+  return NextResponse.rewrite(req.nextUrl)
 }
 ```
 

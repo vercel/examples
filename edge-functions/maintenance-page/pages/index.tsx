@@ -26,26 +26,29 @@ function Home() {
       <section className="flex flex-col gap-3">
         <Text variant="h2">How to do it?</Text>
         <Text>
-          You can add a <Code>_middleware.js</Code> file inside a{' '}
-          <Code>big-promo</Code> folder with a <Code>index.js</Code> file for
-          the page. Inside <Code>_middleware.js</Code> you can do something like
+          You can add a <Code>middleware.js</Code> file in the root of your
+          project. Inside <Code>middleware.js</Code> you can do something like
           this:
         </Text>
-        <Snippet>{`import { NextResponse } from 'next/server'
+        <Snippet>{`import { NextRequest, NextResponse } from 'next/server'
 
-export async function middleware(req) {
-  // Clone the URL
-  const url = req.nextUrl.clone()
+export const config = {
+  matcher: '/big-promo',
+}
 
-  // Get value from a redis cache
-  const isInMaintenanceMode = api.get('...')
+export async function middleware(req: NextRequest) {
+  // Filter unwanted paths
+  if (req.nextUrl.pathname !== '/big-promo') return NextResponse.next()
+
+  // Simulate connection with a redis cache
+  const isInMaintenanceMode = Math.random() >= 0.5
 
   // If is in maintenance mode, point the url pathname to the maintenance page
   if (isInMaintenanceMode) {
-    url.pathname = \`/maintenance\`
+    req.nextUrl.pathname = \`/maintenance\`
 
     // Rewrite to the url
-    return NextResponse.rewrite(url)
+    return NextResponse.rewrite(req.nextUrl)
   }
 }`}</Snippet>
         <Text>
