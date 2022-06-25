@@ -4,7 +4,11 @@ import { Text, Code, List, Link, Button } from '@vercel/examples-ui'
 import { useValue } from '@lib/use-configcat'
 import ConfigcatLayout from '@components/layout'
 
-export default function Index({ isMyFirstFeatureEnabled }) {
+export default function Index({
+  isMyFirstFeatureEnabled,
+}: {
+  isMyFirstFeatureEnabled: boolean
+}) {
   const clientSideFeatureEnabled = useValue('clientSideFeatureEnabled', false)
   const removeCookie = (name: string) => {
     Cookies.remove(name)
@@ -76,7 +80,7 @@ export default function Index({ isMyFirstFeatureEnabled }) {
 Index.Layout = ConfigcatLayout
 
 export async function getStaticProps() {
-  const configcat = createClient(process.env.NEXT_PUBLIC_CONFIGCAT_SDK_KEY)
+  const configcat = createClient(process.env.NEXT_PUBLIC_CONFIGCAT_SDK_KEY!)
   const isMyFirstFeatureEnabled = await configcat.getValueAsync(
     'isMyFirstFeatureEnabled',
     false

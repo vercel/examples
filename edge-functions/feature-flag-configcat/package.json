@@ -10,24 +10,24 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/examples-ui": "^0.3.2",
-    "configcat-js": "^5.7.1",
-    "configcat-node": "^6.7.1",
+    "@vercel/examples-ui": "^0.3.51",
+    "configcat-js": "^6.0.0",
+    "configcat-node": "^7.0.0",
     "js-cookie": "^3.0.1",
-    "next": "^12.1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "next": "canary",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
-    "@types/js-cookie": "^3.0.1",
-    "@types/node": "^17.0.14",
-    "@types/react": "^17.0.38",
-    "autoprefixer": "^10.4.2",
-    "eslint": "^8.9.0",
-    "eslint-config-next": "^12.1.0",
-    "postcss": "^8.4.6",
-    "prettier": "^2.5.1",
-    "tailwindcss": "^3.0.18",
-    "typescript": "^4.5.5"
+    "@types/js-cookie": "^3.0.2",
+    "@types/node": "^18.0.0",
+    "@types/react": "latest",
+    "autoprefixer": "^10.4.7",
+    "eslint": "^8.18.0",
+    "eslint-config-next": "canary",
+    "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
+    "tailwindcss": "^3.1.4",
+    "typescript": "^4.7.4"
   }
 }

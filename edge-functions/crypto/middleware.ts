@@ -10,7 +10,7 @@ export const config = {
 
 export function middleware(req: NextRequest) {
   const token = crypto.randomUUID()
-  const url = new URL(req.url)
+  const url = req.nextUrl
 
   url.pathname = '/api/crypto'
   url.searchParams.set('token', token)

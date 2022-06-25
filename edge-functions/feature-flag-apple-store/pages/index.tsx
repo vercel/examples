@@ -1,17 +1,18 @@
+import type { FC } from 'react'
 import Image from 'next/image'
 
-function ProductCard({ src, href, name }) {
-  return (
-    <li className="min-w-[120px]">
-      <a className="flex flex-col" href={href}>
-        <Image width={120} height={78} alt={name} src={src} />
-        <p className="pt-3 whitespace-no-wrap text-sm font-semibold text-center no-underline hover:underline">
-          {name}
-        </p>
-      </a>
-    </li>
-  )
-}
+type ProductCardProps = { src: string; href: string; name: string }
+
+const ProductCard: FC<ProductCardProps> = ({ src, href, name }) => (
+  <li className="min-w-[120px]">
+    <a className="flex flex-col" href={href}>
+      <Image width={120} height={78} alt={name} src={src} />
+      <p className="pt-3 whitespace-no-wrap text-sm font-semibold text-center no-underline hover:underline">
+        {name}
+      </p>
+    </a>
+  </li>
+)
 
 export default function Home() {
   return (
