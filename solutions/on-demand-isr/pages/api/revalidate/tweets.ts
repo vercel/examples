@@ -5,7 +5,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (process.env.SECRET === req.headers['x-secret-key']) {
-    await res.unstable_revalidate('/tweets')
+    await res.revalidate('/tweets')
 
     return res.json({ revalidated: true })
   }

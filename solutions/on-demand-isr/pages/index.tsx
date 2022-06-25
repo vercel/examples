@@ -104,9 +104,8 @@ export async function getStaticProps() {
         </Snippet>
         <Text>
           Would not be great if we only regenerate this page when our data
-          changes? Since Next.js 12.1 we can do that using the{' '}
-          <Code>res.unstable_revalidate</Code> (res.revalidate if you come from
-          a future where this feature is already stable) function in our{' '}
+          changes? Since Next.js 12.2.0 we can do that using the{' '}
+          <Code>res.revalidate</Code> function in our{' '}
           <Link href="https://nextjs.org/docs/api-routes/introduction">
             API Routes
           </Link>
@@ -115,7 +114,7 @@ export async function getStaticProps() {
         <Snippet>
           {`export default async function handler(_req, res) {
   // Revalidate our '/' path
-  await res.unstable_revalidate('/')
+  await res.revalidate('/')
 
   // Return a response to confirm everything went ok
   return res.json({revalidated: true})
@@ -131,10 +130,10 @@ export async function getStaticProps() {
           bots, etc. That might fire when our content has been changed.
         </Text>
         <Text>
-          Calling <Code>unstable_revalidate</Code> will run{' '}
-          <Code>getStaticProps</Code> for that path synchronously so we can{' '}
-          <Code>await</Code> it. If you need to revalidate multiple paths you
-          will need to run <Code>unstable_revalidate</Code> once for every path:
+          Calling <Code>revalidate</Code> will run <Code>getStaticProps</Code>{' '}
+          for that path synchronously so we can <Code>await</Code> it. If you
+          need to revalidate multiple paths you will need to run{' '}
+          <Code>revalidate</Code> once for every path:
         </Text>
         <Snippet>
           {`export default async function handler(_req, res) {
@@ -142,7 +141,7 @@ export async function getStaticProps() {
   const paths = await api.pathsToRevalidate()
 
   // Revalidate every path
-  await Promise.all(paths.map(res.unstable_revalidate))
+  await Promise.all(paths.map(res.revalidate))
 
   // Return a response to confirm everything went ok
   return res.json({revalidated: true})
@@ -150,7 +149,7 @@ export async function getStaticProps() {
 `}
         </Snippet>
         <Text>
-          We have to also take in count that revalidating a path will run the{' '}
+          We have to also keep in mind that revalidating a path will run the{' '}
           <Code>getStaticProps</Code> serverless function for that specific
           path, which will count for our{' '}
           <Link href="https://vercel.com/docs/concepts/limits/overview#typical-monthly-usage-guidelines">
@@ -171,7 +170,7 @@ export async function getStaticProps() {
   const paths = await api.pathsToRevalidate()
 
   // Revalidate every path without awaiting
-  paths.forEach(res.unstable_revalidate)
+  paths.forEach(res.revalidate)
 
   // Return a response to confirm everything went ok
   return res.json({revalidated: true})
