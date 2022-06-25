@@ -19,8 +19,8 @@ export const config = {
 }
 
 export async function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl
-  const flag = FLAGS[pathname]
+  const url = req.nextUrl
+  const flag = FLAGS[url.pathname]
 
   if (!flag) return
 
@@ -28,9 +28,8 @@ export async function middleware(req: NextRequest) {
     req.cookies.get(flag.cookie) || (getValue(flag.name) ? '1' : '0')
 
   // Create a rewrite to the page matching the flag
-  const res = NextResponse.rewrite(
-    new URL(flag.rewrite(value === '1'), req.url)
-  )
+  url.pathname = flag.rewrite(value === '1')
+  const res = NextResponse.rewrite(url)
 
   // Add the cookie to the response if it's not present
   if (!req.cookies.has(flag.cookie)) {
