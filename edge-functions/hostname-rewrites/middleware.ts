@@ -6,7 +6,7 @@ export const config = {
 }
 
 export default async function middleware(req: NextRequest) {
-  const url = new URL(req.nextUrl)
+  const url = req.nextUrl
 
   // Get hostname (e.g. vercel.com, test.vercel.app, etc.)
   const hostname = req.headers.get('host')

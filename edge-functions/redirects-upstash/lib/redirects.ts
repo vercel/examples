@@ -13,7 +13,7 @@ type LocalRedirects = {
 }
 
 export default async function redirects(req: NextRequest) {
-  const url = new URL(req.url)
+  const url = req.nextUrl
   let start = Date.now()
 
   // Find the redirect from the local JSON file, do note this JSON shouldn't be

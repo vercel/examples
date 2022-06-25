@@ -10,7 +10,7 @@ export const config = {
 }
 
 export default async function CryptoEdgeAPIRoute(request: NextRequest) {
-  const url = new URL(request.url)
+  const url = request.nextUrl
   const fromMiddleware = url.searchParams.get('token') ?? 'unset'
 
   const plainText = 'Hello from the Edge!'
