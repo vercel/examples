@@ -1,5 +1,6 @@
-import React, {
+import {
   type FC,
+  type ReactNode,
   createContext,
   useContext,
   useState,
@@ -9,9 +10,9 @@ import { createClient, createConsoleLogger } from 'configcat-js'
 
 type ConfigCatClient = ReturnType<typeof createClient>
 
-const configcatContext = createContext<ConfigCatClient>(null)
+const configcatContext = createContext<ConfigCatClient | undefined>(undefined)
 
-export const ConfigcatProvider: FC<{ children: React.ReactNode }> = ({
+export const ConfigcatProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [client, setClient] = useState<ConfigCatClient>()
@@ -19,7 +20,7 @@ export const ConfigcatProvider: FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     // Load the configcat client in the browser
     const configCatClient = createClient(
-      process.env.NEXT_PUBLIC_CONFIGCAT_SDK_KEY,
+      process.env.NEXT_PUBLIC_CONFIGCAT_SDK_KEY!,
       {
         logger:
           process.env.NODE_ENV === 'development'
