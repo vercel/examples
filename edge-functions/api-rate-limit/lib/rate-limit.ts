@@ -3,8 +3,6 @@
  * Note: We use this lib in multiple demos, feel free to
  * use it in your own projects.
  */
-// eslint-disable-next-line @next/next/no-server-import-in-page
-import type { NextRequest } from 'next/server'
 
 export interface RateLimitContextBase {
   id: string
@@ -14,18 +12,21 @@ export interface RateLimitContextBase {
 }
 
 export interface RateLimitContext extends RateLimitContextBase {
-  request: NextRequest
+  request: Request
+  response?: Response
   headers: readonly [string | null, string | null, string | null]
   onRateLimit: OnRateLimit
 }
 
 export type RateLimitHandler = (
-  request: NextRequest
+  request: Request,
+  response?: Response
 ) => Promise<RateLimitResult> | RateLimitResult
 
 export type RateLimitResult =
   | (RateLimitContextBase & {
-      request?: NextRequest
+      request?: Request
+      response?: Response
       headers?: RateLimitHeaders
       onRateLimit?: OnRateLimit
     })
@@ -69,8 +70,8 @@ const rateLimited: OnRateLimit = ({ id }) => {
   )
 }
 
-async function rateLimit(context: RateLimitContext) {
-  let { headers, id, limit, timeframe, count, onRateLimit } = context
+async function rateLimit(context: RateLimitContext): Promise<Response> {
+  let { headers, id, limit, timeframe, count, onRateLimit, response } = context
 
   // Temporal logging
   const start = Date.now()
@@ -86,7 +87,7 @@ async function rateLimit(context: RateLimitContext) {
     console.error('Rate limit `count` failed with:', err)
     // If the count function fails we'll ignore rate limiting and
     // return a successful response to avoid blocking the request
-    return new Response(null)
+    return response || new Response(null)
   }
 
   const h = countOrRes instanceof Response ? countOrRes.headers : new Headers()
@@ -111,18 +112,26 @@ async function rateLimit(context: RateLimitContext) {
 
     return res
   }
+  // If there's a response in context, add the headers to it instead
+  if (response) {
+    for (const [key, value] of h) {
+      response.headers.set(key, value)
+    }
+    return response
+  }
   return new Response(null, { headers: h })
 }
 
 export const initRateLimit = (fn: RateLimitHandler) =>
-  async function isRateLimited(request: NextRequest) {
-    const ctx = await fn(request)
+  async function isRateLimited(request: Request, response?: Response) {
+    const ctx = await fn(request, response)
 
     if (ctx instanceof Response) return ctx
 
     return rateLimit({
       ...ctx,
       request: ctx.request ?? request,
+      response: ctx.response ?? response,
       headers: getHeaders(ctx.headers),
       onRateLimit: ctx.onRateLimit ?? rateLimited,
     })
