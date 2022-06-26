@@ -1,7 +1,7 @@
 ---
-name: API Rate Limiting by IP and API Keys with Upstash
+name: IP Blocking with Upstash
 slug: ip-blocking
-description: Template featuring API Rate limiting by IP and API Keys at the edge using Upstash.
+description: Template featuring IP Blocking at the edge using Upstash.
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind
