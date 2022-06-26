@@ -1,8 +1,33 @@
 import { Layout } from '@vercel/examples-ui'
-import Explainer from '@components/explainer'
+import { Router, useRouter } from 'next/router'
+import { Page, Text, Code, Link, Button } from '@vercel/examples-ui'
+
+import { invalidateAuth, requestAuth } from '@lib/auth'
+import { USER_TOKEN } from '@lib/constants'
 
 export default function Protected() {
-  return <Explainer />
+  const { reload } = useRouter()
+  const handleRemoveCookie = () => {
+    invalidateAuth().then(() => reload())
+  }
+  return (
+    <Page>
+      <div className="text-center mb-6">
+        <Text variant="h1" className="mb-4">
+          JWT Authentication (Protected page)
+        </Text>
+      </div>
+      <section className="space-y-4">
+        <Text>
+          This page is protected, you cannot reach it unless you have the{' '}
+          <Code>{USER_TOKEN}</Code> JWT Cookie. If you remove the cookie, the
+          next time you visit this page, you will be redirected to the index
+          page <Code>/</Code>.
+        </Text>
+        <Button onClick={handleRemoveCookie}>Remove cookie and Reload</Button>
+      </section>
+    </Page>
+  )
 }
 
 Protected.Layout = Layout
