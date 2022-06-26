@@ -1,13 +1,13 @@
 // eslint-disable-next-line @next/next/no-server-import-in-page
 import type { NextRequest } from 'next/server'
-import { ipRateLimit } from '@lib/ip-rate-limit'
+import { tokenRateLimit } from '@lib/api/keys'
 
 export const config = {
   runtime: 'experimental-edge',
 }
 
 export default async function handler(req: NextRequest) {
-  const res = await ipRateLimit(req)
+  const res = await tokenRateLimit(req)
   // If the status is not 200 then it has been rate limited.
   if (res.status !== 200) return res
 
