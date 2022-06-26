@@ -1,97 +1,67 @@
 import { useState } from 'react'
 import useSWR from 'swr'
-import {
-  Layout,
-  Page,
-  Button,
-  Input,
-  Text,
-  Link,
-  Code,
-} from '@vercel/examples-ui'
+import { Layout, Page, Button, Text, Link } from '@vercel/examples-ui'
 import fetchAPI from '@lib/fetch-api'
+import ApiRequest from '@components/api-request'
 
-function Index() {
+function RateLimit() {
   const [loading, setLoading] = useState<boolean>(false)
-  const { data, error, mutate } = useSWR('/api/rules/ip')
-  const { myIp, rules } = data || {}
+  const [selectedKey, setKey] = useState<string>('')
+  const { data, error, mutate } = useSWR('/api/keys')
+  const apiKeys = data?.apiKeys
 
   return (
     <Page>
       <div className="text-center mb-6">
         <Text variant="h1" className="mb-4">
-          IP Blocking with Upstash
+          API Rate Limiting with Upstash
         </Text>
         <Text className="mb-4">
           With <i className="font-semibold">Vercel&apos;s Edge Middleware</i>{' '}
-          we&apos;re able to execute functions at the edge level and act on
-          mid-flight requests instantly. This example uses Upstash for API rate
-          limiting and to add rules that allow us to block certain IPs.
+          we&apos;re able to do API rate limiting by keeping a counter of
+          requests by IP or API token. For the demo below you can send a maximum
+          of <b>5</b> requests every <b>10</b> seconds, which increases if using
+          an API token.
         </Text>
         <Text className="mb-4">
-          Visit <Link href="/rate-limit">/rate-limit</Link> to see API rate
-          limiting in action.
-        </Text>
-        <Text>
-          Add IPs to block them below, next go to{' '}
-          <Link href="/am-i-blocked" prefetch={false}>
-            /am-i-blocked
-          </Link>{' '}
-          under the IP and it&apos;ll be blocked. Your IP is:{' '}
-          <Code>{myIp}</Code>.
+          Visit the <Link href="/">homepage</Link> to see IP blocking instead.
         </Text>
       </div>
 
-      <form
-        className="flex py-8"
-        onSubmit={async (e) => {
-          e.preventDefault()
+      <ApiRequest token={selectedKey} />
 
-          const form: any = e.target
-          const ip = form.ip.value
-
-          setLoading(true)
-          await fetchAPI('/rules/ip', {
-            method: 'PUT',
-            data: { ip, action: 'block' },
-          }).finally(() => {
-            setLoading(false)
-            form.reset()
-          })
-          await mutate()
-        }}
-      >
-        <Input name="ip" placeholder={myIp || 'IP'} />
-        <Button type="submit" className="ml-4" width="120px" loading={loading}>
-          Block IP
-        </Button>
-      </form>
-
-      <div>
-        {rules ? (
-          rules.length ? (
+      <div className="grid">
+        {apiKeys ? (
+          apiKeys.length ? (
             <ul className="border-accents-2 border rounded-md bg-white divide-y divide-accents-2 my-6">
-              {rules.map(([ip, { action }]: any) => (
-                <li
-                  key={ip}
-                  className="flex items-center justify-content py-6 px-6"
-                >
-                  <span className="flex-1">
-                    <h3 className="font-semibold text-black">{ip}</h3>
-                    <p className="font-medium text-accents-4">{action}</p>
+              {apiKeys.map(([key, { limit, timeframe }]: any) => (
+                <li key={key} className="flex items-center justify-content p-6">
+                  <span className="flex-1 mr-4 sm:mr-8">
+                    <h3 className="text-sm font-semibold text-black break-all">
+                      {key}
+                    </h3>
+                    <p className="font-medium text-accents-4">
+                      {limit}req/{timeframe}s
+                    </p>
                   </span>
-                  <span className="w-48 flex justify-end">
+                  <span className="flex justify-end flex-col sm:flex-row">
+                    <Button
+                      className="mb-2 sm:mr-2 sm:mb-0"
+                      onClick={() => setKey(selectedKey === key ? '' : key)}
+                      size="sm"
+                      variant={selectedKey === key ? 'primary' : 'secondary'}
+                    >
+                      Use this key
+                    </Button>
                     <Button
                       onClick={async () => {
-                        await fetchAPI(`/rules/ip?ip=${ip}`, {
-                          method: 'DELETE',
-                        })
+                        await fetchAPI(`/keys?key=${key}`, { method: 'DELETE' })
                         await mutate()
                       }}
                       size="sm"
                       variant="secondary"
                     >
-                      Remove Rule
+                      Remove
                     </Button>
                   </span>
                 </li>
@@ -99,15 +69,30 @@ function Index() {
             </ul>
           ) : null
         ) : error ? (
-          <div>Failed to load rules</div>
+          <div>Failed to load API Keys</div>
         ) : (
-          <div>Loading Rules...</div>
+          <div>Loading API Keys...</div>
         )}
+
+        <Button
+          type="button"
+          className="sm:w-44 sm:justify-self-end"
+          onClick={async () => {
+            setLoading(true)
+            await fetchAPI('/keys', { method: 'PUT' }).finally(() => {
+              setLoading(false)
+            })
+            await mutate()
+          }}
+          loading={loading}
+        >
+          Add new API Key
+        </Button>
       </div>
     </Page>
   )
 }
 
-Index.Layout = Layout
+RateLimit.Layout = Layout
 
-export default Index
+export default RateLimit
