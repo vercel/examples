@@ -17,7 +17,4 @@ export async function middleware(req: NextRequest, res: NextResponse) {
   if (!verifiedToken) {
     return NextResponse.redirect(new URL('/', req.url))
   }
-
-  // let the request go forward if the token is valid
-  return res
 }
