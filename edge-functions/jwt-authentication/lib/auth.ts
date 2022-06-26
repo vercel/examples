@@ -11,7 +11,7 @@ interface UserJwtPayload {
 }
 
 /**
- * Verifies the user's JWT token
+ * Verifies the user's JWT token and returns its payload if it's valid.
  */
 export async function verifyAuth(request: NextRequest) {
   const token = request.cookies.get(USER_TOKEN)
