@@ -23,9 +23,6 @@ function RateLimit() {
           of <b>5</b> requests every <b>10</b> seconds, which increases if using
           an API token.
         </Text>
-        <Text className="mb-4">
-          Visit the <Link href="/">homepage</Link> to see IP blocking instead.
-        </Text>
       </div>
 
       <ApiRequest token={selectedKey} />

@@ -1,7 +1,7 @@
 ---
 name: API Rate Limiting with API keys and IP Blocking
 slug: api-rate-limit-and-tokens
-description: Middleware demo of IP blocking also featuring API rate limiting with Upstash, with and without API keys.
+description: Template featuring API Rate limiting by IP and API Keys at the edge using Upstash.
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind
@@ -11,7 +11,7 @@ demoUrl: https://edge-functions-api-rate-limit-and-tokens.vercel.app
 
 # API Rate Limiting with API keys and IP Blocking
 
-Middleware demo of IP blocking also featuring API rate limiting with Upstash, with and without API keys.
+The example features API Rate limiting by IP and API Keys at the edge using Upstash.
 
 ## Demo
 
