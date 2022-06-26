@@ -8,7 +8,6 @@ export const config = {
 }
 
 export async function middleware(req: NextRequest, res: NextResponse) {
-  const url = new URL(req.url)
   const token = req.cookies.get(USER_TOKEN)
 
   // validate the user is authenticated
@@ -16,8 +15,7 @@ export async function middleware(req: NextRequest, res: NextResponse) {
 
   // redirect if the token is invalid
   if (!verifiedToken) {
-    url.pathname = '/'
-    return NextResponse.redirect(url)
+    return NextResponse.redirect(new URL('/', req.url))
   }
 
   // let the request go forward if the token is valid
