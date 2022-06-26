@@ -16,7 +16,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       }}
     >
       <Layout
-        title="API Rate Limiting with Upstash"
+        title="API Rate Limiting by IP and API Keys with Upstash"
         path="edge-functions/api-rate-limit-and-tokens"
         deployButton={{
           env: [
