@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "@vercel/examples-ui": "latest",
-    "jose": "^4.8.1",
-    "nanoid": "^4.0.0",
     "next": "canary",
     "react": "latest",
     "react-dom": "latest",

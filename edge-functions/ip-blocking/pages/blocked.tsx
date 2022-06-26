@@ -1,4 +1,3 @@
-import React from 'react'
 import { Layout, Page, Link, Text } from '@vercel/examples-ui'
 
 const Index = () => (
