@@ -1,5 +1,4 @@
-import type { NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { blockedIp } from '@lib/rules/ip'
 
 export async function middleware(req: NextRequest) {
