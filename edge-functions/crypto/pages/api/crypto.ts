@@ -1,11 +1,24 @@
+// eslint-disable-next-line @next/next/no-server-import-in-page
 import type { NextRequest } from 'next/server'
 
-export async function middleware(req: NextRequest) {
-  // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/subtle
+// ------------------
+// Using Crypto with Edge Functions
+// ------------------
+
+export const config = {
+  runtime: 'experimental-edge',
+}
+
+export default async function CryptoEdgeAPIRoute(request: NextRequest) {
+  const url = request.nextUrl
+  const fromMiddleware = url.searchParams.get('token') ?? 'unset'
+
   const plainText = 'Hello from the Edge!'
   const password = 'hunter2'
   const ptUtf8 = new TextEncoder().encode(plainText)
   const pwUtf8 = new TextEncoder().encode(password)
+
+  // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/subtle
   const pwHash = await crypto.subtle.digest('SHA-256', pwUtf8)
 
   // Encrypt
@@ -33,6 +46,7 @@ export async function middleware(req: NextRequest) {
       password,
       decryptedText,
       iv,
+      fromMiddleware,
     }),
     { headers: { 'Content-Type': 'application/json' } }
   )

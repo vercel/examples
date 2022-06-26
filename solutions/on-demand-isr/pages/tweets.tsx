@@ -1,3 +1,4 @@
+import type { FC } from 'react'
 import type { Tweet as ITweet } from '../types'
 
 import { Layout, Text, Page, Code, Link, Snippet } from '@vercel/examples-ui'
@@ -10,7 +11,7 @@ interface Props {
   date: string
 }
 
-const Tweet: React.VFC<{ tweet: ITweet }> = ({ tweet }) => {
+const Tweet: FC<{ tweet: ITweet }> = ({ tweet }) => {
   return (
     <div className={`flex flex-col shadow-lg overflow-hidden relative p-4`}>
       <Text className="mt-2 text-base leading-6 text-gray-500">
@@ -25,7 +26,10 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      tweets,
+      tweets: tweets.map((tweet) => ({
+        ...tweet,
+        text: encodeURIComponent(tweet.text),
+      })),
       date: new Date().toTimeString(),
     },
   }
@@ -39,15 +43,15 @@ function Tweets({ tweets, date }: Props) {
         <Text>
           Updated on <Code>{date}</Code>, this page is being revalidated by a
           webhook that fires when relevant tweets for #nextjs are made. The
-          webhook contains a secret key that validates the request is expected
-          to avoid DDOS attacks:
+          webhook contains a secret key that validates the request to avoid DDOS
+          attacks:
         </Text>
         <Snippet>
           {`export default async function handler(req, res) {
   // Check the secret
   if (process.env.SECRET === req.headers["x-secret-key"]) {
     // Revalidate /tweets route
-    await res.unstable_revalidate("/tweets")
+    await res.revalidate("/tweets")
 
     // Return a response for debugging
     return res.json({ revalidated: true })
