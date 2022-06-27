@@ -1,9 +1,9 @@
 // eslint-disable-next-line @next/next/no-server-import-in-page
-import { NextRequest } from 'next/server'
+import type { NextRequest, NextResponse } from 'next/server'
 import { nanoid } from 'nanoid'
 import { SignJWT, jwtVerify } from 'jose'
 import { USER_TOKEN, JWT_SECRET_KEY } from './constants'
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiResponse } from 'next'
 
 interface UserJwtPayload {
   jti: string
@@ -15,10 +15,10 @@ export class AuthError extends Error {}
 /**
  * Verifies the user's JWT token and returns its payload if it's valid.
  */
-export async function verifyAuth(request: NextRequest) {
-  const token = request.cookies.get(USER_TOKEN)
+export async function verifyAuth(req: NextRequest) {
+  const token = req.cookies.get(USER_TOKEN)
 
-  if (!token) throw new AuthError('Missing auth token')
+  if (!token) throw new AuthError('Missing user token')
 
   try {
     const verified = await jwtVerify(
@@ -32,9 +32,9 @@ export async function verifyAuth(request: NextRequest) {
 }
 
 /**
- * Adds the user token cookie to a response from api routes.
+ * Adds the user token cookie to a response.
  */
-export async function setUserCookie(response: NextApiResponse) {
+export async function setUserCookie(res: NextResponse) {
   const token = await new SignJWT({})
     .setProtectedHeader({ alg: 'HS256' })
     .setJti(nanoid())
@@ -42,14 +42,12 @@ export async function setUserCookie(response: NextApiResponse) {
     .setExpirationTime('2h')
     .sign(new TextEncoder().encode(JWT_SECRET_KEY))
 
-  response.setHeader('Set-Cookie', [
-    `${USER_TOKEN}=${token}; Path=/ ; Secure ; HttpOnly ; SameSite=Strict ; Max-Age=${
-      // 2 hours in ms
-      2 * 60 * 60 * 1000
-    } ;`,
-  ])
+  res.cookies.set(USER_TOKEN, token, {
+    httpOnly: true,
+    maxAge: 60 * 60 * 2, // 2 hours in seconds
+  })
 
-  return response
+  return res
 }
 
 /**

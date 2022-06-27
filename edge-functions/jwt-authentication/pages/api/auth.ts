@@ -1,22 +1,21 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+// eslint-disable-next-line @next/next/no-server-import-in-page
+import { type NextRequest } from 'next/server'
 import { setUserCookie } from '@lib/auth'
+import { jsonResponse } from '@lib/utils'
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export const config = {
+  runtime: 'experimental-edge',
+}
+
+export default async function handler(req: NextRequest) {
   if (req.method !== 'POST') {
-    return res.status(405).json({
-      error: { message: 'Method not allowed' },
-    })
+    return jsonResponse(405, { error: { message: 'Method not allowed' } })
   }
+
   try {
-    const resWithJwt = await setUserCookie(res)
-    return resWithJwt.status(200).json({ success: true })
+    return await setUserCookie(jsonResponse(200, { success: true }))
   } catch (err) {
     console.error(err)
-    return res
-      .status(401)
-      .json({ error: { message: 'Your token has expired.' } })
+    return jsonResponse(500, { error: { message: 'Authentication failed.' } })
   }
 }
