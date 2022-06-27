@@ -12,9 +12,10 @@ export default async function middleware(req: NextRequest) {
   const url = req.nextUrl
 
   if (pathname.startsWith('/product')) {
-    // Redirect paths that go directly to the variant
+    // Defaults to product
+    url.pathname = '/product'
     if (pathname != '/product') {
-      url.pathname = '/product'
+      // Redirect paths that go directly to the variant
       return NextResponse.redirect(url)
     }
 
@@ -24,14 +25,11 @@ export default async function middleware(req: NextRequest) {
       FEATURE_FLAGS.NEW_PRODUCT_PAGE
     )
 
-    if (productVariantValue === undefined) {
-      // Defaults to product/index if result is undefined.
-      url.pathname = `/product`
-    } else {
+    if (productVariantValue != undefined) {
       url.pathname = `/product/${productVariantValue ? 'a' : 'b'}`
     }
 
-    // Rewrite path based on the variant value
+    // Rewrite path based on the variant value or default to fallback
     return NextResponse.rewrite(url)
   }
 
