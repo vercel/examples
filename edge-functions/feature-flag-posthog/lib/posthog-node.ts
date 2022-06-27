@@ -11,7 +11,7 @@ export async function isFeatureFlagEnabled(
   distinctUserId: string,
   featureName: FEATURE_FLAGS
 ): Promise<boolean> {
-  console.log('isFeatureEnabled', distinctUserId, featureName)
+  console.log('isFeatureEnabled:', distinctUserId, featureName)
 
   const featureFlagValue = await getFeatureFlagVariant(
     distinctUserId,
@@ -19,7 +19,7 @@ export async function isFeatureFlagEnabled(
   )
 
   const featureEnabled = featureFlagValue ? true : false
-  console.log('featureEnabled', featureEnabled)
+  console.log('featureEnabled:', featureEnabled)
 
   return featureEnabled
 }
@@ -33,10 +33,14 @@ export async function isFeatureFlagEnabled(
  *          If the feature flag is a multvariate, then the value will be a string
  */
 export async function getFeatureFlagVariant(
-  distinctUserId: string,
+  distinctUserId: string = '',
   featureName: FEATURE_FLAGS
 ): Promise<string | boolean | undefined> {
-  console.log('getFeatureFlagVariant', distinctUserId, featureName)
+  console.log('getFeatureFlagVariant:', distinctUserId, featureName)
+
+  if (!distinctUserId) {
+    console.error("`distinctUserId` can't be empty")
+  }
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_POSTHOG_HOST}/decide?v=2`,
@@ -56,7 +60,5 @@ export async function getFeatureFlagVariant(
   }
 
   const data = await res.json()
-  console.log(data)
-
   return data.featureFlags[featureName]
 }

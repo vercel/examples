@@ -4,62 +4,70 @@ import { DISTINCT_ID_COOKIE_NAME, FEATURE_FLAGS } from '@lib/constants'
 import { getFeatureFlagVariant, isFeatureFlagEnabled } from '@lib/posthog-node'
 
 export const config = {
-  matcher: ['/product(.*)', '/about(.*)', '/marketing(.*)'],
+  matcher: ['/product', '/about', '/marketing'],
 }
 
 export default async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname
-  const response = new NextResponse()
+  const url = req.nextUrl
 
-  if (pathname.includes('/product')) {
+  if (pathname.startsWith('/product')) {
+    // Redirect paths that go directly to the variant
+    if (pathname != '/product') {
+      url.pathname = '/product'
+      return NextResponse.redirect(url)
+    }
+
+    const distinctUserID = req.cookies.get(DISTINCT_ID_COOKIE_NAME) ?? '0'
     const productVariantValue = await getFeatureFlagVariant(
-      req.cookies[DISTINCT_ID_COOKIE_NAME],
+      distinctUserID,
       FEATURE_FLAGS.NEW_PRODUCT_PAGE
     )
 
-    console.log(productVariantValue)
-
-    // Redirect path based on the variant value
-    return response.rewrite(
-      new URL(`/product/${productVariantValue}`, req.nextUrl)
-    )
-  }
-
-  if (pathname.includes('/marketing')) {
-    console.log('marketing')
-    // Redirect paths that go directly to the variant
-    if (pathname != '/marketing') {
-      return NextResponse.redirect(new URL('/marketing', req.url))
+    if (productVariantValue === undefined) {
+      // Defaults to product/index if result is undefined.
+      url.pathname = `/product`
+    } else {
+      url.pathname = `/product/${productVariantValue ? 'a' : 'b'}`
     }
 
+    // Rewrite path based on the variant value
+    return NextResponse.rewrite(url)
+  }
+
+  if (pathname.startsWith('/marketing')) {
+    // Redirect paths that go directly to the variant
+    if (pathname != '/marketing') {
+      url.pathname = '/marketing'
+      return NextResponse.redirect(url)
+    }
+
+    const distinctUserID = req.cookies.get(DISTINCT_ID_COOKIE_NAME) ?? '0'
     const newMarketingPageFlagEnabled = await isFeatureFlagEnabled(
-      req.cookies[DISTINCT_ID_COOKIE_NAME],
+      distinctUserID,
       FEATURE_FLAGS.NEW_MARKETING_PAGE
     )
 
-    return NextResponse.rewrite(
-      new URL(
-        newMarketingPageFlagEnabled ? '/marketing/b' : '/marketing',
-        req.url
-      )
-    )
+    // Rewrite path based on the variant value
+    url.pathname = newMarketingPageFlagEnabled ? '/marketing/b' : '/marketing'
+    return NextResponse.rewrite(url)
   }
 
-  if (pathname.includes('/about')) {
-    console.log('about')
-
+  if (pathname.startsWith('/about')) {
     // Redirect paths that go directly to the variant
     if (pathname != '/about') {
-      return NextResponse.redirect(new URL('/about', req.url))
+      url.pathname = '/about'
+      return NextResponse.redirect(url)
     }
 
+    const distinctUserID = req.cookies.get(DISTINCT_ID_COOKIE_NAME) ?? '0'
     const newAboutPageFlagEnabled = await isFeatureFlagEnabled(
-      req.cookies[DISTINCT_ID_COOKIE_NAME],
+      distinctUserID,
       FEATURE_FLAGS.NEW_ABOUT_PAGE
     )
 
-    return NextResponse.rewrite(
-      new URL(newAboutPageFlagEnabled ? '/about/b' : '/about', req.url)
-    )
+    // Rewrite path based on the variant value
+    url.pathname = newAboutPageFlagEnabled ? '/about/b' : '/about'
+    return NextResponse.rewrite(url)
   }
 }
