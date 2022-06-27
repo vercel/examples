@@ -9,17 +9,19 @@ export const config = {
 
 export default async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname
+  const response = new NextResponse()
 
   if (pathname.includes('/product')) {
-    console.log('product')
     const productVariantValue = await getFeatureFlagVariant(
-      req.cookies.get(DISTINCT_ID_COOKIE_NAME),
+      req.cookies[DISTINCT_ID_COOKIE_NAME],
       FEATURE_FLAGS.NEW_PRODUCT_PAGE
     )
 
-    // redirect to the path based on the variant value
-    return NextResponse.rewrite(
-      new URL(`/product/${productVariantValue}`, req.url)
+    console.log(productVariantValue)
+
+    // Redirect path based on the variant value
+    return response.rewrite(
+      new URL(`/product/${productVariantValue}`, req.nextUrl)
     )
   }
 
