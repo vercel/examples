@@ -26,7 +26,8 @@ function Home() {
       <section className="flex flex-col gap-3">
         <Text variant="h2">How to do it?</Text>
         <Text>
-          You can add a <Code>middleware.js</Code> file in the root of your project. Inside <Code>middleware.js</Code> you can do something like
+          You can add a <Code>middleware.js</Code> file in the root of your
+          project. Inside <Code>middleware.js</Code> you can do something like
           this:
         </Text>
         <Snippet>{`import { NextRequest, NextResponse } from 'next/server'

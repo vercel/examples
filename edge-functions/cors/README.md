@@ -8,18 +8,22 @@ useCase:
   - Documentation
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/cors&project-name=cors&repository-name=cors
-demoUrl: https://edge-functions-cors.vercel.app
+demoUrl: https://edge-functions-cors.vercel.app/api/hello
 ---
 
 # CORS Example
 
-Below is the code from [pages/\_middleware.ts](pages/_middleware.ts):
+Below is the code from `pages/api/hello.ts`:
 
 ```ts
-import type { NextRequest } from 'next/server'
-import cors from '../lib/cors'
+import { NextRequest } from 'next/server'
+import cors from '../../lib/cors'
 
-export async function middleware(req: NextRequest) {
+export const config = {
+  runtime: 'experimental-edge',
+}
+
+export default async function handler(req: NextRequest) {
   // `cors` also takes care of handling OPTIONS requests
   return cors(
     req,
@@ -34,12 +38,12 @@ export async function middleware(req: NextRequest) {
 Test it out with:
 
 ```bash
-curl -i -X OPTIONS -H 'origin: https://vercel.com' https://edge-functions-cors.vercel.sh
+curl -i -X OPTIONS -H 'origin: https://vercel.com' https://edge-functions-cors.vercel.sh/api/hello
 ```
 
 ## Demo
 
-https://edge-functions-cors.vercel.app
+https://edge-functions-cors.vercel.app/api/hello
 
 ## How to Use
 

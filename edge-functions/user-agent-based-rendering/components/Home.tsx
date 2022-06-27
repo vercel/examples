@@ -37,8 +37,8 @@ function Home() {
         <Text>
           The example has a <Code>pages/_viewport</Code> folder with pages for{' '}
           <Code>mobile</Code> and <Code>desktop</Code>, alongside a root
-          middleware (<Code>/middleware.js</Code>) that will handle all
-          requests to our pages:
+          middleware (<Code>/middleware.js</Code>) that will handle all requests
+          to our pages:
         </Text>
         <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-4 transition-all font-mono">
           {`/middleware.ts

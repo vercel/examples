@@ -2,8 +2,8 @@ import { FC, useState } from 'react'
 import { Button, Text } from '@vercel/examples-ui'
 
 function fetchDemo(key: string) {
-  if (!key) return `const res = await fetch('/api')`
-  return `const res = await fetch('/api', {
+  if (!key) return `const res = await fetch('/api/ping')`
+  return `const res = await fetch('/api/ping', {
   headers: {
     Authorization: 'Bearer ${key}'
   }
@@ -28,7 +28,7 @@ const ApiRequest: FC<{ token: string }> = ({ token }) => {
 
     try {
       const res = await fetch(
-        '/api',
+        '/api/ping',
         token ? { headers: { Authorization: `Bearer ${token}` } } : {}
       )
       setState({
@@ -67,6 +67,7 @@ const ApiRequest: FC<{ token: string }> = ({ token }) => {
           request
         </Text>
         <Button
+          variant="black"
           type="button"
           className="sm:w-40"
           onClick={handleFetch}

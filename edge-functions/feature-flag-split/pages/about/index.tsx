@@ -4,7 +4,7 @@ import { SPLITS, track } from '@lib/split'
 
 export default function About() {
   useEffect(() => {
-    track(SPLITS.NEW_ABOUT_PAGE, 'user', 'page_serve', null, {
+    track(SPLITS.about, 'user', 'page_serve', null, {
       treatment: 'off',
     }).catch((error) => {
       console.error(
