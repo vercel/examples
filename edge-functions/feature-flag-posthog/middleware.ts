@@ -8,13 +8,12 @@ export const config = {
 }
 
 export default async function middleware(req: NextRequest) {
-  const pathname = req.nextUrl.pathname
   const url = req.nextUrl
 
-  if (pathname.startsWith('/product')) {
+  if (url.pathname.startsWith('/product')) {
     // Defaults to product
     url.pathname = '/product'
-    if (pathname != '/product') {
+    if (url.pathname != '/product') {
       // Redirect paths that go directly to the variant
       return NextResponse.redirect(url)
     }
@@ -33,9 +32,9 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.rewrite(url)
   }
 
-  if (pathname.startsWith('/marketing')) {
+  if (url.pathname.startsWith('/marketing')) {
     // Redirect paths that go directly to the variant
-    if (pathname != '/marketing') {
+    if (url.pathname != '/marketing') {
       url.pathname = '/marketing'
       return NextResponse.redirect(url)
     }
@@ -51,9 +50,9 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.rewrite(url)
   }
 
-  if (pathname.startsWith('/about')) {
+  if (url.pathname.startsWith('/about')) {
     // Redirect paths that go directly to the variant
-    if (pathname != '/about') {
+    if (url.pathname != '/about') {
       url.pathname = '/about'
       return NextResponse.redirect(url)
     }
