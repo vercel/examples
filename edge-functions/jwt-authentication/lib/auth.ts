@@ -3,7 +3,6 @@ import type { NextRequest, NextResponse } from 'next/server'
 import { nanoid } from 'nanoid'
 import { SignJWT, jwtVerify } from 'jose'
 import { USER_TOKEN, JWT_SECRET_KEY } from './constants'
-import type { NextApiResponse } from 'next'
 
 interface UserJwtPayload {
   jti: string
@@ -51,12 +50,9 @@ export async function setUserCookie(res: NextResponse) {
 }
 
 /**
- * Expires the jwt cookie
+ * Expires the user token cookie
  */
-export async function expireUserCookie(response: NextApiResponse) {
-  response.setHeader('Set-Cookie', [
-    `${USER_TOKEN}=deleted; Path=/ ; Secure ; HttpOnly ; SameSite=Strict ; expires=Thu, 01 Jan 1970 00:00:00 GMT ;`,
-  ])
-
-  return response
+export function expireUserCookie(res: NextResponse) {
+  res.cookies.set(USER_TOKEN, '', { httpOnly: true, maxAge: 0 })
+  return res
 }

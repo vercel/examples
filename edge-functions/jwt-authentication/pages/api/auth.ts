@@ -7,7 +7,7 @@ export const config = {
   runtime: 'experimental-edge',
 }
 
-export default async function handler(req: NextRequest) {
+export default async function auth(req: NextRequest) {
   if (req.method !== 'POST') {
     return jsonResponse(405, { error: { message: 'Method not allowed' } })
   }
