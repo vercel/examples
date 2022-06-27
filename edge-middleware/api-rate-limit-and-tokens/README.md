@@ -5,7 +5,7 @@ description: Template featuring API Rate limiting by IP and API Keys at the edge
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Fapi-rate-limit-and-tokens&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,API_KEYS_JWT_SECRET_KEY&project-name=api-rate-limit-and-tokens&repository-name=api-rate-limit-and-tokens
+deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Fapi-rate-limit-and-tokens&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,API_KEYS_JWT_SECRET_KEY&project-name=api-rate-limit-and-tokens&repository-name=api-rate-limit-and-tokens
 demoUrl: https://edge-functions-api-rate-limit-and-tokens.vercel.app
 ---
 
@@ -23,16 +23,16 @@ https://edge-functions-api-rate-limit-and-tokens.vercel.app
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Fapi-rate-limit-and-tokens&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,API_KEYS_JWT_SECRET_KEY&project-name=api-rate-limit-and-tokens&repository-name=api-rate-limit-and-tokens)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Fapi-rate-limit-and-tokens&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,API_KEYS_JWT_SECRET_KEY&project-name=api-rate-limit-and-tokens&repository-name=api-rate-limit-and-tokens)
 
 ## Getting Started
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit-and-tokens api-rate-limit-and-tokens
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/api-rate-limit-and-tokens api-rate-limit-and-tokens
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit-and-tokens api-rate-limit-and-tokens
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/api-rate-limit-and-tokens api-rate-limit-and-tokens
 ```
 
 You'll need to have an account with [Upstash](https://upstash.com/). Once that's done, copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):

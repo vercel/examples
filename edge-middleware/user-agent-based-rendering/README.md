@@ -5,7 +5,7 @@ description: Learn how to render a different page based on the User-Agent header
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/user-agent-based-rendering&project-name=user-agent-based-rendering&repository-name=user-agent-based-rendering
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/user-agent-based-rendering&project-name=user-agent-based-rendering&repository-name=user-agent-based-rendering
 demoUrl: https://edge-user-agent-based-rendering.vercel.app
 ---
 
@@ -25,16 +25,16 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/user-agent-based-rendering&project-name=user-agent-based-rendering&repository-name=user-agent-based-rendering)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/user-agent-based-rendering&project-name=user-agent-based-rendering&repository-name=user-agent-based-rendering)
 
 ### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/user-agent-based-rendering
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/user-agent-based-rendering
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/user-agent-based-rendering
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/user-agent-based-rendering
 ```
 
 Next, run Next.js in development mode:

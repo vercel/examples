@@ -7,7 +7,7 @@ useCase:
   - Edge Functions
   - Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/query-params-filter&project-name=query-params-filter&repository-name=query-params-filter
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/query-params-filter&project-name=query-params-filter&repository-name=query-params-filter
 demoUrl: https://edge-functions-query-params-filter.vercel.app
 ---
 
@@ -53,16 +53,16 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/query-params-filter&project-name=query-params-filter&repository-name=query-params-filter)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/query-params-filter&project-name=query-params-filter&repository-name=query-params-filter)
 
 ### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/query-params-filter query-params-filter
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/query-params-filter query-params-filter
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/query-params-filter query-params-filter
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/query-params-filter query-params-filter
 ```
 
 Next, run Next.js in development mode:

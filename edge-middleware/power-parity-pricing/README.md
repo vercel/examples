@@ -5,7 +5,7 @@ description: Implement power parity pricing using information from the request g
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/power-parity-pricing&project-name=power-parity-pricing&repository-name=power-parity-pricing
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/power-parity-pricing&project-name=power-parity-pricing&repository-name=power-parity-pricing
 demoUrl: https://edge-functions-power-parity-pricing.vercel.app
 ---
 
@@ -25,16 +25,16 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/power-parity-pricing&project-name=power-parity-pricing&repository-name=power-parity-pricing)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/power-parity-pricing&project-name=power-parity-pricing&repository-name=power-parity-pricing)
 
 ### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/power-parity-pricing power-parity-pricing
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/power-parity-pricing power-parity-pricing
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/power-parity-pricing power-parity-pricing
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/power-parity-pricing power-parity-pricing
 ```
 
 Next, run Next.js in development mode:

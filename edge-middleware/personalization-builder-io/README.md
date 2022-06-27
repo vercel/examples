@@ -7,7 +7,7 @@ useCase:
   - Starter
   - Edge Functions
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/personalization-builder-io&project-name=personalization-builder-io&env=BUILDER_PUBLIC_KEY,BUILDER_PRIVATE_KEY&project-name=personalization-builder-io&repo-name=personalization-builder-io
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/personalization-builder-io&project-name=personalization-builder-io&env=BUILDER_PUBLIC_KEY,BUILDER_PRIVATE_KEY&project-name=personalization-builder-io&repo-name=personalization-builder-io
 demoUrl: https://nextjs-builder-edge-personalization.vercel.app
 ---
 
@@ -29,16 +29,16 @@ You can choose from one of the following two methods to use this repository:
 
 After [setting up your environment variables](#set-up-environment-variables), deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/personalization-builder-io&project-name=personalization-builder-io&env=BUILDER_PUBLIC_KEY,BUILDER_PRIVATE_KEY&project-name=personalization-builder-io&repo-name=personalization-builder-io)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/personalization-builder-io&project-name=personalization-builder-io&env=BUILDER_PUBLIC_KEY,BUILDER_PRIVATE_KEY&project-name=personalization-builder-io&repo-name=personalization-builder-io)
 
 ### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/personalization-builder-io
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/personalization-builder-io
 ```
 
 #### Set up environment variables

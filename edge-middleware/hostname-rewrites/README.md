@@ -7,7 +7,7 @@ useCase:
   - Edge Functions
   - Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/hostname-rewrites&project-name=hostname-rewrites&repository-name=hostname-rewrites
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/hostname-rewrites&project-name=hostname-rewrites&repository-name=hostname-rewrites
 demoUrl: https://custom-domain-1.com
 ---
 
@@ -58,16 +58,16 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/hostname-rewrites&project-name=hostname-rewrites&repository-name=hostname-rewrites)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/hostname-rewrites&project-name=hostname-rewrites&repository-name=hostname-rewrites)
 
 ### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/hostname-rewrites hostname-rewrites
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/hostname-rewrites hostname-rewrites
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/hostname-rewrites hostname-rewrites
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/hostname-rewrites hostname-rewrites
 ```
 
 [`.env`](.env) has the following defaults:

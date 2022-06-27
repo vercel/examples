@@ -5,7 +5,7 @@ description: DataDome can provide real-time bot protection and other security pr
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-middleware%2Ftree%2Fmain%2Fexamples%2Fbot-protection-datadome&env=NEXT_PUBLIC_DATADOME_CLIENT_KEY,DATADOME_SERVER_KEY&project-name=bot-protection-datadome&repository-name=bot-protection-datadome
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/bot-protection-datadome&env=NEXT_PUBLIC_DATADOME_CLIENT_KEY,DATADOME_SERVER_KEY&project-name=bot-protection-datadome&repository-name=bot-protection-datadome
 demoUrl: https://edge-functions-bot-protection-datadome.vercel.app
 ---
 
@@ -28,9 +28,9 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/bot-protection-datadome bot-protection-datadome
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/bot-protection-datadome bot-protection-datadome
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/bot-protection-datadome bot-protection-datadome
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/bot-protection-datadome bot-protection-datadome
 ```
 
 You'll need to have an account with [DataDome](https://datadome.co/free-signup/). Once that's done, copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
