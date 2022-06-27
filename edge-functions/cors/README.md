@@ -13,7 +13,7 @@ demoUrl: https://edge-functions-cors.vercel.app/api/hello
 
 # CORS Example
 
-Below is the code from [pages/api/hello.ts](pages/api//hello.ts):
+Below is the code from `pages/api/hello.ts`:
 
 ```ts
 import { NextRequest } from 'next/server'
