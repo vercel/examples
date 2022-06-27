@@ -2,7 +2,7 @@ export const config = {
   runtime: 'experimental-edge',
 }
 
-export default async (req) => {
+export default async (req: Request) => {
   // Fetch from the backend, but copy the user's authorization cookie into
   // the authorization header.
   const r = await fetch("https://res.cloudinary.com/zeit-inc/image/fetch/https://raw.githubusercontent.com/vercel/vercel/main/packages/frameworks/logos/next.svg", {
@@ -19,7 +19,7 @@ export default async (req) => {
   })
 }
 
-function getCookies(req) {
+function getCookies(req: Request) {
   const cookie = req.headers.get("cookie");
   const cookies = new Map();
   if (!cookie) {
