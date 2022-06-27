@@ -6,7 +6,7 @@ export const config = {
   matcher: '/protected',
 }
 
-export async function middleware(req: NextRequest, res: NextResponse) {
+export async function middleware(req: NextRequest) {
   // validate the user is authenticated
   const verifiedToken = await verifyAuth(req).catch((err) => {
     console.error(err.message)
