@@ -63,17 +63,3 @@ export async function expireUserCookie(response: NextApiResponse) {
 
   return response
 }
-
-/**
- * Sends an API request to be assigned a JWT
- */
-export async function requestAuth() {
-  return fetch('/api/auth', { method: 'POST' })
-}
-
-/**
- * Sends an API request to invalidate the cookie
- */
-export async function invalidateAuth() {
-  return fetch('/api/expire', { method: 'POST' })
-}

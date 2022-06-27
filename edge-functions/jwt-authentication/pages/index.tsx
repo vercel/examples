@@ -1,7 +1,5 @@
 import { Layout } from '@vercel/examples-ui'
 import { Page, Text, Code, Link, Button } from '@vercel/examples-ui'
-
-import { requestAuth } from '@lib/auth'
 import { USER_TOKEN } from '@lib/constants'
 
 export default function Index() {
@@ -27,7 +25,13 @@ export default function Index() {
         authenticate and be able to see the page:
       </Text>
       <div className="space-x-4 mt-2">
-        <Button onClick={requestAuth}>Set the {USER_TOKEN} cookie</Button>
+        <Button
+          onClick={() => {
+            fetch('/api/auth', { method: 'POST' })
+          }}
+        >
+          Set the {USER_TOKEN} cookie
+        </Button>
       </div>
     </Page>
   )

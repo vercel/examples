@@ -1,15 +1,10 @@
 import { Layout } from '@vercel/examples-ui'
 import { useRouter } from 'next/router'
 import { Page, Text, Code, Link, Button } from '@vercel/examples-ui'
-
-import { invalidateAuth } from '@lib/auth'
 import { USER_TOKEN } from '@lib/constants'
 
 export default function Protected() {
   const { reload } = useRouter()
-  const handleRemoveCookie = () => {
-    invalidateAuth().then(() => reload())
-  }
 
   return (
     <Page>
@@ -23,7 +18,13 @@ export default function Protected() {
           next time you visit this page, you will be redirected to the{' '}
           <Link href="/">index page</Link>.
         </Text>
-        <Button onClick={handleRemoveCookie}>Remove cookie and Reload</Button>
+        <Button
+          onClick={() => {
+            fetch('/api/expire', { method: 'POST' }).then(() => reload())
+          }}
+        >
+          Remove cookie and Reload
+        </Button>
       </section>
     </Page>
   )
