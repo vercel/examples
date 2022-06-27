@@ -13,7 +13,7 @@ Build your API using Vercel Edge Functions.
 
 ## Demo
 
-https://edge-api-route.vercel.app/api/edge
+https://authed-proxy.vercel.app/api/proxy
 
 ## How to Use
 
