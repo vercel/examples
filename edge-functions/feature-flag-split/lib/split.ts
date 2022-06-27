@@ -2,8 +2,8 @@
  * List of known active Splits
  */
 export const SPLITS = {
-  NEW_ABOUT_PAGE: 'New_About_Page',
-  NEW_MARKETING_PAGE: 'New_Marketing_Page',
+  about: 'New_About_Page',
+  marketing: 'New_Marketing_Page',
 } as const
 
 export type SPLITS = typeof SPLITS[keyof typeof SPLITS]

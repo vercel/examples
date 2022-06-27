@@ -4,7 +4,7 @@ import { SPLITS, track } from '@lib/split'
 
 export default function Marketing() {
   useEffect(() => {
-    track(SPLITS.NEW_MARKETING_PAGE, 'user', 'page_serve', null, {
+    track(SPLITS.marketing, 'user', 'page_serve', null, {
       treatment: 'on',
     }).catch((error) => {
       console.error(
