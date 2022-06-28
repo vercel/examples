@@ -17,9 +17,12 @@
     "eslint-config-next": "canary",
     "front-matter": "^4.0.2",
     "husky": "^7.0.4",
+    "i": "^0.3.7",
     "lint-staged": "^12.3.4",
+    "npm": "^8.13.1",
     "plop": "^3.0.5",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "prettier-plugin-svelte": "^2.7.0"
   },
   "lint-staged": {
     "!(**/.vercel/**/*)**/*.{ts,tsx}": [
