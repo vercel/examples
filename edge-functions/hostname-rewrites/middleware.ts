@@ -22,7 +22,6 @@ export default async function middleware(req: NextRequest) {
   // Prevent security issues – users should not be able to canonically access
   // the pages/sites folder and its respective contents.
   if (url.pathname.startsWith(`/_sites`)) {
-    console.log('URL', req.nextUrl.href)
     url.pathname = `/404`
   } else {
     console.log('URL 2', req.nextUrl.href)
