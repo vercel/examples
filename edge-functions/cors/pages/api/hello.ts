@@ -1,4 +1,3 @@
-// eslint-disable-next-line @next/next/no-server-import-in-page
 import { NextRequest } from 'next/server'
 import cors from '../../lib/cors'
 
