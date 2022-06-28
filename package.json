@@ -26,9 +26,7 @@
     "eslint-config-next": "canary",
     "front-matter": "^4.0.2",
     "husky": "^8.0.1",
-    "i": "^0.3.7",
     "lint-staged": "^13.0.3",
-    "npm": "^8.13.1",
     "plop": "^3.1.1",
     "prettier": "^2.7.1",
     "prettier-plugin-svelte": "^2.7.0"
