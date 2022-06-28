@@ -1,27 +1,14 @@
-import { FEATURE_FLAGS, POSTHOG_API_KEY, POSTHOG_HOST } from './constants'
+import { type Flags, POSTHOG_API_KEY, POSTHOG_HOST } from './constants'
 
-/**
- * Checks if a feature flag is enabled.
- *
- * @param distinctUserId A unique identifier for the user
- * @param featureName The name of the feature flag
- * @returns true if the feature flag is enabled. Otherwise, false.
- */
-export async function isFeatureFlagEnabled(
-  distinctUserId: string,
-  featureName: FEATURE_FLAGS
-): Promise<boolean> {
-  console.log('isFeatureEnabled:', distinctUserId, featureName)
+export type FlagValue = boolean | string | undefined
 
-  const featureFlagValue = await getFeatureFlagVariant(
-    distinctUserId,
-    featureName
-  )
-
-  const featureEnabled = featureFlagValue ? true : false
-  console.log('featureEnabled:', featureEnabled)
-
-  return featureEnabled
+export type FlagsMatcher = {
+  [x: string]:
+    | {
+        name: Flags
+        rewrite(value: FlagValue): string
+      }
+    | undefined
 }
 
 /**
@@ -34,10 +21,8 @@ export async function isFeatureFlagEnabled(
  */
 export async function getFeatureFlagVariant(
   distinctUserId: string,
-  featureName: FEATURE_FLAGS
-): Promise<string | boolean | undefined> {
-  console.log('getFeatureFlagVariant:', distinctUserId, featureName)
-
+  featureName: Flags
+): Promise<FlagValue> {
   if (!distinctUserId) {
     throw new Error(`distinctUserId is required and it can't be empty`)
   }
@@ -57,5 +42,8 @@ export async function getFeatureFlagVariant(
   }
 
   const data = await res.json()
+
+  console.log('Your active flags:', JSON.stringify(data.featureFlags, null, 2))
+
   return data.featureFlags[featureName]
 }
