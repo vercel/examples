@@ -1,7 +1,6 @@
-// eslint-disable-next-line @next/next/no-server-import-in-page
 import { NextRequest, NextResponse } from 'next/server'
 import { DISTINCT_ID_COOKIE_NAME, FEATURE_FLAGS } from '@lib/constants'
-import { getFeatureFlagVariant, isFeatureFlagEnabled } from '@lib/posthog-node'
+import { getFeatureFlagVariant, isFeatureFlagEnabled } from '@lib/posthog-api'
 
 export const config = {
   matcher: ['/product', '/about', '/marketing'],

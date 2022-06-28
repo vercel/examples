@@ -1,6 +1,6 @@
 import { FEATURE_FLAGS } from '@lib/constants'
 import { getPostHogInstance } from '@lib/posthog'
-import { getFeatureFlagVariant } from '@lib/posthog-node'
+import { getFeatureFlagVariant } from '@lib/posthog-api'
 import { Layout, Page, Text, List, Link, Button } from '@vercel/examples-ui'
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
