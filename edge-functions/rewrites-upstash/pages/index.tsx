@@ -114,8 +114,7 @@ function Home({ products }: Props) {
           page otherwise.
         </Text>
         <Text>
-          Now lets handle the rewrite logic in{' '}
-          <Code>/middleware.js</Code> :
+          Now lets handle the rewrite logic in <Code>/middleware.js</Code> :
         </Text>
         <Snippet>
           {`import { NextResponse } from 'next/server'
