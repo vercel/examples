@@ -1,4 +1,3 @@
-// eslint-disable-next-line @next/next/no-server-import-in-page
 import type { NextRequest, NextResponse } from 'next/server'
 import { nanoid } from 'nanoid'
 import { SignJWT, jwtVerify } from 'jose'

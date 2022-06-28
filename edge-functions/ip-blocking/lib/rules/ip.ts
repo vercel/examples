@@ -1,4 +1,3 @@
-// eslint-disable-next-line @next/next/no-server-import-in-page
 import type { NextRequest } from 'next/server'
 import { upstashRest } from '@lib/upstash'
 import getIP from '@lib/get-ip'
