@@ -1,4 +1,4 @@
-import { Layout } from '@vercel/edge-functions-ui'
+import { Layout } from '@vercel/examples-ui'
 import PageComponent from '../components/page_component'
 
 const Home = () => (
