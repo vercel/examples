@@ -1,4 +1,4 @@
-import { FEATURE_FLAGS } from './constants'
+import { FEATURE_FLAGS, POSTHOG_API_KEY, POSTHOG_HOST } from './constants'
 
 /**
  * Checks if a feature flag is enabled.
@@ -42,16 +42,13 @@ export async function getFeatureFlagVariant(
     console.error("`distinctUserId` can't be empty")
   }
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_POSTHOG_HOST}/decide?v=2`,
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        api_key: process.env.NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY,
-        distinct_id: distinctUserId,
-      }),
-    }
-  )
+  const res = await fetch(`${POSTHOG_HOST}/decide?v=2`, {
+    method: 'POST',
+    body: JSON.stringify({
+      api_key: POSTHOG_API_KEY,
+      distinct_id: distinctUserId,
+    }),
+  })
 
   if (!res.ok) {
     throw new Error(

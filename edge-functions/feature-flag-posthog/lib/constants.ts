@@ -1,3 +1,13 @@
+export const POSTHOG_HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST!
+
+export const POSTHOG_API_KEY = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY!
+
+if (!POSTHOG_HOST || !POSTHOG_API_KEY) {
+  throw new Error(
+    'The environment variables NEXT_PUBLIC_POSTHOG_HOST and NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY are missing.'
+  )
+}
+
 /**
  * List of known active Feature Flags
  */
