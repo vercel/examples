@@ -6,7 +6,6 @@
  * something here could be published eventually
  */
 
-// eslint-disable-next-line @next/next/no-server-import-in-page
 import type { NextFetchEvent, NextRequest, NextResponse } from 'next/server'
 
 type Middleware = (

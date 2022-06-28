@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-server-import-in-page */
 import { NextRequest, NextResponse } from 'next/server'
 import statsig from './lib/statsig-api'
 import { DEFAULT_GROUP, FLAG, UID_COOKIE } from './lib/constants'

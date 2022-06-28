@@ -19,7 +19,7 @@
   "devDependencies": {
     "@types/react": "18",
     "eslint": "^8.16.0",
-    "eslint-config-next": "^12.1.6",
+    "eslint-config-next": "canary",
     "typescript": "^4.7.2"
   }
 }
