@@ -15,6 +15,7 @@ module.exports = (req, res) => {
   if (authToken !== params.get('authToken')) {
     res.statusCode = 403
     res.end('Not Authorized')
+    return
   }
 
   const host = req.headers.host

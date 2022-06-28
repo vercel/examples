@@ -1,25 +1,22 @@
-// eslint-disable-next-line @next/next/no-server-import-in-page
-import { NextRequest, NextResponse } from 'next/server'
+import type { NextRequest, NextResponse } from 'next/server'
 import { nanoid } from 'nanoid'
 import { SignJWT, jwtVerify } from 'jose'
 import { USER_TOKEN, JWT_SECRET_KEY } from './constants'
-import { jsonResponse } from './utils'
 
 interface UserJwtPayload {
   jti: string
   iat: number
 }
 
-/**
- * Verifies the user's JWT token and returns the payload if
- * it's valid or a response if it's not.
- */
-export async function verifyAuth(request: NextRequest) {
-  const token = request.cookies[USER_TOKEN]
+export class AuthError extends Error {}
 
-  if (!token) {
-    return jsonResponse(401, { error: { message: 'Missing user token' } })
-  }
+/**
+ * Verifies the user's JWT token and returns its payload if it's valid.
+ */
+export async function verifyAuth(req: NextRequest) {
+  const token = req.cookies.get(USER_TOKEN)
+
+  if (!token) throw new AuthError('Missing user token')
 
   try {
     const verified = await jwtVerify(
@@ -28,28 +25,33 @@ export async function verifyAuth(request: NextRequest) {
     )
     return verified.payload as UserJwtPayload
   } catch (err) {
-    return jsonResponse(401, { error: { message: 'Your token has expired.' } })
+    throw new AuthError('Your token has expired.')
   }
 }
 
 /**
  * Adds the user token cookie to a response.
  */
-export async function setUserCookie(
-  request: NextRequest,
-  response: NextResponse
-) {
-  const cookie = request.cookies[USER_TOKEN]
+export async function setUserCookie(res: NextResponse) {
+  const token = await new SignJWT({})
+    .setProtectedHeader({ alg: 'HS256' })
+    .setJti(nanoid())
+    .setIssuedAt()
+    .setExpirationTime('2h')
+    .sign(new TextEncoder().encode(JWT_SECRET_KEY))
 
-  if (!cookie) {
-    const token = await new SignJWT({})
-      .setProtectedHeader({ alg: 'HS256' })
-      .setJti(nanoid())
-      .setIssuedAt()
-      .setExpirationTime('2h')
-      .sign(new TextEncoder().encode(JWT_SECRET_KEY))
-    response.cookie(USER_TOKEN, token, { httpOnly: true })
-  }
+  res.cookies.set(USER_TOKEN, token, {
+    httpOnly: true,
+    maxAge: 60 * 60 * 2, // 2 hours in seconds
+  })
 
-  return response
+  return res
+}
+
+/**
+ * Expires the user token cookie
+ */
+export function expireUserCookie(res: NextResponse) {
+  res.cookies.set(USER_TOKEN, '', { httpOnly: true, maxAge: 0 })
+  return res
 }

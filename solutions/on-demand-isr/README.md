@@ -13,19 +13,13 @@ https://solutions-on-demand-isr.vercel.app
 
 ## How to Use
 
-### Fill environment variables
-
-Rename .env.example to .env and fill `SECRET` (the secret protecting your `tweets` API route) and `TWITTER_TOKEN` (your app token from https://developer.twitter.com).
-
-### Deploy
-
 You can choose from one of the following two methods to use this repository:
 
 #### One-Click Deploy
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/on-demand-isr&project-name=on-demand-isr&repository-name=on-demand-isr)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/on-demand-isr&project-name=on-demand-isr&repository-name=on-demand-isr&env=TWITTER_TOKEN,TOKEN)
 
 #### Clone and Deploy
 
@@ -36,6 +30,18 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/solut
 # or
 yarn create next-app --example https://github.com/vercel/examples/tree/main/solutions/on-demand-isr
 ```
+
+#### Set up environment variables
+
+The app uses the Twitter API to fetch tweets in [pages/tweets.tsx](pages/tweets.tsx). You can get a token in https://developer.twitter.com.
+
+Then, rename [`.env.example`](.env.example) to `.env.local` (which will be ignored by Git):
+
+```bash
+cp .env.example .env.local
+```
+
+And update `TWITTER_TOKEN` and `SECRET` (the secret protecting the API route in [pages/api/revalidates/tweets.ts](pages/api/revalidate/tweets.ts)).
 
 Next, run Next.js in development mode:
 

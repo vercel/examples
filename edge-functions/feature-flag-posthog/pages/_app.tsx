@@ -4,14 +4,15 @@ import { getLayout } from '@vercel/examples-ui'
 import '@vercel/examples-ui/globals.css'
 
 import Cookies from 'js-cookie'
-import { usePostHog } from '@lib/posthog'
 import { PostHog } from 'posthog-js'
+import { usePostHog } from '@lib/posthog'
+import { POSTHOG_HOST, POSTHOG_API_KEY } from '@lib/constants'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
-  usePostHog(process.env.NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY, {
-    api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+  usePostHog(POSTHOG_API_KEY, {
+    api_host: POSTHOG_HOST,
     loaded: (posthog: PostHog) => {
       // Set the distinct_id being used by PostHog on the client
       // so we can also use on the server.

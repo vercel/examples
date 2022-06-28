@@ -3,27 +3,13 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "prettier": "prettier --write .",
-    "update-templates": "node scripts/update-templates.mjs",
-    "new-example": "plop example",
     "lint-staged": "lint-staged",
-    "prepare": "husky install"
+    "new-example": "plop example",
+    "prepare": "husky install",
+    "prettier": "prettier --write .",
+    "update-templates": "node scripts/update-templates.mjs"
   },
   "pre-commit": "lint-staged",
-  "devDependencies": {
-    "@vercel/fetch": "^6.2.0",
-    "dotenv": "^16.0.0",
-    "eslint": "latest",
-    "eslint-config-next": "canary",
-    "front-matter": "^4.0.2",
-    "husky": "^7.0.4",
-    "i": "^0.3.7",
-    "lint-staged": "^12.3.4",
-    "npm": "^8.13.1",
-    "plop": "^3.0.5",
-    "prettier": "^2.5.1",
-    "prettier-plugin-svelte": "^2.7.0"
-  },
   "lint-staged": {
     "!(**/.vercel/**/*)**/*.{ts,tsx}": [
       "prettier --write",
@@ -32,5 +18,19 @@
     "**/*.{json,md,mdx,css,html,yml,yaml,scss}": [
       "prettier --write"
     ]
+  },
+  "devDependencies": {
+    "@vercel/fetch": "^6.2.0",
+    "dotenv": "^16.0.1",
+    "eslint": "latest",
+    "eslint-config-next": "canary",
+    "front-matter": "^4.0.2",
+    "husky": "^8.0.1",
+    "i": "^0.3.7",
+    "lint-staged": "^13.0.3",
+    "npm": "^8.13.1",
+    "plop": "^3.1.1",
+    "prettier": "^2.7.1",
+    "prettier-plugin-svelte": "^2.7.0"
   }
 }

@@ -15,7 +15,7 @@ export default function Index() {
         For the demo below you can send a maximum of{' '}
         <b>5 requests every 10 seconds</b>.
       </Text>
-      <Headers path="/api">Make a request</Headers>
+      <Headers path="/api/ping">Make a request</Headers>
       <Text>
         The pattern we&apos;re using in this example is inspired by the{' '}
         <Link

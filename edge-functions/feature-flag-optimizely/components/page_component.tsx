@@ -1,4 +1,4 @@
-import { Page, Text, List, Link } from '@vercel/edge-functions-ui'
+import { Page, Text, List, Link } from '@vercel/examples-ui'
 
 export default function PageComponent({
   title,
@@ -17,8 +17,8 @@ export default function PageComponent({
           </Text>
         ))}
       </List>
-      <Text style={{ marginTop: 30 }} variant="body">
-        <p style={{ fontSize: 'small' }}>
+      <section style={{ marginTop: 30 }}>
+        <Text style={{ fontSize: 'small' }}>
           <b>How it works:</b>
           <br />
           This example displays two variants of product pages to the users. Both
@@ -71,8 +71,8 @@ export default function PageComponent({
             here
           </Link>
           .
-        </p>
-      </Text>
+        </Text>
+      </section>
     </Page>
   )
 }

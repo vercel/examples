@@ -11,6 +11,9 @@ export const usePostHog = (
 ): void => {
   const router = useRouter()
 
+  if (!config) {
+    throw new Error('The `config` argument is required.')
+  }
   if (config.loaded) {
     // override the existing loaded function so we can store a reference
     // to the PostHog instance
@@ -23,9 +26,7 @@ export const usePostHog = (
     config.loaded = setPostHogInstance
   }
 
-  useEffect((): (() => void) => {
-    if (typeof window === undefined) return
-
+  useEffect(() => {
     posthog.init(apiKey, config, name)
 
     // Track page views
@@ -43,6 +44,4 @@ const setPostHogInstance = (posthog: PostHog) => {
   POSTHOG_INSTANCE = posthog
 }
 
-export const getPostHogInstance = (): PostHog => {
-  return POSTHOG_INSTANCE
-}
+export const getPostHogInstance = (): PostHog => POSTHOG_INSTANCE

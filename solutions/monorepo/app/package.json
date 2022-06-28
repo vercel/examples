@@ -17,6 +17,7 @@
     "react-dom": "latest"
   },
   "devDependencies": {
+    "@types/node": "^18.0.0",
     "@types/react": "17.0.8",
     "autoprefixer": "^10.3.7",
     "eslint": "^8.11.0",

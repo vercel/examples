@@ -1,7 +1,10 @@
 import { useState, FC } from 'react'
 import { Button } from '@vercel/examples-ui'
 
-const Headers: FC<{ path: string }> = ({ path, children }) => {
+const Headers: FC<{ path: string; children: string }> = ({
+  path,
+  children,
+}) => {
   const [loading, setLoading] = useState(false)
   const [state, setState] = useState<any>({
     path,

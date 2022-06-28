@@ -11,7 +11,7 @@ demoUrl: https://edge-functions-api-rate-limit.vercel.app
 
 # API Rate Limiting with Upstash
 
-This demo features API Rate limiting at the edge with Redis using [Upstash](https://upstash.com/).
+This example features API Rate limiting at the edge with Redis using [Upstash](https://upstash.com/).
 
 The pattern for rate limiting is inspired by the [GitHub API](https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting).
 
