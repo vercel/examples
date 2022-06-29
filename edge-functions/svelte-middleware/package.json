@@ -1,6 +1,9 @@
 {
   "name": "svelte-middleware",
   "version": "0.0.1",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
@@ -12,6 +15,5 @@
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
     "svelte": "^3.44.0"
-  },
-  "type": "module"
+  }
 }

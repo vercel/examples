@@ -9,7 +9,7 @@ https://svelte-middleware-guivercel.vercel.sh/
 ## How to Use
 
 - Install the Vercel CLI `npm i -g vercel`
-- Install degit `npm install -g degit`
+- Install degit `npm i -g degit`
 - Clone the repository `degit https://github.com/vercel/examples/edge-functions/svelte-middleware svelte-middleware`
 - Run `vercel` in the directory `svelte-middleware` to connect to a Vercel project
 - run `Vercel dev` to start the development server
