@@ -10,7 +10,8 @@ We're going to be shipping new examples weekly. Stay tuned!
 
 ## Examples
 
-- [Edge Functions](/edge-functions) – Edge Functions are currently in Public Beta on Vercel. [Read the docs here.](https://vercel.com/docs/concepts/functions/edge-functions)
+- [Edge Middleware](/edge-middleware) - Vercel Edge Middleware is code that executes _before_ a request is processed on a site. [Check out the documentation](https://vercel.com/docs/concepts/functions/vercel-edge-middleware) for more information.
+- [Edge Functions](/edge-functions) – Vercel Edge Functions allow you to deliver content to your site's visitors with speed _and_ psersonalization. Edge Functions are currently in Public Beta on Vercel. [Check out the documentation](https://vercel.com/docs/concepts/functions/vercel-edge-functions) for more information.
 - [Solutions](/solutions) – Demos, Architectures and Best Practices
 
 ### Adding a new example
