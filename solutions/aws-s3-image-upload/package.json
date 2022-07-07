@@ -1,4 +1,6 @@
 {
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
   "private": true,
   "bin": {
     "aws-s3": "bin/aws-s3.js"

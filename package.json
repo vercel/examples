@@ -1,7 +1,6 @@
 {
-  "name": "vercel-examples",
-  "version": "1.0.0",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "lint-staged": "lint-staged",
     "new-example": "plop example",

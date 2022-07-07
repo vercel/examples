@@ -1,6 +1,9 @@
 {
   "name": "@acme/pages",
   "version": "0.0.1",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "private": true,
   "scripts": {
     "lint": "TIMING=1 eslint \"**/*.{ts*,js,jsx}\" --fix",
     "clean": "rm -rf .turbo && rm -rf node_modules"

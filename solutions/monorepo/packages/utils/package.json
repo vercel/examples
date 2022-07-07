@@ -1,6 +1,9 @@
 {
   "name": "@company/utils",
   "version": "0.0.1",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "private": true,
   "scripts": {
     "dev": "npm run build -- --watch",
     "build": "rm -fr dist/* && tsc"
