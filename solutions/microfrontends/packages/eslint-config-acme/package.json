@@ -1,8 +1,10 @@
 {
   "name": "eslint-config-acme",
   "version": "0.0.1",
-  "main": "index.js",
+  "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
+  "private": true,
+  "main": "index.js",
   "dependencies": {
     "eslint-config-next": "^12.1.6",
     "eslint-config-prettier": "^8.5.0"

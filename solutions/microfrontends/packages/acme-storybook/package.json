@@ -1,6 +1,8 @@
 {
   "name": "@acme/storybook",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "start-storybook -p 6006",
