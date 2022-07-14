@@ -8,15 +8,19 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "build:main": "turbo run build --filter=...main",
-    "build:docs": "turbo run build --filter=...docs",
+    "build:main": "turbo run build --filter=main...",
+    "build:docs": "turbo run build --filter=docs...",
     "dev": "turbo run dev",
     "start": "turbo run start",
     "clean": "turbo run clean && rm -rf node_modules",
     "lint": "turbo run lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build --filter=main^... && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.23.0",
     "@types/node": "^17.0.14",
     "prettier": "^2.6.2",
     "turbo": "latest"

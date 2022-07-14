@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "build": "tsup src/* --format esm,cjs --dts --external react",
     "dev": "tsup src/* --format esm,cjs --dts --external react --watch",
