@@ -11,7 +11,7 @@ demoUrl: https://feature-flag-optimizely.vercel.app
 
 # Feature Flags with Optimizely
 
-This example shows how to use optimizely to conduct experiments in edge-functions.
+This example shows how to use Optimizely to conduct experiments in Vercel Edge Functions.
 
 ## Demo
 
@@ -25,7 +25,7 @@ https://feature-flag-optimizely.vercel.app
 
 ### Clone and Deploy
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [NPM](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example.
 
 **Note:** Before running locally, Please follow the section [Set up Optimizely](#set-up-optimizely) to create an account, set up feature flags and obtain the Optimizely _SDK Key_.
 
@@ -37,7 +37,7 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-
 yarn create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/feature-flag-optimizely feature-flag-optimizely
 ```
 
-create a local environment file from example and add your optimizely _SDK Key_.
+Create a local environment file from example and add your Optimizely _SDK Key_.
 
 ```
 cp .env.example .env.local
@@ -55,7 +55,7 @@ yarn
 yarn dev
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) and [Next.js documentation](https://nextjs.org/docs/deployment).
 
 # Optimizely Full Stack Feature Flags and Experimentation
 
@@ -63,7 +63,7 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 You can deploy code behind feature flags, experiment with A/B tests, and roll out or roll back features immediately. All of this functionality is available with minimal performance impact via easy-to-use, open source SDKs.
 
-In this example, you will be able to use optimizely feature flags at the edge with [NextJS](https://nextjs.org/) applications deployed on [Vercel](https://vercel.com/). This example uses Optimizely [Javascript SDK](https://docs.developers.optimizely.com/full-stack/v4.0/docs/javascript-node) inside a [Vercel Edge Function](https://vercel.com/docs/concepts/functions/edge-functions) to provide a starting point for you to implement experimentation and feature flagging for your experiences at the edge. For a guide to getting started with our platform more generally, this can be combined with the steps outlined in our Javascript Quickstart [here](https://docs.developers.optimizely.com/full-stack/v4.0/docs/javascript-node).
+In this example, you will be able to use Optimizely feature flags at the edge with [NextJS](https://nextjs.org/) applications deployed on [Vercel](https://vercel.com/). This example uses Optimizely [Javascript SDK](https://docs.developers.optimizely.com/full-stack/v4.0/docs/javascript-node) inside a [Vercel Edge Function](https://vercel.com/docs/concepts/functions/edge-functions) to provide a starting point for you to implement experimentation and feature flagging for your experiences at the edge. For a guide to getting started with our platform more generally, this can be combined with the steps outlined in our Javascript Quickstart [here](https://docs.developers.optimizely.com/full-stack/v4.0/docs/javascript-node).
 
 ### Identity Management
 
@@ -71,26 +71,26 @@ Out of the box, Optimizely's Full Stack SDKs require a user-provided identifier 
 
 ### Bucketing
 
-For more information on how Optimizely Full Stack SDKs bucket visitors, see [here](https://docs.developers.optimizely.com/full-stack/v4.0/docs/how-bucketing-works).
+For more information on how Optimizely Full Stack SDKs assign users to feature flags and experiments, see [the documentation on how bucketing works](https://docs.developers.optimizely.com/experimentation/v4.0.0-full-stack/docs/how-bucketing-works).
 
 ## Auto update with Optimizely Webhooks
 
-This example fetches the latest datafile from the optimizely CDN during every build. [Deploy Hooks](https://vercel.com/docs/concepts/git/deploy-hooks) from Vercel can be used with [Optimizely Webhooks](https://docs.developers.optimizely.com/full-stack/docs/configure-webhooks#section-2-create-a-webhook-in-optimizely) to keep the application up to date with the latest changes in the optimizely project.
+This example fetches the latest datafile from the Optimizely CDN during every build. [Deploy Hooks](https://vercel.com/docs/concepts/git/deploy-hooks) from Vercel can be used with [Optimizely Webhooks](https://docs.developers.optimizely.com/full-stack/docs/configure-webhooks#section-2-create-a-webhook-in-optimizely) to keep the application up to date with the latest changes in the Optimizely project.
 
 ### Create a Deploy Hook in Vercel
 
-1. Navigate to **Settings** tab in your vercel deployment.
+1. Navigate to **Settings** tab in your Vercel deployment.
 2. Look for the **Deploy Hooks** section and create a **Hook**.
-3. This will generate a url that can be used to trigger a rebuild of the deployment.
+3. This will generate a URL that can be used to trigger a rebuild of the deployment.
 
 ### Create a Webhook in Optimizely
 
-1. Follow the instructions [here](https://docs.developers.optimizely.com/full-stack/docs/configure-webhooks#section-2-create-a-webhook-in-optimizely) to create a Webhook in your optimizely project.
-2. Use the `Deploy Hook` Url Generated from the previous section to create the Optimizely Webhook.
+1. Follow the instructions [here](https://docs.developers.optimizely.com/full-stack/docs/configure-webhooks#section-2-create-a-webhook-in-optimizely) to create a Webhook in your Optimizely project.
+2. Use the `Deploy Hook` URL Generated from the previous section to create the Optimizely Webhook.
 
 ### How it works
 
-When a user will make any change to the Optimizely Project using the UI, the Webhook will hit vercel's `Deploy Hook` Url. This will trigger a new build on Vercel. Every new build fetches the latest version of the Optimizely datafile and uses it in the application.
+When a user will make any change to the Optimizely Project using the UI, the Webhook will hit Vercel's `Deploy Hook` URL. This will trigger a new build on Vercel. Every new build fetches the latest version of the Optimizely datafile and uses it in the application.
 
 ## Set up Optimizely
 
