@@ -31,4 +31,6 @@
 - [Power Parity Pricing Strategies](./power-parity-pricing-strategies)
 - [Power Parity Pricing](./power-parity-pricing)
 - [Query Parameters Filter](./query-params-filter)
+- [Rewrites with Upstash](./rewrites-upstash)
+- [Rewrite to an external URL](./rewrite-to-external-url)
 - [Scalable redirects with Upstash](./redirects-upstash)

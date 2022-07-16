@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "canary",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "eslint": "8.12.0",
+    "eslint-config-next": "canary",
+    "@types/node": "^17.0.14",
+    "@types/react": "^17.0.38",
+    "typescript": "^4.5.5"
+  }
+}
