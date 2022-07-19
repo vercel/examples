@@ -19,7 +19,7 @@ https://feature-flag-optimizely.vercel.app
 
 ## One-Click Deploy
 
-**Note:** Before clicking `Deploy`, Please follow the section [Set up Optimizely](#set-up-optimizely) to create an account, set up feature flags and obtain the Optimizely _SDK Key_.
+**Note:** Before clicking `Deploy`, follow the section [Set up Optimizely](#set-up-optimizely) to create an account, set up feature flags and obtain the Optimizely _SDK Key_.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/feature-flag-optimizely&env=OPTIMIZELY_SDK_KEY&project-name=feature-flag-optimizely&repository-name=feature-flag-optimizely)
 
@@ -27,9 +27,9 @@ https://feature-flag-optimizely.vercel.app
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [NPM](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example.
 
-**Note:** Before running locally, Please follow the section [Set up Optimizely](#set-up-optimizely) to create an account, set up feature flags and obtain the Optimizely _SDK Key_.
+**Note:** Before running locally, follow the section [Set up Optimizely](#set-up-optimizely) to create an account, set up feature flags and obtain the Optimizely _SDK Key_.
 
-generate the Next JS app using this example
+Generate the Next JS app using this example
 
 ```
 npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/feature-flag-optimizely feature-flag-optimizely
@@ -43,7 +43,7 @@ Create a local environment file from example and add your Optimizely _SDK Key_.
 cp .env.example .env.local
 ```
 
-Next, run Next.js in development mode:
+Run Next.js in development mode:
 
 ```bash
 npm install
@@ -63,7 +63,7 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 You can deploy code behind feature flags, experiment with A/B tests, and roll out or roll back features immediately. All of this functionality is available with minimal performance impact through easy-to-use, open source SDKs.
 
-In this example, you will be able to use Optimizely feature flags at the edge with [NextJS](https://nextjs.org/) applications deployed on [Vercel](https://vercel.com/). This example uses Optimizely [Javascript SDK](https://docs.developers.optimizely.com/full-stack/v4.0/docs/javascript-node) inside a [Vercel Edge Function](https://vercel.com/docs/concepts/functions/edge-functions) to provide a starting point for you to implement experimentation and feature flagging for your experiences at the edge. For a guide to getting started with our platform more generally, this can be combined with the steps outlined in our Javascript Quickstart [here](https://docs.developers.optimizely.com/full-stack/v4.0/docs/javascript-node).
+You can use Optimizely feature flags at the edge with [NextJS](https://nextjs.org/) applications deployed on [Vercel](https://vercel.com/). This example uses Optimizely [Javascript SDK](https://docs.developers.optimizely.com/full-stack/v4.0/docs/javascript-node) inside a [Vercel Edge Function](https://vercel.com/docs/concepts/functions/edge-functions) as a starting point for you to implement experimentation and feature flagging for your experiences at the edge. For a guide to getting started with our platform more generally, this can be combined with the steps outlined in our Javascript Quickstart [here](https://docs.developers.optimizely.com/full-stack/v4.0/docs/javascript-node).
 
 ### Identity Management
 
@@ -81,7 +81,7 @@ This example fetches the latest datafile from the Optimizely CDN during every bu
 
 1. Navigate to **Settings** tab in your Vercel deployment.
 2. Look for the **Deploy Hooks** section and create a **Hook**.
-3. This will generate a URL that can be used to trigger a rebuild of the deployment.
+3. Generate a URL that can be used to trigger a rebuild of the deployment.
 
 ### Create a Webhook in Optimizely
 
@@ -90,7 +90,7 @@ This example fetches the latest datafile from the Optimizely CDN during every bu
 
 ### How it works
 
-When a user will make any change to the Optimizely Project using the UI, the Webhook will hit Vercel's `Deploy Hook` URL. This will trigger a new build on Vercel. Every new build fetches the latest version of the Optimizely datafile and uses it in the application.
+When a user makes a change to the Optimizely Project using the UI, the Webhook hits Vercel's `Deploy Hook` URL to trigger a new build on Vercel. Every new build fetches the latest version of the Optimizely datafile and uses it in the application.
 
 ## Set up Optimizely
 
@@ -99,8 +99,6 @@ When a user will make any change to the Optimizely Project using the UI, the Web
 You need an account to follow this example. If you do not have an account, you can [register for a free account](https://www.optimizely.com/campaigns/feature-detail-pages/free-feature-flagging/). If you already have an account navigate to your Flags-enabled project.
 
 ### Get your SDK Key
-
-To find your SDK Key in your Optimizely project:
 
 1. Go to **Settings > Primary Environment**
 2. Copy and save the **SDK Key** for your primary environment. **Note:** Each environment has its own SDK key.
@@ -127,13 +125,13 @@ Create a flag in Optimizely named **product_sort** and give it a variable named 
 
 ### Create the flag delivery rule
 
-Make a targeted delivery rule for the "on" variation for the _product_sort_ flag. A targeted delivery lets you gradually release a feature flag to users, but with the flexibility to roll it back if you encounter bugs.
+Make a targeted delivery rule for the "on" variation for the _product_sort_ flag. A targeted delivery lets you gradually release a feature flag to users, with the flexibility to roll it back if you encounter bugs.
 
 1. Verify that you are in your primary environment (since you are using the primary environment SDK key):
    ![verify environment](https://files.readme.io/69332d4-verify_env.png)
 2. Click _Add Rule_ and select _Targeted Delivery_.
 3. Set the traffic slider to 50%. This delivers the flag to 50% of everyone who triggers the flag in this environment. You can roll out or roll back the **product_sort** flag to a percentage of traffic whenever you want.
-4. From the **Deliver** drop-down, select **On**.
+4. select **On** from the **Deliver** dropdown, .
 5. Click **Save**.
    ![deliver on](https://files.readme.io/8ead3e6-Screenshot_docs.png)
 
