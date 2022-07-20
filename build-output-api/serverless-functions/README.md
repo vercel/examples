@@ -23,3 +23,9 @@ source code file will be the starting point of execution when the Serverless Fun
 Additional files may placed within the `index.func` file as well which will be included in the runtime environment
 of the Serverless Function. In this case, there is also a `node_modules` directory
 that contains dependencies that the example Serverless Function needs in order to operate.
+
+A second Serverless Function is also included at the path
+`.vercel/output/functions/another.func`. In this case, it is represented by using
+a symbolic link that points to the `index.func` directory. Because it is a
+symlink, Vercel will optimize this by only creating one backing Serverless
+Function which is served at both URL paths.
