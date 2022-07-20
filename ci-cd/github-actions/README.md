@@ -7,11 +7,7 @@ framework: Next.js
 
 # Bring Your Own CI/CD - Github Actions
 
-This example shows how to use the Vercel CLI and Github Actions to deploy to Vercel with your own custom pipeline. You can generate preview deployments, deploy to roduction when code is merged into the main branch, and enable rollbacks by reverting PRs. This is useful for both users of Github.com who want more CI/CD control as well as Github Enterprise Server users who can't leverge the built-in integration.
-
-## Demo
-
-https://github-actions.vercel.app
+This example shows how to use the Vercel CLI and Github Actions to deploy to Vercel with your own custom pipeline. You can generate preview deployments, deploy to production when code is merged into the main branch, and enable rollbacks by reverting PRs. This is useful for both users of Github.com who want more CI/CD control as well as Github Enterprise Server users who can't leverge the built-in integration.
 
 ## How to Use
 
