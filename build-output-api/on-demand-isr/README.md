@@ -23,11 +23,11 @@ To revalidate a path to a Prerender Function, make a `GET` request to that path 
 In this demo, you can see this happening with two paths: `/` and `/data`.
 
 - `/`
-  - [bypassToken](./.vercel/output/functions/index.prerender-config.json)
+  - [bypassToken](./.vercel/output/functions/index.prerender-config.json#L4)
   - [trigger our custom revalidation handler](./.vercel/output/functions/index.func/index.js#L19)
   - [trigger the actual revalidation](./.vercel/output/functions/revalidate.func/index.js#L23)
 - `/data`
-  - [bypassToken](./.vercel/output/functions/data.prerender-config.json)
+  - [bypassToken](./.vercel/output/functions/data.prerender-config.json#L4)
   - [trigger our custom revalidation handler](./.vercel/output/functions/index.func/index.js#L29)
   - [trigger the actual revalidation](./.vercel/output/functions/revalidate.func/index.js#L23)
 
