@@ -6,6 +6,7 @@ module.exports = (req, res) => {
   const text =
     `Howdy ${name}, from Vercel!\n` +
     `Node.js: ${process.version}\n` +
+    `Request URL: ${req.url}\n` +
     `Server time: ${new Date().toISOString()})`
   const body = cowsay.say({ text })
 
