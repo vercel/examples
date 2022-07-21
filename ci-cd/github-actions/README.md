@@ -11,29 +11,9 @@ This example shows how to use the Vercel CLI and Github Actions to deploy to Ver
 
 ## How to Use
 
-### Clone
+### Project Setup
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/ci-cd/github-actions
-# or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/cd-cd/github-actions
-```
-
-Next, run Next.js in development mode:
-
-```bash
-npm install
-npm run dev
-
-# or
-
-yarn
-yarn dev
-```
-
-You will notice there are two example pipelines for a trunk-based development workflow in the `.github/workflows` folder. One is for preview and and one is for production deployments:
+When you clone the repo you will notice there are two example pipelines for a trunk-based development workflow in the `.github/workflows` folder. One is for preview and and one is for production deployments:
 
 ```yaml
 name: GitHub Actions Vercel Preview Deployment
