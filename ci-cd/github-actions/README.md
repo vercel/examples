@@ -1,19 +1,18 @@
 ---
 name: Github Actions Deploy
 slug: github-actions-deploy
-description: Learn how to use the Vercel CLI and Github actions to deploy to Vercel with your own CICD
-framework: Next.js
+description: Deploy to Vercel with your customer GitHub Actions CI/CD.
 ---
 
 # Bring Your Own CI/CD - Github Actions
 
-This example shows how to use the Vercel CLI and Github Actions to deploy to Vercel with your own custom pipeline. You can generate preview deployments, deploy to production when code is merged into the main branch, and enable rollbacks by reverting PRs. This is useful for both users of Github.com who want more CI/CD control as well as Github Enterprise Server users who can't leverge the built-in integration.
+This example shows how to use the Vercel CLI and Github Actions to deploy to Vercel with your own custom pipeline. You can generate preview deployments, deploy to production when code is merged into the main branch, and enable rollbacks by reverting PRs. This is useful for both users of Github.com who want more CI/CD control as well as Github Enterprise Server users who can't leverage Vercel's built-in git integration.
 
 ## How to Use
 
 ### Project Setup
 
-When you clone the repo you will notice there are two example pipelines for a trunk-based development workflow in the `.github/workflows` folder. One is for preview and and one is for production deployments:
+After you clone the repo, you will notice there are two example pipelines for a trunk-based development workflow in the `.github/workflows` folder. One is for preview and one is for production deployments:
 
 ```yaml
 name: GitHub Actions Vercel Preview Deployment
@@ -39,7 +38,7 @@ jobs:
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
 ```
 
-You will see that we need to setup three secrets (VERCEL_ORG_ID, VERCEL_PROJECT_ID, VERCEL_TOKEN) in this action, these will be covered in the next section.
+You will see that we need to setup three secrets (`VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, `VERCEL_TOKEN`) in this action, these will be covered in the next section.
 
 ### Deploy
 
