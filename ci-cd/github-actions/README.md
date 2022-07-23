@@ -1,18 +1,26 @@
 ---
 name: Github Actions Deploy
 slug: github-actions-deploy
-description: Deploy to Vercel with your customer GitHub Actions CI/CD.
+description: Deploy to Vercel with your custom GitHub Actions CI/CD.
 ---
 
-# Bring Your Own CI/CD - Github Actions
+# Bring Your Own CI/CD - GitHub Actions
 
-This example shows how to use the Vercel CLI and Github Actions to deploy to Vercel with your own custom pipeline. You can generate preview deployments, deploy to production when code is merged into the main branch, and enable rollbacks by reverting PRs. This is useful for both users of Github.com who want more CI/CD control as well as Github Enterprise Server users who can't leverage Vercel's built-in git integration.
+You can use Vercel with GitHub Actions as your CI/CD provider to generate Preview Deployments for every `git` push and deploy to Production when code is merged into the `main` branch.
 
-## How to Use
+This approach is useful for developers who want full control over their CI/CD pipeline, as well as GitHub Enterprise Server users, when can’t level Vercel’s [zero-configuration git integration](https://vercel.com/docs/concepts/git/vercel-for-github) currently. 
 
-### Project Setup
+## Building Your Application
 
-After you clone the repo, you will notice there are two example pipelines for a trunk-based development workflow in the `.github/workflows` folder. One is for preview and one is for production deployments:
+You can build your application locally (or in an Action) without giving Vercel access to the source code through `vercel build`. Vercel automatically detects your frontend framework and generates a `.vercel/output` folder conforming to the [Build Output API specification](https://vercel.com/blog/build-output-api).
+
+`vercel build` allows you to build your project within your own CI setup, whether it be GitHub Actions or your own in-house CI, and upload *only* those build artifacts (and not the source code) to Vercel to create a deployment.
+
+## Configuring GitHub Actions for Vercel
+
+`vercel deploy --prebuilt` skips the build step on Vercel and uploads the previously generated `.vercel/output` folder from the GitHub Action.
+
+Let’s create our Action by creating a new file `.github/workflows/preview.yaml`:
 
 ```yaml
 name: GitHub Actions Vercel Preview Deployment
@@ -38,25 +46,47 @@ jobs:
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
 ```
 
-You will see that we need to setup three secrets (`VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, `VERCEL_TOKEN`) in this action, these will be covered in the next section.
+This action will run when your code is pushed to a git branch. Let’s do the same for Production environments with a separate Action:
 
-### Deploy
+```yaml
+name: GitHub Actions Vercel Production Deployment
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Deploy-Production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Vercel CLI
+        run: npm install --global vercel@canary
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+```
 
-To finish configuration we now need to configure our Vercel project and link it to our Github Actions.
+Finally, let’s add the required values from Vercel as secrets in GitHub:
 
-First, you need to install the Vercel CLI locally with `npm install --global vercel` and login to your account with `vercel login`.
+1. Retrieve your [Vercel Access Token](https://vercel.com/support/articles/how-do-i-use-a-vercel-api-access-token)
+2. Install the [Vercel CLI](https://vercel.com/cli) and run `vercel login`
+3. Inside your folder, run `vercel link` to create a new Vercel project
+4. Inside the generated `.vercel` folder, save the `projectId` and `orgId` from the `project.json`
+5. Inside GitHub, add `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` as [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
-Once you are logged in you can create a new project for your application in Vercel with `vercel link`.
+## Deploying Your Vercel Application with GitHub Actions
 
-This will create a `.vercel` folder in your project where you will find a `project.json` file with both your `"projectId"` and `"orgId"`. Note these for later because we will need them to link from Github.
+Now that your Vercel application is configured with GitHub Actions, you can try out the workflow:
 
-Finally make sure you have created a [Vercel API token](https://vercel.com/support/articles/how-do-i-use-a-vercel-api-access-token) to give Github the right authentication to push to your Vercel account.
-
-Now go to your Github repository and add as [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) the `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` and `VERCEL_TOKEN` we created previously.
-
-This finishes off all the configuration neccesary and now you can try out the workflow:
-
-- Create a new PR in Github
-- Github Actions will use the Vercel CLI in the Pipeline to build your application.
-- The Pipeline uploads the build output to Github
+- Create a new pull request to your GitHub repository
+- GitHub Actions will recognize the change and use the Vercel CLI to build your application
+- The Action uploads the build output to Vercel and creates a Preview Deployment
 - When the pull request is merged, a Production build is created and deployed
+
+Every pull request will now automatically have a Preview Deployment attached. If the pull request needs to be rolled back, you can revert and merge the PR and Vercel will start a new Production build back to the old git state.
