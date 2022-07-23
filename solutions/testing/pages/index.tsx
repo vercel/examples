@@ -1,8 +1,8 @@
-import { Layout, Text, Page, Code, Input, Button } from '@vercel/examples-ui'
+import Head from 'next/head'
+import { Layout, Text, Page, Input, Button } from '@vercel/examples-ui'
 import useSWR from 'swr'
 import cn from 'clsx'
 import type { Todo } from '../lib/db'
-import Head from 'next/head'
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
@@ -13,6 +13,7 @@ function Home() {
   return (
     <Page>
       <Head>
+        {/* https://swr.vercel.app/docs/prefetching#top-level-page-data */}
         <link
           rel="preload"
           href="/api/todo"
@@ -42,10 +43,10 @@ function Home() {
           const { todos } = await res.json()
 
           form.reset()
-          await mutate({ todos })
+          await mutate({ todos }, { revalidate: false })
         }}
       >
-        <Input name="title" placeholder="What needs to be done?" />
+        <Input name="title" placeholder="What needs to be done?" required />
         <Button
           type="submit"
           className="ml-4"
@@ -88,7 +89,7 @@ function Home() {
                         })
                         const { todos } = await res.json()
 
-                        await mutate({ todos })
+                        await mutate({ todos }, { revalidate: false })
                       }}
                     >
                       {todo.done ? 'Undo' : 'Complete'}
@@ -103,7 +104,7 @@ function Home() {
                         })
                         const { todos } = await res.json()
 
-                        await mutate({ todos })
+                        await mutate({ todos }, { revalidate: false })
                       }}
                     >
                       Remove
