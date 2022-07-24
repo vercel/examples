@@ -8,13 +8,13 @@ description: Deploy to Vercel with your custom GitHub Actions CI/CD.
 
 You can use Vercel with GitHub Actions as your CI/CD provider to generate Preview Deployments for every `git` push and deploy to Production when code is merged into the `main` branch.
 
-This approach is useful for developers who want full control over their CI/CD pipeline, as well as GitHub Enterprise Server users, when can’t level Vercel’s [zero-configuration git integration](https://vercel.com/docs/concepts/git/vercel-for-github) currently. 
+This approach is useful for developers who want full control over their CI/CD pipeline, as well as GitHub Enterprise Server users, who can’t leverage Vercel’s [zero-configuration git integration](https://vercel.com/docs/concepts/git/vercel-for-github) currently.
 
 ## Building Your Application
 
 You can build your application locally (or in an Action) without giving Vercel access to the source code through `vercel build`. Vercel automatically detects your frontend framework and generates a `.vercel/output` folder conforming to the [Build Output API specification](https://vercel.com/blog/build-output-api).
 
-`vercel build` allows you to build your project within your own CI setup, whether it be GitHub Actions or your own in-house CI, and upload *only* those build artifacts (and not the source code) to Vercel to create a deployment.
+`vercel build` allows you to build your project within your own CI setup, whether it be GitHub Actions or your own in-house CI, and upload _only_ those build artifacts (and not the source code) to Vercel to create a deployment.
 
 ## Configuring GitHub Actions for Vercel
 

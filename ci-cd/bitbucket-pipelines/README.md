@@ -8,7 +8,7 @@ description: Deploy to Vercel with your custom Bitbucket Pipelines CI/CD.
 
 You can use Vercel with Bitbucket Pipelines as your CI/CD provider to generate Preview Deployments for every `git` push and deploy to Production when code is merged into the `main` branch.
 
-This approach is useful for developers who want full control over their CI/CD pipeline, as well as Bitbucket Data Center users, when can’t level Vercel’s [zero-configuration git integration](https://vercel.com/docs/concepts/git/vercel-for-bitbucket) currently.
+This approach is useful for developers who want full control over their CI/CD pipeline, as well as Bitbucket Data Center users, who can’t leverage Vercel’s [zero-configuration git integration](https://vercel.com/docs/concepts/git/vercel-for-bitbucket) currently.
 
 ## Building Your Application
 
