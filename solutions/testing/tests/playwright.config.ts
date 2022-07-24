@@ -12,7 +12,7 @@ const OPEN_DEVTOOLS = Boolean(process.env.OPEN_DEVTOOLS)
  * See https://playwright.dev/docs/test-configuration.
  */
 const config: PlaywrightTestConfig = {
-  testDir: './tests',
+  testDir: '.',
   testMatch: '*.spec.ts',
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
   outputDir: 'test-results/',
