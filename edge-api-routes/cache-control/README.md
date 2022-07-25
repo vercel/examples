@@ -2,6 +2,10 @@
 
 Build your API using Vercel Edge Functions (Experimental).
 
+## Demo
+
+https://edge-api-routes-cache-control.vercel.app/api/edge
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:
