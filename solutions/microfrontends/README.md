@@ -51,7 +51,7 @@ yarn dev
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
 
-## What's included?
+## What's Included?
 
 The example is a monorepo with [Turborepo](https://turborepo.org/) with the following setup:
 
@@ -62,8 +62,9 @@ The example is a monorepo with [Turborepo](https://turborepo.org/) with the foll
 - Storybook is used for the components that are part of the [`acme-design-system`](./packages/acme-design-system) package and its setup is shared in the [`acme-storybook`](./packages/acme-storybook) package
 - [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules) is used for packages that use CSS Modules
 - The Eslint config lives in [eslint-config-acme](./packages/eslint-config-acme)
+- [Changesets](https://github.com/changesets/changesets) to manage versioning and publishing of packages, read more about it in [Versioning & Publishing Packages](#versioning--publishing-packages).
 
-## How it works
+## How it Works
 
 There are many ways of doing Microfrontends, what you do depends almost entirely on how do you want to structure your applications and teams. There is no one way to do it, so we'll share different approaches and how they work.
 
@@ -123,3 +124,60 @@ One of the popular use cases for MF we hear often is runtime injection of code, 
 - [Multi Zones](#multi-zones) has an important constraint that stops if from falling easily in the issues mentioned above: The app has total control over the paths it's in charge of, so it's only when you navigate to paths owned by another app that you'll see an UX hit
 
 In general, MF is not a way to improve UX or performance in any way, it's all about DX and we don't think it does a good job at it. The approaches in this example are our take about trying to accomplish the same thing while skipping its downsides.
+
+## Versioning & Publishing Packages
+
+[Changesets](https://github.com/changesets/changesets) is used to manage versions, create changelogs, and publish to npm. It's preconfigured so you can start publishing packages immediately.
+
+> It's worth installing the [Changesets bot](https://github.com/apps/changeset-bot) on your repository to more easily manage contributions.
+
+### Generating Changesets
+
+To generate a changeset, run the following command in the root of the project:
+
+```bash
+npm run changeset
+
+# or
+
+yarn changeset
+```
+
+The Changeset CLI will ask you a couple of questions:
+
+1. **Which packages would you like to include?** – This shows which packages and changed and which have remained the same. By default, no packages are included. Press `space` to select the packages you want to include in the `changeset`.
+1. **Which packages should have a major bump?** – Press `space` to select the packages you want to bump versions for.
+1. If doing the first major version, confirm you want to release.
+1. Write a summary for the changes.
+1. Confirm the changeset looks as expected.
+1. A new Markdown file will be created in the `changeset` folder with the summary and a list of the packages included.
+
+### Publishing Changesets
+
+The example ships with a [GitHub action](https://github.com/changesets/action) named [Release](.github/workflows/release.yml) to automatically publish changesets to npm after pushing to the `main` branch.
+
+You'll need to create an `NPM_TOKEN` and `GITHUB_TOKEN` and then add them to your GitHub repository settings so that the action can publish to npm.
+
+Publishing can also be done manually with:
+
+```bash
+npm run release
+
+# or
+
+yarn release
+```
+
+The action will run the same `release` script defined in `package.json`, which looks like this:
+
+```bash
+turbo run build --filter=main^... && changeset publish
+```
+
+Turborepo will run the `build` script for all publishable dependencies of the `main` app, excluding the `main` app itself, and then publishes the new versions to npm.
+
+By default, this example includes `acme` as the npm organization. To change this, do the following:
+
+- Rename folders in `packages/*` to replace `acme` with your desired scope
+- Search and replace `acme` with your desired scope
+- Re-run `npm install` / `yarn`
