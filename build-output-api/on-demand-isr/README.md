@@ -18,7 +18,7 @@ Click on one of the "Revalidate" links to see the associated value update. After
 
 When using Prerender Functions, you may want to revalidate the cache for a specific path based on an event (On-Demand).
 
-To revalidate a path to a Prerender Function, make a `GET` request to that path with a header of `x-prerender-revalidate: <bypassToken>`. The `<bypassToken>` must match the value in that Prerender Function's `<name>.prerender-config.json` file.
+To revalidate a path to a Prerender Function, make a `GET` or `HEAD` request to that path with a header of `x-prerender-revalidate: <bypassToken>`. The `<bypassToken>` must match the value in that Prerender Function's `<name>.prerender-config.json` file.
 
 In this demo, you can see this happening with two paths: `/` and `/data`.
 
