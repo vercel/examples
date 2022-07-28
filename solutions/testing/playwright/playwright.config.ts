@@ -1,3 +1,4 @@
+import { join } from 'path'
 import type {
   PlaywrightTestConfig,
   ReporterDescription,
@@ -7,12 +8,17 @@ import { getBaseUrl } from './utils/get-base-url'
 
 const IS_CI = Boolean(process.env.CI)
 const OPEN_DEVTOOLS = Boolean(process.env.OPEN_DEVTOOLS)
+const TEST_TYPE = process.env.TEST_TYPE
+
+if (TEST_TYPE && !['e2e', 'integration'].includes(TEST_TYPE)) {
+  throw new Error('⛔️ TEST_TYPE must be either "e2e" or "integration"')
+}
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 const config: PlaywrightTestConfig = {
-  testDir: '.',
+  testDir: TEST_TYPE ? join(__dirname, TEST_TYPE, 'tests') : '.',
   testMatch: '*.spec.ts',
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
   outputDir: 'test-results/',
@@ -36,8 +42,16 @@ const config: PlaywrightTestConfig = {
   /* Reporters to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     IS_CI ? ['list'] : ['line'],
-    IS_CI ? ['junit'] : null,
-    ['html', { open: 'never' }],
+    IS_CI
+      ? [
+          'junit',
+          {
+            outputFile: join(__dirname, 'junit.xml'),
+            embedAnnotationsAsProperties: true,
+          },
+        ]
+      : null,
+    ['html', { outputFolder: join(__dirname, 'html-report'), open: 'never' }],
   ].filter(Boolean) as ReporterDescription[],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

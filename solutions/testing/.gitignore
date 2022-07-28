@@ -41,6 +41,7 @@ yarn-error.log*
 *.tsbuildinfo
 
 # Playwright
-/test-results/
-/playwright-report/
 /playwright/.cache/
+/playwright/test-results/
+/playwright/html-report/
+/playwright/junit.xml
