@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test-server": "next build && next start",
-    "integration": "TEST_TYPE=integration playwright test --config tests/playwright.config.ts --project=chromium --project=webkit-mobile"
+    "integration": "TEST_TYPE=integration playwright test --config tests/playwright.config.ts --project=chromium"
   },
   "dependencies": {
     "@vercel/examples-ui": "latest",
