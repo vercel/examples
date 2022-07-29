@@ -9,7 +9,7 @@ css: None
 
 # Streaming Response
 
-This examples shows how to stream a response from an external source and apply transformations using Vercel's Edge Runtime and Vercel Edge Functions
+This examples shows how to stream a response from an external source and apply transformations using Vercel Edge Functions and Vercel's Edge Runtime
 
 ## Demo
 
