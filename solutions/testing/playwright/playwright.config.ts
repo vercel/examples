@@ -64,7 +64,7 @@ const config: PlaywrightTestConfig = {
     locale: 'en-US',
     timezoneId: 'GMT',
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
-    actionTimeout: 0,
+    actionTimeout: 5_000,
     screenshot: 'only-on-failure',
     /* Collect traces for all test that fail. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',

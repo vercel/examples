@@ -8,4 +8,16 @@ export class SignupPage extends BasePage {
   goto() {
     return this.page.goto(this.path())
   }
+
+  async signup() {
+    const labels = this.page.locator('label')
+
+    await labels.locator('text=Username').click()
+    await this.page.keyboard.type('new-user')
+
+    await labels.locator('text=Password22').click()
+    await this.page.keyboard.type('new-password')
+
+    await this.page.locator('button', { hasText: 'Signup' }).click()
+  }
 }

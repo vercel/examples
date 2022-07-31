@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from 'integration/setup-fixture'
 import { SignupPage } from 'shared/pages/signup'
 
 test.describe('Signup', () => {
@@ -6,6 +6,6 @@ test.describe('Signup', () => {
     const signupPage = new SignupPage(page)
 
     await signupPage.goto()
-    await expect(page.locator('h1 + p')).toHaveText('Signup to start:')
+    await signupPage.signup()
   })
 })
