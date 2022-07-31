@@ -7,5 +7,7 @@ test.describe('Signup', () => {
 
     await signupPage.goto()
     await signupPage.signup()
+
+    await expect(page.locator('button', { hasText: 'Add Todo' })).toBeVisible()
   })
 })
