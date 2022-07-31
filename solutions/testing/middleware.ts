@@ -8,13 +8,20 @@ export const config = {
 export default async function middleware(req: NextRequest) {
   const url = req.nextUrl
   const user = await db.getUserFromReq(req)
+  let redirectTo
 
   if (!user && url.pathname === '/') {
-    req.nextUrl.pathname = '/signup'
-    return NextResponse.redirect(req.nextUrl)
+    redirectTo = '/signup'
   }
   if (user && url.pathname === '/signup') {
-    req.nextUrl.pathname = '/'
-    return NextResponse.redirect(req.nextUrl)
+    redirectTo = '/'
+  }
+  if (redirectTo) {
+    req.nextUrl.pathname = redirectTo
+    const res = NextResponse.redirect(req.nextUrl)
+    // Don't cache the redirect so that we can redirect from '/signup'
+    // to '/' in the browser with a client side transition
+    res?.headers.set('x-middleware-cache', 'no-cache')
+    return res
   }
 }

@@ -15,9 +15,12 @@ export class SignupPage extends BasePage {
     await labels.locator('text=Username').click()
     await this.page.keyboard.type('new-user')
 
-    await labels.locator('text=Password22').click()
+    await labels.locator('text=Password').click()
     await this.page.keyboard.type('new-password')
 
-    await this.page.locator('button', { hasText: 'Signup' }).click()
+    await Promise.all([
+      this.page.waitForNavigation({ url: '/' }),
+      this.page.locator('button', { hasText: 'Signup' }).click(),
+    ])
   }
 }
