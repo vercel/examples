@@ -5,14 +5,7 @@ import type {
 } from '@playwright/test'
 import { devices } from '@playwright/test'
 import { getBaseUrl } from './shared/utils/get-base-url'
-
-const IS_CI = Boolean(process.env.CI)
-const OPEN_DEVTOOLS = Boolean(process.env.OPEN_DEVTOOLS)
-const TEST_TYPE = process.env.TEST_TYPE
-
-if (TEST_TYPE && !['e2e', 'integration'].includes(TEST_TYPE)) {
-  throw new Error('⛔️ TEST_TYPE must be either "e2e" or "integration"')
-}
+import { IS_CI, OPEN_DEVTOOLS, TEST_TYPE } from 'shared/constants'
 
 /**
  * See https://playwright.dev/docs/test-configuration.
