@@ -5,7 +5,42 @@ import pauseOnFailure from 'shared/fixtures/pause-on-failure'
 
 type Extensions = SharedExtensions
 
-export const test = base.extend<Extensions>({})
+export const test = base.extend<Extensions>({
+  context: async ({ context, baseURL }, use, testInfo) => {
+    if (!baseURL) {
+      throw new Error(
+        '`baseURL` is required in order to run integration tests.'
+      )
+    }
+
+    await context.route('**/*', (route, request) => {
+      const resourceType = request.resourceType()
+      const requestUrl = request.url()
+
+      // Block any request that doesn't start with the base URL.
+      const isBlocked = !requestUrl.startsWith(baseURL)
+
+      // Block fetch/XHR requests, but not other asset types like scripts.
+      const isFetchRequest = ['fetch', 'xhr'].includes(resourceType)
+
+      // Allow all HEAD requests.
+      const isHeadRequest = request.method() === 'HEAD'
+
+      // Allow requests to specific paths.
+      const isAllowed = ['/_next/'].some((allowedPath) =>
+        requestUrl.startsWith(`${baseURL}${allowedPath}`)
+      )
+
+      if (!isBlocked && (!isFetchRequest || isHeadRequest || isAllowed)) {
+        return route.continue()
+      }
+
+      route.fulfill()
+    })
+
+    await use(context)
+  },
+})
 
 if (!IS_CI && PAUSE_ON_FAILURE) {
   test.afterEach(pauseOnFailure)
