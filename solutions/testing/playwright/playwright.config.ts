@@ -4,8 +4,7 @@ import type {
   ReporterDescription,
 } from '@playwright/test'
 import { devices } from '@playwright/test'
-import { getBaseUrl } from './shared/utils/get-base-url'
-import { IS_CI, OPEN_DEVTOOLS, TEST_TYPE } from 'shared/constants'
+import { BASE_URL, IS_CI, OPEN_DEVTOOLS, TEST_TYPE } from 'shared/constants'
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -49,7 +48,7 @@ const config: PlaywrightTestConfig = {
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: getBaseUrl(),
+    baseURL: BASE_URL,
     extraHTTPHeaders: {
       // Indicate the app we're running tests!
       'x-automated-test': 'true',
