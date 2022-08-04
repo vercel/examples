@@ -1,5 +1,4 @@
 import type { Response } from '@playwright/test'
-import type { Test } from 'integration/setup-fixture'
 
 enum HTTPMethod {
   Delete = 'DELETE',
@@ -7,8 +6,6 @@ enum HTTPMethod {
   Patch = 'PATCH',
   Post = 'POST',
 }
-
-type Fixture = Parameters<Test['extend']>['0']
 
 type SearchParamsValue = '*' | string | RegExp
 

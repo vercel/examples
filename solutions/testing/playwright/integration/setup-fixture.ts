@@ -2,11 +2,12 @@ import { test as base } from '@playwright/test'
 import { IS_CI, PAUSE_ON_FAILURE } from 'shared/constants'
 import type { SharedExtensions } from 'shared/fixtures/types'
 import pauseOnFailure from 'shared/fixtures/pause-on-failure'
+import { type MockApi, createMockApi } from './apis'
 
-type Extensions = SharedExtensions
+type Extensions = SharedExtensions & { mockApi: MockApi }
 
 export const test = base.extend<Extensions>({
-  context: async ({ context, baseURL }, use, testInfo) => {
+  context: async ({ context, baseURL }, use) => {
     if (!baseURL) {
       throw new Error(
         '`baseURL` is required in order to run integration tests.'
@@ -40,6 +41,7 @@ export const test = base.extend<Extensions>({
 
     await use(context)
   },
+  mockApi: ({ page }, use) => use(createMockApi(page)),
 })
 
 if (!IS_CI && PAUSE_ON_FAILURE) {

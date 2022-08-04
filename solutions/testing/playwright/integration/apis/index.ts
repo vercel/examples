@@ -35,7 +35,7 @@ export const createMockApi = (page: Page) => {
       )
 
       const mergedSearchParams = {
-        ...defaultPathParams,
+        ...defaultSearchParams,
         ...searchParams,
       }
       // Append any additional search params.
@@ -63,7 +63,7 @@ export const createMockApi = (page: Page) => {
 
           if (
             request.method() !== method ||
-            !hasMatchingParams(replacedPath, mockSearchParams, url.searchParams)
+            !hasMatchingParams(mockSearchParams, url.searchParams)
           ) {
             return route.fallback()
           }
@@ -92,15 +92,15 @@ export const createMockApi = (page: Page) => {
             const url = new URL(response.url())
             if (!pathRegex.test(url.pathname)) return false
 
-            return hasMatchingParams(
-              replacedPath,
-              mockSearchParams,
-              url.searchParams
-            )
+            return hasMatchingParams(mockSearchParams, url.searchParams)
           }),
         () => lastResponseBody,
       ]
     }
+
+  const mockApi = {}
+
+  return mockApi
 }
 
-// export const mockApi: Fixture
+export type MockApi = ReturnType<typeof createMockApi>

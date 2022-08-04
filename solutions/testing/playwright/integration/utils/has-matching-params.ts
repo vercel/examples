@@ -1,7 +1,6 @@
 import { SearchParamsProperties } from './types'
 
 export function hasMatchingParams(
-  path: string,
   mockSearchParams: Record<string, SearchParamsProperties>,
   requestSearchParams: URLSearchParams
 ): boolean {
