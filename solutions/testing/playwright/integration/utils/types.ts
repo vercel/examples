@@ -1,6 +1,6 @@
 import type { Response } from '@playwright/test'
 
-enum HTTPMethod {
+export enum HTTPMethod {
   Delete = 'DELETE',
   Get = 'GET',
   Patch = 'PATCH',
@@ -14,8 +14,15 @@ export interface SearchParamsProperties {
   optional: boolean
 }
 
+/**
+ * Allows for matching search params by a fixed value, any value (`*`),
+ * or one that matches a regular expression.
+ */
 type SearchParams = Record<string, SearchParamsValue | SearchParamsProperties>
 
+/**
+ * The configuration that can be used by the API to create mocks
+ */
 interface ServiceConfig<T> {
   path: string
   method: HTTPMethod
@@ -25,6 +32,10 @@ interface ServiceConfig<T> {
   body: T
 }
 
+/**
+ * Custom configuration that can be used by the test to extend the mock
+ * before applying it. All keys are optional.
+ */
 interface CreateMockConfig<T> {
   pathParams?: Record<string, string>
   searchParams?: SearchParams
@@ -33,6 +44,13 @@ interface CreateMockConfig<T> {
   times?: number
 }
 
+/**
+ * Setups an API mock for the selected `path`.
+ *
+ * @param serviceConfig Tells how to mock the `path`.
+ * @returns A new function that will implement the mock in
+ * the test that calls it.
+ */
 export type CreateMockFn = <T>(
   serviceConfig: ServiceConfig<T>
 ) => (

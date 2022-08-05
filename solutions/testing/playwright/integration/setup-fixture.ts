@@ -2,7 +2,8 @@ import { test as base } from '@playwright/test'
 import { IS_CI, PAUSE_ON_FAILURE } from 'shared/constants'
 import type { SharedExtensions } from 'shared/fixtures/types'
 import pauseOnFailure from 'shared/fixtures/pause-on-failure'
-import { type MockApi, createMockApi } from './apis'
+import createApiMockFn from './utils/create-mock-api'
+import { createApiMocks, MockApi } from './apis'
 
 type Extensions = SharedExtensions & { mockApi: MockApi }
 
@@ -16,10 +17,10 @@ export const test = base.extend<Extensions>({
 
     await context.route('**/*', (route, request) => {
       const resourceType = request.resourceType()
-      const requestUrl = request.url()
+      const url = request.url()
 
       // Block any request that doesn't start with the base URL.
-      const isBlocked = !requestUrl.startsWith(baseURL)
+      const isBlocked = !url.startsWith(baseURL)
 
       // Block fetch/XHR requests, but not other asset types like scripts.
       const isFetchRequest = ['fetch', 'xhr'].includes(resourceType)
@@ -29,19 +30,21 @@ export const test = base.extend<Extensions>({
 
       // Allow requests to specific paths.
       const isAllowed = ['/_next/'].some((allowedPath) =>
-        requestUrl.startsWith(`${baseURL}${allowedPath}`)
+        url.startsWith(`${baseURL}${allowedPath}`)
       )
 
       if (!isBlocked && (!isFetchRequest || isHeadRequest || isAllowed)) {
         return route.continue()
       }
 
+      console.log('Route blocked:', resourceType, url, request.method())
+
       route.fulfill()
     })
 
     await use(context)
   },
-  mockApi: ({ page }, use) => use(createMockApi(page)),
+  mockApi: ({ page }, use) => use(createApiMocks(createApiMockFn(page))),
 })
 
 if (!IS_CI && PAUSE_ON_FAILURE) {
