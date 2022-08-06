@@ -3,6 +3,7 @@ import { Layout, Text, Page, Input, Button } from '@vercel/examples-ui'
 import useSWR from 'swr'
 import cn from 'clsx'
 import type { Todo } from '../lib/db'
+import { tid } from '../lib/data-testid'
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
@@ -28,6 +29,7 @@ function Home() {
       <Text className="mb-4">You can now start adding Todos:</Text>
       <form
         className="flex"
+        data-testid={tid('todos-page', 'new-todo-form')}
         onSubmit={async (e) => {
           e.preventDefault()
 

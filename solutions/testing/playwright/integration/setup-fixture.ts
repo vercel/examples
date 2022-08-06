@@ -1,11 +1,11 @@
 import { test as base } from '@playwright/test'
 import { IS_CI, PAUSE_ON_FAILURE } from 'shared/constants'
-import type { SharedExtensions } from 'shared/fixtures/types'
 import pauseOnFailure from 'shared/fixtures/pause-on-failure'
 import createApiMockFn from './utils/create-mock-api'
 import { createApiMocks, MockApi } from './apis'
+import { Utils } from 'shared/fixtures/utils'
 
-type Extensions = SharedExtensions & { mockApi: MockApi }
+type Extensions = { utils: Utils; mockApi: MockApi }
 
 export const test = base.extend<Extensions>({
   context: async ({ context, baseURL }, use) => {

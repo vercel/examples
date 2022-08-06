@@ -1,9 +1,9 @@
 import { test, expect } from 'integration/setup-fixture'
-import { SignupPage } from 'shared/pages/signup'
+import { SignupPage } from 'shared/pages/signup-page'
 import getAuthCookies from 'shared/utils/get-auth-cookies'
 
 test.describe('Signup', () => {
-  test('should allow me to signup', async ({
+  test('should allow a visitor to signup', async ({
     page,
     mockApi,
     context,
