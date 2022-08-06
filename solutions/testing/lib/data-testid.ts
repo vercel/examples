@@ -30,12 +30,13 @@ function slugify(str: string) {
 function generateTestId(...scopes: (string | string[])[]): string {
   // We create the test id in one loop to avoid the JS impact of adding
   // test ids everywhere in pages.
+  // Transforms ['a', 'b', ['c', 'd']] into 'a/b/c/d'
   return scopes.reduce<string>((tid, scope) => {
     if (!scope.length) return tid
     if (Array.isArray(scope)) {
       return generateTestId(tid, ...scope)
     }
-    return `${tid}${SEP}${slugify(scope)}`
+    return `${tid}${tid && SEP}${slugify(scope)}`
   }, '')
 }
 
