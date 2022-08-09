@@ -1,0 +1,52 @@
+<div>
+    <h1>Simple Stream Pump</h1>
+    <p>target</p>
+    <div id="target"></div>
+    <script>
+
+    const target = document.getElementById("target");
+
+    // Fetch the original image
+    fetch('https://gist.githubusercontent.com/okbel/8ba642143f6912548df2d79f2c0ebabe/raw/4bcf9dc5750b42fa225cf6571d6aaa68c23a73aa/README.md')
+    // Retrieve its body as ReadableStream
+    .then(response => response.body)
+    .then(rs => {
+    const reader = rs.getReader();
+
+    const decoder = new TextDecoder('utf-8');
+    const encoder = new TextEncoder();
+
+    return new ReadableStream({
+        async start(controller) {
+        while (true) {
+            const { done, value } = await reader.read();
+
+            // When no more data needs to be consumed, break the reading
+            if (done) {
+            break;
+            }
+
+            // Enqueue the next data chunk into our target stream
+            const transformed = encoder.encode(decoder.decode(value).toUpperCase());
+            controller.enqueue(transformed)
+
+            console.log("DECODER: ",transformed)
+        }
+
+        // Close the stream
+        controller.close();
+        reader.releaseLock();
+        }
+    })
+    })
+    // Create a new response out of the stream
+    .then(rs => new Response(rs))
+    // Create an object URL for the response
+    //   .then(response => response.blob())
+    .then(res => res.text())
+    .then(content => target.innerHTML = content)
+    .catch(err => console.log("lol1", err));
+
+
+    </script>
+  </div>

@@ -1,0 +1,48 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Transform binary chunks to strings</title>
+  <script src="Uint8ArrayToStringsTransformer.js"></script>
+</head>
+<body>
+  <h1>Johann Wolfgang von Goethe: Faust, Der Tragödie erster Teil</h1>
+  <section id="section"></section>
+  <script>
+    async function main() {
+      // Create a transform stream with our transformer
+      const ts = new TransformStream(new Uint8ArrayToStringsTransformer())
+      // Fetch the text file
+      const response = await fetch('goethe-faust-1.txt')
+      // Get a ReadableStream on the text file's body
+      const rs = response.body
+      // Apply our Transformer on the ReadableStream to create a stream of strings
+      const lineStream = rs.pipeThrough(ts)
+      // Read the stream of strings
+      const reader = lineStream.getReader()
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) {
+          break
+        }
+
+        // Write each string line to the document as a paragraph
+        const p = document.createElement('p')
+        p.textContent = value
+        document.getElementById('section').appendChild(p)
+      }
+    }
+
+    main().catch(() => {
+      if (typeof TransformStream === 'undefined') {
+        const error = document.createElement('p')
+        error.textContent = 'TransformStream is not available in your browser. Activate it in Chrome with chrome://flags/#enable-experimental-web-platform-features'
+        error.style.color = 'red'
+        document.getElementById('section').appendChild(error)
+      }
+    })
+  </script>
+</body>
+</html>

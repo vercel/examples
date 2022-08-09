@@ -6,6 +6,6 @@ export const config = {
 
 export function middleware(req: NextRequest) {
   const url = req.nextUrl
-  url.pathname = '/api/edge'
+  url.pathname = '/api/text'
   return NextResponse.rewrite(url)
 }
