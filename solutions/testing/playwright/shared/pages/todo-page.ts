@@ -10,15 +10,14 @@ export class TodoPage extends BasePage {
   }
 
   getNewTodoForm() {
-    return this.utils.getByTestId('todos-page', 'new-todo-form')
-  }
-
-  getNewTodoInput() {
-    return this.getNewTodoForm().locator('input')
+    const form = this.utils.getByTestId('todos-page', 'new-todo-form')
+    return {
+      input: form.locator('input'),
+      submitButton: form.locator('button'),
+    }
   }
 
   getTodosList() {
     return this.utils.getByTestId('todos-page', 'todos-list')
   }
-  // async
 }

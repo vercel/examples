@@ -8,13 +8,16 @@ import { TodoPage } from 'shared/pages/todo-page'
 test.use(authenticatedContext)
 
 test.describe('Todo Page', () => {
-  test('should be able to add todos', async ({ page, utils, mockApi }) => {
-    const todoPage = new TodoPage(page)
-    await todoPage.goto()
-
+  test('should be able to add todos', async ({ page, mockApi }) => {
     const { todos } = todosBody
-    const form = todoPage.getNewTodoForm()
-    const input = todoPage.getNewTodoInput()
+    const todoPage = new TodoPage(page)
+    const [waitForResponse] = await mockApi.todos.todo.get({
+      body: { todos: [] },
+    })
+
+    await Promise.all([waitForResponse(), todoPage.goto()])
+
+    const { input, submitButton } = todoPage.getNewTodoForm()
     const todosList = todoPage.getTodosList()
 
     // Create 1st todo.
@@ -38,7 +41,7 @@ test.describe('Todo Page', () => {
       await input.fill(todos[1].title)
       // This time we'll click the button instead and validate that
       // a response was received.
-      await Promise.all([waitForResponse(), form.locator('button').click()])
+      await Promise.all([waitForResponse(), submitButton.click()])
 
       await expect(todosList).toContainText([todos[0].title, todos[1].title])
       await expect(todosList.locator('li')).toHaveCount(2)
@@ -46,5 +49,20 @@ test.describe('Todo Page', () => {
 
     await addFirstTodo()
     await addSecondTodo()
+  })
+
+  test('should clear the input field when a new item is added', async ({
+    page,
+    mockApi,
+  }) => {
+    const { todos } = todosBody
+    const todoPage = new TodoPage(page)
+    const [waitForResponse] = await mockApi.todos.todo.get({ body: { todos } })
+
+    await Promise.all([waitForResponse(), todoPage.goto()])
+
+    const todosList = todoPage.getTodosList()
+
+    await expect(todosList.locator('li')).toHaveCount(todos.length)
   })
 })

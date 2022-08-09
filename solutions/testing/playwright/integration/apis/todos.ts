@@ -1,4 +1,3 @@
-import { todosBody } from 'integration/fixtures/api-todos/todos'
 import { CreateMockFn, HTTPMethod } from 'integration/utils/types'
 
 export const createTodosMocks = (createMockFn: CreateMockFn) => ({
@@ -6,22 +5,22 @@ export const createTodosMocks = (createMockFn: CreateMockFn) => ({
     get: createMockFn({
       path: '/api/todo',
       method: HTTPMethod.Get,
-      body: todosBody,
+      body: {},
     }),
     post: createMockFn({
       path: '/api/todo',
       method: HTTPMethod.Post,
-      body: todosBody,
+      body: {},
     }),
     patch: createMockFn({
       path: '/api/todo',
       method: HTTPMethod.Patch,
-      body: todosBody,
+      body: {},
     }),
     delete: createMockFn({
       path: '/api/todo',
       method: HTTPMethod.Delete,
-      body: todosBody,
+      body: {},
     }),
   },
 })
