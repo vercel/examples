@@ -109,6 +109,4 @@ const createApiMockFn =
     ]
   }
 
-export type MockApi = ReturnType<typeof createApiMockFn>
-
 export default createApiMockFn

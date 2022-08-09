@@ -13,9 +13,9 @@ test.describe('Todo Page', () => {
     await todoPage.goto()
 
     const { todos } = todosBody
-    const form = utils.getByTestId('todos-page', 'new-todo-form')
-    const input = form.locator('input')
-    const todosList = utils.getByTestId('todos-page', 'todos-list')
+    const form = todoPage.getNewTodoForm()
+    const input = todoPage.getNewTodoInput()
+    const todosList = todoPage.getTodosList()
 
     // Create 1st todo.
     const addFirstTodo = async () => {
@@ -25,9 +25,6 @@ test.describe('Todo Page', () => {
 
       await input.fill(todos[0].title)
       await Promise.all([waitForResponse(), input.press('Enter')])
-
-      // console.log(await todosList.locator('li').count())
-      // await page.pause()
 
       await expect(todosList).toContainText(todos[0].title)
       await expect(todosList.locator('li')).toHaveCount(1)
