@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "12.2.3-canary.16",
+    "next": "canary",
     "react": "latest",
     "react-dom": "latest"
   },
