@@ -1,13 +1,7 @@
-import { randomUUID } from 'crypto'
+import { todosBody } from 'integration/fixtures/api-todos/todos'
 import { test, expect } from 'integration/setup-fixture'
 import { authenticatedContext } from 'integration/utils/authenticated-context'
 import { TodoPage } from 'shared/pages/todo-page'
-
-const TODOS = [
-  { id: randomUUID(), title: 'Make a cup of tea' },
-  { id: randomUUID(), title: 'Go out and exercise' },
-  { id: randomUUID(), title: 'Continue writing my next blog post' },
-]
 
 // Add the user cookie to the browser context. The todos page
 // is behind authentication.
@@ -18,29 +12,42 @@ test.describe('Todo Page', () => {
     const todoPage = new TodoPage(page)
     await todoPage.goto()
 
+    const { todos } = todosBody
     const form = utils.getByTestId('todos-page', 'new-todo-form')
     const input = form.locator('input')
-
-    // Create 1st todo.
-    await mockApi.todos.todo.post({
-      body: { todos: [TODOS[0]] },
-    })
-    await input.fill(TODOS[0].title)
-    await input.press('Enter')
-
     const todosList = utils.getByTestId('todos-page', 'todos-list')
 
-    expect(todosList).toContainText(TODOS[0].title)
+    // Create 1st todo.
+    const addFirstTodo = async () => {
+      const [waitForResponse] = await mockApi.todos.todo.post({
+        body: { todos: [todos[0]] },
+      })
 
+      await input.fill(todos[0].title)
+      await Promise.all([waitForResponse(), input.press('Enter')])
+
+      // console.log(await todosList.locator('li').count())
+      // await page.pause()
+
+      await expect(todosList).toContainText(todos[0].title)
+      await expect(todosList.locator('li')).toHaveCount(1)
+    }
     // Create 2nd todo.
-    const [waitForResponse] = await mockApi.todos.todo.post({
-      body: { todos: [TODOS[0], TODOS[1]] },
-    })
-    await input.fill(TODOS[1].title)
-    // This time we'll click the button instead and validate that
-    // a response was received.
-    await Promise.all([waitForResponse(), form.locator('button').click()])
+    const addSecondTodo = async () => {
+      const [waitForResponse] = await mockApi.todos.todo.post({
+        body: { todos: todos.slice(0, 2) },
+      })
 
-    expect(todosList).toContainText([TODOS[0].title, TODOS[1].title])
+      await input.fill(todos[1].title)
+      // This time we'll click the button instead and validate that
+      // a response was received.
+      await Promise.all([waitForResponse(), form.locator('button').click()])
+
+      await expect(todosList).toContainText([todos[0].title, todos[1].title])
+      await expect(todosList.locator('li')).toHaveCount(2)
+    }
+
+    await addFirstTodo()
+    await addSecondTodo()
   })
 })

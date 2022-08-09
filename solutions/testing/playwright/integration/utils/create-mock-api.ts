@@ -60,6 +60,8 @@ const createApiMockFn =
       })
     )
 
+    let responseBody: T
+
     // Also match the path if it ends with '?' or '/?'
     const pathRegex = new RegExp(replacedPath + /(?:$|\?.+|\/\?.+)/.source)
 
@@ -77,13 +79,13 @@ const createApiMockFn =
           return route.fallback()
         }
 
-        const bodyObj =
+        responseBody =
           body instanceof Function ? body(defaultBody) : body ?? defaultBody
 
         return route.fulfill({
           contentType: 'application/json',
           status: status ?? defaultStatus,
-          body: bodyObj ? JSON.stringify(bodyObj) : undefined,
+          body: responseBody ? JSON.stringify(responseBody) : undefined,
         })
       },
       { times }
@@ -103,6 +105,7 @@ const createApiMockFn =
 
           return matcher ? matcher(response) : true
         }),
+      () => responseBody,
     ]
   }
 
