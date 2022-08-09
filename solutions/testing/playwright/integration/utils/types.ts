@@ -56,5 +56,9 @@ export type CreateMockFn = <T>(
 ) => (
   config?: CreateMockConfig<T>
 ) => Promise<
-  [waitForResponse: () => Promise<Response>, getLastResponseBody: () => T]
+  [
+    waitForResponse: (
+      matcher?: (response: Response) => boolean
+    ) => Promise<Response>
+  ]
 >

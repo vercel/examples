@@ -21,7 +21,7 @@ export default async function todos(req: NextApiRequest, res: NextApiResponse) {
 
         return res.status(200).json({ todos })
       }
-      case 'PUT': {
+      case 'POST': {
         const title = req.body.title?.trim()
 
         if (!title) {

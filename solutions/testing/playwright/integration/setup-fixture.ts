@@ -2,8 +2,8 @@ import { test as base } from '@playwright/test'
 import { IS_CI, PAUSE_ON_FAILURE } from 'shared/constants'
 import pauseOnFailure from 'shared/fixtures/pause-on-failure'
 import createApiMockFn from './utils/create-mock-api'
-import { createApiMocks, MockApi } from './apis'
-import { Utils } from 'shared/fixtures/utils'
+import { createApiMocks, type MockApi } from './apis'
+import { createUtils, type Utils } from 'shared/fixtures/utils'
 
 type Extensions = { utils: Utils; mockApi: MockApi }
 
@@ -45,6 +45,7 @@ export const test = base.extend<Extensions>({
     await use(context)
   },
   mockApi: ({ page }, use) => use(createApiMocks(createApiMockFn(page))),
+  utils: ({ page }, use) => use(createUtils(page)),
 })
 
 if (!IS_CI && PAUSE_ON_FAILURE) {

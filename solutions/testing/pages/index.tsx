@@ -36,7 +36,7 @@ function Home() {
           const form = e.currentTarget
           const data = Object.fromEntries(new FormData(form))
           const res = await fetch('/api/todo', {
-            method: 'PUT',
+            method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
@@ -62,7 +62,10 @@ function Home() {
       <div>
         {todos ? (
           todos.length ? (
-            <ul className="border-accents-2 border rounded-md bg-white divide-y divide-accents-2 my-6">
+            <ul
+              data-testid={tid('todos-page', 'todos-list')}
+              className="border-accents-2 border rounded-md bg-white divide-y divide-accents-2 my-6"
+            >
               {todos.map((todo: Todo) => (
                 <li
                   key={todo.id}
