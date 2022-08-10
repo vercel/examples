@@ -3,7 +3,7 @@ import { test, expect } from 'integration/setup-fixture'
 import { SignupPage } from 'shared/pages/signup-page'
 import { TodoPage } from 'shared/pages/todo-page'
 import generateUsername from 'shared/utils/generate-username'
-import getAuthCookies from 'shared/utils/get-auth-cookies'
+import { getAuthState } from 'shared/utils/storage-state'
 
 test.describe('Signup', () => {
   test('should allow a visitor to signup and redirect to todos page', async ({
@@ -28,7 +28,7 @@ test.describe('Signup', () => {
 
     // Add the cookie for the user, we do this before clicking the
     // signup button so that it properly redirects to `/`.
-    await context.addCookies(getAuthCookies(baseURL!))
+    await context.addCookies(getAuthState(baseURL!).cookies)
 
     await Promise.all([
       waitForResponse(),

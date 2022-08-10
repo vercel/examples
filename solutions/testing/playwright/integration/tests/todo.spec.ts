@@ -19,7 +19,7 @@ test.describe('Todo Page', () => {
     await Promise.all([waitForResponse(), todoPage.goto()])
 
     const { input, submitButton } = todoPage.getNewTodoForm()
-    const todosList = todoPage.getTodosList()
+    const todoItems = todoPage.getTodos()
 
     // Create 1st todo.
     const addFirstTodo = async () => {
@@ -30,8 +30,8 @@ test.describe('Todo Page', () => {
       await input.fill(todos[0].title)
       await Promise.all([waitForResponse(), input.press('Enter')])
 
-      await expect(todosList).toContainText(todos[0].title)
-      await expect(todosList.locator('li')).toHaveCount(1)
+      await expect(todoItems.first()).toContainText(todos[0].title)
+      await expect(todoItems).toHaveCount(1)
     }
     // Create 2nd todo.
     const addSecondTodo = async () => {
@@ -44,8 +44,8 @@ test.describe('Todo Page', () => {
       // a response was received.
       await Promise.all([waitForResponse(), submitButton.click()])
 
-      await expect(todosList).toContainText([todos[0].title, todos[1].title])
-      await expect(todosList.locator('li')).toHaveCount(2)
+      await expect(todoItems.last()).toContainText(todos[1].title)
+      await expect(todoItems).toHaveCount(2)
     }
 
     await addFirstTodo()
@@ -62,9 +62,7 @@ test.describe('Todo Page', () => {
 
     await Promise.all([waitForResponse(), todoPage.goto()])
 
-    const todosList = todoPage.getTodosList()
-
-    await expect(todosList.locator('li')).toHaveCount(todos.length)
+    await expect(todoPage.getTodos()).toHaveCount(todos.length)
   })
 
   test('should be able to mark todo items as complete', async ({
@@ -80,9 +78,7 @@ test.describe('Todo Page', () => {
 
     await Promise.all([waitForTodos(), todoPage.goto()])
 
-    const todosList = todoPage.getTodosList()
-    const todoItem = todosList.locator('li').first()
-    const completeButton = todoItem.locator('text=Complete')
+    const { completeButton, undoButton } = todoPage.getTodoButtons()
 
     await expect(completeButton).toBeVisible()
 
@@ -94,7 +90,7 @@ test.describe('Todo Page', () => {
     await Promise.all([waitForResponse(), completeButton.click()])
 
     // Once the item is completed, the button's text changes to `Undo`.
-    await expect(todoItem.locator('text=Undo')).toBeVisible()
+    await expect(undoButton).toBeVisible()
   })
 
   test('should be able to un-mark todo items as complete', async ({
@@ -110,9 +106,7 @@ test.describe('Todo Page', () => {
 
     await Promise.all([waitForTodos(), todoPage.goto()])
 
-    const todosList = todoPage.getTodosList()
-    const todoItem = todosList.locator('li').first()
-    const undoButton = todoItem.locator('text=Undo')
+    const { completeButton, undoButton } = todoPage.getTodoButtons()
 
     await expect(undoButton).toBeVisible()
 
@@ -123,7 +117,7 @@ test.describe('Todo Page', () => {
 
     await Promise.all([waitForResponse(), undoButton.click()])
 
-    await expect(todoItem.locator('text=Complete')).toBeVisible()
+    await expect(completeButton).toBeVisible()
   })
 
   test('should be able to remove todo items', async ({ page, mockApi }) => {
@@ -135,12 +129,11 @@ test.describe('Todo Page', () => {
 
     await Promise.all([waitForTodos(), todoPage.goto()])
 
-    const todosList = todoPage.getTodosList()
-    const todoItem = todosList.locator('li').first()
-    const removeButton = todoItem.locator('text=Remove')
+    const todoItems = todoPage.getTodos()
+    const { removeButton } = todoPage.getTodoButtons(todoItems.first())
 
-    await expect(todosList.locator('li')).toHaveCount(todos.length)
-    await expect(todosList).toContainText(todos[0].title)
+    await expect(todoItems).toHaveCount(todos.length)
+    await expect(todoItems.first()).toContainText(todos[0].title)
     await expect(removeButton).toBeVisible()
 
     const [waitForResponse] = await mockApi.todos.todo.delete({
@@ -152,7 +145,7 @@ test.describe('Todo Page', () => {
 
     await Promise.all([waitForResponse(), removeButton.click()])
 
-    await expect(todosList.locator('li')).toHaveCount(2)
-    await expect(todosList).not.toContainText(todos[0].title)
+    await expect(todoItems).toHaveCount(2)
+    await expect(todoItems.first()).not.toContainText(todos[0].title)
   })
 })

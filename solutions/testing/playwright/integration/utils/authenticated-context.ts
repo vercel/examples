@@ -1,5 +1,5 @@
 import type { test } from '@playwright/test'
-import getAuthCookies from 'shared/utils/get-auth-cookies'
+import { getAuthState } from 'shared/utils/storage-state'
 
 // TODO: This type isn't currently exported, the Playwright team are open to
 // contributions here.
@@ -12,9 +12,5 @@ type Fixtures = Parameters<typeof test['use']>[0]
  * file, the same user (context) will be shared between tests.
  */
 export const authenticatedContext: Fixtures = {
-  storageState: ({ baseURL }, use) =>
-    use({
-      cookies: getAuthCookies(baseURL!),
-      origins: [],
-    }),
+  storageState: ({ baseURL }, use) => use(getAuthState(baseURL!)),
 }
