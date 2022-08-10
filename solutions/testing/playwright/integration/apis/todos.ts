@@ -1,26 +1,27 @@
-import { CreateMockFn, HTTPMethod } from 'integration/utils/types'
+import { todosBody } from 'integration/fixtures/api-todos/todos'
+import { type CreateMockFn, HTTPMethod } from 'integration/utils/types'
 
 export const createTodosMocks = (createMockFn: CreateMockFn) => ({
   todo: {
     get: createMockFn({
       path: '/api/todo',
       method: HTTPMethod.Get,
-      body: {},
+      body: todosBody,
     }),
     post: createMockFn({
       path: '/api/todo',
       method: HTTPMethod.Post,
-      body: {},
+      body: todosBody,
     }),
     patch: createMockFn({
       path: '/api/todo',
       method: HTTPMethod.Patch,
-      body: {},
+      body: todosBody,
     }),
     delete: createMockFn({
       path: '/api/todo',
       method: HTTPMethod.Delete,
-      body: {},
+      body: todosBody,
     }),
   },
 })

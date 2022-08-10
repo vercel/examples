@@ -1,4 +1,4 @@
-import { CreateMockFn, HTTPMethod } from 'integration/utils/types'
+import { type CreateMockFn, HTTPMethod } from 'integration/utils/types'
 
 export const createUserMocks = (createMockFn: CreateMockFn) => ({
   signup: {

@@ -4,6 +4,5 @@
     "baseUrl": ".",
     "target": "ESNext"
   },
-  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

@@ -15,6 +15,7 @@ test.describe('Todo Page', () => {
       body: { todos: [] },
     })
 
+    // Navigate to the page and wait for a response from /api/todo
     await Promise.all([waitForResponse(), todoPage.goto()])
 
     const { input, submitButton } = todoPage.getNewTodoForm()
@@ -64,5 +65,94 @@ test.describe('Todo Page', () => {
     const todosList = todoPage.getTodosList()
 
     await expect(todosList.locator('li')).toHaveCount(todos.length)
+  })
+
+  test('should be able to mark todo items as complete', async ({
+    page,
+    mockApi,
+  }) => {
+    const { todos } = todosBody
+    const todoPage = new TodoPage(page)
+    const todo = todos[0]
+    const [waitForTodos] = await mockApi.todos.todo.get({
+      body: { todos: [todo] },
+    })
+
+    await Promise.all([waitForTodos(), todoPage.goto()])
+
+    const todosList = todoPage.getTodosList()
+    const todoItem = todosList.locator('li').first()
+    const completeButton = todoItem.locator('text=Complete')
+
+    await expect(completeButton).toBeVisible()
+
+    const [waitForResponse] = await mockApi.todos.todo.patch({
+      body: { todos: [{ ...todo, done: true }] },
+      searchParams: { id: todo.id },
+    })
+
+    await Promise.all([waitForResponse(), completeButton.click()])
+
+    // Once the item is completed, the button's text changes to `Undo`.
+    await expect(todoItem.locator('text=Undo')).toBeVisible()
+  })
+
+  test('should be able to un-mark todo items as complete', async ({
+    page,
+    mockApi,
+  }) => {
+    const { todos } = todosBody
+    const todoPage = new TodoPage(page)
+    const todo = { ...todos[0], done: true }
+    const [waitForTodos] = await mockApi.todos.todo.get({
+      body: { todos: [todo] },
+    })
+
+    await Promise.all([waitForTodos(), todoPage.goto()])
+
+    const todosList = todoPage.getTodosList()
+    const todoItem = todosList.locator('li').first()
+    const undoButton = todoItem.locator('text=Undo')
+
+    await expect(undoButton).toBeVisible()
+
+    const [waitForResponse] = await mockApi.todos.todo.patch({
+      body: { todos: [{ ...todo, done: false }] },
+      searchParams: { id: todo.id },
+    })
+
+    await Promise.all([waitForResponse(), undoButton.click()])
+
+    await expect(todoItem.locator('text=Complete')).toBeVisible()
+  })
+
+  test('should be able to remove todo items', async ({ page, mockApi }) => {
+    const { todos } = todosBody
+    const todoPage = new TodoPage(page)
+    const [waitForTodos] = await mockApi.todos.todo.get({
+      body: { todos },
+    })
+
+    await Promise.all([waitForTodos(), todoPage.goto()])
+
+    const todosList = todoPage.getTodosList()
+    const todoItem = todosList.locator('li').first()
+    const removeButton = todoItem.locator('text=Remove')
+
+    await expect(todosList.locator('li')).toHaveCount(todos.length)
+    await expect(todosList).toContainText(todos[0].title)
+    await expect(removeButton).toBeVisible()
+
+    const [waitForResponse] = await mockApi.todos.todo.delete({
+      body: {
+        todos: todos.slice(1),
+      },
+      searchParams: { id: todos[0].id },
+    })
+
+    await Promise.all([waitForResponse(), removeButton.click()])
+
+    await expect(todosList.locator('li')).toHaveCount(2)
+    await expect(todosList).not.toContainText(todos[0].title)
   })
 })
