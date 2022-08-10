@@ -3,7 +3,7 @@ import { SignupPage } from 'shared/pages/signup-page'
 import getAuthCookies from 'shared/utils/get-auth-cookies'
 
 test.describe('Signup', () => {
-  test('should allow a visitor to signup', async ({
+  test('should allow a visitor to signup and redirect to todos page', async ({
     page,
     mockApi,
     context,
