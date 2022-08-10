@@ -8,7 +8,12 @@
     "start": "next start",
     "lint": "next lint",
     "test-server": "next build && next start",
-    "integration": "TEST_TYPE=integration playwright test --config playwright/playwright.config.ts --project=chromium"
+    "integration": "TEST_TYPE=integration playwright test --config playwright/playwright.config.ts",
+    "integration-chrome": "PAUSE_ON_FAILURE=true npm run integration -- --project=chromium",
+    "integration-debug": "PWDEBUG=1 npm run integration-chrome",
+    "e2e": "TEST_TYPE=e2e playwright test --config playwright/playwright.config.ts",
+    "e2e-chrome": "PAUSE_ON_FAILURE=true npm run e2e -- --project=chromium",
+    "e2e-debug": "PWDEBUG=1 npm run e2e-chrome"
   },
   "dependencies": {
     "@vercel/examples-ui": "latest",
