@@ -33,6 +33,16 @@ In this demo, you can see this happening with two paths: `/` and `/data`.
 
 When the revalidation is triggered, the cache will be revalidated, bypassing any caching that Vercel would normally provide.
 
+There is also an example of a blog that only generates new paths when triggered via On-Demand ISR with two initial posts that are prerendered.
+
+- `/blog/[slug]`
+  - base post prerender that allows generating news paths via On-Demand ISR
+  - [bypassToken](./.vercel/output/functions/index.prerender-config.json#L4)
+- `/blog/post-1`
+- `/blog/post-2`
+  - initial prerendered blog posts
+  - [bypassToken](./.vercel/output/functions/index.prerender-config.json#L4)
+
 ### Security
 
 #### `bypassToken`
