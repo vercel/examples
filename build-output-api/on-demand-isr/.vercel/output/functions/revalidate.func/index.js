@@ -60,7 +60,7 @@ module.exports = (req, res) => {
     res.end(`
       <h1>Cache for "${pathToRevalidate}" Revalidated!</h1>
       <p>Redirecting you back.</p>
-      <meta http-equiv="refresh" content="2 url=${deployedUrl}">
+      <meta http-equiv="refresh" content="2 url=${deployedUrl}${pathToRevalidate}">
     `)
   }).catch((error) => {
     console.error(error.stack)
