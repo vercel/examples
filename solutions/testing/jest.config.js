@@ -10,8 +10,9 @@ const createJestConfig = nextJest({
 // Add any custom config to be passed to Jest
 /** @type {JestConfigOptions} */
 const customJestConfig = {
-  collectCoverageFrom: ['./**/*.{ts}'],
-  coveragePathIgnorePatterns: ['<rootDir>/tests/'],
+  testMatch: ['./**/*.test.{ts,tsx}'],
+  collectCoverageFrom: ['./**/*.{ts,tsx}'],
+  coveragePathIgnorePatterns: ['<rootDir>/playwright/'],
   coverageThreshold: {
     global: {
       branches: 80,
