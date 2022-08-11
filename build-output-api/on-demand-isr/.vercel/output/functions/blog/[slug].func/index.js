@@ -9,7 +9,7 @@ module.exports = (req, res) => {
   // from the URL
   if (!slug) {
     const matches = req.url.match(/\/blog\/([^/]+)(?:\/)?/)
-    slug = matches[0]
+    slug = matches[1]
   }
   
   res.setHeader('Content-Type', 'text/html; charset=utf-8')
