@@ -22,8 +22,6 @@ Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packag
 
 ```bash
 npx create-next-app --example https://github.com/vercel/examples/tree/main/solutions/testing
-# or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/solutions/testing
 ```
 
 Before running tests locally, you'll need to install the browsers required to run the tests, which aren't installed by default by Plawright:
@@ -36,10 +34,6 @@ In the meantime, build and start the test server that will be used by the tests:
 
 ```bash
 npm run test-server
-
-# or
-
-yarn test-server
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
@@ -83,12 +77,8 @@ We recommend that all pages are covered by integration tests, and only critical 
 
 To run in production mode, use the following command:
 
-```sh
+```bash
 npm run test-server
-
-# or
-
-yarn test-server
 ```
 
 This will provide the most stable environment, with some limitations:
@@ -101,18 +91,74 @@ This will provide the most stable environment, with some limitations:
 Whilst this allows you to quickly iterate on code, it has some notable limitations:
 
 - Pages load much slower than they would normally, resulting in flaky test runs. This is normally only a problem for the first test run.
-- Our code, and code from modules we rely on, can perform differently between production and development mode.
+- Your code, and code from modules you rely on, can perform differently between production and development mode.
 
 ### 2a. Running integration tests
 
 To run the integration test suite use the following command:
 
-```sh
+```bash
 npm run integration
-
-# or
-
-yarn integration
 ```
 
-The integration test suite only ever runs against Chromium.
+### 2b. Running E2E tests
+
+To run the E2E test suite use the following command:
+
+```bash
+npm run e2e
+```
+
+### 2c. Running tests against a specific browser
+
+Tests will run against multiple browsers by default, to run against a specific browser, use:
+
+```bash
+# Valid projects are `chromium`, `firefox`, `webkit`, etc.
+# Any browser defined in playwright config is valid.
+npm run integration -- --project=chromium
+```
+
+Chromium is used quite often for writing and debugging tests so there's a shortcut for it:
+
+```bash
+npm run integration -- --chromium
+# or
+npm run integration -- -c
+```
+
+### 2d. Running tests against production
+
+During testing a local server is expected to be running at http://localhost:3000. You could alternatively run the tests against the production server by adding the `BASE_URL` environment variable to the command:
+
+```sh
+BASE_URL="https://solutions-testing.vercel.app" npm run integration
+# or
+BASE_URL="https://solutions-testing.vercel.app" npm run e2e
+```
+
+### 2e. Debugging tests
+
+To run tests in headed mode ([`--headed`](https://playwright.dev/docs/test-cli#reference)) and have them pause on failure, run:
+
+```bash
+npm run integration -- --chromium --pause-on-failure
+# or
+npm run integration -- -c -p
+```
+
+To debug tests step by step, add [`--debug`](https://playwright.dev/docs/debug#--debug) or [`PWDEBUG=1`](https://playwright.dev/docs/debug#pwdebug) to the command, like so:
+
+```bash
+npm run integration -- --chromium --debug
+# or
+PWDEBUG=1 npm run integration -- -c
+```
+
+To re-run tests on file changes to `.spec.ts` files, add `--watch` like so:
+
+```bash
+npm run integration -- --watch
+# or
+npm run integration -- -w
+```

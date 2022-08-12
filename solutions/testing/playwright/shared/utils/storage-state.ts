@@ -7,7 +7,6 @@ export type StorageState = Exclude<
 >
 
 export function getAuthState(baseURL: string): StorageState {
-  console.log('Hello there!')
   const url = new URL(baseURL)
 
   return {

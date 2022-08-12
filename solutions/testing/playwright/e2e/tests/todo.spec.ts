@@ -65,7 +65,7 @@ test.describe('Todo Page', () => {
     await expect(completeButton).toBeVisible()
   })
 
-  test.only('should be able to remove todo items', async ({ page }) => {
+  test('should be able to remove todo items', async ({ page }) => {
     const todoPage = new TodoPage(page)
     await todoPage.goto()
 
