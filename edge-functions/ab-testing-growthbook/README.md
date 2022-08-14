@@ -11,7 +11,7 @@ deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel
 demoUrl: https://edge-functions-ab-testing-growthbook.vercel.app
 ---
 
-# A/B Testing Simple
+# A/B Testing GrowthBook
 
 By A/B testing at the edge, you'll reduce layout shift from client-loaded experiments and improve your site's performance with smaller JavaScript bundles.
 
