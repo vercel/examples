@@ -14,9 +14,9 @@
     "react-dom": "latest"
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
-    "@types/react": "latest",
-    "eslint": "^8.18.0",
+    "@types/node": "^18.7.4",
+    "@types/react": "^18.0.17",
+    "eslint": "^8.22.0",
     "eslint-config-next": "canary",
     "typescript": "4.7.4"
   }
