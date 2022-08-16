@@ -8,8 +8,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="AB Testing with buckets"
-      path="edge-functions/ab-testing-simple"
+      title="AB Testing with GrowthBook"
+      path="edge-functions/ab-testing-growthbook"
     >
       <Component {...pageProps} />
     </Layout>
