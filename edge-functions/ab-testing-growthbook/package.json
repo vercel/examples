@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@growthbook/growthbook": "^0.18.1",
     "@vercel/examples-ui": "latest",
     "js-cookie": "^3.0.1",
     "next": "canary",
