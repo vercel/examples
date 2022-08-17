@@ -39,6 +39,16 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-
 yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-growthbook ab-testing-growthbook
 ```
 
+You'll need to have an account with [GrowthBook](https://www.growthbook.io/). You can either [self-host](https://github.com/growthbook/growthbook) or create a [Cloud account](https://app.growthbook.io/). After logging in, click on the step, "Install our SDK", and take a look at the url which is listed as the API Endpoint in the instructions.
+
+Once that's done, copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
+
+```bash
+cp .env.example .env.local
+```
+
+Then open `.env.local` and set the environment variables to match the API Endpoint in the SDK instructions. This should be a url specific to your GrowthBook account.
+
 Next, run Next.js in development mode:
 
 ```bash

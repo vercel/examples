@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { GrowthBook } from '@growthbook/growthbook'
 import { url } from 'inspector'
 
-const FEATURES_ENDPOINT =
-  'http://localhost:3100/api/features/key_prod_29693a9e0fa369ed'
+const FEATURES_ENDPOINT = process.env.FEATURES_ENDPOINT
+
+//'http://localhost:3100/api/features/key_prod_29693a9e0fa369ed'
 
 // Fetch features from GrowthBook API and cache in memory
 let features = null
@@ -32,7 +33,7 @@ export async function middleware(req: NextRequest) {
 
   // Get existing visitor cookie or create a new one
   let visitor_id = req.cookies[COOKIE] || crypto.randomUUID()
-  console.log('VISITOR ID', visitor_id)
+  console.log('visit', visitor_id)
 
   // Create a GrowthBook client instance
   const growthbook = new GrowthBook({
@@ -52,7 +53,7 @@ export async function middleware(req: NextRequest) {
   }
 
   // Store the visitor cookie if not already there
-  console.log('cookies', res, req)
+  //console.log('cookies', res)
   if (!req.cookies[COOKIE]) {
     res.cookies.set(COOKIE, visitor_id)
   }
