@@ -1,10 +1,10 @@
-import { NextResponse, NextRequest } from 'next/server'
+import { type NextRequest } from 'next/server'
 
 export const config = {
   runtime: 'experimental-edge',
 }
 
-export default async function handler(req: NextRequest, res: NextResponse) {
+export default async function handler(_: NextRequest) {
   const stream = new ReadableStream({
     start(controller) {
       controller.enqueue('Vercel Edge Functions + Streams + Transforms')
@@ -29,6 +29,7 @@ export default async function handler(req: NextRequest, res: NextResponse) {
       )
     },
   })
+
   return new Response(stream.pipeThrough(transform), {
     headers: { 'Content-Type': 'text/html' },
   })

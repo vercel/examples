@@ -1,11 +1,10 @@
-import { NextResponse, NextRequest } from 'next/server'
-const decoder = new TextDecoder()
+import { type NextRequest } from 'next/server'
 
 export const config = {
   runtime: 'experimental-edge',
 }
 
-export default async function handler(req: NextRequest, res: NextResponse) {
+export default async function handler(_: NextRequest) {
   const stream = new ReadableStream({
     start(controller) {
       controller.enqueue(
@@ -16,5 +15,8 @@ export default async function handler(req: NextRequest, res: NextResponse) {
       controller.close()
     },
   })
-  return new Response(stream, { headers: { 'Content-Type': 'text/html' } })
+
+  return new Response(stream, {
+    headers: { 'Content-Type': 'text/html; charset=utf-8' },
+  })
 }

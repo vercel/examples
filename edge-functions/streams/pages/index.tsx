@@ -1,49 +1,35 @@
-import { Layout, Page, Button, Text } from '@vercel/examples-ui'
-import Link from 'next/link'
+import { Layout, Page, Button, Text, Link, Code } from '@vercel/examples-ui'
 
 function Index() {
   return (
     <Page>
       <div className="text-center mb-6">
-        <Text variant="h2" className="mb-4">
-          Streaming from the Edge with Vercel Edge Functions
+        <Text variant="h1" className="mb-6">
+          Streaming at the Edge
         </Text>
         <Text className="mb-4">
-          <i className="font-semibold">Vercel Edge Functions</i> allow you to
-          deliver content to your site&apos;s visitors with speed. <br /> They
-          are deployed globally by default on Vercel&apos;s Edge Network and
-          enable you to move server-side logic to the Edge, close to your
-          visitor&apos;s origin.
+          With{' '}
+          <Link href="https://vercel.com/docs/concepts/functions/edge-functions">
+            Vercel Edge Functions
+          </Link>{' '}
+          we can do streaming at the edge using Web APIs. Click the buttons
+          below for some examples:
         </Text>
-        <div className="mt-20">
-          <div className="my-4">
-            Examples using <strong>Edge Runtime and Streams</strong>:
-            <br />{' '}
-            <span className="text-sm">
-              Find the code in{' '}
-              <pre className="inline bg-gray-100 px-1.5 rounded-sm">
-                pages/api
-              </pre>
-            </span>
-          </div>
-          <nav className="space-x-6">
-            <Link href="/api/01-simple">
-              <a>
-                <Button>Simple RS Stream</Button>
-              </a>
-            </Link>
-            <Link href="/api/02-simple-transform">
-              <a>
-                <Button>Simple RS Stream + Transform</Button>
-              </a>
-            </Link>
-            <Link href="/api/03-external-transform">
-              <a>
-                <Button>External Fetch + Transform</Button>
-              </a>
-            </Link>
-          </nav>
-        </div>
+        <nav className="space-x-6 mb-4">
+          <Link href="/api/01-simple">
+            <Button>Simple RS Stream</Button>
+          </Link>
+          <Link href="/api/02-simple-transform">
+            <Button>Simple RS Stream + Transform</Button>
+          </Link>
+          <Link href="/api/03-external-transform">
+            <Button>External Fetch + Transform</Button>
+          </Link>
+        </nav>
+
+        <Text className="mb-4">
+          The source code is available at <Code>pages/api/*.ts</Code>.
+        </Text>
       </div>
     </Page>
   )
