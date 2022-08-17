@@ -133,11 +133,31 @@ During testing a local server is expected to be running at http://localhost:3000
 
 ```sh
 BASE_URL="https://solutions-testing.vercel.app" npm run integration
-# or
+# or for E2E
 BASE_URL="https://solutions-testing.vercel.app" npm run e2e
 ```
 
-### 2e. Debugging tests
+### 2e. Running a single test or a single test file
+
+Like most test-runners, Playwright supports [`.skip()`](https://playwright.dev/docs/api/class-test#test-skip-1) and [`.only()`](https://playwright.dev/docs/api/class-test#test-describe-only). Additionaly, you can run a single test by passing the filename to the command:
+
+```bash
+npm run integration -- signup
+# or for E2E
+npm run e2e -- signup
+```
+
+The command above will match `signup` with the tests in `tests/signup.spec.ts` and run them.
+
+### 3. Running and debugging tests in VS Code
+
+The [Playwright VSCode extension](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright) can be used to run and debug tests all within VSCode.
+
+You can use `Debug Test` to run a test (or a set of tests) in headed mode by right clicking a test name, and you can use `debugger` statements in your test(s) to pause at any point and inspect the page. Note that `page.pause()` doesn't work when running tests via this extension.
+
+## Debugging tests
+
+Debugging is very useful when you want to debug a [single test or a single test file](#2e-running-a-single-test-or-a-single-test-file), read the section above for more details.
 
 To run tests in headed mode ([`--headed`](https://playwright.dev/docs/test-cli#reference)) and have them pause on failure, run:
 
@@ -147,6 +167,8 @@ npm run integration -- --chromium --pause-on-failure
 npm run integration -- -c -p
 ```
 
+> The `--chromium` argument is used because you'll usually debug against a single browser.
+
 To debug tests step by step, add [`--debug`](https://playwright.dev/docs/debug#--debug) or [`PWDEBUG=1`](https://playwright.dev/docs/debug#pwdebug) to the command, like so:
 
 ```bash
@@ -155,10 +177,50 @@ npm run integration -- --chromium --debug
 PWDEBUG=1 npm run integration -- -c
 ```
 
+### Watching for test changes
+
 To re-run tests on file changes to `.spec.ts` files, add `--watch` like so:
 
 ```bash
 npm run integration -- --watch
 # or
 npm run integration -- -w
+```
+
+#### Automatically open devtools on start
+
+To automatically open the browser devtools in headed mode on test start, add the ENV variable `OPEN_DEVTOOLS`, like so:
+
+```bash
+OPEN_DEVTOOLS=1 npm run integration -- -p
+```
+
+### Viewing test reports
+
+Tests reports, including screenshots on error, are auto-generated and can be
+viewed by opening the HTML report file in `playwright/html-report`, or by running the following command:
+
+```bash
+npx playwright show-report playwright/html-report
+```
+
+### Viewing test traces
+
+Along with screenshots, Playwright will also capture traces for failed tests.
+
+You can view these by uploading them to [Playwright's Trace Viewer](https://trace.playwright.dev/) ([Docs](https://playwright.dev/docs/trace-viewer)) or by running the following command:
+
+```bash
+npx playwright show-trace playwright/test-results/[test-id]/trace.zip
+```
+
+### Spotting flaky tests
+
+If you are having trouble working out why a test is flaky, you can try the [`--repeat-each <N>`](https://playwright.dev/docs/test-cli#reference) flag. This allows you to re-run a test multiple times in a short period of time, which should help identify flakiness:
+
+```sh
+# Run integration tests, repeating each test in `signup.spec.ts` 100 times.
+npm run integration -- --repeat-each 100 signup
+# Run e2e tests, repeating each test in `signup.spec.ts` 100 times.
+npm run e2e -- --repeat-each 100 signup
 ```
