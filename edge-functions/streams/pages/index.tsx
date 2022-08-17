@@ -5,7 +5,7 @@ function Index() {
     <Page>
       <div className="text-center mb-6">
         <Text variant="h1" className="mb-6">
-          Streaming at the Edge
+          Streaming in Edge Functions
         </Text>
         <Text className="mb-4">
           With{' '}

@@ -8,7 +8,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="Streaming at the Edge"
+      title="Streaming in Edge Functions"
       path="edge-functions/streams"
       description="Learn how to use Streams in Vercel Edge Functions"
     >

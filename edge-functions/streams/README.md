@@ -1,19 +1,21 @@
 ---
-name: Edge Streams
-slug: edge-streams
+name: Streaming in Edge Functions
+slug: edge-functions-streams
 description: Stream a response from an external source and apply transformations
 framework: Next.js
 useCase: Edge Functions
-css: None
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/streams&project-name=edgestreams&repository-name=edge-streams
+demoUrl: https://edge-streams.vercel.app
 ---
 
-# Streaming Response
+# Streaming in Edge Functions
 
-This examples shows use Streams with Vercel Edge Functions and Vercel's Edge Runtime
+This examples shows how to use streams in [Vercel Edge Functions](https://vercel.com/docs/concepts/functions/edge-functions) using the edge runtime in Next.js.
 
 ## Demo
 
-https://edge-streams.vercel.app/
+https://edge-streams.vercel.app
 
 ## How to Use
 
@@ -23,7 +25,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/streams&project-name=edgestreams&repository-name=edge-streams)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/streams&project-name=edgestreams&repository-name=edge-streams)
 
 ### Clone and Deploy
 
@@ -35,14 +37,16 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-
 yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/streams streams
 ```
 
-Install the Vercel CLI:
+Next, run Next.js in development mode:
 
 ```bash
-npm i -g vercel
+npm install
+npm run dev
+
+# or
+
+yarn
+yarn dev
 ```
 
-Then run the app at the root of the repository:
-
-```bash
-vercel dev
-```
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
