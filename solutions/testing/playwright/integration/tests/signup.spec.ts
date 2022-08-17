@@ -13,10 +13,15 @@ test.describe('Signup', () => {
     baseURL,
   }) => {
     const signupPage = new SignupPage(page)
+    const todoPage = new TodoPage(page)
 
     await signupPage.goto()
-    // Add a mock for the signup API call
+    // Add a mock for the signup API call.
     const [waitForResponse] = await mockApi.user.signup.post()
+    // Add a mock for the todos request that happens after signup redirects to `/`.
+    const [waitForTodoResponse] = await mockApi.todos.todo.get({
+      body: { todos: [] },
+    })
     const { username, password, submitButton } = signupPage.getSignupForm()
 
     // Fill the username
@@ -32,11 +37,10 @@ test.describe('Signup', () => {
 
     await Promise.all([
       waitForResponse(),
+      waitForTodoResponse(),
       page.waitForNavigation({ url: '/' }),
       submitButton.click(),
     ])
-
-    const todoPage = new TodoPage(page)
 
     await expect(todoPage.getNewTodoForm().submitButton).toBeVisible()
   })
