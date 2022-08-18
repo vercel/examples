@@ -1,0 +1,7 @@
+.root {
+  padding: 10rem;
+  padding: theme('spacing.4');
+  margin: theme('spacing.2');
+  background-color: var(--accents-1);
+  border: 1px solid var(--accents-2);
+}
