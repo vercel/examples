@@ -38,6 +38,6 @@ export default async function handler(_: NextRequest) {
   )
 
   return new Response(transformStream, {
-    headers: { 'Content-Type': 'text/html' },
+    headers: { 'Content-Type': 'text/html; charset=utf-8' },
   })
 }

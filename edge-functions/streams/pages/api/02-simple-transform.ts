@@ -35,6 +35,6 @@ export default async function handler(_: NextRequest) {
   // Pipe the readable stream to the transform stream and stream it to the response.
   // https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/pipeThrough
   return new Response(readable.pipeThrough(transform), {
-    headers: { 'Content-Type': 'text/html' },
+    headers: { 'Content-Type': 'text/html; charset=utf-8' },
   })
 }
