@@ -47,9 +47,11 @@ Once that's done, copy the `.env.example` file in this directory to `.env.local`
 cp .env.example .env.local
 ```
 
-Then open `.env.local` and set the environment variables to match the API Endpoint in the SDK instructions. This should be a url specific to your GrowthBook account. After that, go to the "Add your first feature" step in GrowthBook, and call this new feature "new-homepage" (this should be the feature key). Make sure that the feature type is set to "on/off" and choose "A/B Experiment" as the behavior. You can leave everything else as it is, which is to the default values in the feature modal.
+Then open `.env.local` and set the environment variables to match the API Endpoint in the SDK instructions. This will be a url specific to your GrowthBook account. 
 
-Next, run Next.js in development mode:
+After that, add a new feature flag in GrowthBook with the key `new-homepage`. Make sure that the feature type is set to "on/off" and choose "A/B Experiment" as the behavior. Leave everything else as-is and save your feature flag.
+
+Next, install dependencies and run the example in development mode:
 
 ```bash
 npm install

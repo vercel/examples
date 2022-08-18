@@ -1,4 +1,4 @@
-import { Layout, Page, Text, Link, List } from '@vercel/examples-ui'
+import { Layout, Page, Text, Link, Button } from '@vercel/examples-ui'
 
 export default function Index() {
   return (
@@ -7,15 +7,18 @@ export default function Index() {
         Homepage #1
       </Text>
       <Text className="mb-4">
-        If you are shown this page, then you have been selected to see the main
-        homepage in this A/B Experiment. Reload for a chance to see the new
-        homepage and click below to get more information about this demo!
+        You had a 50% chance to see this homepage. 
+        If you refresh the page, you&apos;ll continue to see this version until your cookies are cleared.
       </Text>
-      <List>
-        <li>
-          <Link href="/information">More information</Link>
-        </li>
-      </List>
+      <Button type="button" className="mb-4" onClick={() => {
+        document.cookie = 'visitor_id=; Max-Age=0; path=/;';
+        window.location.reload();
+      }}>
+        Clear cookies and reload
+      </Button>
+      <Text>
+        <Link href="/information">Learn more about this demo →</Link>
+      </Text>
     </Page>
   )
 }
