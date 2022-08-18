@@ -1,17 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { FeatureDefinition, GrowthBook } from '@growthbook/growthbook'
+import { GrowthBook } from '@growthbook/growthbook'
 
 const FEATURES_ENDPOINT = process.env.FEATURES_ENDPOINT || "";
 
 // Fetch features from GrowthBook API and cache in memory
-let features: Record<string, FeatureDefinition>|null = null
+let features = null
 let lastFetch = 0
 async function getFeatures() {
   if (Date.now() - lastFetch > 5000) {
     lastFetch = Date.now()
     const latest = fetch(FEATURES_ENDPOINT)
       .then((res) => res.json())
-      .then((json: {features: Record<string, FeatureDefinition>}) => (features = json.features || features))
+      .then((json) => (features = json.features || features))
       .catch((e) => console.error('Error fetching features', e))
     // If this is the first time, wait for the initial fetch
     if (!features) await latest;
@@ -65,7 +65,7 @@ export async function middleware(req: NextRequest) {
     else {
       console.error("Feature 'new-homepage' found, but did not use an experiment rule");
       console.error("Used the following instead: ", newHomepageFeature.source);
-      console.error("Feature definition: ", features?.['new-homepage']);
+      console.error("Feature definition: ", JSON.stringify(features?.['new-homepage'],null,2));
     }
 
     const url = req.nextUrl.clone()
