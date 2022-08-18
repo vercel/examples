@@ -8,24 +8,36 @@ export const config = {
 }
 
 export default async function handler(_: NextRequest) {
+  // The decoder will be used to decode the bytes in the stream returned by fetching
+  // the external resource to UTF-8 (the default).
+  // https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder
   const decoder = new TextDecoder()
   const res = await fetch(RESOURCE_URL)
-  const transformedStream = res.body?.pipeThrough(
+
+  // Pipe the stream to a transform stream that will take its chunks and transform
+  // them into uppercase text.
+  // https://developer.mozilla.org/en-US/docs/Web/API/TransformStream/TransformStream
+  const transformStream = res.body?.pipeThrough(
     new TransformStream({
-      start: (controller) => {
+      start(controller) {
         controller.enqueue(
           `<html><head><title>Vercel Edge Functions + Streams + Transforms</title></head><body>`
         )
         controller.enqueue(`Resource: ${RESOURCE_URL} <br/>`)
         controller.enqueue(`<hr/><br/><br/><br/>`)
       },
-      transform: (chunk, ctrl) => {
-        ctrl.enqueue(decoder.decode(chunk).toUpperCase().concat('   <---'))
+      transform(chunk, controller) {
+        controller.enqueue(
+          decoder
+            .decode(chunk, { stream: true })
+            .toUpperCase()
+            .concat('   <---')
+        )
       },
     })
   )
 
-  return new Response(transformedStream, {
+  return new Response(transformStream, {
     headers: { 'Content-Type': 'text/html' },
   })
 }

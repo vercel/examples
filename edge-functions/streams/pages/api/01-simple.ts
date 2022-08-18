@@ -5,7 +5,8 @@ export const config = {
 }
 
 export default async function handler(_: NextRequest) {
-  const stream = new ReadableStream({
+  // https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/ReadableStream
+  const readable = new ReadableStream({
     start(controller) {
       controller.enqueue(
         '<html><head><title>Vercel Edge Functions + Streaming</title></head><body>'
@@ -16,7 +17,7 @@ export default async function handler(_: NextRequest) {
     },
   })
 
-  return new Response(stream, {
+  return new Response(readable, {
     headers: { 'Content-Type': 'text/html; charset=utf-8' },
   })
 }

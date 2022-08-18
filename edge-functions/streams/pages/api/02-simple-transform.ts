@@ -5,32 +5,36 @@ export const config = {
 }
 
 export default async function handler(_: NextRequest) {
-  const stream = new ReadableStream({
+  // A readable stream that we'll pipe through the transform stream below.
+  // https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/ReadableStream
+  const readable = new ReadableStream({
     start(controller) {
       controller.enqueue('Vercel Edge Functions + Streams + Transforms')
       controller.close()
     },
   })
 
+  // This transform stream adds the HTML markup and transforms the chunks
+  // of text in the readable stream to uppercase.
+  // https://developer.mozilla.org/en-US/docs/Web/API/TransformStream/TransformStream
   const transform = new TransformStream({
-    start: (ctrl) => {
-      ctrl.enqueue(
+    start(controller) {
+      controller.enqueue(
         `<html><head><title>Vercel Edge Functions + Streams + Transforms</title></head><body>`
       )
     },
-    transform: (chunk, ctrl) => {
-      console.log(chunk)
-      ctrl.enqueue(chunk.toUpperCase())
+    transform(chunk, controller) {
+      console.log(3, chunk)
+      controller.enqueue(chunk.toUpperCase())
     },
-    flush(ctrl) {
-      ctrl.enqueue('</body></html>')
-      console.log(
-        "Done transforming. Happy streaming using Vercel's Edge Runtime and Edge Functions!"
-      )
+    flush(controller) {
+      controller.enqueue('</body></html>')
     },
   })
 
-  return new Response(stream.pipeThrough(transform), {
+  // Pipe the readable stream to the transform stream and stream it to the response.
+  // https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/pipeThrough
+  return new Response(readable.pipeThrough(transform), {
     headers: { 'Content-Type': 'text/html' },
   })
 }
