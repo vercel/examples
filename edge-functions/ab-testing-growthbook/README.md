@@ -7,7 +7,7 @@ useCase:
   - Edge Functions
   - Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-growthbook&project-name=ab-testing-growthbook&repository-name=ab-testing-growthbook
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-growthbook&project-name=ab-testing-growthbook&repository-name=ab-testing-growthbook&env=FEATURES_ENDPOINT&envDescription=The%20GrowthBook%20API%20endpoint%20for%20fetching%20feature%20definitions&envLink=https%3A%2F%2Fdocs.growthbook.io%2Fapp%2Fapi
 demoUrl: https://edge-functions-ab-testing-growthbook.vercel.app
 ---
 
@@ -27,7 +27,7 @@ Take a look at [`middleware.ts`](middleware.ts) to see how it works.
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-growthbook&project-name=ab-testing-growthbook&repository-name=ab-testing-growthbook)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-growthbook&project-name=ab-testing-growthbook&repository-name=ab-testing-growthbook&env=FEATURES_ENDPOINT&envDescription=The%20GrowthBook%20API%20endpoint%20for%20fetching%20feature%20definitions&envLink=https%3A%2F%2Fdocs.growthbook.io%2Fapp%2Fapi)
 
 ## Getting Started
 
@@ -47,7 +47,7 @@ Once that's done, copy the `.env.example` file in this directory to `.env.local`
 cp .env.example .env.local
 ```
 
-Then open `.env.local` and set the environment variables to match the API Endpoint in the SDK instructions. This will be a url specific to your GrowthBook account. 
+Then open `.env.local` and set the environment variables to match the API Endpoint in the SDK instructions. This will be a url specific to your GrowthBook account.
 
 After that, add a new feature flag in GrowthBook with the key `new-homepage`. Make sure that the feature type is set to "on/off" and choose "A/B Experiment" as the behavior. Leave everything else as-is and save your feature flag.
 

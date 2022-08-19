@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { GrowthBook } from '@growthbook/growthbook'
 
-const FEATURES_ENDPOINT = process.env.FEATURES_ENDPOINT || "";
+const FEATURES_ENDPOINT = process.env.FEATURES_ENDPOINT || ''
 
 // Fetch features from GrowthBook API and cache in memory
 let features = null
@@ -14,7 +14,7 @@ async function getFeatures() {
       .then((json) => (features = json.features || features))
       .catch((e) => console.error('Error fetching features', e))
     // If this is the first time, wait for the initial fetch
-    if (!features) await latest;
+    if (!features) await latest
   }
   return features || {}
 }
@@ -29,7 +29,7 @@ export async function middleware(req: NextRequest) {
   }
 
   if (!FEATURES_ENDPOINT) {
-    throw new Error("Missing FEATURES_ENDPOINT environment variable");
+    throw new Error('Missing FEATURES_ENDPOINT environment variable')
   }
 
   // Get existing visitor cookie or create a new one
@@ -46,26 +46,32 @@ export async function middleware(req: NextRequest) {
   })
 
   // Pick which page to render depending on a feature flag
-  let res = NextResponse.next();
-  const newHomepageFeature = growthbook.evalFeature("new-homepage");
+  let res = NextResponse.next()
+  const newHomepageFeature = growthbook.evalFeature('new-homepage')
 
   // If it's not using the experiment for whatever reason, show a debugging page
   // NOTE: this is only here to help debug the demo
-  if (newHomepageFeature.source !== "experiment") {
-    console.error("---- ERROR ----")
-    if (newHomepageFeature.source === "unknownFeature") {
-      console.error("Could not find feature 'new-homepage'");
+  if (newHomepageFeature.source !== 'experiment') {
+    console.error('---- ERROR ----')
+    if (newHomepageFeature.source === 'unknownFeature') {
+      console.error("Could not find feature 'new-homepage'")
       if (features && Object.keys(features).length > 0) {
-        console.error("Found the following features instead: ", Object.keys(features));
+        console.error(
+          'Found the following features instead: ',
+          Object.keys(features)
+        )
+      } else {
+        console.error('No features loaded from ', FEATURES_ENDPOINT)
       }
-      else {
-        console.error("No features loaded from ", FEATURES_ENDPOINT);
-      }
-    }
-    else {
-      console.error("Feature 'new-homepage' found, but did not use an experiment rule");
-      console.error("Used the following instead: ", newHomepageFeature.source);
-      console.error("Feature definition: ", JSON.stringify(features?.['new-homepage'],null,2));
+    } else {
+      console.error(
+        "Feature 'new-homepage' found, but did not use an experiment rule"
+      )
+      console.error('Used the following instead: ', newHomepageFeature.source)
+      console.error(
+        'Feature definition: ',
+        JSON.stringify(features?.['new-homepage'], null, 2)
+      )
     }
 
     const url = req.nextUrl.clone()
