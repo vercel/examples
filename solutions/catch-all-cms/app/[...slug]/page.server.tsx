@@ -1,6 +1,6 @@
 import cms from '../../lib/cms'
 import { Text, Page } from '@vercel/examples-ui'
-import Components from '../../components'
+import Components from '../components'
 
 export async function getStaticProps({
   params,
