@@ -1,9 +1,14 @@
-import A from '../../components/a.server'
 import cms from '../../lib/cms'
 import { Text, Page } from '@vercel/examples-ui'
+import Components from '../../components'
 
-export function getStaticProps({ params }: { params: { slug: string[] } }) {
-  return { props: cms.getPageBySlug(params.slug.join('/')) }
+export async function getStaticProps({
+  params,
+}: {
+  params: { slug: string[] }
+}) {
+  const slug = `/${params.slug.join('/')}`
+  return { props: await cms.getPageBySlug(slug) }
 }
 
 export default function SlugPage({ components }: any) {
@@ -16,7 +21,10 @@ export default function SlugPage({ components }: any) {
         Below are the components used by this page {JSON.stringify(components)}
       </Text>
       <div className="grid gap-4 grid-cols-3">
-        <A />
+        {components.map(({ name }: any, i: number) => {
+          const Component = Components[name]
+          return <Component key={i} />
+        })}
       </div>
     </Page>
   )
