@@ -7,13 +7,17 @@ export default function Index() {
         Homepage #1
       </Text>
       <Text className="mb-4">
-        You had a 50% chance to see this homepage. 
-        If you refresh the page, you&apos;ll continue to see this version until your cookies are cleared.
+        You had a 50% chance to see this homepage. If you refresh the page,
+        you&apos;ll continue to see this version until your cookies are cleared.
       </Text>
-      <Button type="button" className="mb-4" onClick={() => {
-        document.cookie = 'visitor_id=; Max-Age=0; path=/;';
-        window.location.reload();
-      }}>
+      <Button
+        type="button"
+        className="mb-4"
+        onClick={() => {
+          document.cookie = 'visitor_id=; Max-Age=0; path=/;'
+          window.location.reload()
+        }}
+      >
         Clear cookies and reload
       </Button>
       <Text>
