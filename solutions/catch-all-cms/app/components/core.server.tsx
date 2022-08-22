@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import { Text } from '@vercel/examples-ui'
+import { Page, Text } from '@vercel/examples-ui'
 
 export const H1: FC<{ children: ReactNode }> = ({ children }) => (
   <Text variant="h1" className="mb-6">
@@ -10,3 +10,5 @@ export const H1: FC<{ children: ReactNode }> = ({ children }) => (
 export const Paragraph: FC<{ children: ReactNode }> = ({ children }) => (
   <Text className="mb-4">{children}</Text>
 )
+
+export const Container = Page

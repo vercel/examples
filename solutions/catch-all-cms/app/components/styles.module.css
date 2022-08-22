@@ -5,3 +5,18 @@
   background-color: var(--accents-1);
   border: 1px solid var(--accents-2);
 }
+
+.header-a {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.variant-b {
+  background-color: var(--geist-warning-light);
+  border: 1px solid var(--geist-warning);
+}
+
+.variant-c {
+  background-color: var(--geist-cyan-light);
+  border: 1px solid var(--geist-cyan);
+}

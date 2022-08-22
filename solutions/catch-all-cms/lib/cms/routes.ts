@@ -6,13 +6,14 @@ import type { CMSRoutes } from './types'
 const components = {
   Fragment: { name: 'Fragment' },
   children: { name: 'children' },
-
   H1: { name: 'H1' },
   Paragraph: { name: 'Paragraph' },
-  Layout: { name: 'Layout' },
   Container: { name: 'Container' },
+  Layout: { name: 'Layout' },
   HeaderA: { name: 'HeaderA' },
-  A: { name: 'A' },
+  VariantA: { name: 'VariantA' },
+  VariantB: { name: 'VariantB' },
+  VariantC: { name: 'VariantC' },
 }
 
 /**
@@ -48,7 +49,7 @@ const routes: CMSRoutes = {
     },
     page: {
       ...components.Fragment,
-      children: [components.A],
+      children: [components.VariantA, components.VariantB, components.VariantC],
     },
   },
 }
