@@ -1,22 +1,16 @@
 /* eslint-disable @next/next/no-head-element */
-import { Layout } from '@vercel/examples-ui'
 import '@vercel/examples-ui/globals.css'
+import type { FC, ReactNode } from 'react'
 
-export default function RootLayout({ children }) {
-  return (
-    <html className="this-is-the-document-html">
-      <head>
-        <title>Single Page CMS</title>
-      </head>
-      <body className="this-is-the-document-body">
-        <Layout
-          title="Pagination with SSG"
-          path="solutions/pagination-with-ssg"
-          description="Learn how to do pagination with SSG"
-        >
-          {children}
-        </Layout>
-      </body>
-    </html>
-  )
-}
+/**
+ * This is our base Layout, only the html and body tags are added here, plus
+ * global styles, everything else is added by pages and nested Layouts.
+ */
+const RootLayout: FC<{ children: ReactNode }> = ({ children }) => (
+  <html>
+    <head></head>
+    <body>{children}</body>
+  </html>
+)
+
+export default RootLayout

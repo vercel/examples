@@ -1,6 +1,7 @@
-import cms from '../../lib/cms'
-import { Text, Page } from '@vercel/examples-ui'
-import Components from '../components'
+import type { FC } from 'react'
+import cms from 'lib/cms'
+import type { PropsType } from 'lib/types'
+import { RenderCMSComponent } from '../components/index.server'
 
 export async function getStaticProps({
   params,
@@ -8,24 +9,13 @@ export async function getStaticProps({
   params: { slug: string[] }
 }) {
   const slug = `/${params.slug.join('/')}`
-  return { props: await cms.getPageBySlug(slug) }
+  const page = await cms.getPageBySlug(slug)
+
+  return { props: { page } }
 }
 
-export default function SlugPage({ components }: any) {
-  return (
-    <Page>
-      <Text variant="h1" className="mb-6">
-        Single Page CMS
-      </Text>
-      <Text className="mb-4">
-        Below are the components used by this page {JSON.stringify(components)}
-      </Text>
-      <div className="grid gap-4 grid-cols-3">
-        {components.map(({ name }: any, i: number) => {
-          const Component = Components[name]
-          return <Component key={i} />
-        })}
-      </div>
-    </Page>
-  )
-}
+const SlugPage: FC<PropsType<typeof getStaticProps>> = ({ page }) => (
+  <RenderCMSComponent component={page!} />
+)
+
+export default SlugPage
