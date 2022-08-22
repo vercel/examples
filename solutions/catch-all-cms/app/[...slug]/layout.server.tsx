@@ -9,9 +9,13 @@ export async function getStaticProps({
 }: {
   params: { slug: string[] }
 }) {
-  const slug = `/${params.slug.join('/')}`
-  const layout = await cms.getLayoutBySlug(slug)
-
+  // The slug isn't used to get the layout because that can imply that every
+  // page can decide its own layout, which wouldn't be true as layouts don't
+  // change between its nested pages.
+  //
+  // Here the layout is still dynamic, but we load it using an identifier
+  // different than the page slug.
+  const layout = await cms.getLayoutByName('layout-a')
   return { props: { layout } }
 }
 

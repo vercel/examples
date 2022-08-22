@@ -13,11 +13,11 @@ const components: Record<string, ComponentType<any> | undefined> = {
   Paragraph,
   Container,
 
-  Layout: dynamic(() => import('./layouts/layout.server')),
+  LayoutA: dynamic(() => import('./layouts/layout-a.server')),
   HeaderA: dynamic(() => import('./headers/header-a.server')),
-  VariantA: dynamic(() => import('./variant-a.server')),
-  VariantB: dynamic(() => import('./variant-b.server')),
-  VariantC: dynamic(() => import('./variant-c.server')),
+  VariantA: dynamic(() => import('./variants/variant-a.server')),
+  VariantB: dynamic(() => import('./variants/variant-b.server')),
+  VariantC: dynamic(() => import('./variants/variant-c.server')),
 }
 
 export const RenderCMSComponent: FC<{

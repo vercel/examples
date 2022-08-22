@@ -6,6 +6,4 @@ export type CMSComponent =
       children?: CMSComponent[]
     }
 
-export type CMSRoute = { layout: CMSComponent; page: CMSComponent }
-
-export type CMSRoutes = Record<string, CMSRoute | undefined>
+export type CMSComponentMap = Record<string, CMSComponent | undefined>
