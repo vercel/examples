@@ -43,8 +43,6 @@ export const RenderCMSComponent: FC<{
     return null
   }
 
-  // console.log('C', component, components)
-
   return (
     <Component {...component.props}>
       {component.children?.map((child, i) => (

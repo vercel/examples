@@ -11,6 +11,10 @@ export async function getStaticProps({
   const slug = `/${params.slug.join('/')}`
   const page = await cms.getPageBySlug(slug)
 
+  if (!page) {
+    return { notFound: true }
+  }
+
   return { props: { page } }
 }
 
