@@ -149,3 +149,32 @@ export const routes = catchAllKeys.reduce<CMSComponentMap>(
   },
   {}
 )
+
+// TODO: Remove this from the solution.
+// For testing purposes, duplicate every route in the CMS for `/pages/*`.
+Object.entries(routes).forEach(([route, component]) => {
+  if (!component || typeof component === 'string') return
+
+  routes[`/pages${route}`] = {
+    ...component,
+    children: component.children?.map((child) => {
+      if (typeof child === 'string') return child
+
+      const props: any = child.props
+
+      return {
+        ...child,
+        props: {
+          ...props,
+          categories: props!.categories.map((category: any) => ({
+            text: category.text.replace(
+              category.href,
+              `/pages${category.href}`
+            ),
+            href: `/pages${category.href}`,
+          })),
+        },
+      }
+    }),
+  }
+})

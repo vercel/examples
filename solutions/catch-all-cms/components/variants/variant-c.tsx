@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from 'react'
-import Categories, { Category } from '../categories.server'
+import Categories, { Category } from '../categories'
 import styles from '../styles.module.css'
 import cn from 'clsx'
 

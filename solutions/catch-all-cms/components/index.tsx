@@ -1,15 +1,13 @@
 import { Fragment, ComponentType, FC, ReactNode } from 'react'
-// import dynamic from 'next/dynamic'
-// The usage of dynamic like this is temporal
-import dynamic from 'next/dist/client/components/shared/dynamic'
+import dynamic from 'next/dynamic'
 import { CMSComponent } from 'lib/cms/types'
-import { H1, Paragraph, Container } from './core.server'
+import { H1, Paragraph, Container } from './core'
 
-import LayoutA from './layouts/layout-a.server'
-import HeaderA from './headers/header-a.server'
-import VariantA from './variants/variant-a.server'
-import VariantB from './variants/variant-b.server'
-import VariantC from './variants/variant-c.server'
+import LayoutA from './layouts/layout-a'
+import HeaderA from './headers/header-a'
+import VariantA from './variants/variant-a'
+import VariantB from './variants/variant-b'
+import VariantC from './variants/variant-c'
 
 const components: Record<string, ComponentType<any> | undefined> = {
   // Core components, these are not loaded by next/dynamic as they're
