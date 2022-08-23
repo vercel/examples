@@ -1,0 +1,22 @@
+.root {
+  display: flex;
+  padding: 10rem;
+  padding: theme('spacing.4');
+  margin: theme('spacing.2');
+  background-color: var(--accents-1);
+  border: 1px solid var(--accents-2);
+}
+
+.header-a {
+  margin-bottom: theme('spacing.8');
+}
+
+.variant-b {
+  background-color: var(--accents-2);
+  border: 1px solid var(--accents-3);
+}
+
+.variant-c {
+  background-color: var(--geist-cyan-light);
+  border: 1px solid var(--geist-cyan);
+}
