@@ -4,11 +4,7 @@ import cms from 'lib/cms'
 import type { PropsType } from 'lib/types'
 import { RenderCMSComponent } from '../components/index.server'
 
-export async function getStaticProps({
-  params,
-}: {
-  params: { slug: string[] }
-}) {
+export async function getStaticProps() {
   // The slug isn't used to get the layout because that can imply that every
   // page can decide its own layout, which wouldn't be true as layouts don't
   // change between its nested pages.

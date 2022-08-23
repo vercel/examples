@@ -149,5 +149,3 @@ export const routes = catchAllKeys.reduce<CMSComponentMap>(
   },
   {}
 )
-
-console.log('SS', JSON.stringify(routes, null, 2))
