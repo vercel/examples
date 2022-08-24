@@ -1,0 +1,6 @@
+{
+  "name": "wasm-hello-world",
+  "devDependencies": {
+    "vercel": "^28.1.3"
+  }
+}

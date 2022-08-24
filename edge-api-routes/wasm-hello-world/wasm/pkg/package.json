@@ -1,0 +1,16 @@
+{
+  "name": "wasm",
+  "collaborators": [
+    "Guillaume Bibeau-Laviolette <g.bibeaulaviolette@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "wasm_bg.wasm",
+    "wasm.js",
+    "wasm_bg.js",
+    "wasm.d.ts"
+  ],
+  "module": "wasm.js",
+  "types": "wasm.d.ts",
+  "sideEffects": false
+}
