@@ -28,38 +28,21 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-
 yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/wasm-hello-world wasm-hello-world
 ```
 
-Install the Vercel CLI:
+To build and run the example locally, you'll need to install the following prerequisites:
+
+1. [Rust](https://www.rust-lang.org/tools/install): The API Route for this example is written in Rust and requires the Rust toolchain to build.
+2. [`wasm-pack`](https://rustwasm.github.io/wasm-pack/installer/): is a helpful utility that builds, optimizes and packages Rust into WebAssembly. This example uses it for the build and optimization step (although it does not use it for packaging).
+
+Then, install the Vercel CLI which you'll use to run the app:
 
 ```bash
 npm i -g vercel
 ```
 
-Then run the app at the root of the repository:
+Run the app at the root of the repository:
 
 ```bash
 vercel dev
 ```
 
-## Building and running locally
-
-To build and run this example locally, you'll need the following prerequisites:
-
-1. [Rust](https://www.rust-lang.org/tools/install)
-   The API Route for this example is written in Rust and requires the Rust toolchain to build.
-2. [`wasm-pack`](https://github.com/rustwasm/wasm-pack)
-   `wasm-pack` is a helpful utility that builds, optimizes and packages Rust into WebAssembly. This example uses it for the build and optimization step (although does not use it for packaging).
-3. [Vercel CLI](https://vercel.com/docs/cli)
-   The Vercel CLI lets you run this example locally.
-
-To build the example:
-
-```bash
-(cd wasm && wasm-pack)
-```
-
-To run the example locally, start the development environment with the Vercel CLI:
-
-```bash
-vercel dev
-```
-
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
