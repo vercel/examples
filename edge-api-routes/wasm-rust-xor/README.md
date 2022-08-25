@@ -16,16 +16,16 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-api-routes/wasm-xor&project-name=wasm-xor&repository-name=wasm-xor)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-api-routes/wasm-rust-xor&project-name=wasm-rust-xor&repository-name=wasm-rust-xor)
 
 ### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/main/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/wasm-xor wasm-xor
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/wasm-rust-xor wasm-rust-xor
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/wasm-xor wasm-xor
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/wasm-rust-xor wasm-rust-xor
 ```
 
 To build and run the example locally, you'll need to install the following prerequisites:
