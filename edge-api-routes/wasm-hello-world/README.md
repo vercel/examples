@@ -40,3 +40,26 @@ Then run the app at the root of the repository:
 vercel dev
 ```
 
+## Building and running locally
+
+To build and run this example locally, you'll need the following prerequisites:
+
+1. [Rust](https://www.rust-lang.org/tools/install)
+   The API Route for this example is written in Rust and requires the Rust toolchain to build.
+2. [`wasm-pack`](https://github.com/rustwasm/wasm-pack)
+   `wasm-pack` is a helpful utility that builds, optimizes and packages Rust into WebAssembly. This example uses it for the build and optimization step (although does not use it for packaging).
+3. [Vercel CLI](https://vercel.com/docs/cli)
+   The Vercel CLI lets you run this example locally.
+
+To build the example:
+
+```bash
+(cd wasm && wasm-pack)
+```
+
+To run the example locally, start the development environment with the Vercel CLI:
+
+```bash
+vercel dev
+```
+
