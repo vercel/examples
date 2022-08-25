@@ -6,7 +6,7 @@ This examples takes two 32-bit numbers as inputs (the `a` and `b` query paramete
 
 ## Demo
 
-https://wasm-xor.vercel.app/api/xor
+https://wasm-rust-xor.vercel.app/api/xor?a=0xac38b505&b=0x83ba94e4
 
 ## How to Use
 
