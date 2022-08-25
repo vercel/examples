@@ -6,7 +6,7 @@ This example uses a simple Rust "hello world" example as an API route for Vercel
 
 ## Demo
 
-https://wasm-edge-api-route.vercel.app/api/wasm
+https://wasm-rust-hello-world.vercel.app/api/wasm
 
 ## How to Use
 
