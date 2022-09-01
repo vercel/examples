@@ -5,11 +5,11 @@ import dynamic from 'next/dist/client/components/shared/dynamic'
 import { CMSComponent } from 'lib/cms/types'
 import { H1, Paragraph, Container } from './core.server'
 
-import LayoutA from './layouts/layout-a.server'
-import HeaderA from './headers/header-a.server'
-import VariantA from './variants/variant-a.server'
-import VariantB from './variants/variant-b.server'
-import VariantC from './variants/variant-c.server'
+// import LayoutA from './layouts/layout-a.server'
+// import HeaderA from './headers/header-a.server'
+// import VariantA from './variants/variant-a.server'
+// import VariantB from './variants/variant-b.server'
+// import VariantC from './variants/variant-c.server'
 
 const components: Record<string, ComponentType<any> | undefined> = {
   // Core components, these are not loaded by next/dynamic as they're
@@ -19,16 +19,16 @@ const components: Record<string, ComponentType<any> | undefined> = {
   Paragraph,
   Container,
 
-  LayoutA,
-  HeaderA,
-  VariantA,
-  VariantB,
-  VariantC,
-  // LayoutA: dynamic(() => import('./layouts/layout-a.server')),
-  // HeaderA: dynamic(() => import('./headers/header-a.server')),
-  // VariantA: dynamic(() => import('./variants/variant-a.server')),
-  // VariantB: dynamic(() => import('./variants/variant-b.server')),
-  // VariantC: dynamic(() => import('./variants/variant-c.server')),
+  // LayoutA,
+  // HeaderA,
+  // VariantA,
+  // VariantB,
+  // VariantC,
+  LayoutA: dynamic(() => import('./layouts/layout-a.server')),
+  HeaderA: dynamic(() => import('./headers/header-a.server')),
+  VariantA: dynamic(() => import('./variants/variant-a.server')),
+  VariantB: dynamic(() => import('./variants/variant-b.server')),
+  VariantC: dynamic(() => import('./variants/variant-c.server')),
 }
 
 export const RenderCMSComponent: FC<{
