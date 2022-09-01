@@ -4,9 +4,9 @@ import { Layout, Text, Page, Code, Link, List } from '@vercel/examples-ui'
 import Card from '../components/Card'
 import Snippet from '../components/Snippet'
 
-import screenshot1 from '../public/docs/screenshot-1.jpg'
-import screenshot2 from '../public/docs/screenshot-2.jpg'
-import screenshot3 from '../public/docs/screenshot-3.jpg'
+import screenshot1 from '../public/docs/screenshot-1a.png'
+import screenshot2 from '../public/docs/screenshot-2a.png'
+import screenshot3 from '../public/docs/screenshot-3a.png'
 
 const CARD = {
   id: '617a8bb9637d9400182bd6fe',
@@ -140,7 +140,7 @@ function Home() {
           have to define it.
         </Text>
         <Image
-          src={screenshot3}
+          src={screenshot2}
           alt="Image with a fixed layout with known width and height"
         />
       </section>
@@ -164,12 +164,19 @@ function Home() {
           <Code>srcset</Code> indicates the pixel density.
         </li>
         <li>
-          If the image has <Code>sizes</Code> set, the browser picks the{' '}
-          <Code>srcset</Code> whose width descriptor matches the width indicated
-          by <Code>sizes</Code>, and for high DPR screens it will pick a higher
-          size. For example, for a full hd display in a common size (DPR of ~1),
-          our 256w image will use the 256w variant, for a retina display with a
-          DPR of ~2, the browser will pick the 640w variant instead.
+          <span>
+            If the image has <Code>sizes</Code> set, the browser picks the{' '}
+            <Code>srcset</Code> whose width descriptor matches the width
+            indicated by <Code>sizes</Code>, and for high DPR screens it will
+            pick a higher size. For example, for a full hd display in a common
+            size (DPR of ~1), our 256w image will use the 256w variant, for a
+            retina display with a DPR of ~2, the browser will pick the 640w
+            variant instead:
+          </span>
+          <Image
+            src={screenshot3}
+            alt="Image using sizes to reduce its maximum size when using layout fill or responsive"
+          />
         </li>
       </List>
     </Page>
