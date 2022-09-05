@@ -2,13 +2,13 @@
 # https://help.github.com/en/articles/about-code-owners
 
 # Solutions Eng and Dev Rel are the default owners of everything
-* @okbel @lfades @goncy @dominiksipowicz @leerob
+* @okbel @lfades @goncy @dominiksipowicz @leerob @steven-tey
 
 # For examples that are a Monorepo we add the Turbo team and some members
 # from Solutions and Dev Rel
-solutions/monorepo @jaredpalmer @gaspar09 @gsoltis @becca @tknickman @goncy @lfades @leerob
-solutions/microfrontends @jaredpalmer @gaspar09 @gsoltis @becca @goncy @lfades @leerob
+solutions/monorepo @jaredpalmer @gaspar09 @gsoltis @becca @tknickman @goncy @lfades @leerob @steven-tey
+solutions/microfrontends @jaredpalmer @gaspar09 @gsoltis @becca @goncy @lfades @leerob @steven-tey
 
 # For the build output API the engineering team takes care of it.
 # A member of Solutions and Dev Rel is also added
-build-output-api @tootallnate @styfle @EndangeredMassa @lfades @leerob
+build-output-api @tootallnate @styfle @EndangeredMassa @lfades @leerob @steven-tey
