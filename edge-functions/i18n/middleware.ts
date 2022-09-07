@@ -6,7 +6,6 @@ export const config = {
 }
 
 export default function middleware(req: NextRequest) {
-  // req.geo is only available on pro and enterprise accounts
   const country = req.geo?.country?.toLowerCase() || 'us'
   const locale = req.headers.get('accept-language')?.split(',')?.[0] || 'en-US'
 

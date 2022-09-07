@@ -15,12 +15,16 @@ demoUrl: https://edge-functions-query-params-filter.vercel.app
 
 The example shows how to filter query parameters from the URL using Edge Functions.
 
-To see how it works, check the middleware function in [`pages/_middleware.ts`](pages/_middleware.ts):
+To see how it works, check the middleware function in [`middleware.ts`](middleware.ts):
 
 ```ts
 import { NextRequest, NextResponse } from 'next/server'
 
 const allowedParams = ['allowed']
+
+export const config = {
+  matcher: '/',
+}
 
 export function middleware(req: NextRequest) {
   const url = req.nextUrl
@@ -37,6 +41,8 @@ export function middleware(req: NextRequest) {
   // params were changed
   if (changed) {
     return NextResponse.redirect(url)
+    // It's also useful to do a rewrite instead of a redirect
+    // return NextResponse.rewrite(url)
   }
 }
 ```
