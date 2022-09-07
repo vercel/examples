@@ -19,4 +19,4 @@ yarn.lock
 /yarn-error.log*
 
 # Local ENV files
-.env*.local
+/.env*.local
