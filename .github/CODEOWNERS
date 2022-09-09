@@ -6,8 +6,9 @@
 
 # For examples that are a Monorepo we add the Turbo team and some members
 # from Solutions and Dev Rel
-solutions/monorepo @jaredpalmer @gaspar09 @gsoltis @becca @tknickman @goncy @lfades @leerob @steven-tey
-solutions/microfrontends @jaredpalmer @gaspar09 @gsoltis @becca @goncy @lfades @leerob @steven-tey
+solutions/monorepo @vercel/turbo-oss @goncy @lfades @leerob @steven-tey
+solutions/microfrontends @vercel/turbo-oss @goncy @lfades @leerob @steven-tey
+solutions/nx-monorepo @vercel/turbo-oss @goncy @lfades @leerob @steven-tey
 
 # For the build output API the engineering team takes care of it.
 # A member of Solutions and Dev Rel is also added
