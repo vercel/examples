@@ -5,15 +5,13 @@ description: Learn to implement a monorepo with a single Next.js site using Nx.
 framework: Next.js
 useCase: Documentation
 css: None
-deployUrl: https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/nx-monorepo&project-name=nx-monorepo&repository-name=nx-monorepo&output-directory=dist%2Fapps%2Fapp%2F.next&build-command=npx%20nx%20build%20app%20--prod&ignore-command=npx%20nx-ignore%20app%20
+deployUrl: https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/nx-monorepo&project-name=nx-monorepo&repository-name=nx-monorepo&output-directory=dist%2Fapps%2Fapp%2F.next&build-command=npx%20nx%20build%20app%20--prod&ignore-command=npx%20nx-ignore%20app
 demoUrl: https://solutions-nx-monorepo.vercel.sh
 ---
 
 # Nx Monorepo
 
 This is a monorepo example using [Nx](https://nx.dev) and a single Next.js site in [./apps/app](./apps/app).
-
-**NOTE:** When using Nx on Vercel, ensure you are using `nx@14.6.2` or above.
 
 ## Demo
 
@@ -85,7 +83,7 @@ Visit the [Nx Documentation](https://nx.dev) to learn more.
 
 ## Nx Cloud
 
-**NOTE:** When using Nx Cloud on Vercel, ensure:
+This example is configured to work out of the box with Nx Cloud. However, if deploying an existing project to Vercel - ensure:
 
 If using `@nrwl/nx-cloud@14.6.0` or above
 
