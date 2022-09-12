@@ -5,7 +5,7 @@ description: Learn to implement a monorepo with a single Next.js site that has i
 framework: Next.js
 useCase: Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/monorepo&project-name=monorepo&repo-name=monorepo&root-directory=app&build-command=cd%20..%20%26%26%20npm%20run%20build&install-command=cd%20..%20%26%26%20npm%20i
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/monorepo&project-name=monorepo&repo-name=monorepo&root-directory=app&build-command=cd%20..%20%26%26%20npm%20run%20build&install-command=cd%20..%20%26%26%20npm%20i&ignore-command=npx%20turbo-ignore
 demoUrl: https://solutions-monorepo.vercel.sh
 ---
 
