@@ -4,7 +4,7 @@ slug: monorepo-nx
 description: Learn to implement a monorepo with a single Next.js site using Nx.
 framework: Next.js
 useCase: Documentation
-css: None
+css: CSS
 deployUrl: https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/nx-monorepo&project-name=nx-monorepo&repository-name=nx-monorepo&output-directory=dist%2Fapps%2Fapp%2F.next&build-command=npx%20nx%20build%20app%20--prod&ignore-command=npx%20nx-ignore%20app
 demoUrl: https://solutions-nx-monorepo.vercel.sh
 ---
