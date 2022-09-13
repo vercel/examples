@@ -197,11 +197,10 @@ OPEN_DEVTOOLS=1 npm run integration -- -p
 
 ### Viewing test reports
 
-Tests reports, including screenshots on error, are auto-generated and can be
-viewed by opening the HTML report file in `playwright/html-report`, or by running the following command:
+Tests reports, including screenshots on error, are auto-generated and can be viewed by opening the HTML report file in `playwright/test-results/html-report`, or by running the following command:
 
 ```bash
-npx playwright show-report playwright/html-report
+npx playwright show-report playwright/test-results/html-report
 ```
 
 ### Viewing test traces
@@ -211,7 +210,7 @@ Along with screenshots, Playwright will also capture traces for failed tests.
 You can view these by uploading them to [Playwright's Trace Viewer](https://trace.playwright.dev/) ([Docs](https://playwright.dev/docs/trace-viewer)) or by running the following command:
 
 ```bash
-npx playwright show-trace playwright/test-results/[test-id]/trace.zip
+npx playwright show-trace playwright/test-results/output/[test-id]/trace.zip
 ```
 
 ### Spotting flaky tests

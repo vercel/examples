@@ -1,0 +1,66 @@
+name: Playwright Reusable
+
+on:
+  workflow_call:
+    inputs:
+      test-type:
+        required: true
+        description: 'The Playwright test suite to run. integration or e2e'
+        type: string
+      timeout-minutes:
+        required: false
+        default: 30
+        description: 'The timeout for the job'
+        type: number
+
+env:
+  FORCE_COLOR: 3
+
+jobs:
+  run:
+    # Empty whitespace character to make the PR checks UI a little easier to read.
+    name: ‎
+    timeout-minutes: ${{ inputs.timeout-minutes }}
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.25.2-focal
+      # Prevents the image from getting into permission denied errors
+      options: --user 1001
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.14
+
+      - name: Install latest npm with corepack
+        shell: bash
+        run: corepack enable npm && npm --version
+
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-modules-cache-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
+        shell: bash
+        run: npm ci
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+
+      - name: Run ${{ inputs.test-type }} tests
+        run: npm run ${{ inputs.test-type }}
+        env:
+          BASE_URL: ${{ github.event_name == 'deployment_status' && github.event.deployment_status.target_url || 'https://solutions-testing.vercel.app' }}
+
+      - name: Upload test results to GitHub
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-${{ inputs.test-type }}-report
+          path: playwright/test-results

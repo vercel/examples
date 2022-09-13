@@ -33,56 +33,70 @@ const testType = args['--integration']
 
 const pauseOnFailure = args['--pause-on-failure']
 
-const run = (options, ...paths) =>
-  new Promise((resolve, reject) => {
-    const argsToForward = args._
-    const testArgs = ['test']
-    const env = { ...process.env }
+const initPlaywright = (options, ...paths) => {
+  const argsToForward = args._
+  const testArgs = ['test']
+  const env = { ...process.env }
 
-    if (testType) env.TEST_TYPE = testType
+  if (testType) env.TEST_TYPE = testType
 
-    if (!argsToForward.includes('--config')) {
-      testArgs.push('--config', 'playwright/playwright.config.ts')
+  if (!argsToForward.includes('--config')) {
+    testArgs.push('--config', 'playwright/playwright.config.ts')
+  }
+
+  if (args['--chromium'] && !argsToForward.includes('--project=chromium')) {
+    testArgs.push('--project=chromium')
+  }
+
+  if (pauseOnFailure) {
+    env.PAUSE_ON_FAILURE = true
+
+    if (!argsToForward.includes('--headed')) {
+      testArgs.push('--headed')
     }
+  }
 
-    if (args['--chromium'] && !argsToForward.includes('--project=chromium')) {
-      testArgs.push('--project=chromium')
+  let closed = false
+
+  const instance = spawn(
+    'playwright',
+    [...testArgs, ...argsToForward, ...paths],
+    { stdio: 'inherit', env }
+  )
+
+  if (options?.verbose !== false) {
+    console.log('>', instance.spawnargs.join(' '))
+    if (testType || pauseOnFailure) {
+      console.log(
+        `> env: ${testType ? `TEST_TYPE=${testType}` : ''} ${
+          pauseOnFailure ? 'PAUSE_ON_FAILURE=true' : ''
+        }`
+      )
     }
+  }
 
-    // if (args['--debug'] && !argsToForward.includes(''))
-
-    if (pauseOnFailure) {
-      env.PAUSE_ON_FAILURE = true
-
-      if (!argsToForward.includes('--headed')) {
-        testArgs.push('--headed')
+  const events = new Promise((resolve, reject) => {
+    instance.on('close', (code, signal) => {
+      closed = true
+      if (code === 0) {
+        resolve()
+      } else {
+        reject(null)
       }
-    }
-
-    const instance = spawn(
-      'playwright',
-      [...testArgs, ...argsToForward, ...paths],
-      { stdio: 'inherit', env }
-    )
-
-    if (options?.verbose !== false) {
-      console.log('>', instance.spawnargs.join(' '))
-      if (testType || pauseOnFailure) {
-        console.log(
-          `> env: ${testType ? `TEST_TYPE=${testType}` : ''} ${
-            pauseOnFailure ? 'PAUSE_ON_FAILURE=true' : ''
-          }`
-        )
-      }
-    }
-
-    instance.on('close', () => {
-      resolve()
     })
     instance.on('error', (error) => {
       reject(error)
     })
   })
+
+  const kill = () => {
+    if (!closed && !instance.killed && instance.exitCode === null) {
+      instance.kill()
+    }
+  }
+
+  return { events, kill }
+}
 
 const watch = () =>
   new Promise((_, reject) => {
@@ -106,7 +120,7 @@ const watch = () =>
 
     function handlePath(path) {
       console.log('>', path)
-      run({ verbose: false }, path).catch((error) => {
+      initPlaywright({ verbose: false }, path).events.catch((error) => {
         console.error('An error happened using Playwright for:', path)
         console.error(error)
       })
@@ -119,7 +133,21 @@ const watch = () =>
   })
 
 if (args['--watch']) {
-  await watch()
+  await watch().catch((error) => {
+    console.error(error)
+    process.exit(1)
+  })
 } else {
-  await run()
+  const { events, kill } = initPlaywright()
+
+  process.on('exit', kill)
+  process.on('SIGINT', kill)
+
+  await events.catch((error) => {
+    if (error) {
+      console.error('Playwright test suite failed with:')
+      console.error(error)
+    }
+    process.exit(1)
+  })
 }
