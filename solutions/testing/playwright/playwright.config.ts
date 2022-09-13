@@ -13,7 +13,7 @@ const config: PlaywrightTestConfig = {
   testDir: TEST_TYPE ? join(__dirname, TEST_TYPE, 'tests') : '.',
   testMatch: '*.spec.ts',
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
-  outputDir: 'test-results/',
+  outputDir: 'test-results/output',
   /* Maximum time one test can run for. */
   timeout: 30_000,
   expect: {
@@ -21,7 +21,7 @@ const config: PlaywrightTestConfig = {
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
      */
-    timeout: 5_000,
+    timeout: 10_000,
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -29,8 +29,7 @@ const config: PlaywrightTestConfig = {
   forbidOnly: IS_CI,
   /* Never retry tests */
   retries: 0,
-  /* Opt out of parallel tests on CI. */
-  workers: IS_CI ? 1 : undefined,
+  workers: IS_CI ? 6 : undefined,
   /* Reporters to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     IS_CI ? ['list'] : ['line'],
@@ -38,12 +37,18 @@ const config: PlaywrightTestConfig = {
       ? [
           'junit',
           {
-            outputFile: join(__dirname, 'junit.xml'),
+            outputFile: join(__dirname, 'test-results/output/junit.xml'),
             embedAnnotationsAsProperties: true,
           },
         ]
       : null,
-    ['html', { outputFolder: join(__dirname, 'html-report'), open: 'never' }],
+    [
+      'html',
+      {
+        outputFolder: join(__dirname, 'test-results/html-report'),
+        open: 'never',
+      },
+    ],
   ].filter(Boolean) as ReporterDescription[],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -56,7 +61,7 @@ const config: PlaywrightTestConfig = {
     locale: 'en-US',
     timezoneId: 'GMT',
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
-    actionTimeout: 5_000,
+    actionTimeout: 10_000,
     screenshot: 'only-on-failure',
     /* Collect traces for all test that fail. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',

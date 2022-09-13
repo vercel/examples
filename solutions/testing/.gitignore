@@ -43,5 +43,3 @@ yarn-error.log*
 # Playwright
 /playwright/.cache/
 /playwright/test-results/
-/playwright/html-report/
-/playwright/junit.xml

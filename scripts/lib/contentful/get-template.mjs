@@ -1,8 +1,8 @@
 import frontMatter from 'front-matter'
 
-const FRAMEWORKS = ['Next.js']
+const FRAMEWORKS = ['Next.js', 'None']
 const USE_CASES = ['Edge Functions', 'Documentation', 'Starter']
-const CSS = ['Tailwind', 'CSS Modules', 'CSS-in-JSX']
+const CSS = ['Tailwind', 'CSS Modules', 'CSS-in-JSX', 'CSS']
 
 export default function getTemplate(readme, examplePath) {
   const { body, attributes } = frontMatter(readme)
