@@ -9,4 +9,5 @@ export interface Template {
   deployUrl: string
   demoUrl: string
   publisher: string
+  overview?: string
 }

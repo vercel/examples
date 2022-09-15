@@ -30,7 +30,9 @@ type Field = {
   }
 }
 
-export default async function validateTemplate(template: Partial<Template>) {
+export default async function validateTemplate(
+  template: Partial<Template>
+): Promise<Template> {
   const contentful = initContentful(ACCESS_TOKEN)
   // Ref: https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type/get-a-single-content-type/console/curl
   const contentType = (await contentful(
@@ -114,5 +116,5 @@ export default async function validateTemplate(template: Partial<Template>) {
     throw errors
   }
 
-  return template
+  return template as Template
 }

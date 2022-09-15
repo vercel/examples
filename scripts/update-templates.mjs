@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs/promises'
 import log from './lib/log.mjs'
-import updateTemplate from './lib/contentful/update-template.mjs'
+import updateTemplate from './lib/contentful/update-template'
 
 const DIRS = ['edge-functions', 'solutions']
 const IS_README = /readme\.md$/i

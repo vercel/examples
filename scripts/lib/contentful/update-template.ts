@@ -6,6 +6,14 @@ import getFrontMatter from './get-front-matter'
 import initContentful from './index'
 import validateTemplate from './validate-template'
 
+type Patch = {
+  op: 'add' | 'replace'
+  path: string
+  value: string | string[] | AddValue
+}
+
+type AddValue = { [lang: string]: string | string[] }
+
 export default async function updateTemplate({
   lang,
   examplePath,
@@ -32,16 +40,13 @@ export default async function updateTemplate({
     examplePath
   )}`
 
-  const template = await validateTemplate(attributes)
-  console.log('DONE')
-
-  log(`Fetching template with slug "${template.slug}"...`)
+  log(`Fetching template with slug "${attributes.slug}"...`)
 
   // Ref: https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry/get-a-single-entry/console/curl
   // Search params: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/search-parameters
   // The entry is the "Template" we want to update
   const entryRes = await contentful(
-    `${ENV_PATH}/entries?content_type=${CONTENT_TYPE}&fields.slug=${template.slug}`
+    `${ENV_PATH}/entries?content_type=${CONTENT_TYPE}&fields.slug=${attributes.slug}`
   )
   const entry = entryRes?.items[0]
   // console.log('ENTRY', JSON.stringify(entryRes, null, 2))
@@ -53,35 +58,40 @@ export default async function updateTemplate({
   // Update the template
   if (entry) {
     const { fields } = entry
-    const body = Object.entries(template).reduce((patch, [field, value]) => {
-      const currentValue = fields[field]?.[lang]
+    const template = await validateTemplate(attributes)
+    const body = Object.entries(template).reduce<Patch[]>(
+      (patch, [field, value]: [string, string | string[]]) => {
+        const currentValue = fields[field]?.[lang]
 
-      // Update existing field
-      if (currentValue) {
-        if (
-          Array.isArray(currentValue)
-            ? value.length !== currentValue.length ||
-              value.some((val) => !currentValue.includes(val))
-            : currentValue !== value
-        ) {
+        // Update existing field
+        if (currentValue) {
+          if (
+            Array.isArray(currentValue) && Array.isArray(value)
+              ? value.length !== currentValue.length ||
+                value.some((val) => !currentValue.includes(val))
+              : currentValue !== value
+          ) {
+            patch.push({
+              op: 'replace',
+              path: `/fields/${field}/${lang}`,
+              value,
+            })
+          }
+        }
+        // Add a new field
+        else {
+          // When adding a field the lang has to be part of `value` even if docs say otherwise.
           patch.push({
-            op: 'replace',
-            path: `/fields/${field}/${lang}`,
-            value,
+            op: 'add',
+            path: `/fields/${field}`,
+            value: { [lang]: value },
           })
         }
-      }
-      // Add a new field
-      else {
-        patch.push({
-          op: 'add',
-          path: `/fields/${field}`,
-          value: { [lang]: value },
-        })
-      }
 
-      return patch
-    }, [])
+        return patch
+      },
+      []
+    )
 
     if (!body.length) {
       log('No changes to make in this entry.')
@@ -94,7 +104,6 @@ export default async function updateTemplate({
     )
 
     // Ref: https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry/patch-an-entry/console/curl
-
     const updatedEntry = await contentful(
       `${ENV_PATH}/entries/${entry.sys.id}`,
       {
@@ -140,15 +149,20 @@ export default async function updateTemplate({
       throw new Error(`No Space or Environment was found for \`${ENV_PATH}\``)
     }
 
+    // For new templates we'll use the readme as the initial overview
+    attributes.overview = readmeBody
+
+    const template = await validateTemplate(attributes)
+
     log(`Creating a new template with: ${JSON.stringify(template, null, 2)}`)
 
-    // For new templates we'll use the readme as the initial overview
-    template.overview = readmeBody
-
-    const fields = Object.entries(template).reduce((fields, [field, value]) => {
-      fields[field] = { [lang]: value }
-      return fields
-    }, {})
+    const fields = Object.entries(template).reduce<Record<string, AddValue>>(
+      (fields, [field, value]) => {
+        fields[field] = { [lang]: value }
+        return fields
+      },
+      {}
+    )
 
     // Ref: https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry/create-update-an-entry/console/curl
     // To add a new entry we use POST because it doesn't work with PUT as Contentful says
