@@ -41,8 +41,6 @@ export default async function validateTemplate(
   const fields = contentType.fields.filter(({ id }) => FIELDS.includes(id))
   const errors: Error[] = []
 
-  // console.log('CONTENT_TYPE', JSON.stringify(contentType, null, 2))
-
   fields.forEach(({ id, type, required, validations, items }) => {
     const val = template[id as keyof Template]
 

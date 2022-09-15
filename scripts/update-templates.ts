@@ -1,6 +1,5 @@
 import path from 'path'
-import fs from 'fs/promises'
-import log from './lib/log.mjs'
+import log from './lib/log'
 import updateTemplate from './lib/contentful/update-template'
 
 const DIRS = ['edge-functions', 'solutions']
@@ -13,7 +12,7 @@ async function updateTemplates() {
     return
   }
 
-  const examplePaths = changedFiles.reduce((acc, fileName) => {
+  const examplePaths = changedFiles.reduce<string[]>((acc, fileName) => {
     if (
       // Check for changes in directories with examples
       DIRS.some((dir) => fileName.startsWith(`${dir}/`)) &&

@@ -1,7 +1,7 @@
 import path from 'path'
 import { ACCESS_TOKEN, CONTENT_TYPE, ENV_PATH } from './constants'
-import log from '../log.mjs'
-import getReadme from '../get-readme.mjs'
+import log from '../log'
+import getReadme from '../get-readme'
 import getFrontMatter from './get-front-matter'
 import initContentful from './index'
 import validateTemplate from './validate-template'
@@ -49,8 +49,6 @@ export default async function updateTemplate({
     `${ENV_PATH}/entries?content_type=${CONTENT_TYPE}&fields.slug=${attributes.slug}`
   )
   const entry = entryRes?.items[0]
-  // console.log('ENTRY', JSON.stringify(entryRes, null, 2))
-
   // If the `content_type` doesn't exist or doesn't have the `slug` field
   // Contentful returns a `400`  and we'll throw an error, so we can assume
   // that it exists and it's valid from here on
