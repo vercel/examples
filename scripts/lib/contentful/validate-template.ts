@@ -1,5 +1,6 @@
-import { ACCESS_TOKEN, CONTENT_TYPE, ENV_PATH } from './constants.mjs'
-import initContentful from './index.mjs'
+import { ACCESS_TOKEN, CONTENT_TYPE, ENV_PATH } from './constants'
+import type { Template } from './types'
+import initContentful from './index.js'
 
 // List of the fields we'll use to create an entry for the template in Contentful.
 const FIELDS = [
@@ -9,25 +10,39 @@ const FIELDS = [
   'framework',
   'type',
   'css',
+  'githubUrl',
   'deployUrl',
   'demoUrl',
   'publisher',
   'relatedTemplates',
 ]
 
-export default async function validateTemplate(template: any) {
+type Field = {
+  id: string
+  type: 'Text' | 'Array'
+  required: boolean
+  validations: {
+    size?: { min: number; max: number }
+    regexp?: { pattern: string }
+  }[]
+  items?: {
+    validations: { in?: string[] }[]
+  }
+}
+
+export default async function validateTemplate(template: Partial<Template>) {
   const contentful = initContentful(ACCESS_TOKEN)
   // Ref: https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type/get-a-single-content-type/console/curl
-  const contentType = await contentful(
+  const contentType = (await contentful(
     `${ENV_PATH}/content_types/${CONTENT_TYPE}`
-  )
+  )) as { fields: Field[] }
   const fields = contentType.fields.filter(({ id }) => FIELDS.includes(id))
-  const errors = []
+  const errors: Error[] = []
 
   // console.log('CONTENT_TYPE', JSON.stringify(contentType, null, 2))
 
   fields.forEach(({ id, type, required, validations, items }) => {
-    const val = template[id]
+    const val = template[id as keyof Template]
 
     if (required && !val?.length) {
       errors.push(new Error(`Missing required template field: "${id}"`))
@@ -44,10 +59,12 @@ export default async function validateTemplate(template: any) {
         if (size) {
           const { min, max } = size
 
-          if (val.length < min || val.length > max) {
+          if (val!.length < min || val!.length > max) {
             errors.push(
               new Error(
-                `"${id}" should have a value between ${min} and ${max} characters, currently: "${val}" (${val.length})`
+                `"${id}" should have a value between ${min} and ${max} characters, currently: "${val}" (${
+                  val!.length
+                })`
               )
             )
             return
@@ -56,7 +73,7 @@ export default async function validateTemplate(template: any) {
 
         if (regexp) {
           const regex = new RegExp(regexp.pattern)
-          if (!regex.test(val)) {
+          if (!regex.test(val as string)) {
             errors.push(
               new Error(
                 `"${id}" with value "${val}" doesn't match the regex "${regexp.pattern}`
@@ -77,7 +94,7 @@ export default async function validateTemplate(template: any) {
       items?.validations?.forEach((validation) => {
         if (
           validation.in?.length &&
-          !val.every((item) => validation.in.includes(item))
+          !val.every((item) => validation.in!.includes(item))
         ) {
           errors.push(
             new Error(

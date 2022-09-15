@@ -1,12 +1,18 @@
 import path from 'path'
-import { ACCESS_TOKEN, CONTENT_TYPE, ENV_PATH } from './constants.mjs'
+import { ACCESS_TOKEN, CONTENT_TYPE, ENV_PATH } from './constants'
 import log from '../log.mjs'
 import getReadme from '../get-readme.mjs'
-import getFrontMatter from './get-front-matter.mjs'
-import initContentful from './index.mjs'
+import getFrontMatter from './get-front-matter'
+import initContentful from './index'
 import validateTemplate from './validate-template'
 
-export default async function updateTemplate({ lang, examplePath }) {
+export default async function updateTemplate({
+  lang,
+  examplePath,
+}: {
+  lang: string
+  examplePath: string
+}) {
   const contentful = initContentful(ACCESS_TOKEN)
   const readme = await getReadme(examplePath)
 
@@ -14,20 +20,20 @@ export default async function updateTemplate({ lang, examplePath }) {
     throw new Error('No readme.md found in example directory')
   }
 
-  const { body: readmeBody, attributes } = getFrontMatter(readme, examplePath)
-  const template = await validateTemplate(attributes)
+  const { body: readmeBody, attributes } = getFrontMatter(readme)
 
-  console.log('DONE')
-
-  if (!template || true) {
+  if (!attributes) {
     log(`Ignoring "${examplePath}" because it has Marketplace disabled.`)
     return
   }
 
-  template.githubUrl = `https://github.com${path.join(
+  attributes.githubUrl = `https://github.com${path.join(
     '/vercel/examples/tree/main',
     examplePath
   )}`
+
+  const template = await validateTemplate(attributes)
+  console.log('DONE')
 
   log(`Fetching template with slug "${template.slug}"...`)
 
