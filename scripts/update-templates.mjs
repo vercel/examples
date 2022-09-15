@@ -1,10 +1,7 @@
 import path from 'path'
 import fs from 'fs/promises'
-import dotenv from 'dotenv'
 import log from './lib/log.mjs'
 import updateTemplate from './lib/contentful/update-template.mjs'
-
-dotenv.config({ path: path.resolve(process.cwd(), '.env.local') })
 
 const DIRS = ['edge-functions', 'solutions']
 const IS_README = /readme\.md$/i

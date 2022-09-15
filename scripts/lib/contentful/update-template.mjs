@@ -1,26 +1,12 @@
 import path from 'path'
-import dotenv from 'dotenv'
+import { ACCESS_TOKEN, CONTENT_TYPE, ENV_PATH } from './constants.mjs'
 import log from '../log.mjs'
 import getReadme from '../get-readme.mjs'
-import getTemplate from './get-template.mjs'
+import getFrontMatter from './get-front-matter.mjs'
 import initContentful from './index.mjs'
+import validateTemplate from './validate-template'
 
 export default async function updateTemplate({ lang, examplePath }) {
-  const ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN
-  const SPACE_ID = process.env.CONTENTFUL_SPACE_ID
-  const ENVIRONMENT = process.env.CONTENTFUL_ENVIRONMENT
-  const CONTENT_TYPE = process.env.CONTENTFUL_CONTENT_TYPE
-
-  if (!ACCESS_TOKEN) {
-    throw new Error('The env variable CONTENTFUL_ACCESS_TOKEN is not set.')
-  }
-  if (!SPACE_ID) {
-    throw new Error('The env variable CONTENTFUL_SPACE_ID is not set.')
-  }
-  if (!CONTENT_TYPE) {
-    throw new Error('The env variable CONTENTFUL_CONTENT_TYPE is not set.')
-  }
-
   const contentful = initContentful(ACCESS_TOKEN)
   const readme = await getReadme(examplePath)
 
@@ -28,9 +14,12 @@ export default async function updateTemplate({ lang, examplePath }) {
     throw new Error('No readme.md found in example directory')
   }
 
-  const { body: readmeBody, template } = getTemplate(readme, examplePath)
+  const { body: readmeBody, attributes } = getFrontMatter(readme, examplePath)
+  const template = await validateTemplate(attributes)
 
-  if (!template) {
+  console.log('DONE')
+
+  if (!template || true) {
     log(`Ignoring "${examplePath}" because it has Marketplace disabled.`)
     return
   }
@@ -40,28 +29,24 @@ export default async function updateTemplate({ lang, examplePath }) {
     examplePath
   )}`
 
-  const envPath = `/spaces/${SPACE_ID}/environments/${ENVIRONMENT}`
+  log(`Fetching template with slug "${template.slug}"...`)
 
-  // We fetch the ENVIRONMENT to validate that both the Space and the ENVIRONMENT exist
-  if (!(await contentful(envPath))) {
-    throw new Error(`No space or ENVIRONMENT was found for \`${envPath}\``)
-  }
-
-  log(`Fetching the entry with slug "${template.slug}"...`)
-
+  // Ref: https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry/get-a-single-entry/console/curl
+  // Search params: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/search-parameters
   // The entry is the "Template" we want to update
   const entryRes = await contentful(
-    `${envPath}/entries?content_type=${CONTENT_TYPE}&fields.slug=${template.slug}`
+    `${ENV_PATH}/entries?content_type=${CONTENT_TYPE}&fields.slug=${template.slug}`
   )
   const entry = entryRes?.items[0]
+  // console.log('ENTRY', JSON.stringify(entryRes, null, 2))
 
-  // If the `content_type` doesn't exist Contentful returns a `400` and we'll
-  // throw an error, so we can assume that it exists and it's valid from here on
+  // If the `content_type` doesn't exist or doesn't have the `slug` field
+  // Contentful returns a `400`  and we'll throw an error, so we can assume
+  // that it exists and it's valid from here on
 
   // Update the template
   if (entry) {
     const { fields } = entry
-    // const body = { name, slug, description, framework, type, css, demoUrl }
     const body = Object.entries(template).reduce((patch, [field, value]) => {
       const currentValue = fields[field]?.[lang]
 
@@ -103,8 +88,9 @@ export default async function updateTemplate({ lang, examplePath }) {
     )
 
     // Ref: https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry/patch-an-entry/console/curl
+
     const updatedEntry = await contentful(
-      `${envPath}/entries/${entry.sys.id}`,
+      `${ENV_PATH}/entries/${entry.sys.id}`,
       {
         method: 'PATCH',
         headers: {
@@ -123,7 +109,7 @@ export default async function updateTemplate({ lang, examplePath }) {
     // Right now we don't validate fields, so this can fail with a 422
     // if some fields are missing.
     const publishedEntry = await contentful(
-      `${envPath}/entries/${entry.sys.id}/published`,
+      `${ENV_PATH}/entries/${entry.sys.id}/published`,
       {
         method: 'PUT',
         headers: {
@@ -139,6 +125,15 @@ export default async function updateTemplate({ lang, examplePath }) {
   }
   // Create a new template as a draft
   else {
+    // If not template was found, we fetch the Environment to validate that both the Space
+    // and the Environment exist before trying to create a new template and report back
+    // if there's a wrong Environment/Space variable set
+    const environment = await contentful(ENV_PATH)
+
+    if (!environment) {
+      throw new Error(`No Space or Environment was found for \`${ENV_PATH}\``)
+    }
+
     log(`Creating a new template with: ${JSON.stringify(template, null, 2)}`)
 
     // For new templates we'll use the readme as the initial overview
@@ -151,7 +146,7 @@ export default async function updateTemplate({ lang, examplePath }) {
 
     // Ref: https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry/create-update-an-entry/console/curl
     // To add a new entry we use POST because it doesn't work with PUT as Contentful says
-    const newEntry = await contentful(`${envPath}/entries`, {
+    const newEntry = await contentful(`${ENV_PATH}/entries`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/vnd.contentful.management.v1+json',

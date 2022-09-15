@@ -20,3 +20,6 @@ yarn.lock
 
 # Local ENV files
 /.env*.local
+
+# Repo scripts
+scripts/dist
