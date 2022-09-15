@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "ESNext",
     "baseUrl": ".",
-    "allowJs": true,
     "skipLibCheck": true,
     "noEmit": true,
     "strict": true,
@@ -15,5 +14,5 @@
     "isolatedModules": true,
     "incremental": true
   },
-  "include": ["**/*.ts", "**/*.mjs"]
+  "include": ["**/*.ts"]
 }

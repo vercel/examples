@@ -7,7 +7,7 @@
     "prepare": "husky install",
     "prettier": "prettier --write .",
     "update-templates": "NODE_OPTIONS=--enable-source-maps node scripts/dist/update-templates.js",
-    "preupdate-templates": "npx esbuild@0.15.7 scripts/update-templates.mjs --bundle --sourcemap --platform=node --outfile=scripts/dist/update-templates.js --external:./node_modules/*"
+    "preupdate-templates": "npx esbuild@0.15.7 scripts/update-templates.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-templates.js --external:./node_modules/*"
   },
   "pre-commit": "lint-staged",
   "lint-staged": {
