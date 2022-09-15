@@ -42,6 +42,8 @@ If the script above isn't used, make sure the example complies with the followin
 
 If you would like the example to be featured in [vercel.com/templates](https://vercel.com/templates) then also add the front matter metadata to the top of the readme, like in [bot-protection-datadome](./edge-functions/bot-protection-datadome/README.md). To know all the possible values for each metadata take a look at [`fields.json`](./fields.json).
 
+If you want to add related templates to your template, copy the `slug` from the other template into the `relatedTemplates` field, for example for [vercel.com/templates/next.js/monorepo-turborepo](https://vercel.com/templates/next.js/monorepo-turborepo) the slug is `monorepo-turborepo`, as written in [solutions/monorepo/README.md](./solutions/monorepo/README.md)
+
 ### The pre-commit hook
 
 We use [Husky](https://typicode.github.io/husky/#/) to manage the pre-commit [Git hook](https://git-scm.com/docs/githooks) in this repo. Husky configures hooks automatically during install, so you don't need to do anything special to get them working, but if it fails to install, you can run the following command to install it manually:
