@@ -2,17 +2,10 @@ import path from 'path'
 import { ACCESS_TOKEN, CONTENT_TYPE, ENV_PATH } from './constants'
 import log from '../log'
 import getReadme from '../get-readme'
-import getFrontMatter from './get-front-matter'
+import getTemplate from './get-template'
 import initContentful from './index'
 import validateTemplate from './validate-template'
-
-type Patch = {
-  op: 'add' | 'replace'
-  path: string
-  value: string | string[] | AddValue
-}
-
-type AddValue = { [lang: string]: string | string[] }
+import { AddValue, Patch, PatchValue } from './types'
 
 export default async function updateTemplate({
   lang,
@@ -28,25 +21,25 @@ export default async function updateTemplate({
     throw new Error('No readme.md found in example directory')
   }
 
-  const { body: readmeBody, attributes } = getFrontMatter(readme)
+  const { body: readmeBody, template } = await getTemplate(readme)
 
-  if (!attributes) {
+  if (!template) {
     log(`Ignoring "${examplePath}" because it has Marketplace disabled.`)
     return
   }
 
-  attributes.githubUrl = `https://github.com${path.join(
+  template.githubUrl = `https://github.com${path.join(
     '/vercel/examples/tree/main',
     examplePath
   )}`
 
-  log(`Fetching template with slug "${attributes.slug}"...`)
+  log(`Fetching template with slug "${template.slug}"...`)
 
   // Ref: https://www.contentful.com/developers/docs/references/content-management-api/#/reference/entries/entry/get-a-single-entry/console/curl
   // Search params: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/search-parameters
   // The entry is the "Template" we want to update
   const entryRes = await contentful(
-    `${ENV_PATH}/entries?content_type=${CONTENT_TYPE}&fields.slug=${attributes.slug}`
+    `${ENV_PATH}/entries?content_type=${CONTENT_TYPE}&fields.slug=${template.slug}`
   )
   const entry = entryRes?.items[0]
   // If the `content_type` doesn't exist or doesn't have the `slug` field
@@ -56,13 +49,24 @@ export default async function updateTemplate({
   // Update the template
   if (entry) {
     const { fields } = entry
-    const template = await validateTemplate(attributes)
+
+    await validateTemplate(template)
+
     const body = Object.entries(template).reduce<Patch[]>(
-      (patch, [field, value]: [string, string | string[]]) => {
+      (patch, [field, value]: [string, PatchValue | undefined]) => {
         const currentValue = fields[field]?.[lang]
 
-        // Update existing field
         if (currentValue) {
+          // Remove existing field
+          if (!value?.length) {
+            patch.push({
+              op: 'remove',
+              path: `/fields/${field}/${lang}`,
+            })
+            return patch
+          }
+
+          // Update existing field
           if (
             Array.isArray(currentValue) && Array.isArray(value)
               ? value.length !== currentValue.length ||
@@ -77,8 +81,8 @@ export default async function updateTemplate({
           }
         }
         // Add a new field
-        else {
-          // When adding a field the lang has to be part of `value` even if docs say otherwise.
+        else if (value?.length) {
+          // When adding a field the `lang` has to be part of `value` even if docs say otherwise.
           patch.push({
             op: 'add',
             path: `/fields/${field}`,
@@ -148,9 +152,8 @@ export default async function updateTemplate({
     }
 
     // For new templates we'll use the readme as the initial overview
-    attributes.overview = readmeBody
-
-    const template = await validateTemplate(attributes)
+    template.overview = readmeBody
+    await validateTemplate(template)
 
     log(`Creating a new template with: ${JSON.stringify(template, null, 2)}`)
 

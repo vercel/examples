@@ -3,7 +3,7 @@ import type { Template } from './types'
 import initContentful from './index.js'
 
 // List of the fields we'll use to create an entry for the template in Contentful.
-const FIELDS = [
+const FIELDS: (keyof Template)[] = [
   'name',
   'slug',
   'description',
@@ -26,9 +26,12 @@ type Field = {
     regexp?: { pattern: string }
   }[]
   items?: {
+    type: 'Symbol' | 'Link'
     validations: { in?: string[] }[]
   }
 }
+
+type TemplateFields = ({ id: keyof Template } & Field)[]
 
 export default async function validateTemplate(
   template: Partial<Template>
@@ -37,21 +40,59 @@ export default async function validateTemplate(
   // Ref: https://www.contentful.com/developers/docs/references/content-management-api/#/reference/content-types/content-type/get-a-single-content-type/console/curl
   const contentType = (await contentful(
     `${ENV_PATH}/content_types/${CONTENT_TYPE}`
-  )) as { fields: Field[] }
+  )) as { fields: TemplateFields }
   const fields = contentType.fields.filter(({ id }) => FIELDS.includes(id))
   const errors: Error[] = []
 
   fields.forEach(({ id, type, required, validations, items }) => {
-    const val = template[id as keyof Template]
+    const val = template[id]
 
     if (required && !val?.length) {
       errors.push(new Error(`Missing required template field: "${id}"`))
       return
     }
+    // Ignore unrequired values that are empty
+    if (!val?.length) return
 
     if (type === 'Text' && typeof val !== 'string') {
       errors.push(new Error(`"${id}" must be a string`))
       return
+    }
+
+    if (type === 'Array') {
+      if (!Array.isArray(val)) {
+        errors.push(new Error(`"${id}" must be an array`))
+        return
+      }
+
+      // Validate links
+      if (
+        items?.type === 'Link' &&
+        val.some((item) => typeof item === 'string' || !item.sys)
+      ) {
+        errors.push(
+          new Error(`"${id}" is a link but the value is not a valid link.`)
+        )
+        return
+      }
+
+      items?.validations?.forEach((validation) => {
+        if (
+          validation.in?.length &&
+          val.some((item) =>
+            typeof item === 'string' ? !validation.in!.includes(item) : true
+          )
+        ) {
+          errors.push(
+            new Error(
+              `"${id}" has an unknown item: "${val.join(
+                ', '
+              )}", it must be one of "${validation.in.join(', ')}`
+            )
+          )
+          return
+        }
+      })
     }
 
     if (validations?.length) {
@@ -61,11 +102,15 @@ export default async function validateTemplate(
 
           if (val!.length < min || val!.length > max) {
             errors.push(
-              new Error(
-                `"${id}" should have a value between ${min} and ${max} characters, currently: "${val}" (${
-                  val!.length
-                })`
-              )
+              typeof val === 'string'
+                ? new Error(
+                    `"${id}" should have a value between ${min} and ${max} characters, currently: "${val}" (${val.length})`
+                  )
+                : new Error(
+                    `"${id}" should have between ${min} and ${max} items, currently: "${val!.join(
+                      ', '
+                    )}" (${val!.length})`
+                  )
             )
             return
           }
@@ -81,29 +126,6 @@ export default async function validateTemplate(
             )
             return
           }
-        }
-      })
-    }
-
-    if (type === 'Array') {
-      if (!Array.isArray(val)) {
-        errors.push(new Error(`"${id}" must be an array`))
-        return
-      }
-
-      items?.validations?.forEach((validation) => {
-        if (
-          validation.in?.length &&
-          !val.every((item) => validation.in!.includes(item))
-        ) {
-          errors.push(
-            new Error(
-              `"${id}" has an unknown item: "${val.join(
-                ', '
-              )}", it must be one of "${validation.in.join(', ')}`
-            )
-          )
-          return
         }
       })
     }
