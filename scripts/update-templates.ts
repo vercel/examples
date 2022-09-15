@@ -35,9 +35,7 @@ async function updateTemplates() {
   }
 
   await Promise.all(
-    examplePaths.map((examplePath) =>
-      updateTemplate({ lang: 'en-US', examplePath })
-    )
+    examplePaths.map((examplePath) => updateTemplate({ examplePath }))
   )
 }
 

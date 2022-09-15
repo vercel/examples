@@ -8,10 +8,8 @@ import validateTemplate from './validate-template'
 import { AddValue, Patch, PatchValue } from './types'
 
 export default async function updateTemplate({
-  lang,
   examplePath,
 }: {
-  lang: string
   examplePath: string
 }) {
   const contentful = initContentful(ACCESS_TOKEN)
@@ -21,7 +19,7 @@ export default async function updateTemplate({
     throw new Error('No readme.md found in example directory')
   }
 
-  const { body: readmeBody, template } = await getTemplate(readme)
+  const { body: readmeBody, lang, template } = await getTemplate(readme)
 
   if (!template) {
     log(`Ignoring "${examplePath}" because it has Marketplace disabled.`)
@@ -70,7 +68,12 @@ export default async function updateTemplate({
           if (
             Array.isArray(currentValue) && Array.isArray(value)
               ? value.length !== currentValue.length ||
-                value.some((val) => !currentValue.includes(val))
+                value.some((val, i) =>
+                  typeof val === 'string'
+                    ? !currentValue.includes(val)
+                    : // The order matters for linked entries
+                      val.sys.id !== currentValue[i].sys.id
+                )
               : currentValue !== value
           ) {
             patch.push({

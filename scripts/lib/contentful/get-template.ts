@@ -3,6 +3,7 @@ import getRelatedTemplates from './get-related-templates'
 import type { Template } from './types'
 
 interface Attributes extends Omit<Template, 'relatedTemplates'> {
+  lang?: 'en-US'
   marketplace: boolean
   useCase?: string[]
   relatedTemplates: string[]
@@ -13,9 +14,14 @@ const toArray = (val: string | string[]) =>
 
 export default async function getTemplate(readme: string) {
   const { body, attributes } = frontMatter<Attributes>(readme)
+  const { lang = 'en-US' } = attributes
+
+  if (lang !== 'en-US') {
+    throw new Error('Only English templates are supported for now.')
+  }
 
   if (attributes.marketplace === false) {
-    return { body }
+    return { body, lang }
   }
 
   const relatedTemplates = await getRelatedTemplates(
@@ -32,14 +38,26 @@ export default async function getTemplate(readme: string) {
     deployUrl: attributes.deployUrl,
     demoUrl: attributes.demoUrl,
     publisher: attributes.publisher ?? '▲ Vercel',
-    relatedTemplates: relatedTemplates.map(({ sys }: any) => ({
-      sys: {
-        id: sys.id,
-        type: 'Link',
-        linkType: 'Entry',
-      },
-    })),
+    relatedTemplates: attributes.relatedTemplates.map((slug) => {
+      const template = relatedTemplates.find(
+        (t: any) => t.fields.slug[lang] === slug
+      )
+
+      if (!template) {
+        throw new Error(
+          `An existing template with the slug "${slug}" was not found.`
+        )
+      }
+
+      return {
+        sys: {
+          id: template.sys.id,
+          type: 'Link',
+          linkType: 'Entry',
+        },
+      }
+    }),
   }
 
-  return { body, template }
+  return { body, lang, template }
 }
