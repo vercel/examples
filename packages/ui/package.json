@@ -16,6 +16,9 @@
       "./dist/*.js",
       "./dist/*/index.js"
     ],
+    "./tailwind": {
+      "require": "./dist/tailwind.cjs"
+    },
     "./globals.css": "./dist/globals.css"
   },
   "typesVersions": {
@@ -23,6 +26,9 @@
       "*": [
         "src/*",
         "src/*/index"
+      ],
+      "tailwind": [
+        "dist/tailwind.d.cts"
       ]
     }
   },
@@ -35,6 +41,9 @@
         "*": [
           "dist/*.d.ts",
           "dist/*/index.d.ts"
+        ],
+        "tailwind": [
+          "dist/tailwind.d.cts"
         ]
       }
     }
@@ -52,7 +61,7 @@
   "devDependencies": {
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.3.1",
-    "@types/react": "18",
+    "@types/react": "^18.0.20",
     "chokidar": "^3.5.3",
     "eslint": "^8.16.0",
     "eslint-config-next": "canary",
