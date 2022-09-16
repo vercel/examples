@@ -58,9 +58,6 @@ const colors = {
 }
 
 module.exports = {
-  // `content` is replaced instead of extended, so this line has to be added in
-  // the `content` of each app' tailwind.config.js
-  content: ['node_modules/@vercel/examples-ui/ui/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {
@@ -75,10 +72,10 @@ module.exports = {
       },
       colors: {
         ...colors,
-        selection: cyan.light,
+        selection: colors.cyan.light,
         link: {
-          DEFAULT: success.DEFAULT,
-          light: success.light,
+          DEFAULT: colors.success.DEFAULT,
+          light: colors.success.light,
         },
         code: colors.rosa,
         secondary: {
