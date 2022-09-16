@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "build": "swc src -d dist",
+    "build": "rm -rf ./dist && swc src -d dist --copy-files",
     "types": "tsc --emitDeclarationOnly"
   },
   "peerDependencies": {
@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "clsx": "^1.1.1",
-    "next-transpile-modules": "^9.0.0",
     "sugar-high": "~0.4.5"
   },
   "devDependencies": {
