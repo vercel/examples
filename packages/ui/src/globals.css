@@ -1,7 +1,6 @@
-@import './base.css';
 /**
   * We use this instead of `@tailwind base` because we didn't find a way
-  * of overriting the backgound-color added to buttons.
+  * of overwriting the backgound-color added to buttons.
   *
   * https://github.com/tailwindlabs/tailwindcss/issues/6602
   */
