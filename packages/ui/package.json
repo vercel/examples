@@ -8,12 +8,44 @@
     "build": "rm -rf ./dist && swc src -d dist --copy-files",
     "types": "tsc --emitDeclarationOnly"
   },
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": [
+      "./dist/*.js",
+      "./dist/*/index.js"
+    ],
+    "./globals.css": "./dist/globals.css"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*",
+        "src/*/index"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "typesVersions": {
+      "*": {
+        "*": [
+          "dist/*.d.ts",
+          "dist/*/index.d.ts"
+        ]
+      }
+    }
+  },
   "peerDependencies": {
     "next": "*",
     "react": "^17.0.2 || ^18.0.0-0",
     "react-dom": "^17.0.2 || ^18.0.0-0"
   },
   "dependencies": {
+    "@swc/helpers": "^0.4.11",
     "clsx": "^1.1.1",
     "sugar-high": "~0.4.5"
   },
@@ -21,6 +53,7 @@
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.3.1",
     "@types/react": "18",
+    "chokidar": "^3.5.3",
     "eslint": "^8.16.0",
     "eslint-config-next": "canary",
     "typescript": "^4.8.3"

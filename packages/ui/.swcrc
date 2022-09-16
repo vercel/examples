@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/swcrc",
+  "exclude": ["tailwind.js$"],
   "module": {
     "type": "es6"
   },
