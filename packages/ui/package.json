@@ -22,7 +22,7 @@
     "./globals.css": "./dist/globals.css"
   },
   "files": [
-    "dist"
+    "dist/**/*.{js,cjs,d.ts,css}"
   ],
   "typesVersions": {
     "*": {
