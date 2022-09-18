@@ -48,7 +48,7 @@ type ButtonType = <C extends ButtonComponentType = 'button'>(
 const variants = {
   primary:
     'text-background bg-success border-success-dark hover:bg-success/90 shadow-[0_5px_10px_rgb(0,68,255,0.12)]',
-  ghost: 'text-success border-0 hover:bg-[rgba(0,68,255,0.06)]',
+  ghost: 'text-success hover:bg-[rgba(0,68,255,0.06)]',
   secondary:
     'text-accents-5 bg-background border-accents-2 hover:border-foreground hover:text-foreground',
   black:
@@ -78,9 +78,10 @@ const Button: ButtonFC = (props) => {
   } = props
 
   const rootClassName = cn(
-    'relative inline-flex items-center justify-center cursor pointer no-underline px-3.5 rounded-md border border-solid',
+    'relative inline-flex items-center justify-center cursor pointer no-underline px-3.5 rounded-md',
     'font-medium outline-0 select-none align-middle whitespace-nowrap',
     'transition-colors ease-in duration-200',
+    variant !== 'ghost' && 'border border-solid',
     variants[variant],
     sizes[size],
     { 'cursor-not-allowed': loading },
