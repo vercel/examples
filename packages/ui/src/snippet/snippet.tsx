@@ -1,7 +1,6 @@
 import { FC, HTMLAttributes, useMemo } from 'react'
 import cn from 'clsx'
 import { highlight } from 'sugar-high'
-import s from './snippet.module.css'
 
 const Snippet: FC<HTMLAttributes<HTMLPreElement>> = ({
   children,
@@ -13,7 +12,13 @@ const Snippet: FC<HTMLAttributes<HTMLPreElement>> = ({
     [children]
   )
   return (
-    <pre className={cn(s.root, className)} {...props}>
+    <pre
+      className={cn(
+        'border border-accents-2 rounded-md bg-accents-1 overflow-x-auto p-6',
+        className
+      )}
+      {...props}
+    >
       <code dangerouslySetInnerHTML={{ __html }} />
     </pre>
   )
