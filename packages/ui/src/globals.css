@@ -1,11 +1,4 @@
-/**
-  * We use this instead of `@tailwind base` because we didn't find a way
-  * of overwriting the background-color added to buttons.
-  *
-  * https://github.com/tailwindlabs/tailwindcss/issues/6602
-  */
-@import './tailwind-base.css';
-
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
