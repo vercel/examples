@@ -1,20 +1,16 @@
-import React, {
-  FunctionComponent,
-  JSXElementConstructor,
-  CSSProperties,
-} from 'react'
+import React from 'react'
 import cn from 'clsx'
 
 interface Props {
   variant?: Variant
   className?: string
-  style?: CSSProperties
+  style?: React.CSSProperties
   children?: React.ReactNode | any
 }
 
 type Variant = 'ul' | 'ol'
 
-const List: FunctionComponent<Props> = ({
+const List: React.FC<Props> = ({
   style,
   className = '',
   variant = 'ul',
@@ -28,7 +24,7 @@ const List: FunctionComponent<Props> = ({
   }
 
   const Component:
-    | JSXElementConstructor<any>
+    | React.JSXElementConstructor<any>
     | React.ReactElement<any>
     | React.ComponentType<any>
     | string = componentsMap[variant]

@@ -1,8 +1,6 @@
-import React from 'react'
-import cn from 'clsx'
-import Link from '../link'
-import Button from '../button'
-import DeployButton, { DeployButtonProps } from '../deploy-button'
+import Link from './link'
+import Button from './button'
+import DeployButton, { DeployButtonProps } from './deploy-button'
 
 const REPO_URL = 'https://github.com/vercel/examples/tree/main'
 
