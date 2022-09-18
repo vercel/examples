@@ -1,6 +1,6 @@
 # UI components for Vercel examples
 
-The UI components exported here are being used in every example that has an UI. The package ships untranspiled code and **only works for Next.js apps** that include the following dev dependencies:
+The UI components exported here are being used in every example that has an UI. The package ships React components with Tailwind CSS and requires the following dev dependencies to exist in the project:
 
 - TypeScript
 - Tailwindcss
@@ -38,31 +38,18 @@ module.exports = withTM({
 })
 ```
 
-Now, if the app already has a `tailwind.config.js` file, open it and add the following preset and content path:
+Open the `tailwind.config.js` file in your app and add the following preset and content path:
 
 ```js
 module.exports = {
   presets: [require('@vercel/examples-ui/tailwind')],
-  content: ['node_modules/@vercel/examples-ui/**/*.{js,ts,jsx,tsx}'],
-}
-```
-
-Otherwise, create it with:
-
-```js
-module.exports = {
-  presets: [require('@vercel/examples-ui/tailwind')],
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    'node_modules/@vercel/examples-ui/**/*.{js,ts,jsx,tsx}',
-    // Include other paths where you use tailwind
-  ],
+  content: ['./node_modules/@vercel/examples-ui/**/*.js'],
 }
 ```
 
 ### 3. PostCSS setup
 
-Create a `postcss.config.js` file with:
+You'll need to have a `postcss.config.js` file with:
 
 ```js
 // If you want to use other PostCSS plugins, see the following:
@@ -118,6 +105,18 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
 ## Contributing
 
+You can build the package with:
+
+```bash
+pnpm build
+```
+
+To watch for changes:
+
+```bash
+pnpm build -w
+```
+
 If you want to make an update to the package, go to an example and install it with npm:
 
 ```bash
@@ -126,4 +125,4 @@ npm i ../../packages/ui
 
 npm will add a symlink and making changes to `packages/ui` will reload the app, once you're done feel free to create a PR!
 
-> Make sure to have dependencies installed in `packages/ui` with `npm i` or otherwise the symlink won't resolve imports
+> Make sure to have dependencies installed in `packages/ui` with `pnpm i` or otherwise the symlink won't resolve imports
