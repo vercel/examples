@@ -27,7 +27,7 @@ function Home() {
       <Text variant="h1" className="mb-6">
         Reduce next/image bandwidth usage
       </Text>
-      <Text className="mb-4">
+      <Text variant="description">
         This example shows how to reduce bandwidth and processing costs when
         using different layouts.
       </Text>
