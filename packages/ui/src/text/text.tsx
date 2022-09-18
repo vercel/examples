@@ -1,27 +1,29 @@
-import React, {
-  FunctionComponent,
-  JSXElementConstructor,
-  CSSProperties,
-} from 'react'
+import React from 'react'
 import cn from 'clsx'
-import s from './text.module.css'
 
 interface Props {
   variant?: Variant
   className?: string
-  style?: CSSProperties
+  style?: React.CSSProperties
   children?: React.ReactNode | any
-  html?: string
 }
 
 type Variant = 'h1' | 'h2' | 'description' | 'body' | 'smallText'
 
-const Text: FunctionComponent<Props> = ({
+const variants: Record<Variant, string> = {
+  h1: 'text-5xl font-bold tracking-tight',
+  h2: 'text-4xl font-semibold tracking-tight',
+  description: 'text-lg font-medium tracking-tight text-accents-5',
+  body: 'text-base font-normal',
+  smallText:
+    'text-sm font-semibold text-blue uppercase tracking-tight pl-1 block',
+}
+
+const Text: React.FC<Props> = ({
   style,
   className = '',
   variant = 'body',
   children,
-  html,
 }) => {
   const componentsMap: {
     [P in Variant]: React.ComponentType<any> | string
@@ -34,23 +36,13 @@ const Text: FunctionComponent<Props> = ({
   }
 
   const Component:
-    | JSXElementConstructor<any>
+    | React.JSXElementConstructor<any>
     | React.ReactElement<any>
     | React.ComponentType<any>
     | string = componentsMap[variant]
 
-  const htmlContentProps = html
-    ? {
-        dangerouslySetInnerHTML: { __html: html },
-      }
-    : {}
-
   return (
-    <Component
-      className={cn(s.root, [s[`${variant}`]], className)}
-      style={style}
-      {...htmlContentProps}
-    >
+    <Component className={cn('', variants[variant], className)} style={style}>
       {children}
     </Component>
   )
