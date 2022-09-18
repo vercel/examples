@@ -6,7 +6,6 @@ import {
 } from 'react'
 import cn from 'clsx'
 import LoadingDots from '../loading-dots'
-import s from './button.module.css'
 
 /**
  * All the component types allowed by the Button component.
@@ -19,15 +18,8 @@ export type ButtonComponentType = 'button' | 'a' | JSXElementConstructor<any>
 export interface ButtonProps<C extends ButtonComponentType = 'button'> {
   href?: string
   className?: string
-  variant?:
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'ghost'
-    | 'violet'
-    | 'black'
-    | 'white'
-  size?: 'xs' | 'sm' | 'md' | 'lg'
+  variant?: 'primary' | 'secondary' | 'ghost' | 'violet' | 'black' | 'white'
+  size?: 'sm' | 'md' | 'lg'
   active?: boolean
   type?: 'submit' | 'reset' | 'button'
   Component?: C
@@ -53,6 +45,24 @@ type ButtonType = <C extends ButtonComponentType = 'button'>(
   ...args: Parameters<ButtonFC<C>>
 ) => ReturnType<ButtonFC<C>>
 
+const variants = {
+  primary:
+    'text-background bg-success border-success-dark hover:bg-success/90 shadow-[0_5px_10px_rgb(0,68,255,0.12)]',
+  ghost: 'text-success border-0 hover:bg-[rgba(0,68,255,0.06)]',
+  secondary:
+    'text-accents-5 bg-background border-accents-2 hover:border-foreground hover:text-foreground',
+  black:
+    'bg-foreground text-background border-foreground hover:bg-background hover:text-foreground',
+  white: 'bg-background text-foreground border-background hover:bg-accents-1',
+  violet: 'text-background bg-violet border-violet-dark hover:bg-[#7123be]',
+}
+
+const sizes = {
+  sm: 'h-8 leading-3 text-sm px-1.5 py-3',
+  md: 'h-10 leading-10 text-[15px]',
+  lg: 'h-12 leading-12 text-[17px]',
+}
+
 const Button: ButtonFC = (props) => {
   const {
     width,
@@ -60,7 +70,6 @@ const Button: ButtonFC = (props) => {
     children,
     variant = 'primary',
     Component = 'button',
-    disabled = false,
     loading = false,
     style = {},
     size = 'md',
@@ -69,12 +78,12 @@ const Button: ButtonFC = (props) => {
   } = props
 
   const rootClassName = cn(
-    s.root,
-    [s[`${variant}`]],
-    [s[`${size}`]],
-    {
-      [s.disabled]: disabled,
-    },
+    'relative inline-flex items-center justify-center cursor pointer no-underline px-3.5 rounded-md border border-solid',
+    'font-medium outline-0 select-none align-middle whitespace-nowrap',
+    'transition-colors ease-in duration-200',
+    variants[variant],
+    sizes[size],
+    { 'cursor-not-allowed': loading },
     className
   )
 
@@ -83,7 +92,6 @@ const Button: ButtonFC = (props) => {
       aria-pressed={active}
       data-variant={variant}
       className={rootClassName}
-      disabled={disabled}
       style={{
         width,
         ...style,

@@ -1,6 +1,6 @@
 /**
   * We use this instead of `@tailwind base` because we didn't find a way
-  * of overwriting the backgound-color added to buttons.
+  * of overwriting the background-color added to buttons.
   *
   * https://github.com/tailwindlabs/tailwindcss/issues/6602
   */
@@ -42,7 +42,7 @@ body {
 
 html,
 body {
-  font-family: var(--font-sans);
+  font-family: theme(fontFamily.sans);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
