@@ -4,14 +4,12 @@ import React, {
   CSSProperties,
 } from 'react'
 import cn from 'clsx'
-import s from './list.module.css'
 
 interface Props {
   variant?: Variant
   className?: string
   style?: CSSProperties
   children?: React.ReactNode | any
-  html?: string
 }
 
 type Variant = 'ul' | 'ol'
@@ -21,7 +19,6 @@ const List: FunctionComponent<Props> = ({
   className = '',
   variant = 'ul',
   children,
-  html,
 }) => {
   const componentsMap: {
     [P in Variant]: React.ComponentType<any> | string
@@ -35,15 +32,14 @@ const List: FunctionComponent<Props> = ({
     | React.ReactElement<any>
     | React.ComponentType<any>
     | string = componentsMap[variant]
-  const htmlContentProps = html
-    ? { dangerouslySetInnerHTML: { __html: html } }
-    : {}
 
   return (
     <Component
-      className={cn(s.root, [s[`${variant}`]], className)}
+      className={cn(
+        'pl-6 [&_li]:before:content-["-"] [&_li]:before:absolute [&_li]:before:text-accents-3 [&_li]:before:-ml-4',
+        className
+      )}
       style={style}
-      {...htmlContentProps}
     >
       {children}
     </Component>
