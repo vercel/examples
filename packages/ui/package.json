@@ -1,12 +1,12 @@
 {
   "name": "@vercel/examples-ui",
   "version": "0.4.0",
-  "main": "index.tsx",
   "license": "MIT",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "build": "rm -rf ./dist && swc src -d dist --copy-files",
-    "types": "tsc --emitDeclarationOnly"
+    "types": "tsc --emitDeclarationOnly",
+    "prepublishOnly": "pnpm build && pnpm types"
   },
   "sideEffects": false,
   "type": "module",
@@ -21,6 +21,9 @@
     },
     "./globals.css": "./dist/globals.css"
   },
+  "files": [
+    "dist"
+  ],
   "typesVersions": {
     "*": {
       "*": [
@@ -32,9 +35,6 @@
       ]
     }
   },
-  "files": [
-    "dist"
-  ],
   "publishConfig": {
     "typesVersions": {
       "*": {
