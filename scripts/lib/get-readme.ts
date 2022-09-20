@@ -1,7 +1,6 @@
-import path from 'path'
 import fs from 'fs/promises'
 
-export default async function getReadme(path) {
+export default async function getReadme(path: string) {
   const files = await fs.readdir(path)
 
   if (!files.includes('package.json')) {
