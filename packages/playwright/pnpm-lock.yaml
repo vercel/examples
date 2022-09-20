@@ -2,7 +2,11 @@ lockfileVersion: 5.4
 
 specifiers:
   '@playwright/test': ^1.25.2
+  sluga: ^0.2.1
   typescript: ^4.8.3
+
+dependencies:
+  sluga: 0.2.1
 
 devDependencies:
   '@playwright/test': 1.25.2
@@ -28,6 +32,21 @@ packages:
       }
     dev: true
 
+  /escape-string-regexp/2.0.0:
+    resolution:
+      {
+        integrity: sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==,
+      }
+    engines: { node: '>=8' }
+    dev: false
+
+  /lodash.deburr/4.1.0:
+    resolution:
+      {
+        integrity: sha512-m/M1U1f3ddMCs6Hq2tAsYThTBDaAKFDX3dwDo97GEYzamXi9SqUpjWi/Rrj/gf3X2n8ktwgZrlP1z6E3v/IExQ==,
+      }
+    dev: false
+
   /playwright-core/1.25.2:
     resolution:
       {
@@ -36,6 +55,17 @@ packages:
     engines: { node: '>=14' }
     hasBin: true
     dev: true
+
+  /sluga/0.2.1:
+    resolution:
+      {
+        integrity: sha512-FGyx1oH3j8sjBRQUN0mgg5y5hZOLMBODZiEq1HRaaKLQNTBUDD6lJReHJ8DVxfbhyV2smbjcNxhzZJ9oTzuJhA==,
+      }
+    engines: { node: '>=10' }
+    dependencies:
+      escape-string-regexp: 2.0.0
+      lodash.deburr: 4.1.0
+    dev: false
 
   /typescript/4.8.3:
     resolution:
