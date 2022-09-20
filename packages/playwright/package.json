@@ -1,0 +1,10 @@
+{
+  "name": "playwright",
+  "version": "0.0.1",
+  "description": "PLaywright test for Vercel examples",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.25.2",
+    "typescript": "^4.8.3"
+  }
+}
