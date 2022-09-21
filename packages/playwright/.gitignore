@@ -2,3 +2,13 @@
 
 # Dependencies
 node_modules
+
+# Build
+dist
+
+# Playwright
+src/.cache/
+src/test-results/
+
+# Automatically generated tests
+src/e2e/tests/generated
