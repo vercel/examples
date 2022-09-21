@@ -1,9 +1,7 @@
 import type { Template } from './types'
 import getTemplateFields from './get-template-fields'
 
-export default async function validateTemplate(
-  template: Partial<Template>
-): Promise<Template> {
+export default async function validateTemplate(template: Template) {
   const fields = await getTemplateFields()
   const errors: Error[] = []
 
@@ -98,6 +96,4 @@ export default async function validateTemplate(
     console.error('Template validation failed:')
     throw errors
   }
-
-  return template as Template
 }

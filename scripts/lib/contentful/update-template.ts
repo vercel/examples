@@ -5,7 +5,7 @@ import getReadme from '../get-readme'
 import getTemplate from './get-template'
 import initContentful from './index'
 import validateTemplate from './validate-template'
-import { AddValue, Patch, PatchValue } from './types'
+import { AddValue, Patch } from './types'
 
 export default async function updateTemplate({
   examplePath,
@@ -51,7 +51,7 @@ export default async function updateTemplate({
     await validateTemplate(template)
 
     const body = Object.entries(template).reduce<Patch[]>(
-      (patch, [field, value]: [string, PatchValue | undefined]) => {
+      (patch, [field, value]) => {
         const currentValue = fields[field]?.[lang]
 
         if (currentValue) {
@@ -162,7 +162,9 @@ export default async function updateTemplate({
 
     const fields = Object.entries(template).reduce<Record<string, AddValue>>(
       (fields, [field, value]) => {
-        fields[field] = { [lang]: value }
+        if (value) {
+          fields[field] = { [lang]: value }
+        }
         return fields
       },
       {}

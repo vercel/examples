@@ -1,4 +1,4 @@
-export type Template = {
+export type ContentfulTemplate = {
   name: string
   slug: string
   description: string
@@ -10,8 +10,12 @@ export type Template = {
   demoUrl: string
   publisher: string
   relatedTemplates: LinkValue[]
-  overview?: string
+  overview: string
 }
+
+// All fields might be missing from the readme, so Partial is used to ensure
+// we handle the cases where a field is missing.
+export type Template = Partial<ContentfulTemplate>
 
 export type Patch =
   | {
