@@ -78,31 +78,35 @@ const config: PlaywrightTestConfig = {
         },
       },
     },
-    {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-      },
-    },
-    {
-      name: 'webkit',
-      use: {
-        ...devices['Desktop Safari'],
-      },
-    },
+    /**
+     * Our generated tests only check that the page responds properly so using multiple
+     * browsers is unlikely to catch any issues.
+     */
+    // {
+    //   name: 'firefox',
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //   },
+    // },
+    // {
+    //   name: 'webkit',
+    //   use: {
+    //     ...devices['Desktop Safari'],
+    //   },
+    // },
     /* Test against mobile viewports. */
-    {
-      name: 'webkit-mobile',
-      use: {
-        ...devices['iPhone 13 Pro'],
-      },
-    },
-    {
-      name: 'chromium-mobile',
-      use: {
-        ...devices['Pixel 5'],
-      },
-    },
+    // {
+    //   name: 'webkit-mobile',
+    //   use: {
+    //     ...devices['iPhone 13 Pro'],
+    //   },
+    // },
+    // {
+    //   name: 'chromium-mobile',
+    //   use: {
+    //     ...devices['Pixel 5'],
+    //   },
+    // },
   ],
 }
 
