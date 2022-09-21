@@ -33,7 +33,7 @@ jobs:
           node-version: 16.14
 
       - name: Install latest npm with corepack
-        run: corepack enable && corepack prepare pnpm@latest --activate && pnpm --version
+        run: corepack enable && corepack prepare pnpm@7.12.1 --activate && pnpm --version
 
       - name: Cache node_modules
         id: cache-node-modules
@@ -59,4 +59,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: playwright-E2E-report
-          path: packages/playwright/test-results
+          path: packages/playwright/src/test-results
