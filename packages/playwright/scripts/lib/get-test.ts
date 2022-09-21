@@ -1,5 +1,5 @@
 export default function getTest(demoUrl: string) {
-  return `// This test was automatically generated 2
+  return `// This test was automatically generated
 import { test, expect } from 'e2e/setup-fixture'
 
 test.describe('Index Page', () => {
