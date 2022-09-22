@@ -24,8 +24,8 @@ Examples that have front matter metadata will create a new Draft template in [Co
 To quickly start contributing with a new example, run the following commands:
 
 ```bash
-npm i
-npm run new-example
+pnpm i
+pnpm new-example
 ```
 
 If the script above isn't used, make sure the example complies with the following:
@@ -49,7 +49,7 @@ If you want to add related templates to your template, copy the `slug` from the 
 We use [Husky](https://typicode.github.io/husky/#/) to manage the pre-commit [Git hook](https://git-scm.com/docs/githooks) in this repo. Husky configures hooks automatically during install, so you don't need to do anything special to get them working, but if it fails to install, you can run the following command to install it manually:
 
 ```bash
-npm run prepare
+pnpm run prepare
 ```
 
 Code changes automatically go through Prettier and Eslint when you make a commit, **please do not skip these steps** unless they're broken and in that case let us known by creating an issue.

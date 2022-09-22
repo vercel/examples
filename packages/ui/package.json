@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "build": "rm -rf ./dist && swc src -d dist --copy-files",
+    "build": "rm -rf ./dist && pnpm build && pnpm types",
+    "build:swc": "swc src -d dist --copy-files",
     "types": "tsc --emitDeclarationOnly",
     "prepublishOnly": "pnpm build && pnpm types"
   },
