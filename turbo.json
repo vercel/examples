@@ -9,8 +9,11 @@
       "outputs": []
     },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "^generate-tests"],
       "outputs": []
+    },
+    "clean": {
+      "cache": false
     }
   }
 }

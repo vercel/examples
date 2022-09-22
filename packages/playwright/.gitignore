@@ -12,3 +12,6 @@ src/test-results/
 
 # Automatically generated tests
 src/e2e/tests/generated
+
+# Turborepo
+.turbo
