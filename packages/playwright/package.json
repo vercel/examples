@@ -1,8 +1,9 @@
 {
-  "name": "playwright",
+  "name": "@vercel/playwright",
   "version": "0.0.1",
   "description": "PLaywright test for Vercel examples",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "build:generate-tests": "swc scripts -d dist/scripts -s",
     "generate-tests": "pnpm build:generate-tests && NODE_OPTIONS=--enable-source-maps node dist/scripts/generate-tests.js",

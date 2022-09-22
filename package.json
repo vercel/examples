@@ -1,11 +1,16 @@
 {
+  "name": "examples",
   "license": "MIT",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "lint-staged": "lint-staged",
     "new-example": "plop example",
     "prepare": "husky install",
     "prettier": "prettier --write .",
+    "changeset": "changeset",
     "update-templates": "NODE_OPTIONS=--enable-source-maps node scripts/dist/update-templates.js",
     "preupdate-templates": "npx esbuild@0.15.7 scripts/update-templates.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-templates.js --external:./node_modules/*",
     "update-template": "NODE_OPTIONS=--enable-source-maps node scripts/dist/update-template.js",
