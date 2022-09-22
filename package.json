@@ -6,18 +6,20 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "turbo run build",
     "lint-staged": "lint-staged",
     "new-example": "plop example",
     "prepare": "husky install",
     "prettier": "prettier --write .",
     "changeset": "changeset",
-    "release": "changeset publish",
-    "update-templates": "NODE_OPTIONS=--enable-source-maps node scripts/dist/update-templates.js",
-    "preupdate-templates": "npx esbuild@0.15.7 scripts/update-templates.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-templates.js --external:./node_modules/*",
-    "update-template": "NODE_OPTIONS=--enable-source-maps node scripts/dist/update-template.js",
-    "preupdate-template": "npx esbuild@0.15.7 scripts/update-template.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-template.js --external:./node_modules/*",
-    "update-fields": "NODE_OPTIONS=--enable-source-maps node scripts/dist/update-fields.js",
-    "preupdate-fields": "npx esbuild@0.15.7 scripts/update-fields.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-fields.js --external:./node_modules/*"
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish",
+    "update-templates": "pnpm build:update-templates && NODE_OPTIONS=--enable-source-maps node scripts/dist/update-templates.js",
+    "build:update-templates": "pnpm dlx esbuild@0.15.7 scripts/update-templates.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-templates.js --external:./node_modules/*",
+    "update-template": "pnpm build:update-template && NODE_OPTIONS=--enable-source-maps node scripts/dist/update-template.js",
+    "build:update-template": "pnpm dlx esbuild@0.15.7 scripts/update-template.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-template.js --external:./node_modules/*",
+    "update-fields": "pnpm build:update-fields && NODE_OPTIONS=--enable-source-maps node scripts/dist/update-fields.js",
+    "build:update-fields": "pnpm dlx esbuild@0.15.7 scripts/update-fields.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-fields.js --external:./node_modules/*"
   },
   "pre-commit": "lint-staged",
   "lint-staged": {
@@ -43,6 +45,5 @@
     "plop": "^3.1.1",
     "prettier": "^2.7.1",
     "typescript": "^4.8.3"
-  },
-  "packageManager": "pnpm@7.12.1"
+  }
 }

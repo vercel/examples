@@ -29,19 +29,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.14
+          cache: pnpm
+          cache-dependency-path: packages/playwright/pnpm-lock.yaml
 
-      - name: Install latest npm with corepack
+      - name: Install latest pnpm with corepack
         run: corepack enable && corepack prepare pnpm@7.12.1 --activate && pnpm --version
 
-      - name: Cache node_modules
-        id: cache-node-modules
-        uses: actions/cache@v3
-        with:
-          path: 'packages/playwright/**/node_modules'
-          key: ${{ runner.os }}-node-modules-cache-${{ hashFiles('packages/playwright/pnpm-lock.yaml') }}
-
       - name: Install dependencies
-        if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
         run: pnpm i --frozen-lockfile --ignore-scripts
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
