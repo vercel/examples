@@ -3,13 +3,13 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**", "src/e2e/tests/generated/**"]
     },
     "lint": {
       "outputs": []
     },
     "test": {
-      "dependsOn": ["^build", "^generate-tests"],
+      "dependsOn": ["^build"],
       "outputs": []
     },
     "clean": {

@@ -5,9 +5,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "swc scripts -d dist/scripts -s",
-    "generate-tests": "pnpm build && NODE_OPTIONS=--enable-source-maps node dist/scripts/generate-tests.js",
-    "clean": "rm -rf src/e2e/tests/generated",
+    "build:src": "swc scripts -d dist/scripts -s",
+    "build": "pnpm build:src && pnpm generate-tests",
+    "generate-tests": "NODE_OPTIONS=--enable-source-maps node dist/scripts/generate-tests.js",
+    "clean": "rm -rf dist && rm -rf src/e2e/tests/generated",
     "test": "TEST_TYPE=e2e playwright test --config src/playwright.config.ts"
   },
   "devDependencies": {

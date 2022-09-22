@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "clean": "rm -rf node_modules",
+    "clean": "turbo run clean",
     "lint-staged": "lint-staged",
     "new-example": "plop example",
     "prepare": "husky install",
