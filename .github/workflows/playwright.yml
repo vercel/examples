@@ -41,10 +41,10 @@ jobs:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
 
       - name: Generate E2E tests
-        run: pnpm generate-tests
+        run: pnpm build --filter=@vercel/playwright
 
       - name: Run E2E tests
-        run: pnpm test
+        run: pnpm test --filter=@vercel/playwright
 
       - name: Upload test results to GitHub
         if: ${{ always() }}

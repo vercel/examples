@@ -8,6 +8,7 @@
   "scripts": {
     "build": "turbo run build",
     "clean": "turbo run clean",
+    "test": "turbo run test",
     "lint-staged": "lint-staged",
     "new-example": "plop example",
     "prepare": "husky install",
