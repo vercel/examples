@@ -11,9 +11,9 @@
   "dependencies": {
     "@vercel/examples-ui": "latest",
     "clsx": "^1.2.1",
-    "next": "^12.2.6-canary.8",
-    "react": "^0.0.0-experimental-19e9a4c68-20220818",
-    "react-dom": "^0.0.0-experimental-19e9a4c68-20220818"
+    "next": "^12.3.2-canary.3",
+    "react": "^0.0.0-experimental-d1bb1c586-20220922",
+    "react-dom": "^0.0.0-experimental-d1bb1c586-20220922"
   },
   "devDependencies": {
     "@types/node": "^17",
