@@ -24,6 +24,7 @@
     ]
   },
   "devDependencies": {
+    "@changesets/cli": "^2.24.4",
     "@vercel/fetch": "^6.2.0",
     "dotenv": "^16.0.1",
     "eslint": "latest",
