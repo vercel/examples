@@ -20,6 +20,9 @@ If the Github Actions that updates the templates fails, it's likely that there w
 
 ```bash
 npm run update-template solutions/monorepo
+
+# or to update multiple templates in the way the GH action does
+npm run update-templates solutions/monorepo/README.md solutions/nx-monorepo/README.md
 ```
 
 Where `solutions/monorepo` is the path to the example. In order for it to work you'll need a `.env.local` file in the root of this repo with:
