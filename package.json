@@ -6,7 +6,12 @@
     "new-example": "plop example",
     "prepare": "husky install",
     "prettier": "prettier --write .",
-    "update-templates": "node scripts/update-templates.mjs"
+    "update-templates": "NODE_OPTIONS=--enable-source-maps node scripts/dist/update-templates.js",
+    "preupdate-templates": "npx esbuild@0.15.7 scripts/update-templates.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-templates.js --external:./node_modules/*",
+    "update-template": "NODE_OPTIONS=--enable-source-maps node scripts/dist/update-template.js",
+    "preupdate-template": "npx esbuild@0.15.7 scripts/update-template.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-template.js --external:./node_modules/*",
+    "update-fields": "NODE_OPTIONS=--enable-source-maps node scripts/dist/update-fields.js",
+    "preupdate-fields": "npx esbuild@0.15.7 scripts/update-fields.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-fields.js --external:./node_modules/*"
   },
   "pre-commit": "lint-staged",
   "lint-staged": {

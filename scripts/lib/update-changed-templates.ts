@@ -1,31 +1,28 @@
 import path from 'path'
-import fs from 'fs/promises'
-import dotenv from 'dotenv'
-import log from './lib/log.mjs'
-import updateTemplate from './lib/contentful/update-template.mjs'
-
-dotenv.config({ path: path.resolve(process.cwd(), '.env.local') })
+import log from './log'
+import updateTemplate from './contentful/update-template'
 
 const DIRS = ['edge-functions', 'solutions']
 const IS_README = /readme\.md$/i
-const changedFiles = process.argv.slice(2)
 
-async function updateTemplates() {
+export default async function updateChangedTemplates(changedFiles: string[]) {
   if (!changedFiles.length) {
     log('No changed files.')
     return
   }
 
-  const examplePaths = changedFiles.reduce((acc, fileName) => {
+  const examplePaths = changedFiles.reduce<string[]>((acc, fileName) => {
     if (
       // Check for changes in directories with examples
       DIRS.some((dir) => fileName.startsWith(`${dir}/`)) &&
       // Check for updates in the readme
       IS_README.test(fileName)
     ) {
+      // solutions/monorepo/README.md -> solutions/monorepo
       const dirname = path.dirname(fileName)
 
       // Check for readme updates that happened in example's root
+      // [solutions, monorepo] -> length: 2
       if (dirname.split(path.sep).length === 2) {
         acc.push(dirname)
       }
@@ -39,13 +36,6 @@ async function updateTemplates() {
   }
 
   await Promise.all(
-    examplePaths.map((examplePath) =>
-      updateTemplate({ lang: 'en-US', examplePath })
-    )
+    examplePaths.map((examplePath) => updateTemplate({ examplePath }))
   )
 }
-
-updateTemplates().catch((err) => {
-  console.error(err)
-  process.exit(1)
-})

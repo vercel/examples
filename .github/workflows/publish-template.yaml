@@ -22,8 +22,12 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v18.7
 
+      - name: Build Script
+        shell: bash
+        run: npx esbuild@0.15.7 scripts/update-templates.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-templates.js --external:./node_modules/*
+
       - name: Publish template
-        run: npm run update-templates ${{ steps.changed-files.outputs.all_changed_files }}
+        run: NODE_OPTIONS=--enable-source-maps node scripts/dist/update-templates.js ${{ steps.changed-files.outputs.all_changed_files }}
         env:
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
