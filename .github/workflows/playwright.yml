@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.25.2-focal
+      image: mcr.microsoft.com/playwright:v1.26.0-focal
       # Prevents the image from getting into permission denied errors
       options: --user 1001
     defaults:
@@ -30,15 +30,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.12.1
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16.14
           cache: pnpm
           cache-dependency-path: packages/playwright/pnpm-lock.yaml
-
-      - name: Install latest pnpm with corepack
-        run: corepack enable && corepack prepare pnpm@7.12.1 --activate && pnpm --version
 
       - name: Install dependencies
         run: pnpm i --frozen-lockfile --ignore-scripts
