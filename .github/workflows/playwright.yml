@@ -31,7 +31,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install pnpm
+      - name: Set up pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
           version: 7.12.1
