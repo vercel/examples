@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.25.2-focal
+      image: mcr.microsoft.com/playwright:v1.26.0-focal
       # Prevents the image from getting into permission denied errors
       options: --user 1001
     defaults:
