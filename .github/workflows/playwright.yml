@@ -4,7 +4,6 @@ on:
   schedule:
     # Runs at the minute 15 of every hour
     - cron: '15 0/1 * * *'
-  push:
 
 env:
   FORCE_COLOR: 3
