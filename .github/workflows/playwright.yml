@@ -4,6 +4,7 @@ on:
   schedule:
     # Runs at the minute 15 of every hour
     - cron: '15 0/1 * * *'
+  push:
 
 env:
   FORCE_COLOR: 3
@@ -30,15 +31,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.12.1
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16.14
           cache: pnpm
           cache-dependency-path: packages/playwright/pnpm-lock.yaml
-
-      - name: Install latest pnpm with corepack
-        run: corepack enable && corepack prepare pnpm@7.12.1 --activate && pnpm --version
 
       - name: Install dependencies
         run: pnpm i --frozen-lockfile --ignore-scripts
