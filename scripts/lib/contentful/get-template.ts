@@ -1,15 +1,21 @@
 import frontMatter from 'front-matter'
 import getRelatedTemplates from './get-related-templates'
-import type { Template } from './types'
+import type { ContentfulTemplate, Template } from './types'
 
 interface Attributes extends Omit<Template, 'relatedTemplates'> {
   lang?: 'en-US'
-  marketplace: boolean
+  marketplace?: boolean
   useCase?: string[]
-  relatedTemplates: string[]
+  relatedTemplates?: string[]
 }
 
-const toArray = (val: string | string[]) =>
+// This is used for the template object that's created below where every field is defined
+// but the value can be undefined.
+type TemplateFields = {
+  [P in keyof ContentfulTemplate]: Template[P]
+}
+
+const toArray = (val?: string | string[]) =>
   typeof val === 'string' ? [val] : val ?? []
 
 export default async function getTemplate(readme: string) {
@@ -27,7 +33,7 @@ export default async function getTemplate(readme: string) {
   const relatedTemplates = await getRelatedTemplates(
     toArray(attributes.relatedTemplates)
   )
-  const template: Template = {
+  const template: TemplateFields = {
     name: attributes.name,
     slug: attributes.slug,
     description: attributes.description,
@@ -38,7 +44,8 @@ export default async function getTemplate(readme: string) {
     deployUrl: attributes.deployUrl,
     demoUrl: attributes.demoUrl,
     publisher: attributes.publisher ?? '▲ Vercel',
-    relatedTemplates: attributes.relatedTemplates.map((slug) => {
+    overview: undefined,
+    relatedTemplates: attributes.relatedTemplates?.map((slug) => {
       const template = relatedTemplates.find(
         (t: any) => t.fields.slug[lang] === slug
       )

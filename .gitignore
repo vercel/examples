@@ -2,7 +2,6 @@
 
 # Dependencies
 /node_modules
-/packages/ui/node_modules
 
 # Ignore the dependency locks of all examples
 package-lock.json
