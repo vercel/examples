@@ -1,33 +1,45 @@
 name: Publish Templates
+
 on:
   push:
     branches:
       - main
+
+env:
+  FORCE_COLOR: 3
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   publish_template:
     name: Publish Template
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Install Node Dependencies
-        uses: actions/setup-node@v1
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 16.14
+          cache: pnpm
 
-      - name: Install npm Dependencies
-        run: npm install
+      - name: Install latest pnpm with corepack
+        run: corepack enable && corepack prepare pnpm@7.12.1 --activate && pnpm --version
+
+      - name: Install pnpm Dependencies
+        run: pnpm i --frozen-lockfile --ignore-scripts
 
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v18.7
 
-      - name: Build Script
-        shell: bash
-        run: npx esbuild@0.15.7 scripts/update-templates.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-templates.js --external:./node_modules/*
-
       - name: Publish template
-        run: NODE_OPTIONS=--enable-source-maps node scripts/dist/update-templates.js ${{ steps.changed-files.outputs.all_changed_files }}
+        run: pnpm update-templates ${{ steps.changed-files.outputs.all_changed_files }}
         env:
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}

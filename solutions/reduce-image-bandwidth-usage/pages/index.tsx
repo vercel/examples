@@ -1,8 +1,15 @@
 import Image from 'next/image'
-import { Layout, Text, Page, Code, Link, List } from '@vercel/examples-ui'
+import {
+  Layout,
+  Text,
+  Page,
+  Code,
+  Link,
+  List,
+  Snippet,
+} from '@vercel/examples-ui'
 
 import Card from '../components/Card'
-import Snippet from '../components/Snippet'
 
 import screenshot1 from '../public/docs/screenshot-1a.png'
 import screenshot2 from '../public/docs/screenshot-2a.png'
@@ -20,7 +27,7 @@ function Home() {
       <Text variant="h1" className="mb-6">
         Reduce next/image bandwidth usage
       </Text>
-      <Text className="mb-4">
+      <Text variant="description">
         This example shows how to reduce bandwidth and processing costs when
         using different layouts.
       </Text>

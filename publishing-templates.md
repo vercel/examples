@@ -19,10 +19,10 @@ Future updates to the example's readme will keep updated the template in Content
 If the Github Actions that updates the templates fails, it's likely that there was a validation error in the template, like it having wrong values or missing required ones, for those cases a new PR should be able to fix it, and it can also be done manually if needed with:
 
 ```bash
-npm run update-template solutions/monorepo
+pnpm update-template solutions/monorepo
 
 # or to update multiple templates in the way the GH action does
-npm run update-templates solutions/monorepo/README.md solutions/nx-monorepo/README.md
+pnpm update-templates solutions/monorepo/README.md solutions/nx-monorepo/README.md
 ```
 
 Where `solutions/monorepo` is the path to the example. In order for it to work you'll need a `.env.local` file in the root of this repo with:
