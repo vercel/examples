@@ -1230,8 +1230,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /caniuse-lite/1.0.30001409:
-    resolution: {integrity: sha512-V0mnJ5dwarmhYv8/MzhJ//aW68UpvnQBXv8lJ2QUsvn2pHcmAuNtu8hQEDz37XnA1iE+lRR9CIfGWWpgJ5QedQ==}
+  /caniuse-lite/1.0.30001411:
+    resolution: {integrity: sha512-HPnJKESKuhKpHvMY1/ux7J3nG7xG8jRuL4lbyCjDRm0doTNV91tcRk60xrP7Ym9DtJH/yuqntDWBJCqpXB4b7g==}
     dev: true
 
   /capital-case/1.0.4:
@@ -3137,7 +3137,7 @@ packages:
     dependencies:
       '@next/env': 12.3.1
       '@swc/helpers': 0.4.11
-      caniuse-lite: 1.0.30001409
+      caniuse-lite: 1.0.30001411
       postcss: 8.4.14
       styled-jsx: 5.0.7
       use-sync-external-store: 1.2.0

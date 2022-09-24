@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from 'react'
-import Head from 'next/head'
-import Nav, { NavProps } from './nav'
-import { Vercel } from './icons'
+import Head from 'next/head.js'
+import Nav, { NavProps } from './nav.js'
+import Vercel from './icons/vercel.js'
 
 export interface LayoutProps extends NavProps {
   children?: ReactNode

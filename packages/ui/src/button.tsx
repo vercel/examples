@@ -5,7 +5,7 @@ import {
   AnchorHTMLAttributes,
 } from 'react'
 import cn from 'clsx'
-import LoadingDots from './loading-dots'
+import LoadingDots from './loading-dots.js'
 
 /**
  * All the component types allowed by the Button component.
