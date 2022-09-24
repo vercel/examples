@@ -1,6 +1,6 @@
 import { type FC, experimental_use as use } from 'react'
 import cms from 'lib/cms'
-import { RenderCMSComponent } from '../components/index.server'
+// import { RenderCMSComponent } from '../components/index.server'
 
 // export async function getStaticProps({
 //   params,
@@ -33,8 +33,8 @@ const SlugPage: FC<{ params: { slug: string[] } }> = ({ params: { slug } }) => {
   console.log('PAGE', page)
 
   return (
-    // <h1>Hello world</h1>
-    <RenderCMSComponent component={page!} />
+    <h1>Hello world</h1>
+    // <RenderCMSComponent component={page!} />
   )
 }
 
