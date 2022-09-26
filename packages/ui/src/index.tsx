@@ -1,15 +1,15 @@
 import type { FC, ReactNode, ComponentType, HTMLAttributes } from 'react'
 import cn from 'clsx'
 
-export { default as Layout } from './layout'
-export { default as Text } from './text'
-export { default as Input } from './input'
-export { default as Button } from './button'
-export { default as LoadingDots } from './loading-dots'
-export { default as Link } from './link'
-export { default as Code } from './code'
-export { default as List } from './list'
-export { default as Snippet } from './snippet'
+export { default as Layout } from './layout.js'
+export { default as Text } from './text.js'
+export { default as Input } from './input.js'
+export { default as Button } from './button.js'
+export { default as LoadingDots } from './loading-dots.js'
+export { default as Link } from './link.js'
+export { default as Code } from './code.js'
+export { default as List } from './list.js'
+export { default as Snippet } from './snippet.js'
 
 const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
 

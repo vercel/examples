@@ -1,5 +1,5 @@
 import type { AnchorHTMLAttributes, FC } from 'react'
-import NextLink, { LinkProps } from 'next/link'
+import NextLink, { LinkProps } from 'next/link.js'
 import cn from 'clsx'
 
 const Link: FC<

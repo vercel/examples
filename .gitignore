@@ -6,7 +6,8 @@
 # Ignore the dependency locks of all examples
 package-lock.json
 yarn.lock
-!/package-lock.lock
+pnpm-lock.yaml
+!/pnpm-lock.yaml
 
 # Misc
 .DS_Store
