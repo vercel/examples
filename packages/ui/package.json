@@ -1,6 +1,6 @@
 {
   "name": "@vercel/examples-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
