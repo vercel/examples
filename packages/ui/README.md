@@ -1,44 +1,34 @@
 # UI components for Vercel examples
 
-The UI components exported here are being used in every example that has an UI. The package ships React components with Tailwind CSS and requires the following dev dependencies to exist in the project:
-
-- TypeScript
-- Tailwindcss
-- PostCSS
+The UI components exported here are being used in many of the examples in this repository. They're built with React, TypeScript, and Tailwind CSS.
 
 ## How to use
 
 ### 1. Package installation
 
-Install the package with npm or yarn:
+Install the package with npm, pnpm, or yarn:
 
 ```bash
 npm i @vercel/examples-ui
-// or
+# or
+pnpm i @vercel/examples-ui
+# or
 yarn add @vercel/examples-ui
 ```
 
-If the app doesn't already have the required dev dependencies install them like so:
+The package relies on Tailwind picking up its styles, so if you don't have Tailwind CSS already install it like so:
 
 ```bash
-npm i typescript tailwindcss postcss autoprefixer
-// or
-yarn add typescript tailwindcss postcss autoprefixer
+npm i tailwindcss postcss autoprefixer
+# or
+pnpm i tailwindcss postcss autoprefixer
+# or
+yarn add tailwindcss postcss autoprefixer
 ```
 
 ### 2. Tailwindcss setup
 
-Because **the package is untranspiled**, in order to get it working in your next.js app you'll need to add the following to `next.config.js`:
-
-```js
-const withTM = require('@vercel/examples-ui/transpile')()
-
-module.exports = withTM({
-  // Your next.js config
-})
-```
-
-Open the `tailwind.config.js` file in your app and add the following preset and content path:
+To allow Tailwind CSS to know which styles to pick up, and to also add our design, Open `tailwind.config.js` in your app and add the following preset and content path:
 
 ```js
 module.exports = {
@@ -105,24 +95,22 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
 ## Contributing
 
-You can build the package with:
+Install packages from the root of the repo:
 
 ```bash
 pnpm build
 ```
 
-To watch for changes:
+To watch for changes, navigate to this folder in your terminal and run:
 
 ```bash
-pnpm build -w
+pnpm build:swc -w
 ```
 
 If you want to make an update to the package, go to an example and install it with npm:
 
 ```bash
-npm i ../../packages/ui
+npm i $(npm pack ../../packages/ui | tail -1)
 ```
 
-npm will add a symlink and making changes to `packages/ui` will reload the app, once you're done feel free to create a PR!
-
-> Make sure to have dependencies installed in `packages/ui` with `pnpm i` or otherwise the symlink won't resolve imports
+> Make sure to have dependencies installed in `packages/ui` or otherwise the symlink won't resolve imports.

@@ -3,16 +3,18 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "app",
+    "apps/*",
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build --scope=app --include-dependencies --no-deps",
+    "build": "turbo run build",
     "dev": "turbo run dev",
     "start": "turbo run start",
     "lint": "turbo run lint"
   },
   "devDependencies": {
-    "turbo": "latest"
+    "turbo": "latest",
+    "eslint": "^8.11.0",
+    "eslint-config-turbo": "latest"
   }
 }

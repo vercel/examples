@@ -34,7 +34,6 @@ jobs:
         with:
           node-version: 16.14
           cache: pnpm
-          cache-dependency-path: packages/ui/pnpm-lock.yaml
 
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile --ignore-scripts

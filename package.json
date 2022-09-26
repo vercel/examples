@@ -40,6 +40,7 @@
     "dotenv": "^16.0.1",
     "eslint": "latest",
     "eslint-config-next": "canary",
+    "eslint-config-turbo": "^0.0.4",
     "front-matter": "^4.0.2",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
