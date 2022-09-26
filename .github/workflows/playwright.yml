@@ -40,7 +40,6 @@ jobs:
         with:
           node-version: 16.14
           cache: pnpm
-          cache-dependency-path: packages/playwright/pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm i --frozen-lockfile --ignore-scripts
