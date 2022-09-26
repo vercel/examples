@@ -95,13 +95,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
 ## Contributing
 
-You can build the package with:
+Install packages from the root of the repo:
 
 ```bash
 pnpm build
 ```
 
-To watch for changes:
+To watch for changes, navigate to this folder in your terminal and run:
 
 ```bash
 pnpm build:swc -w
@@ -113,4 +113,4 @@ If you want to make an update to the package, go to an example and install it wi
 npm i $(npm pack ../../packages/ui | tail -1)
 ```
 
-> Make sure to have dependencies installed in `packages/ui` with `pnpm i` or otherwise the symlink won't resolve imports
+> Make sure to have dependencies installed in `packages/ui` or otherwise the symlink won't resolve imports.

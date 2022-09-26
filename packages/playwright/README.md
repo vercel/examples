@@ -6,7 +6,7 @@ The demo URL has to be added with front matter in the example's README.md file. 
 
 ## Contributing
 
-To run the tests locally, navigate to this folder in your terminal and install packages:
+To run the tests locally, install packages from the root of the repo:
 
 ```bash
 pnpm install
@@ -15,7 +15,7 @@ pnpm install
 Then, generate and run the tests with:
 
 ```bash
-pnpm generate-tests
+pnpm build
 pnpm test
 ```
 
