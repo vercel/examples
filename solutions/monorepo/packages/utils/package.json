@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "npm run build -- --watch",
+    "dev": "pnpm build --watch",
     "build": "rm -fr dist/* && tsc"
   },
   "sideEffects": false,
