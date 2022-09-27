@@ -3,7 +3,7 @@ export default async function handler(req, res) {
 
   const [configResponse, domainResponse] = await Promise.all([
     fetch(
-      `https://api.vercel.com/v6/domains/${domain}/config?teamId=${process.env.VERCEL_TEAM_ID}`,
+      `https://api.vercel.com/v6/domains/${domain}/config?teamId=${process.env.TEAM_ID_VERCEL}`,
       {
         method: 'GET',
         headers: {
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
       }
     ),
     fetch(
-      `https://api.vercel.com/v9/projects/${process.env.VERCEL_PROJECT_ID}/domains/${domain}?teamId=${process.env.VERCEL_TEAM_ID}`,
+      `https://api.vercel.com/v9/projects/${process.env.PROJECT_ID_VERCEL}/domains/${domain}?teamId=${process.env.TEAM_ID_VERCEL}`,
       {
         method: 'GET',
         headers: {
@@ -36,7 +36,7 @@ export default async function handler(req, res) {
   let verificationResponse = null
   if (!domainJson.verified) {
     const verificationRes = await fetch(
-      `https://api.vercel.com/v9/projects/${process.env.VERCEL_PROJECT_ID}/domains/${domain}/verify?teamId=${process.env.VERCEL_TEAM_ID}`,
+      `https://api.vercel.com/v9/projects/${process.env.PROJECT_ID_VERCEL}/domains/${domain}/verify?teamId=${process.env.TEAM_ID_VERCEL}`,
       {
         method: 'POST',
         headers: {

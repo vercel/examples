@@ -4,7 +4,7 @@ export default async function addDomain(req, res) {
   const { domain, siteId } = req.query
 
   const response = await fetch(
-    `https://api.vercel.com/v8/projects/${process.env.VERCEL_PROJECT_ID}/domains?teamId=${process.env.VERCEL_TEAM_ID}`,
+    `https://api.vercel.com/v8/projects/${process.env.PROJECT_ID_VERCEL}/domains?teamId=${process.env.TEAM_ID_VERCEL}`,
     {
       body: `{\n  "name": "${domain}"\n}`,
       headers: {
