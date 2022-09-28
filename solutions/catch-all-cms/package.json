@@ -9,11 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/examples-ui": "^1.0.0",
+    "@vercel/examples-ui": "^1.0.1",
     "clsx": "^1.2.1",
-    "next": "^12.3.2-canary.7",
-    "react": "^0.0.0-experimental-c1d414d75-20220923",
-    "react-dom": "^0.0.0-experimental-c1d414d75-20220923"
+    "next": "^12.3.2-canary.10",
+    "react": "^0.0.0-experimental-ae7ad8b4c-20220927",
+    "react-dom": "^0.0.0-experimental-ae7ad8b4c-20220927"
   },
   "devDependencies": {
     "@types/node": "^17",
