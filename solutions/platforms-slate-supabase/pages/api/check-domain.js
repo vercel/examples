@@ -2,7 +2,7 @@ export default async function checkDomain(req, res) {
   const { domain } = req.query
 
   const response = await fetch(
-    `https://api.vercel.com/v6/domains/${domain}/config?teamId=${process.env.VERCEL_TEAM_ID}`,
+    `https://api.vercel.com/v6/domains/${domain}/config?teamId=${process.env.TEAM_ID_VERCEL}`,
     {
       method: 'GET',
       headers: {
