@@ -8,8 +8,10 @@ import {
 } from '@aws-sdk/client-dynamodb';
 
 const client = new DynamoDBClient({
-  accessKeyId: process.env.ACCESS_KEY,
-  secretAccessKey: process.env.SECRET_KEY,
+  credentials: {
+    accessKeyId: process.env.ACCESS_KEY,
+    secretAccessKey: process.env.SECRET_KEY
+  },
   region: process.env.REGION
 });
 
