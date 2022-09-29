@@ -50,11 +50,6 @@ function BucketPage({ bucket }: Props) {
     reload()
   }
 
-  useEffect(() => {
-    // Log exposure to statsig
-    api.logExposure(Cookie.get(UID_COOKIE)!, bucket, FLAG)
-  }, [bucket])
-
   return (
     <Page className="flex flex-col gap-12">
       <section className="flex flex-col gap-6">
@@ -85,6 +80,7 @@ export async function middleware(req) {
   if (!userID) userID = crypto.randomUUID()
 
   // Fetch experiment from Statsig
+  // This will log an exposure on Statsig servers
   const bucket =
     (await statsig.getExperiment(userID, FLAG).catch((error) => {
       // Log the error but don't throw it, if Statsig fails, fallback to the default group
@@ -107,21 +103,6 @@ export async function middleware(req) {
   // Return the response
   return response
 }`}</Snippet>
-        <Text>
-          Once the page is fully functional we log the exposure for the
-          experiment, this will let Statsig know that the bucket was correctly
-          assigned and the user has been exposed to the experiment. If we
-          don&apos;t log the exposure, Statsig won&apos;t be able to analyze and
-          track the progress of the experiment.
-        </Text>
-        <Snippet>{`import statsig from '../lib/statsig-api'
-
-...
-
-useEffect(() => {
-  // Log exposure to statsig
-  api.logExposure(Cookie.get(UID_COOKIE), bucket, FLAG)
-}, [bucket])`}</Snippet>
         <Text>
           You can reset the bucket multiple times to get a different bucket
           assigned. You can configure your experiments, see diagnostics and
