@@ -21,7 +21,7 @@ async function getPageBySlug(slug: string[]) {
   const page = await cms.getPageBySlug(`/${slug.join('/')}`)
 
   if (!page) {
-    return { notFound: true }
+    throw new Error('Page not found')
   }
 
   return page
@@ -30,10 +30,7 @@ async function getPageBySlug(slug: string[]) {
 const SlugPage: FC<{ params: { slug: string[] } }> = ({ params: { slug } }) => {
   const page = use(getPageBySlug(slug))
 
-  return (
-    // <h1>Hello world</h1>
-    <RenderCMSComponent component={page!} />
-  )
+  return <RenderCMSComponent component={page!} />
 }
 
 export default SlugPage

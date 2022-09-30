@@ -1,11 +1,10 @@
 /* eslint-disable @next/next/no-head-element */
-import { FC, ReactNode, experimental_use as use } from 'react'
+import { FC, experimental_use as use } from 'react'
 import cms from 'lib/cms'
 import { RenderCMSComponent } from '../components/index.server'
 
 async function getPageBySlug(slug: string[]) {
   const page = await cms.getPageBySlug(`/${slug.join('/')}`)
-
   // The slug isn't used to get the layout because that can imply that every
   // page can decide its own layout, which wouldn't be true as layouts don't
   // change between its nested pages.
