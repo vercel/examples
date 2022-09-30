@@ -2,21 +2,6 @@ import { type FC, experimental_use as use } from 'react'
 import cms from 'lib/cms'
 import { RenderCMSComponent } from '../components'
 
-// export async function getStaticProps({
-//   params,
-// }: {
-//   params: { slug: string[] }
-// }) {
-//   const slug = `/${params.slug.join('/')}`
-//   const page = await cms.getPageBySlug(slug)
-
-//   if (!page) {
-//     return { notFound: true }
-//   }
-
-//   return { props: { page } }
-// }
-
 async function getPageBySlug(slug: string[]) {
   const page = await cms.getPageBySlug(`/${slug.join('/')}`)
 
@@ -29,6 +14,8 @@ async function getPageBySlug(slug: string[]) {
 
 const SlugPage: FC<{ params: { slug: string[] } }> = ({ params: { slug } }) => {
   const page = use(getPageBySlug(slug))
+
+  console.log('P', slug, JSON.stringify(page, null, 2))
 
   return <RenderCMSComponent component={page!} />
 }
