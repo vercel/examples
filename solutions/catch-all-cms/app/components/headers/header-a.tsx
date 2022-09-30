@@ -1,5 +1,5 @@
 import cn from 'clsx'
-import Categories, { Category } from '../categories.server'
+import Categories, { Category } from '../categories'
 import styles from '../styles.module.css'
 
 type Props = { title: string; categories: Category[] }

@@ -1,5 +1,6 @@
 import type { FC, ReactNode } from 'react'
-import Categories, { Category } from '../categories.server'
+import Categories, { Category } from '../categories'
+import cn from 'clsx'
 import styles from '../styles.module.css'
 
 type Props = {
@@ -7,11 +8,11 @@ type Props = {
   categories: Category[]
 }
 
-const VariantA: FC<Props> = ({ children, categories }) => (
-  <div className={styles.root}>
+const VariantB: FC<Props> = ({ children, categories }) => (
+  <div className={cn(styles.root, styles['variant-b'])}>
     <span className="mr-6">{children}</span>
     <Categories categories={categories} />
   </div>
 )
 
-export default VariantA
+export default VariantB

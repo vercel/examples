@@ -1,6 +1,6 @@
 import { type FC, experimental_use as use } from 'react'
 import cms from 'lib/cms'
-import { RenderCMSComponent } from '../components/index.server'
+import { RenderCMSComponent } from '../components'
 
 // export async function getStaticProps({
 //   params,

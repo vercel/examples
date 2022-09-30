@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-head-element */
 import { FC, experimental_use as use } from 'react'
 import cms from 'lib/cms'
-import { RenderCMSComponent } from '../components/index.server'
+import { RenderCMSComponent } from '../components'
 
 async function getPageBySlug(slug: string[]) {
   const page = await cms.getPageBySlug(`/${slug.join('/')}`)
