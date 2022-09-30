@@ -21,7 +21,7 @@
     "./globals.css": "./dist/globals.css"
   },
   "files": [
-    "dist/**/*.{js,cjs,d.ts,css}"
+    "dist/**/*.{js,cjs,d.ts,d.cts,css}"
   ],
   "typesVersions": {
     "*": {
