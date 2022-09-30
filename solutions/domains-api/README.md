@@ -7,6 +7,8 @@ useCase: Documentation
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/domains-api&project-name=domains-api&repository-name=domains-api&env=AUTH_BEARER_TOKEN,PROJECT_ID_VERCEL,TEAM_ID_VERCEL
 demoUrl: https://domains-api.vercel.app
+relatedTemplates:
+  - platforms-starter-kit
 ---
 
 # Domains API
