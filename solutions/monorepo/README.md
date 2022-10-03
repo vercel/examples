@@ -7,6 +7,8 @@ useCase: Documentation
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/monorepo&project-name=monorepo&repository-name=monorepo&root-directory=apps/app&install-command=pnpm%20install&build-command=cd%20..%2F..%20%26%26%20npx%20turbo%20run%20build%20--filter%3Dapp...&ignore-command=npx%20turbo-ignore
 demoUrl: https://solutions-monorepo.vercel.sh
+relatedTemplates:
+  - monorepo-nx
 ---
 
 # Monorepo
