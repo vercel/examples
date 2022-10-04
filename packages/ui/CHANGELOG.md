@@ -1,5 +1,11 @@
 # @vercel/examples-ui
 
+## 1.0.2
+
+### Patch Changes
+
+- 5ca890f: Added missing declaration file
+
 ## 1.0.1
 
 ### Patch Changes

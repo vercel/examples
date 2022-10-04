@@ -5,8 +5,10 @@ description: Learn to implement a monorepo with a single Next.js site that has i
 framework: Next.js
 useCase: Documentation
 css: Tailwind
-deployUrl: https%3A%2F%2Fvercel.com%2Fnew%2Fclone%3Frepository-url%3Dhttps%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fmonorepo%26project-name%3Dmonorepo%26repository-name%3Dmonorepo%26root-directory%3Dapps%2Fapp%26build-command%3Dcd%20..%2F..%20%26%26%20npx%20turbo%20run%20build%20--filter%3Dapp...%26ignore-command%3Dnpx%20turbo-ignore
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/monorepo&project-name=monorepo&repository-name=monorepo&root-directory=apps/app&install-command=pnpm%20install&build-command=cd%20..%2F..%20%26%26%20npx%20turbo%20run%20build%20--filter%3Dapp...&ignore-command=npx%20turbo-ignore
 demoUrl: https://solutions-monorepo.vercel.sh
+relatedTemplates:
+  - monorepo-nx
 ---
 
 # Monorepo
@@ -34,7 +36,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https%3A%2F%2Fvercel.com%2Fnew%2Fclone%3Frepository-url%3Dhttps%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fmonorepo%26project-name%3Dmonorepo%26repository-name%3Dmonorepo%26root-directory%3Dapps%2Fapp%26build-command%3Dcd%20..%2F..%20%26%26%20npx%20turbo%20run%20build%20--filter%3Dapp...%26ignore-command%3Dnpx%20turbo-ignore)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/monorepo&project-name=monorepo&repository-name=monorepo&root-directory=apps/app&install-command=pnpm%20install&build-command=cd%20..%2F..%20%26%26%20npx%20turbo%20run%20build%20--filter%3Dapp...&ignore-command=npx%20turbo-ignore)
 
 ## Getting Started
 
