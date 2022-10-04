@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react'
-import Categories, { Category } from '../categories'
 import cn from 'clsx'
+import Categories, { Category } from '../categories'
 import styles from '../styles.module.css'
 
 type Props = {

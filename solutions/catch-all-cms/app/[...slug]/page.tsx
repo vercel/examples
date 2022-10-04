@@ -14,9 +14,6 @@ async function getPageBySlug(slug: string[]) {
 
 const SlugPage: FC<{ params: { slug: string[] } }> = ({ params: { slug } }) => {
   const page = use(getPageBySlug(slug))
-
-  console.log('P', slug, JSON.stringify(page, null, 2))
-
   return <RenderCMSComponent component={page!} />
 }
 
