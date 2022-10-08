@@ -57,7 +57,7 @@ function Home() {
         </Text>
         <Snippet>{`import { NextRequest, NextResponse, userAgent } from 'next/server'
 
-// Set pathname were middleware will be executed
+// Set pathname where middleware will be executed
 export const config = {
   matcher: '/',
 }
