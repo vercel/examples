@@ -1,3 +1,14 @@
+---
+name: Open Graph Image Generation
+slug: og-image-generation
+description: Compute and generate dynamic social card images with React components.
+framework: Next.js
+useCase: Edge Functions
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/vercel-og-nextjs&project-name=vercel-og-nextjs&repository-name=vercel-og-nextjs
+demoUrl: https://og-examples.vercel.sh/api/static
+---
+
 # Vercel OG + Next.js
 
 This example shows how to use [Vercel OG](https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation) with Next.js.
