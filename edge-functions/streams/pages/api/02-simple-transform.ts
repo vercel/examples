@@ -5,11 +5,16 @@ export const config = {
 }
 
 export default async function handler(_: NextRequest) {
+  const encoder = new TextEncoder()
+  const decoder = new TextDecoder()
+
   // A readable stream that we'll pipe through the transform stream below.
   // https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/ReadableStream
   const readable = new ReadableStream({
     start(controller) {
-      controller.enqueue('Vercel Edge Functions + Streams + Transforms')
+      controller.enqueue(
+        encoder.encode('Vercel Edge Functions + Streams + Transforms')
+      )
       controller.close()
     },
   })
@@ -20,14 +25,18 @@ export default async function handler(_: NextRequest) {
   const transform = new TransformStream({
     start(controller) {
       controller.enqueue(
-        `<html><head><title>Vercel Edge Functions + Streams + Transforms</title></head><body>`
+        encoder.encode(
+          '<html><head><title>Vercel Edge Functions + Streams + Transforms</title></head><body>'
+        )
       )
     },
     transform(chunk, controller) {
-      controller.enqueue(chunk.toUpperCase())
+      controller.enqueue(
+        encoder.encode(decoder.decode(chunk, { stream: true }).toUpperCase())
+      )
     },
     flush(controller) {
-      controller.enqueue('</body></html>')
+      controller.enqueue(encoder.encode('</body></html>'))
     },
   })
 

@@ -10,8 +10,10 @@ export const config = {
 export default async function handler(_: NextRequest) {
   // The decoder will be used to decode the bytes in the stream returned by fetching
   // the external resource to UTF-8 (the default).
-  // https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder
+  // https://developer.mozilla.org/en-US/docs/Web/API/TextDecode
+  const encoder = new TextEncoder()
   const decoder = new TextDecoder()
+
   const res = await fetch(RESOURCE_URL)
 
   // Pipe the stream to a transform stream that will take its chunks and transform
@@ -21,10 +23,12 @@ export default async function handler(_: NextRequest) {
     new TransformStream({
       start(controller) {
         controller.enqueue(
-          `<html><head><title>Vercel Edge Functions + Streams + Transforms</title></head><body>`
+          encoder.encode(
+            `<html><head><title>Vercel Edge Functions + Streams + Transforms</title></head><body>`
+          )
         )
-        controller.enqueue(`Resource: ${RESOURCE_URL} <br/>`)
-        controller.enqueue(`<hr/><br/><br/><br/>`)
+        controller.enqueue(encoder.encode(`Resource: ${RESOURCE_URL} <br/>`))
+        controller.enqueue(encoder.encode(`<hr/><br/><br/><br/>`))
       },
       transform(chunk, controller) {
         controller.enqueue(
@@ -35,7 +39,7 @@ export default async function handler(_: NextRequest) {
         )
       },
       flush(controller) {
-        controller.enqueue('</body></html>')
+        controller.enqueue(encoder.encode('</body></html>'))
       },
     })
   )
