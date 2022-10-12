@@ -17,7 +17,7 @@ export default async function handler(_: NextRequest) {
   // Pipe the stream to a transform stream that will take its chunks and transform
   // them into uppercase text.
   // https://developer.mozilla.org/en-US/docs/Web/API/TransformStream/TransformStream
-  const transformStream = res.body?.pipeThrough(
+  const transformedResponse = res.body?.pipeThrough(
     new TransformStream({
       start(controller) {
         controller.enqueue(
@@ -31,13 +31,16 @@ export default async function handler(_: NextRequest) {
           decoder
             .decode(chunk, { stream: true })
             .toUpperCase()
-            .concat('   <---')
+            .concat('   <--- ')
         )
+      },
+      flush(controller) {
+        controller.enqueue('</body></html>')
       },
     })
   )
 
-  return new Response(transformStream, {
+  return new Response(transformedResponse, {
     headers: { 'Content-Type': 'text/html; charset=utf-8' },
   })
 }

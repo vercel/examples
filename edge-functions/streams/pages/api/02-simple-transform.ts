@@ -24,7 +24,6 @@ export default async function handler(_: NextRequest) {
       )
     },
     transform(chunk, controller) {
-      console.log(3, chunk)
       controller.enqueue(chunk.toUpperCase())
     },
     flush(controller) {
