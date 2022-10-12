@@ -32,10 +32,12 @@ export default async function handler(_: NextRequest) {
       },
       transform(chunk, controller) {
         controller.enqueue(
-          decoder
-            .decode(chunk, { stream: true })
-            .toUpperCase()
-            .concat('   <--- ')
+          encoder.encode(
+            decoder
+              .decode(chunk, { stream: true })
+              .toUpperCase()
+              .concat('   <--- ')
+          )
         )
       },
       flush(controller) {
