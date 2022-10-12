@@ -5,14 +5,18 @@ export const config = {
 }
 
 export default async function handler(_: NextRequest) {
+  const { encode } = new TextEncoder()
+
   // https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/ReadableStream
   const readable = new ReadableStream({
     start(controller) {
       controller.enqueue(
-        '<html><head><title>Vercel Edge Functions + Streaming</title></head><body>'
+        encode(
+          '<html><head><title>Vercel Edge Functions + Streaming</title></head><body>'
+        )
       )
-      controller.enqueue('Vercel Edge Functions + Streaming')
-      controller.enqueue('</body></html>')
+      controller.enqueue(encode('Vercel Edge Functions + Streaming'))
+      controller.enqueue(encode('</body></html>'))
       controller.close()
     },
   })
