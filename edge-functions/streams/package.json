@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@vercel/examples-ui": "latest",
+    "@vercel/examples-ui": "^1.0.1",
     "next": "canary",
     "react": "latest",
     "react-dom": "latest"
