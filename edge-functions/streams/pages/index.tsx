@@ -3,7 +3,7 @@ import { Layout, Page, Button, Text, Link, Code } from '@vercel/examples-ui'
 function Index() {
   return (
     <Page>
-      <div className="text-center mb-12">
+      <div className="text-center mb-10">
         <Text variant="h1" className="mb-6">
           Streaming in Edge Functions
         </Text>
