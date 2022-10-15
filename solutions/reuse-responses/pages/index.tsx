@@ -1,6 +1,6 @@
 import type { GetStaticProps } from 'next'
 import type { Product } from '../types'
-import type { FC } from 'react'
+import type { FC, ReactNode } from 'react'
 
 import { PHASE_PRODUCTION_BUILD } from 'next/constants'
 import Image from 'next/image'
@@ -16,7 +16,7 @@ interface Props {
   products: Product[]
 }
 
-const Snippet: FC = ({ children }) => {
+const Snippet: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 transition-all">
       {children}

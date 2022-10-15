@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import posthog, { PostHog } from 'posthog-js'
+import posthog, { PostHog, PostHogConfig } from 'posthog-js'
 
 let POSTHOG_INSTANCE: PostHog
 
 export const usePostHog = (
   apiKey: string,
-  config?: posthog.Config,
+  config?: Partial<PostHogConfig>,
   name?: string
 ): void => {
   const router = useRouter()
