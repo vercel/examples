@@ -30,9 +30,9 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/authed-proxy authed-proxy
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-api-routes/authed-proxy authed-proxy
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/authed-proxy authed-proxy
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-api-routes/authed-proxy authed-proxy
 ```
 
 Install the Vercel CLI:
