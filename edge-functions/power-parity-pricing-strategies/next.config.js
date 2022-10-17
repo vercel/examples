@@ -1,6 +1,4 @@
-const withTM = require('@vercel/examples-ui/transpile')()
-
-module.exports = withTM({
+module.exports = {
   async redirects() {
     return [
       {
@@ -10,4 +8,4 @@ module.exports = withTM({
       },
     ]
   },
-})
+}

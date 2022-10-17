@@ -6,8 +6,8 @@ const useSecureCookies = !!process.env.VERCEL_URL
 export default NextAuth({
   providers: [
     GitHub({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientId: process.env.GITHUB_ID!,
+      clientSecret: process.env.GITHUB_SECRET!,
     }),
   ],
   secret: process.env.SECRET,

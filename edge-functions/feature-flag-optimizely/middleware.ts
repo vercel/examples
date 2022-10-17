@@ -32,13 +32,13 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
   })
 
   // Create Optimizely User Context
-  const userContext = instance.createUserContext(userId.toString())
+  const userContext = instance!.createUserContext(userId.toString())
 
   // Decide variation for the flag.
-  const decision = userContext.decide('product_sort')
+  const decision = userContext!.decide('product_sort')
 
   // Fetch datafile revision for debugging.
-  const revision = instance.getOptimizelyConfig().revision
+  const revision = instance!.getOptimizelyConfig()!.revision
 
   console.log(`[OPTIMIZELY] Datafile Revision: ${revision}`)
   console.log(`[OPTIMIZELY] userId: ${userId}`)
