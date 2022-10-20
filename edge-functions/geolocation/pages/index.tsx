@@ -23,13 +23,7 @@ export default function Index({
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-50">
       <div className="fixed inset-0 overflow-hidden opacity-75 bg-[#f8fafb]">
-        <Image
-          alt="World Map"
-          src={map}
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-        />
+        <Image alt="World Map" src={map} fill={true} quality={100} />
       </div>
       <main className="flex flex-col items-center flex-1 px-4 sm:px-20 text-center z-10 pt-8 sm:pt-20">
         <h1 className="text-3xl sm:text-5xl font-bold">Geolocation</h1>

@@ -1,0 +1,44 @@
+{
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "unit": "jest --watch",
+    "test-server": "next build && next start",
+    "test-unit": "jest --watch",
+    "integration": "node playwright-test.mjs -i",
+    "e2e": "node playwright-test.mjs -e"
+  },
+  "dependencies": {
+    "@vercel/examples-ui": "^1.0.2",
+    "clsx": "^1.2.1",
+    "cookie": "^0.5.0",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "sluga": "^0.2.1",
+    "swr": "^1.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.25.2",
+    "@types/cookie": "^0.5.1",
+    "@types/jest": "^28.1.6",
+    "@types/node": "^17",
+    "@types/react": "latest",
+    "arg": "^5.0.2",
+    "autoprefixer": "^10.4.7",
+    "chokidar": "^3.5.3",
+    "chokidar-cli": "^3.0.0",
+    "cross-spawn": "^7.0.3",
+    "eslint": "^8.11.0",
+    "eslint-config-next": "^12.1.0",
+    "jest": "^28.1.3",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.0.24",
+    "typescript": "^4.7.3"
+  }
+}

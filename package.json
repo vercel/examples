@@ -1,12 +1,27 @@
 {
+  "name": "examples",
   "license": "MIT",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "test": "turbo run test",
     "lint-staged": "lint-staged",
     "new-example": "plop example",
     "prepare": "husky install",
     "prettier": "prettier --write .",
-    "update-templates": "node scripts/update-templates.mjs"
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish",
+    "update-templates": "pnpm build:update-templates && NODE_OPTIONS=--enable-source-maps node scripts/dist/update-templates.js",
+    "build:update-templates": "pnpm dlx esbuild@0.15.7 scripts/update-templates.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-templates.js --external:./node_modules/*",
+    "update-template": "pnpm build:update-template && NODE_OPTIONS=--enable-source-maps node scripts/dist/update-template.js",
+    "build:update-template": "pnpm dlx esbuild@0.15.7 scripts/update-template.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-template.js --external:./node_modules/*",
+    "update-fields": "pnpm build:update-fields && NODE_OPTIONS=--enable-source-maps node scripts/dist/update-fields.js",
+    "build:update-fields": "pnpm dlx esbuild@0.15.7 scripts/update-fields.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-fields.js --external:./node_modules/*"
   },
   "pre-commit": "lint-staged",
   "lint-staged": {
@@ -19,14 +34,20 @@
     ]
   },
   "devDependencies": {
+    "@changesets/cli": "^2.24.4",
+    "@types/node-fetch": "^2.6.2",
     "@vercel/fetch": "^6.2.0",
     "dotenv": "^16.0.1",
     "eslint": "latest",
     "eslint-config-next": "canary",
+    "eslint-config-turbo": "^0.0.4",
     "front-matter": "^4.0.2",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
+    "node-fetch": "^2.6.7",
     "plop": "^3.1.1",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "turbo": "^1.5.1",
+    "typescript": "^4.8.3"
   }
 }

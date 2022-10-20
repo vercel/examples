@@ -1,22 +1,24 @@
 ---
 name: Monorepo with Turborepo
-slug: monorepo
+slug: monorepo-turborepo
 description: Learn to implement a monorepo with a single Next.js site that has installed two local packages.
 framework: Next.js
 useCase: Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/monorepo&project-name=monorepo&repo-name=monorepo&root-directory=app&build-command=cd%20..%20%26%26%20npm%20run%20build&install-command=cd%20..%20%26%26%20npm%20i
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/monorepo&project-name=monorepo&repository-name=monorepo&root-directory=apps/app&install-command=pnpm%20install&build-command=cd%20..%2F..%20%26%26%20npx%20turbo%20run%20build%20--filter%3Dapp...&ignore-command=npx%20turbo-ignore
 demoUrl: https://solutions-monorepo.vercel.sh
+relatedTemplates:
+  - monorepo-nx
 ---
 
 # Monorepo
 
-This is a monorepo example with a single Next.js site ([./app](./app)) that has installed two local packages:
+This is a monorepo example with a single Next.js site ([./apps/app](./apps/app)) that has installed two local packages:
 
 - [./packages/ui](./packages/ui): Exports UI components that use TypeScript and Tailwind CSS. It's transpiled by the Next.js app using [next-transpile-modules](https://github.com/martpie/next-transpile-modules)
 - [./packages/utils](./packages/utils): Exports utility functions that use TypeScript
 
-The monorepo is using [Turborepo](https://turborepo.org/) and [npm workspaces](https://docs.npmjs.com/cli/v8/using-npm/workspaces#using-workspaces) to link packages together, but it can also work with [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/).
+The monorepo is using [Turborepo](https://turborepo.org/) and [pnpm workspaces](https://pnpm.io/workspaces) to link packages together, but it can also work with [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) or [npm workspaces](https://docs.npmjs.com/cli/v8/using-npm/workspaces).
 
 For more examples on monorepos check out the [official Turborepo examples](https://github.com/vercel/turborepo/tree/main/examples).
 
@@ -34,7 +36,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/monorepo&project-name=monorepo&repo-name=monorepo&root-directory=app&build-command=cd%20..%20%26%26%20npm%20run%20build&install-command=cd%20..%20%26%26%20npm%20i)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/monorepo&project-name=monorepo&repository-name=monorepo&root-directory=apps/app&install-command=pnpm%20install&build-command=cd%20..%2F..%20%26%26%20npx%20turbo%20run%20build%20--filter%3Dapp...&ignore-command=npx%20turbo-ignore)
 
 ## Getting Started
 
@@ -49,6 +51,11 @@ yarn create next-app --example https://github.com/vercel/examples/tree/main/solu
 Next, run `app` in development mode:
 
 ```bash
+pnpm
+pnpm dev
+
+# or
+
 yarn
 yarn dev
 
@@ -60,4 +67,4 @@ npm run dev
 
 The app should be up and running at http://localhost:3000.
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=monorepo-example) ([Documentation](https://nextjs.org/docs/deployment)).

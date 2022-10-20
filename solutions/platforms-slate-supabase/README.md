@@ -5,8 +5,11 @@ description: Build a blogging platform based on Slate.js, Supabase and Vercel.
 framework: Next.js
 useCase: Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/platforms-slate-supabase&project-name=platforms-slate-supabase&repo-name=platforms-slate-supabase&env=NEXTAUTH_URL,SECRET,AUTH_BEARER_TOKEN,VERCEL_PROJECT_ID,VERCEL_TEAM_ID,SUPABASE_URL,SUPABASE_ANON_KEY,GITHUB_CLIENT_ID,GITHUB_CLIENT_SECRET
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/platforms-slate-supabase&project-name=platforms-slate-supabase&repo-name=platforms-slate-supabase&env=NEXTAUTH_URL,SECRET,AUTH_BEARER_TOKEN,PROJECT_ID_VERCEL,TEAM_ID_VERCEL,SUPABASE_URL,SUPABASE_ANON_KEY,GITHUB_CLIENT_ID,GITHUB_CLIENT_SECRET
 demoUrl: https://app.vercel.im
+relatedTemplates:
+  - domains-api
+  - platforms-starter-kit
 ---
 
 <p align="center">

@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { FC, ReactNode, Component } from 'react'
+import type { FC, ReactNode } from 'react'
 import s from './Grid.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -32,7 +32,7 @@ export interface DataProps {
 
 interface Props {
   className?: string
-  children?: ReactNode[] | Component[] | any[]
+  children?: ReactNode
   variant?: 'cols4' | string
   data?: DataProps
 }
@@ -99,8 +99,8 @@ const Grid: FC<Props> = ({ className, children, variant, data = {} }) => {
               )}
               <Link href={item!.link.url ? item!.link.url : '/'} passHref>
                 <a
-                  className="mt-4 uppercase font-semibold tracking-wide 
-            text-xs text-slate-900 bg-white rounded-full 
+                  className="mt-4 uppercase font-semibold tracking-wide
+            text-xs text-slate-900 bg-white rounded-full
             px-4 py-3 border  border-slate-400 hover:border-black
             transition ease-linear duration-150"
                 >

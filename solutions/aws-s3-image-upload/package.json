@@ -17,6 +17,7 @@
     "@types/react": "^18.0.12",
     "aws-cdk": "2.27.0",
     "aws-sdk": "^2.1152.0",
+    "eslint": "8.22.0",
     "next": "^12.1.6",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -27,7 +28,6 @@
     "aws-cdk-lib": "2.27.0",
     "constructs": "^10.1.36",
     "eslint-config-next": "^12.1.0",
-    "eslint": "^8.9.0",
     "source-map-support": "^0.5.21"
   }
 }

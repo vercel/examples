@@ -32,9 +32,9 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/api-route api-route
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-api-routes/api-route api-route
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/api-route api-route
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-api-routes/api-route api-route
 ```
 
 Install the Vercel CLI:

@@ -28,7 +28,7 @@ const ProductCard: React.VFC<{ product: Product }> = ({ product }) => {
     >
       <Image
         layout="responsive"
-        width="100%"
+        width="100"
         height="48"
         objectFit="cover"
         src={product.image}
