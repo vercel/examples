@@ -5,8 +5,12 @@ description: Stream a response from an external source and apply transformations
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/streams&project-name=edgestreams&repository-name=edge-streams
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/streams&project-name=edge-streams&repository-name=edge-streams
 demoUrl: https://edge-streams.vercel.app
+relatedTemplates:
+  - nextjs-boilerplate
+  - platforms-starter-kit
+  - blog-starter-kit
 ---
 
 # Streaming in Edge Functions
@@ -25,7 +29,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/streams&project-name=edgestreams&repository-name=edge-streams)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/streams&project-name=edge-streams&repository-name=edge-streams)
 
 ### Clone and Deploy
 
