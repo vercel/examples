@@ -27,7 +27,7 @@ export default async function handler(_: NextRequest) {
             `<html><head><title>Vercel Edge Functions + Streams + Transforms</title></head><body>`
           )
         )
-        controller.enqueue(encoder.encode(`Resource: ${RESOURCE_URL} <br/>`))
+        controller.enqueue(encoder.encode(`Resource: ${RESOURCE_URL}<br/>`))
         controller.enqueue(encoder.encode(`<hr/><br/><br/><br/>`))
       },
       transform(chunk, controller) {
@@ -36,7 +36,7 @@ export default async function handler(_: NextRequest) {
             decoder
               .decode(chunk, { stream: true })
               .toUpperCase()
-              .concat('   <--- ')
+              .concat(' <---')
           )
         )
       },
