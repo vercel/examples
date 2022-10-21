@@ -1,7 +1,5 @@
-const withTM = require('@vercel/examples-ui/transpile')()
-
-module.exports = withTM({
+module.exports = {
   images: {
     domains: ['lipis.github.io'],
   },
-})
+}

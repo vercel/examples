@@ -1,5 +1,5 @@
 import { memo, useCallback, useState } from 'react'
-import Image, { ImageProps } from 'next/image'
+import Image, { type ImageProps, type StaticImageData } from 'next/image'
 import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
 
 import logoBlack from '../public/logo.jpg'
@@ -34,7 +34,7 @@ function Home() {
   const [loaded, setLoaded] = useState<string[]>([])
 
   const handleLoaded = useCallback(
-    (color) => setLoaded((loaded) => loaded.concat(color)),
+    (color: string) => setLoaded((loaded) => loaded.concat(color)),
     []
   )
 

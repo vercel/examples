@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@optimizely/optimizely-sdk": "^4.9.1",
-    "@vercel/examples-ui": "0.3.6",
+    "@vercel/examples-ui": "^1.0.2",
     "next": "canary",
     "react": "latest",
     "react-dom": "latest"
