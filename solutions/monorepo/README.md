@@ -15,14 +15,12 @@ relatedTemplates:
 
 This is a monorepo example with a single Next.js site ([./apps/app](./apps/app)) that has installed two local packages:
 
-- [./packages/ui](./packages/ui): Exports UI components that use TypeScript and Tailwind CSS. It's transpiled by the Next.js app using [next-transpile-modules](https://github.com/martpie/next-transpile-modules)
-- [./packages/utils](./packages/utils): Exports utility functions that use TypeScript
+- [./packages/ui](./packages/ui): Exports UI components that use TypeScript and Tailwind CSS and is compiled by SWC.
+- [./packages/utils](./packages/utils): Exports utility functions that use TypeScript.
 
-The monorepo is using [Turborepo](https://turborepo.org/) and [pnpm workspaces](https://pnpm.io/workspaces) to link packages together, but it can also work with [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) or [npm workspaces](https://docs.npmjs.com/cli/v8/using-npm/workspaces).
+The monorepo is using [Turborepo](https://turborepo.org/) and [pnpm workspaces](https://pnpm.io/workspaces) to link packages together.
 
 For more examples on monorepos check out the [official Turborepo examples](https://github.com/vercel/turborepo/tree/main/examples).
-
-> In addition to the local packages, it's also using a external package called [`@vercel/examples-ui`](../../packages/ui) that's inside this same repository, it uses `next-transpile-modules` to transpile its UI components that use CSS Modules.
 
 ## Demo
 
