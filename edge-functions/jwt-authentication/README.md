@@ -19,6 +19,21 @@ The example shows how to do JWT authentication at the edge.
 
 https://edge-functions-jwt-authentication.vercel.app
 
+* Visit with a browser
+
+  1. Visit https://edge-functions-jwt-authentication.vercel.app/protected
+  2. Click the "Set the user-token cookie" button
+  3. Visit https://edge-functions-jwt-authentication.vercel.app/protected again
+
+* Use curl to access the API:
+
+  1. `curl -v https://edge-functions-jwt-authentication.vercel.app/api/protected`
+     will respond with a 401 status and an error message in the JSON response since you have not provided authentication
+  2. `curl -X POST -v https://edge-functions-jwt-authentication.vercel.app/api/auth`
+     will respond with a 200 status, provide a JWT in a cookie named `user-token`, and respond with a successful JSON response
+  3.  `curl -v --cookie "user-token=..." https://edge-functions-jwt-authentication.vercel.app/api/protected`
+     (using the cookie provided in step 2) will respond with a 200 status and a successful JSON response
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:
