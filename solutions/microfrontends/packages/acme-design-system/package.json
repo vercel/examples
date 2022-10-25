@@ -4,8 +4,10 @@
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "scripts": {
+    "dev": "pnpm build:swc -w",
     "build": "rm -rf dist && pnpm build:swc && pnpm types",
-    "build:swc": "swc src -d dist && cp src/tailwind.cjs dist/tailwind.cjs",
+    "build:swc": "pnpm copy-tailwind && swc src -d dist",
+    "copy-tailwind": "mkdir -p dist && cp src/tailwind.cjs dist/tailwind.cjs",
     "types": "tsc --emitDeclarationOnly",
     "lint": "TIMING=1 eslint \"**/*.{ts,tsx,js,jsx}\" --fix",
     "clean": "rm -rf ./dist && rm -rf .turbo"
@@ -62,6 +64,7 @@
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.3.10",
     "@types/react": "latest",
+    "chokidar": "^3.5.3",
     "eslint": "^8.16.0",
     "eslint-config-acme": "workspace:^0.0.1",
     "typescript": "4.8.4"
