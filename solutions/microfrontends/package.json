@@ -17,7 +17,7 @@
     "format": "prettier --write .",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build --filter=main^... && changeset publish"
+    "release": "turbo run build --filter=main... && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.23.0",

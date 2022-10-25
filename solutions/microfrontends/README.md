@@ -132,11 +132,7 @@ In general, MF is not a way to improve UX or performance in any way, it's all ab
 To generate a changeset, run the following command in the root of the project:
 
 ```bash
-npm run changeset
-
-# or
-
-yarn changeset
+pnpm changeset
 ```
 
 The Changeset CLI will ask you a couple of questions:
@@ -157,17 +153,13 @@ You'll need to create an `NPM_TOKEN` and `GITHUB_TOKEN` and then add them to you
 Publishing can also be done manually with:
 
 ```bash
-npm run release
-
-# or
-
-yarn release
+pnpm release
 ```
 
 The action will run the same `release` script defined in `package.json`, which looks like this:
 
 ```bash
-turbo run build --filter=main^... && changeset publish
+turbo run build --filter=main... && changeset publish
 ```
 
 Turborepo will run the `build` script for all publishable dependencies of the `main` app, excluding the `main` app itself, and then publishes the new versions to npm.
@@ -176,4 +168,4 @@ By default, this example includes `acme` as the npm organization. To change this
 
 - Rename folders in `packages/*` to replace `acme` with your desired scope
 - Search and replace `acme` with your desired scope
-- Re-run `npm install` / `yarn`
+- Re-run `pnpm install`
