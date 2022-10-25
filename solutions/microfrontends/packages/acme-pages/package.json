@@ -4,6 +4,7 @@
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "scripts": {
+    "dev": "pnpm build:swc -w",
     "build": "rm -rf dist && pnpm build:swc && pnpm types",
     "build:swc": "swc src -d dist",
     "types": "tsc --emitDeclarationOnly",
@@ -56,6 +57,7 @@
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.3.10",
     "@types/react": "latest",
+    "chokidar": "^3.5.3",
     "eslint": "^8.16.0",
     "eslint-config-acme": "workspace:^0.0.1",
     "typescript": "^4.5.5"
