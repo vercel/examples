@@ -9,30 +9,21 @@ useCase:
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Fjwt-authentication&env=JWT_SECRET_KEY&envDescription=Random%20secret%20that'll%20be%20used%20to%20sign%20JWTs&project-name=jwt-authentication&repo-name=jwt-authentication
 demoUrl: https://edge-functions-jwt-authentication.vercel.app
+relatedTemplates:
+  - nextjs-boilerplate
+  - blog-starter-kit
+  - platforms-starter-kit
 ---
 
 # JWT Authentication
 
-The example shows how to do JWT authentication at the edge.
+The example shows how to do JWT authentication at the edge using Next.js Middleware and Edge Functions.
 
 ## Demo
 
 https://edge-functions-jwt-authentication.vercel.app
 
-* Visit with a browser
-
-  1. Visit https://edge-functions-jwt-authentication.vercel.app/protected
-  2. Click the "Set the user-token cookie" button
-  3. Visit https://edge-functions-jwt-authentication.vercel.app/protected again
-
-* Use curl to access the API:
-
-  1. `curl -v https://edge-functions-jwt-authentication.vercel.app/api/protected`
-     will respond with a 401 status and an error message in the JSON response since you have not provided authentication
-  2. `curl -X POST -v https://edge-functions-jwt-authentication.vercel.app/api/auth`
-     will respond with a 200 status, provide a JWT in a cookie named `user-token`, and respond with a successful JSON response
-  3.  `curl -v --cookie "user-token=..." https://edge-functions-jwt-authentication.vercel.app/api/protected`
-     (using the cookie provided in step 2) will respond with a 200 status and a successful JSON response
+Visit the demo to learn more about how it works!
 
 ## How to Use
 
@@ -75,5 +66,7 @@ npm run dev
 yarn
 yarn dev
 ```
+
+The app should be up and running at http://localhost:3000.
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
