@@ -1,4 +1,3 @@
-const path = require('path')
 const ui = require('@company/ui/tailwind')
 
 module.exports = {

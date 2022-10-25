@@ -9,6 +9,7 @@ deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel
 demoUrl: https://solutions-monorepo.vercel.sh
 relatedTemplates:
   - monorepo-nx
+  - microfrontends
 ---
 
 # Monorepo
@@ -36,7 +37,7 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/monorepo&project-name=monorepo&repository-name=monorepo&root-directory=apps/app&install-command=pnpm%20install&build-command=cd%20..%2F..%20%26%26%20npx%20turbo%20run%20build%20--filter%3Dapp...&ignore-command=npx%20turbo-ignore)
 
-## Getting Started
+### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
 
