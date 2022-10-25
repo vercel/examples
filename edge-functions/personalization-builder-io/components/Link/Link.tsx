@@ -6,8 +6,8 @@ export const Link: React.FC<React.AnchorHTMLAttributes<any>> = ({
   ...props
 }) => {
   return (
-    <NextLink href={href!}>
-      <a {...props}>{children}</a>
+    <NextLink href={href!} {...props}>
+      {children}
     </NextLink>
   )
 }

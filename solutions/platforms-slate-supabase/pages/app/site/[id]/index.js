@@ -72,33 +72,31 @@ export default function SiteIndex() {
             data.posts.length > 0 ? (
               data.posts.map((post) => (
                 <Link href={`/post/${post.id}`} key={post.id}>
-                  <a>
-                    <div className="flex flex-col md:flex-row md:h-60 rounded-lg overflow-hidden border border-gray-200">
-                      <div className="relative w-full h-60 md:h-auto md:w-1/3 md:flex-none">
-                        <BlurImage
-                          src={post.image}
-                          layout="fill"
-                          objectFit="cover"
-                          alt={post.name}
-                        />
-                      </div>
-                      <div className="relative p-10">
-                        <h2 className="font-cal text-3xl">{post.title}</h2>
-                        <p className="text-base my-5 line-clamp-3">
-                          {post.description}
-                        </p>
-                        <a
-                          onClick={(e) => e.stopPropagation()}
-                          href={`https://${data.site.subdomain}.vercel.im/${post.slug}`}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="font-cal px-3 py-1 tracking-wide rounded bg-gray-200 text-gray-600 absolute bottom-5 left-10 whitespace-nowrap"
-                        >
-                          {data.site.subdomain}.vercel.im/{post.slug} ↗
-                        </a>
-                      </div>
+                  <div className="flex flex-col md:flex-row md:h-60 rounded-lg overflow-hidden border border-gray-200">
+                    <div className="relative w-full h-60 md:h-auto md:w-1/3 md:flex-none">
+                      <BlurImage
+                        src={post.image}
+                        layout="fill"
+                        objectFit="cover"
+                        alt={post.name}
+                      />
                     </div>
-                  </a>
+                    <div className="relative p-10">
+                      <h2 className="font-cal text-3xl">{post.title}</h2>
+                      <p className="text-base my-5 line-clamp-3">
+                        {post.description}
+                      </p>
+                      <a
+                        onClick={(e) => e.stopPropagation()}
+                        href={`https://${data.site.subdomain}.vercel.im/${post.slug}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="font-cal px-3 py-1 tracking-wide rounded bg-gray-200 text-gray-600 absolute bottom-5 left-10 whitespace-nowrap"
+                      >
+                        {data.site.subdomain}.vercel.im/{post.slug} ↗
+                      </a>
+                    </div>
+                  </div>
                 </Link>
               ))
             ) : (

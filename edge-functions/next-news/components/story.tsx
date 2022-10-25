@@ -10,7 +10,7 @@ const Story = ({ id, title, date, url, user, score, commentsCount }: any) => {
         {url ? (
           <a href={url}>{title}</a>
         ) : (
-          <Link href={`/item/${id}`}>
+          <Link href={`/item/${id}`} legacyBehavior>
             <a>{title}</a>
           </Link>
         )}
@@ -22,10 +22,10 @@ const Story = ({ id, title, date, url, user, score, commentsCount }: any) => {
       </div>
       <div className="meta">
         {score} {plural(score, 'point')} by{' '}
-        <Link href={`/user?id=${user}`}>
+        <Link href={`/user?id=${user}`} legacyBehavior>
           <a>{user}</a>
         </Link>{' '}
-        <Link href={`/item/${id}`}>
+        <Link href={`/item/${id}`} legacyBehavior>
           <a>
             {
               date &&
@@ -35,7 +35,7 @@ const Story = ({ id, title, date, url, user, score, commentsCount }: any) => {
           </a>
         </Link>{' '}
         |{' '}
-        <Link href={`/item/${id}`}>
+        <Link href={`/item/${id}`} legacyBehavior>
           <a>
             {commentsCount} {plural(commentsCount, 'comment')}
           </a>

@@ -14,7 +14,7 @@ const Stories = ({ stories, page = 1, offset = null }) => (
       </div>
     ))}
     <footer className="footer">
-      <Link href={`/news/${page + 1}`}>
+      <Link href={`/news/${page + 1}`} legacyBehavior>
         <a>More</a>
       </Link>
     </footer>
