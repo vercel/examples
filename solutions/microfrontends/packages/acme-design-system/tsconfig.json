@@ -2,6 +2,8 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
+    "rootDir": "src",
+    "outDir": "dist",
     "lib": ["dom", "dom.iterable", "esnext"],
     "declaration": true,
     "allowJs": true,
@@ -13,7 +15,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    "jsx": "react-jsx"
+    "jsx": "preserve"
   },
-  "exclude": ["node_modules"]
+  "include": ["src"],
+  "exclude": ["node_modules", "**/*.stories.tsx"]
 }

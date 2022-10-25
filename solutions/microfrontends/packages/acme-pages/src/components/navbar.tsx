@@ -1,11 +1,16 @@
-import type { VFC } from 'react'
-import { Link, A } from '@vercel/examples-ui'
+import type { FC } from 'react'
+import { Link } from '@vercel/examples-ui'
 
-const Navbar: VFC<{ isDocsApp?: boolean }> = ({ isDocsApp }) =>
+const Navbar: FC<{ isDocsApp?: boolean }> = ({ isDocsApp }) =>
   isDocsApp ? (
     <ul className="inline-flex mb-4">
       <li>
-        <A href="/">Home (Multi Zones)</A>
+        <a
+          href="/"
+          className="text-link hover:text-link-light transition-colors no-underline"
+        >
+          Home (Multi Zones)
+        </a>
       </li>
       <li className="ml-4">
         <Link href="/">Docs</Link>
@@ -23,7 +28,12 @@ const Navbar: VFC<{ isDocsApp?: boolean }> = ({ isDocsApp }) =>
         <Link href="/about">About</Link>
       </li>
       <li className="ml-4">
-        <A href="/docs">Docs (Multi Zones)</A>
+        <a
+          href="/docs"
+          className="text-link hover:text-link-light transition-colors no-underline"
+        >
+          Docs (Multi Zones)
+        </a>
       </li>
     </ul>
   )

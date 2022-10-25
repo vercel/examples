@@ -5,7 +5,7 @@
   "license": "MIT",
   "main": "index.js",
   "peerDependencies": {
-    "@acme/design-system": "*",
+    "@acme/design-system": "workspace:*",
     "@vercel/examples-ui": "*"
   },
   "dependencies": {
