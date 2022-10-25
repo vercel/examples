@@ -59,7 +59,6 @@ The example is a monorepo with [Turborepo](https://turborepo.org/) with the foll
 - Packages used by the applications live in [./packages](./packages)
 - [Tailwind CSS](https://tailwindcss.com) for utility CSS in React components and to build the design system
 - Storybook is used for the components that are part of the [`acme-design-system`](./packages/acme-design-system) package and its setup is shared in the [`acme-storybook`](./packages/acme-storybook) package
-- [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules) is used for packages that use CSS Modules
 - The Eslint config lives in [eslint-config-acme](./packages/eslint-config-acme)
 - [Changesets](https://github.com/changesets/changesets) to manage versioning and publishing of packages, read more about it in [Versioning & Publishing Packages](#versioning--publishing-packages).
 
@@ -73,17 +72,15 @@ One of the challenges of building Microfrontends is dependency management and a 
 
 ### Design System with Tailwind and CSS Modules
 
-[./packages/acme-design-system](./packages/acme-design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/). The components are installed in the app as a npm dependency and Next.js takes care of compiling them thanks to [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules).
+[./packages/acme-design-system](./packages/acme-design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/). The components are installed in the app as a npm dependency and the compilation step is handled by [SWC](https://swc.rs/).
 
-The benefits of using `next-transpile-modules` is that the CSS optimizations Next.js does (and CSS Modules support) is available to the components, that way you don't need to include global CSS files that usually have more CSS than needed.
+All the CSS used by the app and components is unified by Tailwind, so having components outside the app doens't increase the CSS bundle size.
 
-HMR and React Fast Refresh work as expected because the components are part of the Next.js build and tracked just like components defined in the app.
-
-> The downside of depending in `next-transpile-modules` is that you have to ship uncompiled components to npm that will need to be compiled by the app where they're used. One way of shipping both compiled and uncompiled components is to create a wrapper package that exports the compiled version of the components.
+HMR and React Fast Refresh work as expected because even though the components live outside the app and have a different build process.
 
 ### Pages Living Outside the Next.js App
 
-[./packages/acme-pages](./packages/acme-pages) contains all the pages that are used in the Next.js app. They are all compiled with `next-transpile-modules` too and work in the same way as [./packages/acme-design-system](./packages/acme-design-system).
+[./packages/acme-pages](./packages/acme-pages) contains all the pages that are used in the Next.js app. They are all compiled with [SWC](https://swc.rs/) too and work in the same way as [./packages/acme-design-system](./packages/acme-design-system).
 
 The only difference to take into account when taking this approach is that dead code elimination when there's server only code (for example when using `getStaticProps`, `getStaticPaths` or `getServerSideProps`) can't be properly distinguished by the Next.js app, so to avoid including server code in pages it's recommended to have data fetching methods in a different file and import them from the page in the Next.js app.
 

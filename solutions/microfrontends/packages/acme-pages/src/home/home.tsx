@@ -30,16 +30,7 @@ export default function Home() {
         apps/main
       </Text>
       <Text className="mb-4">
-        This is the current Next.js site you&apos;re looking at. It uses{' '}
-        <Link
-          href="https://github.com/martpie/next-transpile-modules"
-          target="_blank"
-        >
-          next-transpile-modules
-        </Link>{' '}
-        to enable CSS Modules and HMR for packages that ship uncompiled code,
-        like is the case for <Code>packages/acme-pages</Code> which contains the
-        pages used in this application.
+        This is the current Next.js site you&apos;re looking at!
       </Text>
       <Text variant="h2" className="mt-10 mb-6">
         packages/acme-design-system
@@ -72,11 +63,7 @@ export default function Home() {
       <Text variant="h2" className="mt-10 mb-6">
         packages/acme-utils
       </Text>
-      <Text className="mb-4">
-        This package exports utility functions, the package ships transpiled
-        code so it&apos;s not needed to use <Code>next-transpile-modules</Code>{' '}
-        in this case.
-      </Text>
+      <Text className="mb-4">This package exports utility functions.</Text>
       <Text className="mb-4">
         The button below uses an utility function from this package to change
         its color when clicked:
@@ -137,7 +124,7 @@ export default function Home() {
         packages:
       </Text>
       <Snippet className="mb-4">{`module.exports = {
-  extends: ['next/core-web-vitals', 'prettier'],
+  extends: ['next', 'turbo', 'prettier'],
   rules: {
     '@next/next/no-html-link-for-pages': 'off',
   },
