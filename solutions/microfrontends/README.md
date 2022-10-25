@@ -57,7 +57,7 @@ The example is a monorepo with [Turborepo](https://turborepo.org/) with the foll
 - Everything is in [TypeScript](https://www.typescriptlang.org/)
 - Next.js is used for the applications in [./apps](./apps)
 - Packages used by the applications live in [./packages](./packages)
-- [Tailwind CSS](https://tailwindcss.com) is used in most React components and its setup is shared in the [`acme-tailwind-config`](./packages/acme-tailwind-config) package
+- [Tailwind CSS](https://tailwindcss.com) for utility CSS in React components and to build the design system
 - Storybook is used for the components that are part of the [`acme-design-system`](./packages/acme-design-system) package and its setup is shared in the [`acme-storybook`](./packages/acme-storybook) package
 - [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules) is used for packages that use CSS Modules
 - The Eslint config lives in [eslint-config-acme](./packages/eslint-config-acme)

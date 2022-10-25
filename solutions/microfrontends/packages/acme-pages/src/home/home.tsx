@@ -119,36 +119,6 @@ export default function Home() {
         in port 3000, and <Code>apps/docs</Code> in 3001).
       </Text>
       <Text variant="h2" className="mt-10 my-6">
-        packages/acme-tailwind-config
-      </Text>
-      <Text className="mb-4">
-        Exports the Tailwind CSS configuration that will be used by every app:
-      </Text>
-      <Snippet className="mb-4">{`mmodule.exports = {
-  presets: [
-    require('@vercel/examples-ui/tailwind'),
-    require('@acme/design-system/tailwind'),
-  ],
-}`}</Snippet>
-      <Text className="mb-4">
-        Every app then has a <Code>tailwind.config.js</Code> with:
-      </Text>
-      <Snippet className="mb-4">{`const { getContent } = require('@acme/tailwind-config/content')
-
-module.exports = {
-  presets: [require('@acme/tailwind-config')],
-  content: getContent([
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-  ]),
-}`}</Snippet>
-      <Text className="mb-4">
-        <Code>getContent</Code> will append the packages that use Tailwind CSS
-        so that they&apos;re scanned properly. Those packages are{' '}
-        <Code>@vercel/examples-ui</Code>, <Code>@acme/design-system</Code> and{' '}
-        <Code>@acme/pages</Code>.
-      </Text>
-      <Text variant="h2" className="mt-10 my-6">
         packages/acme-storybook
       </Text>
       <Text className="mb-4">
