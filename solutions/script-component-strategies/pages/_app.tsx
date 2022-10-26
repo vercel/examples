@@ -22,9 +22,7 @@ function App({ Component, pageProps, router }: AppProps) {
         <>
           <hr className="border-t border-accents-2 my-2" />
           <footer className="w-full max-w-3xl mx-auto py-4 mb-2">
-            <Link href="/">
-              <a>See all examples</a>
-            </Link>
+            <Link href="/">See all examples</Link>
           </footer>
         </>
       )}

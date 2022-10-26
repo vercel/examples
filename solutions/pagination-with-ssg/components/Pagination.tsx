@@ -30,14 +30,15 @@ const Pagination = ({
             {pageNumber}
           </span>
         ) : (
-          <Link key={i} href={renderPageLink(pageNumber as number)} passHref>
-            <a
-              className={`${
-                pageNumber === currentPage ? 'text-success-dark' : 'text-black'
-              } px-4 py-2 mx-1 rounded-full text-sm font-semibold no-underline`}
-            >
-              {pageNumber}
-            </a>
+          <Link
+            key={i}
+            href={renderPageLink(pageNumber as number)}
+            passHref
+            className={`${
+              pageNumber === currentPage ? 'text-success-dark' : 'text-black'
+            } px-4 py-2 mx-1 rounded-full text-sm font-semibold no-underline`}
+          >
+            {pageNumber}
           </Link>
         )
       )}
