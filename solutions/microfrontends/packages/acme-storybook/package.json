@@ -12,8 +12,8 @@
     "clean": "rm -rf .turbo"
   },
   "dependencies": {
-    "@acme/design-system": "workspace:^0.0.1",
-    "@acme/pages": "workspace:^0.0.1",
+    "@acme/design-system": "workspace:*",
+    "@acme/pages": "workspace:*",
     "react": "latest",
     "react-dom": "latest"
   },
@@ -26,7 +26,7 @@
     "@storybook/react": "^6.5.13",
     "autoprefixer": "^10.4.12",
     "eslint": "^8.26.0",
-    "eslint-config-acme": "workspace:^0.0.1",
+    "eslint-config-acme": "workspace:*",
     "serve": "^14.0.1",
     "tailwindcss": "^3.2.1",
     "typescript": "^4.8.4",

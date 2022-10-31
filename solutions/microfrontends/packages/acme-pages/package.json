@@ -47,8 +47,8 @@
     "react-dom": "^17.0.0 || ^18.0.0-0"
   },
   "dependencies": {
-    "@acme/design-system": "workspace:^0.0.1",
-    "@acme/utils": "workspace:^0.0.1",
+    "@acme/design-system": "workspace:*",
+    "@acme/utils": "workspace:*",
     "@swc/helpers": "^0.4.12",
     "@vercel/examples-ui": "^1.0.2",
     "clsx": "^1.1.1"
@@ -59,7 +59,7 @@
     "@types/react": "latest",
     "chokidar": "^3.5.3",
     "eslint": "^8.16.0",
-    "eslint-config-acme": "workspace:^0.0.1",
+    "eslint-config-acme": "workspace:*",
     "typescript": "^4.5.5"
   }
 }
