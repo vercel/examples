@@ -2,7 +2,7 @@
 # https://help.github.com/en/articles/about-code-owners
 
 # Solutions Eng and Dev Rel are the default owners of everything
-* @okbel @lfades @goncy @dominiksipowicz @leerob @steven-tey
+* @okbel @lfades @goncy @dominiksipowicz @cond0r @leerob @steven-tey
 
 # For examples that are a Monorepo we add the Turbo team and some members
 # from Solutions and Dev Rel
