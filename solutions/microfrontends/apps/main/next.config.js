@@ -1,12 +1,6 @@
-const ntm = require('next-transpile-modules')
-
 const { DOCS_URL } = process.env
 
-module.exports = ntm([
-  '@vercel/examples-ui',
-  '@acme/design-system',
-  '@acme/pages',
-])({
+module.exports = {
   async rewrites() {
     return [
       /**
@@ -22,4 +16,4 @@ module.exports = ntm([
       },
     ]
   },
-})
+}

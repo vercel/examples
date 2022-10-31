@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['next/core-web-vitals', 'prettier'],
+  extends: ['next', 'turbo', 'prettier'],
   rules: {
     '@next/next/no-html-link-for-pages': 'off',
   },

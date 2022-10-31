@@ -5,8 +5,11 @@ description: Microfrontends allow teams to work independently of each other by s
 framework: Next.js
 useCase: Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/microfrontends&project-name=microfrontends&repository-name=microfrontends
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/microfrontends&project-name=microfrontends&repository-name=microfrontends&root-directory=solutions/microfrontends/apps/main&install-command=pnpm%20install&build-command=cd%20..%2F..%20%26%26%20pnpm%20build%20--filter%3Dmain...&ignore-command=npx%20turbo-ignore
 demoUrl: https://microfrontends.vercel.app
+relatedTemplates:
+  - monorepo-nx
+  - monorepo-turborepo
 ---
 
 # Microfrontends
@@ -21,32 +24,28 @@ We recommend reading the [How it works](#how-it-works) section to understand the
 
 https://solutions-microfrontends.vercel.app
 
+## How to Use
+
+You can choose from one of the following two methods to use this repository:
+
 ### One-Click Deploy
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/microfrontends&project-name=microfrontends&repository-name=microfrontends)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/microfrontends&project-name=microfrontends&repository-name=microfrontends&root-directory=solutions/microfrontends/apps/main&install-command=pnpm%20install&build-command=cd%20..%2F..%20%26%26%20pnpm%20build%20--filter%3Dmain...&ignore-command=npx%20turbo-ignore)
 
-## Getting Started
+### Clone and Deploy
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/solutions/microfrontends microfrontends
-# or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/solutions/microfrontends microfrontends
+pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/microfrontends microfrontends
 ```
 
-Next, run Next.js in development mode:
+Next, run the included Next.js apps in development mode:
 
 ```bash
-npm install
-npm run dev
-
-# or
-
-yarn
-yarn dev
+pnpm dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
@@ -58,9 +57,8 @@ The example is a monorepo with [Turborepo](https://turborepo.org/) with the foll
 - Everything is in [TypeScript](https://www.typescriptlang.org/)
 - Next.js is used for the applications in [./apps](./apps)
 - Packages used by the applications live in [./packages](./packages)
-- [Tailwind CSS](https://tailwindcss.com) is used in most React components and its setup is shared in the [`acme-tailwind-config`](./packages/acme-tailwind-config) package
+- [Tailwind CSS](https://tailwindcss.com) for utility CSS in React components and to build the design system
 - Storybook is used for the components that are part of the [`acme-design-system`](./packages/acme-design-system) package and its setup is shared in the [`acme-storybook`](./packages/acme-storybook) package
-- [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules) is used for packages that use CSS Modules
 - The Eslint config lives in [eslint-config-acme](./packages/eslint-config-acme)
 - [Changesets](https://github.com/changesets/changesets) to manage versioning and publishing of packages, read more about it in [Versioning & Publishing Packages](#versioning--publishing-packages).
 
@@ -74,17 +72,15 @@ One of the challenges of building Microfrontends is dependency management and a 
 
 ### Design System with Tailwind and CSS Modules
 
-[./packages/acme-design-system](./packages/acme-design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/). The components are installed in the app as a npm dependency and Next.js takes care of compiling them thanks to [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules).
+[./packages/acme-design-system](./packages/acme-design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/). The components are installed in the app as a npm dependency and the compilation step is handled by [SWC](https://swc.rs/).
 
-The benefits of using `next-transpile-modules` is that the CSS optimizations Next.js does (and CSS Modules support) is available to the components, that way you don't need to include global CSS files that usually have more CSS than needed.
+All the CSS used by the app and components is unified by Tailwind, so having components outside the app doens't increase the CSS bundle size.
 
-HMR and React Fast Refresh work as expected because the components are part of the Next.js build and tracked just like components defined in the app.
-
-> The downside of depending in `next-transpile-modules` is that you have to ship uncompiled components to npm that will need to be compiled by the app where they're used. One way of shipping both compiled and uncompiled components is to create a wrapper package that exports the compiled version of the components.
+HMR and React Fast Refresh work as expected because even though the components live outside the app and have a different build process.
 
 ### Pages Living Outside the Next.js App
 
-[./packages/acme-pages](./packages/acme-pages) contains all the pages that are used in the Next.js app. They are all compiled with `next-transpile-modules` too and work in the same way as [./packages/acme-design-system](./packages/acme-design-system).
+[./packages/acme-pages](./packages/acme-pages) contains all the pages that are used in the Next.js app. They are all compiled with [SWC](https://swc.rs/) too and work in the same way as [./packages/acme-design-system](./packages/acme-design-system).
 
 The only difference to take into account when taking this approach is that dead code elimination when there's server only code (for example when using `getStaticProps`, `getStaticPaths` or `getServerSideProps`) can't be properly distinguished by the Next.js app, so to avoid including server code in pages it's recommended to have data fetching methods in a different file and import them from the page in the Next.js app.
 
@@ -136,11 +132,7 @@ In general, MF is not a way to improve UX or performance in any way, it's all ab
 To generate a changeset, run the following command in the root of the project:
 
 ```bash
-npm run changeset
-
-# or
-
-yarn changeset
+pnpm changeset
 ```
 
 The Changeset CLI will ask you a couple of questions:
@@ -161,17 +153,13 @@ You'll need to create an `NPM_TOKEN` and `GITHUB_TOKEN` and then add them to you
 Publishing can also be done manually with:
 
 ```bash
-npm run release
-
-# or
-
-yarn release
+pnpm release
 ```
 
 The action will run the same `release` script defined in `package.json`, which looks like this:
 
 ```bash
-turbo run build --filter=main^... && changeset publish
+turbo run build --filter=main... && changeset publish
 ```
 
 Turborepo will run the `build` script for all publishable dependencies of the `main` app, excluding the `main` app itself, and then publishes the new versions to npm.
@@ -180,4 +168,4 @@ By default, this example includes `acme` as the npm organization. To change this
 
 - Rename folders in `packages/*` to replace `acme` with your desired scope
 - Search and replace `acme` with your desired scope
-- Re-run `npm install` / `yarn`
+- Re-run `pnpm install`

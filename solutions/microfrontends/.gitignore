@@ -19,6 +19,7 @@ dist
 # Misc
 .DS_Store
 *.pem
+tsconfig.tsbuildinfo
 
 # Debug
 npm-debug.log*
@@ -34,7 +35,7 @@ yarn-error.log*
 # Vercel
 .vercel
 
-# Turbo
+# Turborepo
 .turbo
 
 # Storybook

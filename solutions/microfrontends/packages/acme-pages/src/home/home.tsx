@@ -30,16 +30,7 @@ export default function Home() {
         apps/main
       </Text>
       <Text className="mb-4">
-        This is the current Next.js site you&apos;re looking at. It uses{' '}
-        <Link
-          href="https://github.com/martpie/next-transpile-modules"
-          target="_blank"
-        >
-          next-transpile-modules
-        </Link>{' '}
-        to enable CSS Modules and HMR for packages that ship uncompiled code,
-        like is the case for <Code>packages/acme-pages</Code> which contains the
-        pages used in this application.
+        This is the current Next.js site you&apos;re looking at!
       </Text>
       <Text variant="h2" className="mt-10 mb-6">
         packages/acme-design-system
@@ -72,11 +63,7 @@ export default function Home() {
       <Text variant="h2" className="mt-10 mb-6">
         packages/acme-utils
       </Text>
-      <Text className="mb-4">
-        This package exports utility functions, the package ships transpiled
-        code so it&apos;s not needed to use <Code>next-transpile-modules</Code>{' '}
-        in this case.
-      </Text>
+      <Text className="mb-4">This package exports utility functions.</Text>
       <Text className="mb-4">
         The button below uses an utility function from this package to change
         its color when clicked:
@@ -119,36 +106,6 @@ export default function Home() {
         in port 3000, and <Code>apps/docs</Code> in 3001).
       </Text>
       <Text variant="h2" className="mt-10 my-6">
-        packages/acme-tailwind-config
-      </Text>
-      <Text className="mb-4">
-        Exports the Tailwind CSS configuration that will be used by every app:
-      </Text>
-      <Snippet className="mb-4">{`mmodule.exports = {
-  presets: [
-    require('@vercel/examples-ui/tailwind'),
-    require('@acme/design-system/tailwind'),
-  ],
-}`}</Snippet>
-      <Text className="mb-4">
-        Every app then has a <Code>tailwind.config.js</Code> with:
-      </Text>
-      <Snippet className="mb-4">{`const { getContent } = require('@acme/tailwind-config/content')
-
-module.exports = {
-  presets: [require('@acme/tailwind-config')],
-  content: getContent([
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-  ]),
-}`}</Snippet>
-      <Text className="mb-4">
-        <Code>getContent</Code> will append the packages that use Tailwind CSS
-        so that they&apos;re scanned properly. Those packages are{' '}
-        <Code>@vercel/examples-ui</Code>, <Code>@acme/design-system</Code> and{' '}
-        <Code>@acme/pages</Code>.
-      </Text>
-      <Text variant="h2" className="mt-10 my-6">
         packages/acme-storybook
       </Text>
       <Text className="mb-4">
@@ -167,7 +124,7 @@ module.exports = {
         packages:
       </Text>
       <Snippet className="mb-4">{`module.exports = {
-  extends: ['next/core-web-vitals', 'prettier'],
+  extends: ['next', 'turbo', 'prettier'],
   rules: {
     '@next/next/no-html-link-for-pages': 'off',
   },

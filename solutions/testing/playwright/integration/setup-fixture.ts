@@ -23,8 +23,7 @@ export const test = base.extend<Extensions>({
       const isBlocked = !url.startsWith(baseURL)
 
       // Block fetch/XHR requests, but not other asset types like scripts.
-      // `other` matches preloading requests that an be used in SWR.
-      const isFetchRequest = ['fetch', 'xhr', 'other'].includes(resourceType)
+      const isFetchRequest = ['fetch', 'xhr'].includes(resourceType)
 
       // Allow all HEAD requests.
       const isHeadRequest = request.method() === 'HEAD'
