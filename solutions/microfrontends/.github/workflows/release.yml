@@ -5,30 +5,48 @@ on:
     branches:
       - main
 
+env:
+  FORCE_COLOR: 3
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: acme
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Setup Node.js 16.x
-        uses: actions/setup-node@v2
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2.2.2
         with:
-          node-version: 16.x
+          version: 7.12.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.14
+          cache: pnpm
 
       - name: Install Dependencies
-        run: yarn
+        run: pnpm i --frozen-lockfile --ignore-scripts
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Create Release PR or Publish Packages
         id: changesets
         uses: changesets/action@v1
         with:
-          # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: yarn release
+          # Builds the package and executes `changeset publish`
+          publish: pnpm release
+          # Alias to `changeset version` script in package.json
+          version: pnpm version-packages
+          commit: 'chore: update package versions'
+          title: 'chore: update package versions'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

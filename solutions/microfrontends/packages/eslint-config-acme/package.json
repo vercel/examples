@@ -4,11 +4,16 @@
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "main": "index.js",
-  "dependencies": {
-    "eslint-config-next": "^12.1.6",
-    "eslint-config-prettier": "^8.5.0"
-  },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "eslint": "^8.26.0",
+    "eslint-config-next": "canary",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-turbo": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^4.8.4"
   }
 }
