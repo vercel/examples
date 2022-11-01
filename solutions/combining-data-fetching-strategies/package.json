@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/examples-ui": "^1.0.2",
+    "@vercel/examples-ui": "^1.0.3",
     "next": "^12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",

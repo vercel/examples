@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.5.0",
-    "@vercel/examples-ui": "^1.0.2",
+    "@vercel/examples-ui": "^1.0.3",
     "ethers": "^5.5.1",
     "next": "12.1.0",
     "next-auth": "^4.3.1",
