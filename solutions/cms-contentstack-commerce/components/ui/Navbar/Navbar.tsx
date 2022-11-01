@@ -34,7 +34,7 @@ const Navbar: React.FC<{
             <a className={s.link}>My Closet</a>
           </div>
           <div>
-            <Link href="/" passHref>
+            <Link href="/" passHref legacyBehavior>
               <span className="cursor-pointer">
                 <Logo />
               </span>
@@ -43,14 +43,14 @@ const Navbar: React.FC<{
 
           <div className="flex flex-1 items-center justify-end">
             <nav className="space-x-4 ml-6 hidden lg:block">
-              <Link href="/">
-                <a className={s.link}>Sign In</a>
+              <Link href="/" className={s.link}>
+                Sign In
               </Link>
-              <Link href="/search?q=clothes">
-                <a className={s.link}>Register</a>
+              <Link href="/search?q=clothes" className={s.link}>
+                Register
               </Link>
-              <Link href="/search?q=accessories">
-                <a className={s.link}>Find a Store</a>
+              <Link href="/search?q=accessories" className={s.link}>
+                Find a Store
               </Link>
             </nav>
             <span className="ml-3">
@@ -91,10 +91,11 @@ const Navbar: React.FC<{
               </a>
             ))}
             <div className="flex-1">
-              <Link href="/">
-                <a className="cursor-pointer hover:text-gray-600 uppercase font-medium text-sm">
-                  Search
-                </a>
+              <Link
+                href="/"
+                className="cursor-pointer hover:text-gray-600 uppercase font-medium text-sm"
+              >
+                Search
               </Link>
             </div>
             <UserNav />

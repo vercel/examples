@@ -41,8 +41,8 @@ const DropdownMenu: FC<DropdownMenuProps> = ({ open = false }) => {
           {LINKS.map(({ name, href }) => (
             <li key={href}>
               <div>
-                <Link href={href}>
-                  <a className={s.link}>{name}</a>
+                <Link href={href} className={s.link}>
+                  {name}
                 </Link>
               </div>
             </li>

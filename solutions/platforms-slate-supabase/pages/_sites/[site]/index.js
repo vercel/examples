@@ -31,36 +31,36 @@ export default function Index(props) {
         {data.posts.length > 0 ? (
           <div className="w-full max-w-screen-xl lg:w-5/6 mx-auto md:mb-28">
             <Link href={`/${data.posts[0].slug}`}>
-              <a>
-                <div className="relative group h-80 sm:h-150 w-full mx-auto overflow-hidden lg:rounded-xl">
-                  <BlurImage
-                    src={data.posts[0].image}
-                    alt={data.posts[0].title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="group-hover:scale-105 group-hover:duration-300"
-                    placeholder="blur"
-                    blurDataURL={data.posts[0].imageBlurhash}
-                  />
-                </div>
-                <div className="mt-10 w-5/6 mx-auto lg:w-full">
-                  <h2 className="font-cal text-4xl md:text-6xl my-10">
-                    {data.posts[0].title}
-                  </h2>
-                  <p className="text-base md:text-lg w-full lg:w-2/3">
-                    {data.posts[0].description}
+
+              <div className="relative group h-80 sm:h-150 w-full mx-auto overflow-hidden lg:rounded-xl">
+                <BlurImage
+                  src={data.posts[0].image}
+                  alt={data.posts[0].title}
+                  layout="fill"
+                  objectFit="cover"
+                  className="group-hover:scale-105 group-hover:duration-300"
+                  placeholder="blur"
+                  blurDataURL={data.posts[0].imageBlurhash}
+                />
+              </div>
+              <div className="mt-10 w-5/6 mx-auto lg:w-full">
+                <h2 className="font-cal text-4xl md:text-6xl my-10">
+                  {data.posts[0].title}
+                </h2>
+                <p className="text-base md:text-lg w-full lg:w-2/3">
+                  {data.posts[0].description}
+                </p>
+                <div className="flex justify-start items-center space-x-4 w-full">
+                  <p className="inline-block font-semibold text-sm md:text-base align-middle whitespace-nowrap">
+                    {data.userId}
                   </p>
-                  <div className="flex justify-start items-center space-x-4 w-full">
-                    <p className="inline-block font-semibold text-sm md:text-base align-middle whitespace-nowrap">
-                      {data.userId}
-                    </p>
-                    <div className="border-l border-gray-600 h-6" />
-                    <p className="text-sm md:text-base font-light text-gray-500 w-10/12 m-auto my-5">
-                      <Date dateString={data.posts[0].createdAt} />
-                    </p>
-                  </div>
+                  <div className="border-l border-gray-600 h-6" />
+                  <p className="text-sm md:text-base font-light text-gray-500 w-10/12 m-auto my-5">
+                    <Date dateString={data.posts[0].createdAt} />
+                  </p>
                 </div>
-              </a>
+              </div>
+
             </Link>
           </div>
         ) : (
@@ -89,7 +89,7 @@ export default function Index(props) {
         </div>
       )}
     </Layout>
-  )
+  );
 }
 
 export async function getStaticPaths() {

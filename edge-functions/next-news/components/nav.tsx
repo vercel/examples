@@ -20,7 +20,7 @@ export default function Nav() {
 
 const Item = ({ href, children }) => (
   <li>
-    <Link href={href}>
+    <Link href={href} legacyBehavior>
       <a>{children}</a>
     </Link>
 

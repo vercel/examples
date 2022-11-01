@@ -65,20 +65,18 @@ export default function Layout({ meta, children, subdomain }) {
         <div className="flex justify-center items-center space-x-5 h-full max-w-screen-xl mx-auto px-10 sm:px-20">
           {subdomain == 'demo' ? (
             <>
-              <Link href="/">
-                <a className="flex justify-center items-center">
-                  <div className="h-8 w-8 inline-block rounded-full overflow-hidden align-middle">
-                    <Image
-                      src={meta?.logo}
-                      width={40}
-                      height={40}
-                      alt={meta?.title}
-                    />
-                  </div>
-                  <span className="inline-block ml-3 font-medium truncate">
-                    {meta?.title}
-                  </span>
-                </a>
+              <Link href="/" className="flex justify-center items-center">
+                <div className="h-8 w-8 inline-block rounded-full overflow-hidden align-middle">
+                  <Image
+                    src={meta?.logo}
+                    width={40}
+                    height={40}
+                    alt={meta?.title}
+                  />
+                </div>
+                <span className="inline-block ml-3 font-medium truncate">
+                  {meta?.title}
+                </span>
               </Link>
               <a
                 href="https://www.producthunt.com/posts/platforms-starter-kit?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-platforms-starter-kit"
@@ -109,20 +107,18 @@ export default function Layout({ meta, children, subdomain }) {
               </a>
             </>
           ) : (
-            <Link href="/">
-              <a className="flex justify-center items-center">
-                <div className="h-8 w-8 inline-block rounded-full overflow-hidden align-middle">
-                  <Image
-                    src={meta?.logo}
-                    width={40}
-                    height={40}
-                    alt={meta?.title}
-                  />
-                </div>
-                <span className="inline-block ml-3 font-medium truncate">
-                  {meta?.title}
-                </span>
-              </a>
+            <Link href="/" className="flex justify-center items-center">
+              <div className="h-8 w-8 inline-block rounded-full overflow-hidden align-middle">
+                <Image
+                  src={meta?.logo}
+                  width={40}
+                  height={40}
+                  alt={meta?.title}
+                />
+              </div>
+              <span className="inline-block ml-3 font-medium truncate">
+                {meta?.title}
+              </span>
             </Link>
           )}
         </div>

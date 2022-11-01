@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header>
       <div className="left">
-        <Link href="/">
+        <Link href="/" legacyBehavior>
           <a>
             <span className="logo">
               <Logo />
@@ -19,7 +19,7 @@ export default function Header() {
         </div>
       </div>
       <div className="right">
-        <Link href="/login">
+        <Link href="/login" legacyBehavior>
           <a className="login">login</a>
         </Link>
       </div>
