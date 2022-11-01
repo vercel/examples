@@ -6,7 +6,7 @@ framework: Next.js
 useCase: Documentation
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/microfrontends&project-name=microfrontends&repository-name=microfrontends&root-directory=solutions/microfrontends/apps/main&install-command=pnpm%20install&build-command=cd%20..%2F..%20%26%26%20pnpm%20build%20--filter%3Dmain...&ignore-command=npx%20turbo-ignore
-demoUrl: https://microfrontends.vercel.app
+demoUrl: https://solutions-microfrontends.vercel.app
 relatedTemplates:
   - monorepo-nx
   - monorepo-turborepo
