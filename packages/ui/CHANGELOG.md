@@ -1,5 +1,11 @@
 # @vercel/examples-ui
 
+## 1.0.3
+
+### Patch Changes
+
+- f21d8a3: Updated Link component in @vercel/examples-ui to not include an anchor tag
+
 ## 1.0.2
 
 ### Patch Changes
