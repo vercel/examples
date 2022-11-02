@@ -1,7 +1,7 @@
 import type { NextRequest, NextResponse } from 'next/server'
 import { nanoid } from 'nanoid'
 import { SignJWT, jwtVerify } from 'jose'
-import { USER_TOKEN, JWT_SECRET_KEY } from './constants'
+import { USER_TOKEN, getJwtSecretKey } from './constants'
 
 interface UserJwtPayload {
   jti: string
@@ -14,14 +14,14 @@ export class AuthError extends Error {}
  * Verifies the user's JWT token and returns its payload if it's valid.
  */
 export async function verifyAuth(req: NextRequest) {
-  const token = req.cookies.get(USER_TOKEN)
+  const token = req.cookies.get(USER_TOKEN)?.value
 
   if (!token) throw new AuthError('Missing user token')
 
   try {
     const verified = await jwtVerify(
       token,
-      new TextEncoder().encode(JWT_SECRET_KEY)
+      new TextEncoder().encode(getJwtSecretKey())
     )
     return verified.payload as UserJwtPayload
   } catch (err) {
@@ -38,7 +38,7 @@ export async function setUserCookie(res: NextResponse) {
     .setJti(nanoid())
     .setIssuedAt()
     .setExpirationTime('2h')
-    .sign(new TextEncoder().encode(JWT_SECRET_KEY))
+    .sign(new TextEncoder().encode(getJwtSecretKey()))
 
   res.cookies.set(USER_TOKEN, token, {
     httpOnly: true,
