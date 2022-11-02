@@ -4,7 +4,7 @@ import { Page, Text, Code, Link, Button } from '@vercel/examples-ui'
 import { USER_TOKEN } from '@lib/constants'
 
 export default function Protected() {
-  const { reload } = useRouter()
+  const { reload } = useRouter(true)
 
   return (
     <Page>
