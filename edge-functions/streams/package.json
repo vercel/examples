@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@vercel/examples-ui": "^1.0.3",
+    "@vercel/examples-ui": "^1.0.4",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

@@ -14,7 +14,7 @@
     "e2e": "node playwright-test.mjs -e"
   },
   "dependencies": {
-    "@vercel/examples-ui": "^1.0.3",
+    "@vercel/examples-ui": "^1.0.4",
     "clsx": "^1.2.1",
     "cookie": "^0.5.0",
     "next": "latest",
