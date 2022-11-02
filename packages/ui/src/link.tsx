@@ -14,9 +14,11 @@ const css = [
   '[&_code]:text-link [&_code]:hover:text-link-light [&_code]:transition-colors',
 ]
 
-const Link: FC<LinkPropsReal> = ({ children, className, ...props }) => (
-  <NextLink className={cn(css, className)} {...props}>
-    {children}
+const Link: FC<LinkPropsReal> = ({ children, className, href, ...props }) => (
+  <NextLink href={href} legacyBehavior>
+    <a className={cn(css, className)} {...props}>
+      {children}
+    </a>
   </NextLink>
 )
 
