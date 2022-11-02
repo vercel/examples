@@ -10,7 +10,7 @@ export async function middleware(req: NextRequest) {
   if (req.nextUrl.pathname !== '/') return
 
   // Get the user ID from the cookie or get a new one
-  let userId = req.cookies.get(UID_COOKIE)
+  let userId = req.cookies.get(UID_COOKIE)?.value
   let hasUserId = !!userId
 
   // If there's no active user ID in cookies or its value is invalid, get a new one

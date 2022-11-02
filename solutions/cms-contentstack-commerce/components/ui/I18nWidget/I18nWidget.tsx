@@ -36,7 +36,7 @@ const I18nWidget: FC = () => {
     locales,
     defaultLocale = 'en-US',
     asPath: currentPath,
-  } = useRouter()
+  } = useRouter(true)
   const options = locales?.filter((val) => val !== locale)
   const currentLocale = locale || defaultLocale
 

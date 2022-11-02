@@ -4,7 +4,7 @@ import { Layout, Page, Text, Button } from '@vercel/examples-ui'
 import { HOME_BUCKETS } from '@lib/buckets'
 
 export default function Home() {
-  const router = useRouter()
+  const router = useRouter(true)
   const setBucket = (bucket: string) => () => {
     Cookies.set('bucket-home', bucket)
     router.reload()

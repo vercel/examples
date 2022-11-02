@@ -2,7 +2,7 @@ import { Layout, Text, Page, Button } from '@vercel/examples-ui'
 import { useRouter } from 'next/router'
 
 function Home() {
-  const { reload } = useRouter()
+  const { reload } = useRouter(true)
 
   return (
     <Page className="flex flex-col gap-12">

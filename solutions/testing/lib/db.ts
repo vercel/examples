@@ -1,6 +1,7 @@
 import { randomUUID } from 'crypto'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import type { NextRequest } from 'next/server'
+import { NextRequest } from 'next/server'
+import { RequestCookies } from 'next/dist/server/web/spec-extension/cookies'
 import { serialize } from 'cookie'
 
 export type Todo = {
@@ -25,9 +26,13 @@ class DB {
     return data
   }
 
-  async getUserFromReq(req: NextRequest | NextApiRequest) {
+  async getUserFromReq(
+    req: NextRequest | NextApiRequest
+  ): Promise<{ username: string } | null> {
     const username =
-      req.cookies instanceof Map ? req.cookies.get('user') : req.cookies['user']
+      req.cookies instanceof RequestCookies
+        ? req.cookies.get('user')?.value
+        : req.cookies['user']
     return username ? { username } : null
   }
 

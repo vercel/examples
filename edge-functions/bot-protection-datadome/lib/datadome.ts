@@ -48,7 +48,7 @@ export default async function datadome(req: NextRequest) {
     CookiesLen: getCookiesLength(req.cookies),
     AuthorizationLen: getAuthorizationLength(req),
     PostParamLen: req.headers.get('content-length'),
-    ClientID: req.cookies.get('datadome'),
+    ClientID: req.cookies.get('datadome')?.value,
     ServerRegion: 'sfo1',
   }
   const dataDomeReq = fetch(
@@ -201,10 +201,10 @@ function stringify(obj: Record<string, string | number | null | undefined>) {
     : ''
 }
 
-function getCookiesLength(cookies: Map<string, string>) {
+function getCookiesLength(cookies: NextRequest['cookies']) {
   let cookiesLength = 0
-  for (const value of cookies.values()) {
-    cookiesLength += value.length
+  for (const [, cookie] of cookies) {
+    cookiesLength += cookie.value.length
   }
   return cookiesLength
 }
