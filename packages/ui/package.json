@@ -9,7 +9,7 @@
     "clean": "rm -rf ./dist",
     "types": "tsc --emitDeclarationOnly"
   },
-  "sideEffects": false,
+  "sideEffects": true,
   "type": "module",
   "exports": {
     ".": "./dist/index.js",
