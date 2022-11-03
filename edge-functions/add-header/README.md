@@ -1,7 +1,7 @@
 ---
 name: Adding Response Headers in Edge Functions
 slug: edge-functions-add-header
-description: Learn to add request headers at the edge.
+description: Learn to add response headers at the edge.
 framework: Next.js
 useCase:
   - Edge Functions
