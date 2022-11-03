@@ -14,7 +14,7 @@
     "@acme/design-system": "workspace:*",
     "@acme/pages": "workspace:*",
     "@acme/utils": "workspace:*",
-    "@vercel/examples-ui": "^1.0.2",
+    "@vercel/examples-ui": "^1.0.4",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

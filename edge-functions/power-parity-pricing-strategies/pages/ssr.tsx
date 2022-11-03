@@ -82,6 +82,7 @@ function SSRProductPage({ country, product }: Props) {
                 width={16}
                 height={12}
                 src={`/flags/${country.toLowerCase()}.svg`}
+                alt={`Country flag for ${country.toUpperCase()}`}
               />
               <span>{'.'}</span>
             </div>

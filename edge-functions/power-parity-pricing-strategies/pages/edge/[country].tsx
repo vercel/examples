@@ -98,6 +98,7 @@ function EdgeProductPage({ country, product }: Props) {
                 width={16}
                 height={12}
                 src={`/flags/${country.toLowerCase()}.svg`}
+                alt={`The flag of ${country.toLowerCase()}`}
               />
               <span>. Learn more at </span>
               <a className="text-blue-500" href="https://vercel.com/edge">

@@ -42,7 +42,7 @@ export const getStaticPaths: GetStaticPaths<{ bucket: string }> = async () => {
 }
 
 function BucketPage({ bucket }: Props) {
-  const { reload } = useRouter()
+  const { reload } = useRouter(true)
 
   function resetBucket() {
     Cookie.remove(UID_COOKIE)
@@ -68,45 +68,9 @@ function BucketPage({ bucket }: Props) {
         </Text>
         <Text>
           Buckets are statically generated at build time in a{' '}
-          <Code>/[bucket]</Code> page so its fast to rewrite to them.
+          <Code>/[bucket]</Code> page so its fast to rewrite to them. Take a
+          look at the <Code>middleware.ts</Code> file to know more.
         </Text>
-        <Snippet>{`import { NextResponse } from 'next/server'
-import statsig from '../lib/statsig-api'
-import { UID_COOKIE } from '../lib/constants'
-
-export async function middleware(req) {
-  // If the request is not for \`/\`, continue
-  if (req.nextUrl.pathname !== '/') return NextResponse.next()
-
-  // Get users UID from the cookie
-  let userID = req.cookies[UID_COOKIE]
-
-  // Set a userID if not present
-  if (!userID) userID = crypto.randomUUID()
-
-  // Fetch experiment from Statsig
-  const bucket =
-    (await statsig.getExperiment(userID, FLAG).catch((error) => {
-      // Log the error but don't throw it, if Statsig fails, fallback to the default group
-      // so that the site doesn't go down
-      console.error(error)
-    })) || DEFAULT_GROUP
-
-  // Clone the URL and change its pathname to point to a bucket
-  const url = req.nextUrl.clone()
-  url.pathname = \`/${bucket}\`
-
-  // Response that'll rewrite to the selected bucket
-  const response = NextResponse.rewrite(url)
-
-  // Set cookie if not present
-  if (!req.cookies[UID_COOKIE]) {
-    response.cookie(UID_COOKIE, userID)
-  }
-
-  // Return the response
-  return response
-}`}</Snippet>
         <Text>
           Once the page is fully functional we log the exposure for the
           experiment, this will let Statsig know that the bucket was correctly

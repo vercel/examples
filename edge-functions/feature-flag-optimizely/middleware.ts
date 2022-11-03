@@ -12,7 +12,7 @@ export const config = {
 
 export async function middleware(req: NextRequest, ev: NextFetchEvent) {
   // Fetch user Id from the cookie if available so a returning user from same browser session always sees the same variation.
-  const userId = req.cookies.get(COOKIE_NAME) || crypto.randomUUID()
+  const userId = req.cookies.get(COOKIE_NAME)?.value || crypto.randomUUID()
 
   // Create Optimizely instance using datafile downloaded at build time.
   const instance = createInstance({
@@ -57,7 +57,7 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
     decision.variables.sort_method === 'popular_first' ? '/popular' : '/'
   let res = NextResponse.rewrite(req.nextUrl)
 
-  if (!req.cookies.get(COOKIE_NAME)) {
+  if (!req.cookies.has(COOKIE_NAME)) {
     // Saving userId in the cookie so that the decision sticks for subsequent visits.
     res.cookies.set(COOKIE_NAME, userId)
   }

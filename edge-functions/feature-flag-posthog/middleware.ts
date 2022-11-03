@@ -27,7 +27,7 @@ export default async function middleware(req: NextRequest) {
 
   if (!flag) return
 
-  const distinctUserID = req.cookies.get(DISTINCT_ID_COOKIE_NAME) ?? '0'
+  const distinctUserID = req.cookies.get(DISTINCT_ID_COOKIE_NAME)?.value ?? '0'
   const variantValue = await getFeatureFlagVariant(distinctUserID, flag.name)
 
   url.pathname = flag.rewrite(variantValue)

@@ -9,10 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/examples-ui": "^1.0.2",
+    "@vercel/examples-ui": "^1.0.4",
     "@vercel/fetch": "^6.1.1",
     "classnames": "^2.3.1",
     "next": "canary",
+    "node-fetch": "^2",
     "react": "latest",
     "react-dom": "latest"
   },

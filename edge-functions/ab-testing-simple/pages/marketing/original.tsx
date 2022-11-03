@@ -4,7 +4,7 @@ import { Layout, Page, Text, Button } from '@vercel/examples-ui'
 import { MARKETING_BUCKETS } from '@lib/buckets'
 
 export default function Marketing() {
-  const router = useRouter()
+  const router = useRouter(true)
   const setBucket = (bucket: string) => () => {
     Cookies.set('bucket-marketing', bucket)
     router.reload()

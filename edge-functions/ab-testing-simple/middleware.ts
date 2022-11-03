@@ -32,7 +32,7 @@ export default function middleware(req: NextRequest) {
   if (!route) return
 
   // Get the bucket from the cookie
-  let bucket = req.cookies.get(route.cookie)
+  let bucket = req.cookies.get(route.cookie)?.value
   let hasBucket = !!bucket
 
   // If there's no active bucket in cookies or its value is invalid, get a new one

@@ -32,7 +32,7 @@ export const config = {
 
 export function middleware(req: NextRequest) {
   // Parse the cookie
-  const isInBeta = JSON.parse(req.cookies.get('beta') || 'false')
+  const isInBeta = JSON.parse(req.cookies.get('beta')?.value || 'false')
 
   // Update url pathname
   req.nextUrl.pathname = `/${isInBeta ? 'beta' : 'non-beta'}`

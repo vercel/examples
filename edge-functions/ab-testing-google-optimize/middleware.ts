@@ -7,7 +7,7 @@ export const config = {
 }
 
 export function middleware(req: NextRequest) {
-  let cookie = req.cookies.get(COOKIE_NAME)
+  let cookie = req.cookies.get(COOKIE_NAME)?.value
 
   if (!cookie) {
     let n = Math.random() * 100
@@ -31,7 +31,7 @@ export function middleware(req: NextRequest) {
   const res = NextResponse.rewrite(url)
 
   // Add the cookie if it's not there
-  if (!req.cookies[COOKIE_NAME]) {
+  if (!req.cookies.has(COOKIE_NAME)) {
     res.cookies.set(COOKIE_NAME, cookie)
   }
 

@@ -25,7 +25,7 @@ export async function middleware(req: NextRequest) {
   if (!flag) return
 
   const value =
-    req.cookies.get(flag.cookie) || (getValue(flag.name) ? '1' : '0')
+    req.cookies.get(flag.cookie)?.value || (getValue(flag.name) ? '1' : '0')
 
   // Create a rewrite to the page matching the flag
   url.pathname = flag.rewrite(value === '1')

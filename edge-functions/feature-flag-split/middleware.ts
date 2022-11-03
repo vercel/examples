@@ -11,7 +11,7 @@ export function middleware(req: NextRequest) {
   const cookieKey = `flag-${split}`
   // Get the cookie from the request or a default value from split
   const cookieValue =
-    req.cookies.get(cookieKey) ||
+    req.cookies.get(cookieKey)?.value ||
     (getTreatment('anonymous', SPLITS[split]) === 'on' ? '1' : '0')
 
   // Set the pathname based on the split and cookie value
