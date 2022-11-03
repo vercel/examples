@@ -85,7 +85,12 @@ function Home() {
         </Text>
         <article className="text-center flex flex-col sm:flex-row gap-12">
           <div className="m-auto">
-            <ImageWithFallback width={200} height={200} src={logo} />
+            <ImageWithFallback
+              width={200}
+              height={200}
+              src={logo}
+              alt="Vercel logo"
+            />
             <Text>This image should load correctly</Text>
           </div>
           <div className="m-auto">
@@ -94,6 +99,7 @@ function Home() {
               height={200}
               layout="fixed"
               src="/failed.jpg"
+              alt="Vercel logo"
             />
             <Text>This should not</Text>
           </div>

@@ -1,5 +1,10 @@
 import { randomUUID } from 'crypto'
-import { Todo } from '../../../../lib/db'
+
+type Todo = {
+  id: string
+  title: string
+  done?: boolean
+}
 
 const todos: Todo[] = [
   { id: randomUUID(), title: 'Make a cup of tea' },
