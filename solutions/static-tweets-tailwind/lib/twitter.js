@@ -89,7 +89,7 @@ export const getTweets = async (id) => {
     url_meta:
       media || referenced_tweets.length > 0
         ? null
-        : tweet.data.entities?.urls[0],
+        : tweet.data.entities?.urls?.[0],
     referenced_tweets: referenced_tweets,
     author: getAuthorInfo(tweet.data.author_id),
   }
