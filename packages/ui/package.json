@@ -1,6 +1,6 @@
 {
   "name": "@vercel/examples-ui",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
@@ -9,7 +9,7 @@
     "clean": "rm -rf ./dist",
     "types": "tsc --emitDeclarationOnly"
   },
-  "sideEffects": false,
+  "sideEffects": true,
   "type": "module",
   "exports": {
     ".": "./dist/index.js",

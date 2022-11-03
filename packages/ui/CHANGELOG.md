@@ -1,5 +1,11 @@
 # @vercel/examples-ui
 
+## 1.0.4
+
+### Patch Changes
+
+- b03bc0e: Use `legacyBehavior` for uses of next/link
+
 ## 1.0.3
 
 ### Patch Changes
