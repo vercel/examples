@@ -9,8 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/font": "^13.0.2",
     "@vercel/examples-ui": "^1.0.4",
-    "next": "latest",
+    "next": "canary",
     "react": "latest",
     "react-dom": "latest"
   },
