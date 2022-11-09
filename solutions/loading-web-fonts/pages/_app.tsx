@@ -1,5 +1,4 @@
 import type { AppProps } from 'next/app'
-import { Inter } from '@next/font/google'
 import type { LayoutProps } from '@vercel/examples-ui/layout'
 import { getLayout } from '@vercel/examples-ui'
 import '@vercel/examples-ui/globals.css'
@@ -20,14 +19,6 @@ import '@vercel/examples-ui/globals.css'
  */
 import '../globals.css'
 
-const inter = Inter({
-  variable: '--inter-font',
-  display: 'swap',
-  // subsets to preload, more on:
-  // https://nextjs.org/docs/basic-features/font-optimization#specifying-a-subset
-  subsets: ['latin'],
-})
-
 function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
@@ -37,9 +28,7 @@ function App({ Component, pageProps }: AppProps) {
       path="solutions/loading-web-fonts"
       description="How to correctly load web fonts"
     >
-      <div className={inter.variable}>
-        <Component {...pageProps} />
-      </div>
+      <Component {...pageProps} />
     </Layout>
   )
 }

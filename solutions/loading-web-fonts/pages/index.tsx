@@ -4,6 +4,7 @@ import displayAuto from '../public/display-auto.jpg'
 import displaySwap from '../public/display-swap.jpg'
 import displayOptional from '../public/display-optional.jpg'
 import FontMixer from '../components/FontMixer'
+import inter from '../lib/inter'
 
 function Home() {
   return (
@@ -23,7 +24,7 @@ const inter = Inter({
   variable: '--inter-font',
 })
 
-<div className={inter.variable}>
+<div className={inter.className}>
   ...
 </div>`}</Snippet>
 
@@ -61,7 +62,12 @@ const inter = Inter({
           seen in the example below that compares <Code>Arial</Code> (left) with{' '}
           <Code>Times New Roman</Code> (right):
         </Text>
-        <FontMixer fonts={['Arial', 'Times New Roman']}>
+        <FontMixer
+          fonts={[
+            { style: { fontFamily: 'Arial' } },
+            { style: { fontFamily: 'Times New Roman' } },
+          ]}
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
           convallis mauris dui, non placerat urna fringilla at. Suspendisse a
           orci quis arcu tristique sagittis at sed leo. Nam quis neque dapibus,
@@ -103,7 +109,12 @@ const inter = Inter({
           </Link>{' '}
           set to <b>107%</b>:
         </Text>
-        <FontMixer fonts={['var(--inter-font)', 'Inter-fallback']}>
+        <FontMixer
+          fonts={[
+            { className: inter.className },
+            { style: { fontFamily: 'Inter-fallback' } },
+          ]}
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
           convallis mauris dui, non placerat urna fringilla at. Suspendisse a
           orci quis arcu tristique sagittis at sed leo. Nam quis neque dapibus,
