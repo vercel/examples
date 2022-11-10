@@ -1,11 +1,16 @@
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import { ConnectWallet } from './ConnectWallet'
-import { SwitchNetwork } from './SwitchNetwork'
-import { UploadNft } from './UploadNft'
-import { Button, LoadingDots, Text } from '@vercel/examples-ui'
-import { NETWORK_ID } from '../helpers/constant.helpers'
-import Image from 'next/image'
+import { useState, useEffect } from 'react';
+import { ConnectWallet } from './ConnectWallet';
+import { SwitchNetwork } from './SwitchNetwork';
+import { UploadNft } from './UploadNft';
+import { Button, LoadingDots, Text } from '@vercel/examples-ui';
+import { useAccount, useNetwork } from 'wagmi';
+import { NETWORK_ID } from '../helpers/constant.helpers';
+import axios from 'axios';
+import { createRaribleSdk } from '@rarible/sdk';
+import { EthersEthereum } from "@rarible/ethers-ethereum"
+import { EthereumWallet } from "@rarible/sdk-wallet";
+import { ethers } from 'ethers';
+import Image from 'next/image';
 
 enum MintState {
   Connect,
@@ -16,35 +21,49 @@ enum MintState {
 }
 
 export const Mint: React.VFC = () => {
-  const router = useRouter()
-  const [state, setState] = useState<MintState>(MintState.Connect)
+  const [state, setState] = useState<MintState>(MintState.Connect);
+  const { isConnected, address } = useAccount();
+  const { chain } = useNetwork();
+  const [isLoading, setLoading] = useState<boolean>(false);
+  const [asset, setAsset] = useState<File | null>(null);
+  const provider = ethers?.getDefaultProvider();
+  // const ethersProvider = new EthersEthereum(provider?.getSigner?.());
+  // const ethWallet = new EthereumWallet(ethersProvider);
+  // const raribleSdk = createRaribleSdk(ethWallet, "development");
 
-  const [isLoading, setLoading] = useState(false)
-
-  const [asset, setAsset] = useState<null>(null)
-
-  // useEffect(() => {
-  //   if (!account && isAuthenticated) enableWeb3()
-  //   if (!account || !isAuthenticated) {
-  //     setState(MintState.Connect)
-  //   } else if (chainId !== NETWORK_ID) {
-  //     setState(MintState.ConfirmNetwork)
-  //   } else {
-  //     setState(MintState.Upload)
-  //   }
-  // }, [account, enableWeb3, isAuthenticated, chainId])
+  useEffect(() => {
+    //   if (!account && isAuthenticated) enableWeb3()
+    if (!address || !isConnected) {
+      setState(MintState.Connect)
+    } else if (chain?.id !== NETWORK_ID) {
+      setState(MintState.ConfirmNetwork)
+    } else {
+      setState(MintState.Upload)
+    }
+  }, [address, chain?.id, isConnected])
 
   const handleMint = async () => {
     try {
       setLoading(true)
-      // await enableWeb3()
 
-      const metadata = {
-        name: 'My own NFT by Vercel',
-        description: 'NFTs minted using Vercel and Next.js',
-        //@ts-ignore
-        image: `/ipfs/${asset!.hash()}`,
-      }
+      const uploadArray = [
+        {
+          path: "metadata.json",
+          content: {
+            name: 'My own NFT by Vercel',
+            description: 'NFTs minted using Vercel and Next.js',
+            //@ts-ignore
+            image: `/ipfs/${asset!.hash()}`,
+          }
+        }
+      ]
+
+      const { data } = await axios.post('/api/ipfs/upload-folder', { uploadArray }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log(data);
 
       // const jsonFile = new Moralis.File('metadata.json', {
       //   base64: btoa(JSON.stringify(metadata)),
@@ -52,7 +71,7 @@ export const Mint: React.VFC = () => {
       // await jsonFile.saveIPFS()
 
       //@ts-ignore
-      const metadataHash = jsonFile.hash()
+      // const metadataHash = jsonFile.hash()
 
       // if (!Moralis.Plugins?.rarible)
       //   throw new Error(
@@ -79,7 +98,7 @@ export const Mint: React.VFC = () => {
     }
   }
 
-  const onUploadComplete = async (asset: any) => {
+  const onUploadComplete = async (asset: File) => {
     setAsset(asset)
     setState(MintState.ConfirmMint)
     setLoading(false)

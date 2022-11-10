@@ -1,11 +1,36 @@
 import { Button, Text, LoadingDots } from '@vercel/examples-ui'
+import { useConnect, useDisconnect, useAccount, useSignMessage } from 'wagmi';
+import { InjectedConnector } from 'wagmi/connectors/injected';
+import { signIn } from 'next-auth/react';
+import axios from 'axios';
 
 export const ConnectWallet: React.VFC = () => {
+  const { connectAsync } = useConnect();
+  const { disconnectAsync } = useDisconnect();
+  const { isConnected, isConnecting } = useAccount();
+  const { signMessageAsync } = useSignMessage();
 
-  const handleConnect = () => {
-    // authenticate({
-    //   signingMessage: 'Authorize linking of your wallet to',
-    // })
+  const handleConnect = async () => {
+    //disconnects the web3 provider if it's already active
+    if (isConnected) {
+      await disconnectAsync();
+    }
+    // enabling the web3 provider metamask
+    const { account, chain } = await connectAsync({ connector: new InjectedConnector() });
+
+    const userData = { address: account, chain: chain.id, network: 'evm' };
+    // making a post request to our 'request-message' endpoint
+    const { data } = await axios.post('/api/auth/request-message', userData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const message = data?.message;
+    // signing the received message via metamask
+    const signature = await signMessageAsync({ message });
+
+    // redirect user after success authentication to '/user' page
+    await signIn('credentials', { message, signature, redirect: false, callbackUrl: '/user' }) ?? {};
   }
 
   return (
@@ -40,8 +65,7 @@ export const ConnectWallet: React.VFC = () => {
         </Text>
         <div className="mt-12  flex justify-center">
           <Button variant="black" size="lg" onClick={handleConnect}>
-            <LoadingDots />
-            {/* : 'Connect Wallet'} */}
+            {isConnecting ? <LoadingDots /> : "Connect Wallet"}
           </Button>
         </div>
       </div>

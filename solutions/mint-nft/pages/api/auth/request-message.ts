@@ -2,8 +2,8 @@ import Moralis from 'moralis';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const config = {
-  domain: process.env.APP_DOMAIN || 'ethereum.boilerplate',
-  statement: 'Please sign this message to confirm your identity.',
+  domain: process.env.APP_DOMAIN || 'mint.nft',
+  statement: 'Authorize linking of your wallet to',
   uri: process.env.NEXTAUTH_URL || 'http://localhost:3000',
   timeout: 60,
 };

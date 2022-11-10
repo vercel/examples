@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import { useDropzone } from 'react-dropzone'
-import { isImageSafe } from '../helpers/sanitize.helpers'
-
-import { Button, Text, LoadingDots } from '@vercel/examples-ui'
+import { useState } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { isImageSafe } from '../helpers/sanitize.helpers';
+import axios from 'axios';
+import { Text, LoadingDots } from '@vercel/examples-ui';
 
 type Props = {
   onDone: (asset: any) => void
 }
 
 export const UploadNft: React.VFC<Props> = ({ onDone }) => {
-  const [loading, setLoading] = useState(false)
-  const [imageWarning, setImageWarning] = useState('')
-  const [disabled, setDisabled] = useState(true)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [imageWarning, setImageWarning] = useState<string>('')
+  const [, setDisabled] = useState<boolean>(true)
 
   const onDrop = async (acceptedFiles: File[]) => {
     try {
@@ -28,9 +28,19 @@ export const UploadNft: React.VFC<Props> = ({ onDone }) => {
         return
       }
 
-      // const imageFile = new Moralis.File(data.name, data)
+      const uploadArray = [
+        {
+          path: data?.name,
+          content: data,
+        }
+      ]
 
-      // await imageFile.saveIPFS()
+      const { data: dataRes } = await axios.post('/api/ipfs/upload-folder', { uploadArray }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log(dataRes);
       setLoading(false)
       setDisabled(false)
       // onDone(imageFile)
