@@ -2,20 +2,20 @@ import { useState } from 'react'
 import { NETWORK_ID } from '../helpers/constant.helpers'
 
 import { Button, Text, LoadingDots } from '@vercel/examples-ui'
-import { useChain } from 'react-moralis'
+// import { useChain } from 'react-moralis'
 
 export const SwitchNetwork: React.VFC = () => {
   const [loading, setLoading] = useState(false)
 
-  const { switchNetwork, chainId } = useChain()
+  // const { switchNetwork, chainId } = useChain()
 
   const handleSwitchNetwork = async () => {
     setLoading(true)
     try {
-      if (typeof chainId !== 'undefined') {
-        await switchNetwork(NETWORK_ID)
-        setLoading(false)
-      }
+      // if (typeof chainId !== 'undefined') {
+      //   await switchNetwork(NETWORK_ID)
+      setLoading(false)
+      // }
     } catch (error) {
       console.error(error)
     }

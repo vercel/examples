@@ -3,10 +3,9 @@ import { useDropzone } from 'react-dropzone'
 import { isImageSafe } from '../helpers/sanitize.helpers'
 
 import { Button, Text, LoadingDots } from '@vercel/examples-ui'
-import Moralis from 'moralis'
 
 type Props = {
-  onDone: (asset: Moralis.File) => void
+  onDone: (asset: any) => void
 }
 
 export const UploadNft: React.VFC<Props> = ({ onDone }) => {
@@ -29,12 +28,12 @@ export const UploadNft: React.VFC<Props> = ({ onDone }) => {
         return
       }
 
-      const imageFile = new Moralis.File(data.name, data)
+      // const imageFile = new Moralis.File(data.name, data)
 
-      await imageFile.saveIPFS()
+      // await imageFile.saveIPFS()
       setLoading(false)
       setDisabled(false)
-      onDone(imageFile)
+      // onDone(imageFile)
     } catch (e) {
       console.error(e)
     }

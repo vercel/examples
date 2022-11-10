@@ -1,13 +1,11 @@
-import { useMoralis } from 'react-moralis'
 import { Button, Text, LoadingDots } from '@vercel/examples-ui'
 
 export const ConnectWallet: React.VFC = () => {
-  const { authenticate, isAuthenticating } = useMoralis()
 
   const handleConnect = () => {
-    authenticate({
-      signingMessage: 'Authorize linking of your wallet to',
-    })
+    // authenticate({
+    //   signingMessage: 'Authorize linking of your wallet to',
+    // })
   }
 
   return (
@@ -42,7 +40,8 @@ export const ConnectWallet: React.VFC = () => {
         </Text>
         <div className="mt-12  flex justify-center">
           <Button variant="black" size="lg" onClick={handleConnect}>
-            {isAuthenticating ? <LoadingDots /> : 'Connect Wallet'}
+            <LoadingDots />
+            {/* : 'Connect Wallet'} */}
           </Button>
         </div>
       </div>

@@ -6,8 +6,6 @@ import { UploadNft } from './UploadNft'
 import { Button, LoadingDots, Text } from '@vercel/examples-ui'
 import { NETWORK_ID } from '../helpers/constant.helpers'
 import Image from 'next/image'
-import { useChain, useMoralis } from 'react-moralis'
-import Moralis from 'moralis'
 
 enum MintState {
   Connect,
@@ -21,28 +19,25 @@ export const Mint: React.VFC = () => {
   const router = useRouter()
   const [state, setState] = useState<MintState>(MintState.Connect)
 
-  const { account, isAuthenticated, enableWeb3 } = useMoralis()
-  const { chainId } = useChain()
-
   const [isLoading, setLoading] = useState(false)
 
-  const [asset, setAsset] = useState<Moralis.File | null>(null)
+  const [asset, setAsset] = useState<null>(null)
 
-  useEffect(() => {
-    if (!account && isAuthenticated) enableWeb3()
-    if (!account || !isAuthenticated) {
-      setState(MintState.Connect)
-    } else if (chainId !== NETWORK_ID) {
-      setState(MintState.ConfirmNetwork)
-    } else {
-      setState(MintState.Upload)
-    }
-  }, [account, enableWeb3, isAuthenticated, chainId])
+  // useEffect(() => {
+  //   if (!account && isAuthenticated) enableWeb3()
+  //   if (!account || !isAuthenticated) {
+  //     setState(MintState.Connect)
+  //   } else if (chainId !== NETWORK_ID) {
+  //     setState(MintState.ConfirmNetwork)
+  //   } else {
+  //     setState(MintState.Upload)
+  //   }
+  // }, [account, enableWeb3, isAuthenticated, chainId])
 
   const handleMint = async () => {
     try {
       setLoading(true)
-      await enableWeb3()
+      // await enableWeb3()
 
       const metadata = {
         name: 'My own NFT by Vercel',
@@ -51,32 +46,32 @@ export const Mint: React.VFC = () => {
         image: `/ipfs/${asset!.hash()}`,
       }
 
-      const jsonFile = new Moralis.File('metadata.json', {
-        base64: btoa(JSON.stringify(metadata)),
-      })
-      await jsonFile.saveIPFS()
+      // const jsonFile = new Moralis.File('metadata.json', {
+      //   base64: btoa(JSON.stringify(metadata)),
+      // })
+      // await jsonFile.saveIPFS()
 
       //@ts-ignore
       const metadataHash = jsonFile.hash()
 
-      if (!Moralis.Plugins?.rarible)
-        throw new Error(
-          'Please install Rarible Plugin to your Moralis Server: https://moralis.io/plugins/rarible-nft-tools/'
-        )
+      // if (!Moralis.Plugins?.rarible)
+      //   throw new Error(
+      //     'Please install Rarible Plugin to your Moralis Server: https://moralis.io/plugins/rarible-nft-tools/'
+      //   )
 
-      const { data } = await Moralis.Plugins.rarible.lazyMint({
-        chain: 'rinkeby',
-        userAddress: account,
-        tokenType: 'ERC721',
-        tokenUri: `ipfs://${metadataHash}`,
-        supply: 1,
-        royaltiesAmount: 1,
-      })
-      setTimeout(() => {
-        router.push(
-          `https://rinkeby.rarible.com/token/${data.result.tokenAddress}:${data.result.tokenId}`
-        )
-      }, 1000)
+      // const { data } = await Moralis.Plugins.rarible.lazyMint({
+      //   chain: 'rinkeby',
+      //   userAddress: account,
+      //   tokenType: 'ERC721',
+      //   tokenUri: `ipfs://${metadataHash}`,
+      //   supply: 1,
+      //   royaltiesAmount: 1,
+      // })
+      // setTimeout(() => {
+      //   router.push(
+      //     `https://rinkeby.rarible.com/token/${data.result.tokenAddress}:${data.result.tokenId}`
+      //   )
+      // }, 1000)
     } catch (e) {
       console.error(e)
     } finally {
@@ -84,7 +79,7 @@ export const Mint: React.VFC = () => {
     }
   }
 
-  const onUploadComplete = async (asset: Moralis.File) => {
+  const onUploadComplete = async (asset: any) => {
     setAsset(asset)
     setState(MintState.ConfirmMint)
     setLoading(false)
@@ -113,7 +108,7 @@ export const Mint: React.VFC = () => {
           <section className="relative w-full pb-[20%] h-48 pb-6 mt-12">
             <Image
               className="rounded-xl"
-              src={String(asset?._url)}
+              src={""}
               alt="The image that will be minted as an NFT"
               layout="fill"
               objectFit="contain"
@@ -125,7 +120,7 @@ export const Mint: React.VFC = () => {
               size="lg"
               variant="black"
               onClick={handleMint}
-              disabled={!account || !asset || isLoading}
+              disabled={!asset || isLoading}
             >
               {isLoading ? <LoadingDots /> : 'Mint'}
             </Button>
