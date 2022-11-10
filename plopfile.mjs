@@ -43,7 +43,6 @@ export default function (plop) {
         'README.md',
         'tsconfig.json',
         '.eslintrc.json',
-        'next.config.js',
         '.gitignore',
         'next-env.d.ts',
         'package.json',
