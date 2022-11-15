@@ -5,7 +5,7 @@ import { Layout, Text, Page, Code, Link, Snippet } from '@vercel/examples-ui'
 import board from '../public/board.jpg'
 
 function Home() {
-  const { route } = useRouter(true)
+  const { route } = useRouter()
   const viewport = route.replace('/_viewport/', '')
 
   return (

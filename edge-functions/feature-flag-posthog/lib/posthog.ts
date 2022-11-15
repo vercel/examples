@@ -9,7 +9,7 @@ export const usePostHog = (
   config?: Partial<PostHogConfig>,
   name?: string
 ): void => {
-  const router = useRouter(true)
+  const router = useRouter()
 
   if (!config) {
     throw new Error('The `config` argument is required.')
