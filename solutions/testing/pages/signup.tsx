@@ -4,7 +4,7 @@ import { Layout, Text, Page, Input, Button } from '@vercel/examples-ui'
 
 function Signup() {
   const [loading, setLoading] = useState(false)
-  const router = useRouter(true)
+  const router = useRouter()
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 

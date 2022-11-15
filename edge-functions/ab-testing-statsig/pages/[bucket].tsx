@@ -42,7 +42,7 @@ export const getStaticPaths: GetStaticPaths<{ bucket: string }> = async () => {
 }
 
 function BucketPage({ bucket }: Props) {
-  const { reload } = useRouter(true)
+  const { reload } = useRouter()
 
   function resetBucket() {
     Cookie.remove(UID_COOKIE)

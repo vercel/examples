@@ -5,7 +5,7 @@ import { Layout, Page, Text, Code, Link } from '@vercel/examples-ui'
 export default function Slug() {
   const [links, setLinks] = useState([8000, 800])
 
-  const router = useRouter(true)
+  const router = useRouter()
   const slug = router.query.slug as string
   const latency = router.query.l ?? 0
 
