@@ -8,7 +8,9 @@ useCase:
   - Documentation
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/modify-request-header&project-name=modify-request-header&repository-name=modify-request-header
-demoUrl: https://edge-functions-modify-request-header.vercel.app
+demoUrl: https://edge-middleware-modify-request-header.vercel.app
+relatedTemplates:
+  - edge-functions-add-header
 ---
 
 # Add Header Example
