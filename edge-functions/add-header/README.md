@@ -9,6 +9,8 @@ useCase:
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/add-header&project-name=add-header&repository-name=add-header
 demoUrl: https://edge-functions-add-header.vercel.app
+relatedTemplates:
+  - nextjs-boilerplate
 ---
 
 # Add Header Example
