@@ -1,4 +1,4 @@
-import { type FC, experimental_use as use } from 'react'
+import { type FC, use } from 'react'
 import cms from 'lib/cms'
 import { RenderCMSComponent } from '../components'
 

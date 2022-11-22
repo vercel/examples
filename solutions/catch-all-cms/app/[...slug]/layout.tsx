@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-head-element */
-import { FC, experimental_use as use } from 'react'
+import { FC, use } from 'react'
 import cms from 'lib/cms'
 import { RenderCMSComponent } from '../components'
 
