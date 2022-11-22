@@ -20,7 +20,6 @@ const RootLayout: FC<any> = (props) => {
     params: { slug },
   } = props
   const layout = use(getPageBySlug(slug))
-
   return <RenderCMSComponent component={layout!} rootProps={{ children }} />
 }
 

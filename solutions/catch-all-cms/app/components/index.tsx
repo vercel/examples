@@ -1,5 +1,5 @@
 import { Fragment, ComponentType, FC, ReactNode } from 'react'
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 import { CMSComponent } from 'lib/cms/types'
 import { H1, Paragraph, Container } from './core'
 
