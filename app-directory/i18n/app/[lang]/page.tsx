@@ -18,13 +18,10 @@ export default async function Home({ params }: Props) {
   return (
     <Page className="flex flex-col gap-12">
       <section className="flex flex-col gap-6">
-        <Text variant="h1">Handling i18n withing app directory</Text>
+        <Text variant="h1">Handling i18n withing app dir</Text>
         <Text>
-          Internationalization is{' '}
-          <Link href="https://beta.nextjs.org/docs/app-directory-roadmap#not-planned-features">
-            not planed as a feature
-          </Link>{' '}
-          for Next.js 13. But combining{' '}
+          Previously, routing was handled automatically. With app dir you have
+          to handle the routes yourself. Combining{' '}
           <Link href="https://beta.nextjs.org/docs/api-reference/generate-static-params">
             <Code>generateStaticParams</Code>
           </Link>{' '}
