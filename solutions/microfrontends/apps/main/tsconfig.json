@@ -14,11 +14,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "paths": {
-      "@lib/*": ["lib/*"],
-      "@components": ["components/index"],
-      "@components/*": ["components/*"]
-    },
     "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
