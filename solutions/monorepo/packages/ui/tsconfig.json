@@ -3,7 +3,6 @@
     "target": "esnext",
     "module": "esnext",
     "rootDir": "src",
-    "outDir": "dist",
     "lib": ["dom", "dom.iterable", "esnext"],
     "declaration": true,
     "allowJs": true,

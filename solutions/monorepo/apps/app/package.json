@@ -14,7 +14,7 @@
     "@company/ui": "workspace:*",
     "@company/utils": "workspace:*",
     "@vercel/examples-ui": "^1.0.4",
-    "next": "latest",
+    "next": "canary",
     "react": "latest",
     "react-dom": "latest"
   },
