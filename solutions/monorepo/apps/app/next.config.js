@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    transpilePackages: ['@company/ui'],
+    transpilePackages: ['@acme/ui'],
   },
 }
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Layout, Page, Text, List, Code } from '@vercel/examples-ui'
-import { Button } from '@company/ui'
-import { matchingTextColor, randomColor } from '@company/utils'
+import { Button } from '@acme/ui'
+import { matchingTextColor, randomColor } from '@acme/utils'
 
 export default function Index() {
   const [bgColor, setBgColor] = useState('')

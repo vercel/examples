@@ -4,20 +4,18 @@ importers:
 
   .:
     specifiers:
-      '@company/ui': workspace:^0.0.1
       eslint: ^8.28.0
       eslint-config-turbo: latest
       turbo: latest
     devDependencies:
-      '@company/ui': link:packages/ui
       eslint: 8.28.0
       eslint-config-turbo: 0.0.4_eslint@8.28.0
       turbo: 1.6.3
 
   apps/app:
     specifiers:
-      '@company/ui': workspace:*
-      '@company/utils': workspace:*
+      '@acme/ui': workspace:*
+      '@acme/utils': workspace:*
       '@types/node': ^18.0.0
       '@types/react': latest
       '@vercel/examples-ui': ^1.0.4
@@ -31,8 +29,8 @@ importers:
       tailwindcss: ^3.2.1
       typescript: 4.8.4
     dependencies:
-      '@company/ui': link:../../packages/ui
-      '@company/utils': link:../../packages/utils
+      '@acme/ui': link:../../packages/ui
+      '@acme/utils': link:../../packages/utils
       '@vercel/examples-ui': 1.0.4_k5alcd6tq76xinx43owdpb2l2u
       next: 13.0.5-canary.6_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
