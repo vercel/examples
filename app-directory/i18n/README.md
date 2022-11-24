@@ -1,10 +1,10 @@
 # i18n example
 
-This example shows how -------------------------
+This example shows how to do i18n within the app directory
 
 ## Demo
 
-https://i18n.vercel.app
+https://app-dir-i18n.vercel.app
 
 ## How to Use
 
