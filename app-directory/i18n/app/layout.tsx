@@ -10,14 +10,7 @@ interface Props {
 export default async function RootLayout({ children }: Props) {
   return (
     <html>
-      <head>
-        <title>{`i18n within app directory - Vercel Examples`}</title>
-        <meta
-          name="description"
-          content="How to do i18n in Next.js 13 within app directory"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </head>
+      <head />
       <body>
         <div className="mx-auto h-screen flex flex-col">
           <Nav path="app-directory/i18n" />
