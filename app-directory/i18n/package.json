@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@types/node": "^17",
-    "@types/react": "canary",
+    "@types/react": "latest",
     "autoprefixer": "^10.4.7",
     "eslint": "^8.11.0",
     "eslint-config-next": "canary",
