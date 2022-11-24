@@ -1,12 +1,13 @@
 import { Text } from '@vercel/examples-ui'
+import { use } from 'react'
 import Nav from './nav'
 
 type Props = {
   lang: 'es' | 'en' | 'de'
 }
 
-export default async function Welcome({ lang }: Props) {
-  const { home } = await import(`../../../dictionaries/${lang}.json`)
+export default function Welcome({ lang }: Props) {
+  const { home } = use(import(`../../../dictionaries/${lang}.json`))
 
   return (
     <div className="border border-accents-2 rounded-md bg-accents-1 overflow-x-auto p-6">

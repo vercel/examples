@@ -1,4 +1,5 @@
 import { Page, Text, Link, Code, Snippet } from '@vercel/examples-ui'
+import { use } from 'react'
 import Counter from './components/counter'
 import Welcome from './components/welcome'
 
@@ -12,16 +13,16 @@ export async function generateStaticParams() {
   return [{ lang: 'es' }, { lang: 'en' }, { lang: 'de' }]
 }
 
-export default async function Home({ params }: Props) {
-  const { counter } = await import(`../../dictionaries/${params.lang}.json`)
+export default function Home({ params }: Props) {
+  const { counter } = use(import(`../../dictionaries/${params.lang}.json`))
 
   return (
     <Page className="flex flex-col gap-12">
       <section className="flex flex-col gap-6">
         <Text variant="h1">Handling i18n withing app dir</Text>
         <Text>
-          Previously, routing was handled automatically. With app dir you have
-          to handle the routes yourself. Combining{' '}
+          With app dir you create and control the route segments related to
+          i18n. Combining{' '}
           <Link href="https://beta.nextjs.org/docs/api-reference/generate-static-params">
             <Code>generateStaticParams</Code>
           </Link>{' '}
