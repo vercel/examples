@@ -1,19 +1,17 @@
 import { Text } from '@vercel/examples-ui'
-import { use } from 'react'
 import Nav from './nav'
 
 type Props = {
-  lang: 'es' | 'en' | 'de'
+  translations: Record<string, string>
 }
 
-export default function Welcome({ lang }: Props) {
-  const { home } = use(import(`../../../dictionaries/${lang}.json`))
-
+export default function Welcome({ translations }: Props) {
   return (
     <div className="border border-accents-2 rounded-md bg-accents-1 overflow-x-auto p-6">
       <Nav />
       <Text variant="h2">
-        {home.title_text} <a href="https://nextjs.org">{home.title_link}</a>
+        {translations.title_text}{' '}
+        <a href="https://nextjs.org">{translations.title_link}</a>
       </Text>
     </div>
   )

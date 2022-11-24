@@ -14,12 +14,12 @@ export async function generateStaticParams() {
 }
 
 export default function Home({ params }: Props) {
-  const { counter } = use(import(`../../dictionaries/${params.lang}.json`))
+  const { counter, home } = use(import(`./dictionaries/${params.lang}.json`))
 
   return (
     <Page className="flex flex-col gap-12">
       <section className="flex flex-col gap-6">
-        <Text variant="h1">Handling i18n withing app dir</Text>
+        <Text variant="h1">Handling i18n within app dir</Text>
         <Text>
           With app dir you create and control the route segments related to
           i18n. Combining{' '}
@@ -34,17 +34,17 @@ export default function Home({ params }: Props) {
       <section className="flex flex-col gap-3">
         <Text variant="h2">Creating the files</Text>
         <Text>
-          We will create a <Code>[lang]</Code> folder as a parent of all the
+          We will create a <Code>[lang]</Code> directory as a parent of all the
           routes in our app that need to be internationalized. In case all your
-          app needs to be, create it on the root of the <Code>app</Code> folder.
-          We will also create a <Code>dictonaries</Code> folder anywhere in your
-          app with the translations for each language.
+          app needs to be, create it on the root of the <Code>app</Code>{' '}
+          directory. We will also create a <Code>dictionaries</Code> directory
+          with the translations for each language.
         </Text>
-        <pre className="border border-accents-2 rounded-md bg-accents-1 overflow-x-auto p-6">{`|/dictonaries
-|__/en.json
-|__/es.json
-|/app
+        <pre className="border border-accents-2 rounded-md bg-accents-1 overflow-x-auto p-6">{`|/app
 |__/[lang]
+|____/dictionaries
+|______/en.json
+|______/es.json
 |____/page.js
 `}</pre>
       </section>
@@ -52,13 +52,13 @@ export default function Home({ params }: Props) {
       <section className="flex flex-col gap-6">
         <Text variant="h2">Using translations</Text>
         <Text>
-          Now, inside the <Code>[lang]/page.js</Code> we will have acess to the{' '}
-          <Code>lang</Code> param. We can just import the translations we need
-          and use them in our page.
+          Now, inside the <Code>[lang]/page.js</Code> file we will have access
+          to the <Code>lang</Code> param that we can use to import the
+          translations and use them in our page.
         </Text>
         <Snippet>
           {`export default async function Home({ params }) {
-  const { home } = await import(\`../../dictionaries/$\{params.lang}.json\`);
+  const { home } = await import(\`./dictionaries/$\{params.lang}.json\`);
   
   return (
     <h1>{home.title}</h1>
@@ -66,7 +66,7 @@ export default function Home({ params }: Props) {
 }`}
         </Snippet>
         <Text>
-          If we want to generate this pages statically at build time we can add{' '}
+          If we want to generate these pages statically at build time we can add{' '}
           <Code>generateStaticParams</Code> to our page.
         </Text>
         <Snippet>
@@ -78,9 +78,9 @@ export default function Home({ params }: Props) {
           Now this page will generate all three languages statically at build
           time. We can see the example below.
         </Text>
-        <Welcome lang={params.lang} />
+        <Welcome translations={home} />
         <Text>
-          Because all our components are server components, all this
+          Because all our components are server components, all these
           translations were handled on the server and just the HTML output is
           sent to the frontend, so no need to filter out the unused keys. But
           keep in mind that the object is kept in memory on the server so ensure
@@ -94,14 +94,15 @@ export default function Home({ params }: Props) {
         <Text>
           Once we reach a client component we lose the ability to get
           translations from the server, so the safest approach would be to load
-          the translations from the nearest parent and send them through props
-          to our client component. Once translations are there, they can be
-          drilled to other components, handled by a context + hook or whatever
-          solution you currently use for handling client side translations.
+          the translations from the nearest server component parent and send
+          them through props to our client component. Once translations are
+          there, they can be drilled to other components, handled by a context +
+          hook or whatever solution you currently use for handling client side
+          translations.
         </Text>
         <Snippet>
           {`export default async function Home({ params }) {
-  const { counter } = await import(\`../../dictionaries/$\{params.lang}.json\`);
+  const { counter } = await import(\`./dictionaries/$\{params.lang}.json\`);
   
   return (
     <div>
