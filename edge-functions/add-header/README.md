@@ -1,7 +1,7 @@
 ---
-name: Adding Headers in Edge Functions
+name: Adding Response Headers in Edge Functions
 slug: edge-functions-add-header
-description: Learn to add headers at the edge.
+description: Learn to add response headers at the edge.
 framework: Next.js
 useCase:
   - Edge Functions
@@ -9,11 +9,13 @@ useCase:
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/add-header&project-name=add-header&repository-name=add-header
 demoUrl: https://edge-functions-add-header.vercel.app
+relatedTemplates:
+  - nextjs-boilerplate
 ---
 
 # Add Header Example
 
-Below is the code from [middleware.ts](middleware.ts) showing how to add headers at the edge:
+Below is the code from [middleware.ts](middleware.ts) showing how to add response headers at the edge:
 
 ```ts
 import { NextResponse } from 'next/server'

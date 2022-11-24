@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 import { Layout, Page, Text, Button } from '@vercel/examples-ui'
 
 export default function NonBeta() {
-  const router = useRouter(true)
+  const router = useRouter()
 
   const optIn = () => {
     Cookies.set('beta', 'true')
