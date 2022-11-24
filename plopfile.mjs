@@ -19,6 +19,7 @@ export default function (plop) {
         choices: [
           { name: 'Solutions', value: 'solutions' },
           { name: 'Edge Functions', value: 'edge-functions' },
+          { name: 'App directory', value: 'app-directory' },
         ],
       },
       {
@@ -27,9 +28,13 @@ export default function (plop) {
         message: 'What options do you like?',
         choices: [
           {
+            name: 'Basic example',
+            value: 'basic',
+            checked: true,
+          },
+          {
             name: 'Next.js API Routes - Serverless Functions: Hello world',
             value: 'next-api-pages',
-            checked: true,
           },
           { name: 'Next.js Middleware Function', value: 'middleware' },
         ],
