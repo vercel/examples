@@ -1,0 +1,29 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**"]
+    },
+    "e2e": {
+      "env": ["$CI", "$BASE_URL", "$PAUSE_ON_FAILURE"],
+      "outputs": []
+    },
+    "integration": {
+      "env": ["$CI", "$BASE_URL", "$PAUSE_ON_FAILURE"],
+      "outputs": []
+    },
+    "lint": {
+      "outputs": []
+    },
+    "dev": {
+      "cache": false
+    },
+    "start": {
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+}

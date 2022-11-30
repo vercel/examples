@@ -1,0 +1,23 @@
+{
+  "name": "playwright",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lint": "TIMING=1 eslint \"**/*.ts*\"",
+    "integration": "node playwright-test.mjs -i",
+    "e2e": "node playwright-test.mjs -e"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.25.2",
+    "arg": "^5.0.2",
+    "chokidar": "^3.5.3",
+    "chokidar-cli": "^3.0.0",
+    "cross-spawn": "^7.0.3",
+    "eslint": "^8.11.0",
+    "eslint-config-custom": "workspace:*",
+    "main-site": "workspace:*",
+    "tsconfig": "workspace:*",
+    "typescript": "^4.9.3"
+  }
+}
