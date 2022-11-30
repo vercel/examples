@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "TIMING=1 eslint \"**/*.ts*\"",
     "integration": "node playwright-test.mjs -i",
-    "e2e": "node playwright-test.mjs -e"
+    "e2e": "node playwright-test.mjs -e",
+    "clean": "rm -rf .turbo"
   },
   "dependencies": {
     "@playwright/test": "^1.25.2",
