@@ -40,8 +40,7 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 ## How it Works
 
-We use [Playwright](https://playwright.dev/docs/intro) for both integration
-and E2E tests.
+We use [Playwright](https://playwright.dev/docs/intro) for both integration and E2E tests. For unit testing Jest go to the [last section](#running-unit-tests).
 
 ### Integration vs E2E testing
 
@@ -155,7 +154,7 @@ The [Playwright VSCode extension](https://marketplace.visualstudio.com/items?ite
 
 You can use `Debug Test` to run a test (or a set of tests) in headed mode by right clicking a test name, and you can use `debugger` statements in your test(s) to pause at any point and inspect the page. Note that `page.pause()` doesn't work when running tests via this extension.
 
-## Debugging tests
+## Debugging Tests
 
 Debugging is very useful when you want to debug a [single test or a single test file](#2e-running-a-single-test-or-a-single-test-file), read the section above for more details.
 
@@ -222,4 +221,18 @@ If you are having trouble working out why a test is flaky, you can try the [`--r
 npm run integration -- --repeat-each 100 signup
 # Run e2e tests, repeating each test in `signup.spec.ts` 100 times.
 npm run e2e -- --repeat-each 100 signup
+```
+
+## Running Unit Tests
+
+To run the unit tests use the following command:
+
+```bash
+pnpm run test-unit
+```
+
+And to watch for changes:
+
+```bash
+pnpm run test-unit -- --watch
 ```

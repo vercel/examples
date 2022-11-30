@@ -12,7 +12,8 @@
     "start": "turbo run start",
     "lint": "turbo run lint",
     "clean": "turbo run clean",
-    "test-server": "turbo run build && turbo run start"
+    "test-server": "turbo run build && turbo run start",
+    "test-unit": "turbo run test-unit"
   },
   "devDependencies": {
     "eslint": "^8.28.0",

@@ -13,6 +13,9 @@
       "env": ["CI", "BASE_URL", "PAUSE_ON_FAILURE"],
       "outputs": []
     },
+    "test-unit": {
+      "outputs": []
+    },
     "lint": {
       "outputs": []
     },

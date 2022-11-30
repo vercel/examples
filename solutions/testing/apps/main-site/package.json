@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test-unit": "jest --watch"
+    "test-unit": "jest"
   },
   "dependencies": {
     "@vercel/examples-ui": "^1.0.4",
