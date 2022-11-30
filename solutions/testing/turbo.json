@@ -6,11 +6,11 @@
       "outputs": [".next/**"]
     },
     "e2e": {
-      "env": ["$CI", "$BASE_URL", "$PAUSE_ON_FAILURE"],
+      "env": ["CI", "BASE_URL", "PAUSE_ON_FAILURE"],
       "outputs": []
     },
     "integration": {
-      "env": ["$CI", "$BASE_URL", "$PAUSE_ON_FAILURE"],
+      "env": ["CI", "BASE_URL", "PAUSE_ON_FAILURE"],
       "outputs": []
     },
     "lint": {
