@@ -7,11 +7,11 @@
     },
     "e2e": {
       "env": ["CI", "BASE_URL", "PAUSE_ON_FAILURE"],
-      "outputs": []
+      "outputs": ["test-results/**"]
     },
     "integration": {
       "env": ["CI", "BASE_URL", "PAUSE_ON_FAILURE"],
-      "outputs": []
+      "outputs": ["test-results/**"]
     },
     "test-unit": {
       "outputs": []

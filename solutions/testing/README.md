@@ -199,7 +199,7 @@ OPEN_DEVTOOLS=1 pnpm integration -- -p
 Tests reports, including screenshots on error, are auto-generated and can be viewed by opening the HTML report file in `playwright/test-results/html-report`, or by running the following command:
 
 ```bash
-pnpm --filter playwright exec playwright show-report packages/playwright/test-results/html-report
+pnpm --filter playwright exec playwright show-report test-results/html-report
 ```
 
 ### Viewing test traces
@@ -209,7 +209,7 @@ Along with screenshots, Playwright will also capture traces for failed tests.
 You can view these by uploading them to [Playwright's Trace Viewer](https://trace.playwright.dev/) ([Docs](https://playwright.dev/docs/trace-viewer)) or by running the following command:
 
 ```bash
-pnpm --filter playwright exec playwright show-trace playwright/test-results/output/[test-id]/trace.zip
+pnpm --filter playwright exec playwright show-trace test-results/output/[test-id]/trace.zip
 ```
 
 ### Spotting flaky tests
