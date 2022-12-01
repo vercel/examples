@@ -18,10 +18,10 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 ### Clone and Deploy
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/solutions/testing
+pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/testing testing
 ```
 
 Before running tests locally, you'll need to install the browsers required to run the tests, which aren't installed by default by Plawright:
@@ -33,7 +33,7 @@ pnpm dlx playwright install
 In the meantime, build and start the test server that will be used by the tests:
 
 ```bash
-npm run test-server
+pnpm test-server
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
@@ -77,7 +77,7 @@ We recommend that all pages are covered by integration tests, and only critical 
 To run in production mode, use the following command:
 
 ```bash
-npm run test-server
+pnpm test-server
 ```
 
 This will provide the most stable environment, with some limitations:
@@ -97,7 +97,7 @@ Whilst this allows you to quickly iterate on code, it has some notable limitatio
 To run the integration test suite use the following command:
 
 ```bash
-npm run integration
+pnpm integration
 ```
 
 ### 2b. Running E2E tests
@@ -105,7 +105,7 @@ npm run integration
 To run the E2E test suite use the following command:
 
 ```bash
-npm run e2e
+pnpm e2e
 ```
 
 ### 2c. Running tests against a specific browser
@@ -115,15 +115,15 @@ Tests will run against multiple browsers by default, to run against a specific b
 ```bash
 # Valid projects are `chromium`, `firefox`, `webkit`, etc.
 # Any browser defined in playwright config is valid.
-npm run integration -- --project=chromium
+pnpm integration -- --project=chromium
 ```
 
 Chromium is used quite often for writing and debugging tests so there's a shortcut for it:
 
 ```bash
-npm run integration -- --chromium
+pnpm integration -- --chromium
 # or
-npm run integration -- -c
+pnpm integration -- -c
 ```
 
 ### 2d. Running tests against production
@@ -131,9 +131,9 @@ npm run integration -- -c
 During testing a local server is expected to be running at http://localhost:3000. You could alternatively run the tests against the production server by adding the `BASE_URL` environment variable to the command:
 
 ```sh
-BASE_URL="https://solutions-testing.vercel.app" npm run integration
+BASE_URL="https://solutions-testing.vercel.app" pnpm integration
 # or for E2E
-BASE_URL="https://solutions-testing.vercel.app" npm run e2e
+BASE_URL="https://solutions-testing.vercel.app" pnpm e2e
 ```
 
 ### 2e. Running a single test or a single test file
@@ -141,9 +141,9 @@ BASE_URL="https://solutions-testing.vercel.app" npm run e2e
 Like most test-runners, Playwright supports [`.skip()`](https://playwright.dev/docs/api/class-test#test-skip-1) and [`.only()`](https://playwright.dev/docs/api/class-test#test-describe-only). Additionaly, you can run a single test by passing the filename to the command:
 
 ```bash
-npm run integration -- signup
+pnpm integration -- signup
 # or for E2E
-npm run e2e -- signup
+pnpm e2e -- signup
 ```
 
 The command above will match `signup` with the tests in `tests/signup.spec.ts` and run them.
@@ -161,9 +161,9 @@ Debugging is very useful when you want to debug a [single test or a single test 
 To run tests in headed mode ([`--headed`](https://playwright.dev/docs/test-cli#reference)) and have them pause on failure, run:
 
 ```bash
-npm run integration -- --chromium --pause-on-failure
+pnpm integration -- --chromium --pause-on-failure
 # or
-npm run integration -- -c -p
+pnpm integration -- -c -p
 ```
 
 > The `--chromium` argument is used because you'll usually debug against a single browser.
@@ -171,9 +171,9 @@ npm run integration -- -c -p
 To debug tests step by step, add [`--debug`](https://playwright.dev/docs/debug#--debug) or [`PWDEBUG=1`](https://playwright.dev/docs/debug#pwdebug) to the command, like so:
 
 ```bash
-npm run integration -- --chromium --debug
+pnpm integration -- --chromium --debug
 # or
-PWDEBUG=1 npm run integration -- -c
+PWDEBUG=1 pnpm integration -- -c
 ```
 
 ### Watching for test changes
@@ -181,9 +181,9 @@ PWDEBUG=1 npm run integration -- -c
 To re-run tests on file changes to `.spec.ts` files, add `--watch` like so:
 
 ```bash
-npm run integration -- --watch
+pnpm integration -- --watch
 # or
-npm run integration -- -w
+pnpm integration -- -w
 ```
 
 #### Automatically open devtools on start
@@ -191,7 +191,7 @@ npm run integration -- -w
 To automatically open the browser devtools in headed mode on test start, add the ENV variable `OPEN_DEVTOOLS`, like so:
 
 ```bash
-OPEN_DEVTOOLS=1 npm run integration -- -p
+OPEN_DEVTOOLS=1 pnpm integration -- -p
 ```
 
 ### Viewing test reports
@@ -199,7 +199,7 @@ OPEN_DEVTOOLS=1 npm run integration -- -p
 Tests reports, including screenshots on error, are auto-generated and can be viewed by opening the HTML report file in `playwright/test-results/html-report`, or by running the following command:
 
 ```bash
-npx playwright show-report playwright/test-results/html-report
+pnpm --filter playwright exec playwright show-report packages/playwright/test-results/html-report
 ```
 
 ### Viewing test traces
@@ -209,7 +209,7 @@ Along with screenshots, Playwright will also capture traces for failed tests.
 You can view these by uploading them to [Playwright's Trace Viewer](https://trace.playwright.dev/) ([Docs](https://playwright.dev/docs/trace-viewer)) or by running the following command:
 
 ```bash
-npx playwright show-trace playwright/test-results/output/[test-id]/trace.zip
+pnpm --filter playwright exec playwright show-trace playwright/test-results/output/[test-id]/trace.zip
 ```
 
 ### Spotting flaky tests
@@ -218,9 +218,9 @@ If you are having trouble working out why a test is flaky, you can try the [`--r
 
 ```sh
 # Run integration tests, repeating each test in `signup.spec.ts` 100 times.
-npm run integration -- --repeat-each 100 signup
+pnpm integration -- --repeat-each 100 signup
 # Run e2e tests, repeating each test in `signup.spec.ts` 100 times.
-npm run e2e -- --repeat-each 100 signup
+pnpm e2e -- --repeat-each 100 signup
 ```
 
 ## Running Unit Tests
