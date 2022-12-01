@@ -1,5 +1,6 @@
 {
   "name": "playwright",
+  "version": "0.0.0",
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "private": true,
