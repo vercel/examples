@@ -41,7 +41,7 @@ const initPlaywright = (options, ...paths) => {
   if (testType) env.TEST_TYPE = testType
 
   if (!argsToForward.includes('--config')) {
-    testArgs.push('--config', 'playwright/playwright.config.ts')
+    testArgs.push('--config', 'playwright.config.ts')
   }
 
   if (args['--chromium'] && !argsToForward.includes('--project=chromium')) {

@@ -10,7 +10,7 @@
     "clean": "rm -rf .turbo"
   },
   "dependencies": {
-    "@playwright/test": "^1.25.2",
+    "@playwright/test": "^1.28.1",
     "arg": "^5.0.2",
     "chokidar": "^3.5.3",
     "chokidar-cli": "^3.0.0",

@@ -66,7 +66,6 @@ const config: PlaywrightTestConfig = {
     /* Collect traces for all test that fail. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',
   },
-
   /* Configure projects for major browsers */
   projects: [
     {

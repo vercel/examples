@@ -13,12 +13,14 @@
     "lint": "turbo run lint",
     "clean": "turbo run clean",
     "test-server": "turbo run build && turbo run start",
-    "test-unit": "turbo run test-unit"
+    "test-unit": "turbo run test-unit",
+    "integration": "turbo run integration",
+    "e2e": "turbo run e2e"
   },
   "devDependencies": {
     "eslint": "^8.28.0",
     "eslint-config-turbo": "latest",
     "turbo": "latest"
   },
-  "packageManager": "pnpm@7.15.0"
+  "packageManager": "pnpm@7.17.1"
 }

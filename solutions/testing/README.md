@@ -27,7 +27,7 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/solut
 Before running tests locally, you'll need to install the browsers required to run the tests, which aren't installed by default by Plawright:
 
 ```bash
-npx playwright install
+pnpm dlx playwright install
 ```
 
 In the meantime, build and start the test server that will be used by the tests:
