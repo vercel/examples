@@ -55,7 +55,7 @@ jobs:
 
       - name: Install dependencies
         shell: bash
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
 
@@ -69,4 +69,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: playwright-${{ inputs.test-type }}-report
-          path: playwright/test-results
+          path: packages/playwright/test-results
