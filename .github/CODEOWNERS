@@ -8,7 +8,8 @@
 # from Solutions and Dev Rel
 solutions/monorepo @vercel/turbo-oss @goncy @lfades @leerob @steven-tey
 solutions/microfrontends @vercel/turbo-oss @goncy @lfades @leerob @steven-tey
-solutions/nx-monorepo @vercel/turbo-oss @goncy @lfades @leerob @steven-tey
+solutions/testing @vercel/turbo-oss @goncy @lfades @leerob @steven-tey
+solutions/testing @vercel/turbo-oss @goncy @lfades @leerob @steven-tey
 
 # For the build output API the engineering team takes care of it.
 # A member of Solutions and Dev Rel is also added

@@ -9,6 +9,7 @@ yarn.lock
 pnpm-lock.yaml
 # include lockfile for turbo
 !/solutions/monorepo/pnpm-lock.yaml
+!/solutions/testing/pnpm-lock.yaml
 
 # Misc
 .DS_Store

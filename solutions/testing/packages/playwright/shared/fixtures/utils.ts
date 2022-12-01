@@ -1,5 +1,5 @@
 import type { Locator, Page } from '@playwright/test'
-import { tid } from '../../../lib/data-testid'
+import { tid } from 'main-site/lib/data-testid'
 
 export const createUtils = (page: Page) => ({
   /**

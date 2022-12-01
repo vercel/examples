@@ -1,16 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # Dependencies
-/node_modules
-/.pnp
+node_modules
+.pnp
 .pnp.js
 
 # Testing
 /coverage
 
 # Next.js
-/.next/
-/out/
+.next
+out
 
 # Production
 build
@@ -41,5 +41,5 @@ yarn-error.log*
 *.tsbuildinfo
 
 # Playwright
-/playwright/.cache/
-/playwright/test-results/
+packages/playwright/.cache/
+packages/playwright/test-results/
