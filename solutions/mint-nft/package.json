@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.4.3",
     "@heroicons/react": "^1.0.5",
+    "@moralisweb3/next": "^2.8.2",
     "@rainbow-me/rainbowkit": "^0.7.4",
     "@rarible/sdk": "^0.10.0",
     "@tensorflow/tfjs": "^3.13.0",
