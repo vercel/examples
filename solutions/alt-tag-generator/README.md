@@ -28,4 +28,4 @@ curl http://localhost:3000/api/generate?imageUrl=https://dub.sh/confpic
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/alt-image-generator&env=REPLICATE_API_KEY&project-name=alt-image-generation&repo-name=alt-image-generation)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/alt-tag-generator&env=REPLICATE_API_KEY&project-name=alt-tag-generation&repo-name=alt-tag-generation)
