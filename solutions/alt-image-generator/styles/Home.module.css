@@ -1,0 +1,23 @@
+.container {
+  padding: 0 2rem;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.h1 {
+  text-align: center;
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+}
+
+.highlight {
+  color: #01e7bf;
+  text-decoration: none;
+  border-bottom: 1px solid #01e7bf;
+  transition: all 0.2s ease-in-out;
+}
