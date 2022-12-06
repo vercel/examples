@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       </p>
       <a
         className={styles.highlight}
-        href="/generate?imageUrl=https://dub.sh/confpic"
+        href="/api/generate?imageUrl=https://dub.sh/confpic"
       >
         http://localhost:3000/api/generate?imageUrl=https://dub.sh/confpic
       </a>
