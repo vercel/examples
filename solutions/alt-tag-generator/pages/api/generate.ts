@@ -49,5 +49,5 @@ export default async function handler(
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
   }
-  res.status(200).json(altText);
+  res.status(200).json(altText ? altText : "Failed to generate alt text");
 }
