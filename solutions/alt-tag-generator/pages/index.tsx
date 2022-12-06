@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -15,12 +16,12 @@ const Home: NextPage = () => {
       <p>
         Send a request to `/api/generate` with `imageUrl` as a query parameter:
       </p>
-      <a
+      <Link
         className={styles.highlight}
         href="/api/generate?imageUrl=https://dub.sh/confpic"
       >
         http://localhost:3000/api/generate?imageUrl=https://dub.sh/confpic
-      </a>
+      </Link>
     </div>
   );
 };
