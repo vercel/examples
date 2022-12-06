@@ -43,6 +43,8 @@ export default async function handler(
     let jsonFinalResponse = await finalResponse.json();
     if (jsonFinalResponse.status === "succeeded") {
       altText = jsonFinalResponse.output.split("Caption: ")[1];
+    } else if (jsonFinalResponse.status === "failed") {
+      break;
     } else {
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
