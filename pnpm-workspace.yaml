@@ -1,2 +1,7 @@
 packages:
   - 'packages/*'
+  - 'app-directory/*'
+  - 'edge-api-routes/*'
+  - 'edge-functions/*'
+  - 'plop-templates/*'
+  - 'solutions/*'
