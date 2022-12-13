@@ -11,7 +11,7 @@ import {
   Snippet,
   Code,
 } from '@vercel/examples-ui'
-import { EXPERIMENT, UID_COOKIE } from '../lib/constants'
+import { EXPERIMENT, UID_COOKIE, GROUP_PARAM_FALLBACK } from '../lib/constants'
 import api from '../lib/statsig-api'
 
 interface Props {
@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths<{ bucket: string }> = async () => {
   // Groups that we want to statically generate
-  const groups: string[] = await api.getBuckets(EXPERIMENT)
+  const groups: string[] = (await api.getBuckets(EXPERIMENT)).concat(GROUP_PARAM_FALLBACK);
 
   return {
     paths: groups.map((group) => ({
@@ -78,7 +78,7 @@ function BucketPage({ bucket }: Props) {
           .
         </Text>
         <pre className="bg-black text-white font-mono text-left py-2 px-4 rounded-lg text-sm leading-6">
-          bucket: {bucket}
+          bucket: {bucket === GROUP_PARAM_FALLBACK ? 'Experiment not set up, please read README to set up example.' : bucket}
         </pre>
         <Button size="lg" onClick={resetBucket}>
           Reset bucket

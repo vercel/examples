@@ -7,13 +7,13 @@ useCase:
   - Edge Functions
   - Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/edge-config-statsig&project-name=edge-config-statsig&repository-name=edge-config-statsig
+deployUrl: https://vercel.com/new/git/external?repository-url=https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/edge-config-statsig&project-name=edge-config-statsig&repository-name=edge-config-statsig&env=STATSIG_SERVER_API_KEY,NEXT_PUBLIC_STATSIG_CLIENT_KEY,STATSIG_CONSOLE_API_KEY,EDGE_CONFIG,EDGE_CONFIG_ITEM_KEY&envDescription=Statsig%20API%20keys%20and%20Edge%20Config%20settings&envLink=https%3A%2F%2Fdocs.statsig.com%2Fguides%2Ffirst-feature
 demoUrl: https://edge-functions-edge-config-statsig.vercel.app
 ---
 
 # Experimentation with Statsig
 
-This example shows how to do experimentaion using Statsig, leveraging Edge Config.
+This example shows how to do experimentation using Statsig, leveraging Edge Config.
 
 ## Demo
 
@@ -27,7 +27,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/edge-config-statsig&project-name=edge-config-statsig&repository-name=edge-config-statsig&env=STATSIG_SERVER_API_KEY,NEXT_PUBLIC_STATSIG_CLIENT_KEY,STATSIG_CONSOLE_API_KEY,EDGE_CONFIG,EDGE_CONFIG_ITEM_KEY&envDescription=API%20keys%20used%20by%20statsig%20on%20the%20server%20and%20the%20client&envLink=https%3A%2F%2Fdocs.statsig.com%2F%23account-sign-up-and-api-key)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/edge-config-statsig&project-name=edge-config-statsig&repository-name=edge-config-statsig&env=STATSIG_SERVER_API_KEY,NEXT_PUBLIC_STATSIG_CLIENT_KEY,STATSIG_CONSOLE_API_KEY,EDGE_CONFIG,EDGE_CONFIG_ITEM_KEY&envDescription=Statsig%20API%20keys%20and%20Edge%20Config%20settings&envLink=https%3A%2F%2Fdocs.statsig.com%2Fguides%2Ffirst-feature)
 
 ### Clone and Deploy
 
