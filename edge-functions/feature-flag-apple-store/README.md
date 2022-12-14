@@ -83,4 +83,4 @@ To close the store go to:
 http://localhost:3000/api/store/close
 ```
 
-Alternatively you can use the Edge Config UI in your on vercel.com to update the `featureFlagsAppleStore_storeClosed` value directly.
+Alternatively you can use the Edge Config UI in your Vercel dashboard to update the `featureFlagsAppleStore_storeClosed` value directly.
