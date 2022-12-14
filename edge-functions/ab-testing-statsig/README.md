@@ -8,7 +8,7 @@ useCase:
   - Documentation
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig&project-name=ab-testing-statsig&repository-name=ab-testing-statsig&env=STATSIG_SERVER_API_KEY,NEXT_PUBLIC_STATSIG_CLIENT_KEY,STATSIG_CONSOLE_API_KEY,EDGE_CONFIG,EDGE_CONFIG_ITEM_KEY&envDescription=Statsig%20API%20keys%20and%20Edge%20Config%20settings&envLink=https%3A%2F%2Fdocs.statsig.com%2Fguides%2Ffirst-feature
-demoUrl: https://edge-functions-experimentation-statsig.vercel.app
+demoUrl: https://edge-functions-ab-testing-statsig.vercel.app
 ---
 
 # Experimentation with Statsig
@@ -17,7 +17,7 @@ This example shows how to do experimentation using Statsig, leveraging Edge Conf
 
 ## Demo
 
-https://edge-functions-experimentation-statsig.vercel.app
+https://edge-functions-ab-testing-statsig.vercel.app
 
 ## How to Use
 
