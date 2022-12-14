@@ -3,7 +3,9 @@ name: Feature Flag Apple Store
 slug: feature-flag-apple-store
 description: This template uses Edge Config as fast storage to control whether an store is open or closed.
 framework: Next.js
-useCase: Edge Functions
+useCase:
+  - Edge Functions
+  - Edge Config
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Ffeature-flag-apple-store&project-name=feature-flag-apple-store&repo-name=feature-flag-apple-store
 demoUrl: https://edge-functions-feature-flag-apple-store.vercel.app/
