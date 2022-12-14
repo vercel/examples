@@ -9,6 +9,9 @@ useCase:
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Fmaintenance-page&project-name=maintenance-page&repo-name=maintenance-page
 demoUrl: https://edge-maintenance-page.vercel.app/
+relatedTemplates:
+  - feature-flag-apple-store
+  - rewrites-upstash
 ---
 
 # maintenance-page example
