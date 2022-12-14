@@ -1,17 +1,17 @@
 ---
 name: Feature Flag Apple Store
 slug: feature-flag-apple-store
-description: This template uses Upstash (Edge Redis Database) as fast storage to control whether an store is open or closed.
+description: This template uses Edge Config as fast storage to control whether an store is open or closed.
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Ffeature-flag-apple-store&env=UPSTASH_REDIS_REST_URL,UPSTASH_REDIS_REST_TOKEN&envDescription=The%20Upstash%20secret%20from%20your%20Upstash%20console&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Ffeature-flag-apple-store%23set-up-environment-variables&project-name=feature-flag-apple-store&repo-name=feature-flag-apple-store
+deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Ffeature-flag-apple-store&project-name=feature-flag-apple-store&repo-name=feature-flag-apple-store
 demoUrl: https://edge-functions-feature-flag-apple-store.vercel.app/
 ---
 
 # Apple Store
 
-This template uses [Upstash](https://upstash.com/) (Edge Redis Database) as fast storage to control whether an store is open or closed.
+This template uses Edge Config as fast storage to control whether the store is open or closed.
 
 ## Demo
 
@@ -25,7 +25,7 @@ You can choose from one of the following two methods to use this repository:
 
 After [setting up your environment variables](#set-up-environment-variables), deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Ffeature-flag-apple-store&env=UPSTASH_REDIS_REST_URL,UPSTASH_REDIS_REST_TOKEN&envDescription=The%20Upstash%20secret%20from%20your%20Upstash%20console&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Ffeature-flag-apple-store%23set-up-environment-variables&project-name=feature-flag-apple-store&repo-name=feature-flag-apple-store)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Ffeature-flag-apple-store&project-name=feature-flag-apple-store&repo-name=feature-flag-apple-store)
 
 ### Clone and Deploy
 
@@ -39,13 +39,17 @@ yarn create next-app --example https://github.com/vercel/examples/tree/main/edge
 
 #### Set up environment variables
 
-Get your Upstash credentials from the Upstash's dashboard, then rename [`.env.example`](.env.example) to `.env.local`:
+Copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
 
 ```bash
 cp .env.example .env.local
 ```
 
-And update it with your Upstash credentials.
+This example connects to a default Edge Config via the `EDGE_CONFIG` environment variable. You can replace it with your own Edge Config to be able to flip store on or off. If you use your own Edge Config, it needs to have this content
+
+```json
+{ "featureFlagsAppleStore_storeClosed": true }
+```
 
 Next, run Next.js in development mode:
 
@@ -63,7 +67,9 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 ## Opening / Closing the Store
 
-We can use Upstash's REST API to update the kev/value store or use API routes.
+We can use API routes or Vercel's Edge Config UI to update Edge Config.
+
+> Note that you need to provide your own `TEAM_ID_VERCEL` and `AUTH_BEARER_TOKEN` environment variables in `.env.local` if you want to open or close the store as shown below.
 
 To open the store go to:
 
@@ -77,16 +83,4 @@ To close the store go to:
 http://localhost:3000/api/store/close
 ```
 
-For Upstash's REST API: Replace the URLs and Authorization tokens below with the values from your Upstash Redis instance.
-
-**Open**
-
-```bash
-$ curl https://your-upstash-url.upstash.io/set/store-closed/false -H "Authorization: Bearer YOUR_TOKEN"
-```
-
-**Closed**
-
-```bash
-$ curl https://your-upstash-url.upstash.io/set/store-closed/true -H "Authorization: Bearer YOUR_TOKEN"
-```
+Alternatively you can use the Edge Config UI in your Vercel dashboard to update the `featureFlagsAppleStore_storeClosed` value directly.
