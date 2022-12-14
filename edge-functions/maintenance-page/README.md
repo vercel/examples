@@ -12,7 +12,6 @@ demoUrl: https://edge-maintenance-page.vercel.app/
 relatedTemplates:
   - feature-flag-apple-store
   - nextjs-boilerplate
-  - rewrites-upstash
 ---
 
 # maintenance-page example
