@@ -39,12 +39,6 @@ yarn create next-app --example https://github.com/vercel/examples/tree/main/edge
 
 #### Set up environment variables
 
-Rename [`.env.example`](.env.example) to `.env.local`:
-
-```bash
-cp .env.example .env.local
-```
-
 Copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
 
 ```bash
@@ -73,7 +67,7 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 ## Opening / Closing the Store
 
-We can use Vercel's REST API to update the kev/value store or use API routes.
+We can use API routes or Vercel's Edge Config UI to update Edge Config.
 
 > Note that you need to provide your own `TEAM_ID_VERCEL` and `AUTH_BEARER_TOKEN` environment variables in `.env.local` if you want to open or close the store as shown below.
 
@@ -89,4 +83,4 @@ To close the store go to:
 http://localhost:3000/api/store/close
 ```
 
-Alternatively you can use the Edge Config UI on vercel.com to update the `featureFlagsAppleStore_storeClosed` value directly in your Edge Config.
+Alternatively you can use the Edge Config UI in your on vercel.com to update the `featureFlagsAppleStore_storeClosed` value directly.
