@@ -1,4 +1,4 @@
-import { set } from 'lib/upstash-redis'
+import { set } from 'lib/feature-flags'
 
 export const config = {
   runtime: 'experimental-edge',
@@ -6,10 +6,10 @@ export const config = {
 
 export default async function CloseStore() {
   try {
-    const { result } = await set('store-closed', 'true')
+    const result = await set('storeClosed', true)
 
-    if (result !== 'OK') {
-      throw new Error(`Unexpected result from Upstash: ${result}`)
+    if (!result) {
+      throw new Error(`Something went wrong when updating the Edge Config`)
     }
 
     return new Response(
