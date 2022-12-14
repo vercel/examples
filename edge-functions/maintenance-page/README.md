@@ -26,6 +26,14 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-
 yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/maintenance-page
 ```
 
+Copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
+
+```bash
+cp .env.example .env.local
+```
+
+This example connects to a default Edge Config. You can replace it with your own Edge Config to be able to flip maintenance mode on or off.
+
 Next, run Next.js in development mode:
 
 ```bash
