@@ -32,7 +32,11 @@ Copy the `.env.example` file in this directory to `.env.local` (which will be ig
 cp .env.example .env.local
 ```
 
-This example connects to a default Edge Config. You can replace it with your own Edge Config to be able to flip maintenance mode on or off.
+This example connects to a default Edge Config via the `EDGE_CONFIG` environment variable. You can replace it with your own Edge Config to be able to flip maintenance mode on or off. If you use your own Edge Config, it needs to have this content
+
+```json
+{ "isInMaintenanceMode": true }
+```
 
 Next, run Next.js in development mode:
 
