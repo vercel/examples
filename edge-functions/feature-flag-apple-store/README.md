@@ -9,6 +9,10 @@ useCase:
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Ffeature-flag-apple-store&project-name=feature-flag-apple-store&repo-name=feature-flag-apple-store
 demoUrl: https://edge-functions-feature-flag-apple-store.vercel.app/
+relatedTemplates:
+  - nextjs-boilerplate
+  - platforms-starter-kit
+  - blog-starter-kit
 ---
 
 # Apple Store
