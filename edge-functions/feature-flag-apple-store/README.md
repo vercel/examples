@@ -11,8 +11,8 @@ deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%
 demoUrl: https://edge-functions-feature-flag-apple-store.vercel.app/
 relatedTemplates:
   - nextjs-boilerplate
-  - platforms-starter-kit
   - blog-starter-kit
+  - ab-testing-simple
 ---
 
 # Apple Store
