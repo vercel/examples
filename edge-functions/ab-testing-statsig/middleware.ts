@@ -4,7 +4,7 @@ import { EdgeConfigDataAdapter } from 'statsig-node-vercel'
 import { EXPERIMENT, UID_COOKIE, GROUP_PARAM_FALLBACK } from './lib/constants'
 
 // We'll use this to validate a random UUID
-const IS_UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{16}$/i
+const IS_UUID = /^[0-9a-f-]+$/i
 const dataAdapter = new EdgeConfigDataAdapter(process.env.EDGE_CONFIG_ITEM_KEY!)
 
 export const config = {
