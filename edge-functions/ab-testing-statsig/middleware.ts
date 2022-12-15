@@ -17,34 +17,6 @@ export async function middleware(req: NextRequest) {
   // In Next.js 13, the value returned from cookies.get() is an object with the
   // type: { name: string, value: string }
   // This check makes it compatible with Next.js 12 and 13
-  let userId =
-    typeof uidCookieValue === 'string' ? uidCookieValue : uidCookieValue?.value
-  let hasUserId = !!userId
 
-  // If there's no active user ID in cookies or its value is invalid, get a new one
-  if (!userId || !IS_UUID.test(userId)) {
-    userId = crypto.randomUUID()
-    hasUserId = false
-  }
-
-  await Statsig.initialize(process.env.STATSIG_SERVER_API_KEY!, { dataAdapter })
-
-  const experiment = await Statsig.getExperiment({ userID: userId }, EXPERIMENT)
-  const bucket = experiment.get<string>('bucket', GROUP_PARAM_FALLBACK)
-
-  // Clone the URL and change its pathname to point to a bucket
-  const url = req.nextUrl.clone()
-  url.pathname = `/${bucket}`
-
-  // Response that'll rewrite to the selected bucket
-  const res = NextResponse.rewrite(url)
-
-  // Add the user ID to the response cookies if it's not there or if its value was invalid
-  if (!hasUserId) {
-    res.cookies.set(UID_COOKIE, userId, {
-      maxAge: 60 * 60 * 24, // identify users for 24 hours
-    })
-  }
-
-  return res
+  return NextResponse.json({ uidCookieValue })
 }
