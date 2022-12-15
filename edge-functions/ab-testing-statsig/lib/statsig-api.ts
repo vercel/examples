@@ -13,9 +13,7 @@ async function statsig(
   url.pathname = path
 
   if (!apiKey) {
-    throw new Error(
-      'No Statsig API key was provided'
-    )
+    throw new Error('No Statsig API key was provided')
   }
 
   const res = await fetch(url.href, {
@@ -47,11 +45,16 @@ async function statsig(
 const api = {
   async getBuckets(experiment: string) {
     // https://docs.statsig.com/console-api/experiments#get-/experiments/-experiment_id-
-    const experimentConfig = await statsig(`/console/v1/experiments/${experiment}`, 'GET', {
-      apiKey: STATSIG_CONSOLE_API_KEY,
-    });
+    const experimentConfig = await statsig(
+      `/console/v1/experiments/${experiment}`,
+      'GET',
+      { apiKey: STATSIG_CONSOLE_API_KEY }
+    )
 
-    return experimentConfig.data.groups.map((group: { parameterValues: {bucket: string} }) => group.parameterValues.bucket);
+    return experimentConfig.data.groups.map(
+      (group: { parameterValues: { bucket: string } }) =>
+        group.parameterValues.bucket
+    )
   },
 }
 

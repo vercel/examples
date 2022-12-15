@@ -1,16 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
-import Statsig from "statsig-node";
-import { EdgeConfigDataAdapter } from "statsig-node-vercel"
+import Statsig from 'statsig-node'
+import { EdgeConfigDataAdapter } from 'statsig-node-vercel'
 import { EXPERIMENT, UID_COOKIE, GROUP_PARAM_FALLBACK } from './lib/constants'
 
 // We'll use this to validate a random UUID
 const IS_UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{16}$/i
-const dataAdapter = new EdgeConfigDataAdapter(process.env.EDGE_CONFIG_ITEM_KEY!);
+const dataAdapter = new EdgeConfigDataAdapter(process.env.EDGE_CONFIG_ITEM_KEY!)
+
+export const config = {
+  matcher: '/',
+}
 
 export async function middleware(req: NextRequest) {
-  // If the request is not for `/`, continue
-  if (req.nextUrl.pathname !== '/') return
-
   // Get the user ID from the cookie or get a new one
   let userId = req.cookies.get(UID_COOKIE)?.value
   let hasUserId = !!userId
@@ -21,13 +22,10 @@ export async function middleware(req: NextRequest) {
     hasUserId = false
   }
 
-  await Statsig.initialize(
-    process.env.STATSIG_SERVER_API_KEY!,
-    { dataAdapter } 
-  );
+  await Statsig.initialize(process.env.STATSIG_SERVER_API_KEY!, { dataAdapter })
 
-  const experiment = await Statsig.getExperiment({ userID: userId }, EXPERIMENT);
-  const bucket = experiment.get("bucket", GROUP_PARAM_FALLBACK)
+  const experiment = await Statsig.getExperiment({ userID: userId }, EXPERIMENT)
+  const bucket = experiment.get<string>('bucket', GROUP_PARAM_FALLBACK)
 
   // Clone the URL and change its pathname to point to a bucket
   const url = req.nextUrl.clone()
