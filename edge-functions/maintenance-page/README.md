@@ -1,5 +1,5 @@
 ---
-name: Maintenance
+name: Maintenance Page
 slug: maintenance-page
 description: This template shows how to quickly trigger a maintenance page using Edge Config
 framework: Next.js
