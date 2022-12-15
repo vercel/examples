@@ -2,14 +2,14 @@
 name: Edge API Route
 slug: edge-api-route
 description: Build your API using Vercel Edge Functions.
-framework: None
+framework: Next.js
 useCase: Edge Functions
 css: None
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-api-routes/hello-world&project-name=edge-api-route&repository-name=edge-api-route
 demoUrl: https://edge-api-route.vercel.app/api/edge
 ---
 
-# Edge API Route (Experimental)
+# Edge API Route
 
 Build your API using Vercel Edge Functions.
 
@@ -32,9 +32,9 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-api-routes/api-route api-route
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-api-routes/hello-world edge-api-route
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-api-routes/api-route api-route
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-api-routes/hello-world edge-api-route
 ```
 
 Install the Vercel CLI:
