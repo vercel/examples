@@ -36,7 +36,9 @@ export async function middleware(req: NextRequest) {
 
   // Add the user ID to the response cookies if it's not there or if its value was invalid
   if (!hasUserId) {
-    res.cookies.set(UID_COOKIE, userId)
+    res.cookies.set(UID_COOKIE, userId, {
+      maxAge: 60 * 60 * 24, // identify users for 24 hours
+    })
   }
 
   return res
