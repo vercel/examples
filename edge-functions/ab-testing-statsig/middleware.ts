@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import statsig from './lib/statsig-api'
-import { DEFAULT_GROUP, FLAG, UID_COOKIE } from './lib/constants'
+import Statsig from "statsig-node";
+import { EdgeConfigDataAdapter } from "statsig-node-vercel"
+import { EXPERIMENT, UID_COOKIE, GROUP_PARAM_FALLBACK } from './lib/constants'
 
 // We'll use this to validate a random UUID
 const IS_UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{16}$/i
+const dataAdapter = new EdgeConfigDataAdapter(process.env.EDGE_CONFIG_ITEM_KEY!);
 
 export async function middleware(req: NextRequest) {
   // If the request is not for `/`, continue
@@ -19,16 +21,13 @@ export async function middleware(req: NextRequest) {
     hasUserId = false
   }
 
-  // Fetch experiment from Statsig
-  const bucket =
-    (await statsig
-      .getExperiment(userId, FLAG)
-      .then((value) => value.name)
-      .catch((error) => {
-        // Log the error but don't throw it, if Statsig fails, fallback to the default group
-        // so that the site doesn't go down
-        console.error(error)
-      })) || DEFAULT_GROUP
+  await Statsig.initialize(
+    process.env.STATSIG_SERVER_API_KEY!,
+    { dataAdapter } 
+  );
+
+  const experiment = await Statsig.getExperiment({ userID: userId }, EXPERIMENT);
+  const bucket = experiment.get("bucket", GROUP_PARAM_FALLBACK)
 
   // Clone the URL and change its pathname to point to a bucket
   const url = req.nextUrl.clone()
