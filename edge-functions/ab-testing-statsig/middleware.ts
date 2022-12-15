@@ -13,12 +13,7 @@ export const config = {
 
 export async function middleware(req: NextRequest) {
   // Get the user ID from the cookie or get a new one
-  let uidCookieValue = req.cookies.get(UID_COOKIE)
-  // In Next.js 13, the value returned from cookies.get() is an object with the
-  // type: { name: string, value: string }
-  // This check makes it compatible with Next.js 12 and 13
-  let userId =
-    typeof uidCookieValue === 'string' ? uidCookieValue : uidCookieValue?.value
+  let userId = req.cookies.get(UID_COOKIE)?.value
   let hasUserId = !!userId
 
   // If there's no active user ID in cookies or its value is invalid, get a new one
