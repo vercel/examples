@@ -12,7 +12,7 @@ import {
   Code,
 } from '@vercel/examples-ui'
 import { EXPERIMENT, UID_COOKIE, GROUP_PARAM_FALLBACK } from '../lib/constants'
-import api from '../../ab-testing-statsig/lib/statsig-api'
+import api from '../lib/statsig-api'
 
 interface Props {
   bucket: string
