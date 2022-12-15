@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { Statsig } from 'statsig-react'
+import Image from 'next/image'
 import Cookie from 'js-cookie'
 import {
   Layout,
@@ -13,6 +14,7 @@ import {
 } from '@vercel/examples-ui'
 import { EXPERIMENT, UID_COOKIE, GROUP_PARAM_FALLBACK } from '../lib/constants'
 import api from '../lib/statsig-api'
+import exampleScreenshot from '../public/example_experiment.png'
 
 interface Props {
   bucket: string
@@ -85,6 +87,18 @@ function BucketPage({ bucket }: Props) {
         <Button size="lg" onClick={resetBucket}>
           Reset bucket
         </Button>
+        <Text>
+          In order to set this demo up yourself, in the <Link href="https://console.statsig.com/" target="_blank">
+            Statsig console
+          </Link>, create a new experiment called &quot;statsig_example&quot;. 
+          Create experiment groups, each with a &quot;bucket&quot; parameter. 
+          Make sure to start the experiment, and from there this example will display the bucket that the user was assigned to.
+          See the screenshot below for an example experiment setup.
+        </Text>
+        <Image
+          src={exampleScreenshot}
+          alt="Example Statsig Experiment Setup"
+        />
       </section>
 
       <section className="flex flex-col gap-6">
