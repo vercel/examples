@@ -14,7 +14,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/ai-chatgpt&project-name=ai-chatgpt&repository-name=ai-chatgpt)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/ai-chatgpt&project-name=ai-chatgpt&repository-name=ai-chatgpt&env=OPENAI_API_KEY)
 
 ### Clone and Deploy
 
@@ -26,7 +26,11 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/solut
 yarn create next-app --example https://github.com/vercel/examples/tree/main/solutions/ai-chatgpt
 ```
 
-Next, run Next.js in development mode:
+## Running Locally
+
+After cloning the repo, go to [OpenAI](https://beta.openai.com/account/api-keys) to make an account and put your API key in a variable `OPENAI_API_KEY` in a file called `.env.local`.
+
+Then, run the application in the command line and it will be available at `http://localhost:3000`.
 
 ```bash
 npm install
