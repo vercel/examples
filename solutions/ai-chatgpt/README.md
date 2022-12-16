@@ -1,6 +1,6 @@
 # ai-chatgpt example
 
-This example shows how to implement a simple chat bot is implemented using Next.js, API Routes, and OpenAI API.
+This example shows how to implement a simple chat bot is implemented using Next.js, API Routes, and [OpenAI SDK](https://beta.openai.com/docs/api-reference/completions/create).
 
 ## Demo
 

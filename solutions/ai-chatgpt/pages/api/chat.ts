@@ -47,15 +47,13 @@ export default async function handler(req: any, res: any) {
     ? `${process.env.AI_PROMPT}${messagesPrompt}\n${botName}: `
     : defaultPrompt
 
-  console.log(' == finalPrompt', finalPrompt)
-
   const payload = {
     model: 'text-davinci-003', // TODO: move to @vercel/config
     prompt: finalPrompt,
     temperature: process.env.AI_TEMP ? parseFloat(process.env.AI_TEMP) : 0.7, // TODO: move to @vercel/config
     max_tokens: process.env.AI_MAX_TOKENS
       ? parseInt(process.env.AI_MAX_TOKENS)
-      : 1000, // TODO: move to @vercel/config
+      : 200, // TODO: move to @vercel/config
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,
