@@ -1,7 +1,5 @@
 import { createClient, parseConnectionString } from '@vercel/edge-config'
 
-const edgeConfig = createClient(process.env.EDGE_CONFIG)
-
 interface FeatureFlags {
   storeClosed: boolean
 }
@@ -11,6 +9,7 @@ const prefixKey = (key: string) => `featureFlagsAppleStore_${key}`
 
 export async function get(key: keyof FeatureFlags) {
   const prefixedKey = prefixKey(key)
+  const edgeConfig = createClient(process.env.EDGE_CONFIG)
   const featureFlag = await edgeConfig.get<FeatureFlags>(prefixedKey)
   return featureFlag
 }
