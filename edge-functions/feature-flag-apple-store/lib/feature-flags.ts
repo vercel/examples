@@ -18,10 +18,15 @@ export async function set(key: keyof FeatureFlags, value: boolean) {
   if (!process.env.AUTH_BEARER_TOKEN) {
     throw new Error('Missing Environment Variable AUTH_BEARER_TOKEN')
   }
+  if (!process.env.EDGE_CONFIG) {
+    throw new Error('Missing Environment Variable EDGE_CONFIG')
+  }
 
   const connectionString = parseConnectionString(process.env.EDGE_CONFIG!)
   if (!connectionString) {
-    throw new Error('Could not parse EDGE_CONFIG connection string')
+    throw new Error(
+      'Could not parse connection string stored in EDGE_CONFIG environment variable'
+    )
   }
 
   const edgeConfigId = connectionString.id

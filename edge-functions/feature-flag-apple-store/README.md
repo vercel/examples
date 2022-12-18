@@ -51,7 +51,7 @@ Copy the `.env.example` file in this directory to `.env.local` (which will be ig
 cp .env.example .env.local
 ```
 
-This example connects to a default Edge Config via the `EDGE_CONFIG` environment variable. You can replace it with your own Edge Config to be able to flip store on or off. If you use your own Edge Config, it needs to have this content
+This example requires you to set up an Edge Config and store its connection string in the `EDGE_CONFIG` environment variable. Fill the Edge Config you create with this content:
 
 ```json
 { "featureFlagsAppleStore_storeClosed": true }
@@ -73,7 +73,7 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 ## Opening / Closing the Store
 
-We can use API routes or Vercel's Edge Config UI to update Edge Config.
+You can control whether the store is open or not by changing the value of `featureFlagsAppleStore_storeClosed`. Use API routes or Vercel's Edge Config UI to update Edge Config.
 
 > Note that you need to provide your own `TEAM_ID_VERCEL` and `AUTH_BEARER_TOKEN` environment variables in `.env.local` if you want to open or close the store as shown below.
 
