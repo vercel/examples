@@ -2,10 +2,15 @@ import { NextRequest, NextResponse } from 'next/server'
 import { get } from '@vercel/edge-config'
 
 export const config = {
-  matcher: '/big-promo',
+  matcher: ['/big-promo'],
 }
 
 export async function middleware(req: NextRequest) {
+  if (!process.env.EDGE_CONFIG) {
+    req.nextUrl.pathname = `/missing-edge-config`
+    return NextResponse.rewrite(req.nextUrl)
+  }
+
   try {
     // Check whether the maintenance page should be shown
     const isInMaintenanceMode = await get<boolean>('isInMaintenanceMode')

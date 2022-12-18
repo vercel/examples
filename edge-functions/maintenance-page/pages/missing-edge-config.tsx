@@ -66,7 +66,7 @@ export default function MissingEdgeConfigDialog() {
             </div>
             <div className="mt-5 sm:mt-4 sm:ml-10 sm:flex sm:pl-4">
               <a
-                href="https://github.com/vercel/examples/blob/main/edge-functions/feature-flag-apple-store/README.md#set-up-environment-variables"
+                href="https://github.com/vercel/examples/blob/main/edge-functions/maintenance-page/README.md#set-up-environment-variables"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex w-full justify-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
