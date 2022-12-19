@@ -42,13 +42,15 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-
 yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/maintenance-page
 ```
 
+#### Set up environment variables
+
 Copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
 
 ```bash
 cp .env.example .env.local
 ```
 
-This example connects to a default Edge Config via the `EDGE_CONFIG` environment variable. You can replace it with your own Edge Config to be able to flip maintenance mode on or off. If you use your own Edge Config, it needs to have this content
+This example requires you to set up an Edge Config and store its connection string in the `EDGE_CONFIG` environment variable. Fill the Edge Config you create with this content:
 
 ```json
 { "isInMaintenanceMode": true }
