@@ -2,7 +2,7 @@ import type { NextRequest } from 'next/server'
 import { ipRateLimit } from '@lib/ip-rate-limit'
 
 export const config = {
-  runtime: 'experimental-edge',
+  runtime: 'edge',
 }
 
 export default async function handler(req: NextRequest) {

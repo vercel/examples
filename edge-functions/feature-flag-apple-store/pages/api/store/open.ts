@@ -1,7 +1,7 @@
 import { set } from 'lib/feature-flags'
 
 export const config = {
-  runtime: 'experimental-edge',
+  runtime: 'edge',
 }
 
 export default async function OpenStore() {

@@ -2,7 +2,7 @@
 import wasm from '../wasm/pkg/wasm_bg.wasm?module'
 
 export const config = {
-  runtime: 'experimental-edge',
+  runtime: 'edge',
 }
 
 export default async function handler() {
