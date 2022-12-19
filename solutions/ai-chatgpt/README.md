@@ -1,4 +1,4 @@
-# ai-chatgpt example
+# AI Chat GPT-3 example
 
 This example shows how to implement a simple chat bot is implemented using Next.js, API Routes, and [OpenAI SDK](https://beta.openai.com/docs/api-reference/completions/create).
 
@@ -26,11 +26,17 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/solut
 yarn create next-app --example https://github.com/vercel/examples/tree/main/solutions/ai-chatgpt
 ```
 
-## Running Locally
+#### Set up environment variables
 
-After cloning the repo, go to [OpenAI](https://beta.openai.com/account/api-keys) to make an account and put your API key in a variable `OPENAI_API_KEY` in a file called `.env.local`.
+Rename [`.env.example`](.env.example) to `.env.local`:
 
-Then, run the application in the command line and it will be available at `http://localhost:3000`.
+```bash
+cp .env.example .env.local
+```
+
+then, update `OPENAI_API_KEY` with your [OpenAI](https://beta.openai.com/account/api-keys) secret key.
+
+Next, run Next.js in development mode:
 
 ```bash
 npm install
@@ -41,5 +47,7 @@ npm run dev
 yarn
 yarn dev
 ```
+
+The app should be up and running at http://localhost:3000.
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
