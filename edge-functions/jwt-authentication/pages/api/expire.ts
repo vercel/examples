@@ -3,7 +3,7 @@ import { expireUserCookie } from '@lib/auth'
 import { jsonResponse } from '@lib/utils'
 
 export const config = {
-  runtime: 'experimental-edge',
+  runtime: 'edge',
 }
 
 export default async function expire(req: NextRequest) {
