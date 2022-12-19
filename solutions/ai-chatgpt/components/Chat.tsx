@@ -14,7 +14,7 @@ export const initialMessages: Message[] = [
 ]
 
 const InputMessage = ({ input, setInput, sendMessage }: any) => (
-  <div className="mt-6 flex">
+  <div className="mt-6 flex clear-both">
     <input
       type="text"
       aria-label="chat input"
@@ -74,7 +74,6 @@ export function Chat() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        prompt: message,
         messages: last10mesages,
         user: cookie[COOKIE_NAME],
       }),
@@ -92,7 +91,7 @@ export function Chat() {
   }
 
   return (
-    <div className="rounded-2xl border-zinc-100  lg:border lg:p-6 ">
+    <div className="rounded-2xl border-zinc-100  lg:border lg:p-6">
       {messages.map(({ message, who }, index) => (
         <ChatLine key={index} who={who} message={message} />
       ))}
@@ -100,7 +99,7 @@ export function Chat() {
       {loading && <LoadingChatLine />}
 
       {messages.length < 2 && (
-        <span className="mx-auto flex flex-grow text-gray-600">
+        <span className="mx-auto flex flex-grow text-gray-600 clear-both">
           Type a message to start the conversation
         </span>
       )}

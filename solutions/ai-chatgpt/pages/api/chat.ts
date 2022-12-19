@@ -3,6 +3,11 @@ import { Configuration, OpenAIApi } from 'openai'
 import { initialMessages } from '../../components/Chat'
 import { type Message } from '../../components/ChatLine'
 
+// break the app if the API key is missing
+if (!process.env.OPENAI_API_KEY) {
+  throw new Error('Missing Environment Variable OPENAI_API_KEY')
+}
+
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 })
@@ -39,7 +44,6 @@ const generatePromptFromMessages = (messages: Message[]) => {
 }
 
 export default async function handler(req: any, res: any) {
-  const prompt = req.body.prompt
   const messages = req.body.messages
   const messagesPrompt = generatePromptFromMessages(messages)
   const defaultPrompt = `I am Friendly AI Assistant. \n\nThis is the conversation between AI Bot and a news reporter.\n\n${botName}: ${firstMessge}\n${userName}: ${messagesPrompt}\n${botName}: `
