@@ -3,6 +3,11 @@ import { Configuration, OpenAIApi } from 'openai'
 import { initialMessages } from '../../components/Chat'
 import { type Message } from '../../components/ChatLine'
 
+// break the app if the API key is missing
+if (!process.env.OPENAI_API_KEY) {
+  throw new Error('Missing Environment Variable OPENAI_API_KEY')
+}
+
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 })
@@ -39,7 +44,6 @@ const generatePromptFromMessages = (messages: Message[]) => {
 }
 
 export default async function handler(req: any, res: any) {
-  const prompt = req.body.prompt
   const messages = req.body.messages
   const messagesPrompt = generatePromptFromMessages(messages)
   const defaultPrompt = `I am Friendly AI Assistant. \n\nThis is the conversation between AI Bot and a news reporter.\n\n${botName}: ${firstMessge}\n${userName}: ${messagesPrompt}\n${botName}: `
@@ -48,12 +52,12 @@ export default async function handler(req: any, res: any) {
     : defaultPrompt
 
   const payload = {
-    model: 'text-davinci-003', // TODO: move to @vercel/config
+    model: 'text-davinci-003',
     prompt: finalPrompt,
-    temperature: process.env.AI_TEMP ? parseFloat(process.env.AI_TEMP) : 0.7, // TODO: move to @vercel/config
+    temperature: process.env.AI_TEMP ? parseFloat(process.env.AI_TEMP) : 0.7,
     max_tokens: process.env.AI_MAX_TOKENS
       ? parseInt(process.env.AI_MAX_TOKENS)
-      : 200, // TODO: move to @vercel/config
+      : 200,
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,
