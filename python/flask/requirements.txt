@@ -1,1 +1,8 @@
 Flask==2.2.2
+Flask-Mail==0.9.1
+SQLAlchemy==1.4.45
+Werkzeug==2.2.2
+rembg==2.0.29
+mysql
+mysql-connector-python==8.0.31
+MySQLdb
