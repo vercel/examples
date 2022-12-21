@@ -157,6 +157,7 @@ export default function NestedPage() {
         <pre className="border border-accents-2 rounded-md bg-accents-1 overflow-x-auto p-6">{`|/app
 |__/layout.js (server)
 |__/(app)
+|____/layout.js (client)
 |____/page.js (server)
 |____/context.js (client)
 |____/counter.js (client)
