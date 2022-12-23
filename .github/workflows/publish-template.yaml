@@ -34,7 +34,7 @@ jobs:
           cache: pnpm
 
       - name: Install pnpm Dependencies
-        run: pnpm i --vercel-lockfile --ignore-scripts
+        run: pnpm i --frozen-lockfile --ignore-scripts
 
       - name: Get changed files
         id: changed-files
