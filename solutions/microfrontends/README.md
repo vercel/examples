@@ -66,11 +66,11 @@ There are many strategies for designing microfrontends and your approach will be
 
 ### Monorepo Support
 
-One of the challenges of building microfrontends is dependency management and build systems. In the packages and apps in this monorepo, we'll be using [Turborepo](https://turborepo.org/) and Changesets to get an earn great developer experience for our teams with minor only configuration.
+One of the challenges of building microfrontends is dependency management and build systems. In the packages and apps in this monorepo, we'll be using [Turborepo](https://turborepo.org/) and Changesets to earn great developer experience for our teams with minimal configuration.
 
 ### Design System with Tailwind and CSS Modules
 
-[./packages/acme-design-system](./packages/acme-design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/). The components are installed in the app as an npm dependency and the compilation step is handled by [SWC](https://swc.rs/).
+[./packages/acme-design-system](./packages/acme-design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/). The components are installed in the app as a dependency and the compilation step is handled by [SWC](https://swc.rs/).
 
 All the CSS used by the app and components is unified by Tailwind, so having components outside the app doens't increase the CSS bundle size.
 
@@ -86,25 +86,25 @@ With this approach, we will need to be mindful of dead code elimination when the
 
 [Multi Zones](https://nextjs.org/docs/advanced-features/multi-zones) are a way of having independent Next.js applications that merge on a common domain. This is a method for building separation of concerns in large teams.
 
-In this template, [./apps/main](./apps/main) is our main app, and [./apps/docs](./apps/docs) is a separate app that handles all routes for [`/docs/**`](./apps/main/next.config.js). In the demo, you'll notice that navigating to `/docs` keeps you in the same domain. We have multiple apps in the same domain that are built independently and served together.
+In this example, [./apps/main](./apps/main) is our main app, and [./apps/docs](./apps/docs) is a separate app that handles all routes for [`/docs/**`](./apps/main/next.config.js). In the demo, you'll notice that navigating to `/docs` keeps you in the same domain. We have multiple apps in the same domain that are built independent to each other.
 
-You'll notice that transitioning between `/docs` and `/` are not as smooth as you're used to with typical Next.js applications. You will get a full page refresh because Next.js apps can't share their JS, don't have common chunks, and prefetching is not possible.
+You'll notice that transitions between `/docs/*` and `/` are not as smooth as you're used to with typical Next.js applications. You will get a full page refresh because Next.js apps can't share their JS and don't have common chunks, prefetching is not possible because the build outputs are different.
 
-Compared with the internal packaging approach from above, there's a UX impact when employing a Multi Zone strategy. The slower routing may or may not be a problem depending on your specific use case. For that reason, we only recommend using Multi Zones for cases where you're not expecting your users to be moving across the boundaries of your microfrontends.
+Compared with the internal packaging approach from above, there's a UX impact when employing a Multi Zone strategy. The slower transitions between apps may or may not be a problem depending on your specific use case. For that reason, we only recommend using Multi Zones for cases where you need to merge applications that work on their own, but not as a way of arbitrarily moving pages out of an app.
 
-Pro tip: Using `target="_blank"` in this situation can be a nice improvement!
+For example, having a home app with your landing, marketing and legal pages and then having another app that handles all the pages related to documentation is a good separation of concerns, your users will only notice a slow transition once they move from your home app to view your documentation. Pro tip: Using `target="_blank"` in this situation is a nice improvement!
 
 ### Polyrepos
 
-The tooling and approaches described above should also work with polyrepos. The most important difference is that, when packages are outside of your application's repository, you won't be able to have hot module reloading for your packages out-of-the-box. In this case, you will install the package in your applications and control updates with versioning. To earn HMR, you would need to handle [linking node modules](https://pnpm.io/cli/link).
+The tooling and approaches described above should also work with polyrepos. The most important difference is that, when packages are outside of your application's repository, you won't be able to have hot module reloading for your packages out-of-the-box. In this case, you will install the package in your applications and control updates with versioning. To earn HMR, you would need to [link node modules with a package manager](https://pnpm.io/cli/link).
 
 ### Module Federation
 
-Module federation is a strategy for building applications in a large organization with many teams that want to prioritize shipping velocity. We encourage you to research module federation as an option for helping teams build as a part of a large organization where teams may not have the opportunity to communicate and work together.
+Module federation is a strategy for building applications in a large organization with many teams that want to prioritize shipping velocity. Next.js uses Module Federation for its pages and it's one of the reasons builds are fast. We encourage you to research module federation as an option for helping teams build as a part of a large organization where teams may not have the opportunity to communicate and work together.
 
 ## Versioning & Publishing Packages
 
-We enjoy using [Changesets](https://github.com/changesets/changesets) to manage versions, create changelogs, and publish to npm. It's preconfigured in this template so you can start publishing packages immediately.
+We enjoy using [Changesets](https://github.com/changesets/changesets) to manage versions, create changelogs, and publish to npm. It's preconfigured in this example so you can start publishing packages immediately.
 
 > It's worth installing the [Changesets bot](https://github.com/apps/changeset-bot) on your repository to more easily manage contributions.
 
