@@ -10,6 +10,8 @@ demoUrl: https://solutions-monorepo.vercel.sh
 relatedTemplates:
   - monorepo-nx
   - microfrontends
+marketplace: false
+reason: A monorepo template with Turborepo already exists.
 ---
 
 # Monorepo
