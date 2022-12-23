@@ -101,7 +101,7 @@ The tooling and approaches described above should also work with polyrepos. The 
 
 ### Module Federation
 
-Module federation is a strategy for building applications in a large organization with many teams that want to prioritize shipping velocity. Next.js uses Module Federation for its pages and it's one of the reasons builds are fast. We encourage you to research module federation as an option for helping teams build as a part of a large organization where teams may not have the opportunity to communicate and work together.
+Module federation is a strategy for building applications in a large organization with many teams that want to prioritize shipping velocity. We encourage you to research module federation as an option for helping teams build as a part of a large organization where teams may not have the opportunity to communicate and work together.
 
 ## Versioning & Publishing Packages
 
