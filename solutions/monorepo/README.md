@@ -3,15 +3,16 @@ name: Monorepo with Turborepo
 slug: monorepo-turborepo
 description: Learn to implement a monorepo with a single Next.js site that has installed two local packages.
 framework: Next.js
-useCase: Documentation
+useCase:
+  - Monorepos
+  - Documentation
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/monorepo&project-name=monorepo&repository-name=monorepo&root-directory=apps/app&install-command=pnpm%20install&build-command=cd%20..%2F..%20%26%26%20pnpm%20build%20--filter%3Dapp...&ignore-command=npx%20turbo-ignore
 demoUrl: https://solutions-monorepo.vercel.sh
 relatedTemplates:
   - monorepo-nx
-  - microfrontends
-marketplace: false
-reason: A monorepo template with Turborepo already exists.
+  - turborepo-next-basic
+  - turborepo-sveltekit-starter
 ---
 
 # Monorepo

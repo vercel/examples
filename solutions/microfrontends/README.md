@@ -8,8 +8,9 @@ css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/microfrontends&project-name=microfrontends&repository-name=microfrontends&root-directory=apps/main&install-command=pnpm%20install&build-command=pnpm%20build%20--filter%3Dmain...&ignore-command=npx%20turbo-ignore
 demoUrl: https://solutions-microfrontends.vercel.app
 relatedTemplates:
-  - monorepo-nx
   - monorepo-turborepo
+  - turborepo-next-basic
+  - turborepo-sveltekit-starter
 ---
 
 # Microfrontends
