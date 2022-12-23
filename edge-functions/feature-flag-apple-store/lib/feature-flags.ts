@@ -1,7 +1,5 @@
 import { createClient, parseConnectionString } from '@vercel/edge-config'
 
-const edgeConfig = createClient(process.env.EDGE_CONFIG)
-
 interface FeatureFlags {
   storeClosed: boolean
 }
@@ -11,14 +9,25 @@ const prefixKey = (key: string) => `featureFlagsAppleStore_${key}`
 
 export async function get(key: keyof FeatureFlags) {
   const prefixedKey = prefixKey(key)
+  const edgeConfig = createClient(process.env.EDGE_CONFIG)
   const featureFlag = await edgeConfig.get<FeatureFlags>(prefixedKey)
   return featureFlag
 }
 
 export async function set(key: keyof FeatureFlags, value: boolean) {
-  const connectionString = parseConnectionString(process.env.EDGE_CONFIG!)
+  if (!process.env.AUTH_BEARER_TOKEN) {
+    throw new Error('Missing Environment Variable AUTH_BEARER_TOKEN')
+  }
+  if (!process.env.EDGE_CONFIG) {
+    throw new Error('Missing Environment Variable EDGE_CONFIG')
+  }
 
-  if (!connectionString) throw new Error('Could not parse connection string')
+  const connectionString = parseConnectionString(process.env.EDGE_CONFIG!)
+  if (!connectionString) {
+    throw new Error(
+      'Could not parse connection string stored in EDGE_CONFIG environment variable'
+    )
+  }
 
   const edgeConfigId = connectionString.id
   const prefixedKey = prefixKey(key)

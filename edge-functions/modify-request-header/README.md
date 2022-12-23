@@ -48,7 +48,7 @@ export function middleware(request: NextRequest) {
 
 ## Demo
 
-https://edge-functions-modify-request-header.vercel.app
+https://edge-middleware-modify-request-header.vercel.app
 
 ## How to Use
 

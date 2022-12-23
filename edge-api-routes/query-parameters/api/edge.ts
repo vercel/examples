@@ -1,5 +1,5 @@
 export const config = {
-  runtime: 'experimental-edge',
+  runtime: 'edge',
 }
 
 // http://localhost:3000/api/edge?email=test@test.com
