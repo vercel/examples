@@ -125,7 +125,8 @@ export default function Counter() {
           content that will render the counter component.
         </Text>
         <Snippet>
-          {`import Counter from "./counter"; 
+          {`// app/page.js
+import Counter from "./counter"; 
 
 export default function IndexPage() {
   return (
