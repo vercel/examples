@@ -138,7 +138,8 @@ export default function IndexPage() {
 }`}
         </Snippet>
         <Snippet>
-          {`import Counter from "../counter"; 
+          {`// app/nested/page.js
+import Counter from "../counter"; 
 
 export default function NestedPage() {
   return (
