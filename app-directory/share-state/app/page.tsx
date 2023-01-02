@@ -176,7 +176,7 @@ export default function NestedPage() {
         <Text>
           Now you will be able to fetch information from the server while
           sharing state between layouts and routes, you can see a working demo
-          in <Link href="/demo">here</Link>.
+          <Link href="/demo">here</Link>.
         </Text>
       </section>
     </Page>
