@@ -44,7 +44,8 @@ export default function Home() {
           value.
         </Text>
         <Snippet>
-          {`import { createContext, useContext, useState } from "react";
+          {`// app/context.js
+import { createContext, useContext, useState } from "react";
 
 const CounterContext = createContext({});
 
