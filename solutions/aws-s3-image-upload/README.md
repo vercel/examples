@@ -32,13 +32,37 @@ Retrieve your existing access key, secret key, S3 bucket region and name. Provid
    3. Enter your default region.
 1. Create an `.env.local` file similar to `.env.example`.
    1. Enter your access key and secret key from the IAM user.
-1. Run `cdk bootstrap`.
-1. Run `cdk deploy` to create an S3 bucket with an IAM policy.
-1. Visit your newly created S3 bucket and retrieve the name and region.
-1. Add the name and region to `.env.local`.
-1. Run `yarn dev` to start the Next.js app at `localhost:3000`.
-1. Choose a `.png` or `.jpg` file.
-1. You should see your file successfully uploaded to S3.
+1. You must configure cors, for the upload to work
+   1. [S3 Documentation](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-photo-album.html)
+   ```json
+{
+   "Version": "2012-10-17",
+   "Statement": [
+      {
+         "Effect": "Allow",
+         "Action": [
+            "s3:DeleteObject",
+            "s3:GetObject",
+            "s3:ListBucket",
+            "s3:PutObject",
+            "s3:PutObjectAcl"
+         ],
+         "Resource": [
+            "arn:aws:s3:::BUCKET_NAME",
+            "arn:aws:s3:::BUCKET_NAME/*"
+         ]
+      }
+   ]
+}
+```
+
+3. Run `cdk bootstrap`.
+4. Run `cdk deploy` to create an S3 bucket with an IAM policy.
+5. Visit your newly created S3 bucket and retrieve the name and region.
+6. Add the name and region to `.env.local`.
+7. Run `yarn dev` to start the Next.js app at `localhost:3000`.
+8. Choose a `.png` or `.jpg` file.
+9. You should see your file successfully uploaded to S3.
 
 This example uses [`createPresignedPost`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#createPresignedPost-property) instead of [`getSignedUrlPromise`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrlPromise-property) to allow setting max/min file sizes with `content-length-range`.
 
