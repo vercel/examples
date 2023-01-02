@@ -67,7 +67,8 @@ export { CounterProvider, useCounter };`}
           inside this layout.
         </Text>
         <Snippet>
-          {`"use client";
+          {`// app/layout.js
+"use client";
 
 import { Link } from "next/link";
 import { CounterProvider, useCounter } from "./context";
