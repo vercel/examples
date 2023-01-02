@@ -12,7 +12,7 @@ export default function RootLayout({ children }: Props) {
     <html>
       <body>
         <div className="mx-auto h-screen flex flex-col">
-          <Nav path="app-directory/share-state" />
+          <Nav path="app-directory/css-in-js" />
           <div className="px-8 bg-accents-0">
             <main>{children}</main>
             <footer className="py-10 w-full mt-auto border-t flex items-center justify-center bg-accents-1 z-20">
