@@ -103,7 +103,8 @@ export default function RootLayoutContainer(props) {
           and decrement the counter value.
         </Text>
         <Snippet>
-          {`"use client";
+          {`// app/counter.js
+"use client";
 
 import { useCounter } from "./context";
 
