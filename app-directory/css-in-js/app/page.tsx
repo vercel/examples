@@ -7,70 +7,60 @@ export default function Home() {
         <Text variant="h1">CSS-in-JS within app dir</Text>
         <Text>
           CSS-in-JS libraries often have a provider component that needs to wrap
-          our entire application. You can make your root layout (or your
-          outermost component you need to be wrapped by your library provider) a
-          client component and wrap it with the provider.
-        </Text>
-        <Text>
-          Althought client components can&apos;t include server components, we
-          can have a client layout rendering a page from the server. This allows
-          us to wrap our application within a provider component while allowing
-          us to fetch information from the server on our routes.
+          our entire application. You can make a <Code>Providers</Code> client
+          component and wrap your app with it. Althought client components
+          can&apos;t include server components, we can have a client component
+          with server components as children.
         </Text>
       </section>
 
       <section className="flex flex-col gap-3">
-        <Text variant="h2">Creating the files</Text>
+        <Text variant="h2">Getting Started</Text>
         <Text>
-          We will create a root layout (client) for our app that will wrap its
-          children with a provider component. And a page (server) that will use
-          client components from the library.
+          We will create a root layout for our app that will wrap its children
+          with the <Code>Providers</Code> component. And a page server component
+          that will use client components from the Chakra UI library.
         </Text>
         <pre className="border border-accents-2 rounded-md bg-accents-1 overflow-x-auto p-6">{`|/app
-|__/layout.js (client)
-|__/page.js (server)
+|__/layout.js
+|__/page.js
+|__/providers.js
 `}</pre>
         <Snippet>
-          {`// app/layout.js
+          {`// app/providers.js
 'use client'
 
-import { Link, Page, Text } from '@vercel/examples-ui'
-import {
-  ChakraProvider,
-  Divider,
-  extendTheme,
-  Select,
-  theme as defaultTheme,
-} from '@chakra-ui/react'
-import { useMemo, useState } from 'react'
+import { ChakraProvider } from '@chakra-ui/react'
 
-export default function RootLayout({ children }) {
-  const [color, setColor] = useState('blue')
-  const theme = useMemo(
-    () => extendTheme({ colors: { brand: defaultTheme.colors[color] } }),
-    [color]
-  )
-
+export default function Providers({ children }) {
   return (
-    <ChakraProvider theme={theme}>
-      <Text variant="h2">Brand color</Text>
-      <Select onChange={setColor}>
-        <option value="blue">Blue</option>
-        <option value="red">Red</option>
-        <option value="green">Green</option>
-      </Select>
-      <Divider />
+    <ChakraProvider>
       {children}
     </ChakraProvider>
+  )
+}
+`}
+        </Snippet>
+        <Snippet>
+          {`// app/layout.js
+import Providers from './providers'
+
+export default function RootLayout({ children }) {
+  return (
+    <Providers>
+      {children}
+    </Providers>
   )
 }`}
         </Snippet>
         <Text>
-          Now, use some components from the library in our page component.
+          After setting up Chakra in the layout component, we can now use some
+          of its components in the page:
         </Text>
         <Snippet>
           {`// app/page.js
-import { Text } from '@vercel/examples-ui'
+
+// Assume that the following components are client components
 import { Buttons, Tabs, Skeletons } from "./showcase"
 
 export default function IndexPage() {
@@ -94,18 +84,14 @@ export default function IndexPage() {
 `}
         </Snippet>
         <Text>
-          This way, your page component is still a server component, where you
-          can fetch data from the server, and more.
+          This way, your layout and page components are still server components,
+          where you can fetch data from the server, and more.
         </Text>
       </section>
 
       <section className="flex flex-col gap-3">
         <Text variant="h2">Demo</Text>
-        <Text>
-          Now you will be able to fetch information from the server althought
-          your app is wrapped by the library provider, you can see a working
-          demo <Link href="/demo">here</Link>.
-        </Text>
+        <Link href="/demo">Click here to see a working demo</Link>
       </section>
     </Page>
   )

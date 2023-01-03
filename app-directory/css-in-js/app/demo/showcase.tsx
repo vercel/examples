@@ -17,22 +17,16 @@ import {
 export const Buttons: React.FC = () => {
   return (
     <Stack direction="row" spacing={4} align="center">
-      <Button colorScheme="brand" variant="outline">
-        Button
-      </Button>
-      <Button colorScheme="brand" variant="ghost">
-        Button
-      </Button>
-      <Button colorScheme="brand" variant="link">
-        Button
-      </Button>
+      <Button variant="outline">Button</Button>
+      <Button variant="ghost">Button</Button>
+      <Button variant="link">Button</Button>
     </Stack>
   )
 }
 
 export const Tabs: React.FC = () => {
   return (
-    <ChakraTabs colorScheme="brand">
+    <ChakraTabs>
       <TabList>
         <Tab>One</Tab>
         <Tab>Two</Tab>
@@ -58,12 +52,12 @@ export const Skeletons: React.FC = () => {
   return (
     <>
       <Stack>
-        <Skeleton startColor="brand.100" endColor="brand.500" height="20px" />
-        <Skeleton startColor="brand.100" endColor="brand.500" height="20px" />
-        <Skeleton startColor="brand.100" endColor="brand.500" height="20px" />
+        <Skeleton height="20px" />
+        <Skeleton height="20px" />
+        <Skeleton height="20px" />
       </Stack>
       <Box padding="6" boxShadow="lg" bg="white">
-        <SkeletonCircle startColor="brand.100" endColor="brand.500" size="10" />
+        <SkeletonCircle size="10" />
         <SkeletonText
           startColor="brand.100"
           endColor="brand.500"
