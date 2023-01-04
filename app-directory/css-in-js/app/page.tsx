@@ -7,24 +7,24 @@ export default function Home() {
         <Text variant="h1">CSS-in-JS within app dir</Text>
         <Text>
           CSS-in-JS libraries often have a provider component that needs to wrap
-          our entire application. You can make a <Code>Providers</Code> client
-          component and wrap your app with it. Althought client components
-          can&apos;t include server components, we can have a client component
-          with server components as children.
+          your entire application, we&apos;ll explore how to do this with a{' '}
+          <Code>Providers</Code> client component that wraps our app. Although
+          client components can&apos;t include server components, we can have a
+          client component with server components as children.
         </Text>
       </section>
 
-      <section className="flex flex-col gap-3">
+      <section className="flex flex-col gap-4">
         <Text variant="h2">Getting Started</Text>
         <Text>
-          We will create a root layout for our app that will wrap its children
-          with the <Code>Providers</Code> component. And a page server component
-          that will use client components from the Chakra UI library.
+          we&apos;ll create a root layout for our app that will wrap its
+          children with the <Code>Providers</Code> component. And a page server
+          component that will use client components from the Chakra UI library.
         </Text>
         <pre className="border border-accents-2 rounded-md bg-accents-1 overflow-x-auto p-6">{`|/app
-|__/layout.js
-|__/page.js
-|__/providers.js
+|__/layout.js (client)
+|__/page.js (server)
+|__/providers.js (client)
 `}</pre>
         <Snippet>
           {`// app/providers.js
@@ -32,26 +32,26 @@ export default function Home() {
 
 import { ChakraProvider } from '@chakra-ui/react'
 
-export default function Providers({ children }) {
-  return (
-    <ChakraProvider>
-      {children}
-    </ChakraProvider>
-  )
-}
+const Providers = ({ children }) => (
+  <ChakraProvider>{children}</ChakraProvider>
+)
+
+export default Providers
 `}
         </Snippet>
         <Snippet>
           {`// app/layout.js
+import { Page } from '@vercel/examples-ui'
 import Providers from './providers'
 
-export default function RootLayout({ children }) {
-  return (
-    <Providers>
-      {children}
-    </Providers>
-  )
-}`}
+const RootLayout = ({ children }) => (
+  <Page className="flex flex-col gap-6">
+    <Providers>{children}</Providers>
+  </Page>
+)
+
+export default RootLayout
+`}
         </Snippet>
         <Text>
           After setting up Chakra in the layout component, we can now use some
@@ -60,27 +60,27 @@ export default function RootLayout({ children }) {
         <Snippet>
           {`// app/page.js
 
-// Assume that the following components are client components
-import { Buttons, Tabs, Skeletons } from "./showcase"
+import { Text } from '@vercel/examples-ui'
+import { Buttons, Tabs, Skeletons } from './showcase'
 
-export default function IndexPage() {
-  return (
-    <section className="flex flex-col gap-6">
-      <article className="flex flex-col gap-3">
-        <Text variant="h2">Buttons</Text>
-        <Buttons />
-      </article>
-      <article className="flex flex-col gap-3">
-        <Text variant="h2">Tabs</Text>
-        <Tabs />
-      </article>
-      <article className="flex flex-col gap-3">
-        <Text variant="h2">Skeleton</Text>
-        <Skeletons />
-      </article>
-    </section>
-  )
-}
+const IndexPage = () => (
+  <section className="flex flex-col gap-6">
+    <article className="flex flex-col gap-3">
+      <Text variant="h2">Buttons</Text>
+      <Buttons />
+    </article>
+    <article className="flex flex-col gap-3">
+      <Text variant="h2">Tabs</Text>
+      <Tabs />
+    </article>
+    <article className="flex flex-col gap-3">
+      <Text variant="h2">Skeleton</Text>
+      <Skeletons />
+    </article>
+  </section>
+)
+
+export default IndexPage
 `}
         </Snippet>
         <Text>
@@ -89,9 +89,9 @@ export default function IndexPage() {
         </Text>
       </section>
 
-      <section className="flex flex-col gap-3">
+      <section className="flex flex-col gap-4">
         <Text variant="h2">Demo</Text>
-        <Link href="/demo">Click here to see a working demo</Link>
+        <Link href="/demo">Click here to see a working demo</Link>.
       </section>
     </Page>
   )

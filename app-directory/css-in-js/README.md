@@ -1,6 +1,6 @@
-# css-in-js example
+# css-in-js in the app directory
 
-This example shows how use CSS-in-JS libraries within app directory
+This example shows how use CSS-in-JS libraries, in this case Chakra UI, in the Next.js `app` directory.
 
 ## Demo
 

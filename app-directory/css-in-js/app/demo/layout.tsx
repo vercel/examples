@@ -1,15 +1,11 @@
+import type { FC, ReactNode } from 'react'
 import { Page } from '@vercel/examples-ui'
-
 import Providers from './providers'
 
-interface Props {
-  children: React.ReactNode
-}
+const RootLayout: FC<{ children: ReactNode }> = ({ children }) => (
+  <Page className="flex flex-col gap-6">
+    <Providers>{children}</Providers>
+  </Page>
+)
 
-export default function RootLayout({ children }: Props) {
-  return (
-    <Page className="flex flex-col gap-6">
-      <Providers>{children}</Providers>
-    </Page>
-  )
-}
+export default RootLayout
