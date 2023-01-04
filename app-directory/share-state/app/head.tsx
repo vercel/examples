@@ -1,10 +1,10 @@
 export default function Head() {
   return (
     <>
-      <title>{`Share state within app directory - Vercel Examples`}</title>
+      <title>{`Sharing State in Next.js - Vercel Examples`}</title>
       <meta
         name="description"
-        content="How to share state in Next.js 13 within app directory"
+        content="Learn to share state in the Next.js app directory so that it can be used anywhere from the layout to its pages."
       />
       <link rel="icon" href="/favicon.ico" />
     </>

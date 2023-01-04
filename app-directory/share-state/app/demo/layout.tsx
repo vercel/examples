@@ -1,8 +1,7 @@
 'use client'
 
 import { Link, Page, Text } from '@vercel/examples-ui'
-
-import { CounterProvider, useCounter } from './context'
+import { CounterProvider, useCounter } from './providers'
 
 interface Props {
   children: React.ReactNode

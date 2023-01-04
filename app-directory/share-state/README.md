@@ -1,6 +1,6 @@
-# share-state example
+# Sharing State Example
 
-This example shows how to share state within app directory
+This example shows how to share state in the Next.js app directory so that it can be used anywhere from the layout to its pages.
 
 ## Demo
 

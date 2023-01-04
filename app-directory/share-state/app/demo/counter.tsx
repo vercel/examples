@@ -1,8 +1,7 @@
 'use client'
 
 import { Button, Text } from '@vercel/examples-ui'
-
-import { useCounter } from './context'
+import { useCounter } from './providers'
 
 export default function Counter() {
   const [counter, setCounter] = useCounter()
