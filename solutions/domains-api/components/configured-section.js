@@ -39,7 +39,7 @@ const ConfiguredSection = ({ domainInfo }) => {
             <path d="M12 8v4" stroke="white" />
             <path d="M12 16h.01" stroke="white" />
           </svg>
-          <p className={`text-red-700 font-medium text-sm`}>
+          <p className="text-yellow-600 font-medium text-sm">
             Domain is pending verification
           </p>
         </div>
