@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone'
 import { isImageSafe } from '../helpers/sanitize.helpers'
 
 import { Button, Text, LoadingDots } from '@vercel/examples-ui'
-import Moralis from 'moralis'
+import Moralis from 'moralis-v1'
 
 type Props = {
   onDone: (asset: Moralis.File) => void
