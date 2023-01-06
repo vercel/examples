@@ -7,7 +7,7 @@ import { Button, LoadingDots, Text } from '@vercel/examples-ui'
 import { NETWORK_ID } from '../helpers/constant.helpers'
 import Image from 'next/image'
 import { useChain, useMoralis } from 'react-moralis'
-import Moralis from 'moralis'
+import Moralis from 'moralis-v1'
 
 enum MintState {
   Connect,
