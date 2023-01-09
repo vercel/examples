@@ -11,14 +11,15 @@ import { publicProvider } from 'wagmi/providers/public';
 import { SessionProvider } from "next-auth/react"
 import '@vercel/examples-ui/globals.css'
 
-const { provider } = configureChains(
+const { provider, webSocketProvider } = configureChains(
   [goerli],
   [publicProvider()],
 );
 
 const wagmiClient = createClient({
   autoConnect: true,
-  provider
+  provider,
+  webSocketProvider,
 });
 
 function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {

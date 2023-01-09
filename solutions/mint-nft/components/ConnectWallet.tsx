@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Button, Text, LoadingDots } from '@vercel/examples-ui'
 import { useConnect, useDisconnect, useAccount, useSignMessage } from 'wagmi';
-import { InjectedConnector } from 'wagmi/connectors/injected';
 import { signIn } from 'next-auth/react';
 import { useAuthRequestChallengeEvm } from '@moralisweb3/next';
+import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
+import { useRouter } from 'next/router';
 
 export const ConnectWallet: React.VFC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -12,6 +13,7 @@ export const ConnectWallet: React.VFC = () => {
   const { isConnected } = useAccount();
   const { signMessageAsync } = useSignMessage();
   const { requestChallengeAsync } = useAuthRequestChallengeEvm();
+  const { push } = useRouter();
 
   const handleConnect = async () => {
     setIsLoading(true);
@@ -21,17 +23,19 @@ export const ConnectWallet: React.VFC = () => {
         await disconnectAsync();
       }
       // enabling the web3 provider metamask
-      const { account, chain } = await connectAsync({ connector: new InjectedConnector() });
+      const { account, chain } = await connectAsync({ connector: new MetaMaskConnector() });
 
       const userData = { address: account, chainId: chain.id };
+      const payload = `Authentication time: ${Date.now()}`;
       const { message = "" } = (await requestChallengeAsync(userData)) ?? {};
       // signing the received message via metamask
       const signature = await signMessageAsync({ message });
 
       setIsLoading(false);
 
-      // redirect user after success authentication to '/user' page
-      await signIn('credentials', { message, signature, redirect: false, callbackUrl: '/user' }) ?? {};
+      await signIn('moralis-auth', { message, signature, payload, redirect: false });
+
+      push('/');
     } catch (e) {
       console.error(e);
       setIsLoading(false);
