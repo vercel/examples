@@ -22,7 +22,7 @@
   },
   "scripts": {
     "compile": "hardhat compile",
-    "deploy": "hardhat run ./scripts/deploy.ts --network mumbai",
-    "verify": "hardhat verify --network mumbai"
+    "deploy": "hardhat run ./scripts/deploy.ts --network goerli",
+    "verify": "hardhat verify --network goerli"
   }
 }

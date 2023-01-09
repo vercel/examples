@@ -16,7 +16,7 @@ const config: HardhatUserConfig = {
   defaultNetwork: "goerli",
   networks: {
     goerli: {
-      url: process.env.MUMBAI_RPC_NODE,
+      url: process.env.GOERLI_RPC_NODE,
       accounts: { mnemonic },
     },
   },
