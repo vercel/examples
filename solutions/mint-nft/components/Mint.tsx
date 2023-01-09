@@ -4,13 +4,14 @@ import { SwitchNetwork } from './SwitchNetwork';
 import { UploadNft } from './UploadNft';
 import { Button, LoadingDots, Text } from '@vercel/examples-ui';
 import { useAccount, useNetwork } from 'wagmi';
+import { useSession } from "next-auth/react"
 import { NETWORK_ID } from '../helpers/constant.helpers';
+import { useRouter } from 'next/router'
+import { useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi';
 import axios from 'axios';
-import { createRaribleSdk } from '@rarible/sdk';
-import { EthersEthereum } from "@rarible/ethers-ethereum"
-import { EthereumWallet } from "@rarible/sdk-wallet";
-import { ethers } from 'ethers';
 import Image from 'next/image';
+import NFTAbi from "../hardhat/artifacts/contracts/NFT.sol/NFT.json";
+import NFTAddress from '../utils/constant';
 
 enum MintState {
   Connect,
@@ -25,84 +26,90 @@ export const Mint: React.VFC = () => {
   const { isConnected, address } = useAccount();
   const { chain } = useNetwork();
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [asset, setAsset] = useState<File | null>(null);
-  const provider = ethers?.getDefaultProvider();
-  // const ethersProvider = new EthersEthereum(provider?.getSigner?.());
-  // const ethWallet = new EthereumWallet(ethersProvider);
-  // const raribleSdk = createRaribleSdk(ethWallet, "development");
+  const [asset, setAsset] = useState<string | null>(null);
+  const [tokenUri, setTokenUri] = useState<string | null>(null);
+  const { status } = useSession();
+  const router = useRouter();
+
+  const { data, refetch } = useContractRead({
+    address: NFTAddress,
+    abi: NFTAbi.abi,
+    functionName: 'totalSupply',
+  })
+
+  const { config } = usePrepareContractWrite({
+    address: NFTAddress,
+    abi: NFTAbi.abi,
+    functionName: 'safeMint',
+    args: [address, tokenUri],
+    onSuccess: () => {
+      try {
+        const tokenId = (data as any)?.toString();
+        setTimeout(() => {
+          router.push(
+            `https://testnets.opensea.io/assets/goerli/${NFTAddress}/${tokenId}`
+          );
+        }, 10000);
+      }
+      catch (e) {
+        console.error(e);
+      }
+    }
+  })
+  const { writeAsync, isSuccess } = useContractWrite(config);
 
   useEffect(() => {
-    //   if (!account && isAuthenticated) enableWeb3()
-    if (!address || !isConnected) {
+    if (!address || !isConnected || status !== "authenticated") {
       setState(MintState.Connect)
     } else if (chain?.id !== NETWORK_ID) {
       setState(MintState.ConfirmNetwork)
     } else {
       setState(MintState.Upload)
     }
-  }, [address, chain?.id, isConnected])
+  }, [address, chain?.id, isConnected, status])
 
   const handleMint = async () => {
     try {
       setLoading(true)
 
-      const uploadArray = [
-        {
-          path: "metadata.json",
-          content: {
-            name: 'My own NFT by Vercel',
-            description: 'NFTs minted using Vercel and Next.js',
-            //@ts-ignore
-            image: `/ipfs/${asset!.hash()}`,
+      const { data: dataRes } = await axios.post('/api/ipfs/upload-folder', {
+        uploadArray: [
+          {
+            path: "metadata.json",
+            // @ts-ignore
+            content: {
+              name: 'My own NFT by Vercel',
+              description: 'NFTs minted using Vercel and Next.js',
+              //@ts-ignore
+              image: asset,
+            }
           }
-        }
-      ]
-
-      const { data } = await axios.post('/api/ipfs/upload-folder', { uploadArray }, {
+        ]
+      }, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      console.log(data);
-
-      // const jsonFile = new Moralis.File('metadata.json', {
-      //   base64: btoa(JSON.stringify(metadata)),
-      // })
-      // await jsonFile.saveIPFS()
-
-      //@ts-ignore
-      // const metadataHash = jsonFile.hash()
-
-      // if (!Moralis.Plugins?.rarible)
-      //   throw new Error(
-      //     'Please install Rarible Plugin to your Moralis Server: https://moralis.io/plugins/rarible-nft-tools/'
-      //   )
-
-      // const { data } = await Moralis.Plugins.rarible.lazyMint({
-      //   chain: 'rinkeby',
-      //   userAddress: account,
-      //   tokenType: 'ERC721',
-      //   tokenUri: `ipfs://${metadataHash}`,
-      //   supply: 1,
-      //   royaltiesAmount: 1,
-      // })
-      // setTimeout(() => {
-      //   router.push(
-      //     `https://rinkeby.rarible.com/token/${data.result.tokenAddress}:${data.result.tokenId}`
-      //   )
-      // }, 1000)
+      setTokenUri(dataRes?.[0]?.path);
+      refetch();
     } catch (e) {
-      console.error(e)
-    } finally {
-      setLoading(false)
+      console.error(e);
+      setLoading(false);
     }
   }
 
-  const onUploadComplete = async (asset: File) => {
+  const onUploadComplete = async (asset: string) => {
     setAsset(asset)
     setState(MintState.ConfirmMint)
     setLoading(false)
   }
+
+  useEffect(() => {
+    if (tokenUri && !isSuccess) {
+      writeAsync?.()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tokenUri, isSuccess])
 
   return (
     <div className="inline-block align-bottom text-left overflow-hidden  transform transition-all sm:my-8 sm:align-middle  ">
@@ -121,16 +128,16 @@ export const Mint: React.VFC = () => {
             that can fail. This is still the prefered method of choice to host
             in the NFT community as it is decentralized.{' '}
             <span className="underline italic">
-              This process might take up to 1 minute to complete
+              This process might take up to 1 minute to complete. Please refresh
+              the OpenSea page if you didn&apos;t see your NFT.
             </span>
           </Text>
           <section className="relative w-full pb-[20%] h-48 pb-6 mt-12">
             <Image
               className="rounded-xl"
-              src={""}
+              src={asset ?? ""}
               alt="The image that will be minted as an NFT"
-              layout="fill"
-              objectFit="contain"
+              fill
             />
           </section>
 

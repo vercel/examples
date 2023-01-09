@@ -11,7 +11,7 @@ const config = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { address, chain, network } = req.body;
 
-  await Moralis.start({ apiKey: process.env.MORALIS_API_KEY });
+  await Moralis.start({ apiKey: process.env.MORALIS_API_KEY, logLevel: "verbose" });
 
   try {
     const message = await Moralis.Auth.requestMessage({

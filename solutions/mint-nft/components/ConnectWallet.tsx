@@ -1,36 +1,41 @@
+import { useState } from "react";
 import { Button, Text, LoadingDots } from '@vercel/examples-ui'
 import { useConnect, useDisconnect, useAccount, useSignMessage } from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected';
 import { signIn } from 'next-auth/react';
-import axios from 'axios';
+import { useAuthRequestChallengeEvm } from '@moralisweb3/next';
 
 export const ConnectWallet: React.VFC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { connectAsync } = useConnect();
   const { disconnectAsync } = useDisconnect();
-  const { isConnected, isConnecting } = useAccount();
+  const { isConnected } = useAccount();
   const { signMessageAsync } = useSignMessage();
+  const { requestChallengeAsync } = useAuthRequestChallengeEvm();
 
   const handleConnect = async () => {
-    //disconnects the web3 provider if it's already active
-    if (isConnected) {
-      await disconnectAsync();
+    setIsLoading(true);
+    try {
+      //disconnects the web3 provider if it's already active
+      if (isConnected) {
+        await disconnectAsync();
+      }
+      // enabling the web3 provider metamask
+      const { account, chain } = await connectAsync({ connector: new InjectedConnector() });
+
+      const userData = { address: account, chainId: chain.id };
+      const { message = "" } = (await requestChallengeAsync(userData)) ?? {};
+      // signing the received message via metamask
+      const signature = await signMessageAsync({ message });
+
+      setIsLoading(false);
+
+      // redirect user after success authentication to '/user' page
+      await signIn('credentials', { message, signature, redirect: false, callbackUrl: '/user' }) ?? {};
+    } catch (e) {
+      console.error(e);
+      setIsLoading(false);
     }
-    // enabling the web3 provider metamask
-    const { account, chain } = await connectAsync({ connector: new InjectedConnector() });
-
-    const userData = { address: account, chain: chain.id, network: 'evm' };
-    // making a post request to our 'request-message' endpoint
-    const { data } = await axios.post('/api/auth/request-message', userData, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const message = data?.message;
-    // signing the received message via metamask
-    const signature = await signMessageAsync({ message });
-
-    // redirect user after success authentication to '/user' page
-    await signIn('credentials', { message, signature, redirect: false, callbackUrl: '/user' }) ?? {};
   }
 
   return (
@@ -64,8 +69,13 @@ export const ConnectWallet: React.VFC = () => {
           accessibility in mind.
         </Text>
         <div className="mt-12  flex justify-center">
-          <Button variant="black" size="lg" onClick={handleConnect}>
-            {isConnecting ? <LoadingDots /> : "Connect Wallet"}
+          <Button
+            variant="black"
+            size="lg"
+            disabled={isLoading}
+            onClick={handleConnect}
+          >
+            {isLoading ? <LoadingDots /> : "Connect Wallet"}
           </Button>
         </div>
       </div>

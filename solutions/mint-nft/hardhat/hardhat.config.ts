@@ -12,17 +12,16 @@ require("dotenv").config();
 require("@nomiclabs/hardhat-etherscan");
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.9",
-  defaultNetwork: "mumbai",
+  solidity: "0.8.17",
+  defaultNetwork: "goerli",
   networks: {
-    mumbai: {
+    goerli: {
       url: process.env.MUMBAI_RPC_NODE,
-      chainId: 80001,
       accounts: { mnemonic },
     },
   },
   etherscan: {
-    apiKey: process.env.POLYGONSCAN_API_KEY,
+    apiKey: process.env.ETHERSCAN_API_KEY,
   },
 };
 
