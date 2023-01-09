@@ -5,7 +5,7 @@ description: This example shows how to connect a Metamask wallet with a Next.js 
 framework: Next.js
 useCase: Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/mint-nft&project-name=mint-nft&repository-name=mint-nft&env=NEXT_PUBLIC_APP_ID,NEXT_PUBLIC_SERVER_URL,NEXT_PUBLIC_SERVER_DOMAIN
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/mint-nft&project-name=mint-nft&repository-name=mint-nft&env=MORALIS_API_KEY,APP_DOMAIN,NEXTAUTH_URL,NEXTAUTH_SECRET,NEXT_PUBLIC_SERVER_DOMAIN
 demoUrl: https://solutions-mint-nft.vercel.app
 ---
 
