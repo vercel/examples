@@ -19,7 +19,7 @@ Because API calls are handled by QStash rather than within the Vercel serverless
 _Please note that since callbacks are sent to the deployed version of the app, you will see a
 500 error to /api/poll when testing this on localhost_.
 
-To run this locally, you'll need to sign up to https://openai.com and create a new API key ($18 of free credit is available for new users) and set OPENAI_API_KEY accordingly. You'll also need to set environment variables to connect to Upstash: you can do this by [installing the Vercel Upstash integration](https://vercel.com/integrations/upstash).
+To run this locally, you'll need to sign up to https://openai.com and create a new API key ($18 of free credit is available for new users) and set OPENAI_API_KEY accordingly. You'll also need to set environment variables to connect to Upstash and QStash: you can do this by [installing the Vercel Upstash integration](https://vercel.com/integrations/upstash).
 
 Then, run the application in the command line and it will be available at `http://localhost:3000`.
 

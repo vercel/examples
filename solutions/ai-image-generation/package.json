@@ -1,6 +1,8 @@
 {
   "name": "ai-image-generation",
+  "repository": "https://github.com/vercel/examples.git",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
