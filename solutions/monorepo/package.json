@@ -14,8 +14,9 @@
     "clean": "turbo run clean"
   },
   "devDependencies": {
-    "turbo": "latest",
-    "eslint": "^8.11.0",
-    "eslint-config-turbo": "latest"
-  }
+    "eslint": "^8.28.0",
+    "eslint-config-turbo": "latest",
+    "turbo": "latest"
+  },
+  "packageManager": "pnpm@7.15.0"
 }

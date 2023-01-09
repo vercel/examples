@@ -10,9 +10,9 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="Adding headers at the edge"
+      title="Adding response headers at the edge"
       path="edge-functions/add-header"
-      description="How to add headers to an incoming request"
+      description="How to add response headers in a middleware"
     >
       <Component {...pageProps} />
     </Layout>

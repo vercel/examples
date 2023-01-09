@@ -1,0 +1,10 @@
+{
+  "home": {
+    "title_text": "Willkommen bei",
+    "title_link": "Next.js 13!"
+  },
+  "counter": {
+    "decrement": "Verringern",
+    "increment": "Erhöhen"
+  }
+}

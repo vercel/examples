@@ -11,7 +11,8 @@
   "dependencies": {
     "next": "canary",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "@vercel/edge-config": "0.1.0-canary.15"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",

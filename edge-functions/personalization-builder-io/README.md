@@ -36,9 +36,9 @@ After [setting up your environment variables](#set-up-environment-variables), de
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/personalization-builder-io
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-statsig
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/personalization-builder-io
 ```
 
 #### Set up environment variables

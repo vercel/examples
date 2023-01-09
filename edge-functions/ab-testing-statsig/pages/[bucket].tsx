@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { Statsig } from 'statsig-react'
+import Image from 'next/image'
 import Cookie from 'js-cookie'
 import {
   Layout,
@@ -12,8 +12,9 @@ import {
   Snippet,
   Code,
 } from '@vercel/examples-ui'
-import { FLAG, UID_COOKIE } from '../lib/constants'
+import { EXPERIMENT, UID_COOKIE, GROUP_PARAM_FALLBACK } from '../lib/constants'
 import api from '../lib/statsig-api'
+import exampleScreenshot from '../public/example_experiment.png'
 
 interface Props {
   bucket: string
@@ -29,20 +30,18 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths<{ bucket: string }> = async () => {
   // Groups that we want to statically generate
-  const groups: string[] = await api.getGroups()
+  const groups: string[] = (await api.getBuckets(EXPERIMENT))
+    .concat(GROUP_PARAM_FALLBACK)
+    .filter(Boolean)
 
   return {
-    paths: groups.map((group) => ({
-      params: {
-        bucket: group,
-      },
-    })),
+    paths: groups.map((group) => ({ params: { bucket: group } })),
     fallback: 'blocking',
   }
 }
 
 function BucketPage({ bucket }: Props) {
-  const { reload } = useRouter(true)
+  const { reload } = useRouter()
 
   function resetBucket() {
     Cookie.remove(UID_COOKIE)
@@ -50,20 +49,19 @@ function BucketPage({ bucket }: Props) {
     reload()
   }
 
-  useEffect(() => {
-    // Log exposure to statsig
-    api.logExposure(Cookie.get(UID_COOKIE)!, bucket, FLAG)
-  }, [bucket])
-
   return (
     <Page className="flex flex-col gap-12">
       <section className="flex flex-col gap-6">
-        <Text variant="h1">AB testing with Statsig</Text>
+        <Text variant="h1">Performant experimentation with Statsig</Text>
         <Text>
-          In this demo we use Statsig&apos;s REST Api at the edge to pull
-          experiment variants and show the resulting allocation. As long as you
-          have a bucket assigned you will always see the same result, otherwise
-          you will be assigned a bucket to mantain the odds specified in the
+          In this demo we use Statsig&apos;s Server SDK at the edge to pull
+          experiment variants and show the resulting allocation. We leverage the{' '}
+          <Link href="https://vercel.com/integrations/statsig" target="_blank">
+            edge config integration
+          </Link>{' '}
+          to pull Statsig configurations from the edge. As long as you have a
+          bucket assigned you will always see the same result, otherwise you
+          will be assigned a bucket to mantain the odds specified in the
           experiment.
         </Text>
         <Text>
@@ -71,21 +69,6 @@ function BucketPage({ bucket }: Props) {
           <Code>/[bucket]</Code> page so its fast to rewrite to them. Take a
           look at the <Code>middleware.ts</Code> file to know more.
         </Text>
-        <Text>
-          Once the page is fully functional we log the exposure for the
-          experiment, this will let Statsig know that the bucket was correctly
-          assigned and the user has been exposed to the experiment. If we
-          don&apos;t log the exposure, Statsig won&apos;t be able to analyze and
-          track the progress of the experiment.
-        </Text>
-        <Snippet>{`import statsig from '../lib/statsig-api'
-
-...
-
-useEffect(() => {
-  // Log exposure to statsig
-  api.logExposure(Cookie.get(UID_COOKIE), bucket, FLAG)
-}, [bucket])`}</Snippet>
         <Text>
           You can reset the bucket multiple times to get a different bucket
           assigned. You can configure your experiments, see diagnostics and
@@ -96,11 +79,26 @@ useEffect(() => {
           .
         </Text>
         <pre className="bg-black text-white font-mono text-left py-2 px-4 rounded-lg text-sm leading-6">
-          bucket: {bucket}
+          bucket:{' '}
+          {bucket === GROUP_PARAM_FALLBACK
+            ? 'Experiment not set up, please read README to set up example.'
+            : bucket}
         </pre>
         <Button size="lg" onClick={resetBucket}>
           Reset bucket
         </Button>
+        <Text>
+          In order to set this demo up yourself, in the <Link href="https://console.statsig.com/" target="_blank">
+            Statsig console
+          </Link>, create a new experiment called &quot;statsig_example&quot;. 
+          Create experiment groups, each with a &quot;bucket&quot; parameter. 
+          Make sure to start the experiment, and from there this example will display the bucket that the user was assigned to.
+          See the screenshot below for an example experiment setup.
+        </Text>
+        <Image
+          src={exampleScreenshot}
+          alt="Example Statsig Experiment Setup"
+        />
       </section>
 
       <section className="flex flex-col gap-6">

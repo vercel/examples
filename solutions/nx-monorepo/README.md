@@ -9,6 +9,8 @@ deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel
 demoUrl: https://solutions-nx-monorepo.vercel.sh
 relatedTemplates:
   - monorepo-turborepo
+  - turborepo-next-basic
+  - turborepo-sveltekit-starter
 ---
 
 # Nx Monorepo

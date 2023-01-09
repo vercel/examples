@@ -1,12 +1,14 @@
 {
-  "name": "@company/utils",
+  "name": "@acme/utils",
   "version": "0.0.1",
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "pnpm build --watch",
-    "build": "rm -fr dist/* && tsc"
+    "build": "rm -fr dist/* && tsc",
+    "lint": "TIMING=1 eslint \"**/*.{ts,tsx,js,jsx}\" --fix",
+    "clean": "rm -rf ./dist && rm -rf .turbo"
   },
   "sideEffects": false,
   "type": "module",
@@ -38,8 +40,8 @@
   "files": [
     "dist"
   ],
-  "dependencies": {},
   "devDependencies": {
+    "eslint": "^8.11.0",
     "typescript": "^4.5.5"
   }
 }

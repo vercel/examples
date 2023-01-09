@@ -35,13 +35,11 @@ const ConfiguredSection = ({ domainInfo }) => {
             strokeLinejoin="round"
             shapeRendering="geometricPrecision"
           >
-            <circle cx="12" cy="12" r="10" fill="#d32f2f" />
-            <>
-              <path d="M15 9l-6 6" stroke="white" />
-              <path d="M9 9l6 6" stroke="white" />
-            </>
+            <circle cx="12" cy="12" r="10" fill="#EAB308" />
+            <path d="M12 8v4" stroke="white" />
+            <path d="M12 16h.01" stroke="white" />
           </svg>
-          <p className={`text-red-700 font-medium text-sm`}>
+          <p className="text-yellow-600 font-medium text-sm">
             Domain is pending verification
           </p>
         </div>

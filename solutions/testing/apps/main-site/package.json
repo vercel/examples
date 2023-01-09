@@ -1,0 +1,38 @@
+{
+  "name": "main-site",
+  "version": "0.0.0",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test-unit": "jest",
+    "clean": "rm -rf .next && rm -rf .turbo"
+  },
+  "dependencies": {
+    "@vercel/examples-ui": "^1.0.4",
+    "clsx": "^1.2.1",
+    "cookie": "^0.5.0",
+    "next": "canary",
+    "react": "latest",
+    "react-dom": "latest",
+    "sluga": "^0.2.1",
+    "swr": "^1.3.0"
+  },
+  "devDependencies": {
+    "@types/cookie": "^0.5.1",
+    "@types/jest": "^28.1.6",
+    "@types/node": "^17",
+    "@types/react": "latest",
+    "autoprefixer": "^10.4.7",
+    "eslint-config-custom": "workspace:*",
+    "jest": "^28.1.3",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.0.24",
+    "tsconfig": "workspace:*",
+    "typescript": "^4.9.3"
+  }
+}

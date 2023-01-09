@@ -1,34 +1,24 @@
-const STATSIG_URL = 'https://api.statsig.com'
-const STATSIG_CLIENT_KEY = process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY!
-
-type Experiment = {
-  name: string
-  value: Record<string, any>
-  group: string
-  rule_id: string | null
-}
+const STATSIG_URL = 'https://statsigapi.net'
+const STATSIG_CONSOLE_API_KEY = process.env.STATSIG_CONSOLE_API_KEY!
 
 /**
- * Fetch wrapper for the Statsig API. The `apiKey` can be one either the `Client-SDK Key` or
- * the `Server-side secret Key`.
+ * Fetch wrapper for the Statsig API
  */
 async function statsig(
   path: string,
+  method: string,
   { apiKey, data, ...init }: { apiKey: string; data?: any } & RequestInit
 ) {
   const url = new URL(STATSIG_URL)
   url.pathname = path
 
   if (!apiKey) {
-    throw new Error(
-      'No Statsig API key was provided, use either the client-SDK key or the server-side secret key'
-    )
+    throw new Error('No Statsig API key was provided')
   }
 
   const res = await fetch(url.href, {
     ...init,
-    // All Statsig APIs use POST
-    method: 'POST',
+    method,
     headers: {
       'statsig-api-key': apiKey,
       'Content-Type': 'application/json',
@@ -53,32 +43,18 @@ async function statsig(
 }
 
 const api = {
-  getGroups: async () => ['a', 'b'],
-  async getExperiment(userID: string, experiment: string) {
-    // https://docs.statsig.com/http-api#fetch-experiment-config
-    const { value }: Experiment = await statsig('/v1/get_config', {
-      apiKey: STATSIG_CLIENT_KEY,
-      data: {
-        user: { userID },
-        configName: experiment,
-      },
-    })
-    return value
-  },
-  logExposure(userID: string, group: string, experiment: string) {
-    // https://docs.statsig.com/http-api#log-exposure-event
-    return statsig('/v1/log_custom_exposure', {
-      apiKey: STATSIG_CLIENT_KEY,
-      data: {
-        exposures: [
-          {
-            user: { userID },
-            experimentName: experiment,
-            group,
-          },
-        ],
-      },
-    })
+  async getBuckets(experiment: string) {
+    // https://docs.statsig.com/console-api/experiments#get-/experiments/-experiment_id-
+    const experimentConfig = await statsig(
+      `/console/v1/experiments/${experiment}`,
+      'GET',
+      { apiKey: STATSIG_CONSOLE_API_KEY }
+    )
+
+    return experimentConfig.data.groups.map(
+      (group: { parameterValues: { bucket: string } }) =>
+        group.parameterValues.bucket
+    )
   },
 }
 

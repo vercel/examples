@@ -1,21 +1,24 @@
-import { useState } from 'react'
+import { type HTMLAttributes, useState } from 'react'
+
+type FontProps = Pick<HTMLAttributes<HTMLElement>, 'className' | 'style'>
 
 interface FontMixerProps {
-  fonts: [string, string]
+  fonts: [FontProps, FontProps]
   children: string
 }
 
-const FontMixer: React.VFC<FontMixerProps> = ({ fonts: [a, b], children }) => {
+const FontMixer: React.FC<FontMixerProps> = ({ fonts: [a, b], children }) => {
   const [fader, setFader] = useState(0)
 
   return (
-    <section className="flex flex-col items-center gap-6">
+    <section className="flex flex-col items-center gap-4">
       <section className="flex gap-6 relative h-[320px] w-[100%] border border-gray-200 leading-6">
         <article
-          className="p-4 absolute h-[320px] text-ellipsis overflow-hidden text-blue-500"
+          className={`p-4 absolute h-[320px] w-1/2 text-ellipsis overflow-hidden text-blue-500 ${
+            a.className ?? ''
+          }`}
           style={{
-            fontFamily: a,
-            width: '50%',
+            ...a.style,
             left: `${fader}%`,
             filter: `grayscale(${1 - fader / 25})`,
           }}
@@ -23,10 +26,11 @@ const FontMixer: React.VFC<FontMixerProps> = ({ fonts: [a, b], children }) => {
           {children}
         </article>
         <article
-          className="p-4 absolute h-[320px] text-ellipsis overflow-hidden text-pink-500"
+          className={`p-4 absolute h-[320px] w-1/2 text-ellipsis overflow-hidden text-blue-500 ${
+            b.className ?? ''
+          }`}
           style={{
-            fontFamily: b,
-            width: '50%',
+            ...b.style,
             right: `${fader}%`,
             filter: `grayscale(${1 - fader / 25})`,
           }}

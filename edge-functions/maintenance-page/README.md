@@ -1,3 +1,19 @@
+---
+name: Maintenance Page
+slug: maintenance-page
+description: This template shows how to quickly trigger a maintenance page using Edge Config
+framework: Next.js
+useCase:
+  - Edge Functions
+  - Edge Config
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Fmaintenance-page&project-name=maintenance-page&repo-name=maintenance-page
+demoUrl: https://edge-maintenance-page.vercel.app/
+relatedTemplates:
+  - feature-flag-apple-store
+  - nextjs-boilerplate
+---
+
 # maintenance-page example
 
 This example shows how to implement a maintenance page on the edge
@@ -24,6 +40,20 @@ Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packag
 npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/maintenance-page
 # or
 yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/maintenance-page
+```
+
+#### Set up environment variables
+
+Copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
+
+```bash
+cp .env.example .env.local
+```
+
+This example requires you to set up an Edge Config and store its connection string in the `EDGE_CONFIG` environment variable. Fill the Edge Config you create with this content:
+
+```json
+{ "isInMaintenanceMode": true }
 ```
 
 Next, run Next.js in development mode:

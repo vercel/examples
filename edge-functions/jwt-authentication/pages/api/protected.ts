@@ -2,7 +2,7 @@ import { type NextRequest } from 'next/server'
 import { jsonResponse } from '@lib/utils'
 
 export const config = {
-  runtime: 'experimental-edge',
+  runtime: 'edge',
 }
 
 export default async function protect(req: NextRequest) {

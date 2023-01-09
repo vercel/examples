@@ -103,6 +103,9 @@ You need an account to follow this example. If you do not have an account, you c
 1. Go to **Settings > Primary Environment**
 2. Copy and save the **SDK Key** for your primary environment. **Note:** Each environment has its own SDK key.
    ![Copy SDK Key](https://files.readme.io/e392205-sdk_key.png)
+3. Go back to the **Vercel** dashboard, click on your project and go to **Settings > Environment Variables**
+4. Create a new Environment Variable called `OPTIMIZELY_SDK_KEY`
+5. Paste your Optimizely SDK Key as its value and **Save**
 
 ### Create the feature flag
 
