@@ -5,7 +5,7 @@ description: This example shows how to connect a Metamask wallet with a Next.js 
 framework: Next.js
 useCase: Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/mint-nft&project-name=mint-nft&repository-name=mint-nft&env=MORALIS_API_KEY,APP_DOMAIN,NEXTAUTH_URL,NEXTAUTH_SECRET,NEXT_PUBLIC_SERVER_DOMAIN
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/mint-nft&project-name=mint-nft&repository-name=mint-nft&env=MORALIS_API_KEY,NEXTAUTH_URL,NEXTAUTH_SECRET,NEXT_PUBLIC_SERVER_DOMAIN
 demoUrl: https://solutions-mint-nft.vercel.app
 ---
 
@@ -25,7 +25,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/mint-nft&project-name=mint-nft&repository-name=mint-nft&env=MORALIS_API_KEY,APP_DOMAIN,NEXTAUTH_URL,NEXTAUTH_SECRET,NEXT_PUBLIC_SERVER_DOMAIN)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/mint-nft&project-name=mint-nft&repository-name=mint-nft&env=MORALIS_API_KEY,NEXTAUTH_URL,NEXTAUTH_SECRET,NEXT_PUBLIC_SERVER_DOMAIN)
 
 ### Clone and Deploy
 
