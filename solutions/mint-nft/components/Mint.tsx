@@ -133,14 +133,17 @@ export const Mint: React.VFC = () => {
             </span>
           </Text>
           <section className="relative w-full pb-[20%] h-48 pb-6 mt-12">
-            <Image
-              className="rounded-xl"
-              src={asset ?? ""}
-              alt="The image that will be minted as an NFT"
-              fill
-            />
+            {asset ? (
+              <Image
+                className="rounded-xl"
+                src={asset}
+                alt="The image that will be minted as an NFT"
+                fill
+              />
+            ) : (
+              <></>
+            )}
           </section>
-
           <section className="flex justify-center mt-6">
             <Button
               size="lg"
