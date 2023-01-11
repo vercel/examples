@@ -12,7 +12,6 @@
     "@vercel/analytics": "^0.1.6",
     "@vercel/examples-ui": "^1.0.4",
     "next": "latest",
-    "openai": "^3.1.0",
     "react": "latest",
     "react-cookie": "^4.1.1",
     "react-dom": "latest",
