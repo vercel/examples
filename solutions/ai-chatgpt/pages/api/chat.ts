@@ -1,4 +1,4 @@
-import type { NextRequest } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { initialMessages } from '../../components/Chat'
 import { type Message } from '../../components/ChatLine'
 
@@ -77,10 +77,5 @@ export default async function handler(req: NextRequest) {
   const data = await response.json()
 
   // return response with 200 and stringify json text
-  return new Response(JSON.stringify({ text: data.choices[0].text }), {
-    status: 200,
-    headers: {
-      'content-type': 'application/json',
-    },
-  })
+  return NextResponse.json({ text: data.choices[0].text })
 }
