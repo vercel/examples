@@ -66,7 +66,7 @@ export function Chat() {
       { message: message, who: 'user' } as Message,
     ]
     setMessages(newMessages)
-    const last10mesages = newMessages.slice(-10)
+    const last10messages = newMessages.slice(-10)
 
     const response = await fetch('/api/chat', {
       method: 'POST',
@@ -74,7 +74,7 @@ export function Chat() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        messages: last10mesages,
+        messages: last10messages,
         user: cookie[COOKIE_NAME],
       }),
     })
