@@ -12,6 +12,8 @@ This example shows how to implement a simple chat bot using Next.js, API Routes,
 
 https://ai-chatgpt.vercel.app
 
+Due to high OpenAI costs, this deployment is currently disabled: to access the GPT3 API, you'll need to deploy this yourself per the instructions below and add your own OpenAI API key.
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:
@@ -32,7 +34,7 @@ npx create-next-app --example https://github.com/vercel/examples/tree/main/solut
 yarn create next-app --example https://github.com/vercel/examples/tree/main/solutions/ai-chatgpt
 ```
 
-#### Set up environment variables
+#### Running this locally
 
 Rename [`.env.example`](.env.example) to `.env.local`:
 
