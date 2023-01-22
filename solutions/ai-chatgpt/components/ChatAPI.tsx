@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Button } from './Button'
+import { InputMessage } from './InputMessage'
 import { type Message, ChatLine, LoadingChatLine } from './ChatLine'
 import { useCookies } from 'react-cookie'
 
@@ -12,37 +12,6 @@ export const initialMessages: Message[] = [
     message: 'Hi! I’m A friendly AI assistant. Ask me anything!',
   },
 ]
-
-const InputMessage = ({ input, setInput, sendMessage }: any) => (
-  <div className="mt-6 flex clear-both">
-    <input
-      type="text"
-      aria-label="chat input"
-      required
-      className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm"
-      value={input}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') {
-          sendMessage(input)
-          setInput('')
-        }
-      }}
-      onChange={(e) => {
-        setInput(e.target.value)
-      }}
-    />
-    <Button
-      type="submit"
-      className="ml-4 flex-none"
-      onClick={() => {
-        sendMessage(input)
-        setInput('')
-      }}
-    >
-      Say
-    </Button>
-  </div>
-)
 
 export function Chat() {
   const [messages, setMessages] = useState<Message[]>(initialMessages)
@@ -66,7 +35,7 @@ export function Chat() {
       { message: message, who: 'user' } as Message,
     ]
     setMessages(newMessages)
-    const last10messages = newMessages.slice(-10)
+    const last10messages = newMessages.slice(-6) // remember last 6 messages
 
     const response = await fetch('/api/chat', {
       method: 'POST',
@@ -82,6 +51,9 @@ export function Chat() {
 
     // strip out white spaces from the bot message
     const botNewMessage = data.text.trim()
+
+    // wait 10 seconds before adding the bot message
+    await new Promise((resolve) => setTimeout(resolve, 10000))
 
     setMessages([
       ...newMessages,
