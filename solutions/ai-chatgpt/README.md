@@ -8,10 +8,6 @@ This example shows how to implement a simple chat bot using Next.js, API Routes,
 - OpenAI API (REST endpoint)
 - API Routes (Edge runtime)
 
-## Demo
-
-https://ai-chatgpt.vercel.app
-
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:
