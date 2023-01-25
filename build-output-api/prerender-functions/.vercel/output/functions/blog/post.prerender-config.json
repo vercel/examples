@@ -3,9 +3,5 @@
   "group": 1,
   "bypassToken": "2ec9172003a647b296f324848dd3d407",
   "allowQuery": ["slug"],
-  "fallback": {
-    "type": "FileFsRef",
-    "mode": 33188,
-    "fsPath": "post.prerender-fallback.html"
-  }
+  "fallback": "post.prerender-fallback.html"
 }
