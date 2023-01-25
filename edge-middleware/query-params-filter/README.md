@@ -1,10 +1,10 @@
 ---
 name: Filtering Query Parameters
 slug: edge-functions-filter-query-params
-description: Learn how to filter query params in Edge Functions.
+description: Learn how to filter query params in Edge .
 framework: Next.js
 useCase:
-  - Edge Functions
+  - Edge Middleware
   - Documentation
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/query-params-filter&project-name=query-params-filter&repository-name=query-params-filter

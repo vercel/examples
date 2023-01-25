@@ -3,7 +3,7 @@ name: A/B Testing with Google Optimize
 slug: ab-testing-google-optimize
 description: Learn to use Google Optimize as an A/B testing solution for experimentation at the edge.
 framework: Next.js
-useCase: Edge Functions
+useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-google-optimize&project-name=ab-testing-google-optimize&repository-name=ab-testing-google-optimize
 demoUrl: https://edge-functions-ab-testing-google-optimize.vercel.app

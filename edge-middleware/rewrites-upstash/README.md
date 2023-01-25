@@ -3,7 +3,7 @@ name: Rewriting at the Edge using Upstash
 slug: edge-rewrites-upstash
 description: Learn how to avoid calling several services by pre-checking stock at the edge using a redis cache.
 framework: Next.js
-useCase: Edge Functions
+useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/rewrites-upstash&project-name=rewrites-upstash&repository-name=rewrites-upstash
 demoUrl: https://edge-rewrites-upstash.vercel.app

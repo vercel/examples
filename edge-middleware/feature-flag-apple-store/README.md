@@ -5,6 +5,7 @@ description: This template uses Edge Config as fast storage to control whether a
 framework: Next.js
 useCase:
   - Edge Functions
+  - Edge Middleware
   - Edge Config
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Ffeature-flag-apple-store&project-name=feature-flag-apple-store&repo-name=feature-flag-apple-store
@@ -15,7 +16,7 @@ relatedTemplates:
   - nextjs-boilerplate
 ---
 
-# Apple Store
+# Feature Flag Apple Store
 
 This template uses Edge Config as fast storage to control whether the store is open or closed.
 

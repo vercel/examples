@@ -1,9 +1,9 @@
 ---
 name: Power Parity Pricing
 slug: power-parity-pricing
-description: Implement power parity pricing using information from the request geolocation object in Edge Functions.
+description: Implement power parity pricing using information from the request geolocation object in Edge Middleware.
 framework: Next.js
-useCase: Edge Functions
+useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/power-parity-pricing&project-name=power-parity-pricing&repository-name=power-parity-pricing
 demoUrl: https://edge-functions-power-parity-pricing.vercel.app

@@ -4,7 +4,7 @@ slug: cookies
 description: Read and write cookies directly at the edge.
 framework: Next.js
 useCase:
-  - Edge Functions
+  - Edge Middleware
   - Documentation
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/cookies&project-name=cookies&repository-name=cookies

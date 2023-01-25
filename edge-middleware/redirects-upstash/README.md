@@ -3,7 +3,7 @@ name: Edge Redirects with Upstash
 slug: edge-redirects-upstash
 description: Redirect from a list of redirects both hardcoded and coming from Upstash (Redis), that get evaluated at the edge.
 framework: Next.js
-useCase: Edge Functions
+useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,UPSTASH_EDGE_API_DOMAIN,UPSTASH_EDGE_API_TOKEN&project-name=redirects-upstash&repository-name=redirects-upstash
 demoUrl: https://edge-functions-redirects-upstash.vercel.app

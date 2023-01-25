@@ -1,10 +1,10 @@
 ---
-name: Adding Response Headers in Edge Functions
+name: Adding Response Headers in Edge Middleware
 slug: edge-functions-add-header
 description: Learn to add response headers at the edge.
 framework: Next.js
 useCase:
-  - Edge Functions
+  - Edge Middleware
   - Documentation
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/add-header&project-name=add-header&repository-name=add-header

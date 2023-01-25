@@ -1,10 +1,10 @@
 ---
-name: Hostname Rewrites using Edge Functions
+name: Hostname Rewrites using Edge Middleware
 slug: hostname-rewrites
 description: Learn how to programmatically create unique content pages for your users with a multi-tenant infrastructure using Edge Middleware.
 framework: Next.js
 useCase:
-  - Edge Functions
+  - Edge Middleware
   - Documentation
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/hostname-rewrites&project-name=hostname-rewrites&repository-name=hostname-rewrites

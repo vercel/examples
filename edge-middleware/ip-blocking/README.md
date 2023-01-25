@@ -3,7 +3,7 @@ name: IP Blocking with Upstash
 slug: ip-blocking
 description: Template featuring IP Blocking at the edge using Upstash.
 framework: Next.js
-useCase: Edge Functions
+useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Fapi-rate-limit-and-tokens&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN&project-name=ip-blocking&repository-name=ip-blocking
 demoUrl: https://edge-functions-ip-blocking.vercel.app

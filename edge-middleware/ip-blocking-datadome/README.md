@@ -3,7 +3,7 @@ name: IP Blocking with DataDome
 slug: ip-blocking-datadome
 description: DataDome can provide real-time bot protection, ip blocking, custom rules protection and other security protections to any website.
 framework: Next.js
-useCase: Edge Functions
+useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-middleware%2Ftree%2Fmain%2Fexamples%2Fip-blocking-datadome&env=NEXT_PUBLIC_DATADOME_CLIENT_KEY,DATADOME_SERVER_KEY,DATADOME_MANAGEMENT_KEY&project-name=ip-blocking-datadome&repository-name=ip-blocking-datadome
 demoUrl: https://edge-functions-ip-blocking-datadome.vercel.app

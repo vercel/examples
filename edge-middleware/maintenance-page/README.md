@@ -4,7 +4,7 @@ slug: maintenance-page
 description: This template shows how to quickly trigger a maintenance page using Edge Config
 framework: Next.js
 useCase:
-  - Edge Functions
+  - Edge Middleware
   - Edge Config
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-functions%2Fmaintenance-page&project-name=maintenance-page&repo-name=maintenance-page

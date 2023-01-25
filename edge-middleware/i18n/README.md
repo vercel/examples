@@ -1,9 +1,9 @@
 ---
-name: i18n in Edge functions
+name: i18n in Edge Middleware
 slug: edge-functions-i18n
 description: This template shows how to redirect users based on i18n configuration.
 framework: Next.js
-useCase: Edge Functions
+useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/i18n&project-name=i18n&repository-name=i18n
 demoUrl: https://edge-functions-i18n.vercel.app

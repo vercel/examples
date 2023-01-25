@@ -3,7 +3,7 @@ name: A/B Testing with Split
 slug: ab-testing-split
 description: Learn to use Split, a feature delivery platform that powers feature flag management, software experimentation and continuous delivery.
 framework: Next.js
-useCase: Edge Functions
+useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/feature-flag-split&env=SPLIT_ADMIN_API_KEY,SPLIT_WORKSPACE_ID,SPLIT_ENVIRONMENT_ID,NEXT_PUBLIC_SPLIT_SDK_CLIENT_API_KEY&project-name=feature-flag-split&repository-name=feature-flag-split
 demoUrl: https://edge-functions-feature-flag-split.vercel.app

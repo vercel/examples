@@ -4,7 +4,7 @@ slug: edge-functions-modify-request-header
 description: Learn to add/update/delete request headers in a middleware.
 framework: Next.js
 useCase:
-  - Edge Functions
+  - Edge Middleware
   - Documentation
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/modify-request-header&project-name=modify-request-header&repository-name=modify-request-header

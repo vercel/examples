@@ -5,6 +5,7 @@ description: Learn to utilize the crypto Web APIs at the edge.
 framework: Next.js
 useCase:
   - Edge Functions
+  - Edge Middleware
   - Documentation
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/crypto&project-name=crypto&repository-name=crypto
