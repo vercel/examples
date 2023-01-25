@@ -1,6 +1,6 @@
 # Cache Control Headers
 
-Build your API using Vercel Edge Functions (Experimental).
+Build your API using Vercel Edge Functions.
 
 ## Demo
 
