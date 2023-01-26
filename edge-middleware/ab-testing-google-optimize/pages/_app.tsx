@@ -9,7 +9,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="AB testing with Google Optimize"
-      path="edge-functions/ab-testing-google-optimize"
+      path="edge-middleware/ab-testing-google-optimize"
     >
       <Component {...pageProps} />
     </Layout>

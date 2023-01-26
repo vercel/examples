@@ -9,7 +9,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="AB testing with Split"
-      path="edge-functions/feature-flag-split"
+      path="edge-middleware/feature-flag-split"
       deployButton={{
         env: [
           'SPLIT_ADMIN_API_KEY',

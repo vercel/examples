@@ -7,7 +7,7 @@ useCase:
   - Edge Middleware
   - Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/cookies&project-name=cookies&repository-name=cookies
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/cookies&project-name=cookies&repository-name=cookies
 demoUrl: https://edge-functions-cookies.vercel.app
 ---
 
@@ -46,16 +46,16 @@ export function middleware(req: NextRequest) {
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/cookies&project-name=cookies&repository-name=cookies)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/cookies&project-name=cookies&repository-name=cookies)
 
 ## Getting Started
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/cookies cookies
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/cookies cookies
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/cookies cookies
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/cookies cookies
 ```
 
 Next, run Next.js in development mode:

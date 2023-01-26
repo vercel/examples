@@ -20,7 +20,7 @@ function App({ Component, pageProps }: AppProps) {
       <Layout
         title="Experimentation with Statsig"
         description="How to do experimentation with Statsig"
-        path="edge-functions/ab-testing-statsig"
+        path="edge-middleware/ab-testing-statsig"
       >
         <Component {...pageProps} />
       </Layout>

@@ -9,7 +9,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="Power parity pricing"
-      path="edge-functions/power-parity-pricing"
+      path="edge-middleware/power-parity-pricing"
     >
       <Component {...pageProps} />
     </Layout>

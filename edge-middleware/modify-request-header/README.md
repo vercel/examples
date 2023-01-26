@@ -7,7 +7,7 @@ useCase:
   - Edge Middleware
   - Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/modify-request-header&project-name=modify-request-header&repository-name=modify-request-header
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/modify-request-header&project-name=modify-request-header&repository-name=modify-request-header
 demoUrl: https://edge-middleware-modify-request-header.vercel.app
 relatedTemplates:
   - edge-functions-add-header
@@ -58,16 +58,16 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/modify-request-header&project-name=modify-request-header&repository-name=modify-request-header)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/modify-request-header&project-name=modify-request-header&repository-name=modify-request-header)
 
 ### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/modify-request-header modify-request-header
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/modify-request-header modify-request-header
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/modify-request-header modify-request-header
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/modify-request-header modify-request-header
 ```
 
 Next, run Next.js in development mode:

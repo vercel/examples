@@ -7,7 +7,7 @@ useCase:
   - Edge Middleware
   - Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-simple&project-name=ab-testing-simple&repository-name=ab-testing-simple
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/ab-testing-simple&project-name=ab-testing-simple&repository-name=ab-testing-simple
 demoUrl: https://edge-functions-ab-testing-simple.vercel.app
 ---
 
@@ -27,16 +27,16 @@ Take a look at [`middleware.ts`](middleware.ts) to see how it works.
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-simple&project-name=ab-testing-simple&repository-name=ab-testing-simple)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/ab-testing-simple&project-name=ab-testing-simple&repository-name=ab-testing-simple)
 
 ## Getting Started
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-simple ab-testing-simple
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/ab-testing-simple ab-testing-simple
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/ab-testing-simple ab-testing-simple
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/ab-testing-simple ab-testing-simple
 ```
 
 Next, run Next.js in development mode:

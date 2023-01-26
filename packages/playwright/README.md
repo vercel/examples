@@ -2,7 +2,7 @@
 
 This package takes care of creating a test for every example in this repo that has a `demoUrl`, and executing them with GitHub Actions.
 
-The demo URL has to be added with front matter in the example's README.md file. For example, look at the readme file of the [add-header example](/edge-functions/add-header/README.md).
+The demo URL has to be added with front matter in the example's README.md file. For example, look at the readme file of the [add-header example](/edge-middleware/add-header/README.md).
 
 ## Contributing
 

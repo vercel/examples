@@ -11,7 +11,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="Rewrite at the edge using Upstash"
-      path="edge-functions/rewrites-upstash"
+      path="edge-middleware/rewrites-upstash"
       description="How to avoid calling several services by pre-checking stock at the edge using a redis cache"
     >
       <Component {...pageProps} />

@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="Power parity pricing strategies"
-      path="edge-functions/power-parity-pricing-strategies"
+      path="edge-middleware/power-parity-pricing-strategies"
     >
       <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-50">
         <div className="fixed inset-0 overflow-hidden opacity-75 bg-[#f8fafb]">

@@ -5,7 +5,7 @@ description: Botd is a browser library for bot detection. In this template we'll
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/bot-protection-botd&env=NEXT_PUBLIC_BOTD_API_TOKEN&project-name=bot-protection-botd&repository-name=bot-protection-botd
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/bot-protection-botd&env=NEXT_PUBLIC_BOTD_API_TOKEN&project-name=bot-protection-botd&repository-name=bot-protection-botd
 demoUrl: https://edge-functions-bot-protection-botd.vercel.app
 ---
 
@@ -21,7 +21,7 @@ https://edge-functions-bot-protection-botd.vercel.app
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/bot-protection-botd&env=NEXT_PUBLIC_BOTD_API_TOKEN&project-name=bot-protection-botd&repository-name=bot-protection-botd)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/bot-protection-botd&env=NEXT_PUBLIC_BOTD_API_TOKEN&project-name=bot-protection-botd&repository-name=bot-protection-botd)
 
 ## How it works
 
@@ -32,9 +32,9 @@ If you try and go to [/blocked](https://edge-functions-bot-protection-botd.verce
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/bot-protection-botd bot-protection-botd
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/bot-protection-botd bot-protection-botd
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/bot-protection-botd bot-protection-botd
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/bot-protection-botd bot-protection-botd
 ```
 
 You'll need to have a token for the beta access of [Botd](https://github.com/fingerprintjs/botd), the token is free and there are instructions in their [github repo](https://github.com/fingerprintjs/botd) on how to get one.

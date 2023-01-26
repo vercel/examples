@@ -10,7 +10,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <Layout
       title={pageProps.dictionary?.title || 'i18n'}
       description={pageProps.dictionary?.subtitle}
-      path="edge-functions/i18n"
+      path="edge-middleware/i18n"
     >
       <Component {...pageProps} />
     </Layout>

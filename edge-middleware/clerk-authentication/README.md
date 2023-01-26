@@ -14,16 +14,16 @@ https://edge.clerk.app/
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/clerk-authentication&env=NEXT_PUBLIC_CLERK_FRONTEND_API,CLERK_API_KEY,CLERK_JWT_KEY&project-name=clerk-authentication&repo-name=clerk-authentication)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/clerk-authentication&env=NEXT_PUBLIC_CLERK_FRONTEND_API,CLERK_API_KEY,CLERK_JWT_KEY&project-name=clerk-authentication&repo-name=clerk-authentication)
 
 ## Getting Started
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/clerk-authentication clerk-authentication
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/clerk-authentication clerk-authentication
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/clerk-authentication clerk-authentication
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/clerk-authentication clerk-authentication
 ```
 
 You'll need to have an account with [Clerk](https://clerk.dev/?utm_source=vercel&utm_medium=github&utm_campaign=edge-authentication). Once that's done, copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
