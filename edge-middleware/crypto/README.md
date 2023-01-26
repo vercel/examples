@@ -1,5 +1,5 @@
 ---
-name: Using Crypto in Edge Functions and Middleware
+name: Using Crypto in Edge Middleware and Edge Functions
 slug: edge-functions-crypto
 description: Learn to utilize the crypto Web APIs at the edge.
 framework: Next.js

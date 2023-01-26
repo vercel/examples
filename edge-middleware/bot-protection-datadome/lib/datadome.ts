@@ -16,7 +16,7 @@ export default async function datadome(req: NextRequest) {
     RequestModuleName: 'Next.js',
     ModuleVersion: '0.1',
     ServerName: 'vercel',
-    // this should be `x-real-ip` but it doesn't currently work on Edge Functions
+    // this should be `x-real-ip` but it doesn't currently work on Edge Middleware
     IP: req.headers.get('x-forwarded-for')
       ? req.headers.get('x-forwarded-for')!.split(',')[0]
       : '127.0.0.1',

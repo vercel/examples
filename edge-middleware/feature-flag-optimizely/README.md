@@ -11,7 +11,7 @@ demoUrl: https://feature-flag-optimizely.vercel.app
 
 # Feature Flags with Optimizely
 
-This example shows how to use Optimizely to conduct experiments in Vercel Edge Functions.
+This example shows how to use Optimizely to conduct experiments using Edge Middleware.
 
 ## Demo
 
@@ -63,7 +63,7 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 You can deploy code behind feature flags, experiment with A/B tests, and roll out or roll back features immediately. All of this functionality is available with minimal performance impact through easy-to-use, open source SDKs.
 
-You can use Optimizely feature flags at the edge with [NextJS](https://nextjs.org/) applications deployed on [Vercel](https://vercel.com/). This example uses Optimizely [Javascript SDK](https://docs.developers.optimizely.com/full-stack/v4.0/docs/javascript-node) inside a [Vercel Edge Middleware](https://vercel.com/docs/concepts/functions/edge-middleware) as a starting point for you to implement experimentation and feature flagging for your experiences at the edge. For a guide to getting started with our platform more generally, this can be combined with the steps outlined in our [Javascript Quickstart](https://docs.developers.optimizely.com/full-stack/v4.0/docs/javascript-node).
+You can use Optimizely feature flags at the edge with [NextJS](https://nextjs.org/) applications deployed on [Vercel](https://vercel.com/). This example uses Optimizely [Javascript SDK](https://docs.developers.optimizely.com/full-stack/v4.0/docs/javascript-node) inside a [Edge Middleware](https://vercel.com/docs/concepts/functions/edge-middleware) as a starting point for you to implement experimentation and feature flagging for your experiences at the edge. For a guide to getting started with our platform more generally, this can be combined with the steps outlined in our [Javascript Quickstart](https://docs.developers.optimizely.com/full-stack/v4.0/docs/javascript-node).
 
 ### Identity Management
 

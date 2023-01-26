@@ -18,7 +18,7 @@ relatedTemplates:
 
 # JWT Authentication
 
-The example shows how to do JWT authentication at the edge using Next.js Middleware and Edge Functions.
+The example shows how to do JWT authentication at the edge using Edge Middleware and Edge Functions.
 
 ## Demo
 

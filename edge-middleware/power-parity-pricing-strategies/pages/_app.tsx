@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
         </div>
         <main className="flex flex-col items-center flex-1 px-4 sm:px-20 w-full text-center z-10 py-8 sm:py-20">
           <Text variant="h1" className="mb-4">
-            Edge Functions
+            Edge Middleware
           </Text>
           <Text>Dynamic content close to your users.</Text>
           <a

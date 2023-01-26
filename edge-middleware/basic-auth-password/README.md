@@ -11,7 +11,7 @@ demoUrl: https://edge-functions-basic-auth-password.vercel.app
 
 # Basic Auth Password Protection
 
-Password protect pages in your application using Edge Functions.
+Password protect pages in your application using Edge Middleware.
 
 ## Demo
 

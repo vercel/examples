@@ -1,7 +1,7 @@
 import type { NextRequest } from 'next/server'
 
 // ------------------
-// Using Crypto with Edge Functions
+// Using Crypto with Edge Middleware and Edge Functions
 // ------------------
 
 export const config = {
