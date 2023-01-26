@@ -4,7 +4,6 @@ slug: next-news
 description: Hacker News clone in Next.js.
 framework: Next.js
 useCase: Starter
-css: CSS-in-JSX
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/starter/next-news&project-name=next-news&repository-name=next-news
 demoUrl: https://next-news.vercel.app
 ---
