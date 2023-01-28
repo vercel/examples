@@ -41,5 +41,8 @@ export async function middleware(req: NextRequest) {
     })
   }
 
+  // Flush exposure logs to Statsig
+  Statsig.flush();
+
   return res
 }
