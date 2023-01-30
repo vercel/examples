@@ -15,7 +15,7 @@ We're going to be shipping new examples weekly. Stay tuned!
 
 ## Vercel Templates
 
-Multiple examples are being featured in [https://vercel.com/templates](https://vercel.com/templates), visit that page for more advanced filtering options.
+Multiple examples are being featured in [Vercel's Templates](https://vercel.com/templates), visit that page for more advanced filtering options.
 
 ### For Vercelians
 
