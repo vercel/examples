@@ -11,7 +11,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="Maintenance Page"
-      path="edge-functions/maintenance-page"
+      path="edge-middleware/maintenance-page"
       description="Learn how to implement a maintenance page at the edge"
     >
       <Component {...pageProps} />

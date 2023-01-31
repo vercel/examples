@@ -90,7 +90,7 @@ function EdgeProductPage({ country, product }: Props) {
           <div className="bg-gray-50 text-gray-500 text-left py-2 px-4 rounded-md border-gray-200 border text-sm flex flex-col gap-4">
             <div className="inline-block">
               <span>
-                Using Edge Functions, we dynamically rendered this discount for
+                Using Edge Middleware, we dynamically rendered this discount for
                 you, based on your location{' '}
               </span>
               <Image

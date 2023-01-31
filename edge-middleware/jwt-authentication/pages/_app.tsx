@@ -9,7 +9,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="JWT Authentication"
-      path="edge-functions/jwt-authentication"
+      path="edge-middleware/jwt-authentication"
       deployButton={{ env: ['JWT_SECRET_KEY'] }}
     >
       <Component {...pageProps} />

@@ -18,7 +18,9 @@ async function generateTests() {
     fs.readdir(path.join(rootDir, folder)).then((paths) => [folder, paths])
   const examplesBySection = await Promise.all([
     getFiles('edge-functions'),
+    getFiles('edge-middleware'),
     getFiles('solutions'),
+    getFiles('starter'),
   ])
   let count = 0
 

@@ -9,7 +9,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="AB Testing with buckets"
-      path="edge-functions/ab-testing-simple"
+      path="edge-middleware/ab-testing-simple"
     >
       <Component {...pageProps} />
     </Layout>

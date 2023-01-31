@@ -23,7 +23,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="AB testing with PostHog"
-      path="edge-functions/feature-flag-posthog"
+      path="edge-middleware/feature-flag-posthog"
       deployButton={{
         env: ['NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY'],
       }}

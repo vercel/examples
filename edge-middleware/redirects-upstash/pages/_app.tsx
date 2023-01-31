@@ -9,7 +9,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="Edge Redirects"
-      path="edge-functions/redirects-upstash"
+      path="edge-middleware/redirects-upstash"
       deployButton={{
         env: [
           'UPSTASH_REST_API_DOMAIN',

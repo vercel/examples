@@ -85,7 +85,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="API Rate Limiting with Upstash"
-      path="edge-functions/api-rate-limit"
+      path="edge-middleware/api-rate-limit"
     >
       <Component {...pageProps} />
     </Layout>

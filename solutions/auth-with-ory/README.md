@@ -21,7 +21,7 @@ You can choose from one of the following two methods to use this repository:
 Deploy the example using
 [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/auth-with-ory&env=ORY_SDK_URL&project-name=ory-authentication&repo-name=ory-authentication)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/auth-with-ory&env=ORY_SDK_URL&project-name=ory-authentication&repo-name=ory-authentication)
 
 ### Clone and Deploy
 

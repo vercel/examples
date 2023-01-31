@@ -9,7 +9,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="Query params filter"
-      path="edge-functions/query-params-filter"
+      path="edge-middleware/query-params-filter"
     >
       <Component {...pageProps} />
     </Layout>

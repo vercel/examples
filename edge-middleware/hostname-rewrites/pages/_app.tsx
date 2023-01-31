@@ -10,7 +10,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <Layout
       title={pageProps.name}
       description={pageProps.description}
-      path="edge-functions/hostname-rewrites"
+      path="edge-middleware/hostname-rewrites"
     >
       <Component {...pageProps} />
     </Layout>

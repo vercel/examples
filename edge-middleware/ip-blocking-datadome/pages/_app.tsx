@@ -20,7 +20,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     >
       <Layout
         title="IP Blocking with Datadome"
-        path="edge-functions/ip-blocking-datadome"
+        path="edge-middleware/ip-blocking-datadome"
         deployButton={{
           env: [
             'NEXT_PUBLIC_DATADOME_CLIENT_KEY',
