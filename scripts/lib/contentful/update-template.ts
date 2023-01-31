@@ -16,7 +16,7 @@ export default async function updateTemplate({
   const readme = await getReadme(examplePath)
 
   if (!readme) {
-    throw new Error('No readme.md found in example directory')
+    throw new Error(`No README.md found in example directory ${examplePath}`)
   }
 
   const { body: readmeBody, lang, template } = await getTemplate(readme)
