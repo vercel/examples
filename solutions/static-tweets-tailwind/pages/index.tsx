@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import Tweet from '@/components/Tweet'
-import { getTweets } from '@/lib/twitter'
 import { serialize } from 'next-mdx-remote/serialize'
 import { replaceTweets } from '@/lib/remark-plugins'
 
