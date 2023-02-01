@@ -4,6 +4,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import Tweet from '@/components/Tweet'
 import { serialize } from 'next-mdx-remote/serialize'
 import { replaceTweets } from '@/lib/remark-plugins'
+import { Layout, Text, Code, Page } from '@vercel/examples-ui'
 
 const components = {
   Tweet,
@@ -11,63 +12,39 @@ const components = {
 
 export default function Home(props: { content: MDXRemoteSerializeResult }) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <Head>
-        <title>Static Tweets (Tailwind)</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      {/* added link to github repo */}
-      <a
-        href="https://github.com/vercel/examples/tree/main/solutions/static-tweets-tailwind"
-        target="_blank"
-        rel="noreferrer"
-        className="fixed top-5 right-5"
-      >
-        <Image
-          src="/github.svg"
-          alt="Github"
-          width={25}
-          height={25}
-          className="bg-white rounded-full"
-        />
-      </a>
+    <Page>
+      <div className="flex flex-col items-center justify-center min-h-screen py-2">
+        <section className="flex flex-col gap-6">
+          <Text variant="h1">Static Tweets Tailwind</Text>
+          <Text>
+            This example shows you how you can generate static tweets using
+            Tailwind CSS & the <Code>getStaticProps</Code> function in Next.js.
+          </Text>
+        </section>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1">
-        <article className="prose lg:prose-xl w-11/12 max-w-3xl mx-auto mt-20 mb-48">
+        <article className="prose lg:prose-xl border-t border-gray-300 mt-16">
           <MDXRemote {...props.content} components={components} />
         </article>
-      </main>
-
-      <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Powered by{' '}
-          <div className="flex ml-2">
-            <Image src="/vercel.svg" alt="Vercel Logo" width={71} height={16} />
-          </div>
-        </a>
-      </footer>
-    </div>
+      </div>
+    </Page>
   )
 }
 
+Home.Layout = Layout
+
 export async function getStaticProps() {
   const contentHtml = `
-  <h2 className="text-black dark:text-white">Regular Tweets</h2>
+  <h2 className="text-black dark:text-white font-bold text-2xl mt-10">Regular Tweets</h2>
   <p>https://twitter.com/steventey/status/1611417461194358785</p>
-  <h2 className="text-black dark:text-white">Image Tweets</h2>
+  <h2 className="text-black dark:text-white font-bold text-2xl mt-10">Image Tweets</h2>
   <p>https://twitter.com/steventey/status/1602318152288829440</p>
-  <h2 className="text-black dark:text-white">Video Tweets</h2>
+  <h2 className="text-black dark:text-white font-bold text-2xl mt-10">Video Tweets</h2>
   <p>https://twitter.com/steventey/status/1613928948915920896</p>
-  <h2 className="text-black dark:text-white">Multiple Images</h2>
+  <h2 className="text-black dark:text-white font-bold text-2xl mt-10">Multiple Images</h2>
   <p>https://twitter.com/jstngraphics/status/1477021464620515328</p>
-  <h2 className="text-black dark:text-white">Link Preview</h2>
+  <h2 className="text-black dark:text-white font-bold text-2xl mt-10">Link Preview</h2>
   <p>https://twitter.com/steventey/status/1572958186667233282</p>
-  <h2 className="text-black dark:text-white">Poll Tweet</h2>
+  <h2 className="text-black dark:text-white font-bold text-2xl mt-10">Poll Tweet</h2>
   <p>https://twitter.com/DAOCentral/status/1475184169588125699</p>
   `
 

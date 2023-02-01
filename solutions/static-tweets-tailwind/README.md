@@ -5,7 +5,7 @@ reason: https://github.com/lfades/static-tweet is very similar to this one
 
 # Static Tweets (Tailwind)
 
-This code snippet shows you how you can generate static tweets using Tailwind CSS & `getStaticProps` in Next.js.
+This example shows you how you can generate static tweets using Tailwind CSS & `getStaticProps` in Next.js.
 
 ## Dependencies
 
