@@ -1,39 +1,63 @@
 import BlurImage from './BlurImage'
-import cn from 'clsx'
 import { format } from 'date-fns'
 import { useState } from 'react'
 
-function getRemainingTime(ISOString) {
+import type { TweetData, WithClassName } from '@/lib/types'
+
+function classNames(...classes: Array<string>) {
+  return classes.filter(Boolean).join(' ')
+}
+
+function getRemainingTime(ISOString: string) {
   const currentTime = new Date()
-  const endTime = new Date(ISOString)
-  const diff = endTime - currentTime
+  const endTime = new Date(ISOString).getTime()
+  const diff = endTime - currentTime.getTime()
+
   if (diff > 36e5 * 24) {
     const days = Math.floor(diff / (36e5 * 24))
     const hours = Math.floor((diff - days * 36e5 * 24) / 36e5)
+
     return `${days} day${days > 1 ? 's' : ''} ${hours} hours`
-  } else if (diff > 36e5) {
-    return `${Math.floor(diff / 36e5)} hours`
-  } else if (diff > 60e3) {
-    return `${Math.floor(diff / 60e3)} minutes`
-  } else {
-    return 'Less than a minute'
   }
+
+  if (diff > 36e5) return `${Math.floor(diff / 36e5)} hours`
+
+  if (diff > 60e3) return `${Math.floor(diff / 60e3)} minutes`
+
+  return 'Less than a minute'
 }
 
-export default function Tweet({ id, metadata, className }) {
-  const parsedMetadata = JSON.parse(metadata.replace(/\n/g, '\\n'))
+interface TweetProps extends WithClassName {
+  id: string
+  metadata: string
+}
 
-  //console.log(JSON.stringify(parsedMetadata, null, 4));
+export default function Tweet({ id, metadata, className }: TweetProps) {
+  const [copied, setCopied] = useState(false)
 
-  const text = parsedMetadata.text
-  const author = parsedMetadata.author
-  const media = parsedMetadata.media
-  const video = parsedMetadata.video
-  const polls = parsedMetadata.polls
-  const url_meta = parsedMetadata.url_meta
-  const created_at = parsedMetadata.created_at
-  const public_metrics = parsedMetadata.public_metrics
-  const referenced_tweets = parsedMetadata.referenced_tweets
+  const parsedMetadata = JSON.parse(metadata.replace(/\n/g, '\\n')) as TweetData
+
+  if (!parsedMetadata) {
+    return (
+      <div
+        className={`${className} tweet rounded-lg flex justify-center items-center my-4 w-full h-[36rem] text-sm text-gray-500 border border-gray-300 bg-gray-50 hover:bg-gray-100 transition-all`}
+      >
+        There was an error loading this tweet.
+      </div>
+    )
+  }
+
+  const {
+    author,
+    created_at,
+    media,
+    polls,
+    public_metrics,
+    referenced_tweets,
+    text,
+    url_meta,
+    video,
+  } = parsedMetadata
 
   const authorUrl = `https://twitter.com/${author.username}`
   const likeUrl = `https://twitter.com/intent/like?tweet_id=${id}`
@@ -44,70 +68,72 @@ export default function Tweet({ id, metadata, className }) {
 
   const regexToMatchURL =
     /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/
-  const formattedText = text
-    .replace(regexToMatchURL, (match) => {
-      // format all hyperlinks
-      return `<a style="color: rgb(29,161,242); font-weight:normal; text-decoration: none" href="${match}" target="_blank">${match.replace(
-        /^http(s?):\/\//i,
-        ''
-      )}</a>`
-    })
-    .replace(/\B\@([\w\-]+)/gim, (match) => {
-      // format all @ mentions
-      return `<a style="color: rgb(29,161,242); font-weight:normal; text-decoration: none" href="https://twitter.com/${match.replace(
-        '@',
-        ''
-      )}" target="_blank">${match}</a>`
-    })
-    .replace(/(#+[a-zA-Z0-9(_)]{1,})/g, (match) => {
-      // format all # hashtags
-      return `<a style="color: rgb(29,161,242); font-weight:normal; text-decoration: none" href="https://twitter.com/hashtag/${match.replace(
-        '#',
-        ''
-      )}" target="_blank">${match}</a>`
-    })
 
+  const formattedText = text
+    // Format all hyperlinks
+    .replace(
+      regexToMatchURL,
+      (match) =>
+        `<a style="color: rgb(29,161,242); font-weight:normal; text-decoration: none" href="${match}" target="_blank">${match.replace(
+          /^http(s?):\/\//i,
+          ''
+        )}</a>`
+    )
+    // Format all @ mentions
+    .replace(
+      /\B\@([\w\-]+)/gim,
+      (match) =>
+        `<a style="color: rgb(29,161,242); font-weight:normal; text-decoration: none" href="https://twitter.com/${match.replace(
+          '@',
+          ''
+        )}" target="_blank">${match}</a>`
+    )
+    // Format all # hashtags
+    .replace(
+      /(#+[a-zA-Z0-9(_)]{1,})/g,
+      (match) =>
+        `<a style="color: rgb(29,161,242); font-weight:normal; text-decoration: none" href="https://twitter.com/hashtag/${match.replace(
+          '#',
+          ''
+        )}" target="_blank">${match}</a>`
+    )
   const quoteTweet =
     referenced_tweets && referenced_tweets.find((t) => t.type === 'quoted')
 
   const repliedTo =
     referenced_tweets && referenced_tweets.find((t) => t.type === 'replied_to')
 
-  const [copied, setCopied] = useState(false)
-
   return (
     <div
-      className={`${className} tweet rounded-lg border border-gray-300 dark:border-gray-800 bg-white dark:bg-black px-8 pt-6 pb-2 my-4 w-full`}
+      className={`${
+        className || ''
+      } rounded-lg border border-gray-300 bg-white px-8 pt-6 pb-2 my-4 w-full`}
     >
       <div className="flex items-center">
-        <a
-          className="flex h-12 w-12 rounded-full overflow-hidden"
-          href={authorUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a href={authorUrl} target="_blank" rel="noopener noreferrer">
           <BlurImage
             alt={author.username}
             height={48}
             width={48}
+            className="flex rounded-full overflow-hidden !my-2"
             src={author.profile_image_url}
           />
         </a>
         <a
           href={authorUrl}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="author flex flex-col ml-4 !no-underline"
         >
           <span
-            className="flex items-center font-bold !text-gray-900 dark:!text-gray-100 leading-5 mt-1"
+            className="flex items-center font-bold text-gray-900 leading-5 mt-1"
             title={author.name}
           >
             {author.name}
             {author.verified ? (
               <svg
                 aria-label="Verified Account"
-                className="ml-1 text-blue-500 dark:text-white inline h-4 w-4"
+                className="ml-1 text-blue-500 inline h-4 w-4"
                 viewBox="0 0 24 24"
               >
                 <g fill="currentColor">
@@ -123,7 +149,12 @@ export default function Tweet({ id, metadata, className }) {
             @{author.username}
           </span>
         </a>
-        <a className="ml-auto" href={tweetUrl} target="_blank" rel="noreferrer">
+        <a
+          className="ml-auto"
+          href={tweetUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <svg
             viewBox="328 355 335 276"
             height="24"
@@ -143,27 +174,27 @@ export default function Tweet({ id, metadata, className }) {
           <a
             className="!no-underline !text-[#1da1f2]"
             href={`https://twitter.com/${repliedTo.author.username}`}
-            target="_blank"
             rel="noreferrer"
+            target="_blank"
           >
             @{repliedTo.author.username}
           </a>
         </div>
       )}
       <div
-        className="mt-4 mb-2 leading-normal whitespace-pre-wrap text-lg !text-gray-700 dark:!text-gray-300"
+        className="mt-4 mb-2 leading-normal whitespace-pre-wrap text-lg text-gray-700"
         dangerouslySetInnerHTML={{ __html: formattedText }}
       />
       {media && media.length ? (
         <div
           className={
             media.length === 1
-              ? 'inline-grid grid-cols-1 gap-x-2 gap-y-2 my-2'
-              : 'inline-grid grid-cols-2 gap-x-2 gap-y-2 my-2'
+              ? 'inline-grid grid-cols-1 gap-2 my-2'
+              : 'inline-grid grid-cols-2 gap-2 my-2'
           }
         >
           {media.map((m, i) => (
-            <a key={i} href={tweetUrl} target="_blank" rel="noreferrer">
+            <a href={tweetUrl} key={i} rel="noreferrer" target="_blank">
               {m.type == 'video' || m.type == 'animated_gif' ? (
                 video ? (
                   <video
@@ -174,12 +205,7 @@ export default function Tweet({ id, metadata, className }) {
                     autoPlay
                     muted
                     playsInline
-                    src={
-                      video.variants.length >= 3
-                        ? video.variants[2].url
-                        : video.variants[0].url
-                    }
-                    type="video/mp4"
+                    src={video.url}
                   />
                 ) : (
                   <BlurImage
@@ -205,27 +231,27 @@ export default function Tweet({ id, metadata, className }) {
           ))}
         </div>
       ) : null}
-      {url_meta ? (
+      {url_meta?.images ? (
         <a
           className="!no-underline"
           href={url_meta.unwound_url}
-          target="_blank"
           rel="noreferrer"
+          target="_blank"
         >
-          <div className="rounded-2xl overflow-hidden border border-gray-200 drop-shadow-sm mb-5">
+          <div className="rounded-2xl overflow-hidden border border-gray-200 drop-shadow-sm my-5">
             <BlurImage
               key={url_meta.unwound_url}
               alt={url_meta.title}
               width={2048}
-              height={
-                url_meta.images[0].height * (2048 / url_meta.images[0].width)
-              }
+              height={1000}
               src={url_meta.images[0].url}
-              className="hover:brightness-90 transition-all ease-in-out duration-150"
+              className="w-full h-[300px] object-cover !my-0 hover:brightness-90 transition-all ease-in-out duration-150"
             />
-            <div className="w-full bg-white px-8 py-2">
-              <p className="!m-0">{url_meta.title}</p>
-              <p className="text-sm">{url_meta.description}</p>
+            <div className="w-full bg-white px-8 py-6">
+              <p className="!m-0 font-semibold">{url_meta.title}</p>
+              <p className="!m-0 text-sm font-normal text-gray-600">
+                {url_meta.description}
+              </p>
             </div>
           </div>
         </a>
@@ -241,11 +267,11 @@ export default function Tweet({ id, metadata, className }) {
               <div>
                 {poll.options.map((option, i) => (
                   <a
-                    key={i}
-                    href={tweetUrl}
-                    target="_blank"
-                    rel="noreferrer"
                     className="!no-underline"
+                    href={tweetUrl}
+                    key={i}
+                    rel="noreferrer"
+                    target="_blank"
                   >
                     <div className="text-center font-bold text-[#1da1f2] border border-[#1da1f2] rounded-3xl my-2 hover:bg-[#1da1f2] hover:bg-opacity-10 transition-all ease-in-out duration-150">
                       {option.label}
@@ -262,7 +288,7 @@ export default function Tweet({ id, metadata, className }) {
                 {poll.options.map((option) => (
                   <>
                     <div
-                      className={cn(
+                      className={classNames(
                         option.position == 1 ? 'font-bold' : '',
                         'relative text-black my-2 cursor-pointer px-3 whitespace-nowrap flex justify-between'
                       )}
@@ -275,7 +301,7 @@ export default function Tweet({ id, metadata, className }) {
                         .toFixed(1)
                         .replace('.0', '')}%`}</p>
                       <div
-                        className={cn(
+                        className={classNames(
                           option.position == 1
                             ? 'font-bold bg-[#1da1f2]'
                             : 'bg-gray-300',
@@ -305,7 +331,7 @@ export default function Tweet({ id, metadata, className }) {
         className="block mt-3 mb-4 !text-gray-500 text-base hover:!underline !no-underline"
         href={tweetUrl}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
       >
         <time
           title={`Time Posted: ${createdAt.toUTCString()}`}
@@ -314,12 +340,12 @@ export default function Tweet({ id, metadata, className }) {
           {format(createdAt, 'h:mm a - MMM d, y')}
         </time>
       </a>
-      <div className="border-t border-gray-300 pt-1 flex space-x-2 md:space-x-6 text-base !text-gray-700 dark:!text-gray-300 mt-2">
+      <div className="border-t border-gray-300 pt-1 flex space-x-2 md:space-x-6 text-base text-gray-700 mt-2">
         <a
           className="flex items-center !text-gray-500 group transition !no-underline space-x-1"
           href={likeUrl}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
           <div className="group-hover:!text-red-600 rounded-full w-10 h-10 group-hover:bg-red-100 flex items-center justify-center">
             <svg width="24" height="24" viewBox="0 0 24 24">
@@ -337,7 +363,7 @@ export default function Tweet({ id, metadata, className }) {
           className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1"
           href={retweetUrl}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
           <div className="group-hover:!text-purple-600 rounded-full w-10 h-10 group-hover:bg-purple-100 flex items-center justify-center">
             <svg width="24" height="24" viewBox="0 0 24 24">
@@ -355,7 +381,7 @@ export default function Tweet({ id, metadata, className }) {
           className="flex items-center mr-4 !text-gray-500 group transition !no-underline space-x-1"
           href={replyUrl}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
           <div className="group-hover:!text-[#1da1f2] rounded-full w-10 h-10 group-hover:bg-blue-100 flex items-center justify-center">
             <svg width="24" height="24" viewBox="0 0 24 24">
