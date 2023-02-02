@@ -65,3 +65,7 @@ Once the above settings are configured, test this workflow by making a change:
 ## Continue Using Vercel Build and Deployment Features
 
 Since the Vercel CI/CD process is still utilized teams can continue to leverage [Instant Rollback](https://vercel.com/docs/concepts/deployments/instant-rollback), [Promote to Production](https://vercel.com/docs/concepts/deployments/instant-rollback#instant-rollback-vs.-promote-to-production), [Checks](https://vercel.com/docs/integrations/checks-overview), and the Vercel GitHub bot integration.
+
+# Demo
+
+https://user-images.githubusercontent.com/6125972/214726723-27039433-efa8-4f0e-895a-71fc5cc0319e.mov
