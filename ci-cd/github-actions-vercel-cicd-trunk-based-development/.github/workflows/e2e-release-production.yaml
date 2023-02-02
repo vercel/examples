@@ -14,4 +14,4 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Alias Production URL
-        run: vercel alias --token=${{ secrets.VERCEL_TOKEN }} set $VERCEL_URL https://github-actions-with-vercel-cicd-production.vercel.app/
+        run: vercel alias --token=${{ secrets.VERCEL_TOKEN }} set $VERCEL_URL ${{ vars.PRODUCTION_URL }}
