@@ -44,7 +44,7 @@ This action:
 
 Set the required settings in Vercel and GitHub:
 
-1. [Add a custom domain on Vercel](https://vercel.com/docs/concepts/projects/domains/add-a-domain)
+1. [Add a custom domain on Vercel](https://vercel.com/docs/concepts/projects/domains/add-a-domain). Do not add the domain under the Project Settings Domains. Doing so will require assigning a branch and deployments will assign that URL prior to the `alias` step and that is not desired for this workflow.
 2. Retrieve a [Vercel Access Token](https://vercel.com/support/articles/how-do-i-use-a-vercel-api-access-token)
 3. In GitHub, add `VERCEL_TOKEN` as a [secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 4. In GitHub, add `PRODUCTION_URL` as a [variable](https://docs.github.com/en/actions/learn-github-actions/variables).
