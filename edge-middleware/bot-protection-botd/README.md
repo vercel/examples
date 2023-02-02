@@ -7,6 +7,8 @@ useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/bot-protection-botd&env=NEXT_PUBLIC_BOTD_API_TOKEN&project-name=bot-protection-botd&repository-name=bot-protection-botd
 demoUrl: https://edge-functions-bot-protection-botd.vercel.app
+relatedTemplates:
+  - bot-protection-datadome
 ---
 
 # Bot Detection with Botd

@@ -1,19 +1,23 @@
 ---
 name: Experimentation with Statsig
 slug: ab-testing-statsig
-description: By running experiments at the edge with Statsig, you'll reduce CLS and improve performance from client-loaded experiments while analyzing impact.
+description: Reduce CLS and improve performance from client-loaded experiments at the edge with Statsig
 framework: Next.js
 useCase:
+  - Edge Config
   - Edge Middleware
   - Documentation
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/ab-testing-statsig&project-name=ab-testing-statsig&repository-name=ab-testing-statsig&env=STATSIG_SERVER_API_KEY,NEXT_PUBLIC_STATSIG_CLIENT_KEY,STATSIG_CONSOLE_API_KEY,EDGE_CONFIG,EDGE_CONFIG_ITEM_KEY&envDescription=Statsig%20API%20keys%20and%20Edge%20Config%20settings&envLink=https%3A%2F%2Fdocs.statsig.com%2Fguides%2Ffirst-feature
 demoUrl: https://edge-ab-testing-statsig.vercel.app
+relatedTemplates:
+  - ab-testing-google-optimize
+  - ab-testing-simple
 ---
 
 # Experimentation with Statsig
 
-This example shows how to do experimentation using Statsig, leveraging Edge Config.
+This example shows how to do experimentation using Statsig, leveraging Edge Config and Edge Middleware.
 
 ## Demo
 

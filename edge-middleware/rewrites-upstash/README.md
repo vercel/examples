@@ -7,6 +7,8 @@ useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/rewrites-upstash&project-name=rewrites-upstash&repository-name=rewrites-upstash
 demoUrl: https://edge-rewrites-upstash.vercel.app
+relatedTemplates:
+  - ab-testing-simple
 ---
 
 # Rewrites with Upstash

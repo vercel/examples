@@ -7,6 +7,9 @@ useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/basic-auth-password&project-name=basic-auth-password&repository-name=basic-auth-password
 demoUrl: https://edge-functions-basic-auth-password.vercel.app
+relatedTemplates:
+  - jwt-authentication
+  - subdomains-auth
 ---
 
 # Basic Auth Password Protection

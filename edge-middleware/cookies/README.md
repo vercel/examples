@@ -9,6 +9,8 @@ useCase:
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/cookies&project-name=cookies&repository-name=cookies
 demoUrl: https://edge-functions-cookies.vercel.app
+relatedTemplates:
+  - ab-testing-simple
 ---
 
 # Cookies Example

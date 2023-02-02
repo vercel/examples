@@ -9,6 +9,8 @@ useCase:
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/geolocation&project-name=geolocation&repository-name=geolocation
 demoUrl: https://edge-functions-geolocation.vercel.sh
+relatedTemplates:
+  - edge-functions-i18n
 ---
 
 # Geolocation

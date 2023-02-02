@@ -7,6 +7,8 @@ useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/i18n&project-name=i18n&repository-name=i18n
 demoUrl: https://edge-functions-i18n.vercel.app
+relatedTemplates:
+  - ab-testing-simple
 ---
 
 # i18n

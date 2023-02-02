@@ -9,6 +9,8 @@ useCase:
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/hostname-rewrites&project-name=hostname-rewrites&repository-name=hostname-rewrites
 demoUrl: https://custom-domain-1.com
+relatedTemplates:
+  - edge-rewrites-upstash
 ---
 
 # Hostname Rewrites

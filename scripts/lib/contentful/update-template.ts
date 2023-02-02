@@ -41,8 +41,8 @@ export default async function updateTemplate({
   )
   const entry = entryRes?.items[0]
   // If the `content_type` doesn't exist or doesn't have the `slug` field
-  // Contentful returns a `400`  and we'll throw an error, so we can assume
-  // that it exists and it's valid from here on
+  // Contentful returns a `400` and we'll throw an error, so we can assume
+  // that it exists and it's valid from here on.
 
   // Update the template
   if (entry) {
@@ -99,7 +99,7 @@ export default async function updateTemplate({
     )
 
     if (!body.length) {
-      log('No changes to make in this entry.')
+      log(`\`${template.slug}\` is already up to date.`)
       return
     }
 
@@ -121,7 +121,7 @@ export default async function updateTemplate({
       }
     )
 
-    log('Updated entry!')
+    log('`${template.slug}` updated!')
 
     if (updatedEntry.sys.version < entry.sys.version) return
 
@@ -140,7 +140,7 @@ export default async function updateTemplate({
     )
 
     if (publishedEntry.sys.version > updatedEntry.sys.version) {
-      log('Entry published successfully!')
+      log('`${template.slug}` published successfully!')
     }
   }
   // Create a new template as a draft

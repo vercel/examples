@@ -7,6 +7,8 @@ useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/user-agent-based-rendering&project-name=user-agent-based-rendering&repository-name=user-agent-based-rendering
 demoUrl: https://edge-user-agent-based-rendering.vercel.app
+relatedTemplates:
+  - ab-testing-simple
 ---
 
 # User-Agent Based Rendering
