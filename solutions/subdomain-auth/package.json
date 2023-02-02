@@ -11,7 +11,7 @@
   "dependencies": {
     "@vercel/examples-ui": "^1.0.4",
     "next": "^13.1.6",
-    "next-auth": "^4.19.1",
+    "next-auth": "^4.19.2",
     "react": "latest",
     "react-dom": "latest"
   },
