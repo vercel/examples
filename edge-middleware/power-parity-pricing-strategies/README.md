@@ -7,6 +7,8 @@ useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/power-parity-pricing-strategies&project-name=power-parity-pricing-strategies&repository-name=power-parity-pricing-strategies
 demoUrl: https://edge-mug.vercel.app
+relatedTemplates:
+  - ab-testing-simple
 ---
 
 # Power Parity Pricing Strategies

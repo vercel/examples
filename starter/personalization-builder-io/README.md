@@ -7,6 +7,8 @@ useCase: Starter
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/starter/personalization-builder-io&project-name=personalization-builder-io&env=BUILDER_PUBLIC_KEY,BUILDER_PRIVATE_KEY&project-name=personalization-builder-io&repo-name=personalization-builder-io
 demoUrl: https://nextjs-builder-edge-personalization.vercel.app
+relatedTemplates:
+  - ab-testing-simple
 ---
 
 # Next.js + Builder.io Personalization Starter

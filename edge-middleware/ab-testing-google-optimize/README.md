@@ -7,6 +7,9 @@ useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/ab-testing-google-optimize&project-name=ab-testing-google-optimize&repository-name=ab-testing-google-optimize
 demoUrl: https://edge-functions-ab-testing-google-optimize.vercel.app
+relatedTemplates:
+  - ab-testing-simple
+  - ab-testing-statsig
 ---
 
 # A/B Testing with Google Optimize

@@ -9,7 +9,11 @@ export default async function validateTemplate(template: Template) {
     const val = template[id]
 
     if (required && !val?.length) {
-      errors.push(new Error(`Missing required template field: "${id}"`))
+      errors.push(
+        new Error(
+          `Error in \`${template.slug}\` template -- missing required template field: \`${id}\``
+        )
+      )
       return
     }
     // Ignore unrequired values that are empty
@@ -46,9 +50,11 @@ export default async function validateTemplate(template: Template) {
         ) {
           errors.push(
             new Error(
-              `"${id}" has an unknown item: "${val.join(
+              `Error in \`${
+                template.slug
+              }\` template -- "${id}" has an unknown item: "${val.join(
                 ', '
-              )}", it must be one of "${validation.in.join(', ')}`
+              )}", it must be one of "${validation.in.join(', ')}"`
             )
           )
           return
@@ -65,7 +71,7 @@ export default async function validateTemplate(template: Template) {
             errors.push(
               typeof val === 'string'
                 ? new Error(
-                    `"${id}" should have a value between ${min} and ${max} characters, currently: "${val}" (${val.length})`
+                    `Error in \`${template.slug}\` template -- \`${id}\` should have a value between ${min} and ${max} characters, currently: "${val}" (${val.length})`
                   )
                 : new Error(
                     `"${id}" should have between ${min} and ${max} items, currently: "${val!.join(

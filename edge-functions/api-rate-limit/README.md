@@ -7,6 +7,8 @@ useCase: Edge Functions
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN&project-name=api-rate-limit-upstash&repository-name=api-rate-limit-upstash
 demoUrl: https://edge-functions-api-rate-limit.vercel.app
+relatedTemplates:
+  - api-rate-limit-and-tokens
 ---
 
 # API Rate Limiting with Upstash

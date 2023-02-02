@@ -9,6 +9,8 @@ useCase:
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/cors&project-name=cors&repository-name=cors
 demoUrl: https://edge-functions-cors.vercel.app/api/hello
+relatedTemplates:
+  - cookies
 ---
 
 # CORS Example

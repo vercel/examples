@@ -7,6 +7,8 @@ useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-optimizely&env=OPTIMIZELY_SDK_KEY&project-name=feature-flag-optimizely&repository-name=feature-flag-optimizely
 demoUrl: https://feature-flag-optimizely.vercel.app
+relatedTemplates:
+  - ab-testing-simple
 ---
 
 # Feature Flags with Optimizely

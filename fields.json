@@ -133,10 +133,13 @@
       {
         "in": [
           "Tailwind",
+          "Chakra",
+          "Radix UI",
           "CSS Modules",
+          "CSS-in-JSX",
           "Material UI",
           "Styled Components",
-          "Chakra"
+          "Pinceau"
         ]
       }
     ]

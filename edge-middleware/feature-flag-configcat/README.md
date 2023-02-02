@@ -7,6 +7,8 @@ useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-configcat&env=NEXT_PUBLIC_CONFIGCAT_SDK_KEY&project-name=feature-flag-configcat&repository-name=feature-flag-configcat
 demoUrl: https://edge-functions-feature-flag-configcat.vercel.app
+relatedTemplates:
+  - ab-testing-simple
 ---
 
 # A/B Testing with ConfigCat

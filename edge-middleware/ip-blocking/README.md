@@ -7,6 +7,10 @@ useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Fapi-rate-limit-and-tokens&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN&project-name=ip-blocking&repository-name=ip-blocking
 demoUrl: https://edge-functions-ip-blocking.vercel.app
+relatedTemplates:
+  - bot-protection-botd
+  - bot-protection-datadome
+  - ip-blocking-datadome
 ---
 
 # IP Blocking with Upstash

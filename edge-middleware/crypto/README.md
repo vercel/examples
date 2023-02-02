@@ -10,6 +10,8 @@ useCase:
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/crypto&project-name=crypto&repository-name=crypto
 demoUrl: https://edge-functions-crypto.vercel.app
+relatedTemplates:
+  - ab-testing-simple
 ---
 
 # Crypto

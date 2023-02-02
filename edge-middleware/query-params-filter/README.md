@@ -9,6 +9,8 @@ useCase:
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/query-params-filter&project-name=query-params-filter&repository-name=query-params-filter
 demoUrl: https://edge-functions-query-params-filter.vercel.app
+relatedTemplates:
+  - ab-testing-simple
 ---
 
 # Filtering Query Parameters
