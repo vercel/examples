@@ -1,7 +1,45 @@
 ---
-marketplace: false
+name: JSON Response
+slug: edge-json-response
+description: Return JSON responses from your API using Edge Functions.
+framework: None
+useCase: Edge Function
+css: None
+deployUrl: https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/json-response&project-name=edge-json-response&repository-name=edge-json-response
+demoUrl: https://edge-api-routes-json-response.vercel.app/api/edge
+relatedTemplates:
+  - edge-hello-world
+  - edge-query-parameters
 ---
 
-# JSON Response Example
+# JSON Response
 
-This example has been moved to [`edge-middleware`](/edge-middleware/json-response).
+Return JSON responses from your API using Edge Functions.
+
+## Demo
+
+https://edge-api-routes-json-response.vercel.app/api/edge
+
+## How to Use
+
+You can choose from one of the following two methods to use this repository:
+
+### One-Click Deploy
+
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/json-response&project-name=edge-json-response&repository-name=edge-json-response)
+
+### Running Locally
+
+Install the Vercel CLI:
+
+```bash
+npm i -g vercel
+```
+
+Then run the example at the root of the repository:
+
+```bash
+vercel dev
+```
