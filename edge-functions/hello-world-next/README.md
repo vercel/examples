@@ -1,7 +1,7 @@
 ---
-name: Next.js API Routes Using Edge Functions
+name: Next.js Hello World Edge API Routes
 slug: edge-hello-world-nextjs
-description: Build your Next.js API Routes using Edge Functions.
+description: A classic Hello World for the edge featuring Next.js.
 framework: Next.js
 useCase: Edge Functions
 css: CSS Modules
@@ -12,9 +12,9 @@ demoUrl: https://next-edge-api-route.vercel.app/api/edge
   - edge-json-response
 ---
 
-# Next.js API Routes Using Edge Functions
+# Next.js Hello World Edge API Routes
 
-Build your Next.js API Routes using Edge Functions.
+A classic Hello World for the edge featuring Next.js.
 
 ## Demo
 

@@ -23,6 +23,9 @@ pnpm update-template solutions/monorepo
 
 # or to update multiple templates in the way the GH action does
 pnpm update-templates solutions/monorepo/README.md solutions/nx-monorepo/README.md
+
+# or to force update all templates
+pnpm force-update-templates
 ```
 
 Where `solutions/monorepo` is the path to the example. In order for it to work you'll need a `.env.local` file in the root of this repo with:

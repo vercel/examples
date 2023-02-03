@@ -1,7 +1,7 @@
 ---
-name: Query Parameters
+name: Query Parameters Edge
 slug: edge-query-parameters
-description: Read query parameters in your API using Edge Functions.
+description: Using query parameters on the edge.
 framework: None
 useCase: Edge Function
 css: None
@@ -12,9 +12,9 @@ relatedTemplates:
   - edge-json-response
 ---
 
-# Query Parameters
+# Query Parameters Edge
 
-Read query parameters in your API using Edge Functions.
+Using query parameters on the edge.
 
 ## Demo
 

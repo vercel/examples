@@ -1,7 +1,7 @@
 ---
-name: Cache-Control Headers
-slug: edge-cache-control-headers
-description: Cache-control your API headers using Edge Functions.
+name: Cache Control Edge
+slug: edge-cache-control
+description: Cache control for the edge.
 framework: None
 useCase: Edge Function
 css: None
@@ -12,9 +12,9 @@ relatedTemplates:
   - edge-functions-add-header
 ---
 
-# Cache-Control Headers
+# Cache Control Edge
 
-Cache-control your API headers using Edge Functions.
+Cache control for the edge.
 
 ## Demo
 

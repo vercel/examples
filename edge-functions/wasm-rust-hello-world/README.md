@@ -1,7 +1,7 @@
 ---
 name: WASM Rust Hello World
 slug: edge-wasm-rust-hello-world
-description: Build your API with Rust and WebAssembly using Edge Functions.
+description: A classic Hello World for the edge featuring Rust and WebAssembly.
 framework: None
 useCase: Edge Function
 css: None
@@ -14,7 +14,7 @@ relatedTemplates:
 
 # WASM Rust Hello World
 
-Build your API with Rust and WebAssembly using Edge Functions.
+A classic Hello World for the edge featuring Rust and WebAssembly.
 
 This example uses a simple Rust "hello world" example as an API route using Edge Functions API routes.
 

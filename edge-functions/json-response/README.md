@@ -1,7 +1,7 @@
 ---
-name: JSON Response
+name: JSON Response Edge
 slug: edge-json-response
-description: Return JSON responses from your API using Edge Functions.
+description: A JSON response on the edge.
 framework: None
 useCase: Edge Function
 css: None
@@ -14,7 +14,7 @@ relatedTemplates:
 
 # JSON Response
 
-Return JSON responses from your API using Edge Functions.
+A JSON response on the edge.
 
 ## Demo
 

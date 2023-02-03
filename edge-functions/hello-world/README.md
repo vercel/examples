@@ -1,7 +1,7 @@
 ---
-name: Hello World Edge Functions API Route
+name: Hello World Edge
 slug: edge-hello-world
-description: Create a hello world API route using Edge Functions.
+description: A classic Hello World for the edge.
 framework: None
 useCase: Edge Functions
 css: None
@@ -13,9 +13,9 @@ relatedTemplates:
   - edge-query-parameters
 ---
 
-# Hello World Edge Functions API Route
+# Hello World Edge
 
-Create a hello world API route using Edge Functions.
+A classic Hello World for the edge.
 
 ## Demo
 
