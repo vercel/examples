@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+
+:root {
+  --font-heading: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  --font-sans: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  --font-mono: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+  --shadows-small: 0 5px 10px rgba(0, 0, 0, 0.12);
+  --shadows-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --shadows-large: 0 30px 60px rgba(0, 0, 0, 0.12);
+
+  --primary: #10172a;
+  --secondary: #f8fafc;
+
+  --bg-color: #10172a;
+  --text-color: #f8fafc;
+
+  --accent-950: #0a101d;
+  --accent-9: #0f172a;
+  --accent-8: #1e293b;
+  --accent-7: #334155;
+  --accent-6: #475569;
+  --accent-5: #64748b;
+  --accent-4: #94a3b8;
+  --accent-3: #cbd5e1;
+  --accent-2: #e2e8f0;
+  --accent-1: #f1f5f9;
+  --accent-50: #f8fafc;
+  --accent-0: #fff;
+}
+
+[data-theme='light'] {
+  --primary: #fafaf9;
+  --secondary: #000;
+
+  --bg-color: #fafaf9;
+  --text-color: #000;
+
+  --accent-10: #fff;
+  --accent-950: #fafaf9;
+  --accent-9: #f5f5f5;
+  --accent-8: #e5e5e5;
+  --accent-7: #d4d4d4;
+  --accent-6: #a3a3a3;
+  --accent-5: #737373;
+  --accent-4: #525252;
+  --accent-3: #404040;
+  --accent-2: #262626;
+  --accent-1: #18181b;
+  --accent-50: #171717;
+  --accent-0: #000;
+}
+
+[data-theme='dark'] {
+  --primary: #000000;
+  --secondary: #fafaf9;
+
+  --bg-color: #000;
+  --text-color: #fafaf9;
+
+  --accent-0: #fff;
+  --accent-50: #fafafa;
+  --accent-1: #fafaf9;
+  --accent-2: #f5f5f5;
+  --accent-3: #e5e5e5;
+  --accent-4: #d4d4d4;
+  --accent-5: #a3a3a3;
+  --accent-6: #737373;
+  --accent-7: #525252;
+  --accent-8: #404040;
+  --accent-9: #262626;
+  --accent-950: #171717;
+  --accent-10: #000;
+}
+
+::selection {
+  background: #000;
+  color: #fff;
+  text-shadow: none;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  /* color: var(--text-color); */
+  /* background-color: var(--bg-color); */
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  font-optical-sizing: auto;
+  font-family: var(--font-sans);
+  text-size-adjust: none;
+  max-height: 100vh;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+}
+
+@tailwind utilities;

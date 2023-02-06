@@ -1,0 +1,1891 @@
+{
+  "status": "OK",
+  "copyright": "Copyright (c) 2023 The New York Times Company. All Rights Reserved.",
+  "section": "home",
+  "last_updated": "2023-01-31T21:28:54-05:00",
+  "num_results": 33,
+  "results": [
+    {
+      "section": "world",
+      "subsection": "asia",
+      "title": "‘Terrorism Has Returned’: Pakistan Grapples With Attack That Left 101 Dead",
+      "abstract": "The attack raised fears of a new wave of militancy from the Pakistani Taliban and sparked a heated debate over the government’s ability to meet that threat amid an economic and political crisis.",
+      "url": "https://www.nytimes.com/2023/01/31/world/asia/pakistan-mosque-peshawar-terrorism.html",
+      "uri": "nyt://article/72f8a379-fd79-510e-964a-283a1dc89357",
+      "byline": "By Christina Goldbaum, Salman Masood and Zia ur-Rehman",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T21:16:45-05:00",
+      "created_date": "2023-01-31T16:34:10-05:00",
+      "published_date": "2023-01-31T16:34:10-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": ["Terrorism"],
+      "org_facet": ["Tehrik-e-Taliban"],
+      "per_facet": [],
+      "geo_facet": ["Pakistan", "Peshawar (Pakistan)", "Afghanistan"],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31-pakistan-01-vlzq/31-pakistan-01-vlzq-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "The bombing of a mosque in Peshawar, Pakistan, knocked the city back in time, to an era where terrorist attacks were more prevalent.",
+          "copyright": "Arshad Arbab/EPA, via Shutterstock"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31-pakistan-01-vlzq/31-pakistan-01-vlzq-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "The bombing of a mosque in Peshawar, Pakistan, knocked the city back in time, to an era where terrorist attacks were more prevalent.",
+          "copyright": "Arshad Arbab/EPA, via Shutterstock"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31-pakistan-01-vlzq/31-pakistan-01-vlzq-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "The bombing of a mosque in Peshawar, Pakistan, knocked the city back in time, to an era where terrorist attacks were more prevalent.",
+          "copyright": "Arshad Arbab/EPA, via Shutterstock"
+        }
+      ],
+      "short_url": "https://nyti.ms/3WQZTar"
+    },
+    {
+      "section": "us",
+      "subsection": "politics",
+      "title": "In Debt Limit Fight, Republicans Won’t Say What Spending Cuts They Want",
+      "abstract": "A renewed focus on fiscal restraint in the standoff with Democrats poses its own political risks.",
+      "url": "https://www.nytimes.com/2023/01/31/us/politics/republicans-spending-debt-ceiling.html",
+      "uri": "nyt://article/6c0e7908-fffe-5e77-9fd8-f9fa64f20fd7",
+      "byline": "By Alan Rappeport",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T17:01:57-05:00",
+      "created_date": "2023-01-31T11:38:26-05:00",
+      "published_date": "2023-01-31T11:38:26-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Federal Budget (US)",
+        "United States Economy",
+        "United States Politics and Government",
+        "National Debt (US)"
+      ],
+      "org_facet": ["Republican Party", "House of Representatives", "Senate"],
+      "per_facet": ["Biden, Joseph R Jr", "McCarthy, Kevin (1965- )"],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/02/01/multimedia/31SUBJPdc-spending-print-tqfc/31dc-spending2-tqfc-superJumbo-v3.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Speaker Kevin McCarthy will meet President Biden on Wednesday to discuss the debt limit and budget priorities.",
+          "copyright": "Kenny Holston/The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/02/01/multimedia/31SUBJPdc-spending-print-tqfc/31dc-spending2-tqfc-threeByTwoSmallAt2X-v3.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Speaker Kevin McCarthy will meet President Biden on Wednesday to discuss the debt limit and budget priorities.",
+          "copyright": "Kenny Holston/The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/02/01/multimedia/31SUBJPdc-spending-print-tqfc/31dc-spending2-tqfc-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Speaker Kevin McCarthy will meet President Biden on Wednesday to discuss the debt limit and budget priorities.",
+          "copyright": "Kenny Holston/The New York Times"
+        }
+      ],
+      "short_url": "https://nyti.ms/3WQWwjR"
+    },
+    {
+      "section": "us",
+      "subsection": "",
+      "title": "DeSantis Takes On the Education Establishment, and Builds His Brand",
+      "abstract": "A proposal by Gov. Ron DeSantis of Florida to overhaul higher education would mandate courses in Western civilization, eliminate diversity programs and reduce the protections of tenure.",
+      "url": "https://www.nytimes.com/2023/01/31/us/governor-desantis-higher-education-chris-rufo.html",
+      "uri": "nyt://article/091d54cf-77ae-5f85-b815-a85164089e12",
+      "byline": "By Stephanie Saul, Patricia Mazzei and Trip Gabriel",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T21:01:17-05:00",
+      "created_date": "2023-01-31T19:55:49-05:00",
+      "published_date": "2023-01-31T19:55:49-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Colleges and Universities",
+        "Boards of Directors",
+        "Conservatism (US Politics)",
+        "Appointments and Executive Changes",
+        "Presidential Elections (US)"
+      ],
+      "org_facet": ["New College of Florida", "Hillsdale College"],
+      "per_facet": [
+        "DeSantis, Ron",
+        "Rufo, Christopher F",
+        "Spalding, Matthew"
+      ],
+      "geo_facet": ["Florida"],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/us/31NAT-NEW-COLLEGE-ALT-B-02/31NAT-NEW-COLLEGE-ALT-B-02-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1367,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Gov. Ron DeSantis vowed on Tuesday to turn the page on agendas that he said were “hostile to academic freedom” in Florida’s higher education system. ",
+          "copyright": "Mike Lang/USA TODAY NETWORK"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/us/31NAT-NEW-COLLEGE-ALT-B-02/31NAT-NEW-COLLEGE-ALT-B-02-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Gov. Ron DeSantis vowed on Tuesday to turn the page on agendas that he said were “hostile to academic freedom” in Florida’s higher education system. ",
+          "copyright": "Mike Lang/USA TODAY NETWORK"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/us/31NAT-NEW-COLLEGE-ALT-B-02/31NAT-NEW-COLLEGE-ALT-B-02-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Gov. Ron DeSantis vowed on Tuesday to turn the page on agendas that he said were “hostile to academic freedom” in Florida’s higher education system. ",
+          "copyright": "Mike Lang/USA TODAY NETWORK"
+        }
+      ],
+      "short_url": "https://nyti.ms/40hzhSO"
+    },
+    {
+      "section": "nyregion",
+      "subsection": "",
+      "title": "Botched Prosecution Lets Notorious Ex-Detective Walk Free",
+      "abstract": "The deputy chief of the Manhattan district attorney’s Police Accountability Unit was removed after the case against Joseph Franco was dismissed.",
+      "url": "https://www.nytimes.com/2023/01/31/nyregion/joseph-franco-nypd-case-dismissed.html",
+      "uri": "nyt://article/930caf6d-071c-5af1-92f6-ad57dd2ae7aa",
+      "byline": "By Jonah E. Bromwich and Maria Cramer",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T19:50:20-05:00",
+      "created_date": "2023-01-31T12:51:53-05:00",
+      "published_date": "2023-01-31T12:51:53-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": ["Police Brutality, Misconduct and Shootings"],
+      "org_facet": ["Police Department (NYC)"],
+      "per_facet": ["Franco, Joseph E", "Minogue, Stephanie"],
+      "geo_facet": ["New York City"],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31franco-lqgv/31franco-lqgv-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Prosecutors said Joseph Franco claimed to have seen drug transactions it was impossible for him to have seen.",
+          "copyright": "Jefferson Siegel for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31franco-lqgv/31franco-lqgv-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Prosecutors said Joseph Franco claimed to have seen drug transactions it was impossible for him to have seen.",
+          "copyright": "Jefferson Siegel for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31franco-lqgv/31franco-lqgv-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Prosecutors said Joseph Franco claimed to have seen drug transactions it was impossible for him to have seen.",
+          "copyright": "Jefferson Siegel for The New York Times"
+        }
+      ],
+      "short_url": "https://nyti.ms/3RmRM4n"
+    },
+    {
+      "section": "world",
+      "subsection": "europe",
+      "title": "Seeing a Prize, Russia Inundates a Ukraine City With Troops",
+      "abstract": "The battle in the eastern Ukraine city of Bakhmut is growing in importance, as both sides pour forces into the battle.",
+      "url": "https://www.nytimes.com/2023/01/31/world/europe/russia-ukraine-war-bakhmut.html",
+      "uri": "nyt://article/58de3aad-23d6-5f7a-b67c-286a80e29cf6",
+      "byline": "By Matthew Mpoke Bigg and Thomas Gibbons-Neff",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T20:15:07-05:00",
+      "created_date": "2023-01-31T20:15:07-05:00",
+      "published_date": "2023-01-31T20:15:07-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Russian Invasion of Ukraine (2022)",
+        "Defense and Military Forces"
+      ],
+      "org_facet": [],
+      "per_facet": [],
+      "geo_facet": ["Bakhmut (Ukraine)", "Donbas (Ukraine)", "Ukraine"],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31Ukraine-Ledeall-01-mcvw/31Ukraine-Ledeall-01-mcvw-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "A Ukrainian soldier last week in Bakhmut, in eastern Ukraine.",
+          "copyright": "Yan Dobronosov/Reuters"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31Ukraine-Ledeall-01-mcvw/31Ukraine-Ledeall-01-mcvw-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "A Ukrainian soldier last week in Bakhmut, in eastern Ukraine.",
+          "copyright": "Yan Dobronosov/Reuters"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31Ukraine-Ledeall-01-mcvw/31Ukraine-Ledeall-01-mcvw-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "A Ukrainian soldier last week in Bakhmut, in eastern Ukraine.",
+          "copyright": "Yan Dobronosov/Reuters"
+        }
+      ],
+      "short_url": "https://nyti.ms/3JDJRO2"
+    },
+    {
+      "section": "us",
+      "subsection": "politics",
+      "title": "Santos Temporarily Steps Aside From House Committees Amid Calls to Resign",
+      "abstract": "The decision was the first concession by Representative George Santos, Republican of New York, who has admitted to faking parts of his résumé and is facing multiple investigations.",
+      "url": "https://www.nytimes.com/2023/01/31/us/politics/santos-house-committees.html",
+      "uri": "nyt://article/b2969fe9-d1df-517d-a532-6ad9386e929f",
+      "byline": "By Annie Karni and Karoun Demirjian",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T16:41:37-05:00",
+      "created_date": "2023-01-31T10:56:10-05:00",
+      "published_date": "2023-01-31T10:56:10-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": ["United States Politics and Government"],
+      "org_facet": ["House of Representatives", "Republican Party"],
+      "per_facet": ["Santos, George (1988- )"],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31dc-santos-vjzc/31dc-santos-vjzc-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1457,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Kenny Holston/The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31dc-santos-vjzc/31dc-santos-vjzc-threeByTwoSmallAt2X-v2.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Kenny Holston/The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31dc-santos-vjzc/31dc-santos-vjzc-thumbLarge-v2.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Kenny Holston/The New York Times"
+        }
+      ],
+      "short_url": "https://nyti.ms/3YdKAKe"
+    },
+    {
+      "section": "nyregion",
+      "subsection": "",
+      "title": "George Santos’s Treasurer Has Resigned. So Who’s Handling the Money?",
+      "abstract": "Nancy Marks’s resignation effectively leaves the Santos campaign unable to raise or spend money and in seeming violation of federal rules.",
+      "url": "https://www.nytimes.com/2023/01/31/nyregion/george-santos-treasurer-money.html",
+      "uri": "nyt://article/23a6fc10-b8c5-54fb-a41f-dfcf90641ba2",
+      "byline": "By Grace Ashford and Michael Gold",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T19:42:06-05:00",
+      "created_date": "2023-01-31T17:09:27-05:00",
+      "published_date": "2023-01-31T17:09:27-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": ["Campaign Finance"],
+      "org_facet": ["Federal Election Commission"],
+      "per_facet": ["Santos, George (1988- )", "Marks, Nancy (1965- )"],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31santos-financial-zvjk/31santos-financial-zvjk-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1364,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "With no campaign treasurer, Representative George Santos may be in violation of Federal Election Commission rules. ",
+          "copyright": "Kenny Holston/The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31santos-financial-zvjk/31santos-financial-zvjk-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "With no campaign treasurer, Representative George Santos may be in violation of Federal Election Commission rules. ",
+          "copyright": "Kenny Holston/The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31santos-financial-zvjk/31santos-financial-zvjk-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "With no campaign treasurer, Representative George Santos may be in violation of Federal Election Commission rules. ",
+          "copyright": "Kenny Holston/The New York Times"
+        }
+      ],
+      "short_url": "https://nyti.ms/3JDlCj0"
+    },
+    {
+      "section": "health",
+      "subsection": "",
+      "title": "The Navy’s Dolphins Have a Few Things to Tell Us About Aging",
+      "abstract": "In her youth, Blue was a standout mine-hunter for the U.S. military. She and her colleagues are now at the vanguard of geriatric marine mammal medicine.",
+      "url": "https://www.nytimes.com/2023/01/31/health/dolphins-navy-aging.html",
+      "uri": "nyt://article/28985fa0-d2f6-5a5a-a600-7b755eb1ebf7",
+      "byline": "By Emily Anthes and Gabriella Angotti-Jones",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T12:21:56-05:00",
+      "created_date": "2023-01-31T03:00:44-05:00",
+      "published_date": "2023-01-31T03:00:44-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "internal-sub-only",
+        "your-feed-science",
+        "your-feed-health",
+        "your-feed-animals",
+        "Dolphins and Porpoises",
+        "Veterinary Medicine",
+        "Age, Chronological",
+        "United States Defense and Military Forces",
+        "Animal Abuse, Rights and Welfare",
+        "Research"
+      ],
+      "org_facet": ["United States Navy", "National Marine Mammal Foundation"],
+      "per_facet": [],
+      "geo_facet": ["San Diego (Calif)"],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31SCI-dolphins-promo/31SCI-dolphins-lede-01-fpvb-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1366,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "The program’s large, well-trained animal population allowed the Navy to pioneer new medical techniques that have since been used in wild populations.",
+          "copyright": "Gabriella Angotti-Jones for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31SCI-dolphins-promo/31SCI-dolphins-promo-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "The program’s large, well-trained animal population allowed the Navy to pioneer new medical techniques that have since been used in wild populations.",
+          "copyright": "Gabriella Angotti-Jones for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31SCI-dolphins-promo/31SCI-dolphins-promo-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "The program’s large, well-trained animal population allowed the Navy to pioneer new medical techniques that have since been used in wild populations.",
+          "copyright": "Gabriella Angotti-Jones for The New York Times"
+        }
+      ],
+      "short_url": "https://nyti.ms/407TE4S"
+    },
+    {
+      "section": "us",
+      "subsection": "politics",
+      "title": "House Votes to End Covid Precautions as G.O.P. Uses Pandemic in Political Attacks",
+      "abstract": "Republicans in Congress are seeking to capitalize on discontent about the federal coronavirus response while the party’s presidential contenders are vying to be the biggest foe of restrictions.",
+      "url": "https://www.nytimes.com/2023/01/31/us/politics/house-covid-republicans-pandemic-vaccine-mandate.html",
+      "uri": "nyt://article/f7317802-1d9a-5eb0-8f61-0f0b9f1b5a61",
+      "byline": "By Jonathan Swan and Luke Broadwater",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T18:57:43-05:00",
+      "created_date": "2023-01-31T18:57:43-05:00",
+      "published_date": "2023-01-31T18:57:43-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Coronavirus (2019-nCoV)",
+        "United States Politics and Government",
+        "Vaccination and Immunization",
+        "Law and Legislation",
+        "Right-Wing Extremism and Alt-Right"
+      ],
+      "org_facet": [],
+      "per_facet": [
+        "Biden, Joseph R Jr",
+        "DeSantis, Ron",
+        "Greene, Marjorie Taylor (1974- )",
+        "McCarthy, Kevin (1965- )"
+      ],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31dc-cong_2-qvtc/31dc-cong_2-qvtc-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Republicans are hoping to capitalize on discontent over the pandemic response and tap into the grievances of parents over school closures.",
+          "copyright": "Hannah Beier for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31dc-cong_2-qvtc/31dc-cong_2-qvtc-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Republicans are hoping to capitalize on discontent over the pandemic response and tap into the grievances of parents over school closures.",
+          "copyright": "Hannah Beier for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31dc-cong_2-qvtc/31dc-cong_2-qvtc-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Republicans are hoping to capitalize on discontent over the pandemic response and tap into the grievances of parents over school closures.",
+          "copyright": "Hannah Beier for The New York Times"
+        }
+      ],
+      "short_url": "https://nyti.ms/3Hv1SMa"
+    },
+    {
+      "section": "us",
+      "subsection": "politics",
+      "title": "Republicans Assail Vaccine and Mandates With Misleading Claims",
+      "abstract": "The House debated for hours on Tuesday before voting for measures that would end a public health emergency and a vaccine mandate for some health care workers.",
+      "url": "https://www.nytimes.com/2023/01/31/us/politics/republicans-covid-vaccine-mandate-fact-check.html",
+      "uri": "nyt://article/16786296-e62b-5ee3-a61b-a2525ff281fb",
+      "byline": "By Linda Qiu",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T21:22:46-05:00",
+      "created_date": "2023-01-31T20:59:12-05:00",
+      "published_date": "2023-01-31T20:59:12-05:00",
+      "material_type_facet": "",
+      "kicker": "Fact Check",
+      "des_facet": [
+        "United States Politics and Government",
+        "Vaccination and Immunization",
+        "Coronavirus (2019-nCoV)",
+        "Executive Orders and Memorandums",
+        "Coronavirus Risks and Safety Concerns"
+      ],
+      "org_facet": [
+        "Centers for Disease Control and Prevention",
+        "House of Representatives"
+      ],
+      "per_facet": [],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31dc-factcheck-photo-wvhf/31dc-factcheck-photo-wvhf-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1366,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Receiving Covid vaccines and boosters at a mobile distribution site in Salt Lake City in September.",
+          "copyright": "Kim Raff for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31dc-factcheck-photo-wvhf/31dc-factcheck-photo-wvhf-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Receiving Covid vaccines and boosters at a mobile distribution site in Salt Lake City in September.",
+          "copyright": "Kim Raff for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31dc-factcheck-photo-wvhf/31dc-factcheck-photo-wvhf-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Receiving Covid vaccines and boosters at a mobile distribution site in Salt Lake City in September.",
+          "copyright": "Kim Raff for The New York Times"
+        }
+      ],
+      "short_url": "https://nyti.ms/3DuUCyu"
+    },
+    {
+      "section": "us",
+      "subsection": "",
+      "title": "At the Supreme Court, Ethics Questions Over a Spouse’s Business Ties",
+      "abstract": "The chief justice’s wife, Jane Sullivan Roberts, has made millions in her career recruiting lawyers to prominent law firms, some of which have business before the court. Now, a letter sent to Congress claims that may present a conflict of interest.",
+      "url": "https://www.nytimes.com/2023/01/31/us/john-roberts-jane-sullivan-roberts.html",
+      "uri": "nyt://article/1f5b229e-d1f4-59fd-bb41-325e1593c53d",
+      "byline": "By Steve Eder",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T17:32:13-05:00",
+      "created_date": "2023-01-31T14:32:26-05:00",
+      "published_date": "2023-01-31T14:32:26-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Conflicts of Interest",
+        "United States Politics and Government",
+        "Legal Profession"
+      ],
+      "org_facet": ["Supreme Court (US)"],
+      "per_facet": ["Roberts, John G Jr", "Roberts, Jane Sullivan"],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/13/multimedia/00scotus-1-fbkl/00scotus-1-fbkl-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1394,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Chief Justice John Roberts, right, with his wife, Jane Sullivan Roberts.",
+          "copyright": "Chip Somodevilla/Getty Images"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/13/multimedia/00scotus-1-fbkl/00scotus-1-fbkl-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Chief Justice John Roberts, right, with his wife, Jane Sullivan Roberts.",
+          "copyright": "Chip Somodevilla/Getty Images"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/13/multimedia/00scotus-1-fbkl/00scotus-1-fbkl-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Chief Justice John Roberts, right, with his wife, Jane Sullivan Roberts.",
+          "copyright": "Chip Somodevilla/Getty Images"
+        }
+      ],
+      "short_url": "https://nyti.ms/3jej1BD"
+    },
+    {
+      "section": "us",
+      "subsection": "politics",
+      "title": "U.S. Charges Four in Connection With the Assassination of Haiti’s President",
+      "abstract": "The decision to charge the men, considered to be ringleaders in the assassination plot, in the United States is an indication of the chronic dysfunction of the Haitian justice system.",
+      "url": "https://www.nytimes.com/2023/01/31/us/politics/charges-haiti-moise-assassination.html",
+      "uri": "nyt://article/c272821d-5a6f-52c9-9928-08c28a4a065f",
+      "byline": "By Chris Cameron",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T19:20:30-05:00",
+      "created_date": "2023-01-31T19:20:30-05:00",
+      "published_date": "2023-01-31T19:20:30-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Assassinations and Attempted Assassinations",
+        "Murders, Attempted Murders and Homicides",
+        "United States Politics and Government",
+        "United States International Relations"
+      ],
+      "org_facet": ["Justice Department"],
+      "per_facet": ["Moise, Jovenel (1968- )", "Solages, James (1985- )"],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31dc-haiti-photo1-fblc/31dc-haiti-photo1-fblc-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "A portrait of President Jovenel Moïse of Haiti at his memorial service in Port-au-Prince. The charges outlined a sprawling conspiracy to assassinate him.",
+          "copyright": "Joseph Odelyn/Associated Press"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31dc-haiti-photo1-fblc/31dc-haiti-photo1-fblc-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "A portrait of President Jovenel Moïse of Haiti at his memorial service in Port-au-Prince. The charges outlined a sprawling conspiracy to assassinate him.",
+          "copyright": "Joseph Odelyn/Associated Press"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31dc-haiti-photo1-fblc/31dc-haiti-photo1-fblc-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "A portrait of President Jovenel Moïse of Haiti at his memorial service in Port-au-Prince. The charges outlined a sprawling conspiracy to assassinate him.",
+          "copyright": "Joseph Odelyn/Associated Press"
+        }
+      ],
+      "short_url": "https://nyti.ms/3HmGNmL"
+    },
+    {
+      "section": "science",
+      "subsection": "",
+      "title": "What the Ancient Bog Bodies Knew",
+      "abstract": "The first comprehensive survey of a 7,000-year-old burial tradition reveals an often violent final ritual.",
+      "url": "https://www.nytimes.com/2023/01/30/science/archaeology-bogs-mummies.html",
+      "uri": "nyt://article/2813fb05-7031-57ca-90f1-bb3deb8ad504",
+      "byline": "By Franz Lidz",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T16:37:52-05:00",
+      "created_date": "2023-01-30T05:00:17-05:00",
+      "published_date": "2023-01-30T05:00:17-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Peat",
+        "Mummies and Mummification",
+        "Wetlands",
+        "Cadavers",
+        "Skeletons",
+        "Archaeology and Anthropology",
+        "your-feed-science",
+        "internal-sub-only"
+      ],
+      "org_facet": ["Antiquity (Journal)"],
+      "per_facet": [],
+      "geo_facet": ["England", "Ireland"],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/science/30SCI-BOGFOLK/30SCI-BOGFOLK-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Tollund Man, a bog body dating to the fifth century B.C. and recovered in 1950, at the Museum Silkeborg in Denmark.",
+          "copyright": "Tim Graham/Getty Images"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/science/30SCI-BOGFOLK/30SCI-BOGFOLK-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Tollund Man, a bog body dating to the fifth century B.C. and recovered in 1950, at the Museum Silkeborg in Denmark.",
+          "copyright": "Tim Graham/Getty Images"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/science/30SCI-BOGFOLK/30SCI-BOGFOLK-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Tollund Man, a bog body dating to the fifth century B.C. and recovered in 1950, at the Museum Silkeborg in Denmark.",
+          "copyright": "Tim Graham/Getty Images"
+        }
+      ],
+      "short_url": "https://nyti.ms/3Dq9fmR"
+    },
+    {
+      "section": "arts",
+      "subsection": "music",
+      "title": "Wynonna Judd, on Her Own",
+      "abstract": "Last spring, the country superstar lost her mother and longtime singing partner, Naomi Judd, to suicide. At 58, she finally hopes to become the musician she’s wanted to be for 50 years.",
+      "url": "https://www.nytimes.com/2023/01/31/arts/music/wynonna-judd-naomi-judds.html",
+      "uri": "nyt://article/1c7f3a15-c358-5b4c-99f6-fbeaca135a35",
+      "byline": "By Grayson Haver Currin",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T12:07:50-05:00",
+      "created_date": "2023-01-31T05:00:25-05:00",
+      "published_date": "2023-01-31T05:00:25-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Country Music",
+        "Suicides and Suicide Attempts",
+        "Content Type: Personal Profile"
+      ],
+      "org_facet": ["Judds, The (Music Group)"],
+      "per_facet": ["Judd, Wynonna", "Judd, Naomi"],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/02/05/multimedia/05WYNONNA-JUDD-03-tjbh/05WYNONNA-JUDD-03-tjbh-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1366,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Her mother’s death, Wynonna said, has “made me even more determined to be myself” musically.",
+          "copyright": "Thea Traff for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/02/05/multimedia/05WYNONNA-JUDD-03-tjbh/05WYNONNA-JUDD-03-tjbh-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Her mother’s death, Wynonna said, has “made me even more determined to be myself” musically.",
+          "copyright": "Thea Traff for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/02/05/multimedia/05WYNONNA-JUDD-03-tjbh/05WYNONNA-JUDD-03-tjbh-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Her mother’s death, Wynonna said, has “made me even more determined to be myself” musically.",
+          "copyright": "Thea Traff for The New York Times"
+        }
+      ],
+      "short_url": "https://nyti.ms/3kJZhGb"
+    },
+    {
+      "section": "opinion",
+      "subsection": "",
+      "title": "Authorities Used a Taser on Him 7 Times in 15 Minutes. Then He Died. Justice Never Came.",
+      "abstract": "For Jerod Draper, horrifying video footage wasn’t enough to force police accountability.",
+      "url": "https://www.nytimes.com/2023/01/31/opinion/jerod-draper-jail-death-indiana.html",
+      "uri": "nyt://article/d0075f3f-d68b-54d6-891f-a5432b0cbb71",
+      "byline": "By Sam Mirpoorian",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T07:53:30-05:00",
+      "created_date": "2023-01-31T05:00:09-05:00",
+      "published_date": "2023-01-31T05:00:09-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Prisons and Prisoners",
+        "Violence (Media and Entertainment)",
+        "Police Brutality, Misconduct and Shootings",
+        "your-feed-opinionvideo"
+      ],
+      "org_facet": [],
+      "per_facet": [],
+      "geo_facet": ["Indiana"],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/autossell/op-indiana-thumb-1/op-indiana-thumb-1-superJumbo.png",
+          "format": "Super Jumbo",
+          "height": 720,
+          "width": 1280,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": ""
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/autossell/op-indiana-thumb-1/op-indiana-thumb-1-threeByTwoSmallAt2X.png",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": ""
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/autossell/op-indiana-thumb-1/op-indiana-thumb-1-thumbLarge.png",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": ""
+        }
+      ],
+      "short_url": "https://nyti.ms/3Yf6UTL"
+    },
+    {
+      "section": "opinion",
+      "subsection": "",
+      "title": "Ron DeSantis Wants to Erase Black History. Why?",
+      "abstract": "This disturbing attempt to erase history is one of the most visible examples of performative white supremacy since the presidency of Donald Trump.",
+      "url": "https://www.nytimes.com/2023/01/31/opinion/ron-desantis-black-history.html",
+      "uri": "nyt://article/68a46200-cc7e-5e46-96a7-c0f70476ed0a",
+      "byline": "By Janai Nelson",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T14:57:51-05:00",
+      "created_date": "2023-01-31T05:00:14-05:00",
+      "published_date": "2023-01-31T05:00:14-05:00",
+      "material_type_facet": "",
+      "kicker": "Guest Essay",
+      "des_facet": [
+        "Education (K-12)",
+        "Black People",
+        "Colleges and Universities",
+        "Critical Race Theory",
+        "History (Academic Subject)"
+      ],
+      "org_facet": [],
+      "per_facet": ["DeSantis, Ron"],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31nelson-pgjz/31nelson-pgjz-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1366,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Gov. Ron DeSantis addresses a crowd before publicly signing H.B. 7, also called the Stop Woke law.",
+          "copyright": "Daniel A. Varela/Miami Herald, via Associated Press"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31nelson-pgjz/31nelson-pgjz-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Gov. Ron DeSantis addresses a crowd before publicly signing H.B. 7, also called the Stop Woke law.",
+          "copyright": "Daniel A. Varela/Miami Herald, via Associated Press"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31nelson-pgjz/31nelson-pgjz-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Gov. Ron DeSantis addresses a crowd before publicly signing H.B. 7, also called the Stop Woke law.",
+          "copyright": "Daniel A. Varela/Miami Herald, via Associated Press"
+        }
+      ],
+      "short_url": "https://nyti.ms/3YsCVb5"
+    },
+    {
+      "section": "opinion",
+      "subsection": "",
+      "title": "How Will Joe Biden Be Remembered in 50 Years?",
+      "abstract": "He could be seen as the savior of the free world, or as the man who came up short.",
+      "url": "https://www.nytimes.com/2023/01/31/opinion/joe-biden-future-savior.html",
+      "uri": "nyt://article/ca8df8be-cac1-5876-81ef-78d66d0d87a8",
+      "byline": "By Bret Stephens",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T20:38:28-05:00",
+      "created_date": "2023-01-31T19:00:08-05:00",
+      "published_date": "2023-01-31T19:00:08-05:00",
+      "material_type_facet": "",
+      "kicker": "Bret Stephens",
+      "des_facet": [
+        "International Relations",
+        "Defense and Military Forces",
+        "United States Politics and Government",
+        "United States International Relations",
+        "Russian Invasion of Ukraine (2022)"
+      ],
+      "org_facet": ["North Atlantic Treaty Organization"],
+      "per_facet": ["Biden, Joseph R Jr"],
+      "geo_facet": ["United States"],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/02/02/multimedia/31stephens1-tmwg/31stephens1-tmwg-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Pete Marovich for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/02/02/multimedia/31stephens1-tmwg/31stephens1-tmwg-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Pete Marovich for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/02/02/multimedia/31stephens1-tmwg/31stephens1-tmwg-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Pete Marovich for The New York Times"
+        }
+      ],
+      "short_url": "https://nyti.ms/3DuKxkZ"
+    },
+    {
+      "section": "opinion",
+      "subsection": "",
+      "title": "Stagflation or Soft Landing? It Depends Who You Ask.",
+      "abstract": "Where the inflation debate stands now.",
+      "url": "https://www.nytimes.com/2023/01/31/opinion/stagflation-or-soft-landing-it-depends-who-you-ask.html",
+      "uri": "nyt://article/158fbf3e-02f6-53a9-babe-421f58193d64",
+      "byline": "By Paul Krugman",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T20:25:34-05:00",
+      "created_date": "2023-01-31T15:11:08-05:00",
+      "published_date": "2023-01-31T15:11:08-05:00",
+      "material_type_facet": "",
+      "kicker": "Paul Krugman",
+      "des_facet": [
+        "International Trade and World Market",
+        "Economics (Theory and Philosophy)",
+        "internal-sub-only-nl",
+        "Inflation (Economics)",
+        "United States Economy",
+        "Labor and Jobs"
+      ],
+      "org_facet": [],
+      "per_facet": [],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/opinion/31krugman-newsletter-image/31krugman-newsletter-image-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 2048,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Illustration by The New York Times; photograph by Kateryna Kovarzh/Getty Images"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/opinion/31krugman-newsletter-image/31krugman-newsletter-image-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Illustration by The New York Times; photograph by Kateryna Kovarzh/Getty Images"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/opinion/31krugman-newsletter-image/31krugman-newsletter-image-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Illustration by The New York Times; photograph by Kateryna Kovarzh/Getty Images"
+        }
+      ],
+      "short_url": "https://nyti.ms/3XTWPeX"
+    },
+    {
+      "section": "briefing",
+      "subsection": "",
+      "title": "Your Tuesday Evening Briefing",
+      "abstract": "Here’s what you need to know at the end of the day.",
+      "url": "https://www.nytimes.com/2023/01/31/briefing/russia-ukraine-bakhmut-boeing-747.html",
+      "uri": "nyt://article/d4396f35-28db-5a82-976e-48f738668dd5",
+      "byline": "By Matthew Cullen and Daniel E. Slotnik",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T17:30:10-05:00",
+      "created_date": "2023-01-31T17:30:10-05:00",
+      "published_date": "2023-01-31T17:30:10-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [],
+      "org_facet": [],
+      "per_facet": [],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31evening-briefing-nl-UKR/31evening-briefing-nl-UKR-superJumbo-v2.jpg",
+          "format": "Super Jumbo",
+          "height": 2047,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Russia and Ukraine are each believed to be preparing for larger offensives in the spring.",
+          "copyright": "Alexander Ermochenko/Reuters"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31evening-briefing-nl-UKR/31evening-briefing-nl-UKR-threeByTwoSmallAt2X-v2.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Russia and Ukraine are each believed to be preparing for larger offensives in the spring.",
+          "copyright": "Alexander Ermochenko/Reuters"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31evening-briefing-nl-UKR/31evening-briefing-nl-UKR-thumbLarge-v2.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Russia and Ukraine are each believed to be preparing for larger offensives in the spring.",
+          "copyright": "Alexander Ermochenko/Reuters"
+        }
+      ],
+      "short_url": "https://nyti.ms/3HhZTdQ"
+    },
+    {
+      "section": "climate",
+      "subsection": "",
+      "title": "The Shift to Renewable Energy Is Speeding Up. Here’s How.",
+      "abstract": "The head of the world’s leading energy organization called the war in Ukraine an “accelerator” of the transition.",
+      "url": "https://www.nytimes.com/2023/01/31/climate/renewable-energy-transition.html",
+      "uri": "nyt://article/358b354e-709e-5f30-8bf4-35b3b107d65c",
+      "byline": "By Somini Sengupta",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T13:04:10-05:00",
+      "created_date": "2023-01-31T11:14:27-05:00",
+      "published_date": "2023-01-31T11:14:27-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Alternative and Renewable Energy",
+        "Global Warming",
+        "Greenhouse Gas Emissions",
+        "internal-storyline-no",
+        "internal-sub-only-nl"
+      ],
+      "org_facet": ["International Energy Agency"],
+      "per_facet": ["Birol, Fatih"],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31cli-newsletter-wind-lvzb/31cli-newsletter-wind-lvzb-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 2048,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "A wind farm on the Baltic, near Rügen Island, Germany. Wind and solar accounted for 22 percent of electricity generation in Europe last year.",
+          "copyright": "Fred Tanneau/Agence France-Presse — Getty Images"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31cli-newsletter-wind-lvzb/31cli-newsletter-wind-lvzb-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "A wind farm on the Baltic, near Rügen Island, Germany. Wind and solar accounted for 22 percent of electricity generation in Europe last year.",
+          "copyright": "Fred Tanneau/Agence France-Presse — Getty Images"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31cli-newsletter-wind-lvzb/31cli-newsletter-wind-lvzb-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "A wind farm on the Baltic, near Rügen Island, Germany. Wind and solar accounted for 22 percent of electricity generation in Europe last year.",
+          "copyright": "Fred Tanneau/Agence France-Presse — Getty Images"
+        }
+      ],
+      "short_url": "https://nyti.ms/3HpmN3b"
+    },
+    {
+      "section": "nyregion",
+      "subsection": "",
+      "title": "‘I Ordered a Sandwich and Began Chatting With the Proprietor’",
+      "abstract": "Wandering near Wall Street, a memorable spill on the F and more reader tales of New York City in this week’s Metropolitan Diary.",
+      "url": "https://www.nytimes.com/2023/01/29/nyregion/metropolitan-diary.html",
+      "uri": "nyt://article/4cf47202-1f04-58a9-8855-9bc3d7298e1f",
+      "byline": "",
+      "item_type": "Article",
+      "updated_date": "2023-01-29T03:00:05-05:00",
+      "created_date": "2023-01-29T03:00:05-05:00",
+      "published_date": "2023-01-29T03:00:05-05:00",
+      "material_type_facet": "",
+      "kicker": "METROPOLITAN DIARY",
+      "des_facet": [],
+      "org_facet": [],
+      "per_facet": [],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/29/nyregion/29diary-illo-01/29diary-illo-1-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1119,
+          "width": 1817,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": ""
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/29/nyregion/29diary-illo-01/29diary-illo-1-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": ""
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/29/nyregion/29diary-illo-01/29diary-illo-1-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": ""
+        }
+      ],
+      "short_url": "https://nyti.ms/3Rcuoq9"
+    },
+    {
+      "section": "dining",
+      "subsection": "",
+      "title": "Soup’s On",
+      "abstract": "Everyone knows it’s the best food. These 24 recipes prove it.",
+      "url": "https://www.nytimes.com/article/best-soup-recipes.html",
+      "uri": "nyt://article/68c3e3ea-673a-58f8-a8c7-cc6b9c12e434",
+      "byline": "By Krysten Chambrot",
+      "item_type": "Article",
+      "updated_date": "2023-01-25T16:39:46-05:00",
+      "created_date": "2023-01-23T15:40:13-05:00",
+      "published_date": "2023-01-23T15:40:13-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": ["Soups", "Recipes", "internal-sub-only"],
+      "org_facet": [],
+      "per_facet": [],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Armando Rafael for The New York Times. Food Stylist: Simon Andrews. Prop Stylist: Paige Hicks."
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Armando Rafael for The New York Times. Food Stylist: Simon Andrews. Prop Stylist: Paige Hicks."
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/28/multimedia/28Soups-Beef-Barley-zbhq/28Soups-Beef-Barley-zbhq-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Armando Rafael for The New York Times. Food Stylist: Simon Andrews. Prop Stylist: Paige Hicks."
+        }
+      ],
+      "short_url": "https://nyti.ms/3woRccA"
+    },
+    {
+      "section": "us",
+      "subsection": "",
+      "title": "Memphis Officers Had Been Reprimanded After Using Force",
+      "abstract": "Four officers charged in Tyre Nichols’s death had been disciplined previously, including two who had failed to report using force during arrests.",
+      "url": "https://www.nytimes.com/2023/01/31/us/memphis-officers-disciplined-tyre-nichols.html",
+      "uri": "nyt://article/109d467c-011a-5daf-a22e-7cf38d8a4409",
+      "byline": "By Mike Baker",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T20:27:15-05:00",
+      "created_date": "2023-01-31T20:27:15-05:00",
+      "published_date": "2023-01-31T20:27:15-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": ["Police Brutality, Misconduct and Shootings", "Police"],
+      "org_facet": [],
+      "per_facet": [
+        "Haley, Demetrius (Memphis, Tenn, Police Officer)",
+        "Martin, Emmitt III (Memphis, Tenn, Police Officer)",
+        "Mills, Desmond Jr (Memphis, Tenn, Police Officer)",
+        "Smith, Justin (Memphis, Tenn, Police Officer)"
+      ],
+      "geo_facet": ["Memphis (Tenn)"],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31nat-scorpions-cases-2-mgkf/31nat-scorpions-cases-2-mgkf-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Ben Crump, a lawyer for Tyre Nichols’s family, spoke at a news conference in Memphis last week.",
+          "copyright": "Scott Olson/Getty Images"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31nat-scorpions-cases-2-mgkf/31nat-scorpions-cases-2-mgkf-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Ben Crump, a lawyer for Tyre Nichols’s family, spoke at a news conference in Memphis last week.",
+          "copyright": "Scott Olson/Getty Images"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31nat-scorpions-cases-2-mgkf/31nat-scorpions-cases-2-mgkf-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Ben Crump, a lawyer for Tyre Nichols’s family, spoke at a news conference in Memphis last week.",
+          "copyright": "Scott Olson/Getty Images"
+        }
+      ],
+      "short_url": "https://nyti.ms/3HNLYxM"
+    },
+    {
+      "section": "world",
+      "subsection": "middleeast",
+      "title": "Amid Violent Surge, Netanyahu Juggles Competing Goals. But for How Long?",
+      "abstract": "After a deadly week, Benjamin Netanyahu faces domestic calls for a harsh crackdown, and international pressure to moderate. It’s a familiar balancing act — but with one major difference.",
+      "url": "https://www.nytimes.com/2023/01/31/world/middleeast/netanyahu-israel-palestine.html",
+      "uri": "nyt://article/3af1e474-d3e1-5e82-90fe-ff3f232b517a",
+      "byline": "By Patrick Kingsley",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T16:47:46-05:00",
+      "created_date": "2023-01-31T16:47:46-05:00",
+      "published_date": "2023-01-31T16:47:46-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Palestinians",
+        "Jews and Judaism",
+        "Israeli Settlements",
+        "Right-Wing Extremism and Alt-Right",
+        "Arabs"
+      ],
+      "org_facet": ["Al Aqsa Mosque (Jerusalem)", "Likud Party (Israel)"],
+      "per_facet": [
+        "Netanyahu, Benjamin",
+        "Ben-Gvir, Itamar",
+        "Smotrich, Bezalel (1980- )"
+      ],
+      "geo_facet": ["Israel", "West Bank", "Jerusalem (Israel)"],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31Israel-Netanyahu-01-vtgm/31Israel-Netanyahu-01-vtgm-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Prime Minister Benjamin Netanyahu arriving at a cabinet meeting in Jerusalem on Sunday.",
+          "copyright": "Pool photo by Ronen Zvulun"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31Israel-Netanyahu-01-vtgm/31Israel-Netanyahu-01-vtgm-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Prime Minister Benjamin Netanyahu arriving at a cabinet meeting in Jerusalem on Sunday.",
+          "copyright": "Pool photo by Ronen Zvulun"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31Israel-Netanyahu-01-vtgm/31Israel-Netanyahu-01-vtgm-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Prime Minister Benjamin Netanyahu arriving at a cabinet meeting in Jerusalem on Sunday.",
+          "copyright": "Pool photo by Ronen Zvulun"
+        }
+      ],
+      "short_url": "https://nyti.ms/3Dui4fh"
+    },
+    {
+      "section": "world",
+      "subsection": "europe",
+      "title": "Brexit Turns 3. Why Is No One Wearing a Party Hat?",
+      "abstract": "The divorce between Britain and the European Union has become the dark thread that, to many, explains why Britain is suffering more than its neighbors.",
+      "url": "https://www.nytimes.com/2023/01/31/world/europe/brexit-third-anniversary-uk-eu.html",
+      "uri": "nyt://article/c91dab9f-3ee2-54aa-8226-6f39022db39a",
+      "byline": "By Mark Landler",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T15:20:51-05:00",
+      "created_date": "2023-01-31T14:45:50-05:00",
+      "published_date": "2023-01-31T14:45:50-05:00",
+      "material_type_facet": "",
+      "kicker": "News Analysis",
+      "des_facet": [
+        "Great Britain Withdrawal from EU (Brexit)",
+        "Politics and Government",
+        "Labor and Jobs",
+        "Immigration and Emigration",
+        "Economic Conditions and Trends",
+        "Inflation (Economics)",
+        "Organized Labor"
+      ],
+      "org_facet": ["Conservative Party (Great Britain)"],
+      "per_facet": [],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31uk-brexit-1-tvjz/31uk-brexit-1-tvjz-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "The International Monetary Fund said this week that Britain would be the world’s only major economy to contract in 2023, performing even worse than blacklisted Russia.",
+          "copyright": "Leon Neal/Getty Images"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31uk-brexit-1-tvjz/31uk-brexit-1-tvjz-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "The International Monetary Fund said this week that Britain would be the world’s only major economy to contract in 2023, performing even worse than blacklisted Russia.",
+          "copyright": "Leon Neal/Getty Images"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/31uk-brexit-1-tvjz/31uk-brexit-1-tvjz-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "The International Monetary Fund said this week that Britain would be the world’s only major economy to contract in 2023, performing even worse than blacklisted Russia.",
+          "copyright": "Leon Neal/Getty Images"
+        }
+      ],
+      "short_url": "https://nyti.ms/409Weay"
+    },
+    {
+      "section": "business",
+      "subsection": "media",
+      "title": "Academy Won’t Rescind Best Actress Nomination",
+      "abstract": "The organization investigated whether an Oscars campaign for the “To Leslie” actress Andrea Riseborough had violated rules.",
+      "url": "https://www.nytimes.com/2023/01/31/business/media/academy-awards-andrea-riseborough.html",
+      "uri": "nyt://article/22f9647e-f57e-52f3-88fb-67a990427f09",
+      "byline": "By Nicole Sperling",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T17:39:07-05:00",
+      "created_date": "2023-01-31T17:28:53-05:00",
+      "published_date": "2023-01-31T17:28:53-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": ["Academy Awards (Oscars)", "Actors and Actresses"],
+      "org_facet": ["Academy of Motion Picture Arts and Sciences"],
+      "per_facet": ["Riseborough, Andrea", "Fisher, Frances"],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/00Academy-wgqc/00Academy-wgqc-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "The Academy of Motion Picture Arts and Sciences did say it discovered “social media and outreach campaigning tactics” on behalf of Andrea Riseborough that “caused concern.”",
+          "copyright": "Maja Smiejkowska/Reuters"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/00Academy-wgqc/00Academy-wgqc-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "The Academy of Motion Picture Arts and Sciences did say it discovered “social media and outreach campaigning tactics” on behalf of Andrea Riseborough that “caused concern.”",
+          "copyright": "Maja Smiejkowska/Reuters"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/multimedia/00Academy-wgqc/00Academy-wgqc-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "The Academy of Motion Picture Arts and Sciences did say it discovered “social media and outreach campaigning tactics” on behalf of Andrea Riseborough that “caused concern.”",
+          "copyright": "Maja Smiejkowska/Reuters"
+        }
+      ],
+      "short_url": "https://nyti.ms/40tL2G6"
+    },
+    {
+      "section": "well",
+      "subsection": "move",
+      "title": "How Long Does It Take to Get Fit Again?",
+      "abstract": "We all stray from exercise sometimes. Here’s how your body will bounce back.",
+      "url": "https://www.nytimes.com/2023/01/30/well/move/fitness-loss-exercise.html",
+      "uri": "nyt://article/3c44ae14-a5b8-5a25-87e1-1a776a68e552",
+      "byline": "By Knvul Sheikh",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T20:03:25-05:00",
+      "created_date": "2023-01-30T05:00:18-05:00",
+      "published_date": "2023-01-30T05:00:18-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Exercise",
+        "Muscles",
+        "Heart",
+        "Content Type: Service",
+        "internal-sub-only"
+      ],
+      "org_facet": [],
+      "per_facet": [],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/20/multimedia/20WELL-GAIN-LOSING-FITNESS1-hjkp/20WELL-GAIN-LOSING-FITNESS1-hjkp-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Melissa Schriek for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/20/multimedia/20WELL-GAIN-LOSING-FITNESS1-hjkp/20WELL-GAIN-LOSING-FITNESS1-hjkp-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Melissa Schriek for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/20/multimedia/20WELL-GAIN-LOSING-FITNESS1-hjkp/20WELL-GAIN-LOSING-FITNESS1-hjkp-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Melissa Schriek for The New York Times"
+        }
+      ],
+      "short_url": "https://nyti.ms/3wB7b7H"
+    },
+    {
+      "section": "well",
+      "subsection": "eat",
+      "title": "The Sneaky Allure of a Detox",
+      "abstract": "A cleanse might make you feel better, but not for the reasons you may think.",
+      "url": "https://www.nytimes.com/2023/01/30/well/eat/detox-cleanses.html",
+      "uri": "nyt://article/7591ee95-40d9-5e69-9024-1b6b606bb036",
+      "byline": "By Dani Blum",
+      "item_type": "Article",
+      "updated_date": "2023-01-30T05:00:10-05:00",
+      "created_date": "2023-01-30T05:00:10-05:00",
+      "published_date": "2023-01-30T05:00:10-05:00",
+      "material_type_facet": "",
+      "kicker": "Scam or Not",
+      "des_facet": [
+        "Diet and Nutrition",
+        "Juices",
+        "Vegetables",
+        "Content Type: Service",
+        "Fruit"
+      ],
+      "org_facet": [],
+      "per_facet": [],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/well/26Well-Scam-Cleanses/26Well-Scam-Cleanses-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Derek Brahney"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/well/26Well-Scam-Cleanses/26Well-Scam-Cleanses-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Derek Brahney"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/31/well/26Well-Scam-Cleanses/26Well-Scam-Cleanses-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Derek Brahney"
+        }
+      ],
+      "short_url": "https://nyti.ms/3XSZKEL"
+    },
+    {
+      "section": "well",
+      "subsection": "mind",
+      "title": "Mental Health Providers Are Busier Than Ever. Here’s How to Find One.",
+      "abstract": "Tips and tricks to get help now.",
+      "url": "https://www.nytimes.com/2022/03/29/well/mind/therapist-mental-health-provider.html",
+      "uri": "nyt://article/5fee35d7-44e3-5153-ab82-32e8eb12538a",
+      "byline": "By Christina Caron",
+      "item_type": "Article",
+      "updated_date": "2022-03-30T12:45:33-04:00",
+      "created_date": "2022-03-29T11:15:26-04:00",
+      "published_date": "2022-03-29T11:15:26-04:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Mental Health and Disorders",
+        "Anxiety and Stress",
+        "Psychology and Psychologists",
+        "Content Type: Service"
+      ],
+      "org_facet": [],
+      "per_facet": [],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2022/04/06/well/WELL-FIND-THERAPIST/merlin_199199934_14462164-a224-4c8e-a165-eec77df32ae3-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Nicole Craine for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2022/04/06/well/WELL-FIND-THERAPIST/merlin_199199934_14462164-a224-4c8e-a165-eec77df32ae3-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Nicole Craine for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2022/04/06/well/WELL-FIND-THERAPIST/WELL-FIND-THERAPIST-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Nicole Craine for The New York Times"
+        }
+      ],
+      "short_url": "https://nyti.ms/3iIpelp"
+    },
+    {
+      "section": "well",
+      "subsection": "live",
+      "title": "Your Body Knows You’re Burned Out",
+      "abstract": "Here’s how to recognize the physical symptoms of work-related stress — and what to do about them.",
+      "url": "https://www.nytimes.com/2022/02/15/well/live/burnout-work-stress.html",
+      "uri": "nyt://article/446e5abc-5aa6-5c0a-a3e6-b86252e01781",
+      "byline": "By Melinda Wenner Moyer",
+      "item_type": "Article",
+      "updated_date": "2022-07-26T17:59:12-04:00",
+      "created_date": "2022-02-15T11:31:48-05:00",
+      "published_date": "2022-02-15T11:31:48-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Anxiety and Stress",
+        "Mental Health and Disorders",
+        "Content Type: Service",
+        "Sleep",
+        "Labor and Jobs",
+        "Psychology and Psychologists",
+        "audio-neutral-informative"
+      ],
+      "org_facet": [],
+      "per_facet": [],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2022/03/01/well/00well-body-burnout/00well-body-burnout-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1365,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Alva Skog"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2022/03/01/well/00well-body-burnout/00well-body-burnout-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Alva Skog"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2022/03/01/well/00well-body-burnout/00well-body-burnout-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Alva Skog"
+        }
+      ],
+      "short_url": "https://nyti.ms/3LM1IkO"
+    },
+    {
+      "section": "well",
+      "subsection": "live",
+      "title": "Why Does My Sleep Become Worse as I Age?",
+      "abstract": "Research has found that sleep quality does indeed get a little rusty as you grow older, but it’s not a fate you have to live with, experts say.",
+      "url": "https://www.nytimes.com/2022/12/27/well/live/aging-sleep-insomnia.html",
+      "uri": "nyt://article/e6dd4a83-025b-5d3c-8780-15f22d905e15",
+      "byline": "By Alisha Haridasani Gupta",
+      "item_type": "Article",
+      "updated_date": "2023-01-03T11:14:41-05:00",
+      "created_date": "2022-12-27T11:00:08-05:00",
+      "published_date": "2022-12-27T11:00:08-05:00",
+      "material_type_facet": "",
+      "kicker": "Ask Well",
+      "des_facet": [
+        "Sleep",
+        "Age, Chronological",
+        "Research",
+        "Insomnia",
+        "Menopause",
+        "Melatonin (Hormone)",
+        "Brain",
+        "Content Type: Service",
+        "internal-sub-only"
+      ],
+      "org_facet": [],
+      "per_facet": [],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/01/03/multimedia/27ASKWELL-SLEEP2-1-bed6/27ASKWELL-SLEEP2-1-bed6-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 2048,
+          "width": 1536,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Joyce Lee for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/03/multimedia/27ASKWELL-SLEEP2-1-bed6/27ASKWELL-SLEEP2-1-bed6-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Joyce Lee for The New York Times"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/01/03/multimedia/27ASKWELL-SLEEP2-1-bed6/27ASKWELL-SLEEP2-1-bed6-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "",
+          "copyright": "Joyce Lee for The New York Times"
+        }
+      ],
+      "short_url": "https://nyti.ms/3I14qmY"
+    },
+    {
+      "section": "arts",
+      "subsection": "dance",
+      "title": "An Ad Hoc Ukrainian Ballet Troupe Settles Into Life in The Hague",
+      "abstract": "The dancers in the United Ukrainian Ballet have found a home in the Netherlands. This week the company makes its U.S. debut in Alexei Ratmansky’s “Giselle.”",
+      "url": "https://www.nytimes.com/2023/01/31/arts/dance/united-ukrainian-ballet-ratmansky-washington.html",
+      "uri": "nyt://article/271d49fb-e70d-522d-a12e-be2818176a63",
+      "byline": "By Marina Harss",
+      "item_type": "Article",
+      "updated_date": "2023-01-31T11:57:24-05:00",
+      "created_date": "2023-01-31T10:01:54-05:00",
+      "published_date": "2023-01-31T10:01:54-05:00",
+      "material_type_facet": "",
+      "kicker": "",
+      "des_facet": [
+        "Dancing",
+        "Russian Invasion of Ukraine (2022)",
+        "Giselle (Ballet)"
+      ],
+      "org_facet": [
+        "Kennedy, John F, Center for the Performing Arts",
+        "United Ukrainian Ballet Co"
+      ],
+      "per_facet": ["Ratmansky, Alexei", "Shevchenko, Christine"],
+      "geo_facet": ["Hague (Netherlands)", "Ukraine", "Russia"],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2023/02/01/multimedia/31UKRAINE2-wqvm/31UKRAINE2-wqvm-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 1152,
+          "width": 2048,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Elizaveta Gogidze, center, is one of three dancers cast in the title role of “Giselle.” She says she wants to show Ukrainian ballet to American audiences, to remind them “about the terrible war which has been going on for almost a year.”",
+          "copyright": "Altin Kaftira"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/02/01/multimedia/31UKRAINE2-wqvm/31UKRAINE2-wqvm-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Elizaveta Gogidze, center, is one of three dancers cast in the title role of “Giselle.” She says she wants to show Ukrainian ballet to American audiences, to remind them “about the terrible war which has been going on for almost a year.”",
+          "copyright": "Altin Kaftira"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2023/02/01/multimedia/31UKRAINE2-wqvm/31UKRAINE2-wqvm-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Elizaveta Gogidze, center, is one of three dancers cast in the title role of “Giselle.” She says she wants to show Ukrainian ballet to American audiences, to remind them “about the terrible war which has been going on for almost a year.”",
+          "copyright": "Altin Kaftira"
+        }
+      ],
+      "short_url": "https://nyti.ms/3wIPP8T"
+    },
+    {
+      "section": "crosswords",
+      "subsection": "",
+      "title": "Few Wordle Players Use Consistent Starting Words, but When They Do, It’s ADIEU",
+      "abstract": "What the data tells us about how people play the game.",
+      "url": "https://www.nytimes.com/2022/09/01/crosswords/wordle-starting-words-adieu.html",
+      "uri": "nyt://article/f2620fa1-b3df-5849-96cd-58d555181022",
+      "byline": "By Deb Amlen",
+      "item_type": "Article",
+      "updated_date": "2022-09-01T14:40:20-04:00",
+      "created_date": "2022-09-01T09:00:05-04:00",
+      "published_date": "2022-09-01T09:00:05-04:00",
+      "material_type_facet": "",
+      "kicker": "GAMEPLAY",
+      "des_facet": ["Wordle (Puzzle)", "Games"],
+      "org_facet": [],
+      "per_facet": [],
+      "geo_facet": [],
+      "multimedia": [
+        {
+          "url": "https://static01.nyt.com/images/2022/08/25/crosswords/wordle-top/wordle-top-superJumbo.jpg",
+          "format": "Super Jumbo",
+          "height": 683,
+          "width": 1024,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Wordle gives players six tries to guess the daily word. Only a small number of people go in with a plan.",
+          "copyright": "Stefani Reynolds/Agence France-Presse, via Getty Images"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2022/08/25/crosswords/wordle-top/wordle-top-threeByTwoSmallAt2X.jpg",
+          "format": "threeByTwoSmallAt2X",
+          "height": 400,
+          "width": 600,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Wordle gives players six tries to guess the daily word. Only a small number of people go in with a plan.",
+          "copyright": "Stefani Reynolds/Agence France-Presse, via Getty Images"
+        },
+        {
+          "url": "https://static01.nyt.com/images/2022/08/25/crosswords/wordle-top/wordle-top-thumbLarge.jpg",
+          "format": "Large Thumbnail",
+          "height": 150,
+          "width": 150,
+          "type": "image",
+          "subtype": "photo",
+          "caption": "Wordle gives players six tries to guess the daily word. Only a small number of people go in with a plan.",
+          "copyright": "Stefani Reynolds/Agence France-Presse, via Getty Images"
+        }
+      ],
+      "short_url": "https://nyti.ms/3q2W8kk"
+    }
+  ]
+}
