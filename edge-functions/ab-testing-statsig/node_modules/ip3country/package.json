@@ -1,0 +1,24 @@
+{
+  "name": "ip3country",
+  "version": "5.0.0",
+  "description": "This is a no-dependency, super lite version of IP2Location LITE lookup.",
+  "main": "src/ip3country.js",
+  "files": [
+    "/src",
+    "/types"
+  ],
+  "types": "types/ip3country.d.ts",
+  "scripts": {
+    "test": "node tests/lookupTest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/statsig-io/ip3country.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/statsig-io/ip3country/issues"
+  },
+  "homepage": "https://github.com/statsig-io/ip3country#readme"
+}

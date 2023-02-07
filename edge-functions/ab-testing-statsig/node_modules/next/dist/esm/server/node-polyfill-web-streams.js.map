@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../server/node-polyfill-web-streams.js"],"names":["ReadableStream","TransformStream","global"],"mappings":"AAAA,SACEA,cAAc,EACdC,eAAe,QACV,qDAAqD,CAAA;AAE5D,gDAAgD;AAChD,IAAI,CAACC,MAAM,CAACF,cAAc,EAAE;IAC1BE,MAAM,CAACF,cAAc,GAAGA,cAAc;CACvC;AACD,IAAI,CAACE,MAAM,CAACD,eAAe,EAAE;IAC3BC,MAAM,CAACD,eAAe,GAAGA,eAAe;CACzC"}

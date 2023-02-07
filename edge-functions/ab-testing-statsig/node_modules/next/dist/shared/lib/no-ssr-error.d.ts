@@ -1,0 +1,1 @@
+export declare const NEXT_DYNAMIC_NO_SSR_CODE = "DYNAMIC_SERVER_USAGE";

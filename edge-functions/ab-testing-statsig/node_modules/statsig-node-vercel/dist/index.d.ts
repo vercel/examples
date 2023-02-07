@@ -1,0 +1,1 @@
+export { EdgeConfigDataAdapter } from './EdgeConfigDataAdapter';

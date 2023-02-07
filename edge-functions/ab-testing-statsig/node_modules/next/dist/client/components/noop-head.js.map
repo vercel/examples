@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../client/components/noop-head.tsx"],"names":["NoopHead","process","env","NODE_ENV","warnOnce"],"mappings":"AAAA;;;;kBAQwBA,QAAQ;AARP,IAAA,SAAkC,WAAlC,kCAAkC,CAAA;AAQ5C,SAASA,QAAQ,GAAG;IACjC,OAAO,IAAI,CAAA;CACZ;AARD,IAAIC,OAAO,CAACC,GAAG,CAACC,QAAQ,KAAK,YAAY,EAAE;IACzCC,CAAAA,GAAAA,SAAQ,AAEP,CAAA,SAFO,CACN,CAAC,sKAAsK,CAAC,CACzK;CACF"}

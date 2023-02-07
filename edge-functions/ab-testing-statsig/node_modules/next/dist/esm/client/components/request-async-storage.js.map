@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../client/components/request-async-storage.ts"],"names":["requestAsyncStorage","globalThis","AsyncLocalStorage"],"mappings":"AAYA,OAAO,IAAIA,mBAAmB,GAC5B,EAAE,AAAO,CAAA;AAEX,oDAAoD;AACpD,4BAA4B;AAC5B,IAAIC,UAAU,CAACC,iBAAiB,EAAE;IAChCF,mBAAmB,GAAG,IAAI,AAACC,UAAU,CAASC,iBAAiB,EAAE;CAClE"}

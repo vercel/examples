@@ -1,0 +1,28 @@
+{
+  "name": "globalyzer",
+  "version": "0.1.0",
+  "description": "Detects and extract the glob part of a string",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terkelg/globalyzer"
+  },
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "glob",
+    "analyzer",
+    "base",
+    "detect"
+  ],
+  "scripts": {
+    "test": "tape test/*.js | tap-spec"
+  },
+  "author": "Terkel Gjervig",
+  "license": "MIT",
+  "devDependencies": {
+    "tap-spec": "^4.1.1",
+    "tape": "^4.9.0"
+  }
+}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../shared/lib/loadable-context.ts"],"names":["React","LoadableContext","createContext","process","env","NODE_ENV","displayName"],"mappings":"AAEA,OAAOA,KAAK,MAAM,OAAO,CAAA;AAFzB,YAAY;AAMZ,OAAO,MAAMC,eAAe,GAAGD,KAAK,CAACE,aAAa,CAAmB,IAAI,CAAC,CAAA;AAE1E,IAAIC,OAAO,CAACC,GAAG,CAACC,QAAQ,KAAK,YAAY,EAAE;IACzCJ,eAAe,CAACK,WAAW,GAAG,iBAAiB;CAChD"}

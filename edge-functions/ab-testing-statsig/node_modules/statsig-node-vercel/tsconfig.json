@@ -1,0 +1,36 @@
+{
+  "exclude": [
+    "node_modules",
+    "__tests__/*",
+    "dist",
+    "dist/**/*",
+    "tsconfig.json",
+  ],
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+    /* Language and Environment */
+    "target": "es2016", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "lib": [
+      "ES2020.Promise"
+    ], /* Specify a set of bundled library declaration files that describe the target runtime environment. */
+    /* Modules */
+    "module": "commonjs", /* Specify what module code is generated. */
+    "moduleResolution": "node", /* Specify how TypeScript looks up a file from a given module specifier. */
+    "typeRoots": [
+      "node_modules/@types"
+    ], /* Specify multiple folders that act like './node_modules/@types'. */
+    "resolveJsonModule": true, /* Enable importing .json files. */
+    /* JavaScript Support */
+    "allowJs": false, /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
+    /* Emit */
+    "declaration": true, /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
+    "outDir": "dist", /* Specify an output folder for all emitted files. */
+    /* Interop Constraints */
+    "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
+    /* Type Checking */
+    "strict": true, /* Enable all strict type-checking options. */
+    /* Completeness */
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+  }
+}

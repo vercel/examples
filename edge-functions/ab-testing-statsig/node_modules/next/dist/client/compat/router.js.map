@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../client/compat/router.ts"],"names":["useRouter","useContext","RouterContext"],"mappings":"AAAA;;;;QAcgBA,SAAS,GAATA,SAAS;AAdE,IAAA,MAAO,WAAP,OAAO,CAAA;AACJ,IAAA,cAAiC,WAAjC,iCAAiC,CAAA;AAaxD,SAASA,SAAS,GAAsB;IAC7C,OAAOC,CAAAA,GAAAA,MAAU,AAAe,CAAA,WAAf,CAACC,cAAa,cAAA,CAAC,CAAA;CACjC"}

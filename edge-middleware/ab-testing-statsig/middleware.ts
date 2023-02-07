@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse, NextFetchEvent } from 'next/server'
 import Statsig from 'statsig-node'
 import { EdgeConfigDataAdapter } from 'statsig-node-vercel'
 import { EXPERIMENT, UID_COOKIE, GROUP_PARAM_FALLBACK } from './lib/constants'
@@ -11,7 +11,7 @@ export const config = {
   matcher: '/',
 }
 
-export async function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest, event: NextFetchEvent) {
   // Get the user ID from the cookie or get a new one
   let userId = req.cookies.get(UID_COOKIE)?.value
   let hasUserId = !!userId

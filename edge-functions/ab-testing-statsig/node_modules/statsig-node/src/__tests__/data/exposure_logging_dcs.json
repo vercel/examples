@@ -1,0 +1,36 @@
+{
+  "dynamic_configs": [],
+  "feature_gates": [],
+  "layer_configs": [
+    {
+      "name": "a_layer",
+      "type": "dynamic_config",
+      "salt": "f8aeba58-18fb-4f36-9bbd-4c611447a912",
+      "enabled": true,
+      "defaultValue": {
+        "a_bool": true
+      },
+      "rules": [
+        {
+          "name": "experimentAssignment",
+          "groupName": "Experiment Assignment",
+          "passPercentage": 100,
+          "conditions": [],
+          "returnValue": {
+            "a_bool": true
+          },
+          "id": "experimentAssignment",
+          "salt": "",
+          "isDeviceBased": false,
+          "idType": "userID",
+          "configDelegate": "sample_experiment"
+        }
+      ],
+      "isDeviceBased": false,
+      "idType": "userID",
+      "entity": "layer"
+    }
+  ],
+  "has_updates": true,
+  "time": 0
+}

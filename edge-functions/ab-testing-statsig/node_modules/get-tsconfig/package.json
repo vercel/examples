@@ -1,0 +1,37 @@
+{
+  "name": "get-tsconfig",
+  "version": "4.2.0",
+  "description": "Find and parse the tsconfig.json file from a directory path",
+  "keywords": [
+    "get-tsconfig",
+    "get",
+    "typescript",
+    "tsconfig",
+    "tsconfig.json"
+  ],
+  "license": "MIT",
+  "repository": "privatenumber/get-tsconfig",
+  "funding": "https://github.com/privatenumber/get-tsconfig?sponsor=1",
+  "author": {
+    "name": "Hiroki Osame",
+    "email": "hiroki.osame@gmail.com"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "require": "./dist/index.js",
+    "import": "./dist/index.mjs",
+    "types": "./dist/index.d.ts"
+  },
+  "imports": {
+    "#get-tsconfig": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "default": "./dist/index.mjs"
+    }
+  }
+}

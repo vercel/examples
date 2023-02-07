@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../client/components/hooks-server-context.ts"],"names":["DYNAMIC_ERROR_CODE","DynamicServerError","Error","constructor","type","digest"],"mappings":"AAAA,OAAO,MAAMA,kBAAkB,GAAG,sBAAsB,CAAA;AAExD,OAAO,MAAMC,kBAAkB,SAASC,KAAK;IAG3CC,YAAYC,IAAY,CAAE;QACxB,KAAK,CAAC,CAAC,sBAAsB,EAAEA,IAAI,CAAC,CAAC,CAAC;QAHxCC,KAAAA,MAAM,GAA8BL,kBAAkB,CAAA;KAIrD;CACF"}

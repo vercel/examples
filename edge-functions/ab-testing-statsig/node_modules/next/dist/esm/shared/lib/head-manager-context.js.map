@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../shared/lib/head-manager-context.ts"],"names":["React","HeadManagerContext","createContext","process","env","NODE_ENV","displayName"],"mappings":"AAAA,OAAOA,KAAK,MAAM,OAAO,CAAA;AAEzB,OAAO,MAAMC,kBAAkB,GAU1BD,KAAK,CAACE,aAAa,CAAC,EAAE,CAAC,CAAA;AAE5B,IAAIC,OAAO,CAACC,GAAG,CAACC,QAAQ,KAAK,YAAY,EAAE;IACzCJ,kBAAkB,CAACK,WAAW,GAAG,oBAAoB;CACtD"}

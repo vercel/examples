@@ -1,0 +1,143 @@
+{
+  "has_updates": true,
+  "feature_gates": [],
+  "dynamic_configs": [
+    {
+      "__________________________USED_BY_TESTS": [
+        "test_explicit_vs_implicit_parameter_logging"
+      ],
+      "name": "experiment",
+      "type": "dynamic_config",
+      "salt": "58d0f242-4533-4601-abf7-126aa8f43868",
+      "enabled": true,
+      "defaultValue": {
+        "an_int": 0,
+        "a_string": "layer_default"
+      },
+      "rules": [
+        {
+          "name": "alwaysPass",
+          "groupName": "Public",
+          "passPercentage": 100,
+          "conditions": [
+            {
+              "type": "public",
+              "targetValue": null,
+              "operator": null,
+              "field": null,
+              "additionalValues": {},
+              "isDeviceBased": false,
+              "idType": "userID"
+            }
+          ],
+          "returnValue": {
+            "an_int": 99,
+            "a_string": "exp_value"
+          },
+          "id": "alwaysPass",
+          "salt": "",
+          "isDeviceBased": false,
+          "idType": "userID"
+        }
+      ],
+      "isDeviceBased": false,
+      "idType": "userID",
+      "entity": "experiment",
+      "explicitParameters": [
+        "an_int"
+      ]
+    }
+  ],
+  "layer_configs": [
+    {
+      "__________________________USED_BY_TESTS": [
+        "test_does_not_log_on_get_layer",
+        "test_does_not_log_on_invalid_type",
+        "test_does_not_log_non_existent_keys",
+        "test_unallocated_layer_logging",
+        "test_logs_user_and_event_name"
+      ],
+      "name": "unallocated_layer",
+      "type": "dynamic_config",
+      "salt": "3e361046-bc69-4dfd-bbb1-538afe609157",
+      "enabled": true,
+      "defaultValue": {
+        "an_int": 99
+      },
+      "rules": [],
+      "isDeviceBased": false,
+      "idType": "userID",
+      "entity": "layer"
+    },
+    {
+      "__________________________USED_BY_TESTS": [
+        "test_explicit_vs_implicit_parameter_logging"
+      ],
+      "name": "explicit_vs_implicit_parameter_layer",
+      "type": "dynamic_config",
+      "salt": "3e361046-bc69-4dfd-bbb1-538afe609157",
+      "enabled": true,
+      "defaultValue": {
+        "an_int": 0,
+        "a_string": "layer_default"
+      },
+      "rules": [
+        {
+          "name": "experimentAssignment",
+          "groupName": "Experiment Assignment",
+          "passPercentage": 100,
+          "conditions": [
+            {
+              "type": "public",
+              "targetValue": null,
+              "operator": null,
+              "field": null,
+              "additionalValues": {},
+              "isDeviceBased": false,
+              "idType": "userID"
+            }
+          ],
+          "returnValue": {
+            "an_int": 0,
+            "a_string": "layer_default"
+          },
+          "id": "experimentAssignment",
+          "salt": "",
+          "isDeviceBased": false,
+          "idType": "userID",
+          "configDelegate": "experiment"
+        }
+      ],
+      "isDeviceBased": false,
+      "idType": "userID",
+      "entity": "layer"
+    },
+    {
+      "__________________________USED_BY_TESTS": [
+        "test_different_object_type_logging"
+      ],
+      "name": "different_object_type_logging_layer",
+      "type": "dynamic_config",
+      "salt": "3e361046-bc69-4dfd-bbb1-538afe609157",
+      "enabled": true,
+      "defaultValue": {
+        "a_bool": true,
+        "an_int": 99,
+        "a_double": 1.23,
+        "a_long": 9223372036854776000,
+        "a_string": "value",
+        "an_array": [
+          "a",
+          "b"
+        ],
+        "an_object": {
+          "key": "value"
+        }
+      },
+      "rules": [],
+      "isDeviceBased": false,
+      "idType": "userID",
+      "entity": "layer"
+    }
+  ]
+}
