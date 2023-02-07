@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../shared/lib/router-context.ts"],"names":["React","RouterContext","createContext","process","env","NODE_ENV","displayName"],"mappings":"AAAA,OAAOA,KAAK,MAAM,OAAO,CAAA;AAGzB,OAAO,MAAMC,aAAa,GAAGD,KAAK,CAACE,aAAa,CAAoB,IAAI,CAAC,CAAA;AAEzE,IAAIC,OAAO,CAACC,GAAG,CAACC,QAAQ,KAAK,YAAY,EAAE;IACzCJ,aAAa,CAACK,WAAW,GAAG,eAAe;CAC5C"}

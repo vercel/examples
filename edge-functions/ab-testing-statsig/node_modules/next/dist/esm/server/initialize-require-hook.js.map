@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../server/initialize-require-hook.ts"],"names":["loadRequireHook","overrideBuiltInReactPackages","isPrebundled"],"mappings":"AAAA,SACEA,eAAe,EACfC,4BAA4B,QACvB,+BAA+B,CAAA;AAEtCD,eAAe,EAAE;AAEjB,MAAME,YAAY,GAAG,KAAK;AAE1B,IAAIA,YAAY,EAAE;IAChBD,4BAA4B,EAAE;CAC/B"}
