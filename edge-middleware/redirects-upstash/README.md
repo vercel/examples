@@ -3,10 +3,12 @@ name: Edge Redirects with Upstash
 slug: edge-redirects-upstash
 description: Redirect from a list of redirects both hardcoded and coming from Upstash (Redis), that get evaluated at the edge.
 framework: Next.js
-useCase: Edge Functions
+useCase: Edge Middleware
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,UPSTASH_EDGE_API_DOMAIN,UPSTASH_EDGE_API_TOKEN&project-name=redirects-upstash&repository-name=redirects-upstash
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,UPSTASH_EDGE_API_DOMAIN,UPSTASH_EDGE_API_TOKEN&project-name=redirects-upstash&repository-name=redirects-upstash
 demoUrl: https://edge-functions-redirects-upstash.vercel.app
+relatedTemplates:
+  - edge-functions-i18n
 ---
 
 # Edge Redirects with Upstash
@@ -25,16 +27,16 @@ https://edge-functions-redirects-upstash.vercel.app
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,UPSTASH_EDGE_API_DOMAIN,UPSTASH_EDGE_API_TOKEN&project-name=redirects-upstash&repository-name=redirects-upstash)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,UPSTASH_EDGE_API_DOMAIN,UPSTASH_EDGE_API_TOKEN&project-name=redirects-upstash&repository-name=redirects-upstash)
 
 ## Getting Started
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/redirects-upstash redirects-upstash
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash redirects-upstash
 # or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/redirects-upstash redirects-upstash
+yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash redirects-upstash
 ```
 
 You'll need to have an account with [Upstash](https://upstash.com/). Once that's done, copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):

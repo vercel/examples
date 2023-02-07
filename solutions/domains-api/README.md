@@ -48,7 +48,7 @@ When a domain is added, there are 3 possible outcomes:
 
 #### Verifying Project Domain
 
-Verifying a project domain can be done with the `/v9/projeccts/{projectId}/domains/{domain}/verify` endpoint as shown [here](./pages/api/verify-domain.js) ([full documentation](https://vercel.com/docs/rest-api#endpoints/projects/verify-project-domain)).
+Verifying a project domain can be done with the `/v9/projects/{projectId}/domains/{domain}/verify` endpoint as shown [here](./pages/api/verify-domain.js) ([full documentation](https://vercel.com/docs/rest-api#endpoints/projects/verify-project-domain)).
 
 ### 2. Auto-checking Domain Configuration
 

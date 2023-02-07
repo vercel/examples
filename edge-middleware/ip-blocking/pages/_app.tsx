@@ -17,7 +17,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     >
       <Layout
         title="IP Blocking with Upstash"
-        path="edge-functions/api-rate-limit-and-tokens"
+        path="edge-middleware/api-rate-limit-and-tokens"
         description="Learn how to do IP blocking at the edge with Upstash."
         deployButton={{
           env: ['UPSTASH_REST_API_DOMAIN', 'UPSTASH_REST_API_TOKEN'],

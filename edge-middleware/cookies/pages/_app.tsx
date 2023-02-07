@@ -7,7 +7,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="Cookies" path="edge-functions/cookies">
+    <Layout title="Cookies" path="edge-middleware/cookies">
       <Component {...pageProps} />
     </Layout>
   )

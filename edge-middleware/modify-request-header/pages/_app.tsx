@@ -11,7 +11,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <Layout
       title="Adding request headers in middleware"
-      path="edge-functions/modify-request-header"
+      path="edge-middleware/modify-request-header"
       description="How to modify request headers in a middleware"
     >
       <Component {...pageProps} />

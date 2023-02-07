@@ -2,7 +2,7 @@ import path from 'path'
 import log from './log'
 import updateTemplate from './contentful/update-template'
 
-const DIRS = ['edge-functions', 'solutions']
+const DIRS = ['edge-functions', 'edge-middleware', 'solutions', 'starter']
 const IS_README = /readme\.md$/i
 
 export default async function updateChangedTemplates(changedFiles: string[]) {

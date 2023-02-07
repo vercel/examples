@@ -9,7 +9,7 @@ deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel
 demoUrl: https://edge-api-route.vercel.app/api/edge
 ---
 
-# Edge API Route (Experimental)
+# Edge API Route
 
 Build your API using Vercel Edge Functions.
 

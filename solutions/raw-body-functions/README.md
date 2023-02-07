@@ -1,6 +1,6 @@
 # Raw Body in Serverless Functions
 
-You can use Vercel Serverless Functions to recieve webhooks from third-party services like Stripe. Certain providers require access to the raw body inside the function to validate the signature from the request.
+You can use Vercel Serverless Functions to receive webhooks from third-party services like Stripe. Certain providers require access to the raw body inside the function to validate the signature from the request.
 
 ## How to Use
 
@@ -10,7 +10,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/raw-body-functions&project-name=raw-body-functions&repository-name=raw-body-functions)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/raw-body-functions&project-name=raw-body-functions&repository-name=raw-body-functions)
 
 ### Clone and Deploy
 

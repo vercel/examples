@@ -68,14 +68,17 @@
           "Next.js",
           "Svelte",
           "React",
+          "Python",
           "Vue",
-          "Gatsby",
-          "Angular",
-          "Remix",
-          "Hugo",
+          "Nuxt",
           "Astro",
           "Solid",
-          "Preact"
+          "Preact",
+          "Qwik",
+          "Gatsby",
+          "Angular",
+          "Hugo",
+          "Remix"
         ]
       }
     ]
@@ -97,15 +100,19 @@
         "in": [
           "Starter",
           "Ecommerce",
-          "Edge Functions",
           "Blog",
-          "Web3",
+          "AI",
+          "Edge Functions",
+          "Edge Middleware",
+          "Edge Config",
           "Portfolio",
-          "Virtual Event",
           "SaaS",
+          "Multi-tenant Apps",
+          "Realtime Apps",
           "Documentation",
+          "Virtual Event",
           "Monorepos",
-          "Multi tenant-apps"
+          "Web3"
         ]
       }
     ]
@@ -126,15 +133,13 @@
       {
         "in": [
           "Tailwind",
+          "Chakra",
+          "Radix UI",
           "CSS Modules",
           "CSS-in-JSX",
-          "Styled Components",
-          "Bootstrap",
           "Material UI",
-          "Semantic UI",
-          "Radix UI",
-          "Sass",
-          "CSS"
+          "Styled Components",
+          "Pinceau"
         ]
       }
     ]

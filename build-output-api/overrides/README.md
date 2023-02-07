@@ -11,7 +11,7 @@ https://build-output-api-overrides.vercel.sh
 ### How it Works
 
 The [`.vercel/output/static`](./.vercel/output/static) directory contains static files, _however_ due to the "overrides"
-property in the [`.vercel/output/config.json`]('./.vercel/output/config.json) file, these files are _served_ by Vercel
+property in the [`.vercel/output/config.json`](./.vercel/output/config.json) file, these files are _served_ by Vercel
 at different URL paths and/or with a different `Content-Type` header.
 
 Specifically:

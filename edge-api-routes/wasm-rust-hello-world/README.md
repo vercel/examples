@@ -1,4 +1,4 @@
-# WASM Edge API Route (Experimental)
+# WASM Edge API Route
 
 Build your API with Rust and WebAssembly using Vercel Edge Functions.
 
