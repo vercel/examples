@@ -8,7 +8,7 @@ useCase:
   - Edge Middleware
   - Edge Config
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Ffeature-flag-apple-store&project-name=feature-flag-apple-store&repo-name=feature-flag-apple-store
+deployUrl: 'https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Ffeature-flag-apple-store&project-name=feature-flag-apple-store&repo-name=feature-flag-apple-store&env=EDGE_CONFIG&edge-config-stores=%7B"EDGE_CONFIG"%3A%7B"featureFlagsAppleStore_storeClosed"%3Atrue%7D%7D'
 demoUrl: https://edge-functions-feature-flag-apple-store.vercel.app/
 relatedTemplates:
   - maintenance-page
@@ -30,9 +30,9 @@ You can choose from one of the following two methods to use this repository:
 
 ### One-Click Deploy
 
-After [setting up your environment variables](#set-up-environment-variables), deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Ffeature-flag-apple-store&project-name=feature-flag-apple-store&repo-name=feature-flag-apple-store)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Ffeature-flag-apple-store&project-name=feature-flag-apple-store&repo-name=feature-flag-apple-store&env=EDGE_CONFIG&edge-config-stores=%7B"EDGE_CONFIG"%3A%7B"featureFlagsAppleStore_storeClosed"%3Atrue%7D%7D)
 
 ### Clone and Deploy
 
@@ -52,7 +52,9 @@ Copy the `.env.example` file in this directory to `.env.local` (which will be ig
 cp .env.example .env.local
 ```
 
-This example requires you to set up an Edge Config and store its connection string in the `EDGE_CONFIG` environment variable. Fill the Edge Config you create with this content:
+This example requires you to set up an Edge Config and store its connection string in the `EDGE_CONFIG` environment variable.
+
+Fill the Edge Config you create with this content:
 
 ```json
 { "featureFlagsAppleStore_storeClosed": true }
@@ -72,11 +74,13 @@ yarn dev
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
 
-## Opening / Closing the Store
+## Opening / Closing the Store using the Dashboard
 
-You can control whether the store is open or not by changing the value of `featureFlagsAppleStore_storeClosed`. Use API routes or Vercel's Edge Config UI to update Edge Config.
+You can control whether the store is open or not by changing the value of `featureFlagsAppleStore_storeClosed` using the [Edge Config Dashboard](https://vercel.com/docs/concepts/edge-network/edge-config/edge-config-dashboard#manage-edge-configs).
 
-> Note that you need to provide your own `TEAM_ID_VERCEL` and `AUTH_BEARER_TOKEN` environment variables in `.env.local` if you want to open or close the store as shown below.
+## Opening / Closing the Store using API Routes
+
+> Note that you need to provide your own `TEAM_ID_VERCEL` and `AUTH_BEARER_TOKEN` environment variables in `.env.local` if you want to open or close the store using the routes shown below.
 
 To open the store go to:
 
