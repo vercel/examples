@@ -7,7 +7,7 @@ useCase:
   - Edge Middleware
   - Edge Config
 css: Tailwind
-deployUrl: 'https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Fmaintenance-page&project-name=maintenance-page&repo-name=maintenance-page&env=EDGE_CONFIG&edge-config-stores=%7B"EDGE_CONFIG"%3A%7B"isInMaintenanceMode"%3Atrue%7D%7D'
+deployUrl: 'https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Fmaintenance-page&project-name=maintenance-page&repo-name=maintenance-page&env=EDGE_CONFIG&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%22isInMaintenanceMode%22%3Atrue%7D%7D'
 demoUrl: https://edge-maintenance-page.vercel.app/
 relatedTemplates:
   - feature-flag-apple-store
@@ -30,7 +30,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/maintenance-page&project-name=maintenance-page&repository-name=maintenance-page&env=EDGE_CONFIG&edge-config-stores=%7B"EDGE_CONFIG"%3A%7B"isInMaintenanceMode"%3Atrue%7D%7D)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/maintenance-page&project-name=maintenance-page&repository-name=maintenance-page&env=EDGE_CONFIG&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%22isInMaintenanceMode%22%3Atrue%7D%7D)
 
 ### Clone and Deploy
 
