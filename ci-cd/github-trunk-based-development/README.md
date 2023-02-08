@@ -1,6 +1,6 @@
 ---
-name: GitHub Actions with Vercel CI/CD for Trunk Based Development
-slug: github-actions-vercel-cicd-trunk-based-development
+name: GitHub Actions for Trunk Based Development
+slug: github-trunk-based-development
 description: Follow a Trunk Based Development workflow with Vercel CI/CD and GitHub Actions for Production testing and release
 ---
 
