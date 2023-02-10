@@ -17,7 +17,7 @@ const getChecks = (req: NextApiRequest) => {
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     switch (req.body.type) {
-      case "deployment":
+      case "deployment.created":
         // 1 - Register checks
         const check = await fetch(
           `https://api.vercel.com/v1/deployments/${req.body.payload.deployment.id}/checks`,
@@ -39,7 +39,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           payload: check,
         });
         break;
-      case "deployment-prepared":
+      case "deployment.ready":
         // 2 - Run checks (i.e. ping deployment url)
         await fetch(`https://${req.body.payload.deployment.url}`).then((r) =>
           r.text()
@@ -71,7 +71,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           },
         });
         break;
-      case "deployment-ready":
+      case "deployment.succeeded":
         // 3 - Deployment completed, checks succeeded/skipped/failed(non-blocking)
         console.log({
           deploymentId: req.body.payload.deployment.id,
@@ -81,6 +81,32 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           },
         });
         break;
+      case "deployment.error": {
+         // 4 - Re-run the check on error 
+        const data = await getChecks(req);
+        const result = await fetch(
+          `https://api.vercel.com/v1/deployments/${req.body.payload.deployment.id}/checks/${data.checks[0].id}/rerequest`,
+          { 
+            headers: {
+              Authorization: `Bearer ${TOKEN}`,
+              "Content-Type": "application/json",
+            },
+              method: "post",
+          }
+        ).then((r) => r.json());
+        console.log(result)
+        break;
+      }
+
+      case "deployment.check-rerequested": {
+        // 5 - Check re-requested 
+        console.log({
+          deploymentId: req.body.payload.deployment.id,
+          webhookType: req.body.type,
+          payload: null,
+        });
+        break;
+      }
       default:
         console.log({
           deploymentId: req.body.payload.deployment.id,
