@@ -13,11 +13,13 @@ It shows:
 
 ## Run this example
 
-1. Create a new integration on the [integration console](https://vercel.com/dashboard/integrations/console)
+1. Create a new integration on the [integration console](https://vercel.com/dashboard/integrations/console).
 
 2. Set the Redirect URL to `http://localhost:3000/callback`
 
-3. Set the environment variables:
+3. Register all the Deployment and Check events to the `http://localhost:3000/api/webhooks` endpoint
+
+4. Set the environment variables:
 
 ```
 cp .env.local.example .env.local
@@ -25,19 +27,19 @@ cp .env.local.example .env.local
 
 Set the `CLIENT_ID` and `CLIENT_SECRET` accordingly to the values you see in the integration console if you edit your integration.
 
-4. Install all dependencies
+5. Install all dependencies
 
 ```
 npm install
 ```
 
-5. Start the app
+6. Start the app
 
 ```
 npm run dev
 ```
 
-6. Add it to a project
+7. Add it to a project
 
 Now your example integration is running on `http://localhost:3000`. Click on "View in Marketplace" to see your integration with all details like others will see it. You're now able to add your integration to a project. Once you click "add" you see a popup that will use the defined Redirect URL `http://localhost:3000/callback`. The integration is now installed.
 
@@ -56,6 +58,7 @@ Now your example integration is running on `http://localhost:3000`. Click on "Vi
 5. After the `code` was exchanged, we can use the `access_token` for our calls to the Vercel API. See the docs for [available endpoints](https://vercel.com/docs/api#endpoints). In this case we're querying the [Projects endpoint](https://vercel.com/docs/api#endpoints/projects/get-projects) to get a list of all projects for the user or the team
 6. The user sees a list of projects. This would be the step to provide additional information and allow the user to link projects to your own resources.
 7. The user clicks on "Redirect me back to Vercel" to close the popup and complete the installation on Vercel. In your real integration, this should be done automatically after you collected all information you need, to save the user some clicks.
+8. Once the integration is configured, re-deploy the linked project to verify the checks are running
 
 
 

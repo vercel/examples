@@ -82,7 +82,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         });
         break;
       case "deployment.error": {
-         // 4 - Re-run the check on error 
+         // 4 - I.e. Re-run the check on error 
         const data = await getChecks(req);
         const result = await fetch(
           `https://api.vercel.com/v1/deployments/${req.body.payload.deployment.id}/checks/${data.checks[0].id}/rerequest`,
@@ -100,19 +100,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       case "deployment.check-rerequested": {
         // 5 - Check re-requested 
-        console.log({
-          deploymentId: req.body.payload.deployment.id,
-          webhookType: req.body.type,
-          payload: null,
-        });
+         console.log(req.body);
         break;
       }
+      case "deployment.canceled":{
+        // 6 - Deployment canceled
+         console.log(req.body);
+      }
       default:
-        console.log({
-          deploymentId: req.body.payload.deployment.id,
-          webhookType: req.body.type,
-          payload: null,
-        });
+        console.log(req.body);
     }
   } catch (e) {
     console.log(e);
