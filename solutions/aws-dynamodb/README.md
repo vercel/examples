@@ -28,6 +28,27 @@ Retrieve your existing access key, secret key, region and table name. Provide th
 1. Add the access key, secret key, region, and table name to `.env.local`.
 1. Run `yarn dev` to start the Next app at `localhost:3000`.
 
+## Credentials and Environment Variables
+
+AWS credentials (e.g. `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`) and region configuration (e.g. `AWS_REGION`) can now be used directly as environment variables for Vercel deployments.
+
+These variables are the default names expected by the AWS SDK, which means the user no longer has to configure credentials when using it. For example, this code is no longer necessary:
+
+```js
+const s3 = new S3Client({
+  accessKeyId: process.env.ACCESS_KEY,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  region: process.env.REGION,
+});
+```
+
+Instead, it can be replaced with this:
+
+```
+const s3 = new S3Client({});
+```
+The SDK will pick up the credentials from the environment automatically.
+
 ## Testing
 
 ### PUT
