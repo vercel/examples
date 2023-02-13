@@ -62,6 +62,29 @@ Retrieve your existing access key, secret key, S3 bucket region and name. Provid
 
 This example uses [`createPresignedPost`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#createPresignedPost-property) instead of [`getSignedUrlPromise`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrlPromise-property) to allow setting max/min file sizes with `content-length-range`.
 
+## Credentials and Environment Variables
+
+AWS credentials (e.g. `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`) and region configuration (e.g. `AWS_REGION`) can now be used directly as environment variables for Vercel deployments.
+
+These variables are the default names expected by the AWS SDK, which means the user no longer has to configure credentials when using it. For example, this code is no longer necessary:
+
+```js
+const s3 = new S3Client({
+  accessKeyId: process.env.ACCESS_KEY,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  region: process.env.REGION,
+});
+```
+
+Instead, it can be replaced with this:
+
+```
+const s3 = new S3Client({});
+```
+
+The SDK will pick up the credentials from the environment automatically.
+
+
 ## Commands
 
 - `yarn dev` – Starts the Next.js app at `localhost:3000`.
