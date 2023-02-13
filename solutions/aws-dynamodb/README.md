@@ -3,7 +3,7 @@ name: AWS DynamoDB with Next.js API Routes
 slug: aws-dynamodb-nextjs-api-routes
 description: Learn to use AWS DynamoDB with Next.js API Routes.
 framework: Next.js
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-dynamodb&project-name=aws-dynamodb&repository-name=aws-dynamodb&env=ACCESS_KEY,SECRET_KEY,REGION,TABLE_NAME&envDescription=AWS%20DynamoDB%20information%20and%20keys
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-dynamodb&project-name=aws-dynamodb&repository-name=aws-dynamodb&env=AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_REGION,TABLE_NAME&envDescription=AWS%20DynamoDB%20information%20and%20keys
 ---
 
 # Next.js + AWS DynamoDB
@@ -16,7 +16,7 @@ This is an example of a Next.js application using DynamoDB for creating, updatin
 
 Retrieve your existing access key, secret key, region and table name. Provide those values after clicking "Deploy" to automatically set the environment variables.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-dynamodb&project-name=aws-dynamodb&repository-name=aws-dynamodb&env=ACCESS_KEY,SECRET_KEY,REGION,TABLE_NAME&envDescription=AWS%20DynamoDB%20information%20and%20keys)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-dynamodb&project-name=aws-dynamodb&repository-name=aws-dynamodb&env=AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_REGION,TABLE_NAME&envDescription=AWS%20DynamoDB%20information%20and%20keys)
 
 **Option 2: Create a new table.**
 
@@ -27,6 +27,27 @@ Retrieve your existing access key, secret key, region and table name. Provide th
 1. Create an `.env.local` file similar to `.env.local.example`.
 1. Add the access key, secret key, region, and table name to `.env.local`.
 1. Run `yarn dev` to start the Next app at `localhost:3000`.
+
+## Credentials and Environment Variables
+
+AWS credentials (e.g. `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`) and region configuration (e.g. `AWS_REGION`) can now be used directly as environment variables for Vercel deployments.
+
+These variables are the default names expected by the AWS SDK, which means the user no longer has to configure credentials when using it. For example, this code is no longer necessary:
+
+```js
+const s3 = new S3Client({
+  accessKeyId: process.env.ACCESS_KEY,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  region: process.env.REGION,
+});
+```
+
+Instead, it can be replaced with this:
+
+```
+const s3 = new S3Client({});
+```
+The SDK will pick up the credentials from the environment automatically.
 
 ## Testing
 
