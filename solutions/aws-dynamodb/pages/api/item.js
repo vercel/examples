@@ -7,23 +7,18 @@ import {
   DeleteItemCommand
 } from '@aws-sdk/client-dynamodb';
 
-const client = new DynamoDBClient({
-  credentials: {
-    accessKeyId: process.env.ACCESS_KEY,
-    secretAccessKey: process.env.SECRET_KEY
-  },
-  region: process.env.REGION
-});
+const client = new DynamoDBClient({});
 
 export default async function handler(req, res) {
   if (req.method === 'PUT') {
-    const { Item } = await client.send(
+    const Item = {
+      id: { S: uuid.v4() },
+      content: { S: req.body.content }
+    };
+    await client.send(
       new PutItemCommand({
         TableName: process.env.TABLE_NAME,
-        Item: {
-          id: { S: uuid.v4() },
-          content: { S: req.body.content }
-        }
+        Item,
       })
     );
 

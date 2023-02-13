@@ -3,7 +3,7 @@ name: AWS S3 Image Upload
 slug: aws-s3-image-upload
 description: Learn to use AWS S3 to upload images to your bucket.
 framework: Next.js
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-s3-image-upload&project-name=aws-s3-image-upload&repository-name=aws-s3-image-upload&env=ACCESS_KEY,SECRET_KEY,REGION,BUCKET_NAME
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-s3-image-upload&project-name=aws-s3-image-upload&repository-name=aws-s3-image-upload&env=AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_REGION,BUCKET_NAME
 ---
 
 # Next.js + AWS S3 Upload
@@ -16,7 +16,7 @@ This is an example of a Next.js application allowing you to upload photos to an 
 
 Retrieve your existing access key, secret key, S3 bucket region and name. Provide those values after clicking "Deploy" to automatically set the environment variables.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-s3-image-upload&project-name=aws-s3-image-upload&repository-name=aws-s3-image-upload&env=ACCESS_KEY,SECRET_KEY,REGION,BUCKET_NAME)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-s3-image-upload&project-name=aws-s3-image-upload&repository-name=aws-s3-image-upload&env=AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_REGION,BUCKET_NAME)
 
 **Option 2: Create an S3 bucket.**
 
@@ -35,34 +35,30 @@ Retrieve your existing access key, secret key, S3 bucket region and name. Provid
 1. You must configure cors, for the upload to work
    1. [S3 Documentation](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-photo-album.html)
    ```json
-{
-   "Version": "2012-10-17",
-   "Statement": [
-      {
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
          "Effect": "Allow",
          "Action": [
-            "s3:DeleteObject",
-            "s3:GetObject",
-            "s3:ListBucket",
-            "s3:PutObject",
-            "s3:PutObjectAcl"
+           "s3:DeleteObject",
+           "s3:GetObject",
+           "s3:ListBucket",
+           "s3:PutObject",
+           "s3:PutObjectAcl"
          ],
-         "Resource": [
-            "arn:aws:s3:::BUCKET_NAME",
-            "arn:aws:s3:::BUCKET_NAME/*"
-         ]
-      }
-   ]
-}
-```
-
-3. Run `cdk bootstrap`.
-4. Run `cdk deploy` to create an S3 bucket with an IAM policy.
-5. Visit your newly created S3 bucket and retrieve the name and region.
-6. Add the name and region to `.env.local`.
-7. Run `yarn dev` to start the Next.js app at `localhost:3000`.
-8. Choose a `.png` or `.jpg` file.
-9. You should see your file successfully uploaded to S3.
+         "Resource": ["arn:aws:s3:::BUCKET_NAME", "arn:aws:s3:::BUCKET_NAME/*"]
+       }
+     ]
+   }
+   ```
+1. Run `cdk bootstrap`.
+1. Run `cdk deploy` to create an S3 bucket with an IAM policy.
+1. Visit your newly created S3 bucket and retrieve the name and region.
+1. Add the name and region to `.env.local`.
+1. Run `yarn dev` to start the Next.js app at `localhost:3000`.
+1. Choose a `.png` or `.jpg` file.
+1. You should see your file successfully uploaded to S3.
 
 This example uses [`createPresignedPost`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#createPresignedPost-property) instead of [`getSignedUrlPromise`](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrlPromise-property) to allow setting max/min file sizes with `content-length-range`.
 

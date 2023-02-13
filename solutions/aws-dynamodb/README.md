@@ -3,7 +3,7 @@ name: AWS DynamoDB with Next.js API Routes
 slug: aws-dynamodb-nextjs-api-routes
 description: Learn to use AWS DynamoDB with Next.js API Routes.
 framework: Next.js
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-dynamodb&project-name=aws-dynamodb&repository-name=aws-dynamodb&env=ACCESS_KEY,SECRET_KEY,REGION,TABLE_NAME&envDescription=AWS%20DynamoDB%20information%20and%20keys
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-dynamodb&project-name=aws-dynamodb&repository-name=aws-dynamodb&env=AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_REGION,TABLE_NAME&envDescription=AWS%20DynamoDB%20information%20and%20keys
 ---
 
 # Next.js + AWS DynamoDB
@@ -16,7 +16,7 @@ This is an example of a Next.js application using DynamoDB for creating, updatin
 
 Retrieve your existing access key, secret key, region and table name. Provide those values after clicking "Deploy" to automatically set the environment variables.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-dynamodb&project-name=aws-dynamodb&repository-name=aws-dynamodb&env=ACCESS_KEY,SECRET_KEY,REGION,TABLE_NAME&envDescription=AWS%20DynamoDB%20information%20and%20keys)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-dynamodb&project-name=aws-dynamodb&repository-name=aws-dynamodb&env=AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_REGION,TABLE_NAME&envDescription=AWS%20DynamoDB%20information%20and%20keys)
 
 **Option 2: Create a new table.**
 
