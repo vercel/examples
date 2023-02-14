@@ -35,10 +35,10 @@ export const Header = () => (
       </nav>
       <div className="flex flex-row flex-1 justify-end items-center">
         <ul className="flex flex-0 flex-row space-x-4 h-[29px]">
-          <li className="py-1.5 px-4 rounded-md bg-slate-500 hover:bg-slate-400 text-white uppercase font-extrabold text-2xs flex items-center">
+          <li className="py-1.5 px-4 rounded-md bg-slate-500 hover:bg-slate-400 text-white uppercase font-extrabold text-[0.6875rem] flex items-center">
             Subscribe for $0.50/Week
           </li>
-          <li className="py-1.5 px-4 rounded-md bg-slate-500 text-white uppercase font-extrabold text-2xs flex items-center hover:bg-slate-400">
+          <li className="py-1.5 px-4 rounded-md bg-slate-500 text-white uppercase font-extrabold text-[0.6875rem] flex items-center hover:bg-slate-400">
             Log In
           </li>
         </ul>

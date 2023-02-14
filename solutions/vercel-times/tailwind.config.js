@@ -14,34 +14,11 @@ module.exports = {
         'stroke-quaternary': '#dfdfdf',
       },
       fontSize: {
-        '4xs': [
-          '.60rem',
-          {
-            lineHeight: '.75rem',
-          },
-        ],
-        '3xs': [
-          '.65rem',
-          {
-            lineHeight: '.75rem',
-          },
-        ],
-        '2xs': [
-          '.70rem',
-          {
-            lineHeight: '.75rem',
-          },
-        ],
-      },
-      screens: {
-        '8xl': '1921px',
-      },
-      maxWidth: {
-        '8xl': '1921px',
+        '2xs': ['.625rem', '1rem'],
       },
       gridTemplateColumns: {
         14: 'repeat(14, minmax(0, 1fr))',
       },
     },
   },
-};
+}
