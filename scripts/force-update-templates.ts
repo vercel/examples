@@ -2,7 +2,6 @@ import { globby } from 'globby'
 import updateChangedTemplates from './lib/update-changed-templates'
 
 const templates = await globby([
-  'edge-api-routes/**/package.json',
   'edge-functions/**/package.json',
   'edge-middleware/**/package.json',
   'starter/**/package.json',

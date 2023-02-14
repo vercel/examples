@@ -31,7 +31,7 @@ export default async function updateChangedTemplates(changedFiles: string[]) {
   }, [])
 
   if (!examplePaths.length) {
-    log('No changed readme.md files.')
+    log('No changed README.md files.')
     return
   }
 
