@@ -20,7 +20,8 @@ function* getMarketIndex() {
 }
 
 const genGetMarketIndex = getMarketIndex()
-export default function FinanceTicker() {
+
+export const FinanceTicker = () => {
   const [index, setIndex] = useState({
     name: 'Nasdaq',
     value: '0,56',

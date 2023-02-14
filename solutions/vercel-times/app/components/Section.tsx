@@ -1,5 +1,3 @@
-import dayjs from 'dayjs'
-
 interface Article {
   title: string
   description: string
@@ -118,7 +116,7 @@ function MultiArcticleSection({ data }: { data: IncomingData }) {
   )
 }
 
-export default function Section({ data }: { data: IncomingData }) {
+export const Section = ({ data }: { data: IncomingData }) => {
   if (data.articles.length > 1) {
     return <MultiArcticleSection data={data} />
   }

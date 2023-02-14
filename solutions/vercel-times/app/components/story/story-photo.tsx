@@ -1,13 +1,13 @@
 import type { FC } from 'react'
 import Image from 'next/image'
-import { Story } from '../nytimes-api'
+import type { Story } from '../../nytimes-api'
 
 interface Props {
   story: Story
   caption?: boolean
 }
 
-const StoryPhoto: FC<Props> = ({ story, caption }) => {
+export const StoryPhoto: FC<Props> = ({ story, caption }) => {
   if (!story.multimedia) return null
 
   const image = story.multimedia.find(
@@ -33,5 +33,3 @@ const StoryPhoto: FC<Props> = ({ story, caption }) => {
     </figure>
   )
 }
-
-export default StoryPhoto

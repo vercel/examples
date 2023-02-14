@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-const TLogo: FC<{ height?: number; width?: number }> = ({
+export const TLogo: FC<{ height?: number; width?: number }> = ({
   height = 30,
   width,
 }) => (
@@ -21,5 +21,3 @@ const TLogo: FC<{ height?: number; width?: number }> = ({
     </g>
   </svg>
 )
-
-export default TLogo

@@ -1,10 +1,10 @@
 import type { FC } from 'react'
-import type { Story } from '../nytimes-api'
-import StoryBody from './StoryBody'
-import StoryWrapper from './StoryWrapper'
-import StoryPhoto from './StoryPhoto'
+import type { Story } from '../../nytimes-api'
+import { StoryBody } from './story-body'
+import { StoryWrapper } from './story-wrapper'
+import { StoryPhoto } from './story-photo'
 
-const StoryGroup: FC<{ stories: Story[] }> = ({ stories }) => {
+export const StoryGroup: FC<{ stories: Story[] }> = ({ stories }) => {
   return (
     <StoryWrapper>
       <div className="col-span-5 grid auto-rows-min gap-4 divide-neutral-200 divide-y">
@@ -26,5 +26,3 @@ const StoryGroup: FC<{ stories: Story[] }> = ({ stories }) => {
     </StoryWrapper>
   )
 }
-
-export default StoryGroup

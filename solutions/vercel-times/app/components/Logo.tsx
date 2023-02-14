@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-const Logo: FC<{ height?: number; width?: number }> = ({
+export const Logo: FC<{ height?: number; width?: number }> = ({
   height = 58,
   width,
 }) => (
@@ -74,5 +74,3 @@ const Logo: FC<{ height?: number; width?: number }> = ({
     </g>
   </svg>
 )
-
-export default Logo

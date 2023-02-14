@@ -1,8 +1,8 @@
-import CookieBanner from 'app/components/CookieBanner'
-import Ad from 'app/components/Ad'
-import Logo from 'app/components/Logo'
 import Link from 'next/link'
-import TLogo from 'app/components/TLogo'
+import { CookieBanner } from 'app/components/cookie-banner'
+import { Ad } from 'app/components/ad'
+import { Logo } from 'app/components/logo'
+import { TLogo } from 'app/components/TLogo'
 import { getNYTimesTopStories, getStoryRouteSegments } from 'app/nytimes-api'
 
 export async function generateStaticParams() {

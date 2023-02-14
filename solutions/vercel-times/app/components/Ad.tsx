@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-const Ad = () => {
+export const Ad = () => {
   const [showAd, setAd] = useState(false)
 
   return !showAd ? null : (
@@ -14,5 +14,3 @@ const Ad = () => {
     </div>
   )
 }
-
-export default Ad

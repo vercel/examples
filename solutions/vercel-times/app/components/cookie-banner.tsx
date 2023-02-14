@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-const CookieBanner = () => {
+export const CookieBanner = () => {
   const [showCookieBanner, setCookieBanner] = useState(false)
 
   return !showCookieBanner ? null : (
@@ -37,5 +37,3 @@ const CookieBanner = () => {
     </div>
   )
 }
-
-export default CookieBanner

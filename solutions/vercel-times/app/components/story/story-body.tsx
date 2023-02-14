@@ -1,8 +1,8 @@
 import type { FC } from 'react'
 import Link from 'next/link'
 import cn from 'clsx'
-import type { Story } from '../nytimes-api'
-import ReadMore from './ReadMore'
+import type { Story } from '../../nytimes-api'
+import { ReadMore } from '../read-more'
 
 interface Props {
   className?: string
@@ -20,7 +20,7 @@ const variants = {
   secondary: 'text-base leading-[1.2em] font-bold',
 }
 
-const StoryBody: FC<Props> = ({
+export const StoryBody: FC<Props> = ({
   className,
   story,
   live,
@@ -59,5 +59,3 @@ const StoryBody: FC<Props> = ({
     )}
   </article>
 )
-
-export default StoryBody
