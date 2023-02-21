@@ -20,7 +20,7 @@ A Next.js app that uses [Vercel Cron Jobs](https://vercel.com/docs/cron-jobs) to
 
 ## Demo
 
-https://cron.vercel.app/
+https://cron-template.vercel.app/
 
 ## How to Use
 
