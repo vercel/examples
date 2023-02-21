@@ -1,0 +1,24 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/1m",
+      "schedule": "* * * * *"
+    },
+    {
+      "path": "/api/cron/10m",
+      "schedule": "*/10 * * * *"
+    },
+    {
+      "path": "/api/cron/1h",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/6h",
+      "schedule": "* */6 * * *"
+    },
+    {
+      "path": "/api/cron/1d",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}
