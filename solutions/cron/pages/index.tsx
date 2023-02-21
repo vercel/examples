@@ -94,7 +94,24 @@ export default function Home({ data }: { data: any }) {
 Home.Layout = Layout
 
 export async function getStaticProps() {
-  const data = await getAll()
+  let edgeConfigValues = await getAll()
+  const response = await Promise.all(
+    Object.keys(edgeConfigValues).map(async (key) => {
+      const value = edgeConfigValues[key]
+      const res = await fetch(
+        `https://hacker-news.firebaseio.com/v0/item/${value}.json?print=pretty`
+      ).then((res) => res.json())
+      return {
+        key,
+        ...res,
+      }
+    })
+  )
+  const data = response.reduce((acc, cur) => {
+    const { key, ...rest } = cur
+    acc[cur.key] = rest
+    return acc
+  }, {})
 
   return {
     props: {

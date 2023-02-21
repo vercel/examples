@@ -17,15 +17,12 @@ async function update(interval: string) {
   const topstories = await fetch(
     'https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty'
   ).then((res) => res.json())
-  const data = await fetch(
-    `https://hacker-news.firebaseio.com/v0/item/${topstories[0]}.json?print=pretty`
-  ).then((res) => res.json())
 
   const response = await fetch(
     `https://api.vercel.com/v1/edge-config/${process.env.EDGE_CONFIG_ID}/items?teamId=${process.env.TEAM_ID_VERCEL}`,
     {
       headers: {
-        Authorization: `Bearer ${process.env.VERCEL_API_TOKEN}`,
+        Authorization: `Bearer ${process.env.API_TOKEN_VERCEL}`,
         'Content-Type': 'application/json',
       },
       method: 'PATCH',
@@ -34,7 +31,7 @@ async function update(interval: string) {
           {
             operation: 'upsert',
             key: interval,
-            value: data,
+            value: topstories[0],
           },
         ],
       }),
