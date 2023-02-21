@@ -1,6 +1,7 @@
 import { Layout, Text, Code, Page, Link } from '@vercel/examples-ui'
 import { getAll } from '@vercel/edge-config'
 import Post from '@/components/post'
+import Head from 'next/head'
 
 const intervals = [
   {
@@ -30,9 +31,15 @@ const intervals = [
   },
 ]
 
+const image = 'https://cron-template.vercel.app/thumbnail.png'
+
 export default function Home({ data }: { data: any }) {
   return (
     <Page>
+      <Head>
+        <meta property="og:image" content={image} />
+        <meta name="twitter:image" content={image} />
+      </Head>
       <section className="flex flex-col gap-6">
         <Text variant="h1">Vercel Crob Jobs Example</Text>
         <Text>
