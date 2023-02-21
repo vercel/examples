@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/analytics": "^0.1.10",
     "@vercel/edge-config": "^0.1.1",
     "@vercel/examples-ui": "^1.0.4",
     "ms": "^2.1.3",
