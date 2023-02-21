@@ -31,7 +31,10 @@ async function update(interval: string) {
           {
             operation: 'upsert',
             key: interval,
-            value: topstories[0],
+            value: {
+              fetchedAt: Date.now(),
+              id: topstories[0],
+            },
           },
         ],
       }),

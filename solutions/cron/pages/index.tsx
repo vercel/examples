@@ -97,19 +97,23 @@ export async function getStaticProps() {
   let edgeConfigValues = await getAll()
   const response = await Promise.all(
     Object.keys(edgeConfigValues).map(async (key) => {
-      const value = edgeConfigValues[key]
+      const { fetchedAt, id } = edgeConfigValues[key]
       const res = await fetch(
-        `https://hacker-news.firebaseio.com/v0/item/${value}.json?print=pretty`
+        `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`
       ).then((res) => res.json())
       return {
         key,
+        fetchedAt,
         ...res,
       }
     })
   )
   const data = response.reduce((acc, cur) => {
-    const { key, ...rest } = cur
-    acc[cur.key] = rest
+    const { key, fetchedAt, ...rest } = cur
+    acc[cur.key] = {
+      ...rest,
+      fetchedAt,
+    }
     return acc
   }, {})
 

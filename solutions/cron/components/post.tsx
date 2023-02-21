@@ -7,6 +7,7 @@ export default function Post({
   time,
   score,
   descendants,
+  fetchedAt,
 }: {
   id: number
   title: string
@@ -14,6 +15,7 @@ export default function Post({
   time: number
   score: number
   descendants: number
+  fetchedAt: number
 }) {
   return (
     <div className="flex justify-between items-center border border-gray-100 shadow-md rounded-lg p-5">
@@ -45,6 +47,7 @@ export default function Post({
           >
             {by}
           </a>
+          <p>{timeAgo(time * 1000)}</p>
           <p>|</p>
           <a
             href={`https://news.ycombinator.com/item?id=${id}`}
@@ -56,12 +59,12 @@ export default function Post({
           </a>
         </div>
       </div>
-      <p className="text-gray-500 text-sm">{timeAgo(time)}</p>
+      <p className="text-gray-500 text-sm">fetched {timeAgo(fetchedAt)}</p>
     </div>
   )
 }
 
 const timeAgo = (time: number): string => {
   if (!time) return 'Never'
-  return `${ms(Date.now() - new Date(time * 1000).getTime())} ago`
+  return `${ms(Date.now() - new Date(time).getTime())} ago`
 }
