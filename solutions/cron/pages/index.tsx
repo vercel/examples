@@ -1,5 +1,4 @@
 import { Layout, Text, Code, Page, Link } from '@vercel/examples-ui'
-import { getAll } from '@vercel/edge-config'
 import Post from '@/components/post'
 import Head from 'next/head'
 
@@ -89,7 +88,7 @@ export default function Home({ data }: { data: any }) {
                 <Text variant="h2">{interval.name}</Text>
                 <Code>{interval.cron}</Code>
               </div>
-              <Post {...data[interval.id]} />
+              <Post interval={interval.id} />
             </div>
           ))}
         </div>
@@ -99,35 +98,3 @@ export default function Home({ data }: { data: any }) {
 }
 
 Home.Layout = Layout
-
-export async function getStaticProps() {
-  let edgeConfigValues = await getAll()
-  const response = await Promise.all(
-    Object.keys(edgeConfigValues).map(async (key) => {
-      const { fetchedAt, id } = edgeConfigValues[key]
-      const res = await fetch(
-        `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`
-      ).then((res) => res.json())
-      return {
-        key,
-        fetchedAt,
-        ...res,
-      }
-    })
-  )
-  const data = response.reduce((acc, cur) => {
-    const { key, fetchedAt, ...rest } = cur
-    acc[cur.key] = {
-      ...rest,
-      fetchedAt,
-    }
-    return acc
-  }, {})
-
-  return {
-    props: {
-      data,
-    },
-    revalidate: 1,
-  }
-}
