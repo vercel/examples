@@ -8,7 +8,7 @@ useCase:
   - Edge Functions
   - Edge Config
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fcron&env=EDGE_CONFIG,TEAM_ID_VERCEL,ACCESS_TOKEN_VERCEL&envDescription=Instructions%20on%20how%20to%20get%20these%20env%20vars&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fcron%231-set-up-environment-variables&project-name=cron&repository-name=cron&demo-title=Vercel%20Cron%20Job%20Example&demo-description=A%20Next.js%20app%20that%20uses%20Vercel%20Cron%20Jobs%20to%20update%20data%20at%20different%20intervals.&demo-url=https%3A%2F%2Fcron-template.vercel.app%2F&demo-image=https%3A%2F%2Fcron-template.vercel.app%2Fthumbnail.png
+deployUrl: 'https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fcron&env=EDGE_CONFIG,TEAM_ID_VERCEL,ACCESS_TOKEN_VERCEL&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%7D%7D&envDescription=Instructions%20on%20how%20to%20get%20these%20env%20vars&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fcron%231-set-up-environment-variables&project-name=cron&repository-name=cron&demo-title=Vercel%20Cron%20Job%20Example&demo-description=A%20Next.js%20app%20that%20uses%20Vercel%20Cron%20Jobs%20to%20update%20data%20at%20different%20intervals.&demo-url=https%3A%2F%2Fcron-template.vercel.app%2F&demo-image=https%3A%2F%2Fcron-template.vercel.app%2Fthumbnail.png'
 demoUrl: https://cron.vercel.app/
 relatedTemplates:
   - hacker-news-slack-bot
@@ -43,7 +43,7 @@ You'll need to complete the following steps to get the required environment vari
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=examples-repo):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fcron&env=EDGE_CONFIG,TEAM_ID_VERCEL,ACCESS_TOKEN_VERCEL&envDescription=Instructions%20on%20how%20to%20get%20these%20env%20vars&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fcron%231-set-up-environment-variables&project-name=cron&repository-name=cron&demo-title=Vercel%20Cron%20Job%20Example&demo-description=A%20Next.js%20app%20that%20uses%20Vercel%20Cron%20Jobs%20to%20update%20data%20at%20different%20intervals.&demo-url=https%3A%2F%2Fcron-template.vercel.app%2F&demo-image=https%3A%2F%2Fcron-template.vercel.app%2Fthumbnail.png)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fcron&env=EDGE_CONFIG,TEAM_ID_VERCEL,ACCESS_TOKEN_VERCEL&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%7D%7D&envDescription=Instructions%20on%20how%20to%20get%20these%20env%20vars&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fcron%231-set-up-environment-variables&project-name=cron&repository-name=cron&demo-title=Vercel%20Cron%20Job%20Example&demo-description=A%20Next.js%20app%20that%20uses%20Vercel%20Cron%20Jobs%20to%20update%20data%20at%20different%20intervals.&demo-url=https%3A%2F%2Fcron-template.vercel.app%2F&demo-image=https%3A%2F%2Fcron-template.vercel.app%2Fthumbnail.png)
 
 Don't forget to set the required environment variables that you got from the previous step.
 
