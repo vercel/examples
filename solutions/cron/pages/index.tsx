@@ -61,7 +61,7 @@ export default function Home({ data }: { data: any }) {
           >
             newest stories on Hacker News
           </Link>{' '}
-          retrieved at a different intervals using{' '}
+          retrieved at different intervals using{' '}
           <Link
             href="https://vercel.com/docs/cron-jobs"
             target="_blank"
