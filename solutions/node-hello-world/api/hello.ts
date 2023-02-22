@@ -1,6 +1,8 @@
-import type { VercelResponse } from '@vercel/node'
+import type { VercelRequest, VercelResponse } from '@vercel/node'
 
-export default async function (res: VercelResponse) {
-  res.statusCode = 200
-  res.json({ name: 'John Doe' })
+export default function handler(req: VercelRequest, res: VercelResponse) {
+  const { name = 'World' } = req.query
+  return res.json({
+    message: `Hello ${name}!`,
+  })
 }

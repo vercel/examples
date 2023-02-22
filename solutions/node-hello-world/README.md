@@ -1,4 +1,4 @@
-# Node Hello World
+# Node.js Hello World
 
 Super simple Node.js + Vercel example that returns a "Hello World" response.
 
@@ -14,12 +14,8 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 ### Clone and Deploy
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/solutions/node-hello-world node-hello-world
-# or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/solutions/node-hello-world node-hello-world
+git clone https://github.com/vercel/examples/tree/main/solutions/node-hello-world
 ```
 
 Install the Vercel CLI:
