@@ -8,6 +8,7 @@ export interface DeployButtonProps {
   env?: string[]
   projectName?: string
   repositoryName?: string
+  customDeployUrl?: string
 }
 
 const DeployButton: FC<DeployButtonProps> = (props) => {
@@ -27,7 +28,11 @@ const DeployButton: FC<DeployButtonProps> = (props) => {
   return (
     <Button
       Component="a"
-      href={`${VERCEL_CLONE}${query ? `?${query}` : ''}`}
+      href={
+        props.customDeployUrl
+          ? props.customDeployUrl
+          : `${VERCEL_CLONE}${query ? `?${query}` : ''}`
+      }
       target="_blank"
       rel="noreferrer"
     >
