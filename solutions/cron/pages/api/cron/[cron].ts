@@ -1,3 +1,4 @@
+import { parseConnectionString } from '@vercel/edge-config'
 import { NextRequest, NextResponse } from 'next/server'
 
 export const config = {
@@ -18,8 +19,21 @@ async function update(interval: string) {
     'https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty'
   ).then((res) => res.json())
 
+  if (!process.env.EDGE_CONFIG) {
+    throw new Error('Missing EDGE_CONFIG environment variable')
+  }
+
+  const parsedConnectionString = parseConnectionString(process.env.EDGE_CONFIG)
+
+  if (!parsedConnectionString) {
+    throw new Error(
+      'Could not parse EDGE_CONFIG environment variable. Looks like it is not a valid connection string.'
+    )
+  }
+
+  const edgeConfigId = parsedConnectionString.id
   const response = await fetch(
-    `https://api.vercel.com/v1/edge-config/${process.env.EDGE_CONFIG_ID}/items${
+    `https://api.vercel.com/v1/edge-config/${edgeConfigId}/items${
       process.env.TEAM_ID_VERCEL ? `?teamId=${process.env.TEAM_ID_VERCEL}` : ''
     }`,
     {
