@@ -71,11 +71,11 @@ export default function Home({ data }: { data: any }) {
           </Link>{' '}
           and stored in{' '}
           <Link
-            href="https://vercel.com/docs/concepts/edge-network/edge-config"
+            href="https://docs.upstash.com/redis"
             target="_blank"
             rel="noreferrer noopener"
           >
-            Vercel Edge Config
+            Upstash Redis
           </Link>
           .
         </Text>
