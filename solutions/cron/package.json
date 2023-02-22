@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@upstash/redis": "^1.20.0",
     "@vercel/analytics": "^0.1.10",
     "@vercel/examples-ui": "^1.0.4",
     "ms": "^2.1.3",
