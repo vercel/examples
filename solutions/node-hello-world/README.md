@@ -1,4 +1,4 @@
-# Node Hello World
+# Node.js Hello World
 
 Super simple Node.js + Vercel example that returns a "Hello World" response.
 
