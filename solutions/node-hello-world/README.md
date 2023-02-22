@@ -1,6 +1,6 @@
 # Node.js Hello World
 
-Super simple Node.js + Vercel example that returns a "Hello World" response.
+Simple Node.js + Vercel example that returns a "Hello World" response.
 
 ## How to Use
 
