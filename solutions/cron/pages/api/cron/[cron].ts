@@ -1,4 +1,4 @@
-import { redis } from '@/lib/upstash'
+import { redis } from '@/lib/sendmail'
 import { NextRequest, NextResponse } from 'next/server'
 
 export const config = {

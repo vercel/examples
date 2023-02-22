@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { redis } from '@/lib/upstash'
+import { redis } from '@/lib/sendmail'
 
 export const config = {
   runtime: 'edge',
