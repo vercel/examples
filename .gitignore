@@ -25,3 +25,4 @@ pnpm-lock.yaml
 
 # Repo scripts
 scripts/dist
+solutions/slackbot/.env
