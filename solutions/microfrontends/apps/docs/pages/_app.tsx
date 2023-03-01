@@ -8,11 +8,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="Monorepo"
-      path="solutions/monorepo"
+      title="Microfrontends"
+      path="solutions/microfrontends"
       deployButton={{
         repositoryUrl:
-          'https://github.com/vercel/examples/tree/main/solutions/reduce-image-bandwidth-usage',
+          'https://github.com/vercel/examples/tree/main/solutions/microfrontends',
       }}
     >
       <Component {...pageProps} />
