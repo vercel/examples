@@ -1,6 +1,17 @@
-# feature-flag-unleash example
+---
+name: Feature flags with Unleash
+slug: feature-flag-unleash
+description: Set up Unleash Proxy for use in Middleware and Server Side Rendering.
+framework: Next.js
+useCase: Edge Middleware
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-unleash&env=UNLEASH_RELAY_SECRET,UNLEASH_SERVER_API_URL,UNLEASH_SERVER_API_TOKEN&project-name=feature-flag-unleash&repository-name=feature-flag-unleash
+demoUrl: https://feature-flag-unleash.vercel.app
+---
 
-This example shows how -------------------------
+# Feature Flags with Unleash
+
+Setting up [Unleash](https://www.getunleash.io/) Proxy on Vercel Edge middleware. It puts the load of getting feature flag definitions on Edge Network Cache, decreasing traffic to the Unleash instance. This example does not cover Static Generation, which is another way of scaling your application.
 
 ## Demo
 
@@ -14,7 +25,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-unleash&project-name=feature-flag-unleash&repository-name=feature-flag-unleash)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-unleash&env=UNLEASH_RELAY_SECRET,UNLEASH_SERVER_API_URL,UNLEASH_SERVER_API_TOKEN&project-name=feature-flag-unleash&repository-name=feature-flag-unleash)
 
 ### Clone and Deploy
 

@@ -12,7 +12,13 @@ function App({ Component, pageProps }: AppProps) {
     <Layout
       title="feature-flag-unleash"
       path="edge-middleware/feature-flag-unleash"
-      description="feature-flag-unleash"
+      deployButton={{
+        env: [
+          'UNLEASH_RELAY_SECRET',
+          'UNLEASH_SERVER_API_URL',
+          'UNLEASH_SERVER_API_TOKEN',
+        ],
+      }}
     >
       <Component {...pageProps} />
     </Layout>
