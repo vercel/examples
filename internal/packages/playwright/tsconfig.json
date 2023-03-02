@@ -16,5 +16,5 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src", "scripts"]
 }
