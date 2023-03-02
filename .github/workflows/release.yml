@@ -1,6 +1,9 @@
 name: Release @vercel/examples-ui
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 env:
   FORCE_COLOR: 3
