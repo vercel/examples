@@ -25,7 +25,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: packages/playwright
+        working-directory: internal
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -57,4 +57,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: playwright-E2E-report
-          path: packages/playwright/src/test-results
+          path: internal/packages/playwright/src/test-results
