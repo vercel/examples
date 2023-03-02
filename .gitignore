@@ -1,12 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Dependencies
-/node_modules
-
 # Ignore the dependency locks of all examples
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+
 # include lockfile for turbo
 !/solutions/monorepo/pnpm-lock.yaml
 !/solutions/testing/pnpm-lock.yaml

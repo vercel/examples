@@ -1,0 +1,22 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+node_modules
+
+# Ignore the dependency locks of all examples
+/pnpm-lock.yaml
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local ENV files
+/.env*.local
+
+# Repo scripts
+scripts/dist
