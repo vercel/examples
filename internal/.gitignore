@@ -3,9 +3,6 @@
 # Dependencies
 node_modules
 
-# Ignore the dependency locks of all examples
-/pnpm-lock.yaml
-
 # Misc
 .DS_Store
 *.pem
