@@ -11,7 +11,7 @@ demoUrl: https://feature-flag-unleash.vercel.app
 
 # Feature Flags with Unleash
 
-Setting up [Unleash](https://www.getunleash.io/) Proxy on Vercel Edge middleware. It puts the load of getting feature flag definitions on Edge Network Cache, decreasing traffic to the Unleash instance. This example does not cover Static Generation, which is another way of scaling your application.
+Use [Unleash](https://www.getunleash.io/) with Vercel Edge Middleware. This example puts the load of getting feature flag definitions on the Edge Network Cache, decreasing traffic to the Unleash instance.
 
 ## Demo
 
