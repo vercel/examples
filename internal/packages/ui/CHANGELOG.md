@@ -1,5 +1,11 @@
 # @vercel/examples-ui
 
+## 1.0.6
+
+### Patch Changes
+
+- f547c64: extend deployButton on Layout
+
 ## 1.0.5
 
 ### Patch Changes
