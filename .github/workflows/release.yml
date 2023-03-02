@@ -40,9 +40,9 @@ jobs:
         uses: changesets/action@v1
         with:
           # Builds the package and executes `changeset publish`
-          publish: pwd && cd internal && pnpm release
+          publish: pwd && pnpm release
           # Alias to `changeset version` script in package.json
-          version: pwd && cd internal && pnpm version-packages
+          version: pwd && pnpm version-packages
           commit: 'chore: update package versions'
           title: 'chore: update package versions'
         env:
