@@ -20,6 +20,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: internal
     steps:
       - name: Checkout
         uses: actions/checkout@v3
