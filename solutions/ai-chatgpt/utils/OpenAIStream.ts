@@ -40,8 +40,6 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
     requestHeaders["OpenAI-Organization"] = process.env.OPENAI_API_ORG;
   }
 
-  console.log("requestHeaders", requestHeaders)
-  console.log("payload", payload)
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     headers: requestHeaders,
     method: "POST",
