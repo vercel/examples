@@ -1,13 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import { ConnectWallet } from './ConnectWallet';
+import { SwitchNetwork } from './SwitchNetwork';
+import { UploadNft } from './UploadNft';
+import { Button, LoadingDots, Text } from '@vercel/examples-ui';
+import { useAccount, useNetwork } from 'wagmi';
+import { useSession } from "next-auth/react"
+import { NETWORK_ID } from '../helpers/constant.helpers';
 import { useRouter } from 'next/router'
-import { ConnectWallet } from './ConnectWallet'
-import { SwitchNetwork } from './SwitchNetwork'
-import { UploadNft } from './UploadNft'
-import { Button, LoadingDots, Text } from '@vercel/examples-ui'
-import { NETWORK_ID } from '../helpers/constant.helpers'
-import Image from 'next/image'
-import { useChain, useMoralis } from 'react-moralis'
-import Moralis from 'moralis-v1'
+import { useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi';
+import axios from 'axios';
+import Image from 'next/image';
+import NFTAbi from "../hardhat/artifacts/contracts/NFT.sol/NFT.json";
+import NFTAddress from '../utils/constant';
 
 enum MintState {
   Connect,
@@ -18,77 +22,94 @@ enum MintState {
 }
 
 export const Mint: React.VFC = () => {
-  const router = useRouter()
-  const [state, setState] = useState<MintState>(MintState.Connect)
+  const [state, setState] = useState<MintState>(MintState.Connect);
+  const { isConnected, address } = useAccount();
+  const { chain } = useNetwork();
+  const [isLoading, setLoading] = useState<boolean>(false);
+  const [asset, setAsset] = useState<string | null>(null);
+  const [tokenUri, setTokenUri] = useState<string | null>(null);
+  const { status } = useSession();
+  const router = useRouter();
 
-  const { account, isAuthenticated, enableWeb3 } = useMoralis()
-  const { chainId } = useChain()
+  const { data, refetch } = useContractRead({
+    address: NFTAddress,
+    abi: NFTAbi.abi,
+    functionName: 'totalSupply',
+  })
 
-  const [isLoading, setLoading] = useState(false)
-
-  const [asset, setAsset] = useState<Moralis.File | null>(null)
+  const { config } = usePrepareContractWrite({
+    address: NFTAddress,
+    abi: NFTAbi.abi,
+    functionName: 'safeMint',
+    args: [address, tokenUri],
+    onSuccess: () => {
+      try {
+        const tokenId = (data as any)?.toString();
+        setTimeout(() => {
+          router.push(
+            `https://testnets.opensea.io/assets/goerli/${NFTAddress}/${tokenId}`
+          );
+        }, 10000);
+      }
+      catch (e) {
+        console.error(e);
+      }
+    }
+  })
+  const { writeAsync, isSuccess } = useContractWrite(config);
 
   useEffect(() => {
-    if (!account && isAuthenticated) enableWeb3()
-    if (!account || !isAuthenticated) {
+    if (!address || !isConnected || status !== "authenticated") {
       setState(MintState.Connect)
-    } else if (chainId !== NETWORK_ID) {
+    } else if (chain?.id !== NETWORK_ID) {
       setState(MintState.ConfirmNetwork)
     } else {
       setState(MintState.Upload)
     }
-  }, [account, enableWeb3, isAuthenticated, chainId])
+  }, [address, chain?.id, isConnected, status])
 
   const handleMint = async () => {
     try {
       setLoading(true)
-      await enableWeb3()
 
-      const metadata = {
-        name: 'My own NFT by Vercel',
-        description: 'NFTs minted using Vercel and Next.js',
-        //@ts-ignore
-        image: `/ipfs/${asset!.hash()}`,
-      }
-
-      const jsonFile = new Moralis.File('metadata.json', {
-        base64: btoa(JSON.stringify(metadata)),
-      })
-      await jsonFile.saveIPFS()
-
-      //@ts-ignore
-      const metadataHash = jsonFile.hash()
-
-      if (!Moralis.Plugins?.rarible)
-        throw new Error(
-          'Please install Rarible Plugin to your Moralis Server: https://moralis.io/plugins/rarible-nft-tools/'
-        )
-
-      const { data } = await Moralis.Plugins.rarible.lazyMint({
-        chain: 'rinkeby',
-        userAddress: account,
-        tokenType: 'ERC721',
-        tokenUri: `ipfs://${metadataHash}`,
-        supply: 1,
-        royaltiesAmount: 1,
-      })
-      setTimeout(() => {
-        router.push(
-          `https://rinkeby.rarible.com/token/${data.result.tokenAddress}:${data.result.tokenId}`
-        )
-      }, 1000)
+      const { data: dataRes } = await axios.post('/api/ipfs/upload-folder', {
+        uploadArray: [
+          {
+            path: "metadata.json",
+            // @ts-ignore
+            content: {
+              name: 'My own NFT by Vercel',
+              description: 'NFTs minted using Vercel and Next.js',
+              //@ts-ignore
+              image: asset,
+            }
+          }
+        ]
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      setTokenUri(dataRes?.[0]?.path);
+      refetch();
     } catch (e) {
-      console.error(e)
-    } finally {
-      setLoading(false)
+      console.error(e);
+      setLoading(false);
     }
   }
 
-  const onUploadComplete = async (asset: Moralis.File) => {
+  const onUploadComplete = async (asset: string) => {
     setAsset(asset)
     setState(MintState.ConfirmMint)
     setLoading(false)
   }
+
+  useEffect(() => {
+    if (tokenUri && !isSuccess) {
+      writeAsync?.()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tokenUri, isSuccess])
 
   return (
     <div className="inline-block align-bottom text-left overflow-hidden  transform transition-all sm:my-8 sm:align-middle  ">
@@ -107,25 +128,28 @@ export const Mint: React.VFC = () => {
             that can fail. This is still the prefered method of choice to host
             in the NFT community as it is decentralized.{' '}
             <span className="underline italic">
-              This process might take up to 1 minute to complete
+              This process might take up to 1 minute to complete. Please refresh
+              the OpenSea page if you didn&apos;t see your NFT.
             </span>
           </Text>
           <section className="relative w-full pb-[20%] h-48 pb-6 mt-12">
-            <Image
-              className="rounded-xl"
-              src={String(asset?._url)}
-              alt="The image that will be minted as an NFT"
-              layout="fill"
-              objectFit="contain"
-            />
+            {asset ? (
+              <Image
+                className="rounded-xl"
+                src={asset}
+                alt="The image that will be minted as an NFT"
+                fill
+              />
+            ) : (
+              <></>
+            )}
           </section>
-
           <section className="flex justify-center mt-6">
             <Button
               size="lg"
               variant="black"
               onClick={handleMint}
-              disabled={!account || !asset || isLoading}
+              disabled={!asset || isLoading}
             >
               {isLoading ? <LoadingDots /> : 'Mint'}
             </Button>

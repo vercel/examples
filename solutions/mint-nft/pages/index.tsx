@@ -1,4 +1,4 @@
-import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
+import { Layout, Text, Page } from '@vercel/examples-ui'
 import { Mint } from '../components/Mint'
 
 function Home() {

@@ -1,11 +1,11 @@
-type SupportedNetworks = "0x1" | "0x4"
+type SupportedNetworks = 1 | 5
 
-// this example would work on ethereum mainnet but Rinkeby is used to showcase. For main network change to "0x1"
-export const NETWORK_ID = "0x4"
+// this example would work on ethereum mainnet but Goerli is used to showcase. For main network change to "0x1"
+export const NETWORK_ID = 5
 
 export const ChainLabelMap: Record<SupportedNetworks, string> = {
-  "0x1": 'Ethereum',
-  "0x4": 'Rinkeby',
+  1: 'Ethereum',
+  5: 'Goerli',
 }
 
 export const currentChainLabel = ChainLabelMap[NETWORK_ID]

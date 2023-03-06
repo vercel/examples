@@ -1,13 +1,45 @@
-import { useMoralis } from 'react-moralis'
+import { useState } from "react";
 import { Button, Text, LoadingDots } from '@vercel/examples-ui'
+import { useConnect, useDisconnect, useAccount, useSignMessage } from 'wagmi';
+import { signIn } from 'next-auth/react';
+import { useAuthRequestChallengeEvm } from '@moralisweb3/next';
+import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
+import { useRouter } from 'next/router';
 
 export const ConnectWallet: React.VFC = () => {
-  const { authenticate, isAuthenticating } = useMoralis()
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { connectAsync } = useConnect();
+  const { disconnectAsync } = useDisconnect();
+  const { isConnected } = useAccount();
+  const { signMessageAsync } = useSignMessage();
+  const { requestChallengeAsync } = useAuthRequestChallengeEvm();
+  const { push } = useRouter();
 
-  const handleConnect = () => {
-    authenticate({
-      signingMessage: 'Authorize linking of your wallet to',
-    })
+  const handleConnect = async () => {
+    setIsLoading(true);
+    try {
+      //disconnects the web3 provider if it's already active
+      if (isConnected) {
+        await disconnectAsync();
+      }
+      // enabling the web3 provider metamask
+      const { account, chain } = await connectAsync({ connector: new MetaMaskConnector() });
+
+      const userData = { address: account, chainId: chain.id };
+      const payload = `Authentication time: ${Date.now()}`;
+      const { message = "" } = (await requestChallengeAsync(userData)) ?? {};
+      // signing the received message via metamask
+      const signature = await signMessageAsync({ message });
+
+      setIsLoading(false);
+
+      await signIn('moralis-auth', { message, signature, payload, redirect: false });
+
+      push('/');
+    } catch (e) {
+      console.error(e);
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -41,8 +73,13 @@ export const ConnectWallet: React.VFC = () => {
           accessibility in mind.
         </Text>
         <div className="mt-12  flex justify-center">
-          <Button variant="black" size="lg" onClick={handleConnect}>
-            {isAuthenticating ? <LoadingDots /> : 'Connect Wallet'}
+          <Button
+            variant="black"
+            size="lg"
+            disabled={isLoading}
+            onClick={handleConnect}
+          >
+            {isLoading ? <LoadingDots /> : "Connect Wallet"}
           </Button>
         </div>
       </div>
