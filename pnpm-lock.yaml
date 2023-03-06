@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   eslint: latest
   eslint-config-next: canary
-  eslint-config-turbo: ^0.0.4
   husky: ^8.0.1
   lint-staged: ^13.0.3
   plop: ^3.1.1
@@ -12,8 +11,7 @@ specifiers:
 
 devDependencies:
   eslint: 8.35.0
-  eslint-config-next: 13.2.4-canary.0_ycpbpc6yetojsgtrx3mwntkhsu
-  eslint-config-turbo: 0.0.4_eslint@8.35.0
+  eslint-config-next: 13.2.4-canary.4_ycpbpc6yetojsgtrx3mwntkhsu
   husky: 8.0.3
   lint-staged: 13.1.2
   plop: 3.1.2
@@ -71,8 +69,8 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@next/eslint-plugin-next/13.2.4-canary.0:
-    resolution: {integrity: sha512-opggGf9WdvkcRJFqeaJOU39MrHcbkKszBM//vht1hDYR7+g7elcW2PEMKSGuwxfF6DR4HUPJFyrDc1Nj8l9+pg==}
+  /@next/eslint-plugin-next/13.2.4-canary.4:
+    resolution: {integrity: sha512-5ERY6SZDMfnesrRSaGeKfEzIufMGgxkTC2Rn157/BHWYdJG0jxlJrJPy5BTicpCavsBt+2ZkKPMxB8fpJS5mDA==}
     dependencies:
       glob: 7.1.7
     dev: true
@@ -789,8 +787,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-next/13.2.4-canary.0_ycpbpc6yetojsgtrx3mwntkhsu:
-    resolution: {integrity: sha512-qSXDIhBeSpMtc73ciJ76/6yudxjT1HBjXOXIz6yMKuCINJz4iBWIkNkr67/0whozCs4OWEbqc+BGwTQxUQ+uPQ==}
+  /eslint-config-next/13.2.4-canary.4_ycpbpc6yetojsgtrx3mwntkhsu:
+    resolution: {integrity: sha512-nhmnaF/Lf25lRZTDMQJ0AZELJhtu0X+EYQDuY8e0drsUGhp4dce/krcizTyL1nahJxD7WZR0dsfgu4kmR6R/ZQ==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0
       typescript: '>=3.3.1'
@@ -798,7 +796,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@next/eslint-plugin-next': 13.2.4-canary.0
+      '@next/eslint-plugin-next': 13.2.4-canary.4
       '@rushstack/eslint-patch': 1.2.0
       '@typescript-eslint/parser': 5.54.0_ycpbpc6yetojsgtrx3mwntkhsu
       eslint: 8.35.0
@@ -812,15 +810,6 @@ packages:
     transitivePeerDependencies:
       - eslint-import-resolver-webpack
       - supports-color
-    dev: true
-
-  /eslint-config-turbo/0.0.4_eslint@8.35.0:
-    resolution: {integrity: sha512-HErPS/wfWkSdV9Yd2dDkhZt3W2B78Ih/aWPFfaHmCMjzPalh+5KxRRGTf8MOBQLCebcWJX0lP1Zvc1rZIHlXGg==}
-    peerDependencies:
-      eslint: ^7.23.0 || ^8.0.0
-    dependencies:
-      eslint: 8.35.0
-      eslint-plugin-turbo: 0.0.4_eslint@8.35.0
     dev: true
 
   /eslint-import-resolver-node/0.3.7:
@@ -972,14 +961,6 @@ packages:
       resolve: 2.0.0-next.4
       semver: 6.3.0
       string.prototype.matchall: 4.0.8
-    dev: true
-
-  /eslint-plugin-turbo/0.0.4_eslint@8.35.0:
-    resolution: {integrity: sha512-dfmYE/iPvoJInQq+5E/0mj140y/rYwKtzZkn3uVK8+nvwC5zmWKQ6ehMWrL4bYBkGzSgpOndZM+jOXhPQ2m8Cg==}
-    peerDependencies:
-      eslint: ^7.23.0 || ^8.0.0
-    dependencies:
-      eslint: 8.35.0
     dev: true
 
   /eslint-scope/7.1.1:
