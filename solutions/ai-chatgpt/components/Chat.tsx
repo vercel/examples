@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Button } from './Button'
-import { type Message, ChatLine, LoadingChatLine } from './ChatLine'
+import { type ChatGPTMessage, ChatLine, LoadingChatLine } from './ChatLine'
 import { useCookies } from 'react-cookie'
 
 const COOKIE_NAME = 'nextjs-example-ai-chat-gpt3'
 
 // default first message to display in UI (not necessary to define the prompt)
-export const initialMessages: Message[] = [
+export const initialMessages: ChatGPTMessage[] = [
   {
-    who: 'bot',
-    message: 'Hi! I’m A friendly AI assistant. Ask me anything!',
+    role: 'assistant',
+    content: 'Hi! I am a friendly AI assistant. Ask me anything!',
   },
 ]
 
@@ -45,7 +45,7 @@ const InputMessage = ({ input, setInput, sendMessage }: any) => (
 )
 
 export function Chat() {
-  const [messages, setMessages] = useState<Message[]>(initialMessages)
+  const [messages, setMessages] = useState<ChatGPTMessage[]>(initialMessages)
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [cookie, setCookie] = useCookies([COOKIE_NAME])
@@ -64,7 +64,7 @@ const sendMessage = async (message: string) => {
   setLoading(true);
   const newMessages = [
     ...messages,
-    { message: message, who: "user" } as Message,
+    { role: "user", content: message } as ChatGPTMessage,
   ];
   setMessages(newMessages);
   const last10messages = newMessages.slice(-10); // remember last 10 messages
@@ -107,7 +107,7 @@ const sendMessage = async (message: string) => {
 
     setMessages([
       ...newMessages,
-      { message: lastMessage, who: "bot" } as Message,
+      { role: "assistant", content: lastMessage } as ChatGPTMessage,
     ]);
 
     setLoading(false);
@@ -118,8 +118,8 @@ const sendMessage = async (message: string) => {
 
   return (
     <div className="rounded-2xl border-zinc-100  lg:border lg:p-6">
-      {messages.map(({ message, who }, index) => (
-        <ChatLine key={index} who={who} message={message} />
+      {messages.map(({ content, role }, index) => (
+        <ChatLine key={index} role={role} content={content} />
       ))}
 
       {loading && <LoadingChatLine />}

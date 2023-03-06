@@ -4,9 +4,11 @@ import Balancer from 'react-wrap-balancer'
 // wrap Balancer to remove type errors :( - @TODO - fix this ugly hack
 const BalancerWrapper = (props: any) => <Balancer {...props} />
 
-export type Message = {
-  who: 'bot' | 'user' | undefined
-  message?: string
+type ChatGPTAgent = "user" | "system" | "assistant";
+
+export interface ChatGPTMessage {
+  role: ChatGPTAgent;
+  content: string;
 }
 
 // loading placeholder animation for the chat line
@@ -40,16 +42,16 @@ const convertNewLines = (text: string) =>
     </span>
   ))
 
-export function ChatLine({ who = 'bot', message }: Message) {
-  if (!message) {
+export function ChatLine({ role = 'assistant', content }: ChatGPTMessage) {
+  if (!content) {
     return null
   }
-  const formatteMessage = convertNewLines(message)
+  const formatteMessage = convertNewLines(content)
 
   return (
     <div
       className={
-        who != 'bot' ? 'float-right clear-both' : 'float-left clear-both'
+        role != 'assistant' ? 'float-right clear-both' : 'float-left clear-both'
       }
     >
       <BalancerWrapper>
@@ -58,13 +60,13 @@ export function ChatLine({ who = 'bot', message }: Message) {
             <div className="flex-1 gap-4">
               <p className="font-large text-xxl text-gray-900">
                 <a href="#" className="hover:underline">
-                  {who == 'bot' ? 'AI' : 'You'}
+                  {role == 'assistant' ? 'AI' : 'You'}
                 </a>
               </p>
               <p
                 className={clsx(
                   'text ',
-                  who == 'bot' ? 'font-semibold font- ' : 'text-gray-400'
+                  role == 'assistant' ? 'font-semibold font- ' : 'text-gray-400'
                 )}
               >
                 {formatteMessage}
