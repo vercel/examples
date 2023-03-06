@@ -58,37 +58,63 @@ export function Chat() {
     }
   }, [cookie, setCookie])
 
-  // send message to API /api/chat endpoint
-  const sendMessage = async (message: string) => {
-    setLoading(true)
-    const newMessages = [
-      ...messages,
-      { message: message, who: 'user' } as Message,
-    ]
-    setMessages(newMessages)
-    const last10messages = newMessages.slice(-10)
 
-    const response = await fetch('/api/chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        messages: last10messages,
-        user: cookie[COOKIE_NAME],
-      }),
-    })
-    const data = await response.json()
+// send message to API /api/chat endpoint
+const sendMessage = async (message: string) => {
+  setLoading(true);
+  const newMessages = [
+    ...messages,
+    { message: message, who: "user" } as Message,
+  ];
+  setMessages(newMessages);
+  const last10messages = newMessages.slice(-10); // remember last 10 messages
 
-    // strip out white spaces from the bot message
-    const botNewMessage = data.text.trim()
+  const response = await fetch("/api/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      messages: last10messages,
+      user: cookie[COOKIE_NAME],
+    }),
+  });
+
+  console.log("Edge function returned.");
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  // This data is a ReadableStream
+  const data = response.body;
+  if (!data) {
+    return;
+  }
+
+  const reader = data.getReader();
+  const decoder = new TextDecoder();
+  let done = false;
+
+  let lastMessage = "";
+
+  while (!done) {
+    const { value, done: doneReading } = await reader.read();
+    done = doneReading;
+    const chunkValue = decoder.decode(value);
+
+    lastMessage = lastMessage + chunkValue;
 
     setMessages([
       ...newMessages,
-      { message: botNewMessage, who: 'bot' } as Message,
-    ])
-    setLoading(false)
+      { message: lastMessage, who: "bot" } as Message,
+    ]);
+
+    setLoading(false);
   }
+};
+
+
 
   return (
     <div className="rounded-2xl border-zinc-100  lg:border lg:p-6">
