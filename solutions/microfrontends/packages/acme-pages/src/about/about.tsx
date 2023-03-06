@@ -17,7 +17,13 @@ export default function About() {
         Navigations between <Link href="/">Home</Link> and{' '}
         <Link href="/about">About</Link> are client-side transitions because
         they&apos;re part of the same Next.js app, even if their source lives
-        externally. Navigating to <Link href="/docs">Docs (Multi Zones)</Link>{' '}
+        externally. Navigating to{' '}
+        <a
+          className="text-link hover:text-link-light transition-colors"
+          href="/docs"
+        >
+          Docs (Multi Zones)
+        </a>{' '}
         requires a page refresh because it lives in a different Next.js app.
       </Text>
     </Page>

@@ -13,11 +13,16 @@ export default function About() {
         <Code>apps/docs/pages/about.tsx</Code>).
       </Text>
       <Text>
-        Navigations between <Link href="/docs">Docs</Link> and{' '}
-        <Link href="/docs/about">About Docs</Link> are client-side transitions
+        Navigations between <Link href="/">Docs</Link> and{' '}
+        <Link href="/about">About Docs</Link> are client-side transitions
         because they&apos;re part of the same Next.js app. Navigating to{' '}
-        <Link href="/docs">Home (Multi Zones)</Link> requires a page refresh
-        because it lives in a different Next.js app.
+        <a
+          className="text-link hover:text-link-light transition-colors"
+          href="/"
+        >
+          Home (Multi Zones)
+        </a>{' '}
+        requires a page refresh because it lives in a different Next.js app.
       </Text>
     </Page>
   )
