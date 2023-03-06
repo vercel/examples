@@ -1,4 +1,3 @@
-import { type NextRequest, NextResponse } from 'next/server'
 import { initialMessages } from '../../components/Chat'
 import { type Message } from '../../components/ChatLine'
 import { OpenAIStream, OpenAIStreamPayload } from "../../utils/OpenAIStream";
@@ -41,7 +40,7 @@ export const config = {
   runtime: 'edge',
 }
 
-export default async function handler(req: NextRequest) {
+const handler = async (req: Request): Promise<Response> => {
   // read body from request
   const body = await req.json()
 
@@ -80,3 +79,4 @@ export default async function handler(req: NextRequest) {
   return new Response(stream);
 
 }
+export default handler;
