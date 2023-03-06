@@ -1,0 +1,34 @@
+{
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "test": "turbo run test",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish",
+    "force-update-templates": "pnpm build:force-update-templates && NODE_OPTIONS=--enable-source-maps node scripts/dist/force-update-templates.mjs",
+    "build:force-update-templates": "pnpm dlx esbuild@0.15.7 scripts/force-update-templates.ts --bundle --sourcemap --platform=node --format=esm --outfile=scripts/dist/force-update-templates.mjs --external:./node_modules/*",
+    "update-templates": "pnpm build:update-templates && NODE_OPTIONS=--enable-source-maps node scripts/dist/update-templates.js",
+    "build:update-templates": "pnpm dlx esbuild@0.15.7 scripts/update-templates.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-templates.js --external:./node_modules/*",
+    "update-template": "pnpm build:update-template && NODE_OPTIONS=--enable-source-maps node scripts/dist/update-template.js",
+    "build:update-template": "pnpm dlx esbuild@0.15.7 scripts/update-template.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-template.js --external:./node_modules/*",
+    "update-fields": "pnpm build:update-fields && NODE_OPTIONS=--enable-source-maps node scripts/dist/update-fields.js",
+    "build:update-fields": "pnpm dlx esbuild@0.15.7 scripts/update-fields.ts --bundle --sourcemap --platform=node --outfile=scripts/dist/update-fields.js --external:./node_modules/*"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.24.4",
+    "@types/node-fetch": "^2.6.2",
+    "@vercel/fetch": "^6.2.0",
+    "dotenv": "^16.0.1",
+    "front-matter": "^4.0.2",
+    "globby": "^13.1.3",
+    "node-fetch": "^2.6.7",
+    "turbo": "^1.5.1",
+    "typescript": "^4.8.3"
+  }
+}
