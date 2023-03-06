@@ -68,17 +68,18 @@
           "Next.js",
           "Svelte",
           "React",
-          "Python",
           "Vue",
+          "Python",
+          "Flask",
           "Nuxt",
+          "Qwik",
           "Astro",
           "Solid",
           "Preact",
-          "Qwik",
           "Gatsby",
           "Angular",
-          "Hugo",
-          "Remix"
+          "Remix",
+          "Hugo"
         ]
       }
     ]
@@ -91,7 +92,7 @@
       {
         "size": {
           "min": 1,
-          "max": 2
+          "max": 3
         }
       }
     ],
@@ -106,11 +107,12 @@
           "Edge Middleware",
           "Edge Config",
           "Portfolio",
-          "SaaS",
-          "Multi-tenant Apps",
-          "Realtime Apps",
-          "Documentation",
           "Virtual Event",
+          "SaaS",
+          "Documentation",
+          "Multi tenant-apps",
+          "Cron",
+          "Realtime Apps",
           "Monorepos",
           "Web3"
         ]
@@ -125,7 +127,7 @@
       {
         "size": {
           "min": 1,
-          "max": 1
+          "max": 2
         }
       }
     ],
@@ -136,10 +138,12 @@
           "Chakra",
           "Radix UI",
           "CSS Modules",
-          "CSS-in-JSX",
           "Material UI",
           "Styled Components",
-          "Pinceau"
+          "Pinceau",
+          "CSS",
+          "CSS-in-JSX",
+          "None"
         ]
       }
     ]

@@ -110,7 +110,7 @@ pnpm build:swc -w
 If you want to make an update to the package, go to an example and install it with npm:
 
 ```bash
-npm i $(npm pack ../../packages/ui | tail -1)
+npm i $(npm pack ../../internal/packages/ui | tail -1)
 ```
 
-> Make sure to have dependencies installed in `packages/ui` or otherwise the symlink won't resolve imports.
+> Make sure to have dependencies installed in `internal/packages/ui` or otherwise the symlink won't resolve imports.

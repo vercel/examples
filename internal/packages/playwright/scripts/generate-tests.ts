@@ -8,9 +8,10 @@ type Attributes = {
 }
 
 async function generateTests() {
-  // Go from `packages/playwright/dist/scripts` to `packages/playwright`
+  // Go from `internal/packages/playwright/dist/scripts` to `internal/packages/playwright`
   const packageRoot = path.resolve(__dirname, '../..')
-  const rootDir = path.join(packageRoot, '../..')
+  // Go from `internal/packages/playwright` to the root of the repo
+  const rootDir = path.join(packageRoot, '../../..')
   // This is where all the tests will be generated
   const relativeTestDir = path.join('src', 'e2e', 'tests', 'generated')
   const testDir = path.join(packageRoot, relativeTestDir)
