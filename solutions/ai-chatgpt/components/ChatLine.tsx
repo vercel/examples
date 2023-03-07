@@ -4,11 +4,11 @@ import Balancer from 'react-wrap-balancer'
 // wrap Balancer to remove type errors :( - @TODO - fix this ugly hack
 const BalancerWrapper = (props: any) => <Balancer {...props} />
 
-type ChatGPTAgent = "user" | "system" | "assistant";
+type ChatGPTAgent = 'user' | 'system' | 'assistant'
 
 export interface ChatGPTMessage {
-  role: ChatGPTAgent;
-  content: string;
+  role: ChatGPTAgent
+  content: string
 }
 
 // loading placeholder animation for the chat line
