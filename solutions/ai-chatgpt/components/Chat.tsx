@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Button } from './Button'
-import { type Message, ChatLine, LoadingChatLine } from './ChatLine'
+import { type ChatGPTMessage, ChatLine, LoadingChatLine } from './ChatLine'
 import { useCookies } from 'react-cookie'
 
 const COOKIE_NAME = 'nextjs-example-ai-chat-gpt3'
 
 // default first message to display in UI (not necessary to define the prompt)
-export const initialMessages: Message[] = [
+export const initialMessages: ChatGPTMessage[] = [
   {
-    who: 'bot',
-    message: 'Hi! I’m A friendly AI assistant. Ask me anything!',
+    role: 'assistant',
+    content: 'Hi! I am a friendly AI assistant. Ask me anything!',
   },
 ]
 
@@ -45,7 +45,7 @@ const InputMessage = ({ input, setInput, sendMessage }: any) => (
 )
 
 export function Chat() {
-  const [messages, setMessages] = useState<Message[]>(initialMessages)
+  const [messages, setMessages] = useState<ChatGPTMessage[]>(initialMessages)
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [cookie, setCookie] = useCookies([COOKIE_NAME])
@@ -63,10 +63,10 @@ export function Chat() {
     setLoading(true)
     const newMessages = [
       ...messages,
-      { message: message, who: 'user' } as Message,
+      { role: 'user', content: message } as ChatGPTMessage,
     ]
     setMessages(newMessages)
-    const last10messages = newMessages.slice(-10)
+    const last10messages = newMessages.slice(-10) // remember last 10 messages
 
     const response = await fetch('/api/chat', {
       method: 'POST',
@@ -78,22 +78,45 @@ export function Chat() {
         user: cookie[COOKIE_NAME],
       }),
     })
-    const data = await response.json()
 
-    // strip out white spaces from the bot message
-    const botNewMessage = data.text.trim()
+    console.log('Edge function returned.')
 
-    setMessages([
-      ...newMessages,
-      { message: botNewMessage, who: 'bot' } as Message,
-    ])
-    setLoading(false)
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
+
+    // This data is a ReadableStream
+    const data = response.body
+    if (!data) {
+      return
+    }
+
+    const reader = data.getReader()
+    const decoder = new TextDecoder()
+    let done = false
+
+    let lastMessage = ''
+
+    while (!done) {
+      const { value, done: doneReading } = await reader.read()
+      done = doneReading
+      const chunkValue = decoder.decode(value)
+
+      lastMessage = lastMessage + chunkValue
+
+      setMessages([
+        ...newMessages,
+        { role: 'assistant', content: lastMessage } as ChatGPTMessage,
+      ])
+
+      setLoading(false)
+    }
   }
 
   return (
     <div className="rounded-2xl border-zinc-100  lg:border lg:p-6">
-      {messages.map(({ message, who }, index) => (
-        <ChatLine key={index} who={who} message={message} />
+      {messages.map(({ content, role }, index) => (
+        <ChatLine key={index} role={role} content={content} />
       ))}
 
       {loading && <LoadingChatLine />}
