@@ -4,6 +4,7 @@ const nextConfig = {
   swcMinify: true,
   async redirects() {
     return [
+      // redirect to github
       {
         source: "/github",
         destination: "https://github.com/vercel/examples/tree/main/solutions/alt-tag-generator",
