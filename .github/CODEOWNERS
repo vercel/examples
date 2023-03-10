@@ -9,7 +9,6 @@
 solutions/monorepo @vercel/turbo-oss @goncy @lfades @leerob @steven-tey @lpalmes
 solutions/microfrontends @vercel/turbo-oss @goncy @lfades @leerob @steven-tey @lpalmes
 solutions/testing @vercel/turbo-oss @goncy @lfades @leerob @steven-tey @lpalmes
-solutions/testing @vercel/turbo-oss @goncy @lfades @leerob @steven-tey @lpalmes
 
 # For the build output API the engineering team takes care of it.
 # A member of Solutions and Dev Rel is also added
