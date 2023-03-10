@@ -70,7 +70,7 @@ export default function Index({
         <Text>
           If you see this text is because the feature flag called{' '}
           <Code>clientSideFeatureEnabled</Code> is enabled in ConfigCat&apos;
-          dashboard, and it was dinamically added to the page
+          dashboard, and it was dynamically added to the page
         </Text>
       )}
     </>

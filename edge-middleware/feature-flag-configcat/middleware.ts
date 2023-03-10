@@ -1,15 +1,15 @@
 import { type NextRequest, NextResponse } from 'next/server'
-import { type FlagsMatcher, getValue } from '@lib/configcat'
+import { type FlagsMatcher, getValue, type Flags } from '@lib/configcat'
 
 const FLAGS: FlagsMatcher = {
   '/about': {
     cookie: 'flag-newAboutPage',
-    name: 'newAboutPage',
+    name: process.env.FEATURE_FLAG_ABOUT_PAGE as Flags,
     rewrite: (enabled) => (enabled ? '/about/b' : '/about'),
   },
   '/marketing': {
     cookie: 'flag-newMarketingPage',
-    name: 'newMarketingPage',
+    name: process.env.FEATURE_FLAG_MARKETING_PAGE as Flags,
     rewrite: (enabled) => (enabled ? '/marketing/b' : '/marketing'),
   },
 }
