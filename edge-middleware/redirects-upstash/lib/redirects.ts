@@ -15,8 +15,10 @@ export default async function redirects(req: NextRequest) {
   const url = req.nextUrl
   let start = Date.now()
 
+  // Check if path is only numbers (e.g: /200)
   const isNumberPath = /^\/[0-9]*$/.test(url.pathname)
 
+  // If it isn't we just skip the redirect
   if (!isNumberPath) {
     return
   }
