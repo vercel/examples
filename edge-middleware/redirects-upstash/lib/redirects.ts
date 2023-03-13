@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { upstashEdge } from './upstash'
+import { upstashRest } from './upstash'
 import redirectsJson from './redirects.json'
 
 type LocalRedirects = {
@@ -26,7 +26,7 @@ export default async function redirects(req: NextRequest) {
 
   start = Date.now()
 
-  const { result } = await upstashEdge([
+  const { result } = await upstashRest([
     'HGET',
     'redirects',
     encodeURIComponent(encodeURIComponent(url.pathname)),

@@ -55,20 +55,3 @@ export async function upstashRest(
     body: JSON.stringify(args),
   })
 }
-
-export async function upstashEdge(args: any[]) {
-  const domain = process.env.UPSTASH_EDGE_API_DOMAIN
-  const token = process.env.UPSTASH_EDGE_API_TOKEN
-
-  if (!domain || !token) {
-    throw new Error('Missing required Upstash credentials of the Edge API')
-  }
-
-  if (domain.includes('http')) {
-    throw new Error(
-      "UPSTASH_EDGE_API_DOMAIN shouldn't include protocol (e.g: your-domain.upstash.io)"
-    )
-  }
-
-  return upstash({ token, url: `https://${domain}/${args.join('/')}` })
-}
