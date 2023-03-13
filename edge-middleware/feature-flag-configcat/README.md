@@ -25,7 +25,7 @@ https://edge-functions-feature-flag-configcat.vercel.app
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-configcat&env=NEXT_PUBLIC_CONFIGCAT_SDK_KEY&project-name=feature-flag-configcat&repository-name=feature-flag-configcat)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-configcat&env=NEXT_PUBLIC_CONFIGCAT_SDK_KEY,FEATURE_FLAG_ABOUT_PAGE,FEATURE_FLAG_MARKETING_PAGE&project-name=feature-flag-configcat&repository-name=feature-flag-configcat)
 
 ## Getting Started
 
@@ -45,7 +45,7 @@ cp .env.example .env.local
 
 Then open `.env.local` and set the SDK key to match the one in your ConfigCat dashboard. Your key should be right under your feature flags.
 
-The demo uses the following 4 feature flags:
+The demo uses the following 4 feature flags, make sure to add them to your ConfigCat environment:
 
 ![ConfigCat dashboard](docs/configcat.png)
 
