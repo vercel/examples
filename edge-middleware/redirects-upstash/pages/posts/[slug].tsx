@@ -43,7 +43,7 @@ Slug.Layout = Layout
 export async function getStaticPaths() {
   // Simulate a large amount of paths
   return {
-    paths: Array.from({ length: 10000 }, (x, i) => `/posts/${i + 1}`),
+    paths: Array.from({ length: 10000 }, (_, i) => `/posts/${i + 1}`),
     fallback: false,
   }
 }

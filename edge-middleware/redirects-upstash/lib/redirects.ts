@@ -15,6 +15,12 @@ export default async function redirects(req: NextRequest) {
   const url = req.nextUrl
   let start = Date.now()
 
+  const isNumberPath = /^\/[0-9]*$/.test(url.pathname)
+
+  if (!isNumberPath) {
+    return
+  }
+
   // Find the redirect from the local JSON file, do note this JSON shouldn't be
   // large, as the space in Edge Middleware is quite limited
   const localRedirect = (redirectsJson as LocalRedirects)[url.pathname]
@@ -29,7 +35,7 @@ export default async function redirects(req: NextRequest) {
   const { result } = await upstashRest([
     'HGET',
     'redirects',
-    encodeURIComponent(encodeURIComponent(url.pathname)),
+    encodeURIComponent(url.pathname),
   ])
 
   if (result) {
