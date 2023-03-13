@@ -55,8 +55,6 @@ UPSTASH_REST_API_TOKEN = "your-api-token"
 
 We populate the redirects in Upstash in [scripts/upstash.js](scripts/upstash.js) using their REST API, if you prefer not to do that then set `POPULATE_REDIS` to `false` in `.env`. JSON redirects are also created there.
 
-We use the Edge API to have the lowest latency possible when fetching a redirect, it's also possible to only use the REST API by replacing `upstashEdge` with `upstashRest` in [lib/redirects.ts](lib/redirects.ts).
-
 Next, run Next.js in development mode:
 
 ```bash
