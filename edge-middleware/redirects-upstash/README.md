@@ -5,7 +5,7 @@ description: Redirect from a list of redirects both hardcoded and coming from Up
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,UPSTASH_EDGE_API_DOMAIN,UPSTASH_EDGE_API_TOKEN&project-name=redirects-upstash&repository-name=redirects-upstash
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN&project-name=redirects-upstash&repository-name=redirects-upstash
 demoUrl: https://edge-functions-redirects-upstash.vercel.app
 relatedTemplates:
   - edge-functions-i18n
@@ -27,7 +27,7 @@ https://edge-functions-redirects-upstash.vercel.app
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,UPSTASH_EDGE_API_DOMAIN,UPSTASH_EDGE_API_TOKEN&project-name=redirects-upstash&repository-name=redirects-upstash)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,&project-name=redirects-upstash&repository-name=redirects-upstash)
 
 ## Getting Started
 
@@ -51,15 +51,9 @@ Then open `.env.local` and set the environment variables to match the REST API a
 # Upstash REST API
 UPSTASH_REST_API_DOMAIN = "us1-shiny-firefly-12345.upstash.io"
 UPSTASH_REST_API_TOKEN = "your-api-token"
-
-# Upstash Edge API
-UPSTASH_EDGE_API_DOMAIN = "us1-shiny-firefly-12345.edge-a.upstash.io"
-UPSTASH_EDGE_API_TOKEN = "your-edge-token"
 ```
 
 We populate the redirects in Upstash in [scripts/upstash.js](scripts/upstash.js) using their REST API, if you prefer not to do that then set `POPULATE_REDIS` to `false` in `.env`. JSON redirects are also created there.
-
-We use the Edge API to have the lowest latency possible when fetching a redirect, it's also possible to only use the REST API by replacing `upstashEdge` with `upstashRest` in [lib/redirects.ts](lib/redirects.ts).
 
 Next, run Next.js in development mode:
 
