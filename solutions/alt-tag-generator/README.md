@@ -13,7 +13,7 @@ It uses an ML modal from Salesforce called [BLIP](https://github.com/salesforce/
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
 
 ```bash
-pnpm create-next-app --example https://github.com/vercel/examples/tree/main/solutions/alt-tag-generator
+pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/alt-tag-generator
 ```
 
 After cloning the repo, go to [Replicate](https://replicate.com/) to make an account and put your API key in a file called `.env.local`.
@@ -21,7 +21,7 @@ After cloning the repo, go to [Replicate](https://replicate.com/) to make an acc
 Then, run the application in the command line and it will be available at `http://localhost:3000`.
 
 ```bash
-pnpm i && pnpm dev
+pnpm dev
 ```
 
 To use the API route, go to the link below in your browser or run a curl command in your terminal to get a sample result. Feel free to replace the dub.sh link with a link to any image.

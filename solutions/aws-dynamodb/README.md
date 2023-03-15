@@ -27,7 +27,7 @@ Retrieve your existing access key, secret key, region and table name. Provide th
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
 
 ```bash
-pnpm create-next-app --example https://github.com/vercel/examples/tree/main/solutions/aws-dynamodb
+pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/aws-dynamodb
 ```
 
 1. Create a new [IAM role](https://aws.amazon.com/iam/) with permission for `AmazonDynamoDBFullAccess`
@@ -36,7 +36,7 @@ pnpm create-next-app --example https://github.com/vercel/examples/tree/main/solu
 1. Save the region and table name.
 1. Create an `.env.local` file similar to `.env.local.example`.
 1. Add the access key, secret key, region, and table name to `.env.local`.
-1. Run `pnpm i && pnpm dev` to start the Next app at http://localhost:3000.
+1. Run `pnpm dev` to start the Next app at http://localhost:3000.
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
 
