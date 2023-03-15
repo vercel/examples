@@ -1,8 +1,11 @@
 {
+  "name": "aws-dynamodb",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
   "private": true,
   "scripts": {
+    "dev": "next dev",
     "build": "next build",
-    "dev": "next",
     "start": "next start"
   },
   "dependencies": {
@@ -14,7 +17,6 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "prettier": "^2.8.4",
     "turbo": "^1.8.3"
   }
 }

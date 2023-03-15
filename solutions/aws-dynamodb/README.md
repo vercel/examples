@@ -10,6 +10,10 @@ deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel
 
 This is an example of a Next.js application using DynamoDB for creating, updating, and deleting documents.
 
+## Demo
+
+https://alt-text-generator.vercel.app/
+
 ## How to Use
 
 **Option 1: Use an existing table.**
