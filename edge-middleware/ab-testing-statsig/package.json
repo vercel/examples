@@ -15,7 +15,7 @@
     "react": "latest",
     "react-dom": "latest",
     "statsig-node": "^5.1.0",
-    "statsig-node-vercel": "^0.0.3",
+    "statsig-node-vercel": "^0.0.5",
     "statsig-react": "^1.12.0"
   },
   "devDependencies": {
