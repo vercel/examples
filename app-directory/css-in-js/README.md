@@ -27,8 +27,7 @@ pnpm create-next-app --example https://github.com/vercel/examples/tree/main/app-
 Next, run Next.js in development mode:
 
 ```bash
-pnpm install
-pnpm run dev
+pnpm i && pnpm dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
