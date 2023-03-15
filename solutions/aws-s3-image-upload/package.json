@@ -1,4 +1,5 @@
 {
+  "name": "aws-s3-image-upload",
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "private": true,

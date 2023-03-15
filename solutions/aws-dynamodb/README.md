@@ -36,7 +36,9 @@ pnpm create-next-app --example https://github.com/vercel/examples/tree/main/solu
 1. Save the region and table name.
 1. Create an `.env.local` file similar to `.env.local.example`.
 1. Add the access key, secret key, region, and table name to `.env.local`.
-1. Run `pnpm i && pnpm dev` to start the Next app at `localhost:3000`.
+1. Run `pnpm i && pnpm dev` to start the Next app at http://localhost:3000.
+
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
 
 ## Credentials and Environment Variables
 
