@@ -1,4 +1,6 @@
 {
+  "buildCommand": "pnpm turbo build",
+  "ignoreCommand": "pnpm dlx turbo-ignore",
   "crons": [
     {
       "path": "/api/cron/1d",

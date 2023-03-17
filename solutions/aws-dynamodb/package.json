@@ -1,12 +1,15 @@
 {
+  "name": "aws-dynamodb",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
   "private": true,
   "scripts": {
+    "dev": "next dev",
     "build": "next build",
-    "dev": "next",
     "start": "next start"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.145.0",
+    "@aws-sdk/client-dynamodb": "^3.290.0",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -14,12 +17,6 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "prettier": "^2.7.1"
-  },
-  "prettier": {
-    "arrowParens": "always",
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "none"
+    "turbo": "^1.8.3"
   }
 }

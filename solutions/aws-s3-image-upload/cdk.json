@@ -9,7 +9,7 @@
       "**/*.js",
       "tsconfig.json",
       "package*.json",
-      "yarn.lock",
+      "pnpm-lock.yaml",
       "node_modules",
       "test"
     ]

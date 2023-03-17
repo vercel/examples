@@ -32,3 +32,6 @@ yarn-error.log*
 
 # Vercel
 .vercel
+
+# Turborepo
+.turbo

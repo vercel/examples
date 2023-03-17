@@ -10,7 +10,11 @@ deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel
 
 This is an example of a Next.js application using DynamoDB for creating, updating, and deleting documents.
 
-## Getting Started
+## Demo
+
+https://alt-text-generator.vercel.app/
+
+## How to Use
 
 **Option 1: Use an existing table.**
 
@@ -20,13 +24,21 @@ Retrieve your existing access key, secret key, region and table name. Provide th
 
 **Option 2: Create a new table.**
 
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
+
+```bash
+pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/aws-dynamodb
+```
+
 1. Create a new [IAM role](https://aws.amazon.com/iam/) with permission for `AmazonDynamoDBFullAccess`
 1. Save the access key and secret key.
 1. Create a new [DynamoDB table](https://aws.amazon.com/dynamodb/) with a primary key of `id` and type `String` (the sort key is optional).
 1. Save the region and table name.
 1. Create an `.env.local` file similar to `.env.local.example`.
 1. Add the access key, secret key, region, and table name to `.env.local`.
-1. Run `yarn dev` to start the Next app at `localhost:3000`.
+1. Run `pnpm dev` to start the Next app at http://localhost:3000.
+
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
 
 ## Credentials and Environment Variables
 
@@ -39,7 +51,7 @@ const s3 = new S3Client({
   accessKeyId: process.env.ACCESS_KEY,
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
   region: process.env.REGION,
-});
+})
 ```
 
 Instead, it can be replaced with this:
@@ -47,6 +59,7 @@ Instead, it can be replaced with this:
 ```
 const s3 = new S3Client({});
 ```
+
 The SDK will pick up the credentials from the environment automatically.
 
 ## Testing
