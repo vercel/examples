@@ -1,5 +1,8 @@
-import clsx from 'clsx'
 import Balancer from 'react-wrap-balancer'
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
 // wrap Balancer to remove type errors :( - @TODO - fix this ugly hack
 const BalancerWrapper = (props: any) => <Balancer {...props} />
@@ -64,7 +67,7 @@ export function ChatLine({ role = 'assistant', content }: ChatGPTMessage) {
                 </a>
               </p>
               <p
-                className={clsx(
+                className={classNames(
                   'text ',
                   role == 'assistant' ? 'font-semibold font- ' : 'text-gray-400'
                 )}

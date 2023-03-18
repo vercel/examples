@@ -1,7 +1,7 @@
-import { Layout, Text, Page } from '@vercel/examples-ui'
-import { Chat } from '../components/Chat'
+import { Text, Page } from '@vercel/examples-ui'
+import { Chat } from 'components/Chat'
 
-function Home() {
+export default function IndexPage() {
   return (
     <Page className="flex flex-col gap-12">
       <section className="flex flex-col gap-6">
@@ -21,7 +21,3 @@ function Home() {
     </Page>
   )
 }
-
-Home.Layout = Layout
-
-export default Home

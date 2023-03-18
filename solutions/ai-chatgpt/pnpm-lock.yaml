@@ -4,7 +4,7 @@ specifiers:
   '@types/node': ^17.0.45
   '@types/react': latest
   '@vercel/analytics': ^0.1.11
-  '@vercel/examples-ui': ^1.0.5
+  '@vercel/examples-ui': ../../internal/packages/ui
   autoprefixer: ^10.4.14
   eslint: ^8.36.0
   eslint-config-next: ^12.3.4
@@ -21,7 +21,7 @@ specifiers:
 
 dependencies:
   '@vercel/analytics': 0.1.11_react@18.2.0
-  '@vercel/examples-ui': 1.0.5_ld2jel3hspngo3u5lti2kgl2sq
+  '@vercel/examples-ui': link:../../internal/packages/ui
   eventsource-parser: 0.1.0
   next: 13.2.4_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
@@ -366,21 +366,6 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@vercel/examples-ui/1.0.5_ld2jel3hspngo3u5lti2kgl2sq:
-    resolution: {integrity: sha512-6pj8V9MPLgrPajIUbqEkbmupEMnK6xBk5zkwsilwhA9mYQdxttqgVyDqlFMQhEVqb3tk0PshA+XxnZoDfLCpoQ==}
-    peerDependencies:
-      next: '*'
-      react: ^17.0.2 || ^18.0.0-0
-      react-dom: ^17.0.2 || ^18.0.0-0
-    dependencies:
-      '@swc/helpers': 0.4.14
-      clsx: 1.2.1
-      next: 13.2.4_biqbaboplfbrettd7655fr4n2y
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      sugar-high: 0.4.6
-    dev: false
-
   /acorn-jsx/5.3.2_acorn@8.8.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -625,11 +610,6 @@ packages:
 
   /client-only/0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
-    dev: false
-
-  /clsx/1.2.1:
-    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
-    engines: {node: '>=6'}
     dev: false
 
   /color-convert/2.0.1:
@@ -2256,10 +2236,6 @@ packages:
     dependencies:
       client-only: 0.0.1
       react: 18.2.0
-    dev: false
-
-  /sugar-high/0.4.6:
-    resolution: {integrity: sha512-V/5BlmDTQ0YCD6o+xumBpOBP8CWDqVDA8Pt7W/i8QzkwFnYwBxX9T4a8XRmay7ulnnCj/5rX3f845tbkXU1lIw==}
     dev: false
 
   /supports-color/7.2.0:

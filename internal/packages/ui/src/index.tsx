@@ -2,6 +2,7 @@ import type { FC, ReactNode, ComponentType, HTMLAttributes } from 'react'
 import cn from 'clsx'
 
 export { default as Layout } from './layout.js'
+export { default as AppLayout } from './app-layout.js'
 export { default as Text } from './text.js'
 export { default as Input } from './input.js'
 export { default as Button } from './button.js'
