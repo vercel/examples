@@ -6,6 +6,7 @@ specifiers:
   '@vercel/analytics': ^0.1.11
   '@vercel/examples-ui': ^1.0.5
   autoprefixer: ^10.4.14
+  clsx: ^1.2.1
   eslint: ^8.36.0
   eslint-config-next: ^12.3.4
   eventsource-parser: ^0.1.0
@@ -22,6 +23,7 @@ specifiers:
 dependencies:
   '@vercel/analytics': 0.1.11_react@18.2.0
   '@vercel/examples-ui': 1.0.5_ld2jel3hspngo3u5lti2kgl2sq
+  clsx: 1.2.1
   eventsource-parser: 0.1.0
   next: 13.2.4_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
