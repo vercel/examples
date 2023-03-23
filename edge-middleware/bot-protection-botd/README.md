@@ -19,6 +19,8 @@ relatedTemplates:
 
 https://edge-functions-bot-protection-botd.vercel.app
 
+If you try and go to [/blocked](https://edge-functions-bot-protection-botd.vercel.app/blocked) you'll see the [/bot-detected](pages/bot-detected.tsx) page being rendered instead, done by a rewrite from the edge after it identifies you as a bot. We do that by changing the user agent of the request before making a request to Botd.
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:
@@ -29,11 +31,7 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/bot-protection-botd&env=NEXT_PUBLIC_BOTD_API_TOKEN&project-name=bot-protection-botd&repository-name=bot-protection-botd)
 
-## How it works
-
-If you try and go to [/blocked](https://edge-functions-bot-protection-botd.vercel.app) you'll see the [/bot-detected](pages/bot-detected.tsx) page being rendered instead, done by a rewrite from the edge after it identifies you as a bot. We do that by changing the user agent of the request before making a request to Botd.
-
-## Getting Started
+### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
 
