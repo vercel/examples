@@ -19,6 +19,10 @@ relatedTemplates:
 
 https://edge-functions-bot-protection-botd.vercel.app
 
+## How to Use
+
+You can choose from one of the following two methods to use this repository:
+
 ### One-Click Deploy
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
@@ -31,12 +35,10 @@ If you try and go to [/blocked](https://edge-functions-bot-protection-botd.verce
 
 ## Getting Started
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/bot-protection-botd bot-protection-botd
-# or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/bot-protection-botd bot-protection-botd
+pnpm create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/bot-protection-botd bot-protection-botd
 ```
 
 You'll need to have a token for the beta access of [Botd](https://github.com/fingerprintjs/botd), the token is free and there are instructions in their [github repo](https://github.com/fingerprintjs/botd) on how to get one.
@@ -52,13 +54,7 @@ Then open `.env.local` and set the Botd API token to match your token.
 Next, run Next.js in development mode:
 
 ```bash
-npm install
-npm run dev
-
-# or
-
-yarn
-yarn dev
+pnpm dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
