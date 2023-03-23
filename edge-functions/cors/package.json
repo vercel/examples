@@ -1,4 +1,5 @@
 {
+  "name": "cors",
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "private": true,
@@ -14,10 +15,11 @@
     "react-dom": "latest"
   },
   "devDependencies": {
-    "@types/node": "^17.0.14",
+    "@types/node": "^17.0.45",
     "@types/react": "latest",
-    "eslint": "^8.9.0",
+    "eslint": "^8.36.0",
     "eslint-config-next": "canary",
+    "turbo": "^1.8.5",
     "typescript": "4.5.5"
   }
 }
