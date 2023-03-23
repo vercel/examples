@@ -41,9 +41,7 @@ After [setting up your JWT secret](#set-up-environment-variables), deploy the ex
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/jwt-authentication
-# or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/jwt-authentication
+pnpm create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/jwt-authentication
 ```
 
 #### Set up environment variables
@@ -59,13 +57,7 @@ then, update `JWT_SECRET_KEY` with your a random secret that'll be used to sign 
 Next, run Next.js in development mode:
 
 ```bash
-npm install
-npm run dev
-
-# or
-
-yarn
-yarn dev
+pnpm dev
 ```
 
 The app should be up and running at http://localhost:3000.
