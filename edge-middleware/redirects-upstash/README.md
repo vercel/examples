@@ -23,20 +23,22 @@ Redirects in a JSON file are faster to evaluate, but they can only be edited at 
 
 https://edge-functions-redirects-upstash.vercel.app
 
+## How to Use
+
+You can choose from one of the following two methods to use this repository:
+
 ### One-Click Deploy
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,&project-name=redirects-upstash&repository-name=redirects-upstash)
 
-## Getting Started
+### Clone and Deploy
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash redirects-upstash
-# or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash redirects-upstash
+pnpm create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash redirects-upstash
 ```
 
 You'll need to have an account with [Upstash](https://upstash.com/). Once that's done, copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
@@ -58,13 +60,7 @@ We populate the redirects in Upstash in [scripts/upstash.js](scripts/upstash.js)
 Next, run Next.js in development mode:
 
 ```bash
-npm install
-npm run dev
-
-# or
-
-yarn
-yarn dev
+pnpm dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).

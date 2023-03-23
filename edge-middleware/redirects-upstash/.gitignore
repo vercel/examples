@@ -33,5 +33,11 @@ yarn-error.log*
 # Vercel
 .vercel
 
+# Turborepo
+.turbo
+
+# typescript
+*.tsbuildinfo
+
 # Demo files
 lib/redirects.json
