@@ -57,11 +57,14 @@ export default function (plop) {
         '.gitignore',
         'next-env.d.ts',
         'package.json',
+        'pnpm-lock.yaml',
         'pages/index.tsx',
         'pages/_app.tsx',
         'postcss.config.js',
         'tailwind.config.js',
         'public/favicon.ico',
+        'turbo.json',
+        'vercel.json',
       ]
 
       const actions = []
