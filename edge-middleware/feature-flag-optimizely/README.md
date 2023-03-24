@@ -19,7 +19,11 @@ This example shows how to use Optimizely to conduct experiments using Edge Middl
 
 https://feature-flag-optimizely.vercel.app
 
-## One-Click Deploy
+## How to Use
+
+You can choose from one of the following two methods to use this repository:
+
+### One-Click Deploy
 
 **Note:** Before clicking `Deploy`, follow the section [Set up Optimizely](#set-up-optimizely) to create an account, set up feature flags and obtain the Optimizely _SDK Key_.
 
@@ -27,34 +31,24 @@ https://feature-flag-optimizely.vercel.app
 
 ### Clone and Deploy
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [NPM](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example.
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
+
+```bash
+pnpm create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-optimizely feature-flag-optimizely
+```
 
 **Note:** Before running locally, follow the section [Set up Optimizely](#set-up-optimizely) to create an account, set up feature flags and obtain the Optimizely _SDK Key_.
 
-Generate the Next JS app using this example
-
-```
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-optimizely feature-flag-optimizely
-# or
-yarn create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-optimizely feature-flag-optimizely
-```
-
 Create a local environment file from example and add your Optimizely _SDK Key_.
 
-```
+```bash
 cp .env.example .env.local
 ```
 
-Run Next.js in development mode:
+Next, run Next.js in development mode:
 
 ```bash
-npm install
-npm run dev
-
-# or
-
-yarn
-yarn dev
+pnpm dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
