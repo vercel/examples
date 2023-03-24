@@ -1,4 +1,4 @@
-import BlurImage from './BlurImage'
+import BlurImage from '@/components/BlurImage'
 import { format } from 'date-fns'
 import { useState } from 'react'
 
@@ -66,37 +66,36 @@ export default function Tweet({ id, metadata, className }: TweetProps) {
   const tweetUrl = `https://twitter.com/${author.username}/status/${id}`
   const createdAt = new Date(created_at)
 
-  const regexToMatchURL =
-    /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/
-
   const formattedText = text
-    // Format all hyperlinks
-    .replace(
-      regexToMatchURL,
-      (match) =>
-        `<a style="color: rgb(29,161,242); font-weight:normal; text-decoration: none" href="${match}" target="_blank">${match.replace(
-          /^http(s?):\/\//i,
-          ''
-        )}</a>`
-    )
-    // Format all @ mentions
-    .replace(
-      /\B\@([\w\-]+)/gim,
-      (match) =>
-        `<a style="color: rgb(29,161,242); font-weight:normal; text-decoration: none" href="https://twitter.com/${match.replace(
-          '@',
-          ''
-        )}" target="_blank">${match}</a>`
-    )
-    // Format all # hashtags
-    .replace(
-      /(#+[a-zA-Z0-9(_)]{1,})/g,
-      (match) =>
-        `<a style="color: rgb(29,161,242); font-weight:normal; text-decoration: none" href="https://twitter.com/hashtag/${match.replace(
-          '#',
-          ''
-        )}" target="_blank">${match}</a>`
-    )
+    // remove hyperlink if it's present at the end of the tweet (similar to how Twitter does it)
+    .replace(/https?:\/\/\S+$/, () => {
+      return ''
+    })
+    // format all hyperlinks
+    .replace(/https?:\/\/\S+(?=\s)/g, (match) => {
+      return `<a style="color: rgb(29,161,242); font-weight:normal; text-decoration: none" href="${match}" target="_blank">${match
+        .replace(/^https?:\/\//i, '')
+        .replace(/\/+$/, '')}</a>`
+    })
+    // if @ mention is at the front of the tweet, remove it completely,
+    .replace(/^(@\w+\s+)+/, () => {
+      return ''
+    })
+    .replace(/\B\@([\w\-]+)/gim, (match) => {
+      // format all @ mentions
+      return `<a style="color: rgb(29,161,242); font-weight:normal; text-decoration: none" href="https://twitter.com/${match.replace(
+        '@',
+        ''
+      )}" target="_blank">${match}</a>`
+    })
+    .replace(/(#+[a-zA-Z0-9(_)]{1,})/g, (match) => {
+      // format all # hashtags
+      return `<a style="color: rgb(29,161,242); font-weight:normal; text-decoration: none" href="https://twitter.com/hashtag/${match.replace(
+        '#',
+        ''
+      )}" target="_blank">${match}</a>`
+    })
+
   const quoteTweet =
     referenced_tweets && referenced_tweets.find((t) => t.type === 'quoted')
 
@@ -189,8 +188,8 @@ export default function Tweet({ id, metadata, className }: TweetProps) {
         <div
           className={
             media.length === 1
-              ? 'inline-grid grid-cols-1 gap-2 my-2'
-              : 'inline-grid grid-cols-2 gap-2 my-2'
+              ? 'inline-grid grid-cols-1 gap-x-2 gap-y-2 my-2'
+              : 'inline-grid grid-cols-2 gap-x-2 gap-y-2 my-2'
           }
         >
           {media.map((m, i) => (

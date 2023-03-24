@@ -1,3 +1,5 @@
+import type { PropsWithChildren } from 'react'
+
 export interface TweetData {
   attachments?: { media_keys: Array<string> }
   author_id: string
@@ -200,3 +202,5 @@ export interface TwitterUser {
 export type WithClassName<T = {}> = T & {
   className?: string
 }
+
+export type WithChildren<T = {}> = T & PropsWithChildren<{}>
