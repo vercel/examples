@@ -1,34 +1,29 @@
 {
-  "name": "aws-s3-image-upload",
-  "repository": "https://github.com/vercel/examples.git",
-  "license": "MIT",
+  "name": "please-remember-me",
+  "version": "0.1.0",
   "private": true,
-  "bin": {
-    "aws-s3": "bin/aws-s3.js"
-  },
   "scripts": {
-    "cdk": "cdk",
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
-  "devDependencies": {
-    "@types/node": "17.0.42",
-    "@types/react": "^18.0.12",
-    "aws-cdk": "2.27.0",
-    "aws-sdk": "^2.1152.0",
-    "eslint": "8.22.0",
-    "next": "^12.1.6",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "ts-node": "^10.8.1",
-    "typescript": "^4.7.3"
-  },
   "dependencies": {
-    "aws-cdk-lib": "2.27.0",
-    "constructs": "^10.1.36",
-    "eslint-config-next": "^12.1.0",
-    "source-map-support": "^0.5.21"
+    "@aws-sdk/client-s3": "^3.299.0",
+    "@aws-sdk/s3-presigned-post": "^3.299.0",
+    "@aws-sdk/signature-v4-crt": "^3.299.0",
+    "@types/node": "18.15.7",
+    "@types/react": "18.0.29",
+    "@types/react-dom": "18.0.11",
+    "aws-crt": "^1.15.13",
+    "aws-sdk": "^2.1343.0",
+    "encoding": "^0.1.13",
+    "eslint": "8.36.0",
+    "eslint-config-next": "13.2.4",
+    "next": "^13.2.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.0.2",
+    "uuid": "^9.0.0"
   }
 }
