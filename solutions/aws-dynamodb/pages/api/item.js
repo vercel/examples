@@ -61,7 +61,7 @@ export default async function handler(req, res) {
       new DeleteItemCommand({
         TableName: process.env.TABLE_NAME,
         Key: {
-          id: { S: req.body.id }
+          id: { S: req.query.id }
         }
       })
     );
