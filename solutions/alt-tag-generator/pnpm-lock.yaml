@@ -9,6 +9,7 @@ specifiers:
   next: latest
   react: latest
   react-dom: latest
+  replicate: ^0.9.0
   turbo: ^1.8.3
   typescript: 4.9.3
 
@@ -16,10 +17,11 @@ dependencies:
   next: 13.2.4_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  replicate: 0.9.0
 
 devDependencies:
   '@types/node': 18.11.10
-  '@types/react': 18.0.28
+  '@types/react': 18.0.33
   '@types/react-dom': 18.0.9
   eslint: 8.29.0
   eslint-config-next: 13.0.6_s5ps7njkmjlaqajutnox5ntcla
@@ -257,11 +259,11 @@ packages:
   /@types/react-dom/18.0.9:
     resolution: {integrity: sha512-qnVvHxASt/H7i+XG1U1xMiY5t+IHcPGUK7TDMDzom08xa7e86eCeKOiLZezwCKVxJn6NEiiy2ekgX8aQssjIKg==}
     dependencies:
-      '@types/react': 18.0.28
+      '@types/react': 18.0.33
     dev: true
 
-  /@types/react/18.0.28:
-    resolution: {integrity: sha512-RD0ivG1kEztNBdoAK7lekI9M+azSnitIn85h4iOiaLjaTrMjzslhaqCGaI4IyCJ1RljWiLCEu4jyrLLgqxBTew==}
+  /@types/react/18.0.33:
+    resolution: {integrity: sha512-sHxzVxeanvQyQ1lr8NSHaj0kDzcNiGpILEVt69g9S31/7PfMvNCKLKcsHw4lYKjs3cGNJjXSP4mYzX43QlnjNA==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -1825,6 +1827,10 @@ packages:
     resolution: {integrity: sha512-pq2bWo9mVD43nbts2wGv17XLiNLya+GklZ8kaDLV2Z08gDCsGpnKn9BFMepvWuHCbyVvY7J5o5+BVvoQbmlJLg==}
     engines: {node: '>=8'}
     dev: true
+
+  /replicate/0.9.0:
+    resolution: {integrity: sha512-UZ9Nz8z4GnXvWSFWvexW+rEp7s9lQZvkHEsLsPCmIPqt2B/uLQ5F7vC69d75ADWe6TK4XXZgL/Ru/tZVza6Img==}
+    dev: false
 
   /resolve-from/4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
