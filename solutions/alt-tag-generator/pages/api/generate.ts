@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import Replicate from 'replicate'
 
 export const config = {
@@ -21,9 +21,5 @@ export default async function handler(req: NextRequest) {
       },
     }
   )
-  return new Response(JSON.stringify(output), {
-    headers: {
-      'content-type': 'application/json',
-    },
-  })
+  return NextResponse.json(output)
 }
