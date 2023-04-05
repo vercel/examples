@@ -1,5 +1,6 @@
 // @ts-ignore
 import wasm from '../wasm/pkg/wasm_bg.wasm?module'
+import init, { xor } from '../wasm/pkg/wasm.js'
 
 export const config = {
   runtime: 'edge',
@@ -28,8 +29,8 @@ export default async function handler(request: Request, event: Event) {
   const a = convertToNumber(url.searchParams.get('a'))
   const b = convertToNumber(url.searchParams.get('b'))
 
-  const { exports } = (await WebAssembly.instantiate(wasm)) as any
+  await init(wasm);
 
-  const value = exports.xor(a, b)
+  const value = xor(a, b)
   return new Response(hexFormat(value))
 }
