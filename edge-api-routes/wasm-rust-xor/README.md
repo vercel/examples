@@ -38,6 +38,8 @@ To build Wasm from the Rust source, you can use the following commands. This wil
 ```bash
 cd wasm
 wasm-pack build --target web
+```
+
 Then, install the Vercel CLI which you'll use to run the app:
 
 ```bash
