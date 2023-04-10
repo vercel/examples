@@ -36,10 +36,8 @@ To build and run the example locally, you'll need to install the following prere
 Building WASM from rust source. This will create the wasm.js and wasm_bg.wasm files required by the application on the `pkg` folder.
 
 ```bash
-$ cd wasm
-$ wasm-pack build --target web
-```
-
+cd wasm
+wasm-pack build --target web
 Then, install the Vercel CLI which you'll use to run the app:
 
 ```bash
