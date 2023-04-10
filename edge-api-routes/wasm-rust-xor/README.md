@@ -33,7 +33,7 @@ To build and run the example locally, you'll need to install the following prere
 1. [Rust](https://www.rust-lang.org/tools/install): The API Route for this example is written in Rust and requires the Rust toolchain to build.
 2. [`wasm-pack`](https://rustwasm.github.io/wasm-pack/installer/): is a helpful utility that builds, optimizes and packages Rust into WebAssembly. This example uses it for the build and optimization step (although it does not use it for packaging)
 
-Building WASM from rust source. This will create the wasm.js and wasm_bg.wasm files required by the application on the `pkg` folder.
+To build Wasm from the Rust source, you can use the following commands. This will create the `wasm.js` and `wasm_bg.wasm` files required by the application on the `pkg` folder.
 
 ```bash
 cd wasm
