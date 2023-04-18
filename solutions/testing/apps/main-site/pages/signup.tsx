@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { useRouter } from 'next/router'
 import { Layout, Text, Page, Input, Button } from '@vercel/examples-ui'
+import { SignupButton } from '../components/signup-button'
 
 function Signup() {
   const [loading, setLoading] = useState(false)
@@ -45,9 +46,7 @@ function Signup() {
           <span className="block text-sm text-accents-7">Password</span>
           <Input type="password" className="mt-2" name="password" required />
         </label>
-        <Button type="submit" loading={loading} disabled={loading}>
-          Signup
-        </Button>
+        <SignupButton loading={loading} disabled={loading} />
       </form>
       <Text>
         There&apos;s no actual DB and the password doesn&apos;t do anything,
