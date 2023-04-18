@@ -1,6 +1,5 @@
 import type { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Button } from '@acme/design-system'
-import '@vercel/examples-ui/globals.css'
+import Button from './button'
 
 export default {
   title: 'button',
