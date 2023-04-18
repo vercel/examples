@@ -21,5 +21,8 @@
     "main-site": "workspace:*",
     "tsconfig": "workspace:*",
     "typescript": "^4.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11"
   }
 }

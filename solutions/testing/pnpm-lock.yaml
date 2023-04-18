@@ -116,6 +116,7 @@ importers:
   packages/playwright:
     specifiers:
       '@playwright/test': ^1.28.1
+      '@types/node': ^18.15.11
       arg: ^5.0.2
       chokidar: ^3.5.3
       chokidar-cli: ^3.0.0
@@ -136,6 +137,8 @@ importers:
       main-site: link:../../apps/main-site
       tsconfig: link:../tsconfig
       typescript: 4.9.5
+    devDependencies:
+      '@types/node': 18.15.11
 
   packages/tsconfig:
     specifiers: {}
