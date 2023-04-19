@@ -76,7 +76,7 @@ const config = defineConfig<ApplitoolsConfig>({
         launchOptions: {
           devtools: OPEN_DEVTOOLS,
         },
-        applitools: { enabled: true },
+        applitoolsEyes: true,
       },
     },
     {

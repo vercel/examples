@@ -1,4 +1,4 @@
-import type { Test } from 'e2e/setup-fixture'
+import type { Test } from '../base-fixture'
 
 type AfterEach = Parameters<Test['afterEach']>[0]
 

@@ -9,11 +9,7 @@ import { TodoPage } from 'shared/pages/todo-page'
 test.use(authenticatedContext)
 
 test.describe('Todo Page', () => {
-  test('should be able to add todos', async ({
-    page,
-    mockApi,
-    applitools: { eyes },
-  }) => {
+  test('should be able to add todos', async ({ page, mockApi, eyes }) => {
     const { todos } = todosBody
     const todoPage = new TodoPage(page)
     const [waitForResponse] = await mockApi.todos.todo.get({
@@ -22,8 +18,6 @@ test.describe('Todo Page', () => {
 
     // Navigate to the page and wait for a response from /api/todo
     await Promise.all([waitForResponse(), todoPage.goto()])
-
-    // Verify the full login page loaded correctly.
     await eyes.check('Todo page', Target.window().fully())
 
     const { input, submitButton } = todoPage.getNewTodoForm()
@@ -58,9 +52,7 @@ test.describe('Todo Page', () => {
 
     await addFirstTodo()
     await addSecondTodo()
-
-    // Verify the full main page loaded correctly.
-    // This snapshot uses LAYOUT match level to avoid differences in closing time text.
+    // This snapshot uses layout match level to avoid differences in closing time text.
     await eyes.check('Todo page with 2 todos', Target.window().fully().layout())
   })
 
@@ -80,6 +72,7 @@ test.describe('Todo Page', () => {
   test('should be able to mark todo items as complete', async ({
     page,
     mockApi,
+    eyes,
   }) => {
     const { todos } = todosBody
     const todoPage = new TodoPage(page)
@@ -103,6 +96,7 @@ test.describe('Todo Page', () => {
 
     // Once the item is completed, the button's text changes to `Undo`.
     await expect(undoButton).toBeVisible()
+    await eyes.check('Completed todo', Target.window().fully())
   })
 
   test('should be able to un-mark todo items as complete', async ({
