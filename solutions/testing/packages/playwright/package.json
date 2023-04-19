@@ -23,6 +23,8 @@
     "typescript": "^4.9.3"
   },
   "devDependencies": {
-    "@types/node": "^18.15.11"
+    "@applitools/eyes-playwright": "^1.15.1",
+    "@types/node": "^18.15.11",
+    "dotenv": "^16.0.3"
   }
 }
