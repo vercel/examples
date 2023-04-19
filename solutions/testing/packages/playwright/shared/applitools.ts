@@ -25,6 +25,11 @@ export const applitools: ApplitoolsExtensions['applitools'] = {
 }
 
 export function setupApplitoolsEyes(test: typeof baseFixture) {
+  if (!process.env.APPLITOOLS_API_KEY) {
+    console.warn('Applitools API key not found. Skipping visual tests.')
+    return
+  }
+
   // Applitools objects to share for all tests
   let Batch: BatchInfo
   let Config: Configuration

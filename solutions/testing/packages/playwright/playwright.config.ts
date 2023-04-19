@@ -1,15 +1,16 @@
-import { join } from 'path'
-import type {
-  PlaywrightTestConfig,
-  ReporterDescription,
-} from '@playwright/test'
+import { join, resolve } from 'path'
+import dotenv from 'dotenv'
+import { ReporterDescription, defineConfig } from '@playwright/test'
 import { devices } from '@playwright/test'
 import { BASE_URL, IS_CI, OPEN_DEVTOOLS, TEST_TYPE } from 'shared/constants'
+import { ApplitoolsConfig } from 'shared/applitools'
+
+dotenv.config({ path: resolve(__dirname, '.env.local') })
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-const config: PlaywrightTestConfig = {
+const config = defineConfig<ApplitoolsConfig>({
   testDir: TEST_TYPE ? join(__dirname, TEST_TYPE, 'tests') : '.',
   testMatch: '*.spec.ts',
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
@@ -75,6 +76,7 @@ const config: PlaywrightTestConfig = {
         launchOptions: {
           devtools: OPEN_DEVTOOLS,
         },
+        applitools: { enabled: true },
       },
     },
     {
@@ -103,6 +105,6 @@ const config: PlaywrightTestConfig = {
       },
     },
   ],
-}
+})
 
 export default config
