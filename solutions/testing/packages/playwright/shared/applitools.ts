@@ -1,4 +1,4 @@
-import { test as test2 } from 'integration/setup-fixture'
+import { baseFixture } from './base-fixture'
 import {
   BatchInfo,
   Configuration,
@@ -7,7 +7,6 @@ import {
   DeviceName,
   ScreenOrientation,
   Eyes,
-  Target,
 } from '@applitools/eyes-playwright'
 
 const noop = () => {}
@@ -25,7 +24,7 @@ export const applitools: ApplitoolsExtensions['applitools'] = {
   eyes: { check: noop } as Eyes,
 }
 
-export function setupApplitoolsEyes(test: typeof test2) {
+export function setupApplitoolsEyes(test: typeof baseFixture) {
   // Applitools objects to share for all tests
   let Batch: BatchInfo
   let Config: Configuration
@@ -39,7 +38,7 @@ export function setupApplitoolsEyes(test: typeof test2) {
     // Create the runner for the Ultrafast Grid.
     // Concurrency refers to the number of visual checkpoints Applitools will perform in parallel.
     // Warning: If you have a free account, then concurrency will be limited to 1.
-    Runner = new VisualGridRunner({ testConcurrency: 1 })
+    Runner = new VisualGridRunner({ testConcurrency: 5 })
 
     // Create a new batch for tests.
     // A batch is the collection of visual checkpoints for a test suite.
@@ -56,14 +55,13 @@ export function setupApplitoolsEyes(test: typeof test2) {
 
     // Add 3 desktop browsers with different viewports for cross-browser testing in the Ultrafast Grid.
     // Other browsers are also available, like Edge and IE.
-    Config.addBrowser(800, 600, BrowserType.CHROME)
-    // Config.addBrowser(1600, 1200, BrowserType.FIREFOX)
-    // Config.addBrowser(1024, 768, BrowserType.SAFARI)
+    Config.addBrowser(1600, 1200, BrowserType.CHROME)
+    Config.addBrowser(1024, 768, BrowserType.SAFARI)
+    Config.addBrowser(800, 600, BrowserType.FIREFOX)
 
-    // Add 2 mobile emulation devices with different orientations for cross-browser testing in the Ultrafast Grid.
-    // Other mobile devices are available, including iOS.
-    // Config.addDeviceEmulation(DeviceName.Pixel_2, ScreenOrientation.PORTRAIT)
-    // Config.addDeviceEmulation(DeviceName.Nexus_10, ScreenOrientation.LANDSCAPE)
+    // Add 2 mobile emulation devices with different orientations
+    Config.addDeviceEmulation(DeviceName.iPhone_11, ScreenOrientation.PORTRAIT)
+    Config.addDeviceEmulation(DeviceName.Pixel_3, ScreenOrientation.LANDSCAPE)
   })
 
   test.afterAll(async ({ applitools }) => {
