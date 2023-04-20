@@ -26,6 +26,7 @@ export type ApplitoolsOptions = {
   appName: string
   viewportSize?: RectangleSizePlain
   batchInfo?: BatchInfoPlain
+  config?: (config: Configuration) => Configuration
 }
 
 export const applitoolsTest = (options: ApplitoolsOptions) => {
@@ -40,6 +41,7 @@ export const applitoolsTest = (options: ApplitoolsOptions) => {
     applitools: [options, { option: true }],
     eyes: async ({ applitoolsEyes, applitools, page }, use, testInfo) => {
       if (!process.env.APPLITOOLS_API_KEY || !applitoolsEyes) {
+        // Mock the Applitools API to prevent tests from failing.
         return use({ check: noop } as Eyes)
       }
 
@@ -73,10 +75,7 @@ export const applitoolsTest = (options: ApplitoolsOptions) => {
     },
   })
 
-  if (!process.env.APPLITOOLS_API_KEY) {
-    console.warn('Applitools API key not found. Skipping visual tests.')
-    return test
-  }
+  if (!process.env.APPLITOOLS_API_KEY) return test
 
   test.beforeAll(({ applitoolsEyes, applitools }, testInfo) => {
     if (!applitoolsEyes) return
@@ -88,7 +87,7 @@ export const applitoolsTest = (options: ApplitoolsOptions) => {
 
     const { titlePath } = testInfo
     // If `titlePath` looks like: ['todo.spec.ts', 'Todo Page', 'should do something']
-    // We'll set the name to "Todo Page". If the length is 2 it will be "todo.spec.ts" instead.
+    // the name will be set to "Todo Page". If the length is 2 it will be "todo.spec.ts" instead.
     const name = titlePath
       .slice(titlePath.length > 2 ? 1 : 0, titlePath.length - 1)
       .join(' - ')
@@ -97,6 +96,8 @@ export const applitoolsTest = (options: ApplitoolsOptions) => {
     // A batch is the collection of visual checkpoints for a test suite.
     // Batches are displayed in the Eyes Test Manager, so use meaningful names.
     batch = new BatchInfo({
+      // Having a batch id makes tests group into the same batch. It's highly recommended to set it.
+      id: process.env.APPLITOOLS_BATCH_ID,
       name,
       ...options.batchInfo,
       ...applitools.batchInfo,
@@ -104,19 +105,9 @@ export const applitoolsTest = (options: ApplitoolsOptions) => {
 
     // Create a configuration for Applitools Eyes.
     config = new Configuration()
-
     // Set the batch for the config.
     config.setBatch(batch)
-
-    // Add 3 desktop browsers with different viewports for cross-browser testing in the Ultrafast Grid.
-    // Other browsers are also available, like Edge and IE.
-    config.addBrowser(1600, 1200, BrowserType.CHROME)
-    config.addBrowser(1024, 768, BrowserType.SAFARI)
-    config.addBrowser(800, 600, BrowserType.FIREFOX)
-
-    // Add 2 mobile emulation devices with different orientations
-    config.addDeviceEmulation(DeviceName.iPhone_11, ScreenOrientation.PORTRAIT)
-    config.addDeviceEmulation(DeviceName.Pixel_3, ScreenOrientation.LANDSCAPE)
+    config = options.config?.(config) || config
   })
 
   test.afterEach(async ({ applitoolsEyes, eyes }) => {

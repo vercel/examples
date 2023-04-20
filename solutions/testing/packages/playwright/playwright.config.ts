@@ -11,6 +11,7 @@ dotenv.config({ path: resolve(__dirname, '.env.local') })
  * See https://playwright.dev/docs/test-configuration.
  */
 const config = defineConfig<ApplitoolsConfig>({
+  globalSetup: join(__dirname, 'shared', 'global-setup.ts'),
   testDir: TEST_TYPE ? join(__dirname, TEST_TYPE, 'tests') : '.',
   testMatch: '*.spec.ts',
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
