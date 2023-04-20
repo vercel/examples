@@ -77,6 +77,8 @@ const config = defineConfig<ApplitoolsConfig>({
         launchOptions: {
           devtools: OPEN_DEVTOOLS,
         },
+        // Enable Applitools Eyes for this project. We recommend only enabling it once to avoid
+        // duplicated test runs in your Applitools dashboard.
         applitoolsEyes: true,
       },
     },
