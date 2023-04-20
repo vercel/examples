@@ -1,6 +1,12 @@
-import type { Test } from '../base-fixture'
+import {
+  PlaywrightTestArgs,
+  PlaywrightWorkerOptions,
+  TestType,
+} from '@playwright/test'
 
-type AfterEach = Parameters<Test['afterEach']>[0]
+type AfterEach = Parameters<
+  TestType<PlaywrightTestArgs, PlaywrightWorkerOptions>['afterEach']
+>[0]
 
 /**
  * Pauses testing execution on failure. Works for both integration and E2E tests.
