@@ -47,6 +47,12 @@ export const applitoolsTest = (options: ApplitoolsOptions) => {
 
       const eyes = new Eyes(runner, config)
 
+      const { titlePath } = testInfo
+      // If `titlePath` looks like: ['todo.spec.ts', 'Todo Page', 'should do something']
+      // the name will be set to "Todo Page - should do something". If the length is 2 it
+      // will be "todo.spec.ts - should do something" instead.
+      const title = titlePath.slice(titlePath.length > 2 ? 1 : 0).join(' - ')
+
       // Open Eyes to start visual testing.
       // Each test should open its own Eyes for its own snapshots.
       // It is a recommended practice to set all four inputs below:
@@ -62,7 +68,7 @@ export const applitoolsTest = (options: ApplitoolsOptions) => {
         // The name of the test case for the given application.
         // Additional unique characteristics of the test may also be specified as part of the test name,
         // such as localization information ("Home Page - EN") or different user permissions ("Login by admin").
-        testInfo.title,
+        title,
 
         // The viewport size for the local browser.
         // Eyes will resize the web browser to match the requested viewport size.
@@ -85,20 +91,13 @@ export const applitoolsTest = (options: ApplitoolsOptions) => {
     // Warning: If you have a free account, then concurrency will be limited to 1.
     runner = new VisualGridRunner({ testConcurrency: 5 })
 
-    const { titlePath } = testInfo
-    // If `titlePath` looks like: ['todo.spec.ts', 'Todo Page', 'should do something']
-    // the name will be set to "Todo Page". If the length is 2 it will be "todo.spec.ts" instead.
-    const name = titlePath
-      .slice(titlePath.length > 2 ? 1 : 0, titlePath.length - 1)
-      .join(' - ')
-
     // Create a new batch for tests.
     // A batch is the collection of visual checkpoints for a test suite.
     // Batches are displayed in the Eyes Test Manager, so use meaningful names.
     batch = new BatchInfo({
       // Having a batch id makes tests group into the same batch. It's highly recommended to set it.
       id: process.env.APPLITOOLS_BATCH_ID,
-      name,
+      name: `${applitools.appName || options.appName} - Playwright`,
       ...options.batchInfo,
       ...applitools.batchInfo,
     })

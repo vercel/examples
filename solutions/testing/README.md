@@ -79,7 +79,7 @@ We recommend that all pages are covered by integration and visual tests, and onl
 
 Visual tests are done with [AppliTools Eyes](https://applitools.com/platform/eyes/), which uses AI to better detect layout changes.
 
-Applitools is disabled by default. To enable it, create an account at [applitools.com](https://auth.applitools.com/users/register) get an API key.
+Applitools is disabled by default. To enable it, create a free account at [applitools.com](https://auth.applitools.com/users/register) get an API key.
 
 Then, create the file `playwright/.env.local` and set the `APPLITOOLS_API_KEY` to your API key:
 
