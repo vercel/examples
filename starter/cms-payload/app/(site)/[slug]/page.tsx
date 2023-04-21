@@ -1,12 +1,12 @@
 import React from 'react'
 import { notFound } from 'next/navigation'
-import getPayload from '../../../payload'
+import { getPayloadClient } from '../../../payload/payloadClient'
 import Blocks from '../../../components/Blocks'
 import { Hero } from '../../../components/Hero'
 import { AdminBar } from '../../../components/AdminBar'
 
 const Page = async ({ params: { slug } }) => {
-  const payload = await getPayload()
+  const payload = await getPayloadClient()
 
   const pages = await payload.find({
     collection: 'pages',
@@ -31,7 +31,7 @@ const Page = async ({ params: { slug } }) => {
 }
 
 export async function generateStaticParams() {
-  const payload = await getPayload()
+  const payload = await getPayloadClient()
 
   const pages = await payload.find({
     collection: 'pages',

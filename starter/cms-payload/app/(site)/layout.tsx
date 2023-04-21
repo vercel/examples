@@ -1,8 +1,8 @@
 import Layout from '../../components/Layout'
-import getPayload from '../../payload'
+import { getPayloadClient } from '../../payload/payloadClient'
 
 const SiteLayout = async ({ children }: { children: React.ReactNode }) => {
-  const payload = await getPayload()
+  const payload = await getPayloadClient()
 
   const mainMenu = await payload.findGlobal({
     slug: 'main-menu',
