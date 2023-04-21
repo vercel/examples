@@ -57,7 +57,7 @@ export default async function middleware(req: NextRequest) {
   // Rewriting the path based on `homePageVariable` value
   // If the value is `old_version`, it returns `/` path, otherwise `/new-home-page`
   req.nextUrl.pathname =
-    homePageVariable.value !== 'old_version' ? '/' : '/new-home-page'
+    homePageVariable.value === 'old_version' ? '/' : '/new-home-page'
   const response = NextResponse.rewrite(req.nextUrl)
 
   if (!req.cookies.has(KAMELEOON_USER_ID)) {
