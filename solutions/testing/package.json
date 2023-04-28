@@ -12,15 +12,15 @@
     "start": "turbo run start",
     "lint": "turbo run lint",
     "clean": "turbo run clean",
-    "test-server": "turbo run build && turbo run start",
+    "test-server": "turbo run build --filter=...'./apps/*' && turbo run start --filter=...'./apps/*'",
     "test-unit": "turbo run test-unit",
     "integration": "turbo run integration",
     "e2e": "turbo run e2e"
   },
   "devDependencies": {
-    "eslint": "^8.28.0",
-    "eslint-config-turbo": "latest",
-    "turbo": "^1.8.3"
+    "eslint": "^8.38.0",
+    "eslint-config-turbo": "^1.9.3",
+    "turbo": "^1.9.3"
   },
   "packageManager": "pnpm@7.17.1"
 }

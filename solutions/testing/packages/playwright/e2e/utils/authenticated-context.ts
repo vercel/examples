@@ -1,11 +1,7 @@
-import { request, test } from '@playwright/test'
+import { PlaywrightTestOptions, Fixtures, request } from '@playwright/test'
 import { randomUUID } from 'crypto'
 import generateUsername from 'shared/utils/generate-username'
 import type { StorageState } from 'shared/utils/storage-state'
-
-// TODO: This type isn't currently exported, the Playwright team are open to
-// contributions here.
-type Fixtures = Parameters<typeof test['use']>[0]
 
 async function createAuthenticatedStorage(
   baseURL: string
@@ -56,7 +52,7 @@ async function createAuthenticatedStorage(
  * Note that one user is created per test file, per browser. Within the test
  * file, the same user (context) will be shared between tests.
  */
-export const authenticatedContext: Fixtures = {
+export const authenticatedContext: Fixtures<{}, {}, PlaywrightTestOptions> = {
   storageState: async ({ baseURL }, use) => {
     use(await createAuthenticatedStorage(baseURL!))
   },

@@ -1,3 +1,4 @@
+import { Target } from '@applitools/eyes-playwright'
 import { todosBody } from 'integration/fixtures/api-todos/todos'
 import { test, expect } from 'integration/setup-fixture'
 import { authenticatedContext } from 'integration/utils/authenticated-context'
@@ -8,7 +9,7 @@ import { TodoPage } from 'shared/pages/todo-page'
 test.use(authenticatedContext)
 
 test.describe('Todo Page', () => {
-  test('should be able to add todos', async ({ page, mockApi }) => {
+  test('should be able to add todos', async ({ page, mockApi, eyes }) => {
     const { todos } = todosBody
     const todoPage = new TodoPage(page)
     const [waitForResponse] = await mockApi.todos.todo.get({
@@ -17,6 +18,7 @@ test.describe('Todo Page', () => {
 
     // Navigate to the page and wait for a response from /api/todo
     await Promise.all([waitForResponse(), todoPage.goto()])
+    await eyes.check('Todo page', Target.window().fully())
 
     const { input, submitButton } = todoPage.getNewTodoForm()
     const todoItems = todoPage.getTodos()
@@ -50,6 +52,8 @@ test.describe('Todo Page', () => {
 
     await addFirstTodo()
     await addSecondTodo()
+    // This snapshot uses layout match level to avoid differences in closing time text.
+    await eyes.check('Todo page with 2 todos', Target.window().fully().layout())
   })
 
   test('should clear the input field when a new item is added', async ({
@@ -68,6 +72,7 @@ test.describe('Todo Page', () => {
   test('should be able to mark todo items as complete', async ({
     page,
     mockApi,
+    eyes,
   }) => {
     const { todos } = todosBody
     const todoPage = new TodoPage(page)
@@ -91,6 +96,7 @@ test.describe('Todo Page', () => {
 
     // Once the item is completed, the button's text changes to `Undo`.
     await expect(undoButton).toBeVisible()
+    await eyes.check('Completed todo', Target.window().fully())
   })
 
   test('should be able to un-mark todo items as complete', async ({

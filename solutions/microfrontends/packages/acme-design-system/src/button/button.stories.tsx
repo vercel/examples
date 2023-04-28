@@ -1,16 +1,24 @@
-import type { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Button } from '@acme/design-system'
-import '@vercel/examples-ui/globals.css'
+import type { Meta, StoryObj } from '@storybook/react'
+import Button from './button'
 
-export default {
-  title: 'button',
+const meta: Meta<typeof Button> = {
+  title: 'Button',
   component: Button,
-} as ComponentMeta<typeof Button>
+}
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />
+export default meta
 
-export const Primary = Template.bind({})
-Primary.args = { children: 'This is a button!' }
+type Story = StoryObj<typeof Button>
 
-export const Secondary = Template.bind({})
-Secondary.args = { children: 'This is a button!', secondary: true }
+export const Primary: Story = {
+  args: {
+    children: 'This is a button!',
+  },
+}
+
+export const Secondary = {
+  args: {
+    secondary: true,
+    children: 'This is a button!',
+  },
+}
