@@ -13,7 +13,7 @@ relatedTemplates:
   - postgres-starter
 ---
 
-# Vercel KV for Redis Next.js Starter
+# Vercel Blob Next.js Starter
 
 Simple Next.js template that uses [Vercel Blob](https://vercel.com/blob)for image uploads
 
