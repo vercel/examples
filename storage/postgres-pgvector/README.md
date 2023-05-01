@@ -20,7 +20,7 @@ A Next.js template that uses [Vercel Postgres](https://vercel.com/postgres) as t
 
 ## Demo
 
-https://postgres-prisma-.vercel.app/
+https://postgres-pgvector.vercel.app/
 
 ## How to Use
 
