@@ -26,6 +26,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@types/ms": "^0.7.31"
+    "@types/ms": "^0.7.31",
+    "turbo": "^1.9.3"
   }
 }

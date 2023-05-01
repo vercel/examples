@@ -30,6 +30,7 @@
   "devDependencies": {
     "@types/ms": "^0.7.31",
     "@types/pg": "^8.6.6",
-    "drizzle-kit": "^0.17.6"
+    "drizzle-kit": "^0.17.6",
+    "turbo": "^1.9.3"
   }
 }

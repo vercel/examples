@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@types/ms": "^0.7.31",
-    "prisma": "^4.13.0"
+    "prisma": "^4.13.0",
+    "turbo": "^1.9.3"
   }
 }
