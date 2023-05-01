@@ -1,58 +1,58 @@
-"use client";
+'use client'
 
-import { useState, useCallback, useMemo, ChangeEvent } from "react";
-import toast from "react-hot-toast";
-import LoadingDots from "./loading-dots";
-import { PutBlobResult } from "@vercel/blob";
+import { useState, useCallback, useMemo, ChangeEvent } from 'react'
+import toast from 'react-hot-toast'
+import LoadingDots from './loading-dots'
+import { PutBlobResult } from '@vercel/blob'
 
 export default function Uploader() {
   const [data, setData] = useState<{
-    image: string | null;
+    image: string | null
   }>({
     image: null,
-  });
-  const [file, setFile] = useState<File | null>(null);
+  })
+  const [file, setFile] = useState<File | null>(null)
 
-  const [dragActive, setDragActive] = useState(false);
+  const [dragActive, setDragActive] = useState(false)
 
   const onChangePicture = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      const file = event.currentTarget.files && event.currentTarget.files[0];
+      const file = event.currentTarget.files && event.currentTarget.files[0]
       if (file) {
         if (file.size / 1024 / 1024 > 50) {
-          toast.error("File size too big (max 50MB)");
+          toast.error('File size too big (max 50MB)')
         } else {
-          setFile(file);
-          const reader = new FileReader();
+          setFile(file)
+          const reader = new FileReader()
           reader.onload = (e) => {
-            setData((prev) => ({ ...prev, image: e.target?.result as string }));
-          };
-          reader.readAsDataURL(file);
+            setData((prev) => ({ ...prev, image: e.target?.result as string }))
+          }
+          reader.readAsDataURL(file)
         }
       }
     },
     [setData]
-  );
+  )
 
-  const [saving, setSaving] = useState(false);
+  const [saving, setSaving] = useState(false)
 
   const saveDisabled = useMemo(() => {
-    return !data.image || saving;
-  }, [data.image, saving]);
+    return !data.image || saving
+  }, [data.image, saving])
 
   return (
     <form
       className="grid gap-6"
       onSubmit={async (e) => {
-        e.preventDefault();
-        setSaving(true);
-        fetch("/api/upload", {
-          method: "POST",
-          headers: { "content-type": file?.type || "application/octet-stream" },
+        e.preventDefault()
+        setSaving(true)
+        fetch('/api/upload', {
+          method: 'POST',
+          headers: { 'content-type': file?.type || 'application/octet-stream' },
           body: file,
         }).then(async (res) => {
           if (res.status === 200) {
-            const { url } = (await res.json()) as PutBlobResult;
+            const { url } = (await res.json()) as PutBlobResult
             toast(
               (t) => (
                 <div className="relative">
@@ -61,7 +61,7 @@ export default function Uploader() {
                       File uploaded!
                     </p>
                     <p className="mt-1 text-sm text-gray-500">
-                      Your file has been uploaded to{" "}
+                      Your file has been uploaded to{' '}
                       <a
                         className="font-medium text-gray-900 underline"
                         href={url}
@@ -95,13 +95,13 @@ export default function Uploader() {
                 </div>
               ),
               { duration: 300000 }
-            );
+            )
           } else {
-            const error = await res.text();
-            toast.error(error);
+            const error = await res.text()
+            toast.error(error)
           }
-          setSaving(false);
-        });
+          setSaving(false)
+        })
       }}
     >
       <div>
@@ -118,55 +118,55 @@ export default function Uploader() {
           <div
             className="absolute z-[5] h-full w-full rounded-md"
             onDragOver={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setDragActive(true);
+              e.preventDefault()
+              e.stopPropagation()
+              setDragActive(true)
             }}
             onDragEnter={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setDragActive(true);
+              e.preventDefault()
+              e.stopPropagation()
+              setDragActive(true)
             }}
             onDragLeave={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setDragActive(false);
+              e.preventDefault()
+              e.stopPropagation()
+              setDragActive(false)
             }}
             onDrop={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setDragActive(false);
+              e.preventDefault()
+              e.stopPropagation()
+              setDragActive(false)
 
-              const file = e.dataTransfer.files && e.dataTransfer.files[0];
+              const file = e.dataTransfer.files && e.dataTransfer.files[0]
               if (file) {
                 if (file.size / 1024 / 1024 > 50) {
-                  toast.error("File size too big (max 50MB)");
+                  toast.error('File size too big (max 50MB)')
                 } else {
-                  setFile(file);
-                  const reader = new FileReader();
+                  setFile(file)
+                  const reader = new FileReader()
                   reader.onload = (e) => {
                     setData((prev) => ({
                       ...prev,
                       image: e.target?.result as string,
-                    }));
-                  };
-                  reader.readAsDataURL(file);
+                    }))
+                  }
+                  reader.readAsDataURL(file)
                 }
               }
             }}
           />
           <div
             className={`${
-              dragActive ? "border-2 border-black" : ""
+              dragActive ? 'border-2 border-black' : ''
             } absolute z-[3] flex h-full w-full flex-col items-center justify-center rounded-md px-10 transition-all ${
               data.image
-                ? "bg-white/80 opacity-0 hover:opacity-100 hover:backdrop-blur-md"
-                : "bg-white opacity-100 hover:bg-gray-50"
+                ? 'bg-white/80 opacity-0 hover:opacity-100 hover:backdrop-blur-md'
+                : 'bg-white opacity-100 hover:bg-gray-50'
             }`}
           >
             <svg
               className={`${
-                dragActive ? "scale-110" : "scale-100"
+                dragActive ? 'scale-110' : 'scale-100'
               } h-7 w-7 text-gray-500 transition-all duration-75 group-hover:scale-110 group-active:scale-95`}
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -215,8 +215,8 @@ export default function Uploader() {
         disabled={saveDisabled}
         className={`${
           saveDisabled
-            ? "cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400"
-            : "border-black bg-black text-white hover:bg-white hover:text-black"
+            ? 'cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400'
+            : 'border-black bg-black text-white hover:bg-white hover:text-black'
         } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
       >
         {saving ? (
@@ -226,5 +226,5 @@ export default function Uploader() {
         )}
       </button>
     </form>
-  );
+  )
 }

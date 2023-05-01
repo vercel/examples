@@ -1,3 +1,3 @@
-"use client";
+'use client'
 
-export { Toaster } from "react-hot-toast";
+export { Toaster } from 'react-hot-toast'
