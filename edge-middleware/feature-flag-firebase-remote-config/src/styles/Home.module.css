@@ -1,0 +1,28 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.description {
+  display: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+  font-size: 0.85rem;
+  width: 100%;
+  z-index: 2;
+}
+
+.description a {
+  text-decoration: underline;
+}
+
+.description p {
+  position: relative;
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
