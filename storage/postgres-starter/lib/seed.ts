@@ -1,4 +1,4 @@
-import { sql } from "@vercel/postgres";
+import { sql } from '@vercel/postgres'
 
 export async function seed() {
   const createTable = await sql`
@@ -9,9 +9,9 @@ export async function seed() {
       image VARCHAR(255),
       "createdAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
     );
-    `;
+    `
 
-  console.log(`Created "users" table`);
+  console.log(`Created "users" table`)
 
   const users = await Promise.all([
     sql`
@@ -29,11 +29,11 @@ export async function seed() {
           VALUES ('Steven Tey', 'stey@vercel.com', 'https://pbs.twimg.com/profile_images/1506792347840888834/dS-r50Je_400x400.jpg')
           ON CONFLICT (email) DO NOTHING;
       `,
-  ]);
-  console.log(`Seeded ${users.length} users`);
+  ])
+  console.log(`Seeded ${users.length} users`)
 
   return {
     createTable,
     users,
-  };
+  }
 }
