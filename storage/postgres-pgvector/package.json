@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@prisma/client": "4.13.0",
+    "@upstash/ratelimit": "^0.4.2",
+    "@vercel/kv": "^0.1.0",
     "autoprefixer": "10.4.14",
     "clsx": "^1.2.1",
     "cmdk": "^0.2.0",
