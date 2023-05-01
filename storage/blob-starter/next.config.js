@@ -4,8 +4,8 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["public.blob.vercel-storage.com"],
+    domains: ['public.blob.vercel-storage.com'],
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

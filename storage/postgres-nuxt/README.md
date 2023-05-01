@@ -16,43 +16,36 @@ relatedTemplates:
 
 # Nuxt 3 Minimal Starter
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# Vercel Postgres Nuxt Starter
 
-## Setup
+Simple Nuxt.js template that uses [Vercel Postgres](https://vercel.com/postgres) as the database.
 
-Make sure to install the dependencies:
+## Demo
 
-```bash
-# yarn
-yarn install
+https://postgres-starter.vercel.app/
 
-# npm
-npm install
+## How to Use
 
-# pnpm
-pnpm install
-```
+You can choose from one of the following two methods to use this repository:
 
-## Development Server
+### One-Click Deploy
 
-Start the development server on `http://localhost:3000`
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-```bash
-npm run dev
-```
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fstorage%2Fpostgres-nuxt&project-name=postgres-nuxt&repository-name=postgres-nuxt&demo-title=Vercel%20Postgres%Nuxt.js%20Starter&demo-description=Simple%Nuxt.js%20template%20that%20uses%20Vercel%20Postgres%20as%20the%20database.&demo-url=https%3A%2F%2Fpostgres-nuxt.vercel.app%2F&demo-image=https%3A%2F%2Fpostgres-nuxt.vercel.app%2Fopengraph-image.png&stores=%5B%7B"type"%3A"postgres"%7D%5D)
 
-## Production
+### Clone and Deploy
 
-Build the application for production:
+Execute [`npx nuxi@latest init`](https://nuxt.com/) with [npx](https://www.npmjs.com/package/npx) to bootstrap the example:
 
 ```bash
-npm run build
+npx nuxi@latest init --example https://github.com/vercel/examples/tree/main/storage/postgres-nuxt
 ```
 
-Locally preview production build:
+Next, run Nuxt in development mode:
 
 ```bash
-npm run preview
+pnpm dev
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples) ([Documentation](https://nextjs.org/docs/deployment)).
