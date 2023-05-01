@@ -1,8 +1,8 @@
 ---
 name: Vercel KV for Redis Nuxt.js Starter
-slug: kv-redis-starter
+slug: kv-redis-nuxt
 description: Simple Nuxt.js template that uses Vercel KV for Redis to track pageviews.
-framework: Nuxt.js
+framework: Nuxt
 useCase: Starter
 css: Tailwind
 database: Vercel KV
