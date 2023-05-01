@@ -1,10 +1,6 @@
 <script>
   import Table from '../lib/Table.svelte'
   export let data
-<<<<<<< HEAD
-  console.log(data)
-=======
->>>>>>> 0f7114ef (Seed data nuxt (#653))
 </script>
 
 <main
