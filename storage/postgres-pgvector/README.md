@@ -1,7 +1,7 @@
 ---
-name: Vercel Postgres + Prisma Next.js Starter
-slug: postgres-prisma
-description: Simple Next.js template that uses Vercel Postgres as the database and Prisma as the ORM.
+name: Vercel Postgres + Prisma + pgvector Next.js Starter
+slug: postgres-pgvector
+description: A Next.js template that uses Vercel Postgres as the database, Prisma as the ORM with pgvector to enable vector similarity search, and OpenAI's text-embedding-ada-002 model for embeddings.
 framework: Next.js
 useCase: Starter
 css: Tailwind
@@ -37,7 +37,7 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
 
 ```bash
-pnpm create next-app --example https://github.com/vercel/examples/tree/main/storage/postgres-prisma-pgvector-openai
+pnpm create next-app --example https://github.com/vercel/examples/tree/main/storage/postgres-pgvector
 ```
 
 Once that's done, copy the .env.example file in this directory to .env.local (which will be ignored by Git):
