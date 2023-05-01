@@ -52,28 +52,6 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      // users: [
-      // 	{
-      // 		id: 1,
-      // 		name: 'John Doe',
-      // 		email: '',
-      // 		image: 'https://i.pravatar.cc/48?u=1',
-      // 		createdAt: Date.now()
-      // 	},
-      // 	{
-      // 		id: 2,
-      // 		name: 'Jane Doe',
-      // 		email: '',
-      // 		image: 'https://i.pravatar.cc/48?u=2',
-      // 		createdAt: Date.now()
-      // 	}
-      // ],
-      // startTime: Date.now(),
-      // duration: Date.now() - this.startTime
-    }
-  },
   methods: {
     timeAgo(timestamp, timeOnly) {
       if (!timestamp) return 'never'

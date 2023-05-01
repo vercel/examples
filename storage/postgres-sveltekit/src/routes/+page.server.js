@@ -1,10 +1,10 @@
 import { createPool } from '@vercel/postgres'
 
 export async function load() {
-  const pool = createPool()
+  const db = createPool()
   try {
     const startTime = Date.now()
-    const { rows: users } = await pool.query('SELECT * FROM users')
+    const { rows: users } = await db.query('SELECT * FROM users')
     const duration = Date.now() - startTime
     return {
       users: users,
