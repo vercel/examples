@@ -11,7 +11,7 @@ demoUrl: https://postgres-kysely.vercel.app/
 relatedTemplates:
   - postgres-starter
   - postgres-prisma
-  - postgres-drizzle
+  - postgres-sveltekit
 ---
 
 # Vercel Postgres + Kysely Next.js Starter
