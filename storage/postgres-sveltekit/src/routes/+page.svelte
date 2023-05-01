@@ -42,12 +42,12 @@
       .
     </div>
   </div>
-  <div class="flex flex-col grow">
+  <div class="flex flex-col items-center grow">
     <a href="https://vercel.com">
       <img
         src="/vercel.svg"
         alt="Vercel Logo"
-        class="my-2 text-white dark:text-white"
+        class="h-4 my-4 dark:invert"
         width={100}
         height={24}
       />
