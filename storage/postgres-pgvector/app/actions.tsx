@@ -3,12 +3,16 @@
 import prisma from '@/lib/prisma'
 import { openai } from '@/lib/openai'
 import { type Pokemon } from '@prisma/client'
+import { ratelimit } from '@/lib/utils'
 
 export async function searchPokedex(
   query: string
 ): Promise<Array<Pokemon & { similarity: number }>> {
   try {
     if (query.trim().length === 0) return []
+
+    const { success } = await ratelimit.limit('generations')
+    if (!success) throw new Error('Rate limit exceeded')
 
     const embedding = await generateEmbedding(query)
     const vectorQuery = `[${embedding.join(',')}]`
