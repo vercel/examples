@@ -1,6 +1,8 @@
 {
   "name": "postgres-prisma-pgvector-openai",
-  "version": "0.1.0",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "prisma generate && next dev",

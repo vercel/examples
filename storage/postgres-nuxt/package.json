@@ -1,5 +1,8 @@
 {
-  "name": "nuxt-app",
+  "name": "postgres-nuxt",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "build": "nuxt build",
