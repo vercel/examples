@@ -1,5 +1,7 @@
 {
   "name": "feature-flag-firebase-remote-config",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,18 +13,22 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/node": "18.14.1",
-    "@types/react": "18.0.28",
-    "@types/react-dom": "18.0.11",
-    "eslint": "8.34.0",
-    "eslint-config-next": "13.2.1",
-    "firebase": "^9.18.0",
-    "firebase-admin": "^11.5.0",
-    "next": "13.2.1",
+    "@vercel/examples-ui": "^1.0.5",
+    "next": "^13.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "firebase-admin": "^11.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.5",
+    "@types/react": "^18.0.28",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.36.0",
+    "eslint-config-next": "^13.2.4",
+    "postcss": "^8.4.21",
     "prettier": "^2.8.7",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-is": "^18.2.0",
-    "typescript": "4.9.5"
+    "tailwindcss": "^3.2.7",
+    "turbo": "^1.8.5",
+    "typescript": "^5.0.2"
   }
 }
