@@ -28,19 +28,17 @@ async function main() {
     console.error('Error checking if "Pikachu" exists in the database.')
     throw error
   }
-  for (const record of (pokemon as any).data as any[]) {
-    const p = await getPokemonFromRecord(record)
+  for (const record of (pokemon as any).data) {
     // In order to save time, we'll just use the embeddings we've already generated
     // for each Pokémon. If you want to generate them yourself, uncomment the
     // following line and comment out the line after it.
     // const embedding = await generateEmbedding(p.name);
-    // await new Promise((r) => setTimeout(r, 500)); // Wait 500ms between requests
-    // data.push({ ...p, embedding });
+    // await new Promise((r) => setTimeout(r, 500)); // Wait 500ms between requests;
     const embedding = record.embedding
 
     // Create the pokemon in the database
     const pokemon = await prisma.pokemon.create({
-      data: p,
+      data: record,
     })
 
     // Add the embedding
@@ -50,7 +48,7 @@ async function main() {
         WHERE id = ${pokemon.id}
     `
 
-    console.log(`Added ${p.number} ${p.name}`)
+    console.log(`Added ${pokemon.number} ${pokemon.name}`)
   }
 
   // Uncomment the following lines if you want to generate the JSON file
@@ -69,24 +67,6 @@ main()
     await prisma.$disconnect()
     process.exit(1)
   })
-
-function getPokemonFromRecord(record: any): Omit<Pokemon, 'id' | 'embedding'> {
-  return {
-    number: parseInt(record['#']),
-    name: record['Name'],
-    type1: record['Type 1'],
-    type2: record['Type 2'] || null,
-    total: parseInt(record['Total']),
-    hp: parseInt(record['HP']),
-    attack: parseInt(record['Attack']),
-    defense: parseInt(record['Defense']),
-    spAtk: parseInt(record['Sp. Atk']),
-    spDef: parseInt(record['Sp. Def']),
-    speed: parseInt(record['Speed']),
-    generation: parseInt(record['Generation']),
-    legendary: record['Legendary'] === 'True',
-  } satisfies Omit<Pokemon, 'id' | 'embedding'>
-}
 
 async function generateEmbedding(_input: string) {
   const input = _input.replace(/\n/g, ' ')
