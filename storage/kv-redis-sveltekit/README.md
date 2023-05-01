@@ -12,7 +12,6 @@ relatedTemplates:
   - blob-starter
   - postgres-starter
 ---
-<<<<<<< HEAD
 =======
 
 # Vercel KV for Redis SvelteKit Starter
@@ -33,6 +32,7 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fstorage%2Fkv-redis-sveltekit&project-name=kv-redis-sveltekit&repository-name=kv-redis-sveltekit&demo-title=Vercel%20KV%20for%20Redis%20Svelte%20Starter&demo-description=Simple%20SvelteKit%20template%20that%20uses%20Vercel%20KV%20for%20Redis%20to%20track%20pageviews.&demo-url=https%3A%2F%2Fkv-redis-sveltekit.vercel.app%2F&demo-image=https%3A%2F%2Fkv-redis-sveltekit.vercel.app%2Fopengraph-image.png&stores=%5B%7B"type"%3A"kv"%7D%5D)
 
+<<<<<<< HEAD
 # create-svelte
 >>>>>>> 20459017 (Fix Storage READMEs (#645))
 
@@ -56,6 +56,10 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 ### Clone and Deploy
 
+=======
+### Clone and Deploy
+
+>>>>>>> d4b02087 (merge main, prettier)
 Execute [`create svelte@latest`](https://kit.svelte.dev/) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
 
 ```bash
