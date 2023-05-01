@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { createPool } from '@vercel/postgres'
-=======
 import { createPool, sql } from '@vercel/postgres';
->>>>>>> 0f7114ef (Seed data nuxt (#653))
 
 async function seed() {
   const createTable = await sql`

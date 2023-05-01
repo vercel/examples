@@ -2,7 +2,7 @@
 name: Vercel KV for Redis SvelteKit Starter
 slug: kv-redis-sveltekit
 description: Simple SvelteKit template that uses Vercel KV for Redis to track pageviews.
-framework: SvelteKit
+framework: Svelte
 useCase: Starter
 css: Tailwind
 database: Vercel KV
