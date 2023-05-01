@@ -34,11 +34,11 @@ async function main() {
     // following line and comment out the line after it.
     // const embedding = await generateEmbedding(p.name);
     // await new Promise((r) => setTimeout(r, 500)); // Wait 500ms between requests;
-    const embedding = record.embedding
+    const { embedding, ...p } = record
 
     // Create the pokemon in the database
     const pokemon = await prisma.pokemon.create({
-      data: record,
+      data: p,
     })
 
     // Add the embedding
