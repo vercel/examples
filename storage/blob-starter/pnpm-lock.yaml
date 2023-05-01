@@ -43,9 +43,6 @@ dependencies:
   tailwindcss:
     specifier: 3.3.1
     version: 3.3.1(postcss@8.4.22)
-  turbo:
-    specifier: ^1.9.3
-    version: 1.9.3
   typescript:
     specifier: 5.0.4
     version: 5.0.4
@@ -54,6 +51,9 @@ devDependencies:
   '@types/ms':
     specifier: ^0.7.31
     version: 0.7.31
+  turbo:
+    specifier: ^1.9.3
+    version: 1.9.3
 
 packages:
 
@@ -2498,7 +2498,7 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: false
+    dev: true
     optional: true
 
   /turbo-darwin-arm64@1.9.3:
@@ -2506,7 +2506,7 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: false
+    dev: true
     optional: true
 
   /turbo-linux-64@1.9.3:
@@ -2514,7 +2514,7 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: false
+    dev: true
     optional: true
 
   /turbo-linux-arm64@1.9.3:
@@ -2522,7 +2522,7 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: false
+    dev: true
     optional: true
 
   /turbo-windows-64@1.9.3:
@@ -2530,7 +2530,7 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: false
+    dev: true
     optional: true
 
   /turbo-windows-arm64@1.9.3:
@@ -2538,7 +2538,7 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: false
+    dev: true
     optional: true
 
   /turbo@1.9.3:
@@ -2552,7 +2552,7 @@ packages:
       turbo-linux-arm64: 1.9.3
       turbo-windows-64: 1.9.3
       turbo-windows-arm64: 1.9.3
-    dev: false
+    dev: true
 
   /type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
