@@ -11,7 +11,7 @@ demoUrl: https://postgres-prisma.vercel.app/
 relatedTemplates:
   - postgres-starter
   - postgres-kysely
-  - postgres-drizzle
+  - postgres-sveltekit
 ---
 
 # Vercel Postgres + Prisma Next.js Starter
