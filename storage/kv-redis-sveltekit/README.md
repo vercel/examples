@@ -12,7 +12,6 @@ relatedTemplates:
   - blob-starter
   - postgres-starter
 ---
-=======
 
 # Vercel KV for Redis SvelteKit Starter
 
@@ -32,18 +31,41 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fstorage%2Fkv-redis-sveltekit&project-name=kv-redis-sveltekit&repository-name=kv-redis-sveltekit&demo-title=Vercel%20KV%20for%20Redis%20Svelte%20Starter&demo-description=Simple%20SvelteKit%20template%20that%20uses%20Vercel%20KV%20for%20Redis%20to%20track%20pageviews.&demo-url=https%3A%2F%2Fkv-redis-sveltekit.vercel.app%2F&demo-image=https%3A%2F%2Fkv-redis-sveltekit.vercel.app%2Fopengraph-image.png&stores=%5B%7B"type"%3A"kv"%7D%5D)
 
-### Clone and Deploy
+# create-svelte
 
-Execute [`create svelte@latest`](https://kit.svelte.dev/) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
+Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+
+## Creating a project
+
+If you're seeing this, you've probably already done this step. Congrats!
 
 ```bash
-pnpm create svelte@latest --example https://github.com/vercel/examples/tree/main/storage/postgres-sveltekit
+# create a new project in the current directory
+pnpm create svelte@latest
+
+# create a new project in my-app
+pnpm create svelte@latest my-app
 ```
 
-Next, run SvelteKit in development mode:
+## Developing
+
+Once you've created a project and installed dependencies with `pnpm install`, start a development server:
 
 ```bash
 pnpm dev
+
+# or start the server and open the app in a new browser tab
+pnpm dev --open
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples) ([Documentation](https://nextjs.org/docs/deployment)).
+## Building
+
+To create a production version of your app:
+
+```bash
+pnpm build
+```
+
+You can preview the production build with `pnpm preview`.
+
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.

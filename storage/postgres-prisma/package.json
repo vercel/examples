@@ -1,6 +1,8 @@
 {
   "name": "postgres-prisma",
-  "version": "0.1.0",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "prisma generate && next dev",
@@ -31,6 +33,7 @@
   },
   "devDependencies": {
     "@types/ms": "^0.7.31",
-    "prisma": "^4.13.0"
+    "prisma": "^4.13.0",
+    "turbo": "^1.9.3"
   }
 }

@@ -36,7 +36,7 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 Execute [`npx nuxi@latest init`](https://nuxt.com/) with [npx](https://www.npmjs.com/package/npx) to bootstrap the example:
 
 ```bash
-npx nuxi@latest init --example https://github.com/vercel/examples/tree/main/storage/postgres-nuxt
+pnpm dlx nuxi init --template https://github.com/vercel/examples/tree/main/storage/postgres-nuxt
 ```
 
 Next, run Nuxt in development mode:
