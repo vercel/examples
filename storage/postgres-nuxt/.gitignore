@@ -8,3 +8,5 @@ node_modules
 dist
 .DS_Store
 .vercel
+.turbo
+*.tsbuildinfo

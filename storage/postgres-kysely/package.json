@@ -1,4 +1,8 @@
 {
+  "name": "postgres-kysely",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -25,6 +29,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@types/ms": "^0.7.31"
+    "@types/ms": "^0.7.31",
+    "turbo": "^1.9.3"
   }
 }

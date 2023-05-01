@@ -51,7 +51,6 @@ export async function load() {
 			duration: duration
 		};
 	} catch (error) {
-		// @ts-ignore
 		if (error?.message === `relation "users" does not exist`) {
       console.log(
         "Table does not exist, creating and seeding it with dummy data now..."
