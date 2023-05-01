@@ -6,8 +6,8 @@ framework: Next.js
 useCase: Starter
 css: Tailwind
 database: Vercel Postgres
-deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fstorage%2Fpostgres-prisma&project-name=postgres-prisma&repository-name=postgres-prisma&demo-title=Vercel%20Postgres%20%2B%20Prisma%20Next.js%20Starter&demo-description=Simple%20Next.js%20template%20that%20uses%20Vercel%20Postgres%20as%20the%20database%20and%20Prisma%20as%20the%20ORM.&demo-url=https%3A%2F%2Fpostgres-prisma.vercel.app%2F&demo-image=https%3A%2F%2Fpostgres-prisma.vercel.app%2Fopengraph-image.png&stores=%5B%7B"type"%3A"postgres"%7D%5D
-demoUrl: https://postgres-prisma.vercel.app/
+deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fstorage%2Fpostgres-pgvector&env=OPENAI_API_KEY&envDescription=Get%20your%20OpenAI%20API%20key%20here%3A&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=postgres-pgvector&repository-name=postgres-pgvector&demo-title=Vercel%20Postgres%20%2B%20Prisma%20%2B%20pgvector%20Next.js%20Starter&demo-description=A%20Next.js%20template%20that%20uses%20Vercel%20Postgres%20as%20the%20database%2C%20Prisma%20as%20the%20ORM%20with%20pgvector%20to%20enable%20vector%20similarity%20search%2C%20and%20OpenAI%E2%80%99s%20models%20for%20text%20embeddings.&demo-url=https%3A%2F%2Fpostgres-pgvector.vercel.app&demo-image=https%3A%2F%2Fpostgres-pgvector.vercel.app%2Fopengraph-image.png&stores=%5B%7B"type"%3A"postgres"%7D%5D&
+demoUrl: https://postgres-pgvector.vercel.app/
 relatedTemplates:
   - postgres-starter
   - postgres-kysely
@@ -30,7 +30,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fstorage%2Fpostgres-prisma&project-name=postgres-prisma&repository-name=postgres-prisma&demo-title=Vercel%20Postgres%20%2B%20Prisma%20Next.js%20Starter&demo-description=Simple%20Next.js%20template%20that%20uses%20Vercel%20Postgres%20as%20the%20database%20and%20Prisma%20as%20the%20ORM.&demo-url=https%3A%2F%2Fpostgres-prisma.vercel.app%2F&demo-image=https%3A%2F%2Fpostgres-prisma.vercel.app%2Fopengraph-image.png&stores=%5B%7B"type"%3A"postgres"%7D%5D)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fstorage%2Fpostgres-pgvector&env=OPENAI_API_KEY&envDescription=Get%20your%20OpenAI%20API%20key%20here%3A&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=postgres-pgvector&repository-name=postgres-pgvector&demo-title=Vercel%20Postgres%20%2B%20Prisma%20%2B%20pgvector%20Next.js%20Starter&demo-description=A%20Next.js%20template%20that%20uses%20Vercel%20Postgres%20as%20the%20database%2C%20Prisma%20as%20the%20ORM%20with%20pgvector%20to%20enable%20vector%20similarity%20search%2C%20and%20OpenAI%E2%80%99s%20models%20for%20text%20embeddings.&demo-url=https%3A%2F%2Fpostgres-pgvector.vercel.app&demo-image=https%3A%2F%2Fpostgres-pgvector.vercel.app%2Fopengraph-image.png&stores=%5B%7B"type"%3A"postgres"%7D%5D&)
 
 ### Clone and Deploy
 
