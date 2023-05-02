@@ -1,16 +1,16 @@
-import { sql } from '@vercel/postgres'
-import { db } from '@/lib/kysely'
+import { db, sql } from '@/lib/kysely'
 
 export async function seed() {
-  const createTable = await sql`
-    CREATE TABLE IF NOT EXISTS users (
-      id SERIAL PRIMARY KEY,
-      name VARCHAR(255) NOT NULL,
-      email VARCHAR(255) UNIQUE NOT NULL,
-      image VARCHAR(255),
-      "createdAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-    );
-  `
+  const createTable = await db.schema
+    .createTable('users')
+    .addColumn('id', 'serial', (cb) => cb.primaryKey())
+    .addColumn('name', 'varchar(255)', (cb) => cb.notNull())
+    .addColumn('email', 'varchar(255)', (cb) => cb.notNull().unique())
+    .addColumn('image', 'varchar(255)')
+    .addColumn('createdAt', sql`timestamp with time zone`, (cb) =>
+      cb.defaultTo('CURRENT_TIMESTAMP')
+    )
+    .execute()
   console.log(`Created "users" table`)
   const addUsers = await db
     .insertInto('users')
