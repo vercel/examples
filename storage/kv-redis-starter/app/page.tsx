@@ -1,10 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
-import ViewCounter from "@/components/view-counter";
-import { Suspense } from "react";
-import ExpandingArrow from "@/components/expanding-arrow";
+import Image from 'next/image'
+import Link from 'next/link'
+import ViewCounter from '@/components/view-counter'
+import { Suspense } from 'react'
+import ExpandingArrow from '@/components/expanding-arrow'
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic'
 
 export default function Home() {
   return (
@@ -55,8 +55,8 @@ export default function Home() {
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
         >
           Vercel KV for Redis
-        </Link>{" "}
-        demo. Built with{" "}
+        </Link>{' '}
+        demo. Built with{' '}
         <Link
           href="https://nextjs.org/docs"
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
@@ -90,5 +90,5 @@ export default function Home() {
         </Link>
       </div>
     </main>
-  );
+  )
 }

@@ -1,31 +1,31 @@
-import { sql } from "@vercel/postgres";
-import { timeAgo } from "@/lib/utils";
-import Image from "next/image";
-import RefreshButton from "./refresh-button";
-import { seed } from "@/lib/seed";
+import { sql } from '@vercel/postgres'
+import { timeAgo } from '@/lib/utils'
+import Image from 'next/image'
+import RefreshButton from './refresh-button'
+import { seed } from '@/lib/seed'
 
 export default async function Table() {
-  let data;
-  let startTime = Date.now();
+  let data
+  let startTime = Date.now()
 
   try {
-    data = await sql`SELECT * FROM users`;
+    data = await sql`SELECT * FROM users`
   } catch (e: any) {
     if (e.message === `relation "users" does not exist`) {
       console.log(
-        "Table does not exist, creating and seeding it with dummy data now..."
-      );
+        'Table does not exist, creating and seeding it with dummy data now...'
+      )
       // Table is not created yet
-      await seed();
-      startTime = Date.now();
-      data = await sql`SELECT * FROM users`;
+      await seed()
+      startTime = Date.now()
+      data = await sql`SELECT * FROM users`
     } else {
-      throw e;
+      throw e
     }
   }
 
-  const { rows: users } = data;
-  const duration = Date.now() - startTime;
+  const { rows: users } = data
+  const duration = Date.now() - startTime
 
   return (
     <div className="bg-white/30 p-12 shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full">
@@ -62,5 +62,5 @@ export default async function Table() {
         ))}
       </div>
     </div>
-  );
+  )
 }

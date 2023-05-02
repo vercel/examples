@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    "module": "ES2022",
     "skipLibCheck": true,
     "noEmit": true,
     "strict": true,
