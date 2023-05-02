@@ -28,5 +28,6 @@ export const UsersTable = pgTable(
 export type User = InferModel<typeof UsersTable>
 export type NewUser = InferModel<typeof UsersTable, 'insert'>
 
+console.log(process.env.POSTGRES_URL)
 // Connect to Vercel Postgres
 export const db = drizzle(sql)
