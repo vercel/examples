@@ -5,7 +5,7 @@ import Table from '@/components/table'
 import TablePlaceholder from '@/components/table-placeholder'
 import ExpandingArrow from '@/components/expanding-arrow'
 
-export const runtime = 'edge'
+// export const runtime = 'edge'
 export const preferredRegion = 'home'
 export const dynamic = 'force-dynamic'
 
@@ -55,6 +55,12 @@ export default function Home() {
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
         >
           Kysely
+        </Link>
+        <Link
+          href="https://postgres-drizzle.vercel.app/"
+          className="font-medium underline underline-offset-4 hover:text-black transition-colors"
+        >
+          Drizzle
         </Link>
       </div>
 

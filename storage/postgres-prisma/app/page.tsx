@@ -6,7 +6,7 @@ import TablePlaceholder from '@/components/table-placeholder'
 import ExpandingArrow from '@/components/expanding-arrow'
 
 // Prisma does not support Edge without the Data Proxy currently
-export const runtime = 'nodejs' // default
+// export const runtime = 'edge'
 export const preferredRegion = 'home'
 export const dynamic = 'force-dynamic'
 
