@@ -47,7 +47,7 @@ export default async function updateChangedTemplates(changedFiles: string[]) {
     return
   }
 
-  // await Promise.all(
-  //   examplePaths.map((examplePath) => updateTemplate({ examplePath }))
-  // )
+  await Promise.all(
+    examplePaths.map((examplePath) => updateTemplate({ examplePath }))
+  )
 }
