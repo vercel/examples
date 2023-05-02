@@ -63,6 +63,12 @@ export default function Home() {
         >
           Starter
         </Link>
+        <Link
+          href="https://postgres-drizzle.vercel.app/"
+          className="font-medium underline underline-offset-4 hover:text-black transition-colors"
+        >
+          Drizzle
+        </Link>
       </div>
 
       <div className="sm:absolute sm:bottom-0 w-full px-20 py-10 flex justify-between">
