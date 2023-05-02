@@ -1,5 +1,3 @@
-// export const runtime = 'edge';
-
 import { NextApiRequest, NextApiResponse } from 'next'
 import admin from 'firebase-admin'
 import { FIREBASE_SERVICE_ACCOUNT } from 'src/utils/const'
@@ -16,7 +14,6 @@ const getRemoteConfig = async () => {
   let config = admin.remoteConfig()
   const template = await config.getTemplate()
   return template.parameters
-  //all parameters will be under template.parameters
 }
 
 export default async function handler(

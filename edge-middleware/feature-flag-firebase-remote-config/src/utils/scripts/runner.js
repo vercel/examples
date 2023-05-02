@@ -5,7 +5,6 @@ const { loadEnvConfig } = pkg
 loadEnvConfig(process.cwd())
 
 const runAsync = async () => {
-  // find all scripts in subfolder
   const files = fs
     .readdirSync(path.join(__dirname, 'pre-build'))
     .filter((file) => file.endsWith('.js'))
