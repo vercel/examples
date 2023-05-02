@@ -1,6 +1,9 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { fileURLToPath } from 'url'
 import getTemplateFields from './lib/contentful/get-template-fields'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 /**
  * Writes a json file that describes the schema used for the Contentful template.
