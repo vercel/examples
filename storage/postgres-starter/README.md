@@ -46,7 +46,7 @@ Once that's done, copy the .env.example file in this directory to .env.local (wh
 cp .env.example .env.local
 ```
 
-Then open .env.local and set the environment variables to match the ones in your Vercel Storage Dashboard. Your keys should be available under your database's `.env` tab.
+Then open `.env.local` and set the environment variables to match the ones in your Vercel Storage Dashboard.
 
 Next, run Next.js in development mode:
 
