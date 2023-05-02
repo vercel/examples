@@ -43,7 +43,7 @@ export function Search({ searchPokedex }: SearchProps) {
         <CommandInput
           id="search"
           placeholder="Search for Pokémon"
-          className="focus:ring-0 focus:border-0 border-0 active:ring-0 active:border-0 ring-0 outline-0"
+          className="focus:ring-0 sm:text-sm text-base focus:border-0 border-0 active:ring-0 active:border-0 ring-0 outline-0"
           value={query}
           onValueChange={(q) => setQuery(q)}
         />
