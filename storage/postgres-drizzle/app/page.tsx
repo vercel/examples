@@ -5,8 +5,6 @@ import Table from '@/components/table'
 import TablePlaceholder from '@/components/table-placeholder'
 import ExpandingArrow from '@/components/expanding-arrow'
 
-// isn't working with Edge yet
-// export const runtime = 'edge';
 export const preferredRegion = 'home'
 export const dynamic = 'force-dynamic'
 
