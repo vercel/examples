@@ -18,7 +18,7 @@ This example shows you how you can generate static tweets using Tailwind CSS & `
 ### Gotchas
 
 - Don't forget to add pbs.twimg.com to your allowed `images` in your `next.config.js` file.
-- Don't forget to add Twitter Auth Bearer Token to your `.env` file.
+- Don't forget to add Twitter Auth Bearer Token to your `.env.local` file.
 
 ## Demo
 
