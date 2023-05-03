@@ -81,11 +81,11 @@ export default function Home({ data }: { data: any }) {
           </Link>{' '}
           and stored in{' '}
           <Link
-            href="https://docs.upstash.com/redis"
+            href="https://vercel.com/kv"
             target="_blank"
             rel="noreferrer noopener"
           >
-            Upstash Redis
+            Vercel KV
           </Link>
           .
         </Text>
