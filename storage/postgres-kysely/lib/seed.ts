@@ -8,7 +8,7 @@ export async function seed() {
     .addColumn('email', 'varchar(255)', (cb) => cb.notNull().unique())
     .addColumn('image', 'varchar(255)')
     .addColumn('createdAt', sql`timestamp with time zone`, (cb) =>
-      cb.defaultTo('CURRENT_TIMESTAMP')
+      cb.defaultTo(sql`CURRENT_TIMESTAMP`)
     )
     .execute()
   console.log(`Created "users" table`)
