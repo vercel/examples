@@ -1,15 +1,6 @@
 <script lang="ts">
-  import type { BlobResult } from "@vercel/blob";
-  export let blob : BlobResult | null = null;
-
-  const handleFileUpload = async (event: SubmitEvent) => {
-    const formData = new FormData(event.target as HTMLFormElement);
-    const response = await fetch("/api/upload", {
-      method: "POST",
-      body: formData,
-    });
-	blob = (await response.json()); 
-  };
+  import { enhance } from '$app/forms';
+  export let form;
 </script>
 
 <main
@@ -33,19 +24,20 @@
       Displayed below is the total number of page views for this demo. Refresh
       the page and watch it increase!
     </div>
+    <form
+      use:enhance
+      action="?/upload"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="file" required />
+      <button class="mb-6 font-bold underline opacity-70 hover:opacity-100">Upload</button>
 
-<form
-  on:submit|preventDefault={handleFileUpload}
-  action="/api/upload"
-  method="POST"
-  enctype="multipart/form-data"
->
-  <input type="file" name="file" />
-  <button  class="mb-6 font-bold underline opacity-70 hover:opacity-100" type="submit">Upload</button>
-  {#if blob}
-    <p>{blob.url}</p>
-  {/if}
-</form>
+      {#if form}
+        <p>uploaded {form.uploaded}</p>
+      {/if}
+    </form>
+
   </div>
   <div
     class="w-full max-w-lg mt-6 font-light text-center text-gray-600 dark:text-gray-300"
