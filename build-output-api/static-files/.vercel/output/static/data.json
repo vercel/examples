@@ -1,3 +1,0 @@
-{
-  "example": "This is a JSON file placed in the `.vercel/output/static` directory, so it gets served as a static file from Vercel."
-}
