@@ -25,6 +25,7 @@
     "vite": "^4.3.0"
   },
   "dependencies": {
-    "@vercel/kv": "^0.1.0-canary.1"
+    "@vercel/kv": "^0.1.0-canary.1",
+    "dotenv-expand": "^10.0.0"
   }
 }
