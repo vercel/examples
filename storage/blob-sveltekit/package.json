@@ -25,6 +25,7 @@
     "vite": "^4.3.0"
   },
   "dependencies": {
-    "@vercel/blob": "^0.8.1"
+    "@vercel/blob": "^0.8.1",
+    "dotenv-expand": "^10.0.0"
   }
 }
