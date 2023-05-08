@@ -1,7 +1,7 @@
 ---
 name: Vercel Postgres + Drizzle Next.js Starter
 slug: postgres-drizzle
-description: Simple Next.js template that uses Vercel Postgres as the database and Prisma as the ORM.
+description: Simple Next.js template that uses Vercel Postgres as the database and Drizzle as the ORM.
 framework: Next.js
 useCase: Starter
 css: Tailwind
