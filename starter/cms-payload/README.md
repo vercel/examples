@@ -63,3 +63,24 @@ Follow the steps below to spin up a local dev environment:
 4. Run `yarn dev` to start up the dev server
 
 From there, you can visit your admin panel via navigating to `http://localhost:3000/admin`. Go ahead and start working!
+
+### Related examples
+
+- [Strapi](/examples/cms-strapi)
+- [Contentful](/examples/cms-contentful)
+- [WordPress](/examples/cms-wordpress)
+- [Sanity](/examples/cms-sanity)
+- [DatoCMS](/examples/cms-datocms)
+- [TakeShape](/examples/cms-takeshape)
+- [Prismic](/examples/cms-prismic)
+- [Agility CMS](/examples/cms-agilitycms)
+- [Cosmic](/examples/cms-cosmic)
+- [ButterCMS](/examples/cms-buttercms)
+- [Storyblok](/examples/cms-storyblok)
+- [GraphCMS](/examples/cms-graphcms)
+- [Kontent](/examples/cms-kontent)
+- [Ghost](/examples/cms-ghost)
+- [Umbraco Heartcore](/examples/cms-umbraco-heartcore)
+- [Blog Starter](/examples/blog-starter)
+- [Builder.io](/examples/cms-builder-io)
+- [DotCMS](/examples/cms-dotcms)
