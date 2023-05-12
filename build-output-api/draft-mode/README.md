@@ -6,7 +6,7 @@ This Prebuilt Deployment example demonstrates how to implement "Draft Mode" when
 
 ### Demo
 
-https://build-output-api-preview-mode.vercel.sh
+https://build-output-api-draft-mode.vercel.sh
 
 ### How it Works
 
