@@ -54,7 +54,9 @@ function Home() {
         try {
           let contract: ethers.Contract | null = null
 
-          contract = await drip.contractClient()
+          contract = await drip.contractClient({
+            contractId: "9"
+          })
 
           if (!contract) {
             toast.error('Failed to fetch contract', {
