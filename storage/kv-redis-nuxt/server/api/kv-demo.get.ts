@@ -1,4 +1,4 @@
-import kv from '@vercel/kv'
+import { kv } from '@vercel/kv'
 
 export default defineEventHandler(async () => {
   let pageVisits = (await kv.get('pageVisits')) as number
