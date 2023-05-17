@@ -82,7 +82,7 @@ export default function CountryPage({ country, locale, dictionary }: Props) {
             </svg>
           </a>
         </header>
-        <div className="h-[96px] w-[128px] -mb-28">
+        <div className="h-[96px] w-[128px] -mb-28 z-10">
           <Image
             alt="Country flag"
             width={128}
