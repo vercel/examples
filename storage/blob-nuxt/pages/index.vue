@@ -153,12 +153,10 @@ export default {
       this.file = event.target.files?.[0] ?? null;
     },
     async onSubmit() {
-      // const formData = new FormData();
       console.log("image-upload", this.file);
-      // console.log('formData======', formData);
       const response = await $fetch('/api/upload', {
-        method: 'PUT',
-        body: {file: this.file, fileName: this.file.name},
+        method: 'POST',
+        body: this.file,
       })
       console.log(response)
       // this.form = await response.json();

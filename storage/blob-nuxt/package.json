@@ -16,6 +16,7 @@
     "tailwindcss": "^3.3.2"
   },
   "dependencies": {
-    "@vercel/blob": "^0.8.3"
+    "@vercel/blob": "^0.8.3",
+    "formidable": "^2.1.1"
   }
 }
