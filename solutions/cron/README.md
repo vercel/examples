@@ -40,7 +40,7 @@ Don't forget to set the required environment variables that you got from the pre
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
 
 ```bash
-pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/cron cron
+pnpm create-next-app --example https://github.com/vercel/examples/tree/main/solutions/cron cron
 ```
 
 Next, run Next.js in development mode:
