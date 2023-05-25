@@ -5,19 +5,21 @@
   </a>
 </p>
 
-<p align="center">Simple Next.js boilerplate that uses Flask as the API backend.</p>
+<p align="center">Simple Next.js boilerplate that uses <a href="https://flask.palletsprojects.com/">Flask</a> as the API backend.</p>
 
 <br/>
 
 ## Introduction
 
-This is a hybrid Next.js + Python app that uses Next.js as the frontend and Flask as the API backend.
+This is a hybrid Next.js + Python app that uses Next.js as the frontend and Flask as the API backend. One great use case of this is to write Next.js apps that use Python AI libraries on the backend.
 
 ## How It Works
 
-This template uses [`next.config.js` rewrites](https://github.com/vercel/examples/blob/main/python/nextjs-flask/next.config.js) to map any request to `/api/:path*` to the Flask API, which is hosted in the `/api` folder. 
+The Python/Flask server is mapped into to Next.js app under `/api/`.
 
-In localhost, the rewrite will be made to the `127.0.0.1:5328` port, which is where the Flask server is running.
+This is implemented using [`next.config.js` rewrites](https://github.com/vercel/examples/blob/main/python/nextjs-flask/next.config.js) to map any request to `/api/:path*` to the Flask API, which is hosted in the `/api` folder. 
+
+On localhost, the rewrite will be made to the `127.0.0.1:5328` port, which is where the Flask server is running.
 
 In production, the Flask server is hosted as [Python serverless functions](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python) on Vercel.
 
