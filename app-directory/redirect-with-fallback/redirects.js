@@ -5,11 +5,11 @@ const redirects = [
     destination: '/simple-redirect-destination',
   },
   {
-    source: 'complex-redirect-suorce',
+    source: '/complex-redirect-suorce',
     has: [
       {
         type: 'cookie',
-        key: 'authorization',
+        key: 'test',
       },
     ],
     destination: '/complex-redirect-destination',
