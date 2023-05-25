@@ -7,11 +7,11 @@ export default function Home() {
         <Text variant="h1">Redirects</Text>
         <ul>
           <li>
-            <Link href="/simple-redirect-suorce">simple redirect</Link> -
+            <Link href="/simple-redirect-source">simple redirect</Link> -
             handled in API Route
           </li>
           <li>
-            <Link href="/complex-redirect-suorce">complex redirect</Link> -
+            <Link href="/complex-redirect-source">complex redirect</Link> -
             handled in <Code>next.config.js</Code>
           </li>
         </ul>

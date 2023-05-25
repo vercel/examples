@@ -1,19 +1,13 @@
 const redirects = [
   {
-    source: '/simple-redirect-suorce',
+    source: '/simple-redirect-source',
     permanent: true,
     destination: '/simple-redirect-destination',
   },
   {
-    source: '/complex-redirect-suorce',
-    has: [
-      {
-        type: 'cookie',
-        key: 'test',
-      },
-    ],
+    source: '/:test/complex-redirect-source',
+
     destination: '/complex-redirect-destination',
-    permanent: false,
   },
 ]
 
