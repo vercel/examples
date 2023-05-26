@@ -13,7 +13,7 @@ export default async function RootLayout({ children }: Props) {
       <head />
       <body>
         <div className="mx-auto h-screen flex flex-col">
-          <Nav path="app-directory/redirect xxxxx" />
+          <Nav path="app-directory/redirect-with-fallback" />
           <div className="px-8 bg-accents-0">
             <main>{children}</main>
             <footer className="py-10 w-full mt-auto border-t flex items-center justify-center bg-accents-1 z-20">

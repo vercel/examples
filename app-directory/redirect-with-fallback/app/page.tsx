@@ -7,12 +7,14 @@ export default function Home() {
         <Text variant="h1">Redirects</Text>
         <ul>
           <li>
-            <Link href="/simple-redirect-source">simple redirect</Link> -
-            handled in API Route
+            <Link href="/simple-redirect-source">/simple-redirect-source</Link>{' '}
+            - handled in API Route
           </li>
           <li>
-            <Link href="/complex-redirect-source">complex redirect</Link> -
-            handled in <Code>next.config.js</Code>
+            <Link href="/complex-redirect-source">
+              /complex-redirect-source
+            </Link>{' '}
+            - handled in <Code>next.config.js</Code>
           </li>
         </ul>
       </section>
