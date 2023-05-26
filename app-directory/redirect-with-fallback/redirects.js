@@ -25,6 +25,8 @@ const simpleRedirects = []
 const complexRedirects = []
 
 for (const redirect of redirects) {
+  // we check if a redirect uses path matching to group our redirects into simple and complex
+  // path matching: https://nextjs.org/docs/app/api-reference/next-config-js/redirects#path-matching
   if (redirectIsComplex(redirect)) {
     complexRedirects.push(redirect)
   } else {

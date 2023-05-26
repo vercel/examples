@@ -1,6 +1,11 @@
 # redirect-with-fallback example
 
-This example shows how to use a [Route Handler](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) to handle simple redirects via static catch all routes and complex redirects (using regex/wildcard) via next.config.js.
+This example shows how to use a [route handler](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) to handle simple redirects.
+
+The redirects can be found in [`redirects.js`](redirects.js), they are splitted in simple and complex.
+
+- Simple are handled using a static route ([`generateStaticParams()`](https://nextjs.org/docs/app/api-reference/functions/generate-static-params)) in [`app/[...slug]/route.ts`](app/[...slug]/route.ts)
+- Complex are handled via [redirects](https://nextjs.org/docs/app/api-reference/next-config-js/redirects) in [`next.config.js`](next.config.js)
 
 ## Demo
 
