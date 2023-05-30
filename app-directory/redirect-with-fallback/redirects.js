@@ -2,7 +2,7 @@ const redirects = [
   {
     source: '/simple-redirect-source',
     destination: '/simple-redirect-destination',
-    permanent: true,
+    permanent: false,
   },
   {
     source: '/complex-redirect-source/:path*',
