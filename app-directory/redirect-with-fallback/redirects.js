@@ -11,10 +11,15 @@ const redirects = [
   },
 ]
 
+/**
+ * Check if a path uses path matching
+ * test path contains any of the following characters: :, (, {, ?, +, *.
+ *
+ * @param string path
+ * @returns
+ */
 function pathIsComplex(path) {
-  // ignore trailing slash syntax
-  const cleanPath = path.replace(/\{\/\}\?$/, '')
-  return /:|\(|\{|\?|\+|\*/.test(cleanPath)
+  return /:|\(|\{|\?|\+|\*/.test(path)
 }
 
 function redirectIsComplex(redirect) {
