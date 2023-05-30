@@ -9,8 +9,8 @@ database: Vercel Blob
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fstorage%2Fblob-sveltekit&project-name=blob-sveltekit&repository-name=blob-sveltekit&demo-title=Vercel%20Blob%20SvelteKit%20Starter&demo-description=Simple%20Svelte%20template%20that%20uses%20Vercel%20Blob%20to%20track%20pageviews.&demo-url=https%3A%2F%2Fblob-sveltekit.vercel.app%2F&demo-image=https%3A%2F%2Fblob-sveltekit.vercel.app%2Fopengraph-image.png&stores=%5B%7B"type"%3A"blob"%7D%5D
 demoUrl: https://blob-sveltekit.vercel.app/
 relatedTemplates:
-  - kv-redis-starter
-  - postgres-starter
+  - blob-starter
+  - postgres-sveltekit
 ---
 
 # Vercel Blob SvelteKit Starter
