@@ -36,10 +36,13 @@ export function generateStaticParams(): Params[] {
 function normalizeSource(source: string): string {
   return (
     source
+      // removes all backslashes
       .replace(/\\/g, '')
+      // removes all leading slashes
       .replace(/^\/+/, '')
       // Trailing slash syntax. Supported by default for the generated routes.
       .replace(/\{\/\}\?$/, '')
+      // replaces all occurrences of one or more slashes with a single slash
       .replace(/\/+/g, '/')
   )
 }
