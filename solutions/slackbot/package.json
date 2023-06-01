@@ -3,9 +3,9 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@upstash/redis": "^1.1.0",
+    "@upstash/redis": "^1.20.6",
     "crypto": "^1.0.1",
-    "node-fetch": "^2.6.7",
-    "vercel": "^24.0.0"
+    "node-fetch": "^2.6.11",
+    "vercel": "^24.2.5"
   }
 }

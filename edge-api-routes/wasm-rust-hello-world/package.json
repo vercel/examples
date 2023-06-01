@@ -3,6 +3,6 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "vercel": "^28.1.3"
+    "vercel": "^28.20.0"
   }
 }

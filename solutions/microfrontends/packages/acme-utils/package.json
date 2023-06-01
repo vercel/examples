@@ -49,9 +49,9 @@
     "dist"
   ],
   "devDependencies": {
-    "eslint": "^8.16.0",
+    "eslint": "^8.41.0",
     "eslint-config-acme": "workspace:*",
-    "tsup": "^5.12.8",
-    "typescript": "^4.5.5"
+    "tsup": "^5.12.9",
+    "typescript": "^4.9.5"
   }
 }

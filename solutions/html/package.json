@@ -1,6 +1,6 @@
 {
   "private": true,
   "dependencies": {
-    "@vercel/edge": "^0.1.2"
+    "@vercel/edge": "^0.3.4"
   }
 }
