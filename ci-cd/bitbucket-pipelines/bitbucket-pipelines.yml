@@ -1,4 +1,4 @@
-image: node:16.16.0
+image: node:16.20.0
 pipelines:
   branches:
     feature/*:

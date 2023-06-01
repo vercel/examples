@@ -21,10 +21,10 @@
   "devDependencies": {
     "eslint": "latest",
     "eslint-config-next": "canary",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "plop": "^3.1.1",
-    "prettier": "^2.7.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "plop": "^3.1.2",
+    "prettier": "^2.8.8",
     "typescript": "^4.9.5"
   }
 }

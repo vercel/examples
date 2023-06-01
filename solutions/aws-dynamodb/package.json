@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.290.0",
+    "@aws-sdk/client-dynamodb": "^3.341.0",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -17,6 +17,6 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "turbo": "^1.8.3"
+    "turbo": "^1.9.9"
   }
 }

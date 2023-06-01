@@ -22,12 +22,12 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.1",
-    "@types/node-fetch": "^2.6.3",
-    "dotenv": "^16.0.3",
+    "@types/node-fetch": "^2.6.4",
+    "dotenv": "^16.1.0",
     "front-matter": "^4.0.2",
     "globby": "^13.1.4",
     "node-fetch": "^3.3.1",
-    "turbo": "^1.9.3",
+    "turbo": "^1.9.9",
     "typescript": "^5.0.4"
   }
 }

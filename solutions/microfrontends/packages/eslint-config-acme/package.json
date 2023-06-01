@@ -8,12 +8,12 @@
     "access": "public"
   },
   "dependencies": {
-    "eslint": "^8.26.0",
+    "eslint": "^8.41.0",
     "eslint-config-next": "canary",
-    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-config-turbo": "latest"
   },
   "devDependencies": {
-    "typescript": "^4.8.4"
+    "typescript": "^4.9.5"
   }
 }

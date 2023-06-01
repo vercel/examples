@@ -10,22 +10,22 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@optimizely/optimizely-sdk": "^4.9.2",
+    "@optimizely/optimizely-sdk": "^4.9.3",
     "@vercel/examples-ui": "^1.0.5",
     "next": "canary",
     "react": "latest",
     "react-dom": "latest"
   },
   "devDependencies": {
-    "@types/node": "16.11.11",
+    "@types/node": "16.18.34",
     "@types/react": "latest",
     "autoprefixer": "^10.4.14",
-    "eslint": "8.4.0",
+    "eslint": "8.41.0",
     "eslint-config-next": "canary",
-    "node-fetch": "^2.6.9",
-    "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.7",
-    "turbo": "^1.8.5",
-    "typescript": "4.5.2"
+    "node-fetch": "^2.6.11",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2",
+    "turbo": "^1.9.9",
+    "typescript": "4.9.5"
   }
 }
