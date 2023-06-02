@@ -55,7 +55,6 @@ export default function (plop) {
         'tsconfig.json',
         '.eslintrc.json',
         '.gitignore',
-        'next-env.d.ts',
         'package.json',
         'pnpm-lock.yaml',
         'pages/index.tsx',
