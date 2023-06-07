@@ -1,3 +1,3 @@
 {
-  "ignoreCommand": "pnpm dlx turbo-ignore 2>/dev/null"
+  "ignoreCommand": "pnpm --silent dlx turbo-ignore"
 }
