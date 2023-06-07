@@ -1,4 +1,5 @@
 {
+  "name": "microfrontends",
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "private": true,
