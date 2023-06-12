@@ -4,6 +4,13 @@ import { getPayloadClient } from '../../../payload/payloadClient'
 import Blocks from '../../../components/Blocks'
 import { Hero } from '../../../components/Hero'
 import { AdminBar } from '../../../components/AdminBar'
+import { Metadata } from 'next'
+
+export async function generateMetadata({ params: { slug } }): Promise<Metadata> {
+  return {
+    title: slug,
+  }
+}
 
 const Page = async ({ params: { slug } }) => {
   const payload = await getPayloadClient()
@@ -22,11 +29,11 @@ const Page = async ({ params: { slug } }) => {
   if (!page) return notFound()
 
   return (
-    <React.Fragment>
+    <>
       <AdminBar adminBarProps={{ collection: 'pages', id: page.id }} />
       <Hero {...page.hero} />
       <Blocks blocks={page.layout} />
-    </React.Fragment>
+    </>
   )
 }
 

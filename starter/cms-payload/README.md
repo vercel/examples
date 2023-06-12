@@ -7,13 +7,16 @@ useCase:
   - Starter
 css: CSS Modules
 deployUrl: https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/starter/cms-payload&project-name=cms-payload&repository-name=cms-payload
-demoUrl: https://cms-payload.vercel.app
+demoUrl: https://nextjs-vercel.payloadcms.com
 relatedTemplates:
+  - blog-starter-kit
+  - nextjs-boilerplate
+  - isr-blog-nextjs-wordpress
 ---
 
 # Next + Payload Serverless Demo
 
-This example shows how to utilize `@payloadcms/next-payload` to deploy Payload serverlessly, in the same repo alongside of a NextJS app.
+This example shows how to utilize `@payloadcms/next-payload` to deploy Payload serverless, in the same repo alongside of a Next.js app.
 
 ## Demo
 

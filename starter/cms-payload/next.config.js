@@ -5,11 +5,12 @@ const path = require("path");
 const nextConfig = withPayload(
   {
     reactStrictMode: true,
+    rewrites: [{ "source": "/admin/(.*)", "destination": "/admin/index.html" }],
     images: {
       domains: [
         "localhost",
         "nextjs-vercel.payloadcms.com",
-        process.env.NEXT_PUBLIC_APP_URL,
+        process.env.NEXT_PUBLIC_APP_URL ? process.env.NEXT_PUBLIC_APP_URL : "",
         `${process.env.NEXT_PUBLIC_S3_ENDPOINT}`.replace("https://", ""),
       ],
     },
