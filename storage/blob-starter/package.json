@@ -14,7 +14,7 @@
     "@types/node": "18.15.11",
     "@types/react": "18.0.37",
     "@types/react-dom": "18.0.11",
-    "@vercel/blob": "^0.6.3",
+    "@vercel/blob": "^0.8.3",
     "autoprefixer": "10.4.14",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
