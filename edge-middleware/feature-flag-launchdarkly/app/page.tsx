@@ -9,8 +9,6 @@ export const metadata = {
 }
 
 const edgeClient = createClient(process.env.EDGE_CONFIG)
-
-export const config = { runtime: 'edge' }
 const ldClient = init(process.env.NEXT_PUBLIC_LD_CLIENT_SIDE_ID!, edgeClient)
 
 export default async function Home() {
