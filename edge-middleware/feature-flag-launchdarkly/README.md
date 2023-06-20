@@ -18,6 +18,10 @@ This example shows how to use the [LaunchDarkly integration](https://vercel.com/
 
 > ℹ️ The LaunchDarkly integration requires a LaunchDarkly enterprise account.
 
+You will need to provide the `NEXT_PUBLIC_LD_CLIENT_SIDE_ID` environment variable. Fill it with your client-side ID from LaunchDarkly.
+
+LaunchDarkly wills sync your feature flags into an Edge Config, which you can set in the integration. Note that the same Edge Config also needs to be linked to this project via the `EDGE_CONFIG` environment variable. If you clone this template, this will be set up for you automatically when you select the Edge Config.
+
 ## Demo
 
 https://feature-flag-launchdarkly.vercel.app
