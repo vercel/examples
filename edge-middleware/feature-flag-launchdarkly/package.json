@@ -13,7 +13,7 @@
     "@launchdarkly/vercel-server-sdk": "^0.4.3",
     "@vercel/edge-config": "^0.2.1",
     "@vercel/examples-ui": "^1.0.5",
-    "next": "latest",
+    "next": "canary",
     "react": "latest",
     "react-dom": "latest"
   },
