@@ -1,3 +1,17 @@
+---
+name: LaunchDarkly Integration example
+slug: feature-flag-launchdarkly
+description: Learn how to set up the LaunchDarkly integration to read flags from Edge Config
+framework: Next.js
+useCase: Edge Middleware
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-launchdarkly&project-name=feature-flag-launchdarkly&repository-name=feature-flag-launchdarkly&integration-ids=oac_8DFUMlauSkqeQhdGHpL5xbWp
+demoUrl: https://feature-flag-launchdarkly.vercel.app
+relatedTemplates:
+  - maintenance-page
+  - feature-flag-apple-store
+---
+
 # feature-flag-launchdarkly example
 
 This example shows how to use the [LaunchDarkly integration](https://vercel.com/integrations/launchdarkly) with Next.js.
@@ -16,7 +30,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-launchdarkly&project-name=feature-flag-launchdarkly&repository-name=feature-flag-launchdarkly)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-launchdarkly&project-name=feature-flag-launchdarkly&repository-name=feature-flag-launchdarkly&integration-ids=oac_8DFUMlauSkqeQhdGHpL5xbWp)
 
 ### Clone and Deploy
 
