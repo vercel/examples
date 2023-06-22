@@ -25,30 +25,18 @@ export default function Index() {
         variant has a 50% chance)
       </Text>
       <div>
-        <ClearButton
-          label="Remove /about cookie & reload"
-          cookieName="flag-about"
-        />
-        <ClearButton
-          label="Remove /marketing cookie & reload"
-          cookieName="flag-marketing"
-        />
+        <CookieButton userKey="Joe" />
+        <CookieButton userKey="Bobby" />
       </div>
     </Page>
   )
 }
 
-function ClearButton({
-  label,
-  cookieName,
-}: {
-  label: string
-  cookieName: string
-}) {
+function CookieButton({ userKey }: { userKey: string }) {
   'use client'
 
   const removeCookie = (name: string) => {
-    Cookies.remove(name)
+    Cookies.set('split-userkey', userKey)
     window.location.reload()
   }
 
@@ -56,9 +44,9 @@ function ClearButton({
     <Button
       variant="secondary"
       className="mr-2.5"
-      onClick={() => removeCookie(cookieName)}
+      onClick={() => removeCookie('split-userkey')}
     >
-      {label}
+      Authenticate as {userKey} and reload page
     </Button>
   )
 }

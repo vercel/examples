@@ -1,32 +1,17 @@
-'use client'
-import { useEffect } from 'react'
-import { Layout, Page, Text, Link } from '@vercel/examples-ui'
-import { SPLITS, track } from '@lib/split'
+import { cookies } from 'next/headers'
+import { AboutA } from './a'
+import { AboutB } from './b'
+import { createSplitClient } from '@lib/split'
 
-export default function About() {
-  useEffect(() => {
-    track(SPLITS.about, 'user', 'page_serve', null, {
-      treatment: 'off',
-    }).catch((error) => {
-      console.error(
-        'Request to Split blocked, probably because by an add blocker',
-        error
-      )
-    })
-  }, [])
+// export const runtime = 'edge'
+export const dynamic = 'force-dynamic'
 
-  return (
-    <Page>
-      <Text variant="h2" className="mb-6">
-        About page
-      </Text>
-      <Text className="text-lg mb-4">This is the original about page</Text>
-      <Text className="mb-4">
-        You&apos;re currently on <b>/about</b>
-      </Text>
-      <Link href="/">Go back to /</Link>
-    </Page>
-  )
+export default async function About() {
+  const userKey = cookies().get('split-userkey')?.value
+  const client = await createSplitClient(userKey)
+  const treatment = await client.getTreatment('New_About_Page')
+
+  await client.destroy() // TODO can we use waitUntil(client.destroy()) somehow?
+
+  return treatment === 'on' ? <AboutB /> : <AboutA />
 }
-
-About.Layout = Layout
