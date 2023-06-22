@@ -7,7 +7,7 @@ import { createSplitClient } from '@lib/split'
 export const dynamic = 'force-dynamic'
 
 export default async function Marketing() {
-  const userKey = cookies().get('split-userkey')?.value
+  const userKey = cookies().get('split-userkey')?.value ?? 'anonymous'
   const client = await createSplitClient(userKey)
   const treatment = await client.getTreatment('New_Marketing_Page')
 
