@@ -5,8 +5,8 @@ description: Learn to use Split, a feature delivery platform that powers feature
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split&env=SPLIT_ADMIN_API_KEY,SPLIT_WORKSPACE_ID,SPLIT_ENVIRONMENT_ID,NEXT_PUBLIC_SPLIT_SDK_CLIENT_API_KEY&project-name=feature-flag-split&repository-name=feature-flag-split
-demoUrl: https://edge-functions-feature-flag-split.vercel.app
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split&env=SPLIT_ADMIN_API_KEY,SPLIT_WORKSPACE_ID,SPLIT_ENVIRONMENT_ID,NEXT_PUBLIC_SPLIT_SDK_CLIENT_API_KEY,EDGE_CONFIG&project-name=feature-flag-split&repository-name=feature-flag-split&integration-ids=oac_bic40oWF5k9pDFboJhKYqMd1&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%7D%7D
+demoUrl: https://feature-flag-split.vercel.app
 relatedTemplates:
   - ab-testing-simple
 ---
@@ -17,7 +17,7 @@ relatedTemplates:
 
 ## Demo
 
-https://edge-functions-feature-flag-split.vercel.app
+https://feature-flag-split.vercel.app
 
 ## How to Use
 
@@ -27,7 +27,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split&env=SPLIT_ADMIN_API_KEY,SPLIT_WORKSPACE_ID,SPLIT_ENVIRONMENT_ID,NEXT_PUBLIC_SPLIT_SDK_CLIENT_API_KEY&project-name=feature-flag-split&repository-name=feature-flag-split)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split&env=SPLIT_ADMIN_API_KEY,SPLIT_WORKSPACE_ID,SPLIT_ENVIRONMENT_ID,NEXT_PUBLIC_SPLIT_SDK_CLIENT_API_KEY,EDGE_CONFIG&project-name=feature-flag-split&repository-name=feature-flag-split&integration-ids=oac_bic40oWF5k9pDFboJhKYqMd1&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%7D%7D)
 
 ### Clone and Deploy
 

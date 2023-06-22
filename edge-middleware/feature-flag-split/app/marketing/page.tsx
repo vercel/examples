@@ -1,5 +1,6 @@
+'use client'
 import { useEffect } from 'react'
-import { Layout, Page, Text, Link } from '@vercel/examples-ui'
+import { Page, Text, Link } from '@vercel/examples-ui'
 import { SPLITS, track } from '@lib/split'
 
 export default function Marketing() {
@@ -27,5 +28,3 @@ export default function Marketing() {
     </Page>
   )
 }
-
-Marketing.Layout = Layout
