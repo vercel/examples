@@ -1,19 +1,7 @@
 'use client'
-// import { useEffect } from 'react'
-import { Page, Text, Link, Code } from '@vercel/examples-ui'
+import { Page, Text, Link } from '@vercel/examples-ui'
 
 export function MarketingA() {
-  // useEffect(() => {
-  //   track('New_Marketing_Page', 'user', 'page_serve', null, {
-  //     treatment: 'off',
-  //   }).catch((error) => {
-  //     console.error(
-  //       'Request to Split blocked, probably because by an add blocker',
-  //       error
-  //     )
-  //   })
-  // }, [])
-
   return (
     <Page>
       <Text variant="h2" className="mb-6">

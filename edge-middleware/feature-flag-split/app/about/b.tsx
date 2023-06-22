@@ -1,19 +1,7 @@
 'use client'
-// import { useEffect } from 'react'
-import { Layout, Page, Text, Code, Link } from '@vercel/examples-ui'
+import { Page, Text, Code, Link } from '@vercel/examples-ui'
 
 export function AboutB() {
-  // useEffect(() => {
-  //   track(SPLITS.about, 'user', 'page_serve', null, {
-  //     treatment: 'on',
-  //   }).catch((error) => {
-  //     console.error(
-  //       'Request to Split blocked, probably because by an add blocker',
-  //       error
-  //     )
-  //   })
-  // }, [])
-
   return (
     <Page>
       <Text variant="h2" className="mb-6">
