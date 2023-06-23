@@ -9,8 +9,8 @@ dependencies:
     specifier: ^0.9.4
     version: 0.9.4
   '@splitsoftware/vercel-integration-utils':
-    specifier: ^0.1.0-rc.1
-    version: 0.1.0-rc.1(@vercel/edge-config@0.2.1)
+    specifier: ^0.1.0
+    version: 0.1.0(@vercel/edge-config@0.2.1)
   '@vercel/edge-config':
     specifier: 0.2.1
     version: 0.2.1
@@ -277,10 +277,10 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@splitsoftware/vercel-integration-utils@0.1.0-rc.1(@vercel/edge-config@0.2.1):
-    resolution: {integrity: sha512-KF3yERlLDuxYKRp0Dtpwa9HuJu9PwmvnsRpdERNJrTmeLSNOBHKaqzVxEkKSxzWcd1IcKiQsnTVdPTdlxrbmIA==}
+  /@splitsoftware/vercel-integration-utils@0.1.0(@vercel/edge-config@0.2.1):
+    resolution: {integrity: sha512-Au/8d6YupalMcHhVY3IpYUWcwpVrmptjVY4QHex/Ax6lcunSChqzYZ3dJcbakx/h4Erg6mLT7cdDzSAPwXHSrg==}
     peerDependencies:
-      '@vercel/edge-config': ^0.1.0
+      '@vercel/edge-config': '>=0.1.0 <1.0.0'
     dependencies:
       '@vercel/edge-config': 0.2.1
     dev: false

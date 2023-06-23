@@ -5,7 +5,7 @@ description: Learn to use Split, a feature delivery platform that powers feature
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split&env=SPLIT_ADMIN_API_KEY,SPLIT_WORKSPACE_ID,SPLIT_ENVIRONMENT_ID,NEXT_PUBLIC_SPLIT_SDK_CLIENT_API_KEY&project-name=feature-flag-split&repository-name=feature-flag-split
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split&env=SPLIT_EDGE_CONFIG_ITEM_KEY,SPLIT_SDK_KEY&project-name=feature-flag-split&repository-name=feature-flag-split
 demoUrl: https://edge-functions-feature-flag-split.vercel.app
 relatedTemplates:
   - ab-testing-simple
@@ -15,11 +15,15 @@ relatedTemplates:
 
 [Split](https://www.split.io/) is a feature delivery platform that powers feature flag management, software experimentation and continuous delivery.
 
+This example shows how to use feature flags with Split, leveraging Edge Config and Edge Middleware.
+
 ## Demo
 
 https://edge-functions-feature-flag-split.vercel.app
 
 ## How to Use
+
+Before using this repository, you need an [Split account](https://www.split.io/signup/) to set up feature flags and obtain the Split SDK Key. Also follow the section [Set up the Split's Vercel integration](https://help.split.io/hc/en-us/articles/16469873148173#set-up-the-splits-vercel-integration) to get your feature flags synchronized in Vercel Edge Config data store.
 
 You can choose from one of the following two methods to use this repository:
 
@@ -27,7 +31,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split&env=SPLIT_ADMIN_API_KEY,SPLIT_WORKSPACE_ID,SPLIT_ENVIRONMENT_ID,NEXT_PUBLIC_SPLIT_SDK_CLIENT_API_KEY&project-name=feature-flag-split&repository-name=feature-flag-split)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split&env=SPLIT_EDGE_CONFIG_ITEM_KEY,SPLIT_SDK_KEY&project-name=feature-flag-split&repository-name=feature-flag-split)
 
 ### Clone and Deploy
 
@@ -37,7 +41,7 @@ Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packag
 pnpm create next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split feature-flag-split
 ```
 
-You'll need to have an account with [Split](https://www.split.io/signup/). Once that's done, copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
+Once that's done, copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
 
 ```bash
 cp .env.example .env.local
