@@ -1,19 +1,6 @@
-import { useEffect } from 'react'
 import { Layout, Page, Text, Link } from '@vercel/examples-ui'
-import { SPLITS, track } from '@lib/split'
 
 export default function About() {
-  useEffect(() => {
-    track(SPLITS.about, 'user', 'page_serve', null, {
-      treatment: 'off',
-    }).catch((error) => {
-      console.error(
-        'Request to Split blocked, probably because by an add blocker',
-        error
-      )
-    })
-  }, [])
-
   return (
     <Page>
       <Text variant="h2" className="mb-6">
