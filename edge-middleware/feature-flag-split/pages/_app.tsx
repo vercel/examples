@@ -12,10 +12,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       path="edge-middleware/feature-flag-split"
       deployButton={{
         env: [
-          'SPLIT_ADMIN_API_KEY',
-          'SPLIT_WORKSPACE_ID',
-          'SPLIT_ENVIRONMENT_ID',
-          'NEXT_PUBLIC_SPLIT_SDK_CLIENT_API_KEY',
+          'SPLIT_EDGE_CONFIG_ITEM_KEY',
+          'SPLIT_SDK_KEY',
         ],
       }}
     >
