@@ -17,6 +17,9 @@ dependencies:
   '@vercel/examples-ui':
     specifier: ^1.0.5
     version: 1.0.5(next@13.4.7-canary.2)(react-dom@18.2.0)(react@18.2.0)
+  js-cookie:
+    specifier: ^3.0.1
+    version: 3.0.1
   next:
     specifier: canary
     version: 13.4.7-canary.2(react-dom@18.2.0)(react@18.2.0)
@@ -1664,6 +1667,11 @@ packages:
   /isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
+
+  /js-cookie@3.0.1:
+    resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
+    engines: {node: '>=12'}
+    dev: false
 
   /js-sdsl@4.4.0:
     resolution: {integrity: sha512-FfVSdx6pJ41Oa+CF7RDaFmTnCaFhua+SNYQX74riGOpl96x+2jQCqEfQ2bnXu/5DPCqlRuiqyvTJM0Qjz26IVg==}

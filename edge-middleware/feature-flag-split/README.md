@@ -23,7 +23,7 @@ https://edge-functions-feature-flag-split.vercel.app
 
 ## How to Use
 
-Before using this repository, you need an [Split account](https://www.split.io/signup/) to set up feature flags and obtain the Split SDK Key. Also follow the section [Set up the Split's Vercel integration](https://help.split.io/hc/en-us/articles/16469873148173#set-up-the-splits-vercel-integration) to get your feature flags synchronized in Vercel Edge Config data store.
+Before using this repository, you will need a [Split account](https://www.split.io/signup/) to set up feature flags and obtain a Split SDK Key. You will also need to follow the steps to [set up the Split's Vercel integration](https://help.split.io/hc/en-us/articles/16469873148173#set-up-the-splits-vercel-integration), that will allow your feature flags to be stored and updated in a Vercel Edge Config instance connected to your project.
 
 You can choose from one of the following two methods to use this repository:
 
