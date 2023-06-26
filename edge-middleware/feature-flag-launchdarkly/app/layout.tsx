@@ -7,6 +7,8 @@ export const metadata = {
   description: 'An example showing how to use Vercel with LaunchDarkly',
 }
 
+export const config = { runtime: 'edge' }
+
 export default function RootLayout({
   children,
 }: {
