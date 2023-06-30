@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   '@splitsoftware/splitio-browserjs':
-    specifier: ^0.9.4
-    version: 0.9.4
+    specifier: ^0.9.6
+    version: 0.9.6
   '@splitsoftware/vercel-integration-utils':
-    specifier: ^0.1.0
-    version: 0.1.0(@vercel/edge-config@0.2.1)
+    specifier: ^1.0.0
+    version: 1.0.0(@vercel/edge-config@0.2.1)
   '@vercel/edge-config':
     specifier: 0.2.1
     version: 0.2.1
@@ -259,18 +259,18 @@ packages:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
     dev: true
 
-  /@splitsoftware/splitio-browserjs@0.9.4:
-    resolution: {integrity: sha512-ehNdujXIJS4GeVj2KFPbHG9Acsn/uJ8iVK1JBA8bjGvLHraumE2g5oqfnEuMoCi5EBuyQtUhOM6ra3IZJl6Gpg==}
+  /@splitsoftware/splitio-browserjs@0.9.6:
+    resolution: {integrity: sha512-KvClCOOgI+W4EGlQfaYrP8etJXMfjUc4STK+BjT/qB8Dwp3SzIjZk/lbtmdusdtsdsG+0ZPoE18pjjxfqqS87A==}
     dependencies:
-      '@splitsoftware/splitio-commons': 1.8.1
+      '@splitsoftware/splitio-commons': 1.8.3
       '@types/google.analytics': 0.0.40
       unfetch: 4.2.0
     transitivePeerDependencies:
       - ioredis
     dev: false
 
-  /@splitsoftware/splitio-commons@1.8.1:
-    resolution: {integrity: sha512-NHamCh+NwPTjO69kk5e6VaXjASPJzs0u3gWxITjmi0RPvGnNZ2M38/3ya1XSfARNjbDIpgHXlc1iywT07o3lEg==}
+  /@splitsoftware/splitio-commons@1.8.3:
+    resolution: {integrity: sha512-AbLiJU8+9zhyZ0Cwran1L8OTB0VIXOsWeygDRj1Pnr1OaD0jok+2nmqKjBu+vvY2pA6RridxYVZiTKg488IL+w==}
     peerDependencies:
       ioredis: ^4.28.0
     peerDependenciesMeta:
@@ -280,8 +280,8 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@splitsoftware/vercel-integration-utils@0.1.0(@vercel/edge-config@0.2.1):
-    resolution: {integrity: sha512-Au/8d6YupalMcHhVY3IpYUWcwpVrmptjVY4QHex/Ax6lcunSChqzYZ3dJcbakx/h4Erg6mLT7cdDzSAPwXHSrg==}
+  /@splitsoftware/vercel-integration-utils@1.0.0(@vercel/edge-config@0.2.1):
+    resolution: {integrity: sha512-8Jsx9gDKOXbxoDzrDQ6KFba+LvThVsInW0Q0MmxCO8fm3s6g13y4Fwo3QipMcmZeYCRi5JEKBmuDyjdzQqi7yg==}
     peerDependencies:
       '@vercel/edge-config': '>=0.1.0 <1.0.0'
     dependencies:
