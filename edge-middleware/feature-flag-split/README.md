@@ -47,7 +47,11 @@ Once that's done, copy the `.env.example` file in this directory to `.env.local`
 cp .env.example .env.local
 ```
 
-Then open `.env.local` and set the environment variables to match the ones in your Split dashboard. Your keys should be available under Workspace settings - API Keys, in the admin settings of your organization.
+Then open `.env.local` and set the required environment variables:
+
+- `SPLIT_SDK_KEY` should be available under Workspace settings - API Keys, in the Admin settings of your Split organization.
+- `SPLIT_EDGE_CONFIG_ITEM_KEY` must match the name of the Edge Config item key you set during the Split's Vercel integration setup.
+- `EDGE_CONFIG` is the connection string URL to access the Edge Config instance of your project. See [_Using a connection string_](https://vercel.com/docs/storage/edge-config/using-edge-config#using-a-connection-string) for more information.
 
 Next, run Next.js in development mode:
 

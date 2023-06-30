@@ -1,5 +1,13 @@
 import Cookies from 'js-cookie'
-import { Layout, Page, Text, List, Link, Button, Code } from '@vercel/examples-ui'
+import {
+  Layout,
+  Page,
+  Text,
+  List,
+  Link,
+  Button,
+  Code,
+} from '@vercel/examples-ui'
 
 export default function Index() {
   const removeCookie = (name: string) => {
@@ -13,18 +21,31 @@ export default function Index() {
         Feature flags with Split
       </Text>
       <Text className="mb-4">
-        In this demo we use <b>Split Browser SDK</b> within an <b>Edge middleware</b> and connected to a <b>Vercel Edge Config</b>, to pull feature flags from the edge.
+        In this demo we use <b>Split Browser SDK</b> within an{' '}
+        <b>Edge middleware</b> and connected to a <b>Vercel Edge Config</b>, to
+        pull feature flags from the edge.
       </Text>
       <Text className="mb-4">
         Before using this example, you will need a{' '}
-        <Link href="https://www.split.io/signup/" target="_blank">Split account</Link>
-        {' '}to set up feature flags and obtain a Split SDK Key. You will also need to follow the steps to{' '}
-        <Link href="https://help.split.io/hc/en-us/articles/16469873148173#set-up-the-splits-vercel-integration" target="_blank">set up Split's Vercel integration</Link>
-        , that will allow your feature flags to be stored and updated in a Vercel Edge Config instance connected to your project.
+        <Link href="https://www.split.io/signup/" target="_blank">
+          Split account
+        </Link>{' '}
+        to set up feature flags and obtain a Split SDK Key. You will also need
+        to follow the steps to{' '}
+        <Link
+          href="https://help.split.io/hc/en-us/articles/16469873148173#set-up-the-splits-vercel-integration"
+          target="_blank"
+        >
+          set up Split integration for Vercel
+        </Link>
+        , that will allow your feature flags to be stored and updated in a
+        Vercel Edge Config instance connected to your project.
       </Text>
       <Text className="mb-4">
-        The about and marketing pages below will each render a different version, depending on the configuration of a feature flag named <i>feature_flag_example</i>.
-        Take a look at the <Code>middleware.ts</Code> file to know more.
+        The about and marketing pages below will each render a different
+        version, depending on the configuration of a feature flag named{' '}
+        <i>feature_flag_example</i>. Take a look at the{' '}
+        <Code>middleware.ts</Code> file to know more.
       </Text>
       <List className="mb-4">
         <li>
@@ -35,7 +56,8 @@ export default function Index() {
         </li>
       </List>
       <Text className="mb-4">
-        Click the button below if you want to change the current <i>Split user key</i>, randomly assigned, to get a different variant.
+        Click the button below if you want to change the current{' '}
+        <i>Split user key</i>, randomly assigned, to get a different variant.
       </Text>
       <div>
         <Button
