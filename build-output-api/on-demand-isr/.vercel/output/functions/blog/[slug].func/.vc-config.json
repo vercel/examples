@@ -1,5 +1,0 @@
-{
-  "runtime": "nodejs16.x",
-  "handler": "index.js",
-  "launcherType": "Nodejs"
-}
