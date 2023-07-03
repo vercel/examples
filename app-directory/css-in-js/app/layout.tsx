@@ -3,8 +3,19 @@ import Nav from '@vercel/examples-ui/nav'
 import Vercel from '@vercel/examples-ui/icons/vercel'
 import '@vercel/examples-ui/globals.css'
 
-const RootLayout: FC<{ children: ReactNode }> = ({ children }) => (
-  <html>
+
+export const metadata = {
+  title: 'CSS-in-JS libraries in the app directory - Vercel Examples',
+  description:
+    'Learn how to use CSS-in-JS libraries in the Next.js app directory',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  <html lang="en">
     <body>
       <div className="mx-auto h-screen flex flex-col">
         <Nav path="app-directory/css-in-js" />
@@ -17,8 +28,7 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => (
               aria-label="Vercel.com Link"
               target="_blank"
               rel="noreferrer"
-              className="text-black"
-            >
+              className="text-black">
               <Vercel
                 className="inline-block h-6 ml-3 text-primary"
                 alt="Vercel.com Logo"
@@ -28,7 +38,7 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => (
         </div>
       </div>
     </body>
-  </html>
-)
+  </html>;
+}
 
 export default RootLayout
