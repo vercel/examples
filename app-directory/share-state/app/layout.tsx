@@ -4,8 +4,6 @@ import Vercel from '@vercel/examples-ui/icons/vercel'
 
 import '@vercel/examples-ui/globals.css'
 
-type Props = { children: ReactNode }
-
 export const metadata = {
   title: "Sharing State in Next.js - Vercel Examples",
   description:
