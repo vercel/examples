@@ -45,6 +45,23 @@ cp .env.example .env.local
 
 Then open `.env.local` and set the environment variables to match the ones in your Split dashboard. Your keys should be available under Workspace settings - API Keys, in the admin settings of your organization.
 
+#### Set up environment variables
+
+Copy [.env.example](./env.example) to `.env.local`:
+
+```bash
+cp .env.example .env.local
+```
+
+Then fill it with the following information:
+
+- Log in to the [Split console](https://app.split.io/login) and navigate to **Profile -> Admin Settings -> API Keys -> SDK API Keys** to retreive your SDK API Key.
+
+- Install the [Split Vercel Integration](https://vercel.com/integrations/split) for your project.
+  Then fill in `.env.local` with the provided Edge Config Item Key.
+
+- You can find the Edge Config Connection String on vercel.com -> Storage -> \[Your Edge Config\] -> Projects. You can click Connect Project if your Edge Config is not connected to any project yet. This will automatically create a token for you and set it up as an environment variable on your project. Note that you still need to provide it to your `.env.local` file. Otherwise, click on Tokens in the sidebar and find the token you want to use. Then click on the three dots of and select Copy Connection String.
+
 Next, run Next.js in development mode:
 
 ```bash
