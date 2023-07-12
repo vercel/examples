@@ -10,8 +10,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@splitsoftware/splitio-browserjs": "^0.9.5",
-    "@splitsoftware/vercel-integration-utils": "0.1.0-rc.0",
+    "@splitsoftware/splitio-browserjs": "^0.9.6",
+    "@splitsoftware/vercel-integration-utils": "1.0.0",
+    "@vercel/edge-config": "^0.2.1",
     "@vercel/examples-ui": "^1.0.5",
     "js-cookie": "^3.0.1",
     "next": "canary",
