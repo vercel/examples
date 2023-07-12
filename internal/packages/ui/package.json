@@ -3,18 +3,17 @@
   "version": "1.0.5",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "build": "pnpm build:swc && pnpm types",
+    "dev": "pnpm build:swc -w",
+    "build": "rm -rf dist && pnpm build:swc && pnpm types",
     "build:swc": "swc src -d dist --copy-files",
-    "clean": "rm -rf ./dist",
-    "types": "tsc --emitDeclarationOnly"
+    "types": "tsc --emitDeclarationOnly",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "clean": "rm -rf ./dist && rm -rf .turbo"
   },
   "sideEffects": true,
   "type": "module",
   "exports": {
     ".": "./dist/index.js",
-    "./*": "./dist/*.js",
-    "./icons": "./dist/icons/index.js",
     "./tailwind": {
       "require": "./dist/tailwind.cjs"
     },
