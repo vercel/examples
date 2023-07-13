@@ -24,9 +24,8 @@
   ],
   "typesVersions": {
     "*": {
-      "*": [
-        "src/*",
-        "src/*/index"
+      "index": [
+        "src/index"
       ],
       "tailwind": [
         "dist/tailwind.d.cts"
@@ -36,8 +35,7 @@
   "publishConfig": {
     "typesVersions": {
       "*": {
-        "*": [
-          "dist/*.d.ts",
+        "index": [
           "dist/*/index.d.ts"
         ],
         "tailwind": [
