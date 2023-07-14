@@ -1,4 +1,4 @@
-import type { FC, ReactNode, ComponentType } from 'react'
+import type { ReactNode, ComponentType } from 'react'
 import Nav, { NavProps } from './nav.js'
 import Vercel from './icons/vercel.js'
 
@@ -6,15 +6,13 @@ export interface LayoutProps extends NavProps {
   children?: ReactNode
 }
 
-const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
+const Noop = ({ children }: { children?: ReactNode }) => <>{children}</>
 
-export function getLayout<LP extends {} = LayoutProps>(
+export const getLayout = <LP extends {} = LayoutProps>(
   Component: any
-): ComponentType<LP> {
-  return Component?.Layout || Noop
-}
+): ComponentType<LP> => Component?.Layout || Noop
 
-export const Layout: FC<LayoutProps> = ({ path, deployButton, children }) => (
+export const Layout = ({ path, deployButton, children }: LayoutProps) => (
   <div className="mx-auto h-screen flex flex-col">
     <Nav path={path} deployButton={deployButton} />
 
