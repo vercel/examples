@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react'
-import { Layout, Text, Page, Link, Code } from '@vercel/examples-ui'
+import { Layout, Text, Page, Link, Code, Input } from '@vercel/examples-ui'
 
 const Snippet = ({ children }: { children: ReactNode }) => (
   <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 transition-all">
@@ -15,15 +15,22 @@ function Home() {
         This is some text to test the <Code>@vercel/examples-ui</Code> package.
       </Text>
       <Text>
-        This is a link with:{' '}
-        <Link href="https://nextjs.org/docs/api-reference/next/image">
-          click me
-        </Link>
-        . And a link with code:{' '}
-        <Link href="https://nextjs.org/docs/api-reference/next/image">
+        This is a link with: <Link href="/">click me</Link>. And a link with
+        code:{' '}
+        <Link href="/">
           <Code>click me</Code>
         </Link>
         .
+      </Text>
+      <Text>
+        Secondary link:{' '}
+        <Link href="/" secondary>
+          click me
+        </Link>
+        .
+      </Text>
+      <Text>
+        Text Input: <Input placeholder="Placeholder" />
       </Text>
     </Page>
   )
