@@ -1,5 +1,13 @@
 import { type ReactNode } from 'react'
-import { Layout, Text, Page, Link, Code, Input } from '@vercel/examples-ui'
+import {
+  Layout,
+  Text,
+  Page,
+  Link,
+  Code,
+  Input,
+  Button,
+} from '@vercel/examples-ui'
 
 const Snippet = ({ children }: { children: ReactNode }) => (
   <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 transition-all">
@@ -31,6 +39,14 @@ function Home() {
       </Text>
       <Text>
         Text Input: <Input placeholder="Placeholder" />
+      </Text>
+      <Text>
+        Button: <Button>Primary</Button>{' '}
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="black">Black</Button>
+        <Button variant="violet">Violet</Button>
+        <Button variant="white">White</Button>
       </Text>
     </Page>
   )

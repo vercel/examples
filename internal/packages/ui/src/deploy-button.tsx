@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import Button from './button.js'
+import { Button } from './button.js'
 
 const VERCEL_CLONE = 'https://vercel.com/new/clone'
 

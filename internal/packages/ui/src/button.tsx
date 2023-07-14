@@ -1,10 +1,10 @@
-import {
+import type {
   FC,
   ButtonHTMLAttributes,
   JSXElementConstructor,
   AnchorHTMLAttributes,
 } from 'react'
-import cn from 'clsx'
+import clsx from 'clsx'
 import LoadingDots from './loading-dots.js'
 
 /**
@@ -37,14 +37,6 @@ export type ButtonHTMLType<C extends ButtonComponentType = 'button'> =
     ? AnchorHTMLAttributes<HTMLAnchorElement>
     : ButtonHTMLAttributes<HTMLButtonElement>
 
-type ButtonFC<C extends ButtonComponentType = 'button'> = FC<
-  ButtonHTMLType<C> & ButtonProps<C>
->
-
-type ButtonType = <C extends ButtonComponentType = 'button'>(
-  ...args: Parameters<ButtonFC<C>>
-) => ReturnType<ButtonFC<C>>
-
 const variants = {
   primary:
     'text-background bg-success border-success-dark hover:bg-success/90 shadow-[0_5px_10px_rgb(0,68,255,0.12)]',
@@ -63,7 +55,11 @@ const sizes = {
   lg: 'h-12 leading-12 text-[17px]',
 }
 
-const Button: ButtonFC = (props) => {
+// Our Button component is built thinking of it as a button,
+// but it can also be used as a link and include the anchor props
+export const Button = <C extends ButtonComponentType = 'button'>(
+  props: ButtonHTMLType<C> & ButtonProps<C>
+) => {
   const {
     width,
     active,
@@ -77,7 +73,8 @@ const Button: ButtonFC = (props) => {
     ...rest
   } = props
 
-  const rootClassName = cn(
+  const Compt: any = Component
+  const rootClassName = clsx(
     'relative inline-flex items-center justify-center cursor pointer no-underline px-3.5 rounded-md',
     'font-medium outline-0 select-none align-middle whitespace-nowrap',
     'transition-colors ease-in duration-200',
@@ -89,7 +86,7 @@ const Button: ButtonFC = (props) => {
   )
 
   return (
-    <Component
+    <Compt
       aria-pressed={active}
       data-variant={variant}
       className={rootClassName}
@@ -106,10 +103,6 @@ const Button: ButtonFC = (props) => {
       ) : (
         children
       )}
-    </Component>
+    </Compt>
   )
 }
-
-// Our Button component is built thinking of it as a button,
-// but it can also be used as a link and include the anchor props
-export default Button as ButtonType

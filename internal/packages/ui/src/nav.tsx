@@ -1,5 +1,5 @@
 import { Link } from './link.js'
-import Button from './button.js'
+import { Button } from './button.js'
 import DeployButton, { DeployButtonProps } from './deploy-button.js'
 
 const REPO_URL = 'https://github.com/vercel/examples/tree/main'
