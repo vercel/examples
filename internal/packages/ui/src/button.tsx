@@ -1,11 +1,10 @@
 import type {
-  FC,
   ButtonHTMLAttributes,
   JSXElementConstructor,
   AnchorHTMLAttributes,
 } from 'react'
 import clsx from 'clsx'
-import LoadingDots from './loading-dots.js'
+import { LoadingDots } from './loading-dots.js'
 
 /**
  * All the component types allowed by the Button component.
