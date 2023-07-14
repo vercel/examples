@@ -1,14 +1,15 @@
 ---
-name: A/B Testing with Split
+name: Split Integration example
 slug: ab-testing-split
 description: Learn to use Split, a feature delivery platform that powers feature flag management, software experimentation and continuous delivery.
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split&env=SPLIT_WORKSPACE_ID,SPLIT_SDK_CLIENT_API_KEY,EDGE_CONFIG&project-name=feature-flag-split&repository-name=feature-flag-split&integration-ids=oac_bic40oWF5k9pDFboJhKYqMd1&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%7D%7D
-demoUrl: https://feature-flag-split.vercel.app
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split&env=SPLIT_SDK_CLIENT_API_KEY,EDGE_CONFIG,EDGE_CONFIG_SPLIT_ITEM_KEY&project-name=feature-flag-split&repository-name=feature-flag-split&integration-ids=oac_bic40oWF5k9pDFboJhKYqMd1&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%7D%7D
+demoUrl: https://ab-testing-split.vercel.app
 relatedTemplates:
-  - ab-testing-simple
+  - maintenance-page
+  - feature-flag-apple-store
 ---
 
 # A/B Testing with Split
@@ -17,7 +18,7 @@ relatedTemplates:
 
 ## Demo
 
-https://feature-flag-split.vercel.app
+https://ab-testing-split.vercel.app
 
 ## How to Use
 
