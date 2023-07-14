@@ -10,7 +10,7 @@ export * from './loading-dots.js'
 export * from './link.js'
 export * from './code.js'
 export * from './list.js'
-export { default as Snippet } from './snippet.js'
+export * from './snippet.js'
 
 export const Page: FC<HTMLAttributes<HTMLElement>> = ({
   children,

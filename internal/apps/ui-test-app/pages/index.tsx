@@ -1,4 +1,3 @@
-import { type ReactNode } from 'react'
 import {
   Layout,
   Text,
@@ -8,13 +7,8 @@ import {
   Input,
   Button,
   List,
+  Snippet,
 } from '@vercel/examples-ui'
-
-const Snippet = ({ children }: { children: ReactNode }) => (
-  <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 transition-all">
-    {children}
-  </pre>
-)
 
 function Home() {
   return (
@@ -54,6 +48,12 @@ function Home() {
         <li>List item</li>
         <li>Another list item</li>
       </List>
+      <Text>Code snippet:</Text>
+      <Snippet>
+        {`export default function Page() {
+  return <h1>Hello, Next.js!</h1>
+}`}
+      </Snippet>
     </Page>
   )
 }
