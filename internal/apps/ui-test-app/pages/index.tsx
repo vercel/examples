@@ -7,6 +7,7 @@ import {
   Code,
   Input,
   Button,
+  List,
 } from '@vercel/examples-ui'
 
 const Snippet = ({ children }: { children: ReactNode }) => (
@@ -48,6 +49,11 @@ function Home() {
         <Button variant="violet">Violet</Button>
         <Button variant="white">White</Button>
       </Text>
+      <List>
+        <li>This is an unordered list</li>
+        <li>List item</li>
+        <li>Another list item</li>
+      </List>
     </Page>
   )
 }

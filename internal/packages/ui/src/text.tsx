@@ -5,7 +5,7 @@ interface Props {
   variant?: Variant
   className?: string
   style?: CSSProperties
-  children?: ReactNode | any
+  children?: ReactNode
 }
 
 type Variant = 'h1' | 'h2' | 'description' | 'body' | 'smallText'
