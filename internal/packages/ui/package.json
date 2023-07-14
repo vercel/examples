@@ -51,8 +51,7 @@
   },
   "dependencies": {
     "@swc/helpers": "^0.4.11",
-    "clsx": "^1.1.1",
-    "sugar-high": "~0.4.5"
+    "clsx": "^1.1.1"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.57",
