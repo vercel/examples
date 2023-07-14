@@ -1,12 +1,8 @@
+'use client'
+import { Button, List, Page, Text, Link } from '@vercel/examples-ui'
 import Cookies from 'js-cookie'
-import { Layout, Page, Text, List, Link, Button } from '@vercel/examples-ui'
 
 export default function Index() {
-  const removeCookie = (name: string) => {
-    Cookies.remove(name)
-    window.location.reload()
-  }
-
   return (
     <Page>
       <Text variant="h2" className="mb-6">
@@ -29,22 +25,28 @@ export default function Index() {
         variant has a 50% chance)
       </Text>
       <div>
-        <Button
-          variant="secondary"
-          className="mr-2.5"
-          onClick={() => removeCookie(`flag-about`)}
-        >
-          Remove /about cookie & reload
-        </Button>
-        <Button
-          variant="secondary"
-          onClick={() => removeCookie(`flag-marketing`)}
-        >
-          Remove /marketing cookie & reload
-        </Button>
+        <CookieButton userKey="Joe" />
+        <CookieButton userKey="Bobby" />
       </div>
     </Page>
   )
 }
 
-Index.Layout = Layout
+function CookieButton({ userKey }: { userKey: string }) {
+  'use client'
+
+  const removeCookie = (name: string) => {
+    Cookies.set('split-userkey', userKey)
+    window.location.reload()
+  }
+
+  return (
+    <Button
+      variant="secondary"
+      className="mr-2.5"
+      onClick={() => removeCookie('split-userkey')}
+    >
+      Authenticate as {userKey} and reload page
+    </Button>
+  )
+}
