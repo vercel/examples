@@ -12,6 +12,17 @@ export * from './code.js'
 export * from './list.js'
 export * from './snippet.js'
 
+export const getMetadata = ({
+  title,
+  description,
+}: {
+  title?: string
+  description?: string
+} = {}) => ({
+  title: title ? `${title} - Vercel Examples` : 'Vercel Example',
+  description,
+})
+
 export const Page: FC<HTMLAttributes<HTMLElement>> = ({
   children,
   className,
