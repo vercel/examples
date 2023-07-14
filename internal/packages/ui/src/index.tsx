@@ -8,7 +8,7 @@ export * from './input.js'
 export * from './button.js'
 export * from './loading-dots.js'
 export * from './link.js'
-export { default as Code } from './code.js'
+export * from './code.js'
 export { default as List } from './list.js'
 export { default as Snippet } from './snippet.js'
 
