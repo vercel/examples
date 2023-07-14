@@ -1,4 +1,3 @@
-import type { FC } from 'react'
 import { Button } from './button.js'
 
 const VERCEL_CLONE = 'https://vercel.com/new/clone'
@@ -11,7 +10,7 @@ export interface DeployButtonProps {
   customDeployUrl?: string
 }
 
-const DeployButton: FC<DeployButtonProps> = (props) => {
+export const DeployButton = (props: DeployButtonProps) => {
   const params = [
     ['repository-url', props.repositoryUrl],
     ['env', props.env?.join(',')],
@@ -40,5 +39,3 @@ const DeployButton: FC<DeployButtonProps> = (props) => {
     </Button>
   )
 }
-
-export default DeployButton

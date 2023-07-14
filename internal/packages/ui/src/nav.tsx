@@ -1,6 +1,6 @@
 import { Link } from './link.js'
 import { Button } from './button.js'
-import DeployButton, { DeployButtonProps } from './deploy-button.js'
+import { DeployButton, type DeployButtonProps } from './deploy-button.js'
 
 const REPO_URL = 'https://github.com/vercel/examples/tree/main'
 
@@ -9,7 +9,7 @@ export interface NavProps {
   deployButton?: Partial<DeployButtonProps>
 }
 
-export default function Nav({ path, deployButton }: NavProps) {
+export const Nav = ({ path, deployButton }: NavProps) => {
   const displayPath = ['Vercel Examples']
     .concat(path?.split('/').filter(Boolean) || [])
     .join(' / ')

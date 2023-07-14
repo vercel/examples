@@ -1,5 +1,5 @@
 import type { ReactNode, ComponentType } from 'react'
-import Nav, { NavProps } from './nav.js'
+import { Nav, type NavProps } from './nav.js'
 import Vercel from './icons/vercel.js'
 
 export interface LayoutProps extends NavProps {
