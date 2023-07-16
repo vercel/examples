@@ -8,10 +8,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="API Rate Limiting with Upstash"
+      title="API Rate Limiting with Vercel KV"
       path="edge-functions/api-rate-limit"
       deployButton={{
-        env: ['UPSTASH_REST_API_DOMAIN', 'UPSTASH_REST_API_TOKEN'],
+        // Need to make this work with KV
+        env: [],
       }}
     >
       <Component {...pageProps} />

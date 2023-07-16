@@ -1,7 +1,7 @@
 ---
 name: API Rate Limiting with Upstash
 slug: api-rate-limit-upstash
-description: Template featuring API Rate limiting at the edge with Redis using Upstash.
+description: Rate limit your Next.js application with Vercel KV and Upstash.
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind
@@ -9,13 +9,12 @@ deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel
 demoUrl: https://edge-functions-api-rate-limit.vercel.app
 relatedTemplates:
   - api-rate-limit-and-tokens
+  - vercel-middleware-kv-redis
 ---
 
-# API Rate Limiting with Upstash
+# API Rate Limiting with Vercel KV and Upstash
 
-This example features API Rate limiting at the edge with Redis using [Upstash](https://upstash.com/).
-
-The pattern for rate limiting is inspired by the [GitHub API](https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting).
+This example features API Rate limiting at the edge with [Vercel KV](https://vercel.com/docs/storage/vercel-kv).
 
 ## Demo
 
@@ -39,17 +38,15 @@ Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packag
 pnpm create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit api-rate-limit
 ```
 
-You'll need to have an account with [Upstash](https://upstash.com/). Once that's done, copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
+Next, create a [Vercel KV](https://vercel.com/docs/storage/vercel-kv) database on your account and connect it to your project.
+
+Copy the example `.env.local` file shown in the dashboard with the credentials needed to connect to your Redis database. It should look similar to this:
 
 ```bash
-cp .env.example .env.local
-```
-
-Then open `.env.local` and set the environment variables to match the REST API of your database. It should look like this:
-
-```bash
-UPSTASH_REST_API_DOMAIN = "us1-shiny-firefly-12345.upstash.io"
-UPSTASH_REST_API_TOKEN = "your-api-token"
+KV_URL="redis://..."
+KV_REST_API_URL="https://..."
+KV_REST_API_TOKEN="AXx3ASQ..."
+KV_REST_API_READ_ONLY_TOKEN="Anx3ASQ..."
 ```
 
 Next, run Next.js in development mode:

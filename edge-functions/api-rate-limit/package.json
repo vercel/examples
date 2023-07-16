@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@upstash/ratelimit": "^0.4.3",
     "@vercel/examples-ui": "^1.0.5",
     "next": "canary",
     "react": "latest",
