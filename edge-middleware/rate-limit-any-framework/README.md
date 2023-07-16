@@ -1,6 +1,6 @@
 ---
 name: Vercel Edge Middleware Rate Limit
-slug: vercel-middleware-kv-redis
+slug: middleware-rate-limit
 description: Add rate limiting to your application with any frontend framework.
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/rate-limit-any-framework&project-name=ratelimit
 relatedTemplates:

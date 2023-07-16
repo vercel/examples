@@ -13,17 +13,16 @@ export const config = {
 }
 
 export default async function handler(request: NextRequest) {
-  // You could alternative limit based on user ID or similar
+  // You could alternatively limit based on user ID or similar
   const ip = request.ip ?? '127.0.0.1'
   const { limit, reset, remaining } = await ratelimit.limit(ip)
 
   return new Response(JSON.stringify({ success: true }), {
     status: 200,
-    // this doesn't work yet
     headers: {
-      'X-RateLimit-Limit': limit,
-      'X-RateLimit-Remaining': remaining,
-      'X-RateLimit-Reset': reset,
+      'X-RateLimit-Limit': limit.toString(),
+      'X-RateLimit-Remaining': remaining.toString(),
+      'X-RateLimit-Reset': reset.toString(),
     },
   })
 }
