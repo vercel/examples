@@ -37,7 +37,7 @@ Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packag
 pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/web3-sessions
 ```
 
-Rename the `.env.example` file to `.env` and add your own secrets:
+Rename the `.env.example` file to `.env.local` and add your own secrets:
 
 ```
 // generate random secrets on https://passwordsgenerator.net/ or anywhere else similar

@@ -40,6 +40,11 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 ## How it Works
 
+- Integration and E2E tests with [Playwright](https://playwright.dev/docs/intro).
+- Unit testing with [Jest](https://jestjs.io/). Visit the [Running Unit Tests](#running-unit-tests) section to learn more.
+- [Visual testing](#visual-testing) with [AppliTools Eyes](https://applitools.com/platform/eyes/) and Playwright.
+- Storybook for UI development. Visit the [Running Storybook](#running-storybook) section to learn more.
+
 We use [Playwright](https://playwright.dev/docs/intro) for both integration and E2E tests. For unit testing Jest go to the [last section](#running-unit-tests).
 
 ### Integration vs E2E testing
@@ -64,11 +69,25 @@ tests can only intercept front-end network traffic.
 
 ### Choosing a testing strategy
 
-In most cases, the default choice should be integration tests. These are easier to write and maintain, and are both faster and more stable than E2E tests.
+In most cases, the default choice should be integration and visual tests. These are easier to write and maintain, and are both faster and more stable than E2E tests.
 
 Stability and speed are important, as flaky or slow tests can slow down or even block merges and deployments.
 
-We recommend that all pages are covered by integration tests, and only critical flows be covered by E2E tests. When writing E2E tests, it's important to consider that each test is meant to create real database records, which may require cleanup.
+We recommend that all pages are covered by integration and visual tests, and only critical flows be covered by E2E tests. When writing E2E tests, it's important to consider that each test is meant to create real database records, which may require cleanup.
+
+### Visual testing
+
+Visual tests are done with [AppliTools Eyes](https://applitools.com/platform/eyes/), which uses AI to better detect layout changes.
+
+Applitools is disabled by default. To enable it, create a free account at [applitools.com](https://auth.applitools.com/users/register) get an API key.
+
+Then, create the file `playwright/.env.local` and set the `APPLITOOLS_API_KEY` to your API key:
+
+```bash
+APPLITOOLS_API_KEY = <your api key>
+```
+
+Now, tests that use `eyes.check` will run a visual test in the Applitools dashboard too.
 
 ## Running Tests
 
@@ -235,4 +254,20 @@ And to watch for changes:
 
 ```bash
 pnpm run test-unit -- --watch
+```
+
+## Running Storybook
+
+Run the following command from the root:
+
+```bash
+pnpm dev
+```
+
+The storybook server will be up and running at http://localhost:6006.
+
+To build storybook and run it in production mode, use the following command:
+
+```bash
+pnpm build && pnpm start
 ```

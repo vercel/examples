@@ -1,9 +1,7 @@
-import createFetch, { type FetchOptions } from '@vercel/fetch'
-
-const fetch = createFetch()
+import fetch, { type RequestInit } from 'node-fetch'
 
 export default function initContentful(accessToken: string) {
-  return async function contentful(path: string, fetchOptions?: FetchOptions) {
+  return async function contentful(path: string, fetchOptions?: RequestInit) {
     let res
 
     try {

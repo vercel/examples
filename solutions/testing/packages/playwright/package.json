@@ -21,5 +21,10 @@
     "main-site": "workspace:*",
     "tsconfig": "workspace:*",
     "typescript": "^4.9.3"
+  },
+  "devDependencies": {
+    "@applitools/eyes-playwright": "^1.15.1",
+    "@types/node": "^18.15.11",
+    "dotenv": "^16.0.3"
   }
 }

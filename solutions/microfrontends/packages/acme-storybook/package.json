@@ -5,8 +5,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "start-storybook -p 6006",
-    "build": "build-storybook --docs",
+    "dev": "storybook dev -p 6006 --no-open",
+    "build": "storybook build",
     "preview-storybook": "serve storybook-static",
     "lint": "TIMING=1 eslint \"**/*.{ts,tsx,js,jsx}\" --fix",
     "clean": "rm -rf .turbo"
@@ -14,22 +14,26 @@
   "dependencies": {
     "@acme/design-system": "workspace:*",
     "@acme/pages": "workspace:*",
-    "react": "latest",
-    "react-dom": "latest"
+    "@vercel/examples-ui": "^1.0.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.6",
-    "@storybook/addon-docs": "^6.5.13",
-    "@storybook/addon-essentials": "^6.5.13",
-    "@storybook/addon-links": "^6.5.13",
-    "@storybook/builder-vite": "^0.2.4",
-    "@storybook/react": "^6.5.13",
-    "autoprefixer": "^10.4.12",
-    "eslint": "^8.26.0",
+    "@storybook/addon-docs": "^7.0.6",
+    "@storybook/addon-essentials": "^7.0.6",
+    "@storybook/addon-links": "^7.0.6",
+    "@storybook/addon-styling": "^1.0.1",
+    "@storybook/react": "^7.0.6",
+    "@storybook/react-vite": "^7.0.6",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.38.0",
     "eslint-config-acme": "workspace:*",
-    "serve": "^14.0.1",
-    "tailwindcss": "^3.2.1",
-    "typescript": "^4.8.4",
-    "vite": "^3.1.8"
+    "eslint-plugin-storybook": "^0.6.11",
+    "postcss": "^8.4.23",
+    "serve": "^14.2.0",
+    "storybook": "^7.0.6",
+    "tailwindcss": "^3.3.1",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.1"
   }
 }

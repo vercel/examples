@@ -26,12 +26,12 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
-          version: 7.12.1
+          version: 8.2.0
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.14
+          node-version: 18.16
           cache: pnpm
 
       - name: Install pnpm Dependencies

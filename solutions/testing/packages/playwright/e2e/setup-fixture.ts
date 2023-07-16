@@ -1,17 +1,6 @@
-import { test as base } from '@playwright/test'
-import { IS_CI, PAUSE_ON_FAILURE } from 'shared/constants'
-import pauseOnFailure from 'shared/fixtures/pause-on-failure'
-import { createUtils, type Utils } from 'shared/fixtures/utils'
+import { baseFixture } from 'shared/base-fixture'
 
-type Extensions = { utils: Utils }
-
-export const test = base.extend<Extensions>({
-  utils: ({ page }, use) => use(createUtils(page)),
-})
-
-if (!IS_CI && PAUSE_ON_FAILURE) {
-  test.afterEach(pauseOnFailure)
-}
+export const test = baseFixture
 
 export type Test = typeof test
 
