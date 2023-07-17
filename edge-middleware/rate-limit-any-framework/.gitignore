@@ -13,4 +13,6 @@
 /yarn-error.log*
 
 # Local ENV files
+.env
 /.env*.local
+.vercel

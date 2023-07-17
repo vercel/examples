@@ -11,7 +11,6 @@ const Headers: FC<{ path: string; children: string }> = ({
     latency: null,
     status: null,
     headers: {
-      'X-upstash-latency': '',
       'X-RateLimit-Limit': '',
       'X-RateLimit-Remaining': '',
       'X-RateLimit-Reset': '',
@@ -29,7 +28,6 @@ const Headers: FC<{ path: string; children: string }> = ({
         latency: `~${Math.round(Date.now() - start)}ms`,
         status: `${res.status}`,
         headers: {
-          'X-upstash-latency': `${res.headers.get('X-upstash-latency')}ms`,
           'X-RateLimit-Limit': res.headers.get('X-RateLimit-Limit'),
           'X-RateLimit-Remaining': res.headers.get('x-RateLimit-Remaining'),
           'X-RateLimit-Reset': res.headers.get('x-RateLimit-Reset'),

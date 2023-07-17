@@ -5,6 +5,7 @@ specifiers:
   '@types/react': latest
   '@upstash/ratelimit': ^0.4.3
   '@vercel/examples-ui': ^1.0.5
+  '@vercel/kv': ^0.2.2
   autoprefixer: ^10.4.14
   eslint: ^8.36.0
   eslint-config-next: canary
@@ -19,6 +20,7 @@ specifiers:
 dependencies:
   '@upstash/ratelimit': 0.4.3
   '@vercel/examples-ui': 1.0.5_zy3h4xbwjjivwpgydy2qqot4ly
+  '@vercel/kv': 0.2.2
   next: 13.4.10-canary.8_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -343,6 +345,14 @@ packages:
       - encoding
     dev: false
 
+  /@upstash/redis/1.21.0:
+    resolution: {integrity: sha512-c6M+cl0LOgGK/7Gp6ooMkIZ1IDAJs8zFR+REPkoSkAq38o7CWFX5FYwYEqGZ6wJpUGBuEOr/7hTmippXGgL25A==}
+    dependencies:
+      isomorphic-fetch: 3.0.0
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /@upstash/redis/1.22.0:
     resolution: {integrity: sha512-sXoJDoEqqik0HbrNE7yRWckOySEFsoBxfRdCgOqkc0w6py19ZZG50SpGkDDEUXSnBqP8VgGYXhWAiBpqxrt5oA==}
     dependencies:
@@ -364,6 +374,15 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       sugar-high: 0.4.6
+    dev: false
+
+  /@vercel/kv/0.2.2:
+    resolution: {integrity: sha512-mqnQOB6bkp4h5eObxfLNIlhlVqOGSH8cWOlC5pDVWTjX3zL8dETO1ZBl6M74HBmeBjbD5+J7wDJklRigY6UNKw==}
+    engines: {node: '>=14.6'}
+    dependencies:
+      '@upstash/redis': 1.21.0
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /acorn-jsx/5.3.2_acorn@8.8.2:

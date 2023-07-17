@@ -20,5 +20,7 @@ export default async function middleware(request) {
     ip
   )
 
-  return success ? next() : Response.redirect(new URL('/blocked', request.url))
+  return success
+    ? next()
+    : Response.redirect(new URL('/blocked.html', request.url))
 }
