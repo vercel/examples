@@ -1,5 +1,11 @@
 # @vercel/examples-ui
 
+## 2.0.0
+
+### Major Changes
+
+- 285ad9ee: Updated UI library to not exports all files and to support the App Router
+
 ## 1.0.5
 
 ### Patch Changes
