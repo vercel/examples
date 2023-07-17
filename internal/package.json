@@ -2,10 +2,13 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "apps/*"
   ],
   "scripts": {
+    "dev": "turbo run dev",
     "build": "turbo run build",
+    "start": "turbo run start",
     "clean": "turbo run clean",
     "test": "turbo run test",
     "changeset": "changeset",
