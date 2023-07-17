@@ -36,7 +36,7 @@
     "typesVersions": {
       "*": {
         "index": [
-          "dist/*/index.d.ts"
+          "dist/index.d.ts"
         ],
         "tailwind": [
           "dist/tailwind.d.cts"
