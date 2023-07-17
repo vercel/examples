@@ -14,7 +14,7 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
-    "@prisma/client": "4.13.0",
+    "@prisma/client": "^5.0.0",
     "@types/node": "18.15.11",
     "@types/react": "18.0.37",
     "@types/react-dom": "18.0.11",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@types/ms": "^0.7.31",
-    "prisma": "^4.13.0",
+    "prisma": "^5.0.0",
     "turbo": "^1.9.3"
   }
 }
