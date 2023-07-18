@@ -91,7 +91,9 @@ export default IndexPage
 
       <section className="flex flex-col gap-4">
         <Text variant="h2">Demo</Text>
-        <Link href="/demo">Click here to see a working demo</Link>.
+        <Text>
+          <Link href="/demo">Click here to see a working demo</Link>.
+        </Text>
       </section>
     </Page>
   )

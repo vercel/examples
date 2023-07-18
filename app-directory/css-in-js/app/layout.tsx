@@ -1,34 +1,19 @@
-import type { FC, ReactNode } from 'react'
-import Nav from '@vercel/examples-ui/nav'
-import Vercel from '@vercel/examples-ui/icons/vercel'
+import type { ReactNode } from 'react'
+import { Layout, getMetadata } from '@vercel/examples-ui'
 import '@vercel/examples-ui/globals.css'
 
-const RootLayout: FC<{ children: ReactNode }> = ({ children }) => (
-  <html>
-    <body>
-      <div className="mx-auto h-screen flex flex-col">
-        <Nav path="app-directory/css-in-js" />
-        <div className="px-8 bg-accents-0">
-          <main>{children}</main>
-          <footer className="py-10 w-full mt-auto border-t flex items-center justify-center bg-accents-1 z-20">
-            <span className="text-primary">Created by</span>
-            <a
-              href="https://vercel.com"
-              aria-label="Vercel.com Link"
-              target="_blank"
-              rel="noreferrer"
-              className="text-black"
-            >
-              <Vercel
-                className="inline-block h-6 ml-3 text-primary"
-                alt="Vercel.com Logo"
-              />
-            </a>
-          </footer>
-        </div>
-      </div>
-    </body>
-  </html>
-)
+export const metadata = getMetadata({
+  title: 'CSS-in-JS libraries in the app directory',
+  description:
+    'Learn how to use CSS-in-JS libraries in the Next.js app directory.',
+})
 
-export default RootLayout
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <Layout path="app-directory/css-in-js">{children}</Layout>
+      </body>
+    </html>
+  )
+}
