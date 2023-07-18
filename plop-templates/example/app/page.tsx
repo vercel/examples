@@ -1,6 +1,6 @@
-import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
+import { Page, Text, Code, Link } from '@vercel/examples-ui'
 
-function Home() {
+export default function Home() {
   return (
     <Page className="flex flex-col gap-12">
       <section className="flex flex-col gap-6">
@@ -25,7 +25,3 @@ function Home() {
     </Page>
   )
 }
-
-Home.Layout = Layout
-
-export default Home
