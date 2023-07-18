@@ -6,7 +6,7 @@ settings:
 
 dependencies:
   '@prisma/client':
-    specifier: 5.0.0
+    specifier: ^5.0.0
     version: 5.0.0(prisma@5.0.0)
   '@types/node':
     specifier: 18.15.11
