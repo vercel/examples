@@ -5,6 +5,5 @@ export default async function handler(
   res: NextApiResponse
 ) {
   await res.revalidate('/')
-
   return res.json({ revalidated: true })
 }
