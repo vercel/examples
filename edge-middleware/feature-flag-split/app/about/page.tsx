@@ -5,7 +5,7 @@ import { createSplitClient } from '@lib/split'
 
 // export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
-export const config = { runtime: 'edge' }
+export const runtime = 'edge'
 
 export default async function About() {
   const userKey = cookies().get('split-userkey')?.value ?? 'anonymous'
