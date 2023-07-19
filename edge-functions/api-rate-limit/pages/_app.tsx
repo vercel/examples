@@ -11,8 +11,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       title="API Rate Limiting with Vercel KV"
       path="edge-functions/api-rate-limit"
       deployButton={{
-        // Need to make this work with KV
-        env: [],
+        customDeployUrl:
+          'https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit?project-name=api-rate-limit&repository-name=api-rate-limit&stores=%5B%7B"type"%3A"kv"%7D%5D',
       }}
     >
       <Component {...pageProps} />
