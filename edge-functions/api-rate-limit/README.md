@@ -1,5 +1,5 @@
 ---
-name: API Rate Limiting with Upstash
+name: API Rate Limiting with Vercel KV and Upstash
 slug: api-rate-limit-upstash
 description: Rate limit your Next.js application with Vercel KV and Upstash.
 framework: Next.js
