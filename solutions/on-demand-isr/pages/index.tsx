@@ -181,7 +181,7 @@ export async function getStaticProps() {
 
       <hr className="border-t border-accents-2 my-6" />
 
-      <section className="flex flex-col gap-3">
+      <section className="flex flex-col gap-6">
         <Text variant="h2">Demo</Text>
         <Text>
           This demo was generated on <Code>{date}</Code>, product prices and
@@ -193,11 +193,14 @@ export async function getStaticProps() {
           Revalidate
         </Button>
         <Text>Or call the revalidate endpoint:</Text>
-        <Link href="/api/revalidate">
-          <pre className="bg-black text-white font-mono text-left py-2 px-4 rounded-lg text-sm leading-6 w-fit">
-            /api/revalidate
-          </pre>
-        </Link>
+        <Button
+          className="w-fit"
+          href="/api/revalidate"
+          Component="a"
+          variant="black"
+        >
+          /api/revalidate
+        </Button>
 
         <hr className="border-t border-accents-2 my-6" />
 
@@ -206,21 +209,12 @@ export async function getStaticProps() {
             <ProductCard key={product.id} product={product} />
           ))}
         </article>
-      </section>
 
-      <hr className="border-t border-accents-2 my-6" />
-
-      <section className="flex flex-col gap-6">
         <Text>
           Remember to always be careful when exposing endpoints as they may be
           vulnerable to DDOS attacks. You can request a key, token, etc. to
-          protect the endpoint from unwanted requests. Below you can see an
-          example of a #nextjs tweet feed that is being revalidated by a
-          protected webhook.
+          protect the endpoint from unwanted requests.
         </Text>
-        <Link href="/tweets" className="m-auto">
-          <Button size="lg">#nextjs tweets feed example</Button>
-        </Link>
       </section>
     </Page>
   )

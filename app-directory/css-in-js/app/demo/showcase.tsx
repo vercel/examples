@@ -14,7 +14,7 @@ import {
   Button,
 } from '@chakra-ui/react'
 
-export const Buttons: React.FC = () => {
+export const Buttons = () => {
   return (
     <Stack direction="row" spacing={4} align="center">
       <Button variant="outline">Button</Button>
@@ -24,7 +24,7 @@ export const Buttons: React.FC = () => {
   )
 }
 
-export const Tabs: React.FC = () => {
+export const Tabs = () => {
   return (
     <ChakraTabs>
       <TabList>
@@ -48,7 +48,7 @@ export const Tabs: React.FC = () => {
   )
 }
 
-export const Skeletons: React.FC = () => {
+export const Skeletons = () => {
   return (
     <>
       <Stack>
