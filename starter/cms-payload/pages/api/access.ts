@@ -4,6 +4,6 @@ export default handler
 
 export const config = {
   api: {
-    externalResolver: true
-  }
+    externalResolver: true,
+  },
 }

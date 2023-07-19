@@ -1,11 +1,11 @@
-'use client';
+'use client'
 
-import { useRouter } from 'next/navigation';
-import { useTransition } from 'react';
+import { useRouter } from 'next/navigation'
+import { useTransition } from 'react'
 
 export default function RefreshButton() {
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  const router = useRouter()
+  const [isPending, startTransition] = useTransition()
 
   return (
     <button
@@ -15,11 +15,11 @@ export default function RefreshButton() {
       disabled={isPending}
       onClick={() => {
         startTransition(() => {
-          router.refresh();
-        });
+          router.refresh()
+        })
       }}
     >
       {isPending ? 'Refreshing...' : 'Refresh'}
     </button>
-  );
+  )
 }

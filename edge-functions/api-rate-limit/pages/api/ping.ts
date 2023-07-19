@@ -1,19 +1,28 @@
 import type { NextRequest } from 'next/server'
-import { ipRateLimit } from '@lib/ip-rate-limit'
+import { Ratelimit } from '@upstash/ratelimit'
+import { kv } from '@vercel/kv'
+
+const ratelimit = new Ratelimit({
+  redis: kv,
+  // 5 requests from the same IP in 10 seconds
+  limiter: Ratelimit.slidingWindow(5, '10 s'),
+})
 
 export const config = {
   runtime: 'edge',
 }
 
-export default async function handler(req: NextRequest) {
-  const res = await ipRateLimit(req)
-  // If the status is not 200 then it has been rate limited.
-  if (res.status !== 200) return res
-
-  res.headers.set('content-type', 'application/json')
+export default async function handler(request: NextRequest) {
+  // You could alternatively limit based on user ID or similar
+  const ip = request.ip ?? '127.0.0.1'
+  const { limit, reset, remaining } = await ratelimit.limit(ip)
 
   return new Response(JSON.stringify({ success: true }), {
     status: 200,
-    headers: res.headers,
+    headers: {
+      'X-RateLimit-Limit': limit.toString(),
+      'X-RateLimit-Remaining': remaining.toString(),
+      'X-RateLimit-Reset': reset.toString(),
+    },
   })
 }

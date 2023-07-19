@@ -17,7 +17,7 @@ This is a hybrid Next.js + Python app that uses Next.js as the frontend and Flas
 
 The Python/Flask server is mapped into to Next.js app under `/api/`.
 
-This is implemented using [`next.config.js` rewrites](https://github.com/vercel/examples/blob/main/python/nextjs-flask/next.config.js) to map any request to `/api/:path*` to the Flask API, which is hosted in the `/api` folder. 
+This is implemented using [`next.config.js` rewrites](https://github.com/vercel/examples/blob/main/python/nextjs-flask/next.config.js) to map any request to `/api/:path*` to the Flask API, which is hosted in the `/api` folder.
 
 On localhost, the rewrite will be made to the `127.0.0.1:5328` port, which is where the Flask server is running.
 
