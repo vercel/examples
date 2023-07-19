@@ -7,11 +7,10 @@ export const metadata = {
   description:
     'An example showing how to use LaunchDarkly and Vercel. This example builds on top of the LaunchDarkly integration which syncs LaunchDarkly flags into Edge Config, so you can read them from your application near-instantly.',
 }
+export const runtime = 'edge'
 
 const edgeClient = createClient(process.env.EDGE_CONFIG)
 const ldClient = init(process.env.NEXT_PUBLIC_LD_CLIENT_SIDE_ID!, edgeClient)
-
-export const config = { runtime: 'edge' }
 
 export default async function Home() {
   const before = Date.now()
