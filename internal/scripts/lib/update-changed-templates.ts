@@ -12,6 +12,8 @@ const DIRS = [
 const IS_README = /readme\.md$/i
 
 export default async function updateChangedTemplates(changedFiles: string[]) {
+  changedFiles = changedFiles.flatMap((fileName) => fileName.split(' '))
+
   if (!changedFiles.length) {
     log('No changed files.')
     return
