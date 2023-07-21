@@ -20,7 +20,7 @@ export default async function updateChangedTemplates(changedFiles: string[]) {
   }
 
   const examplePaths = changedFiles.reduce<string[]>((acc, fileName) => {
-    if (fileName.startsWith('.')) {
+    if (fileName.startsWith('./')) {
       throw new Error(
         'Only paths relative to the root are supported. If you see this error please report it as an issue.'
       )
