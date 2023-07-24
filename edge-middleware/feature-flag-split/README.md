@@ -62,6 +62,8 @@ Then fill it with the following information:
 
 - You can find the Edge Config Connection String on vercel.com -> Storage -> \[Your Edge Config\] -> Projects. You can click Connect Project if your Edge Config is not connected to any project yet. This will automatically create a token for you and set it up as an environment variable on your project. Note that you still need to provide it to your `.env.local` file. Otherwise, click on Tokens in the sidebar and find the token you want to use. Then click on the three dots of and select Copy Connection String.
 
+- You also need to create feature flags called `New_Marketing_Page` and `New_About_Page`. You can set the user targeting to `Joe` and `Bobby` in whatever configuration you'd like as those users are used by this example.
+
 Next, run Next.js in development mode:
 
 ```bash
