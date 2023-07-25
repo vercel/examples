@@ -19,7 +19,7 @@ function ExclamantionTriangleIcon() {
   )
 }
 
-export default function MissingEdgeConfigDialog() {
+export default function MissingSplitItemDialog() {
   return (
     <div
       className="relative z-30"
@@ -40,20 +40,35 @@ export default function MissingEdgeConfigDialog() {
                   className="text-lg font-medium leading-6 text-gray-900"
                   id="modal-title"
                 >
-                  Incomplete Environment Variables Setup
+                  Incomplete Integration Setup
                 </h3>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
-                    Follow these steps to finish the setup of this example:
+                    Double check the following to ensure the example is set up
+                    correctly:
                   </p>
                   <ol className="text-sm text-gray-500 list-disc ml-8 mt-2 flex gap-2 flex-col">
                     <li className="list-item list-disc">
-                      Create an Edge Config and connect it to this project and
-                      store its connection string under the{' '}
-                      <span className="bg-gray-100 p-1 text-gray-900 rounded">
-                        EDGE_CONFIG
-                      </span>{' '}
-                      environment variable
+                      Make sure you have the{' '}
+                      <a
+                        href="https://vercel.com/integrations/split"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Split integration
+                      </a>{' '}
+                      installed.
+                    </li>
+                    <li className="list-item list-disc">
+                      Make sure the integration is configured to sync your Split
+                      project to a Vercel Edge Config. Go to vercel.com →
+                      Integrations → Split → Manage → Configure.
+                    </li>
+                    <li className="list-item list-disc">
+                      Make sure that Edge Config is connected to your project.
+                      To do so, open vercel.com, find your project and click on
+                      Storage. The Edge Config should show up there. If not, add
+                      it.
                     </li>
                     <li className="list-item list-disc">
                       Ensure you have the{' '}
@@ -62,8 +77,20 @@ export default function MissingEdgeConfigDialog() {
                       </span>{' '}
                       environment variable configured and it contains the item
                       key as specified by the Split integration. You can find
-                      this key on your account at Vercel under Integrations &gt;
-                      Split &gt; Manage &gt; Configure &gt; Edge Config Item Key
+                      this key on your account at Vercel under Integrations →
+                      Split → Manage → Configure → Edge Config Item Key
+                    </li>
+                    <li className="list-item list-disc">
+                      Ensure the Edge Config actually contains your Split data.
+                      Check whether your Edge Config contains a key called{' '}
+                      <span className="bg-gray-100 p-1 text-gray-900 rounded">
+                        {process.env.EDGE_CONFIG_SPLIT_ITEM_KEY}
+                      </span>
+                      , as defined by the EDGE_CONFIG_SPLIT_ITEM_KEY environment
+                      variable. If it does not contain such a key, you can go to
+                      Split and make a change to a feature flag. This causes the
+                      integration to resync. You should then see the value in
+                      your Edge Config.
                     </li>
                     <li className="list-item list-disc">
                       Pull your latest Environment Variables if you are
