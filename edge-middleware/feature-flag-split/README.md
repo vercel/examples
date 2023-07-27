@@ -15,7 +15,7 @@ relatedTemplates:
 
 [Split](https://www.split.io/) is a feature delivery platform that powers feature flag management, software experimentation and continuous delivery.
 
-This example shows how to use feature flags with Split, leveraging Edge Config and Edge Middleware.
+This example shows how to use feature flags with Split, leveraging Edge Config and Edge Middleware. Synchronize your feature flags into Edge Config with the [Split integration](https://vercel.com/integrations/split), and then instruct the Split SDK to consume directly from there, with low-latency, instead of fetching from the cloud.
 
 ## Demo
 
@@ -23,7 +23,7 @@ https://edge-functions-feature-flag-split.vercel.app
 
 ## How to Use
 
-Before using this repository, you will need a [Split account](https://www.split.io/signup/) to set up feature flags and obtain a Split SDK Key. You will also need to follow the steps to [set up the Split's Vercel integration](https://help.split.io/hc/en-us/articles/16469873148173#set-up-the-splits-vercel-integration), that will allow your feature flags to be stored and updated in a Vercel Edge Config instance connected to your project.
+Before using this repository, you will need a [Split account](https://www.split.io/signup/) to set up feature flags and obtain a Split SDK Key. You will also need to [set up the Split's Vercel integration](https://vercel.com/integrations/split), that will allow your feature flags to be stored and updated in a Vercel Edge Config instance connected to your project.
 
 You can choose from one of the following two methods to use this repository:
 
