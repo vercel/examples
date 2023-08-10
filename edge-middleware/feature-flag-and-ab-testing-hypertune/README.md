@@ -2,9 +2,9 @@
 
 [Hypertune](https://www.hypertune.com/) is the type-safe feature flag, A/B testing and app configuration platform. Built for TypeScript, Next.JS, Vercel and the modern stack.
 
-This example uses Hypertune with Vercel Edge Config to evaluate feature flags and A/B tests with zero latency and no performance impact to your app.
+The Hypertune SDK works on both the server and the client, so you don't need to set up and use different SDKs in your Next.JS app. It comes with the Hypertune CLI which auto-generates code from your project schema so you can access your flags, initialize context arguments and update flag logic with end-to-end type-safety.
 
-The Hypertune SDK works on both the server and the client, so you don't need to set up and use different SDKs in your Next.JS app.
+This example uses Hypertune with Vercel Edge Config to evaluate feature flags and A/B tests with zero latency and no performance impact to your app.
 
 ## Deploy with Vercel
 
@@ -16,7 +16,7 @@ You'll be guided through installing the [Hypertune Vercel integration](https://v
 
 ### Update your feature flag logic
 
-Once you've deployed your project, open the [Hypertune console](https://app.hypertune.com/) and update your feature flag logic.
+Once you've deployed your project, open the [Hypertune console](https://app.hypertune.com/) to update your feature flag logic.
 
 ### Develop your project locally
 
@@ -24,7 +24,7 @@ Once you've deployed your project, open the [Hypertune console](https://app.hype
 2. Run `vercel link` to link to the Vercel project
 3. Run `vercel env pull .env.development.local` to pull your environment variables
 4. Copy the `NEXT_PUBLIC_HYPERTUNE_TOKEN` variable from `.env.development.local` to `.env`
-5. Run `npm install`
+5. Run `npm i`
 6. Run `npm run dev`
 
 This example assumes your Hypertune project has an `exampleFlag` feature flag defined on the `root` field in your project schema. If you created a new Hypertune project while installing the integration, it will have this feature flag by default.
