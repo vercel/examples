@@ -12,6 +12,6 @@ export async function GET() {
     },
   })
   const exampleFlag = rootNode.exampleFlag({}).get(/* fallback */ false)
-  console.log('route handler exampleFlag:', exampleFlag)
+  console.log('Server-side route handler feature flag:', exampleFlag)
   return NextResponse.json({ exampleFlag })
 }

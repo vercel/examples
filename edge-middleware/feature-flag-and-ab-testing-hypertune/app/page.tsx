@@ -10,7 +10,7 @@ async function getData() {
     },
   })
   const exampleFlag = rootNode.exampleFlag({}).get(/* fallback */ false)
-  console.log('Server-side feature flag:', exampleFlag)
+  console.log('Server-side rendering feature flag:', exampleFlag)
   return { exampleFlag }
 }
 
