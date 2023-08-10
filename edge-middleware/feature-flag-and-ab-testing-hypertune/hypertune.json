@@ -1,0 +1,5 @@
+{
+    "outputDirectoryPath": "generated",
+    "includeToken": false,
+    "includeFallback": false
+}
