@@ -20,7 +20,7 @@ Once you've deployed your project, open the [Hypertune console](https://app.hype
 
 ### Develop your project locally
 
-1. Clone your project's repository
+1. Clone your project's repository and `cd` into it
 2. Run `vercel link` to link to the Vercel project
 3. Run `vercel env pull .env.development.local` to pull your environment variables
 4. Copy the `NEXT_PUBLIC_HYPERTUNE_TOKEN` variable from `.env.development.local` to `.env`
