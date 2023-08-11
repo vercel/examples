@@ -1,6 +1,6 @@
 # Feature flags, A/B testing and app configuration with Hypertune and Vercel Edge Config
 
-[Hypertune](https://www.hypertune.com/) is the type-safe feature flag, A/B testing and app configuration platform. Built for TypeScript, Next.JS, Vercel and the modern stack.
+[Hypertune](https://www.hypertune.com/) is the most powerful feature flag, A/B testing and app configuration platform. Built for TypeScript, Next.JS, Vercel and the modern stack with full type-safety and Git version control.
 
 The Hypertune SDK works on both the server and the client, so you don't need to set up and use different SDKs in your Next.JS app. It ships with the Hypertune CLI which auto-generates code from your project schema so you can access your flags, initialize context arguments and update flag logic with end-to-end type-safety.
 
