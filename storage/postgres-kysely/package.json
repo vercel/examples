@@ -21,7 +21,7 @@
     "eslint-config-next": "13.3.0",
     "kysely": "^0.24.2",
     "ms": "^2.1.3",
-    "next": "13.3.2",
+    "next": "13.4.13",
     "postcss": "8.4.22",
     "react": "18.2.0",
     "react-dom": "18.2.0",
