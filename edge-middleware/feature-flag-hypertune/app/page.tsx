@@ -18,7 +18,12 @@ export default async function Home() {
   const data = await getData()
   return (
     <div
-      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        lineHeight: 1.75,
+      }}
     >
       <div style={{ maxWidth: 700, marginTop: 25 }}>
         <h1>Hypertune with Vercel Edge Config</h1>
@@ -27,7 +32,7 @@ export default async function Home() {
         </div>
         <ClientExample />
         <p>
-          Once you've deployed this project, open the{' '}
+          Once you&apos;ve deployed this project, open the{' '}
           <a href="https://app.hypertune.com/" target="_blank">
             Hypertune console
           </a>{' '}
@@ -36,7 +41,7 @@ export default async function Home() {
         <p>To develop your project locally:</p>
         <ol>
           <li>
-            Clone your project's repository and <strong>cd</strong> into it
+            Clone your project&apos;s repository and <strong>cd</strong> into it
           </li>
           <li>
             Run <strong>vercel link</strong> to link to the Vercel project
