@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import hypertune from '../../lib/hypertune'
+import hypertune from '../../../lib/hypertune'
 
 export const runtime = 'edge'
 export const dynamic = 'force-dynamic'

@@ -2,7 +2,7 @@ import React from 'react'
 import hypertune from '../lib/hypertune'
 import ClientExample from '../lib/ClientExample'
 
-async function getData() {
+async function getFlags() {
   await hypertune.waitForInitialization()
   const rootNode = hypertune.root({
     context: {
@@ -15,7 +15,7 @@ async function getData() {
 }
 
 export default async function Home() {
-  const data = await getData()
+  const { exampleFlag } = await getFlags()
   return (
     <div
       style={{
@@ -28,7 +28,7 @@ export default async function Home() {
       <div style={{ maxWidth: 700, marginTop: 25 }}>
         <h1>Hypertune with Vercel Edge Config</h1>
         <div>
-          Server-side feature flag: <strong>{String(data.exampleFlag)}</strong>
+          Server-side feature flag: <strong>{String(exampleFlag)}</strong>
         </div>
         <ClientExample />
         <p>
