@@ -90,7 +90,7 @@ export class QueryNode extends sdk.Node {
 export class RootNode extends sdk.Node {
       typeName = "Root" as const;
   
-      exampleFlag(args: Rec): sdk.BooleanNode {
+      exampleFlag(args: Rec = {}): sdk.BooleanNode {
           const props0 = this.getField("exampleFlag", args);
           const expression0 = props0.expression;
   

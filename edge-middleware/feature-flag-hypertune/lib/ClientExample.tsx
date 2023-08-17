@@ -4,7 +4,7 @@ import useHypertune from './useHypertune'
 
 export default function ClientExample() {
   const rootNode = useHypertune()
-  const exampleFlag = rootNode.exampleFlag({}).get(false)
+  const exampleFlag = rootNode.exampleFlag().get(false)
   console.log('Client-side feature flag:', exampleFlag)
   return (
     <div>

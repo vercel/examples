@@ -12,6 +12,6 @@ export async function middleware(req: NextRequest, context: NextFetchEvent) {
       user: { id: 'test', name: 'Test', email: 'test@test.com' },
     },
   })
-  const exampleFlag = rootNode.exampleFlag({}).get(/* fallback */ false)
+  const exampleFlag = rootNode.exampleFlag().get(/* fallback */ false)
   console.log('Middleware feature flag:', exampleFlag)
 }

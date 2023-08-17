@@ -9,7 +9,7 @@ async function getFlags() {
       user: { id: 'test', name: 'Test', email: 'test@test.com' },
     },
   })
-  const exampleFlag = rootNode.exampleFlag({}).get(/* fallback */ false)
+  const exampleFlag = rootNode.exampleFlag().get(/* fallback */ false)
   console.log('Server-side rendering feature flag:', exampleFlag)
   return { exampleFlag }
 }
