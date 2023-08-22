@@ -2,6 +2,8 @@ import React from 'react'
 import hypertune from '../lib/hypertune'
 import ClientExample from '../lib/ClientExample'
 
+export const runtime = 'edge'
+
 async function getFlags() {
   await hypertune.waitForInitialization()
   const rootNode = hypertune.root({
