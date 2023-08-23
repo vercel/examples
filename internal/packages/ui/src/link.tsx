@@ -23,7 +23,7 @@ export const Link = ({
 }: LinkProps) => {
   // A normal anchor tag is also supported for relative links to paths that don't exist in the app.
   // For example apps that are using Multi Zones.
-  const Component: string | typeof NextLink = component === 'a' ? 'a' : NextLink
+  const Component: any = component === 'a' ? 'a' : NextLink
 
   return (
     <Component
