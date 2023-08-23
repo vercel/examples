@@ -1,17 +1,22 @@
-// import './globals.css'
-import { Inter } from 'next/font/google'
+import type { ReactNode } from 'react'
+import { Layout, getMetadata } from '@vercel/examples-ui'
+import '@vercel/examples-ui/globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+export const metadata = getMetadata({
+  title: 'feature-flag-hypertune',
+  description: 'An example showing how to use Vercel with Hypertune',
+})
 
-export const metadata = {
-  title: 'Hypertune with Vercel Edge Config',
-  description: 'Use Hypertune with Vercel Edge Config',
-}
+export const runtime = 'edge'
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <Layout path="edge-middleware/feature-flag-hypertune">
+          {children}
+        </Layout>
+      </body>
     </html>
   )
 }
