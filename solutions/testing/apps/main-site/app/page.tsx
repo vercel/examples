@@ -1,5 +1,6 @@
-import Head from 'next/head'
-import { Layout, Text, Page, Input, Button } from '@vercel/examples-ui'
+'use client'
+
+import { Page, Text, Input, Button } from '@vercel/examples-ui'
 import useSWR from 'swr'
 import cn from 'clsx'
 import type { Todo } from '../lib/db'
@@ -7,22 +8,12 @@ import { tid } from '../lib/data-testid'
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
-function Home() {
+export default function Home() {
   const { data, error, mutate } = useSWR('/api/todo', fetcher)
   const todos = data?.todos
 
   return (
     <Page>
-      <Head>
-        {/* https://swr.vercel.app/docs/prefetching#top-level-page-data */}
-        <link
-          rel="preload"
-          href="/api/todo"
-          as="fetch"
-          crossOrigin="anonymous"
-        />
-      </Head>
-
       <Text variant="h1" className="mb-6">
         Testing Example
       </Text>
@@ -126,7 +117,3 @@ function Home() {
     </Page>
   )
 }
-
-Home.Layout = Layout
-
-export default Home
