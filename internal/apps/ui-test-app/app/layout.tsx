@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Layout path="internal/apps/ui-test-app">{children}</Layout>
+        <Layout path="internal/apps/ui-test-app">{children as any}</Layout>
       </body>
     </html>
   )
