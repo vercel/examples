@@ -1,5 +1,11 @@
 # @vercel/examples-ui
 
+## 2.0.3
+
+### Patch Changes
+
+- 8a478a4f: Fixed types
+
 ## 2.0.2
 
 ### Patch Changes
