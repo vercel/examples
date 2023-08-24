@@ -1,3 +1,17 @@
+---
+name: Hypertune Integration example
+slug: feature-flag-hypertune
+description: Learn to use Hypertune, a powerful feature flag, A/B testing and app configuration platform.
+framework: Next.js
+useCase: Edge Middleware
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fhypertunehq%2Fvercel-examples-fork%2Ftree%2Fmain%2Fedge-middleware%2Ffeature-flag-hypertune&env=NEXT_PUBLIC_HYPERTUNE_TOKEN,EDGE_CONFIG,EDGE_CONFIG_HYPERTUNE_ITEM_KEY&envDescription=Environment%20variables%20needed%20to%20use%20Hypertune%20with%20Vercel%20Edge%20Config&envLink=https%3A%2F%2Fdocs.hypertune.com%2Fgetting-started%2Fvercel-quickstart&project-name=feature-flag-hypertune&repository-name=feature-flag-hypertune&demo-title=Hypertune%20with%20Vercel%20Edge%20Config&demo-description=Use%20Hypertune%20with%20Vercel%20Edge%20Config&demo-url=https%3A%2F%2Ffeature-flag-hypertune.vercel.app%2F&demo-image=https%3A%2F%2Ffeature-flag-hypertune.vercel.app%2Fdemo.png&integration-ids=oac_naLXREDG2o9KihTGYBVz9fVl
+demoUrl: https://feature-flag-hypertune.vercel.app
+relatedTemplates:
+  - maintenance-page
+  - feature-flag-apple-store
+---
+
 # Feature flags, A/B testing and app configuration with Hypertune and Vercel Edge Config
 
 [Hypertune](https://www.hypertune.com/) is a powerful feature flag, A/B testing and app configuration platform. Built for TypeScript, Next.js, Vercel and the modern stack with full type-safety and Git version control.

@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
+const nextConfig = { 
   images: {
     domains: ['pbs.twimg.com'],
   },

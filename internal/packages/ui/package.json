@@ -1,6 +1,6 @@
 {
   "name": "@vercel/examples-ui",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "license": "MIT",
   "scripts": {
     "dev": "pnpm build:swc -w",

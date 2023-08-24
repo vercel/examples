@@ -1,5 +1,8 @@
-import NextLink, { LinkProps as NextLinkProps } from 'next/link.js'
+import NextLinkComp, { LinkProps as NextLinkProps } from 'next/link.js'
 import clsx from 'clsx'
+
+const NextLink: typeof NextLinkComp =
+  (NextLinkComp as any).default || NextLinkComp
 
 type LinkProps = Omit<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -20,7 +23,8 @@ export const Link = ({
 }: LinkProps) => {
   // A normal anchor tag is also supported for relative links to paths that don't exist in the app.
   // For example apps that are using Multi Zones.
-  const Component: string | typeof NextLink = component === 'a' ? 'a' : NextLink
+  const Component: any = component === 'a' ? 'a' : NextLink
+
   return (
     <Component
       href={href}

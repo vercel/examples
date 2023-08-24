@@ -1,5 +1,17 @@
 # @vercel/examples-ui
 
+## 2.0.3
+
+### Patch Changes
+
+- 8a478a4f: Fixed types
+
+## 2.0.2
+
+### Patch Changes
+
+- 20459eed: Fix error with next/link import
+
 ## 2.0.1
 
 ### Patch Changes
