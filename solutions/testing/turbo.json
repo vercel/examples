@@ -1,16 +1,29 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalDotEnv": ["playwright/.env.local"],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**", "storybook-static/**"]
     },
     "e2e": {
-      "env": ["CI", "BASE_URL", "PAUSE_ON_FAILURE"],
+      "env": [
+        "CI",
+        "BASE_URL",
+        "PAUSE_ON_FAILURE",
+        "APPLITOOLS_API_KEY",
+        "APPLITOOLS_BATCH_ID"
+      ],
       "outputs": ["test-results/**"]
     },
     "integration": {
-      "env": ["CI", "BASE_URL", "PAUSE_ON_FAILURE"],
+      "env": [
+        "CI",
+        "BASE_URL",
+        "PAUSE_ON_FAILURE",
+        "APPLITOOLS_API_KEY",
+        "APPLITOOLS_BATCH_ID"
+      ],
       "outputs": ["test-results/**"]
     },
     "test-unit": {

@@ -8,7 +8,12 @@
     "allowJs": true,
     "noEmit": true,
     "jsx": "preserve",
-    "module": "esnext"
+    "module": "esnext",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
