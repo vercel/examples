@@ -1,10 +1,4 @@
 {
   "buildCommand": "pnpm turbo build",
-  "ignoreCommand": "pnpm dlx turbo-ignore",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "https://profile-next-cold-starts.vercel.app/builder.tgz"
-    }
-  ]
+  "ignoreCommand": "pnpm dlx turbo-ignore"
 }
