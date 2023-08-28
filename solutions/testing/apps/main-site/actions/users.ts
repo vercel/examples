@@ -7,8 +7,8 @@ export type User = {
   id: number
   username: string
   password: string
-  createdAt: number
-  updatedAt: number
+  created_at: Date
+  updated_at: Date
 }
 
 export async function getUserId() {

@@ -7,9 +7,9 @@ export type Todo = {
   id: number
   title: string
   done: boolean
-  userId: number
-  createdAt: number
-  updatedAt: number
+  user_id: number
+  created_at: Date
+  updated_at: Date
 }
 
 export async function updateTodo(id: number, data: { done: boolean }) {
@@ -21,8 +21,9 @@ export async function updateTodo(id: number, data: { done: boolean }) {
   return result.rows[0]
 }
 
-export async function getTodos(userId: number): Promise<Todo[]> {
-  const result = await sql<Todo>`SELECT * FROM todos WHERE userId = ${userId};`
+export async function getTodos(user_id: number): Promise<Todo[]> {
+  const result =
+    await sql<Todo>`SELECT * FROM todos WHERE user_id = ${user_id};`
   return result.rows
 }
 
@@ -32,11 +33,11 @@ export async function removeTodo(id: number) {
 }
 
 export async function addTodo(data: {
-  userId: number
+  user_id: number
   title: string
 }): Promise<Todo> {
   const result =
-    await sql<Todo>`INSERT INTO todos (title, done, userId) VALUES (${data.title}, false, ${data.userId}) RETURNING *;`
+    await sql<Todo>`INSERT INTO todos (title, done, user_id) VALUES (${data.title}, false, ${data.user_id}) RETURNING *;`
 
   revalidatePath('/')
 

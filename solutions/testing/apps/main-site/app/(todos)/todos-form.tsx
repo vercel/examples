@@ -12,7 +12,7 @@ export function TodosForm() {
   const formRef = useRef<HTMLFormElement>(null)
   const addTodoAction = async (formData: FormData) => {
     const todo = {
-      userId: (await getUserId())!,
+      user_id: (await getUserId())!,
       title: formData.get('title') as string,
     }
 
@@ -21,8 +21,8 @@ export function TodosForm() {
       {
         id: Math.random(),
         done: false,
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        created_at: new Date(),
+        updated_at: new Date(),
         ...todo,
       },
     ])
