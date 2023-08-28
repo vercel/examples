@@ -7,8 +7,8 @@ import { addTodo } from '#/actions/todos'
 import { tid } from '#/lib/data-testid'
 import { useTodos } from './todos-context'
 
-export function TodosForm() {
-  const [todos, optimisticUpdate] = useTodos()
+export function TodoForm() {
+  const [todos, loading, optimisticUpdate] = useTodos()
   const formRef = useRef<HTMLFormElement>(null)
   const addTodoAction = async (formData: FormData) => {
     const todo = {
@@ -38,7 +38,7 @@ export function TodosForm() {
       action={addTodoAction}
     >
       <Input name="title" placeholder="What needs to be done?" required />
-      <Button type="submit" className="ml-4" width="120px">
+      <Button type="submit" className="ml-4" width="120px" loading={loading}>
         Add Todo
       </Button>
     </form>

@@ -22,6 +22,8 @@ export async function updateTodo(id: number, data: { done: boolean }) {
 }
 
 export async function getTodos(user_id: number): Promise<Todo[]> {
+  // Temporal, simulate a slow response.
+  await new Promise((resolve) => setTimeout(resolve, 1000))
   const result =
     await sql<Todo>`SELECT * FROM todos WHERE user_id = ${user_id};`
   return result.rows
