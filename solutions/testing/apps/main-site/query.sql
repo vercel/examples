@@ -1,7 +1,7 @@
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL
+  password VARCHAR(255) NOT NULL,
   createdAt TIMESTAMPTZ DEFAULT NOW(),
   updatedAt TIMESTAMPTZ DEFAULT NOW()
 );
@@ -10,7 +10,7 @@ CREATE TABLE todos (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   done BOOLEAN DEFAULT false,
-  userId INT REFERENCES users(id)
+  userId INT REFERENCES users(id),
   createdAt TIMESTAMPTZ DEFAULT NOW(),
   updatedAt TIMESTAMPTZ DEFAULT NOW()
 );

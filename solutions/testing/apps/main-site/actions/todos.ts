@@ -8,6 +8,8 @@ export type Todo = {
   title: string
   done: boolean
   userId: number
+  createdAt: number
+  updatedAt: number
 }
 
 export async function updateTodo(id: number, data: { done: boolean }) {

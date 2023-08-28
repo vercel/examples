@@ -16,7 +16,16 @@ export function TodosForm() {
       title: formData.get('title') as string,
     }
 
-    optimisticUpdate([...todos, { id: Math.random(), done: false, ...todo }])
+    optimisticUpdate([
+      ...todos,
+      {
+        id: Math.random(),
+        done: false,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+        ...todo,
+      },
+    ])
     formRef.current!.reset()
     await addTodo(todo)
   }
