@@ -22,6 +22,7 @@
     "main-site": "workspace:*",
     "msw": "^1.2.3",
     "next": "13.4.20-canary.4",
+    "nock": "^13.3.3",
     "tsconfig": "workspace:*",
     "typescript": "^4.9.3"
   },

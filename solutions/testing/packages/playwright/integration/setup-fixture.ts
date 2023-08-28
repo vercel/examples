@@ -18,4 +18,4 @@ export const test = baseFixture.extend<Extensions>({
 
 export type Test = typeof test
 
-export { expect, rest } from 'next/experimental/testmode/playwright/msw'
+export { expect } from 'next/experimental/testmode/playwright'

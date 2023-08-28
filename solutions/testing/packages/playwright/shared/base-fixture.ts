@@ -1,4 +1,4 @@
-import { test as base } from 'next/experimental/testmode/playwright/msw'
+import { test as base } from 'next/experimental/testmode/playwright'
 import { IS_CI, PAUSE_ON_FAILURE } from './constants'
 import pauseOnFailure from './fixtures/pause-on-failure'
 import { createUtils, type Utils } from './fixtures/utils'

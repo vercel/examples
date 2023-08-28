@@ -30,8 +30,8 @@ class DB {
   ): Promise<{ username: string } | null> {
     const username =
       typeof req.cookies.get === 'function'
-        ? req.cookies.get('user')?.value
-        : (req.cookies as NextApiRequest['cookies'])['user']
+        ? req.cookies.get('user_id')?.value
+        : (req.cookies as NextApiRequest['cookies'])['user_id']
     return username ? { username } : null
   }
 

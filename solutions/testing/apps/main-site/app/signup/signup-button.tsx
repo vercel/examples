@@ -1,15 +1,13 @@
+'use client'
+
+import { experimental_useFormStatus as useFormStatus } from 'react-dom'
 import { Button } from '@vercel/examples-ui'
 
-type Props = {
-  loading?: boolean
-  disabled?: boolean
+export const SignupButton = () => {
+  const { pending } = useFormStatus()
+  return (
+    <Button type="submit" loading={pending} disabled={pending}>
+      Signup
+    </Button>
+  )
 }
-
-/**
- * Simple button to show the usage of Storybook
- */
-export const SignupButton = ({ loading, disabled }: Props) => (
-  <Button type="submit" loading={loading} disabled={disabled}>
-    Signup
-  </Button>
-)

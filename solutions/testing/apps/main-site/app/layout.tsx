@@ -7,6 +7,11 @@ export const metadata = getMetadata({
   description: 'Learn how to test Next.js applications.',
 })
 
+if (process.env.NEXT_PUBLIC_API_MOCKING) {
+  const { initMocks } = require('../mocks/index')
+  initMocks()
+}
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">

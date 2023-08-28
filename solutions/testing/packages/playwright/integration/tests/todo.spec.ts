@@ -1,3 +1,4 @@
+import nock from 'nock'
 import { Target } from '@applitools/eyes-playwright'
 import { todosBody } from 'integration/fixtures/api-todos/todos'
 import { test, expect } from 'integration/setup-fixture'
@@ -8,29 +9,55 @@ import { TodoPage } from 'shared/pages/todo-page'
 // is behind authentication.
 test.use(authenticatedContext)
 
-test.describe('Todo Page', () => {
-  test('should be able to add todos', async ({ page, mockApi, eyes }) => {
+test.use({ nextOptions: { fetchLoopback: true } })
+
+test.describe.only('Todo Page', () => {
+  test.only('should be able to add todos', async ({
+    page,
+    eyes,
+    mockApi,
+    next,
+  }) => {
+    next.onFetch((request) => {
+      console.log('SS', request.url)
+      return 'abort'
+    })
+
     const { todos } = todosBody
     const todoPage = new TodoPage(page)
     const [waitForResponse] = await mockApi.todos.todo.get({
       body: { todos: [] },
     })
+    // msw.use(
+    //   rest.get('/api/todo', (_, res, ctx) => {
+    //     console.log('Hello there!')
+    //     return res.once(ctx.status(200), ctx.json(todosBody))
+    //   })
+    // )
+    nock('http://localhost:3000').get('/api/todo').reply(200, todosBody)
 
     // Navigate to the page and wait for a response from /api/todo
-    await Promise.all([waitForResponse(), todoPage.goto()])
+    await Promise.all([waitForResponse, todoPage.goto()])
     await eyes.check('Todo page', Target.window().fully())
 
     const { input, submitButton } = todoPage.getNewTodoForm()
     const todoItems = todoPage.getTodos()
+
+    await expect(todoItems).toHaveCount(0)
 
     // Create 1st todo.
     const addFirstTodo = async () => {
       const [waitForResponse] = await mockApi.todos.todo.post({
         body: { todos: [todos[0]] },
       })
+      // msw.use(
+      //   rest.post('/api/todo', (_, res, ctx) =>
+      //     res.once(ctx.status(200), ctx.json({ todos: [todos[0]] }))
+      //   )
+      // )
 
       await input.fill(todos[0].title)
-      await Promise.all([waitForResponse(), input.press('Enter')])
+      await Promise.all([waitForResponse, input.press('Enter')])
 
       await expect(todoItems.first()).toContainText(todos[0].title)
       await expect(todoItems).toHaveCount(1)
@@ -40,11 +67,16 @@ test.describe('Todo Page', () => {
       const [waitForResponse] = await mockApi.todos.todo.post({
         body: { todos: todos.slice(0, 2) },
       })
+      // msw.use(
+      //   rest.post('/api/todo', (_, res, ctx) =>
+      //     res.once(ctx.status(200), ctx.json({ todos: todos.slice(0, 2) }))
+      //   )
+      // )
 
       await input.fill(todos[1].title)
       // This time we'll click the button instead and validate that
       // a response was received.
-      await Promise.all([waitForResponse(), submitButton.click()])
+      await Promise.all([waitForResponse, submitButton.click()])
 
       await expect(todoItems.last()).toContainText(todos[1].title)
       await expect(todoItems).toHaveCount(2)
