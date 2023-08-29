@@ -6,6 +6,10 @@ export type StorageState = Exclude<
   string | undefined
 >
 
+function generateUserId() {
+  return Math.floor(Math.random() * 1e6).toString()
+}
+
 export function getAuthState(baseURL: string): StorageState {
   const url = new URL(baseURL)
 
@@ -13,8 +17,9 @@ export function getAuthState(baseURL: string): StorageState {
     cookies: [
       {
         httpOnly: true,
-        name: 'user',
-        value: generateUsername(),
+        name: 'user_id',
+        // value: generateUsername(),
+        value: generateUserId(),
         domain: url.hostname,
         expires: Date.now() / 1000 + 3600, // 1 hour
         path: '/',

@@ -4,6 +4,7 @@ import { todosBody } from 'integration/fixtures/api-todos/todos'
 import { test, expect } from 'integration/setup-fixture'
 import { authenticatedContext } from 'integration/utils/authenticated-context'
 import { TodoPage } from 'shared/pages/todo-page'
+import { mockVercelPostgres } from 'integration/utils/mock-vercel-postgres'
 
 // Add the user cookie to the browser context. The todos page
 // is behind authentication.
@@ -18,9 +19,35 @@ test.describe.only('Todo Page', () => {
     mockApi,
     next,
   }) => {
-    next.onFetch((request) => {
-      console.log('SS', request.url)
-      return 'abort'
+    next.onFetch((req) => {
+      return mockVercelPostgres(req, {
+        'SELECT * FROM todos WHERE user_id = $1;': () => {
+          return new Response(
+            JSON.stringify({
+              command: 'SELECT',
+              fields: [],
+              rowCount: 1,
+              rowAsArray: false,
+              viaNeonFetch: true,
+              rows: [
+                {
+                  id: 1,
+                  title: 'Buy milk',
+                  done: false,
+                  user_id: 1,
+                  created_at: new Date(),
+                  updated_at: new Date(),
+                },
+              ],
+            }),
+            {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          )
+        },
+      })
     })
 
     const { todos } = todosBody
