@@ -50,7 +50,7 @@ export default function Home({ data }: { data: any }) {
         <meta name="twitter:image" content={image} />
       </Head>
       <section className="flex flex-col gap-6">
-        <Text variant="h1">Vercel Crob Jobs Example</Text>
+        <Text variant="h1">Vercel Cron Jobs Example</Text>
         <Text>
           This example shows you how you can use{' '}
           <Link
