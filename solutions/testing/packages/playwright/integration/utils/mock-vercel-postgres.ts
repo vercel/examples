@@ -1,14 +1,15 @@
 export function isVercelPostgres(req: Request) {
-  return req.url.endsWith('postgres.vercel-storage.com/sql')
+  return (
+    req.url.endsWith('postgres.vercel-storage.com/sql') ||
+    req.url.endsWith('localhost/sql')
+  )
 }
 
 export async function mockVercelPostgres(
   req: Request,
-  mocks: Record<string, (req: Request) => any>
+  mocks: Record<string, (params: string[], query: string, req: Request) => any>
 ) {
   if (!isVercelPostgres(req)) return
-
-  req.headers.forEach((v, k) => console.log('HEADER', k, v))
 
   const body: { query: string; params: string[] } = await req.json()
   const mock = mocks[body.query]
@@ -17,5 +18,19 @@ export async function mockVercelPostgres(
     throw new Error(`No mock found for query: "${body.query}"`)
   }
 
-  return mock(req)
+  const output = mock(body.params, body.query, req)
+  if (output === null || output === undefined) {
+    return output
+  }
+  if (output instanceof Response) {
+    return output
+  }
+  if (typeof output === 'object') {
+    return new Response(JSON.stringify(output), {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  }
+  return output
 }
