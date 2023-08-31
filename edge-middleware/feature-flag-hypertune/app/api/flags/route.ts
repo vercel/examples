@@ -5,7 +5,7 @@ export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 export async function GET() {
-  await hypertune.waitForInitialization()
+  await hypertune.initFromVercelEdgeConfig()
   const rootNode = hypertune.root({
     context: {
       user: { id: 'test', name: 'Test', email: 'test@test.com' },

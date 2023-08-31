@@ -6,7 +6,7 @@ export const config = {
 }
 
 export async function middleware(req: NextRequest, context: NextFetchEvent) {
-  await hypertune.waitForInitialization()
+  await hypertune.initFromVercelEdgeConfig()
   const rootNode = hypertune.root({
     context: {
       user: { id: 'test', name: 'Test', email: 'test@test.com' },

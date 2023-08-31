@@ -12,7 +12,7 @@ export const metadata = {
 export const runtime = 'edge'
 
 async function getFlags() {
-  await hypertune.waitForInitialization()
+  await hypertune.initFromVercelEdgeConfig()
   const rootNode = hypertune.root({
     context: {
       user: { id: 'test', name: 'Test', email: 'test@test.com' },

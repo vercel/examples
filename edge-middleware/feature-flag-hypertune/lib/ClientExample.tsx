@@ -2,12 +2,12 @@
 import { Text } from '@vercel/examples-ui'
 
 import useHypertune from './useHypertune'
-import { HypertuneInitData } from 'hypertune'
+import { InitResponseBody } from 'hypertune'
 
 export default function ClientExample({
   hypertuneInitData,
 }: {
-  hypertuneInitData: HypertuneInitData
+  hypertuneInitData: InitResponseBody
 }) {
   const rootNode = useHypertune()
   rootNode.initFromData(hypertuneInitData)

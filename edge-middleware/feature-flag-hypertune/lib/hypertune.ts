@@ -11,8 +11,7 @@ const hypertune = initializeHypertune(
     token: process.env.NEXT_PUBLIC_HYPERTUNE_TOKEN,
     vercelEdgeConfigClient: edgeConfigClient,
     vercelEdgeConfigItemKey: process.env.EDGE_CONFIG_HYPERTUNE_ITEM_KEY,
-    shouldInitializeFromServer: typeof window === 'undefined',
-    shouldListenForUpdates: typeof window === 'undefined',
+    shouldInitializeFromServer: false,
   },
 )
 
