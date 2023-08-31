@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse, NextFetchEvent } from 'next/server'
 import Statsig from 'statsig-node'
-import { EdgeConfigDataAdapter } from 'statsig-node-vercel'
+import { EdgeConfigDataAdapter } from './lib/adapter'
 import { EXPERIMENT, UID_COOKIE, GROUP_PARAM_FALLBACK } from './lib/constants'
 
 // We'll use this to validate a random UUID
