@@ -2,11 +2,19 @@
 import { Text } from '@vercel/examples-ui'
 
 import useHypertune from './useHypertune'
+import { HypertuneInitData } from 'hypertune'
 
-export default function ClientExample() {
+export default function ClientExample({
+  hypertuneInitData,
+}: {
+  hypertuneInitData: HypertuneInitData
+}) {
   const rootNode = useHypertune()
+  rootNode.initFromData(hypertuneInitData)
+
   const exampleFlag = rootNode.exampleFlag().get(false)
   console.log('Client-side feature flag:', exampleFlag)
+
   return (
     <Text>
       Client-side feature flag: <strong>{String(exampleFlag)}</strong>

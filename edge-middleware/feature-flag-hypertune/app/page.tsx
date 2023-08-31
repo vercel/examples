@@ -45,7 +45,7 @@ export default async function Home() {
           <Text>
             Server-side feature flag: <strong>{String(exampleFlag)}</strong>
           </Text>
-          <ClientExample />
+          <ClientExample hypertuneInitData={hypertune.getInitData()} />
         </div>
         <Text>
           Once you&apos;ve deployed this project, open the{' '}

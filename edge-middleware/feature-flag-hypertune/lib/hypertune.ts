@@ -12,6 +12,7 @@ const hypertune = initializeHypertune(
     vercelEdgeConfigClient: edgeConfigClient,
     vercelEdgeConfigItemKey: process.env.EDGE_CONFIG_HYPERTUNE_ITEM_KEY,
     shouldListenForUpdates: typeof window === 'undefined',
+    shouldInitializeFromServer: typeof window === 'undefined',
   },
 )
 
