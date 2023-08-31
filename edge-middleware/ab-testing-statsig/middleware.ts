@@ -42,7 +42,11 @@ export async function middleware(req: NextRequest, event: NextFetchEvent) {
   }
 
   // Flush exposure logs to Statsig
-  event.waitUntil(Statsig.flush());
+  event.waitUntil(
+    Statsig.flush().then(() => {
+      Statsig.shutdown()
+    })
+  )
 
   return res
 }
