@@ -19,34 +19,55 @@ test.describe.only('Todo Page', () => {
     mockApi,
     next,
   }) => {
-    next.onFetch((req) => {
+    const rows: unknown[] = []
+
+    next.onFetch(async (req) => {
       return mockVercelPostgres(req, {
         'SELECT * FROM todos WHERE user_id = $1;': () => {
-          return new Response(
-            JSON.stringify({
+          return {
+            command: 'SELECT',
+            fields: [
+              { name: 'id', dataTypeID: 25 },
+              { name: 'title', dataTypeID: 25 },
+              { name: 'done', dataTypeID: 16 },
+              { name: 'user_id', dataTypeID: 23 },
+              { name: 'created_at', dataTypeID: 20 },
+              { name: 'updated_at', dataTypeID: 20 },
+            ],
+            rowCount: 1,
+            rowAsArray: false,
+            viaNeonFetch: true,
+            rows,
+          }
+        },
+        'INSERT INTO todos (title, done, user_id) VALUES ($1, false, $2) RETURNING *;':
+          (params) => {
+            const [title, userId] = params
+            const row = [
+              rows.length + 1,
+              title,
+              false,
+              Number(userId),
+              Date.now(),
+              Date.now(),
+            ]
+            rows.push(row)
+            return {
               command: 'SELECT',
-              fields: [],
+              fields: [
+                { name: 'id', dataTypeID: 25 },
+                { name: 'title', dataTypeID: 25 },
+                { name: 'done', dataTypeID: 16 },
+                { name: 'user_id', dataTypeID: 23 },
+                { name: 'created_at', dataTypeID: 20 },
+                { name: 'updated_at', dataTypeID: 20 },
+              ],
               rowCount: 1,
               rowAsArray: false,
               viaNeonFetch: true,
-              rows: [
-                {
-                  id: 1,
-                  title: 'Buy milk',
-                  done: false,
-                  user_id: 1,
-                  created_at: new Date(),
-                  updated_at: new Date(),
-                },
-              ],
-            }),
-            {
-              headers: {
-                'Content-Type': 'application/json',
-              },
+              rows: [row],
             }
-          )
-        },
+          },
       })
     })
 
@@ -55,13 +76,6 @@ test.describe.only('Todo Page', () => {
     const [waitForResponse] = await mockApi.todos.todo.get({
       body: { todos: [] },
     })
-    // msw.use(
-    //   rest.get('/api/todo', (_, res, ctx) => {
-    //     console.log('Hello there!')
-    //     return res.once(ctx.status(200), ctx.json(todosBody))
-    //   })
-    // )
-    nock('http://localhost:3000').get('/api/todo').reply(200, todosBody)
 
     // Navigate to the page and wait for a response from /api/todo
     await Promise.all([waitForResponse, todoPage.goto()])
@@ -77,11 +91,6 @@ test.describe.only('Todo Page', () => {
       const [waitForResponse] = await mockApi.todos.todo.post({
         body: { todos: [todos[0]] },
       })
-      // msw.use(
-      //   rest.post('/api/todo', (_, res, ctx) =>
-      //     res.once(ctx.status(200), ctx.json({ todos: [todos[0]] }))
-      //   )
-      // )
 
       await input.fill(todos[0].title)
       await Promise.all([waitForResponse, input.press('Enter')])
@@ -94,11 +103,6 @@ test.describe.only('Todo Page', () => {
       const [waitForResponse] = await mockApi.todos.todo.post({
         body: { todos: todos.slice(0, 2) },
       })
-      // msw.use(
-      //   rest.post('/api/todo', (_, res, ctx) =>
-      //     res.once(ctx.status(200), ctx.json({ todos: todos.slice(0, 2) }))
-      //   )
-      // )
 
       await input.fill(todos[1].title)
       // This time we'll click the button instead and validate that
