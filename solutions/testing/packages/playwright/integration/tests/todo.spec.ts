@@ -1,11 +1,16 @@
 import nock from 'nock'
 import { Target } from '@applitools/eyes-playwright'
-import { todosBody } from 'integration/fixtures/api-todos/todos'
 import { test, expect } from 'integration/setup-fixture'
 import { authenticatedContext } from 'integration/utils/authenticated-context'
 import { TodoPage } from 'shared/pages/todo-page'
 import { mockVercelPostgres } from 'integration/utils/mock-vercel-postgres'
 import { mockNeonResponse } from 'integration/utils/mock-neon-response'
+
+const todos = [
+  'Make a cup of tea',
+  'Go out and exercise',
+  'Continue writing my next blog post',
+]
 
 // Add the user cookie to the browser context. The todos page
 // is behind authentication.
@@ -67,7 +72,6 @@ test.describe.only('Todo Page', () => {
       })
     })
 
-    const { todos } = todosBody
     const todoPage = new TodoPage(page)
 
     await todoPage.goto()
@@ -80,21 +84,21 @@ test.describe.only('Todo Page', () => {
 
     // Create 1st todo.
     const addFirstTodo = async () => {
-      await input.fill(todos[0].title)
+      await input.fill(todos[0])
       await input.press('Enter')
       // Test that the input is empty after submitting.
 
       await expect(input).toHaveValue('')
-      await expect(todoItems.first()).toContainText(todos[0].title)
+      await expect(todoItems.first()).toContainText(todos[0])
       await expect(todoItems).toHaveCount(1)
     }
     // Create 2nd todo.
     const addSecondTodo = async () => {
-      await input.fill(todos[1].title)
+      await input.fill(todos[1])
       // This time we'll click the button instead
       await submitButton.click()
 
-      await expect(todoItems.last()).toContainText(todos[1].title)
+      await expect(todoItems.last()).toContainText(todos[1])
       await expect(todoItems).toHaveCount(2)
     }
 
@@ -110,9 +114,8 @@ test.describe.only('Todo Page', () => {
     userId,
     eyes,
   }) => {
-    const { todos } = todosBody
     const rows: unknown[] = [
-      [1, todos[0].title, 'false', userId, Date.now(), Date.now()],
+      [1, todos[0], 'false', userId, Date.now(), Date.now()],
     ]
 
     next.onFetch(async (req) => {
@@ -178,9 +181,8 @@ test.describe.only('Todo Page', () => {
     next,
     userId,
   }) => {
-    const { todos } = todosBody
     const rows: unknown[] = [
-      [1, todos[0].title, 'true', userId, Date.now(), Date.now()],
+      [1, todos[0], 'true', userId, Date.now(), Date.now()],
     ]
 
     next.onFetch(async (req) => {
@@ -245,10 +247,9 @@ test.describe.only('Todo Page', () => {
     next,
     userId,
   }) => {
-    const { todos } = todosBody
     let rows = todos.map((todo, i) => [
       i + 1,
-      todo.title,
+      todo,
       'false',
       userId,
       Date.now(),
@@ -306,12 +307,12 @@ test.describe.only('Todo Page', () => {
     const { removeButton } = todoPage.getTodoButtons(todoItems.first())
 
     await expect(todoItems).toHaveCount(todos.length)
-    await expect(todoItems.first()).toContainText(todos[0].title)
+    await expect(todoItems.first()).toContainText(todos[0])
     await expect(removeButton).toBeVisible()
 
     await removeButton.click()
 
     await expect(todoItems).toHaveCount(2)
-    await expect(todoItems.first()).not.toContainText(todos[0].title)
+    await expect(todoItems.first()).not.toContainText(todos[0])
   })
 })
