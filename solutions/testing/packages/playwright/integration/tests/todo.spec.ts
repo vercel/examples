@@ -1,10 +1,8 @@
-import nock from 'nock'
 import { Target } from '@applitools/eyes-playwright'
 import { test, expect } from 'integration/setup-fixture'
 import { authenticatedContext } from 'integration/utils/authenticated-context'
 import { TodoPage } from 'shared/pages/todo-page'
 import { mockVercelPostgres } from 'integration/utils/mock-vercel-postgres'
-import { mockNeonResponse } from 'integration/utils/mock-neon-response'
 
 const todos = [
   'Make a cup of tea',
@@ -18,7 +16,7 @@ test.use(authenticatedContext)
 
 test.use({ nextOptions: { fetchLoopback: true } })
 
-test.describe.only('Todo Page', () => {
+test.describe('Todo Page', () => {
   test('should be able to add todos', async ({ page, next, eyes }) => {
     const rows: unknown[] = []
 
