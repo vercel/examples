@@ -23,6 +23,8 @@ function setUserToken(id: number) {
 }
 
 export async function signup(data: { username: string; password: string }) {
+  console.log('SIGNUP', data)
+
   const result = await sql<{
     id: number
   }>`INSERT INTO users (username, password) VALUES (${data.username}, ${data.password}) RETURNING id`

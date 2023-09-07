@@ -26,8 +26,8 @@ test.use(authenticatedContext)
 
 test.use({ nextOptions: { fetchLoopback: true } })
 
-test.describe.only('Todo Page', () => {
-  test.only('should be able to add todos', async ({ page, next, eyes }) => {
+test.describe('Todo Page', () => {
+  test('should be able to add todos', async ({ page, next, eyes }) => {
     const rows: Parameters<typeof todosMock>[1] = []
 
     next.onFetch(async (req) => {
