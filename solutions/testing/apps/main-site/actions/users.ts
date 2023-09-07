@@ -22,6 +22,15 @@ function setUserToken(id: number) {
   cookieStore.set('user_id', String(id))
 }
 
+export async function login(data: { username: string; password: string }) {
+  const result =
+    await sql`SELECT id FROM users WHERE username = ${data.username} AND password = ${data.password}`
+
+  console.log('RR', result)
+
+  setUserToken(result.rows[0].id)
+}
+
 export async function signup(data: { username: string; password: string }) {
   console.log('SIGNUP', data)
 

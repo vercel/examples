@@ -7,10 +7,14 @@ export const SignupForm = () => {
   const signupAction = async (formData: FormData) => {
     'use server'
 
-    await signup({
-      username: formData.get('username') as string,
-      password: formData.get('password') as string,
-    })
+    const username = formData.get('username') as string
+    const password = formData.get('password') as string
+    const passwordRepeat = formData.get('password-repeat') as string
+
+    if (passwordRepeat) {
+      await signup({ username, password })
+    }
+
     redirect('/')
   }
 
@@ -23,6 +27,15 @@ export const SignupForm = () => {
       <label className="block mb-4">
         <span className="block text-sm text-accents-7">Password</span>
         <Input type="password" className="mt-2" name="password" required />
+      </label>
+      <label className="block mb-4">
+        <span className="block text-sm text-accents-7">Repeat password</span>
+        <Input
+          type="password"
+          className="mt-2"
+          name="password-repeat"
+          required
+        />
       </label>
       <SignupButton />
     </form>

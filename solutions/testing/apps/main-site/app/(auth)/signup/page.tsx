@@ -7,12 +7,8 @@ export default function Signup() {
       <Text variant="h1" className="mb-6">
         Testing Example
       </Text>
-      <Text className="mb-4">Signup to start:</Text>
+      <Text className="mb-4">Signup or login to start:</Text>
       <SignupForm />
-      <Text>
-        There&apos;s no actual DB and the password doesn&apos;t do anything,
-        your username is saved in a cookie.
-      </Text>
     </Page>
   )
 }
