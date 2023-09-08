@@ -26,14 +26,10 @@ export async function login(data: { username: string; password: string }) {
   const result =
     await sql`SELECT id FROM users WHERE username = ${data.username} AND password = ${data.password}`
 
-  console.log('RR', result)
-
   setUserToken(result.rows[0].id)
 }
 
 export async function signup(data: { username: string; password: string }) {
-  console.log('SIGNUP', data)
-
   const result = await sql<{
     id: number
   }>`INSERT INTO users (username, password) VALUES (${data.username}, ${data.password}) RETURNING id`
