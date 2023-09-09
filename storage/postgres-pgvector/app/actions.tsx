@@ -37,12 +37,10 @@ export async function searchPokedex(
 async function generateEmbedding(raw: string) {
   // OpenAI recommends replacing newlines with spaces for best results
   const input = raw.replace(/\n/g, ' ')
-  const embeddingResponse = await openai.createEmbedding({
+  const embeddingData = await openai.embeddings.create({
     model: 'text-embedding-ada-002',
     input,
   })
-
-  const embeddingData = await embeddingResponse.json()
   const [{ embedding }] = (embeddingData as any).data
   return embedding
 }

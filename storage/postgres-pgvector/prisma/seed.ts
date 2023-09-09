@@ -70,12 +70,10 @@ main()
 
 async function generateEmbedding(_input: string) {
   const input = _input.replace(/\n/g, ' ')
-  const embeddingResponse = await openai.createEmbedding({
+  const embeddingData = await openai.embeddings.create({
     model: 'text-embedding-ada-002',
     input,
   })
-
-  const embeddingData = await embeddingResponse.json()
   console.log(embeddingData)
   const [{ embedding }] = (embeddingData as any).data
   return embedding
