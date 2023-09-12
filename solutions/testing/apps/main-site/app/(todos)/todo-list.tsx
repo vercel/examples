@@ -3,22 +3,16 @@
 // import useSWR from 'swr'
 import { Todo } from '#/actions/todos'
 import { tid } from '#/lib/data-testid'
-import { useSetTodos, useTodos } from './todos-context'
+import { useInitTodos, useTodos } from './todos-context'
 import { TodoItem } from './todo-item'
-import { useEffect } from 'react'
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 export function TodoList({ todos: data }: { todos: Todo[] }) {
   // const { data, error, mutate } = useSWR('/api/todo', fetcher)
-  const setTodos = useSetTodos()
-  const [todos] = useTodos()
+  useInitTodos(data)
 
-  // Populate the client-side state of todos. This enables the form to read the todos from context.
-  useEffect(() => {
-    setTodos(data)
-  }, [data, setTodos])
-
+  const { todos } = useTodos()
   if (!todos.length) return null
 
   return (

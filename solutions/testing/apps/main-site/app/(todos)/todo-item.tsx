@@ -4,7 +4,7 @@ import { type Todo, updateTodo, removeTodo } from '#/actions/todos'
 import { useTodos } from './todos-context'
 
 export function TodoItem({ todo }: { todo: Todo }) {
-  const [todos, , optimisticUpdate] = useTodos()
+  const { todos, optimisticUpdate } = useTodos()
 
   return (
     <li key={todo.id} className="flex items-center justify-content py-6 px-6">

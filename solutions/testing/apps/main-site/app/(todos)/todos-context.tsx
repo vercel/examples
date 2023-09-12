@@ -9,52 +9,63 @@ import {
   useState,
   useMemo,
   useCallback,
+  useEffect,
 } from 'react'
 
 type TodoContext = {
   todos: Todo[]
   loading: boolean
-  setTodos: (todos: Todo[]) => void
+  optimisticUpdate: (todos: Todo[]) => void
 }
 
+const setTodosContext = createContext<(todos: Todo[]) => void>(() => {})
 const todosContext = createContext<TodoContext>({
   todos: [],
-  setTodos: () => {},
   loading: true,
+  optimisticUpdate: () => {},
 })
 
 export function useTodos() {
-  const { todos, loading } = useContext(todosContext)
-  const [optimisticTodos, optimisticUpdate] = useOptimistic(
-    todos,
-    (_state: Todo[], newState: Todo[]) => newState
-  )
-
-  return [optimisticTodos, loading, optimisticUpdate] as const
+  return useContext(todosContext)
 }
 
 export function useSetTodos() {
-  const { setTodos } = useContext(todosContext)
-  return setTodos
+  return useContext(setTodosContext)
 }
+
+export function useInitTodos(todos: Todo[]) {
+  const setTodos = useContext(setTodosContext)
+  // Populate the client-side state of todos. This enables client components to
+  // read the todos from context.
+  useEffect(() => {
+    setTodos(todos)
+  }, [todos, setTodos])
+}
+
+const updateTodos = (_state: Todo[], newState: Todo[]) => newState
 
 /**
  * Todos provider. In order to set the todos in the context the `setTodos` function needs to be used.
  */
 export function TodosProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
-  const [todos, setTodosFn] = useState<Todo[]>([])
+  const [todosState, setTodosState] = useState<Todo[]>([])
+  const [todos, optimisticUpdate] = useOptimistic(todosState, updateTodos)
   const setTodos = useCallback(
-    (todos: Todo[]) => {
+    (newTodos: Todo[]) => {
       setLoading(false)
-      setTodosFn(todos)
+      setTodosState(newTodos)
     },
-    [setTodosFn]
+    [setTodosState]
   )
   const value = useMemo(
-    () => ({ todos, setTodos, loading }),
-    [loading, todos, setTodos]
+    () => ({ loading, todos, optimisticUpdate }),
+    [loading, todos, optimisticUpdate]
   )
 
-  return <todosContext.Provider value={value}>{children}</todosContext.Provider>
+  return (
+    <setTodosContext.Provider value={setTodos}>
+      <todosContext.Provider value={value}>{children}</todosContext.Provider>
+    </setTodosContext.Provider>
+  )
 }

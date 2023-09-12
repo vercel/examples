@@ -8,7 +8,7 @@ import { tid } from '#/lib/data-testid'
 import { useTodos } from './todos-context'
 
 export function TodoForm() {
-  const [todos, loading, optimisticUpdate] = useTodos()
+  const { todos, loading, optimisticUpdate } = useTodos()
   const formRef = useRef<HTMLFormElement>(null)
   const addTodoAction = async (formData: FormData) => {
     const todo = {
