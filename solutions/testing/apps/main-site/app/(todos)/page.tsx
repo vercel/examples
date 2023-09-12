@@ -3,6 +3,7 @@ import { Page, Text } from '@vercel/examples-ui'
 import { TodosProvider } from './todos-context'
 import { TodoForm } from './todo-form'
 import { Todos } from './todos'
+import { LogoutForm } from './logout-form'
 
 export default async function Home() {
   return (
@@ -19,6 +20,7 @@ export default async function Home() {
           </div>
         </Suspense>
       </TodosProvider>
+      <LogoutForm />
     </Page>
   )
 }
