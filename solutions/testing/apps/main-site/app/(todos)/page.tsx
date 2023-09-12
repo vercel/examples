@@ -15,12 +15,12 @@ export default async function Home() {
       <TodosProvider>
         <TodoForm />
         <Suspense>
-          <div>
-            <Todos />
-          </div>
+          <Todos />
         </Suspense>
       </TodosProvider>
-      <LogoutForm />
+      <Suspense>
+        <LogoutForm />
+      </Suspense>
     </Page>
   )
 }

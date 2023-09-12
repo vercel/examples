@@ -19,6 +19,14 @@ export async function getUserId() {
   return username ? Number(username) : undefined
 }
 
+export async function getUser(
+  id: number
+): Promise<Pick<User, 'id' | 'username'> | undefined> {
+  const result =
+    await sql<User>`SELECT id, username FROM users WHERE id = ${id}`
+  return result.rows[0]
+}
+
 function setUserToken(id: number) {
   const cookieStore = cookies()
   cookieStore.set(USER_ID_COOKIE, String(id))
