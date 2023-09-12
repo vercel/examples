@@ -2,18 +2,18 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getUserIdFromReq } from './lib/auth'
 
 export const config = {
-  matcher: ['/', '/signup'],
+  matcher: ['/', '/signup', '/login'],
 }
 
 export default async function middleware(req: NextRequest) {
   const url = req.nextUrl
-  const user = getUserIdFromReq(req)
+  const userId = getUserIdFromReq(req)
   let redirectTo
 
-  if (!user && url.pathname === '/') {
+  if (!userId && url.pathname === '/') {
     redirectTo = '/signup'
   }
-  if (user && url.pathname === '/signup') {
+  if (userId && (url.pathname === '/signup' || url.pathname === '/login')) {
     redirectTo = '/'
   }
   if (redirectTo) {
