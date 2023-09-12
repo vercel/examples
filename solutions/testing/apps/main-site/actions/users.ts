@@ -3,6 +3,7 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { sql } from '@vercel/postgres'
+import { USER_ID_COOKIE } from '#/lib/auth'
 
 export type User = {
   id: number
@@ -11,8 +12,6 @@ export type User = {
   created_at: Date
   updated_at: Date
 }
-
-const USER_ID_COOKIE = 'user_id'
 
 export async function getUserId() {
   const cookieStore = cookies()

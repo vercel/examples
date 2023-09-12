@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import db from './lib/db'
+import { getUserIdFromReq } from './lib/auth'
 
 export const config = {
   matcher: ['/', '/signup'],
@@ -7,7 +7,7 @@ export const config = {
 
 export default async function middleware(req: NextRequest) {
   const url = req.nextUrl
-  const user = await db.getUserFromReq(req)
+  const user = getUserIdFromReq(req)
   let redirectTo
 
   if (!user && url.pathname === '/') {
