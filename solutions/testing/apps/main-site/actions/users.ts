@@ -28,8 +28,13 @@ function setUserToken(id: number) {
 export async function login(data: { username: string; password: string }) {
   const result =
     await sql`SELECT id FROM users WHERE username = ${data.username} AND password = ${data.password}`
+  const userId: number | undefined = result.rows[0]?.id
 
-  setUserToken(result.rows[0].id)
+  if (!userId) {
+    return { message: 'User not found or the password is incorrect.' }
+  }
+
+  setUserToken(userId)
 }
 
 export async function signup(data: { username: string; password: string }) {

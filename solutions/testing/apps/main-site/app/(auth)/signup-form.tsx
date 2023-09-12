@@ -1,18 +1,24 @@
+'use client'
+
+import { useState } from 'react'
 import { redirect } from 'next/navigation'
 import { Input, Link } from '@vercel/examples-ui'
 import { login, signup } from '#/actions/users'
 import { SubmitButton } from './submit-button'
 
 export const SignupForm = ({ isLogin }: { isLogin?: boolean }) => {
+  const [error, setError] = useState('')
   const signupAction = async (formData: FormData) => {
-    'use server'
-
     const username = formData.get('username') as string
     const password = formData.get('password') as string
     const passwordRepeat = formData.get('password-repeat') as string
 
     if (isLogin) {
-      await login({ username, password })
+      const result = await login({ username, password })
+      if (result) {
+        setError(result.message)
+        return
+      }
     } else {
       if (password !== passwordRepeat) {
         throw new Error('Passwords do not match')
@@ -44,6 +50,7 @@ export const SignupForm = ({ isLogin }: { isLogin?: boolean }) => {
           />
         </label>
       )}
+      {error && <p className="text-error mb-4">{error}</p>}
       <div className="flex items-center">
         <SubmitButton>{isLogin ? 'Login' : 'Signup'}</SubmitButton>
         {isLogin ? (
