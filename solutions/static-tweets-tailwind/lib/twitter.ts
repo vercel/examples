@@ -49,6 +49,32 @@ export const getTweets = async (id: string) => {
         }
       }) || []
 
+    // Function to distinguish between external URLs and external t.co links and internal t.co links
+    // (e.g. images, videos, gifs, quote tweets) and remove/replace them accordingly
+    function getExternalUrls(tweet: TweetData) {
+      const externalURLs = tweet?.entities?.urls
+
+      let mappings: {
+        [I in string]: string
+      } = {}
+
+      if (externalURLs)
+        externalURLs.map((url) => {
+          mappings[url.url] =
+            !url.display_url.startsWith('pic.twitter.com') &&
+            !url.display_url.startsWith('twitter.com')
+              ? url.expanded_url
+              : ''
+        })
+
+      let processedText = tweet?.text
+      Object.entries(mappings).map(([key, value]) => {
+        processedText = processedText.replace(key, value)
+      })
+
+      return processedText
+    }
+
     if (tweet.data) tweet.data.text = getExternalUrls(tweet?.data) // removing/replacing t.co links for main tweet
     tweet?.includes?.tweets?.map((twt) => {
       // removing/replacing t.co links for referenced tweets
@@ -83,30 +109,4 @@ export const getTweets = async (id: string) => {
       `Failed to get tweet data for tweet ID: ${id}. Reason: ${error}`
     )
   }
-}
-
-// Function to distinguish between external URLs and external t.co links and internal t.co links
-// (e.g. images, videos, gifs, quote tweets) and remove/replace them accordingly
-function getExternalUrls(tweet: TweetData) {
-  const externalURLs = tweet?.entities?.urls
-
-  let mappings: {
-    [I in string]: string
-  } = {}
-
-  if (externalURLs)
-    externalURLs.map((url) => {
-      mappings[url.url] =
-        !url.display_url.startsWith('pic.twitter.com') &&
-        !url.display_url.startsWith('twitter.com')
-          ? url.expanded_url
-          : ''
-    })
-
-  let processedText = tweet?.text
-  Object.entries(mappings).map(([key, value]) => {
-    processedText = processedText.replace(key, value)
-  })
-
-  return processedText
 }
