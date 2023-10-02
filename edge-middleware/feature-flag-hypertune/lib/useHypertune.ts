@@ -2,16 +2,18 @@ import React, { useEffect, useMemo } from 'react'
 import hypertune from './hypertune'
 
 export default function useHypertune() {
-  const [isInitialized, setIsInitialized] = React.useState<boolean>(
-    hypertune.isInitialized(),
+  // Trigger a re-render when flags are updated
+  const [, setCommitHash] = React.useState<string | null>(
+    hypertune.getCommitHash(),
   )
-
   useEffect(() => {
-    hypertune.waitForInitialization().then(() => {
-      setIsInitialized(true)
-    })
+    hypertune.addUpdateListener(setCommitHash)
+    return () => {
+      hypertune.removeUpdateListener(setCommitHash)
+    }
   }, [])
 
+  // Return the Hypertune root node initialized with the current user
   return useMemo(
     () =>
       hypertune.root({

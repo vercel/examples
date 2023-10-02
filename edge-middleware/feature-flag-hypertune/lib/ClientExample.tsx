@@ -1,23 +1,26 @@
 'use client'
-import { Text } from '@vercel/examples-ui'
 
-import useHypertune from './useHypertune'
+import { Text } from '@vercel/examples-ui'
 import { InitResponseBody } from 'hypertune'
+import hypertune from './hypertune'
+import useHypertune from './useHypertune'
 
 export default function ClientExample({
   hypertuneInitData,
 }: {
-  hypertuneInitData: InitResponseBody
-}) {
-  const rootNode = useHypertune()
-  rootNode.initFromData(hypertuneInitData)
+  hypertuneInitData?: InitResponseBody | null
+}): React.ReactElement {
+  if (hypertuneInitData) {
+    hypertune.initFromData(hypertuneInitData)
+  }
 
-  const exampleFlag = rootNode.exampleFlag().get(false)
-  console.log('Client-side feature flag:', exampleFlag)
+  const rootNode = useHypertune()
+
+  const exampleFlag = rootNode.exampleFlag().get(/* fallback */ false)
 
   return (
     <Text>
-      Client-side feature flag: <strong>{String(exampleFlag)}</strong>
+      React Client Component (RCC) flag: <strong>{String(exampleFlag)}</strong>
     </Text>
   )
 }

@@ -6,7 +6,7 @@ export const config = {
 }
 
 export async function middleware(req: NextRequest, context: NextFetchEvent) {
-  await hypertune.initFromVercelEdgeConfig()
+  await hypertune.initFromServerIfNeeded()
 
   const rootNode = hypertune.root({
     context: {
@@ -14,7 +14,7 @@ export async function middleware(req: NextRequest, context: NextFetchEvent) {
     },
   })
   const exampleFlag = rootNode.exampleFlag().get(/* fallback */ false)
-  console.log('Middleware feature flag:', exampleFlag)
+  console.log('Edge Middleware flag:', exampleFlag)
 
   context.waitUntil(hypertune.flushLogs())
 }
