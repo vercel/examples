@@ -1,61 +1,58 @@
 ---
-name: API Rate Limiting with Upstash
+name: API Rate Limiting with Vercel KV and Upstash
 slug: api-rate-limit-upstash
-description: Template featuring API Rate limiting at the edge with Redis using Upstash.
+description: Rate limit your Next.js application with Vercel KV and Upstash.
 framework: Next.js
 useCase: Edge Functions
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN&project-name=api-rate-limit-upstash&repository-name=api-rate-limit-upstash
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit?project-name=api-rate-limit&repository-name=api-rate-limit&stores=%5B%7B"type"%3A"kv"%7D%5D
 demoUrl: https://edge-functions-api-rate-limit.vercel.app
+relatedTemplates:
+  - api-rate-limit-and-tokens
+  - vercel-middleware-kv-redis
 ---
 
-# API Rate Limiting with Upstash
+# API Rate Limiting with Vercel KV and Upstash
 
-This demo features API Rate limiting at the edge with Redis using [Upstash](https://upstash.com/).
-
-The pattern for rate limiting is inspired by the [GitHub API](https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting).
+This example features API Rate limiting at the edge with [Vercel KV](https://vercel.com/docs/storage/vercel-kv).
 
 ## Demo
 
 https://edge-functions-api-rate-limit.vercel.app
 
+## How to Use
+
+You can choose from one of the following two methods to use this repository:
+
 ### One-Click Deploy
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN&project-name=api-rate-limit-upstash&repository-name=api-rate-limit-upstash)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit?project-name=api-rate-limit&repository-name=api-rate-limit&stores=%5B%7B"type"%3A"kv"%7D%5D)
 
-## Getting Started
+### Clone and Deploy
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit api-rate-limit
-# or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit api-rate-limit
+pnpm create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/api-rate-limit api-rate-limit
 ```
 
-You'll need to have an account with [Upstash](https://upstash.com/). Once that's done, copy the `.env.example` file in this directory to `.env.local` (which will be ignored by Git):
+Next, create a [Vercel KV](https://vercel.com/docs/storage/vercel-kv) database on your account and connect it to your project.
+
+Copy the example `.env.local` file shown in the dashboard with the credentials needed to connect to your Redis database. It should look similar to this:
 
 ```bash
-cp .env.example .env.local
-```
-
-Then open `.env.local` and set the environment variables to match the REST API of your database. It should look like this:
-
-```bash
-UPSTASH_REST_API_DOMAIN = "us1-shiny-firefly-12345.upstash.io"
-UPSTASH_REST_API_TOKEN = "your-api-token"
+KV_URL="redis://..."
+KV_REST_API_URL="https://..."
+KV_REST_API_TOKEN="AXx3ASQ..."
+KV_REST_API_READ_ONLY_TOKEN="Anx3ASQ..."
 ```
 
 Next, run Next.js in development mode:
 
 ```bash
-npm install
-npm run dev
-
-# or
-
-yarn
-yarn dev
+pnpm dev
 ```
+
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).

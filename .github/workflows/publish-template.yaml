@@ -1,26 +1,48 @@
 name: Publish Templates
-on: push
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  FORCE_COLOR: 3
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   publish_template:
     name: Publish Template
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: internal
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Install Node Dependencies
-        uses: actions/setup-node@v1
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2.2.2
         with:
-          node-version: 16.x
+          version: 8.2.0
 
-      - name: Install npm Dependencies
-        run: npm install
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.16
+          cache: pnpm
+
+      - name: Install pnpm Dependencies
+        run: pnpm i --frozen-lockfile --ignore-scripts
 
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v18.7
 
       - name: Publish template
-        run: npm run update-templates ${{ steps.changed-files.outputs.all_changed_files }}
+        run: pnpm update-templates "${{ steps.changed-files.outputs.all_changed_files }}"
         env:
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}

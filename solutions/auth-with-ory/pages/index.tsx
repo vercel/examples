@@ -4,8 +4,6 @@ import { Configuration, Session, V0alpha2Api } from '@ory/kratos-client'
 import { Layout } from '@vercel/examples-ui'
 import { Text, Code, Link, Button, List } from '@vercel/examples-ui'
 import { AxiosError } from 'axios'
-import type { NextPage } from 'next'
-import Head from 'next/head'
 import { useEffect, useState } from 'react'
 
 // Initialize the Ory Kratos SDK which will connect to the
@@ -34,7 +32,7 @@ import { config, createApiHandler } from '@ory/integrations/next-edge'
 export { config }
 export default createApiHandler({
   fallbackToPlayground: true
-})`
+})`,
         }}
       />
     </Text>
@@ -104,22 +102,13 @@ const Home = () => {
         // the logout URL. Let's show that!
         setError({
           error: err.toString(),
-          data: err.response?.data
+          data: err.response?.data,
         })
       })
   }, [session, error])
 
   return (
     <main className="mt-4">
-      <Head>
-        <title>Authentication with Next.js & Ory</title>
-        <meta
-          name="description"
-          content="Add login and registration to your Next.js app!"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <div className={styles.main}>
         <Text variant="h2" className={'mb-6 ' + styles.title}>
           {session ? (
@@ -198,7 +187,7 @@ const Home = () => {
               <pre
                 className={`border typescript border-accents-2 rounded-md bg-white overflow-x-auto p-6`}
                 dangerouslySetInnerHTML={{
-                  __html: JSON.stringify(session, null, 2)
+                  __html: JSON.stringify(session, null, 2),
                 }}
               />
             </Text>

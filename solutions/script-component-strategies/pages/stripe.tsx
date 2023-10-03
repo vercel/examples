@@ -11,7 +11,7 @@ function StripeAfterInteractive() {
   const [log, setLog] = useState<Log[]>([])
 
   const addLog = useCallback(
-    (text) => {
+    (text: string) => {
       setLog((log) => log.concat({ time: new Date(), text }))
     },
     [setLog]

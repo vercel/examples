@@ -1,5 +1,5 @@
 import { jwtVerify } from 'jose'
-import { initRateLimit } from '@lib/rate-limit'
+import { initRateLimit, CountFn } from '@lib/rate-limit'
 import { upstashRest } from '@lib/upstash'
 import { API_KEYS, API_KEYS_JWT_SECRET_KEY } from './constants'
 import { ipRateLimit } from '@lib/ip-rate-limit'
@@ -11,27 +11,16 @@ export type ApiTokenPayload = {
   timeframe: number
 }
 
-const tokenExpired = () =>
-  new Response(
-    JSON.stringify({ error: { message: 'Your token has expired' } }),
-    {
-      status: 401,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-  )
-
 /**
- * Creates a rate limit function that uses the API token to for rate
+ * Creates a rate limit function that uses the API token for rate
  * limiting, and fallbacks to IP rate limiting if there's no token
  */
-export const tokenRateLimit = initRateLimit(async (request) => {
+export const tokenRateLimit = initRateLimit(async (request, response) => {
   // Get bearer token from header
   const token = request.headers.get('Authorization')?.split(' ')[1]
 
   // Fallback to IP rate limiting if no bearer token is present
-  if (!token) return ipRateLimit(request)
+  if (!token) return ipRateLimit(request, response)
 
   let payload: ApiTokenPayload
   try {
@@ -47,22 +36,42 @@ export const tokenRateLimit = initRateLimit(async (request) => {
   return {
     ...payload,
     id: `api-token:${payload.jti}`,
-    count: async ({ key, timeframe }) => {
-      const results = await upstashRest(
-        [
-          ['HGET', API_KEYS, payload.jti],
-          ['INCR', key],
-          ['EXPIRE', key, timeframe],
-        ],
-        { pipeline: true }
-      )
-      const jwt = results[0].result
-      const count = results[1].result
-
-      // The token no longer exists in Redis
-      if (!jwt) return tokenExpired()
-
-      return count
-    },
+    count: incrementByKey,
   }
 })
+
+const tokenExpired = () =>
+  new Response(
+    JSON.stringify({ error: { message: 'Your token has expired' } }),
+    {
+      status: 401,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  )
+
+const incrementByKey: CountFn = async ({ response, id, key, timeframe }) => {
+  // Latency logging
+  const start = Date.now()
+
+  const results = await upstashRest(
+    [
+      ['HGET', API_KEYS, id.split(':')[1]],
+      ['INCR', key],
+      ['EXPIRE', key, timeframe],
+    ],
+    { pipeline: true }
+  )
+  const jwt = results[0].result
+  const count = results[1].result
+
+  // Temporal logging
+  const latency = Date.now() - start
+  response.headers.set('x-upstash-latency', `${latency}`)
+
+  // The token no longer exists in Redis
+  if (!jwt) return tokenExpired()
+
+  return count
+}

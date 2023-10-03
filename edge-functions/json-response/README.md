@@ -1,25 +1,24 @@
 ---
-marketplace: false
+name: JSON Response Edge
+slug: edge-json-response
+description: A JSON response on the edge.
+framework: None
+useCase: Edge Function
+css: None
+deployUrl: https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/json-response&project-name=edge-json-response&repository-name=edge-json-response
+demoUrl: https://edge-api-routes-json-response.vercel.app/api/edge
+relatedTemplates:
+  - edge-hello-world
+  - edge-query-parameters
 ---
 
-# JSON Response Example
+# JSON Response
 
-```ts
-import type { NextRequest } from 'next/server'
-
-export function middleware(req: NextRequest) {
-  return new Response(JSON.stringify({ message: 'hello world!' }), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-}
-```
+A JSON response on the edge.
 
 ## Demo
 
-https://edge-functions-json-response.vercel.app
+https://edge-api-routes-json-response.vercel.app/api/edge
 
 ## How to Use
 
@@ -27,30 +26,20 @@ You can choose from one of the following two methods to use this repository:
 
 ### One-Click Deploy
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/json-response&project-name=json-response&repository-name=json-response)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/json-response&project-name=edge-json-response&repository-name=edge-json-response)
 
-### Clone and Deploy
+### Running Locally
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-functions/json-response json-response
-# or
-yarn create next-app --example https://github.com/vercel/examples/tree/main/edge-functions/json-response json-response
-```
-
-Next, run Next.js in development mode:
+Install the Vercel CLI:
 
 ```bash
-npm install
-npm run dev
-
-# or
-
-yarn
-yarn dev
+npm i -g vercel
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
+Then run the example at the root of the repository:
+
+```bash
+vercel dev
+```

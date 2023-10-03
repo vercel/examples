@@ -3,8 +3,6 @@
  * Note: We use this lib in multiple demos, feel free to
  * use it in your own projects.
  */
-// eslint-disable-next-line @next/next/no-server-import-in-page
-import type { NextRequest } from 'next/server'
 
 export interface RateLimitContextBase {
   id: string
@@ -14,18 +12,21 @@ export interface RateLimitContextBase {
 }
 
 export interface RateLimitContext extends RateLimitContextBase {
-  request: NextRequest
+  request: Request
+  response: Response
   headers: readonly [string | null, string | null, string | null]
   onRateLimit: OnRateLimit
 }
 
 export type RateLimitHandler = (
-  request: NextRequest
+  request: Request,
+  response?: Response
 ) => Promise<RateLimitResult> | RateLimitResult
 
 export type RateLimitResult =
   | (RateLimitContextBase & {
-      request?: NextRequest
+      request?: Request
+      response?: Response
       headers?: RateLimitHeaders
       onRateLimit?: OnRateLimit
     })
@@ -55,7 +56,7 @@ function getHeaders(nameOrHeaders?: RateLimitHeaders) {
     : nameOrHeaders
 }
 
-const rateLimited: OnRateLimit = ({ id }) => {
+const rateLimited: OnRateLimit = ({ id, response }) => {
   return new Response(
     JSON.stringify({
       error: { message: `API rate limit exceeded for ${id}` },
@@ -63,17 +64,16 @@ const rateLimited: OnRateLimit = ({ id }) => {
     {
       status: 429,
       headers: {
+        ...Object.fromEntries(response.headers),
         'Content-Type': 'application/json',
       },
     }
   )
 }
 
-async function rateLimit(context: RateLimitContext) {
-  let { headers, id, limit, timeframe, count, onRateLimit } = context
+async function rateLimit(context: RateLimitContext): Promise<Response> {
+  let { headers, id, limit, timeframe, count, onRateLimit, response } = context
 
-  // Temporal logging
-  const start = Date.now()
   // By removing the milliseconds our of the date and dividing by `timeframe`
   // we now have a time that changes every `timeframe` seconds
   const time = Math.floor(Date.now() / 1000 / timeframe)
@@ -86,16 +86,12 @@ async function rateLimit(context: RateLimitContext) {
     console.error('Rate limit `count` failed with:', err)
     // If the count function fails we'll ignore rate limiting and
     // return a successful response to avoid blocking the request
-    return new Response(null)
+    return response || new Response(null)
   }
 
   const h = countOrRes instanceof Response ? countOrRes.headers : new Headers()
   const remaining = countOrRes instanceof Response ? 0 : limit - countOrRes
   const reset = (time + 1) * timeframe
-
-  // Temporal logging
-  const latency = Date.now() - start
-  h.set('x-upstash-latency', `${latency}`)
 
   if (headers[0]) h.set(headers[0], `${limit}`)
   if (headers[1]) h.set(headers[1], `${remaining < 0 ? 0 : remaining}`)
@@ -105,24 +101,31 @@ async function rateLimit(context: RateLimitContext) {
     const res = await onRateLimit(context)
 
     // Concat the rate limiting headers
-    headers.concat('x-upstash-latency').forEach((key) => {
+    headers.forEach((key) => {
       if (key) res.headers.set(key, h.get(key)!)
     })
 
     return res
   }
-  return new Response(null, { headers: h })
+
+  // Add the headers to the response in context
+  for (const [key, value] of h) {
+    response.headers.set(key, value)
+  }
+
+  return response
 }
 
 export const initRateLimit = (fn: RateLimitHandler) =>
-  async function isRateLimited(request: NextRequest) {
-    const ctx = await fn(request)
+  async function isRateLimited(request: Request, response?: Response) {
+    const ctx = await fn(request, response)
 
     if (ctx instanceof Response) return ctx
 
     return rateLimit({
       ...ctx,
       request: ctx.request ?? request,
+      response: ctx.response ?? response ?? new Response(null),
       headers: getHeaders(ctx.headers),
       onRateLimit: ctx.onRateLimit ?? rateLimited,
     })

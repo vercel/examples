@@ -40,10 +40,11 @@ const Hero: React.FC<Props> = ({ data, variant, priority = false }) => {
             dangerouslySetInnerHTML={{ __html: data.description }}
           />
           {data.link && (
-            <Link href={data.link.url ? data.link.url : '/'} passHref>
-              <a className="uppercase font-semibold tracking-wide text-xs text-slate-100 bg-slate-900 rounded-full px-4 py-3 hover:bg-black transition-colors ease-in duration-150">
-                {data.link.title}
-              </a>
+            <Link
+              href={data.link.url ? data.link.url : '/'}
+              className="uppercase font-semibold tracking-wide text-xs text-slate-100 bg-slate-900 rounded-full px-4 py-3 hover:bg-black transition-colors ease-in duration-150"
+            >
+              {data.link.title}
             </Link>
           )}
         </div>
@@ -84,15 +85,15 @@ const Hero: React.FC<Props> = ({ data, variant, priority = false }) => {
             dangerouslySetInnerHTML={{ __html: data.description }}
           />
 
-          <Link href={data.link.url ? data.link.url : '/'} passHref>
-            <a
-              className="uppercase font-semibold tracking-wide 
-            text-xs text-slate-900 bg-slate-200 rounded-full 
-            px-4 py-3 border  border-slate-400 hover:border-black
-            transition ease-linear duration-150"
-            >
-              {data.link.title}
-            </a>
+          <Link
+            href={data.link.url ? data.link.url : '/'}
+            passHref
+            className="uppercase font-semibold tracking-wide
+          text-xs text-slate-900 bg-slate-200 rounded-full
+          px-4 py-3 border  border-slate-400 hover:border-black
+          transition ease-linear duration-150"
+          >
+            {data.link.title}
           </Link>
         </div>
       </div>
@@ -119,10 +120,12 @@ const Hero: React.FC<Props> = ({ data, variant, priority = false }) => {
           className="mb-6"
           dangerouslySetInnerHTML={{ __html: data.description }}
         />
-        <Link href={data.link.url ? data.link.url : '/'} passHref>
-          <a className="uppercase font-semibold tracking-wide text-xs text-slate-100 bg-slate-900 rounded-full px-4 py-3 hover:bg-black transition-colors ease-in duration-150">
-            {data.link.title}
-          </a>
+        <Link
+          href={data.link.url ? data.link.url : '/'}
+          passHref
+          className="uppercase font-semibold tracking-wide text-xs text-slate-100 bg-slate-900 rounded-full px-4 py-3 hover:bg-black transition-colors ease-in duration-150"
+        >
+          {data.link.title}
         </Link>
       </div>
     </div>

@@ -1,13 +1,19 @@
-import Head from 'next/head'
 import Image from 'next/image'
-import { Layout, Text, Page, Code, Link } from '@vercel/examples-ui'
+import {
+  Layout,
+  Text,
+  Page,
+  Code,
+  Link,
+  List,
+  Snippet,
+} from '@vercel/examples-ui'
 
 import Card from '../components/Card'
-import Snippet from '../components/Snippet'
 
-import screenshot1 from '../public/docs/screenshot-1.jpg'
-import screenshot2 from '../public/docs/screenshot-2.jpg'
-import screenshot3 from '../public/docs/screenshot-3.jpg'
+import screenshot1 from '../public/docs/screenshot-1a.png'
+import screenshot2 from '../public/docs/screenshot-2a.png'
+import screenshot3 from '../public/docs/screenshot-3a.png'
 
 const CARD = {
   id: '617a8bb9637d9400182bd6fe',
@@ -18,27 +24,18 @@ const CARD = {
 function Home() {
   return (
     <Page>
-      <Head>
-        <title>Reduce next/image bandwidth demo</title>
-        <meta name="description" content="Reduce next/image bandwidth demo" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <Text variant="h2" className="mb-6">
+      <Text variant="h1" className="mb-6">
         Reduce next/image bandwidth usage
       </Text>
-      <Text>
+      <Text variant="description">
         This example shows how to reduce bandwidth and processing costs when
         using different layouts.
       </Text>
-
-      <hr className="border-t border-accents-2 my-6" />
-
-      <Text variant="h2">
+      <Text variant="h2" className="mb-4 mt-10">
         Using <Code>layout=&quot;fill&quot;</Code> or{' '}
         <Code>layout=&quot;responsive&quot;</Code>
       </Text>
-      <Text>
+      <Text className="mb-4">
         Using{' '}
         <Link href="https://nextjs.org/docs/api-reference/next/image#layout">
           <Code>layout=fill</Code>
@@ -52,35 +49,40 @@ function Home() {
         problem; as we don&apos;t know how large our parent might be, we
         can&apos;t serve an optimized image.
       </Text>
-      <section className="mt-6 flex flex-col gap-3">
+      <section className="flex flex-col gap-4">
+        <Text>
+          For example, the following card has an image with{' '}
+          <Code>layout=fill</Code>:
+        </Text>
         <Card>
           <Image layout="fill" src={CARD.thumbnail} alt={CARD.title} />
         </Card>
-        <Text>Our card above is represented by this code:</Text>
+        <Text>And is represented by this code:</Text>
         <Snippet>
           {`<Card>
   <Image layout="fill" src="..." />
 </Card>`}
         </Snippet>
         <Text>
-          But wait, given this code we end up with this 👇. Our element has a
-          width of 256px but we are serving a 1000px image!
+          Everything looks okay but our image has a width of 256px and we are
+          serving a 1000px image!
         </Text>
         <Image
           src={screenshot1}
           alt="Image size when using layout fill or responsive is large"
         />
         <Text>
-          The{' '}
+          To serve optimized images we need to use the{' '}
           <Link href="https://nextjs.org/docs/api-reference/next/image#sizes">
             <Code>sizes</Code>
           </Link>{' '}
-          prop provides information about how wide the image will be at
+          prop, which provides information about how wide the image will be at
           different breakpoints when using{' '}
           <Code>layout=&quot;responsive&quot;</Code> or{' '}
           <Code>layout=&quot;fill&quot;</Code>. In this case our card limits the
           width of the image to a maximum of <Code>256px</Code>. So if we update
-          our code to use sizes like this:
+          our code and set <Code>sizes</Code> to <Code>256px</Code> it should
+          give us a smaller image:
         </Text>
         <Card>
           <Image
@@ -116,20 +118,17 @@ function Home() {
           <Code>layout=&quot;fill&quot;</Code>.
         </Text>
       </section>
-
-      <hr className="border-t border-accents-2 my-6" />
-
-      <Text variant="h2">
+      <Text variant="h2" className="mt-10 mb-4">
         Using <Code>layout=&quot;fixed&quot;</Code> or{' '}
         <Code>layout=&quot;intrinsic&quot;</Code>
       </Text>
-      <Text>
-        This layouts force us to define a width and height of the image so its
-        easier to determine the size of the variants that has to be generated so
-        we don&apos;t have to define any extra properties to get an optimized
-        image.
-      </Text>
-      <section className="mt-6 flex flex-col gap-3">
+      <section className="flex flex-col gap-3">
+        <Text>
+          These layout values require the <Code>width</Code> and{' '}
+          <Code>height</Code> of the image to be defined. The image will then
+          include the variant that better matches its size and a bigger variant
+          for high DPR screens (more about DPR in the next section).
+        </Text>
         <Card>
           <Image
             width={256}
@@ -143,15 +142,50 @@ function Home() {
   <Image src="..." width={256} height={256} />
 </Card>`}
         </Snippet>
+        <Text>
+          Note: <Code>intrinsic</Code> is the default layout so we don&apos;t
+          have to define it.
+        </Text>
         <Image
-          src={screenshot3}
+          src={screenshot2}
           alt="Image with a fixed layout with known width and height"
         />
-        <Text>
-          <Code>intrinsic</Code> is the default layout so we don&apos;t have to
-          define it. We get back a correct optimized image.
-        </Text>
       </section>
+      <Text variant="h2" className="mb-4 mt-10">
+        How the browser decides which variant to use
+      </Text>
+      <Text className="mb-4">
+        A variant is one of the image sources (a URL with a descriptor) being
+        added to the{' '}
+        <Link href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset">
+          <Code>srcset</Code>
+        </Link>{' '}
+        attribute, which is one of the things next/image does under the hood.
+        The browser decides what variant to use based on the following factors:
+      </Text>
+      <List>
+        <li className="mb-2">
+          If the image has <Code>width</Code> and <Code>height</Code>, the
+          browser picks the <Code>srcset</Code> that matches the DPR (Device
+          Pixel Ratio) of the screen, and the descriptor part of the{' '}
+          <Code>srcset</Code> indicates the pixel density.
+        </li>
+        <li>
+          <span>
+            If the image has <Code>sizes</Code> set, the browser picks the{' '}
+            <Code>srcset</Code> whose width descriptor matches the width
+            indicated by <Code>sizes</Code>, and for high DPR screens it will
+            pick a higher size. For example, for a full hd display in a common
+            size (DPR of ~1), our 256w image will use the 256w variant, for a
+            retina display with a DPR of ~2, the browser will pick the 640w
+            variant instead:
+          </span>
+          <Image
+            src={screenshot3}
+            alt="Image using sizes to reduce its maximum size when using layout fill or responsive"
+          />
+        </li>
+      </List>
     </Page>
   )
 }

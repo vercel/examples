@@ -1,20 +1,21 @@
 {
-  "name": "monorepo",
+  "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "app",
+    "apps/*",
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build --scope=app --include-dependencies --no-deps",
+    "build": "turbo run build",
     "dev": "turbo run dev",
     "start": "turbo run start",
-    "lint": "turbo run lint"
+    "lint": "turbo run lint",
+    "clean": "turbo run clean"
   },
   "devDependencies": {
-    "@types/node": "^17.0.14",
-    "turbo": "^1.1.6"
-  },
-  "packageManager": "npm@8.3.2"
+    "eslint": "^8.28.0",
+    "eslint-config-turbo": "latest",
+    "turbo": "^1.8.3"
+  }
 }

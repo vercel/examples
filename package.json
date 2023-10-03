@@ -1,33 +1,30 @@
 {
-  "name": "vercel-examples",
-  "version": "1.0.0",
+  "name": "examples",
   "license": "MIT",
+  "private": true,
   "scripts": {
-    "prettier": "prettier --write .",
-    "update": "node update-dep.mjs",
-    "update-templates": "node scripts/update-templates.mjs",
-    "new-example": "plop example",
     "lint-staged": "lint-staged",
-    "prepare": "husky install"
+    "new-example": "plop example",
+    "prepare": "husky install",
+    "prettier": "prettier --write ."
   },
   "pre-commit": "lint-staged",
-  "devDependencies": {
-    "@vercel/fetch": "^6.2.0",
-    "dotenv": "^16.0.0",
-    "eslint": "^8.9.0",
-    "front-matter": "^4.0.2",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.3.4",
-    "plop": "^3.0.5",
-    "prettier": "^2.5.1"
-  },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
+    "!(**/.vercel/**/*)**/*.{ts,tsx}": [
       "prettier --write",
-      "eslint --no-ignore --max-warnings=0 --fix"
+      "eslint -c .eslintrc.json --no-eslintrc --no-ignore --max-warnings=0 --fix"
     ],
     "**/*.{json,md,mdx,css,html,yml,yaml,scss}": [
       "prettier --write"
     ]
+  },
+  "devDependencies": {
+    "eslint": "latest",
+    "eslint-config-next": "canary",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "plop": "^3.1.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.9.5"
   }
 }

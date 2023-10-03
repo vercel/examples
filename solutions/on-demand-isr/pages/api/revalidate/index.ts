@@ -4,7 +4,6 @@ export default async function handler(
   _req: NextApiRequest,
   res: NextApiResponse
 ) {
-  await res.unstable_revalidate('/')
-
+  await res.revalidate('/')
   return res.json({ revalidated: true })
 }

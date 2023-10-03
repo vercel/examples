@@ -1,12 +1,18 @@
 import type { Product } from '../types'
 
-import Head from 'next/head'
-import { Layout, Text, Page, Code, Link, Button } from '@vercel/examples-ui'
+import {
+  Layout,
+  Text,
+  Page,
+  Code,
+  Link,
+  Button,
+  Snippet,
+} from '@vercel/examples-ui'
 
 import { GetStaticProps } from 'next'
 import api from '../api'
 import Image from 'next/image'
-import Snippet from '../components/Snippet'
 
 interface Props {
   products: Product[]
@@ -22,7 +28,7 @@ const ProductCard: React.VFC<{ product: Product }> = ({ product }) => {
     >
       <Image
         layout="responsive"
-        width="100%"
+        width="100"
         height="48"
         objectFit="cover"
         src={product.image}
@@ -68,15 +74,6 @@ function Home({ products, date }: Props) {
 
   return (
     <Page>
-      <Head>
-        <title>On demand ISR - Vercel Example</title>
-        <meta
-          name="description"
-          content="Vercel example how to use On demand ISR"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
         <Text variant="h1">On demand ISR usage example</Text>
         <Text>
@@ -107,9 +104,8 @@ export async function getStaticProps() {
         </Snippet>
         <Text>
           Would not be great if we only regenerate this page when our data
-          changes? Since Next.js 12.1 we can do that using the{' '}
-          <Code>res.unstable_revalidate</Code> (res.revalidate if you come from
-          a future where this feature is already stable) function in our{' '}
+          changes? Since Next.js 12.2.0 we can do that using the{' '}
+          <Code>res.revalidate</Code> function in our{' '}
           <Link href="https://nextjs.org/docs/api-routes/introduction">
             API Routes
           </Link>
@@ -118,7 +114,7 @@ export async function getStaticProps() {
         <Snippet>
           {`export default async function handler(_req, res) {
   // Revalidate our '/' path
-  await res.unstable_revalidate('/')
+  await res.revalidate('/')
 
   // Return a response to confirm everything went ok
   return res.json({revalidated: true})
@@ -133,11 +129,59 @@ export async function getStaticProps() {
           demand revalidation might be useful for commerce providers, webhooks,
           bots, etc. That might fire when our content has been changed.
         </Text>
+        <Text>
+          Calling <Code>revalidate</Code> will run <Code>getStaticProps</Code>{' '}
+          for that path synchronously so we can <Code>await</Code> it. If you
+          need to revalidate multiple paths you will need to run{' '}
+          <Code>revalidate</Code> once for every path:
+        </Text>
+        <Snippet>
+          {`export default async function handler(_req, res) {
+  // Get paths to revalidate
+  const paths = await api.pathsToRevalidate()
+
+  // Revalidate every path
+  await Promise.all(paths.map(res.revalidate))
+
+  // Return a response to confirm everything went ok
+  return res.json({revalidated: true})
+}
+`}
+        </Snippet>
+        <Text>
+          We have to also keep in mind that revalidating a path will run the{' '}
+          <Code>getStaticProps</Code> serverless function for that specific
+          path, which will count for our{' '}
+          <Link href="https://vercel.com/docs/concepts/limits/overview#typical-monthly-usage-guidelines">
+            function execution time
+          </Link>
+          . Also awaiting for every path to revalidate on our API route will
+          make it run longer and that will also count for our function execution
+          time.
+        </Text>
+        <Text>
+          Depending on you application needs you might not need to wait for that
+          validation to end and you can do a fire and forget request for those
+          paths:
+        </Text>
+        <Snippet>
+          {`export default async function handler(_req, res) {
+  // Get paths to revalidate
+  const paths = await api.pathsToRevalidate()
+
+  // Revalidate every path without awaiting
+  paths.forEach(res.revalidate)
+
+  // Return a response to confirm everything went ok
+  return res.json({revalidated: true})
+}
+`}
+        </Snippet>
       </section>
 
       <hr className="border-t border-accents-2 my-6" />
 
-      <section className="flex flex-col gap-3">
+      <section className="flex flex-col gap-6">
         <Text variant="h2">Demo</Text>
         <Text>
           This demo was generated on <Code>{date}</Code>, product prices and
@@ -149,11 +193,14 @@ export async function getStaticProps() {
           Revalidate
         </Button>
         <Text>Or call the revalidate endpoint:</Text>
-        <Link href="/api/revalidate">
-          <pre className="bg-black text-white font-mono text-left py-2 px-4 rounded-lg text-sm leading-6 w-fit">
-            /api/revalidate
-          </pre>
-        </Link>
+        <Button
+          className="w-fit"
+          href="/api/revalidate"
+          Component="a"
+          variant="black"
+        >
+          /api/revalidate
+        </Button>
 
         <hr className="border-t border-accents-2 my-6" />
 
@@ -162,21 +209,12 @@ export async function getStaticProps() {
             <ProductCard key={product.id} product={product} />
           ))}
         </article>
-      </section>
 
-      <hr className="border-t border-accents-2 my-6" />
-
-      <section className="flex flex-col gap-6">
         <Text>
           Remember to always be careful when exposing endpoints as they may be
           vulnerable to DDOS attacks. You can request a key, token, etc. to
-          protect the endpoint from unwanted requests. Below you can see an
-          example of a #nextjs tweet feed that is being revalidated by a
-          protected webhook.
+          protect the endpoint from unwanted requests.
         </Text>
-        <Link href="/tweets" className="m-auto">
-          <Button size="lg">#nextjs tweets feed example</Button>
-        </Link>
       </section>
     </Page>
   )

@@ -1,0 +1,32 @@
+datasource db {
+  provider   = "postgresql"
+  url        = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl  = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  extensions = [vector]
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+model Pokemon {
+  id         String  @id @default(cuid())
+  number     Int
+  name       String
+  type1      String
+  type2      String?
+  total      Int
+  hp         Int
+  attack     Int
+  defense    Int
+  spAtk      Int
+  spDef      Int
+  speed      Int
+  generation Int
+  legendary  Boolean
+
+  embedding Unsupported("vector(1536)")?
+
+  @@map("pokemon")
+}

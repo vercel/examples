@@ -1,0 +1,17 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+node_modules
+
+# Build
+dist
+
+# Playwright
+src/.cache/
+src/test-results/
+
+# Automatically generated tests
+src/e2e/tests/generated
+
+# Turborepo
+.turbo

@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import type { FC, ReactNode } from 'react'
 import cn from 'classnames'
 import { Bag } from '@components/icons'
 import s from './UserNav.module.css'
@@ -7,7 +7,7 @@ interface Props {
   className?: string
 }
 
-const UserNav: FC<Props> = ({ className, children, ...props }) => {
+const UserNav: FC<Props> = ({ className }) => {
   return (
     <nav className={cn(s.root, className)}>
       <div className={s.mainContainer}>

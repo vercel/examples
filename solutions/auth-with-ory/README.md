@@ -1,5 +1,6 @@
 ---
 marketplace: false
+reason: Not handled by us, will be migrated soon
 ---
 
 # Authentication with Ory
@@ -20,7 +21,7 @@ You can choose from one of the following two methods to use this repository:
 Deploy the example using
 [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-functions/auth-with-ory&env=NEXT_PUBLIC_CLERK_FRONTEND_API,CLERK_API_KEY,CLERK_JWT_KEY&project-name=clerk-authentication&repo-name=clerk-authentication)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/auth-with-ory&env=ORY_SDK_URL&project-name=ory-authentication&repo-name=ory-authentication)
 
 ### Clone and Deploy
 
@@ -48,7 +49,7 @@ npm run dev
 ```
 
 Learn more about this example in the
-[accompanying developer guide](https://www.ory.sh/login-spa-react-nextjs-authentication-example-api/?utm_source=vercel&utm_medium=github&utm_campaign=auth-with-ory)!
+[developer guide](https://www.ory.sh/login-spa-react-nextjs-authentication-example-api-open-source/?utm_source=vercel&utm_medium=github&utm_campaign=auth-with-ory)!
 
 ## Running End-to-End Tests
 

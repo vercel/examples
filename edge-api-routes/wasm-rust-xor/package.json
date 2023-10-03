@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "vercel": "^28.1.3"
+  }
+}

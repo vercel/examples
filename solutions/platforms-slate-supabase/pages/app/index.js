@@ -158,33 +158,31 @@ export default function AppIndex() {
             sites.length > 0 ? (
               sites.map((site) => (
                 <Link href={`/site/${site.id}`} key={site.id}>
-                  <a>
-                    <div className="flex flex-col md:flex-row md:h-60 rounded-lg overflow-hidden border border-gray-200">
-                      <div className="relative w-full h-60 md:h-auto md:w-1/3 md:flex-none">
-                        <BlurImage
-                          src={site.image}
-                          layout="fill"
-                          objectFit="cover"
-                          alt={site.name}
-                        />
-                      </div>
-                      <div className="relative p-10">
-                        <h2 className="font-cal text-3xl">{site.name}</h2>
-                        <p className="text-base my-5 line-clamp-3">
-                          {site.description}
-                        </p>
-                        <a
-                          onClick={(e) => e.stopPropagation()}
-                          href={`https://${site.subdomain}.vercel.im`}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="font-cal px-3 py-1 tracking-wide rounded bg-gray-200 text-gray-600 absolute bottom-5 left-10 whitespace-nowrap"
-                        >
-                          {site.subdomain}.vercel.im ↗
-                        </a>
-                      </div>
+                  <div className="flex flex-col md:flex-row md:h-60 rounded-lg overflow-hidden border border-gray-200">
+                    <div className="relative w-full h-60 md:h-auto md:w-1/3 md:flex-none">
+                      <BlurImage
+                        src={site.image}
+                        layout="fill"
+                        objectFit="cover"
+                        alt={site.name}
+                      />
                     </div>
-                  </a>
+                    <div className="relative p-10">
+                      <h2 className="font-cal text-3xl">{site.name}</h2>
+                      <p className="text-base my-5 line-clamp-3">
+                        {site.description}
+                      </p>
+                      <a
+                        onClick={(e) => e.stopPropagation()}
+                        href={`https://${site.subdomain}.vercel.im`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="font-cal px-3 py-1 tracking-wide rounded bg-gray-200 text-gray-600 absolute bottom-5 left-10 whitespace-nowrap"
+                      >
+                        {site.subdomain}.vercel.im ↗
+                      </a>
+                    </div>
+                  </div>
                 </Link>
               ))
             ) : (

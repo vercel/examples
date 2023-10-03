@@ -10,7 +10,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="subdomain-auth" path="solutions/subdomain-auth">
+    <Layout
+      title="Securing routes with next-auth"
+      path="solutions/subdomain-auth"
+      description="How to secure subdomains using next-auth"
+    >
       <SessionProvider>
         <Component {...pageProps} />
       </SessionProvider>

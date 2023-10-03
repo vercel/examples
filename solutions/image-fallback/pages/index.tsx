@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { Layout, Text, Page, Link, Code } from '@vercel/examples-ui'
 import Image, { ImageProps } from 'next/image'
 import { useEffect, useState } from 'react'
@@ -46,17 +45,8 @@ const Snippet: React.VFC<{ children: React.ReactChild }> = ({ children }) => {
 function Home() {
   return (
     <Page>
-      <Head>
-        <title>Image fallback - Vercel Example</title>
-        <meta
-          name="description"
-          content="Vercel example how to use a fallback image while using the next/image component"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className="flex flex-col gap-6">
-        <Text variant="h1">Fallbacking images from next/image</Text>
+        <Text variant="h1">Fallback images from next/image</Text>
         <Text>
           Broken images can break our users experience, managing error states
           gracefully lets us have more control over how our UI should look like
@@ -95,7 +85,12 @@ function Home() {
         </Text>
         <article className="text-center flex flex-col sm:flex-row gap-12">
           <div className="m-auto">
-            <ImageWithFallback width={200} height={200} src={logo} />
+            <ImageWithFallback
+              width={200}
+              height={200}
+              src={logo}
+              alt="Vercel logo"
+            />
             <Text>This image should load correctly</Text>
           </div>
           <div className="m-auto">
@@ -104,6 +99,7 @@ function Home() {
               height={200}
               layout="fixed"
               src="/failed.jpg"
+              alt="Vercel logo"
             />
             <Text>This should not</Text>
           </div>

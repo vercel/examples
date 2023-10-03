@@ -1,16 +1,16 @@
 import NextAuth from 'next-auth'
-import GitHub from 'next-auth/providers/github'
+import GitHubProvider from 'next-auth/providers/github'
 
 const useSecureCookies = !!process.env.VERCEL_URL
 
 export default NextAuth({
   providers: [
-    GitHub({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID as string,
+      clientSecret: process.env.GITHUB_SECRET as string,
     }),
   ],
-  secret: process.env.SECRET,
+  secret: process.env.SECRET as string,
   cookies: {
     sessionToken: {
       name: `${useSecureCookies ? '__Secure-' : ''}next-auth.session-token`,
