@@ -40,7 +40,7 @@ const mockDB = [
 
 When deploying your own clone of this example, you will need to replace the data fetching methods in `getStaticPaths` and `getStaticProps` with your own database of choice (BYOD, _Bring-Your-Own-Database_).
 
-To give a bit of context of how this can be applied in a real-world context, we recently launched the [Platforms Starter Kit](https://demo.vercel.pub/platforms-starter-kit) – a comprehensive template for site builders, multi-tenant platforms, and low-code tools:
+To give a bit of context of how this can be applied in a real-world context, we recently launched the [Platforms Starter Kit](https://vercel.com/templates/next.js/platforms-starter-kit) – a comprehensive template for site builders, multi-tenant platforms, and low-code tools:
 
 - [demo.vercel.pub](https://demo.vercel.pub)
 - [platformize.co](https://platformize.co) (custom domain that maps to [demo.vercel.pub](https://demo.vercel.pub))
