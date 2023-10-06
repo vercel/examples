@@ -15,7 +15,7 @@
     "@vercel/examples-ui": "^2.0.3",
     "autoprefixer": "^10.4.15",
     "eslint-config-next": "^13.4.19",
-    "hypertune": "^1.7.5",
+    "hypertune": "^1.7.8",
     "next": "canary",
     "react": "latest",
     "react-dom": "latest"
