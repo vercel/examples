@@ -5,7 +5,7 @@ import Table from '@/components/table'
 import TablePlaceholder from '@/components/table-placeholder'
 import ExpandingArrow from '@/components/expanding-arrow'
 
-export const preferredRegion = 'home'
+export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 export default function Home() {
