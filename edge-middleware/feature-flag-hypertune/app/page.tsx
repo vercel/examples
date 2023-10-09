@@ -1,7 +1,6 @@
 import React from 'react'
-import hypertune from '../lib/hypertune'
-import ClientExample from '../lib/ClientExample'
 import { Text, Page, Link, List } from '@vercel/examples-ui'
+import ServerExample from '../lib/ServerExample'
 
 export const metadata = {
   title: 'Vercel x Hypertune example',
@@ -11,20 +10,7 @@ export const metadata = {
 
 export const runtime = 'edge'
 
-async function getFlags() {
-  await hypertune.waitForInitialization()
-  const rootNode = hypertune.root({
-    context: {
-      user: { id: 'test', name: 'Test', email: 'test@test.com' },
-    },
-  })
-  const exampleFlag = rootNode.exampleFlag().get(/* fallback */ false)
-  console.log('Server-side rendering feature flag:', exampleFlag)
-  return { exampleFlag }
-}
-
 export default async function Home() {
-  const { exampleFlag } = await getFlags()
   return (
     <Page className="flex flex-col gap-12">
       <section className="flex flex-col gap-6">
@@ -41,12 +27,7 @@ export default async function Home() {
         </Text>
       </section>
       <section className="flex flex-col gap-4">
-        <div>
-          <Text>
-            Server-side feature flag: <strong>{String(exampleFlag)}</strong>
-          </Text>
-          <ClientExample />
-        </div>
+        <ServerExample />
         <Text>
           Once you&apos;ve deployed this project, open the{' '}
           <Link href="https://app.hypertune.com/" target="_blank">
@@ -68,10 +49,6 @@ export default async function Home() {
             your environment variables
           </li>
           <li>
-            Copy the <strong>NEXT_PUBLIC_HYPERTUNE_TOKEN</strong> variable from
-            <strong>.env.development.local</strong> to <strong>.env</strong>
-          </li>
-          <li>
             Run <strong>npm i</strong>
           </li>
           <li>
@@ -80,22 +57,15 @@ export default async function Home() {
         </List>
         <Text>
           This example assumes your Hypertune project has an{' '}
-          <strong>exampleFlag</strong> feature flag defined on the{' '}
-          <strong>root</strong> field in your project schema. If you created a
-          new Hypertune project while installing the integration, it will have
-          this feature flag by default. But if you connected an existing
-          Hypertune project without this example flag, follow the instructions
-          below:
+          <strong>exampleFlag</strong> feature flag.
         </Text>
         <Text>
-          To add new feature flags, define them in your project schema and
-          configure their logic in the{' '}
+          To add a new feature flag, create it in the{' '}
           <Link href="https://app.hypertune.com/" target="_blank">
             Hypertune console
           </Link>
-          . Then add them to <strong>hypertune.graphql</strong> and run{' '}
-          <strong>npx hypertune</strong> to generate type-safe methods for them
-          which you can use in your app.
+          , then regenerate the client with <strong>npx hypertune</strong> so
+          you can access it with end-to-end type-safety.
         </Text>
       </section>
     </Page>

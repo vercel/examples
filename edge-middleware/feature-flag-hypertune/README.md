@@ -14,11 +14,15 @@ relatedTemplates:
 
 # Feature flags, A/B testing and app configuration with Hypertune and Vercel Edge Config
 
-[Hypertune](https://www.hypertune.com/) is a powerful feature flag, A/B testing and app configuration platform. Built for TypeScript, Next.js, Vercel and the modern stack with full type-safety and Git version control.
+[Hypertune](https://www.hypertune.com/) is a powerful feature flag, A/B testing and app configuration platform. Optimized for Next.js, Vercel Edge Config and TypeScript. Built with full type-safety and Git version control.
 
-The Hypertune SDK works on both the server and the client, so you don't need to set up and use different SDKs in your Next.js app. It ships with the Hypertune CLI which auto-generates code from your project schema so you can access your flags, initialize context arguments and update flag logic with end-to-end type-safety.
+No need to juggle different SDKs for the client and the server. Install one JavaScript SDK that works on both the client and the server and is ready for the new App Router paradigm with React Server Components.
 
-This example uses Vercel Edge Config to initialize the Hypertune SDK with zero latency, so you can access your feature flags and run A/B tests with no performance impact to your app.
+Avoid cumulative layout shift, flickers, out-of-sync client hydration and page load delay. Instantly initialize the SDK on the server from Vercel Edge Config. And instantly initialize the SDK on the client from server props on the first render.
+
+Get auto-generated type-safe code for all your flags. No `Uncaught ReferenceError: flag is not defined`, no raw strings, no typos and no struggling to find flag references or clean up stale flags.
+
+This example uses Vercel Edge Config to initialize the Hypertune SDK with near-zero latency on the server, so you can access your feature flags and run A/B tests with no performance impact to your app.
 
 ## Deploy with Vercel
 
@@ -37,16 +41,11 @@ Once you've deployed your project, open the [Hypertune console](https://app.hype
 1. Clone your project's repository and `cd` into it
 2. Run `vercel link` to link to the Vercel project
 3. Run `vercel env pull .env.development.local` to pull your environment variables
-4. Copy the `NEXT_PUBLIC_HYPERTUNE_TOKEN` variable from `.env.development.local` to `.env`
-5. Run `npm i`
-6. Run `npm run dev`
+4. Run `npm i`
+5. Run `npm run dev`
 
-This example assumes your Hypertune project has an `exampleFlag` feature flag defined on the `root` field in your project schema. If you created a new Hypertune project while installing the integration, it will have this feature flag by default.
-
-But if you connected an existing Hypertune project without this example flag, follow the instructions below.
+This example assumes your Hypertune project has an `exampleFlag` feature flag.
 
 ### Add new feature flags
 
-To add new feature flags, define them in your project schema and configure their logic in the [Hypertune console](https://app.hypertune.com/).
-
-Then add them to `hypertune.graphql` and run `npx hypertune` to generate type-safe methods for them which you can use in your app.
+To add a new feature flag, create it in the [Hypertune console](https://app.hypertune.com/), then regenerate the client with `npx hypertune` so you can access it with end-to-end type-safety.

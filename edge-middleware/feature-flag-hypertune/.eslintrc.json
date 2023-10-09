@@ -1,8 +1,4 @@
 {
-  "extends": ["eslint:recommended", "prettier", "next/core-web-vitals"],
-  "plugins": ["prettier"],
-  "rules": {
-    "prettier/prettier": ["error"],
-    "no-unused-vars": "off"
-  }
+  "root": true,
+  "extends": "next/core-web-vitals"
 }
