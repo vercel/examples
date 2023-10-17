@@ -5,6 +5,7 @@ import getTest from './lib/get-test'
 
 type Attributes = {
   demoUrl?: string
+  ignoreE2E?: boolean
 }
 
 async function generateTests() {
@@ -48,7 +49,7 @@ async function generateTests() {
           )
           const { attributes } = frontMatter<Attributes>(content)
 
-          if (!attributes.demoUrl) return
+          if (!attributes.demoUrl || attributes.ignoreE2E) return
 
           const testContent = getTest(attributes.demoUrl)
 
