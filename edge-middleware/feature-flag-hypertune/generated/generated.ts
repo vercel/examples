@@ -26,8 +26,10 @@ const query = {"Query":{"objectTypeName":"Query","selection":{"root":{"fieldArgu
 
 
 
-
+export type Rec = {
   
+}
+
 export type Rec4 = {
   id: string;
 name: string;
@@ -42,12 +44,6 @@ export type Rec2 = {
   context: Rec3;
 }
 
-export type Rec = {
-  
-}
-  
-
-  
 export class RootNode extends sdk.Node {
   typeName = "Root" as const;
 

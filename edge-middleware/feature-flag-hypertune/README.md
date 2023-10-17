@@ -34,7 +34,7 @@ You'll be guided through installing the [Hypertune Vercel integration](https://v
 
 ### Update your feature flag logic
 
-Once you've deployed your project, open the [Hypertune console](https://app.hypertune.com/) to update your feature flag logic.
+Once you've deployed your project, open the [Hypertune UI](https://app.hypertune.com/) to update your feature flag logic.
 
 ### Develop your project locally
 
@@ -48,4 +48,4 @@ This example assumes your Hypertune project has an `exampleFlag` feature flag.
 
 ### Add new feature flags
 
-To add a new feature flag, create it in the [Hypertune console](https://app.hypertune.com/), then regenerate the client with `npx hypertune` so you can access it with end-to-end type-safety.
+To add a new feature flag, create it in the [Hypertune UI](https://app.hypertune.com/), then regenerate the client with `npx hypertune` so you can access it with end-to-end type-safety.

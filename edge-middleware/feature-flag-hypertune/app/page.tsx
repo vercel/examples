@@ -31,7 +31,7 @@ export default async function Home() {
         <Text>
           Once you&apos;ve deployed this project, open the{' '}
           <Link href="https://app.hypertune.com/" target="_blank">
-            Hypertune console
+            Hypertune UI
           </Link>{' '}
           and try updating your feature flag logic.
         </Text>
@@ -62,7 +62,7 @@ export default async function Home() {
         <Text>
           To add a new feature flag, create it in the{' '}
           <Link href="https://app.hypertune.com/" target="_blank">
-            Hypertune console
+            Hypertune UI
           </Link>
           , then regenerate the client with <strong>npx hypertune</strong> so
           you can access it with end-to-end type-safety.
