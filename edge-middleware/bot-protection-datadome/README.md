@@ -7,6 +7,7 @@ useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel-customer-feedback%2Fedge-middleware%2Ftree%2Fmain%2Fexamples%2Fbot-protection-datadome&env=NEXT_PUBLIC_DATADOME_CLIENT_KEY,DATADOME_SERVER_KEY&project-name=bot-protection-datadome&repository-name=bot-protection-datadome
 demoUrl: https://edge-functions-bot-protection-datadome.vercel.app
+ignoreE2E: true
 relatedTemplates:
   - api-rate-limit-and-tokens
   - bot-protection-botd
