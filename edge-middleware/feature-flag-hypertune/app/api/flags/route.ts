@@ -5,13 +5,15 @@ export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 export async function GET() {
-  await hypertune.waitForInitialization()
+  await hypertune.initFromServerIfNeeded()
+
   const rootNode = hypertune.root({
     context: {
       user: { id: 'test', name: 'Test', email: 'test@test.com' },
     },
   })
   const exampleFlag = rootNode.exampleFlag().get(/* fallback */ false)
-  console.log('Server-side route handler feature flag:', exampleFlag)
+  console.log('Edge Function flag:', exampleFlag)
+
   return NextResponse.json({ exampleFlag })
 }
