@@ -22,6 +22,8 @@ export default function Analytics() {
 }
 ```
 
+Demo: https://geolocation-script.vercel.app/
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:
