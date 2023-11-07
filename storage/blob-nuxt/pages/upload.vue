@@ -2,7 +2,7 @@
   <div class="p-10">
     <div class="flex items-center justify-center w-full">
       <a
-        href="https://vercel.com/templates/next.js/blob-sveltekit"
+        href="https://vercel.com/templates/next.js/blob-nuxt"
         class="px-10 py-2 space-x-1 text-sm font-medium text-gray-600 transition-all rounded-full shadow-sm group sm:mt-0 bg-white/30 ring-1 ring-gray-900/5 hover:shadow-lg active:shadow-sm"
       >
         Deploy your own to Vercel
@@ -122,11 +122,11 @@
       demo.
       <span>Built with</span>
       <a
-        href="https://kit.svelte.dev/"
+        href="https://nuxt.com/"
         class="flex items-center font-medium underline transition-colors underline-offset-4 hover:text-black"
       >
-        <img src="svelte_logo.png" alt="svelte logo" class="h-6 mx-1" />
-        <p>SvelteKit</p>
+        <img src="nuxt_logo.svg" alt="nuxt logo" class="h-6 mx-1" />
+        <p>Nuxt</p>
       </a>
       .
     </div>
@@ -135,7 +135,7 @@
         <img src="/vercel.svg" alt="Vercel Logo" width="100" height="24" />
       </a>
       <a
-        href="https://github.com/vercel/examples/tree/main/storage/blob-sveltekit"
+        href="https://github.com/vercel/examples/tree/main/storage/blob-nuxt"
         class="flex items-center space-x-2"
       >
         <img src="/github.svg" alt="GitHub Logo" width="24" height="24" />
