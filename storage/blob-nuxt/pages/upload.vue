@@ -1,11 +1,14 @@
 <template>
-  <div>
-    <a
-      href="https://vercel.com/templates/next.js/blob-sveltekit"
-      class="flex px-10 py-2 mt-20 space-x-1 text-sm font-medium text-gray-600 transition-all rounded-full shadow-sm group sm:mt-0 bg-white/30 ring-1 ring-gray-900/5 hover:shadow-lg active:shadow-sm"
-    >
-      Deploy your own to Vercel
-    </a>
+  <div class="p-10">
+    <div class="flex items-center justify-center w-full">
+      <a
+        href="https://vercel.com/templates/next.js/blob-sveltekit"
+        class="px-10 py-2 space-x-1 text-sm font-medium text-gray-600 transition-all rounded-full shadow-sm group sm:mt-0 bg-white/30 ring-1 ring-gray-900/5 hover:shadow-lg active:shadow-sm"
+      >
+        Deploy your own to Vercel
+      </a>
+    </div>
+
     <h1
       class="pt-4 pb-8 bg-gradient-to-br from-black via-[#171717] to-[#575757] bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
     >
@@ -31,35 +34,43 @@
             for="image-upload"
             class="relative flex flex-col items-center justify-center mt-2 transition-all bg-white border border-gray-300 rounded-md shadow-sm cursor-pointer group h-72 hover:bg-gray-50"
           >
-            <div class="absolute z-[5] h-full w-full rounded-md">
+            <div class="z-[5] h-full w-full rounded-md">
               <div
-                class="absolute z-[3] flex h-full w-full flex-col items-center justify-center rounded-md px-10 transition-all bg-white opacity-100 hover:bg-gray-50"
+                class="z-[3] flex h-full w-full flex-col items-center justify-center rounded-md px-10 transition-all bg-white opacity-100 hover:bg-gray-50"
               >
-                <svg
-                  class="text-gray-500 transition-all duration-75 h-7 w-7 group-hover:scale-110 group-active:scale-95"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                <div
+                  class="flex flex-col items-center justify-center"
+                  v-if="!file"
                 >
-                  <path
-                    d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"
-                  />
-                  <path d="M12 12v9" />
-                  <path d="m16 16-4-4-4 4" />
-                </svg>
-                <p class="mt-2 text-sm text-center text-gray-500">
-                  Click to upload.
-                </p>
-                <p class="mt-2 text-sm text-center text-gray-500">
-                  Max file size: 50MB
-                </p>
-                <span class="sr-only">Photo upload</span>
+                  <svg
+                    class="text-gray-500 transition-all duration-75 h-7 w-7 group-hover:scale-110 group-active:scale-95"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"
+                    />
+                    <path d="M12 12v9" />
+                    <path d="m16 16-4-4-4 4" />
+                  </svg>
+                  <p class="mt-2 text-sm text-center text-gray-500">
+                    Click to upload.
+                  </p>
+                  <p class="mt-2 text-sm text-center text-gray-500">
+                    Max file size: 50MB
+                  </p>
+                  <span class="sr-only">Photo upload</span>
+                </div>
+                <div v-else>
+                  {{ file.name }}
+                </div>
               </div>
             </div>
           </label>
@@ -76,9 +87,9 @@
         </div>
 
         <button
-          :disabled="file === null"
+          :disabled="!file"
           :class="`flex items-center border rounded-md focus:outline-none justify-center w-full h-10 text-sm transition-all ${
-            file === null ? buttonClass : ''
+            !file ? buttonClass : ''
           }`"
         >
           <p class="text-sm">Confirm upload</p>
@@ -100,7 +111,7 @@
       </form>
     </div>
     <div
-      class="flex justify-center w-full max-w-lg gap-1 mt-6 font-light text-center text-gray-600"
+      class="flex justify-center w-full gap-1 mt-20 font-light text-center text-gray-600"
     >
       <a
         href="https://vercel.com/blob"
@@ -119,9 +130,7 @@
       </a>
       .
     </div>
-    <div
-      class="flex justify-between w-full px-20 py-10 sm:absolute sm:bottom-0"
-    >
+    <div class="flex items-center justify-center w-full px-20 py-10 space-x-8">
       <a href="https://vercel.com">
         <img src="/vercel.svg" alt="Vercel Logo" width="100" height="24" />
       </a>
