@@ -14,8 +14,8 @@ In this case, the contents of the Serverless Function are located in the
 [`.vercel/output/functions/index.func`](./.vercel/output/functions/index.func) directory.
 This means that the Serverless Function will be accessible at the `/index` (or `/`) path of the Deployment.
 
-The [`.vc-config.json`](./.vercel/output/functions/index.func/.vc-config.json) file specifies `"runtime": "nodejs14.x"`
-which informs Vercel that the endpoint should be created as a Serverless Function, using Node.js version 14.
+The [`.vc-config.json`](./.vercel/output/functions/index.func/.vc-config.json) file specifies `"runtime": "nodejs18.x"`
+which informs Vercel that the endpoint should be created as a Serverless Function, using Node.js version 18.
 
 The `"handler": "index.js"` field indicates that the [`index.js`](.vercel/output/functions/index.func/index.js)
 source code file will be the starting point of execution when the Serverless Function is invoked.

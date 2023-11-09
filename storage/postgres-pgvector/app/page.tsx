@@ -4,9 +4,6 @@ import { Search } from '@/components/search'
 import Image from 'next/image'
 import Link from 'next/link'
 
-// Prisma does not support Edge without the Data Proxy currently
-export const runtime = 'nodejs' // default
-export const preferredRegion = 'home'
 export const dynamic = 'force-dynamic'
 
 export default function Home() {
@@ -90,7 +87,7 @@ export default function Home() {
           />
         </Link>
         <Link
-          href="https://github.com/vercel/examples/tree/main/storage/postgres-prisma"
+          href="https://github.com/vercel/examples/tree/main/storage/postgres-pgvector"
           className="lg:absolute bottom-12 right-12 flex items-center space-x-2"
         >
           <Image

@@ -54,13 +54,23 @@ module.exports = {
 
 ### 4. Adding global styles
 
-Open `_app.tsx` and add the following import to include the global CSS of the package and Tailwind base CSS:
+#### In the App Router
+
+Open any layout or page where you want the global styles to be applied and add the following import:
 
 ```tsx
 import '@vercel/examples-ui/globals.css'
 ```
 
-If you don't have a `_app.tsx` already it should look like this:
+#### In pages
+
+Open `pages/_app.tsx` and add the following import to include the global CSS of the package and Tailwind base CSS:
+
+```tsx
+import '@vercel/examples-ui/globals.css'
+```
+
+If you don't have a `pages/_app.tsx` already it should look like this:
 
 ```tsx
 import type { AppProps } from 'next/app'
@@ -114,3 +124,11 @@ npm i $(npm pack ../../internal/packages/ui | tail -1)
 ```
 
 > Make sure to have dependencies installed in `internal/packages/ui` or otherwise the symlink won't resolve imports.
+
+### Creating a changeset
+
+To create a changeset, run:
+
+```bash
+pnpm changeset
+```

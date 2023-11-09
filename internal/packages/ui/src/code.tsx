@@ -1,14 +1,12 @@
-import { FC, HTMLAttributes } from 'react'
-import cn from 'clsx'
+import type { HTMLAttributes } from 'react'
+import clsx from 'clsx'
 
-const Code: FC<HTMLAttributes<HTMLElement>> = ({ className, ...props }) => (
+export const Code = ({ className, ...props }: HTMLAttributes<HTMLElement>) => (
   <code
-    className={cn(
+    className={clsx(
       'text-code text-base whitespace-pre-wrap before:content-["`"] after:content-["`"]',
       className
     )}
     {...props}
   />
 )
-
-export default Code

@@ -7,8 +7,3 @@ export interface Product {
   category: string
   hasStock: boolean
 }
-
-export interface Tweet {
-  id: string
-  text: string
-}

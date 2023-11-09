@@ -1,4 +1,4 @@
-import { Product, Tweet } from './types'
+import { Product } from './types'
 
 function getRandomPrice(): number {
   return Math.floor(Math.random() * 60)
@@ -9,20 +9,6 @@ function getRandomHasStock(): boolean {
 }
 
 const api = {
-  tweets: async (): Promise<Tweet[]> => {
-    const tweets: Tweet[] = await fetch(
-      'https://api.twitter.com/2/tweets/search/recent?query=%23nextjs%20-is%3Aretweet%20-is%3Areply%20-is%3Aquote%20lang%3Aen&tweet.fields=text,lang&user.fields=username,profile_image_url',
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.TWITTER_TOKEN}`,
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then(({ data }) => data)
-
-    return tweets
-  },
   list: async (): Promise<Product[]> => [
     {
       id: 'headphones',
