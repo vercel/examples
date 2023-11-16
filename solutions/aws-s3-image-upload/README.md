@@ -29,12 +29,12 @@ pnpm create next-app --example https://github.com/vercel/examples/tree/main/solu
 1. Create a new [IAM User](https://aws.amazon.com/iam/):
    1. Choose programatic access.
    2. Select "Attach existing policies directly"
-   3. Add `AmazonS3FullAccess`.
+   3. Add the following policies: `s3:DeleteObject`, `s3:GetObject`, `s3:ListBucket`, `s3:PutObject`, `s3:PutObjectAcl`
 1. Save the access key and secret key for the IAM User.
    1. This is used for programmatic access in the API Route.
 1. Install the [AWS CLI](https://aws.amazon.com/cli/):
    1. Run `aws configure`.
-   2. Enter your root AWS user access key and secret key.
+   2. Enter your AWS IAM user access key and secret key.
    3. Enter your default region.
 1. Create an `.env.local` file similar to `.env.example`.
    1. Enter your access key and secret key from the IAM user.
