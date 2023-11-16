@@ -43,3 +43,6 @@ yarn-error.log*
 # Playwright
 packages/playwright/.cache/
 packages/playwright/test-results/
+
+# Storybook
+storybook-static

@@ -1,7 +1,7 @@
 import { Layout, Page, Text, Code, Link } from '@vercel/examples-ui'
 import Navbar from '../components/navbar'
 
-export default function About() {
+export default function About(): React.ReactNode {
   return (
     <Page>
       <Navbar />

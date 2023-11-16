@@ -29,22 +29,12 @@ Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packag
 pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/on-demand-isr
 ```
 
-#### Set up environment variables
-
-The app uses the Twitter API to fetch tweets in [pages/tweets.tsx](pages/tweets.tsx). You can get a token in https://developer.twitter.com.
-
-Then, rename [`.env.example`](.env.example) to `.env.local` (which will be ignored by Git):
-
-```bash
-cp .env.example .env.local
-```
-
-And update `TWITTER_TOKEN` and `SECRET` (the secret protecting the API route in [pages/api/revalidates/tweets.ts](pages/api/revalidate/tweets.ts)).
-
 Next, run Next.js in development mode:
 
 ```bash
 pnpm dev
 ```
+
+The app should be up and running on [http://localhost:3000](http://localhost:3000)!
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).

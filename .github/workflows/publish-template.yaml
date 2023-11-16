@@ -26,12 +26,12 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
-          version: 7.12.1
+          version: 8.2.0
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.14
+          node-version: 18.16
           cache: pnpm
 
       - name: Install pnpm Dependencies
@@ -42,7 +42,7 @@ jobs:
         uses: tj-actions/changed-files@v18.7
 
       - name: Publish template
-        run: pnpm update-templates ${{ steps.changed-files.outputs.all_changed_files }}
+        run: pnpm update-templates "${{ steps.changed-files.outputs.all_changed_files }}"
         env:
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}

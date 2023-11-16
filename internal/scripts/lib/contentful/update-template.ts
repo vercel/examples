@@ -13,7 +13,8 @@ export default async function updateTemplate({
   examplePath: string
 }) {
   const contentful = initContentful(ACCESS_TOKEN)
-  const readme = await getReadme(examplePath)
+  // We have to go out of `/internal` to find the readme
+  const readme = await getReadme(path.join('../', examplePath))
 
   if (!readme) {
     throw new Error(`No README.md found in example directory ${examplePath}`)

@@ -1,5 +1,29 @@
 # @vercel/examples-ui
 
+## 2.0.3
+
+### Patch Changes
+
+- 8a478a4f: Fixed types
+
+## 2.0.2
+
+### Patch Changes
+
+- 20459eed: Fix error with next/link import
+
+## 2.0.1
+
+### Patch Changes
+
+- b7ec0531: Fixed published types
+
+## 2.0.0
+
+### Major Changes
+
+- 285ad9ee: Updated UI library to not exports all files and to support the App Router
+
 ## 1.0.5
 
 ### Patch Changes

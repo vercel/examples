@@ -140,13 +140,6 @@ pre {
   color: rgba(255, 255, 255, 1);
   width: 66.666667%;
 }
-#middle-content {
-  align-items: flex-start;
-  display: grid;
-  gap: 4rem;
-  grid-template-columns: 1fr;
-  margin-top: 3.5rem;
-}
 #learning-materials {
   padding: 2.5rem 2rem;
 }
@@ -393,8 +386,5 @@ summary svg {
   }
   #hero .logo-container {
     display: flex;
-  }
-  #middle-content {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

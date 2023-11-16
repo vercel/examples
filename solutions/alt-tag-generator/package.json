@@ -12,7 +12,8 @@
   "dependencies": {
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "replicate": "^0.9.0"
   },
   "devDependencies": {
     "@types/node": "18.11.10",

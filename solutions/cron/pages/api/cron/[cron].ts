@@ -1,12 +1,13 @@
-import { redis } from '@/lib/upstash'
 import { NextRequest, NextResponse } from 'next/server'
+import { kv } from '@vercel/kv'
 
 export const config = {
   runtime: 'edge',
 }
 
 export default async function handler(req: NextRequest) {
-  const cron = req.nextUrl.searchParams.get('cron')
+  const cron = req.nextUrl.pathname.split('/')[3]
+  console.log(cron)
   if (!cron) return new Response('No cron provided', { status: 400 })
   const response = await update(cron)
   return new NextResponse(JSON.stringify(response), {
@@ -19,7 +20,7 @@ async function update(interval: string) {
     'https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty'
   ).then((res) => res.json())
 
-  const response = await redis.set(interval, {
+  const response = await kv.set(interval, {
     fetchedAt: Date.now(),
     id: topstories[0],
   })

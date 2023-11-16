@@ -1,11 +1,11 @@
-import React, { InputHTMLAttributes } from 'react'
+import { InputHTMLAttributes } from 'react'
 import cn from 'clsx'
 
-const Input: React.FC<InputHTMLAttributes<HTMLInputElement>> = ({
+export const Input = ({
   children,
   className,
   ...rest
-}) => (
+}: InputHTMLAttributes<HTMLInputElement>) => (
   <input
     className={cn(
       'px-3 py-1 transition-colors duration-200 bg-background block font-sans text-sm leading-7 w-full text-foreground caret-foreground',
@@ -18,5 +18,3 @@ const Input: React.FC<InputHTMLAttributes<HTMLInputElement>> = ({
     {children}
   </input>
 )
-
-export default Input

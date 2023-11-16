@@ -1,28 +1,23 @@
+/**
+ * This middleware is only here to make sure your demo setup is correct.
+ *
+ * It would not be needed in a real application.
+ */
 import { NextRequest, NextResponse } from 'next/server'
-import { getTreatment } from '@lib/split-node'
-import { SPLITS } from '@lib/split'
+import { has } from '@vercel/edge-config'
 
 export const config = {
-  matcher: ['/about', '/marketing'],
+  matcher: ['/', '/about', '/marketing'],
 }
 
-export function middleware(req: NextRequest) {
-  const split = req.nextUrl.pathname.replace('/', '')
-  const cookieKey = `flag-${split}`
-  // Get the cookie from the request or a default value from split
-  const cookieValue =
-    req.cookies.get(cookieKey)?.value ||
-    (getTreatment('anonymous', SPLITS[split]) === 'on' ? '1' : '0')
-
-  // Set the pathname based on the split and cookie value
-  req.nextUrl.pathname = cookieValue === '1' ? `/${split}/b` : `/${split}`
-
-  const res = NextResponse.rewrite(req.nextUrl)
-
-  // Add the cookie if it's not there
-  if (!req.cookies[cookieKey]) {
-    res.cookies.set(cookieKey, cookieValue)
+export async function middleware(req: NextRequest) {
+  if (!process.env.EDGE_CONFIG || !process.env.EDGE_CONFIG_SPLIT_ITEM_KEY) {
+    req.nextUrl.pathname = `/missing-edge-config`
+    return NextResponse.rewrite(req.nextUrl)
   }
 
-  return res
+  if (!(await has(process.env.EDGE_CONFIG_SPLIT_ITEM_KEY))) {
+    req.nextUrl.pathname = `/missing-split-item`
+    return NextResponse.rewrite(req.nextUrl)
+  }
 }

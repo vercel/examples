@@ -27,16 +27,16 @@ pnpm create next-app --example https://github.com/vercel/examples/tree/main/solu
 ```
 
 1. Create a new [S3 Bucket](https://console.aws.amazon.com/s3/).
-   1. In Object Ownership, select "ACLs enabled" and "Bucket owner preffered"
+   1. In Object Ownership, select "ACLs enabled" and "Bucket owner prefered"
    2. In Block Public Access settings for this bucket, uncheck "Block all public access".
 1. Create a new [IAM User](https://aws.amazon.com/iam/).
    1. Select "Attach policies directly".
-   2. Add `AmazonS3FullAccess`.
+   2. Add `s3:DeleteObject`, `s3:GetObject`, `s3:ListBucket`, `s3:PutObject`, `s3:PutObjectAcl`
 1. Save the access key and secret key for the IAM User.
    1. Select the newly created user (IAM > Users > "your-user") and navigate to "Security Credentials".
    2. Under "Access Keys", create a key and save this information. We will use this in the next step.
 1. Create an `.env.local` file similar to `.env.example`.
-   1. In the env.local, use the information from your access key, along with the region and bucket name.
+   1. In your `env.local` file, use the information from your access key, along with the region and bucket name.
    1. Do not adjust the naming of the keys, only input your values. [This is to ensure S3 Client can read them as defaults](https://docs.aws.amazon.com/sdkref/latest/guide/settings-reference.html).
 1. Configure CORS to enable uploads from your browser.
    1. Navigate to your bucket, and go to the "Permissions" tab.
@@ -99,21 +99,15 @@ The SDK will pick up the credentials from the environment automatically.
 
 ## Additional Resources
 
-[AWS Environment Variables]
+### AWS Environment Variables
 
 - AWS Environment Variables: https://docs.aws.amazon.com/sdkref/latest/guide/settings-reference.html
 - AWS Environment Variable Default “Load Credential”: https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html
 
-[AWS SDK - Presigned Post]
+### AWS SDK - Presigned Post
 
 - How to use PresignedPost URLs (this example includes adding user id as metadata): https://advancedweb.hu/how-to-use-s3-post-signed-urls/
 - AWS SDK v3 - S3Client Initalization (see Usage): https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/index.html
 - AWS SDK - Generate a Presigned Post: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_s3_presigned_post.html#generate-a-presigned-post
 - AWS S3 POST Policy - Condition Matching (only allow images): https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-HTTPPOSTConstructPolicy.html
 - AWS ACL Permissions: https://stackoverflow.com/a/70550540/19416953
-
-[Next.js 13]
-
-- Next.js 13 Route Handlers: https://beta.nextjs.org/docs/routing/route-handlers
-- Next.js 13 “use client”: https://beta.nextjs.org/docs/rendering/server-and-client-components#convention
-- Next.js Expose Environment Variables to Browser using NEXT_PUBLIC: https://nextjs.org/docs/basic-features/environment-variables#exposing-environment-variables-to-the-browser
