@@ -1,6 +1,4 @@
 {
-  "name": "please-remember-me",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,21 +7,21 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.299.0",
-    "@aws-sdk/s3-presigned-post": "^3.299.0",
-    "@aws-sdk/signature-v4-crt": "^3.299.0",
-    "@types/node": "18.15.7",
-    "@types/react": "18.0.29",
-    "@types/react-dom": "18.0.11",
-    "aws-crt": "^1.15.13",
-    "aws-sdk": "^2.1343.0",
+    "@aws-sdk/client-s3": "^3.451.0",
+    "@aws-sdk/s3-presigned-post": "^3.451.0",
+    "@aws-sdk/signature-v4-crt": "^3.451.0",
+    "@types/node": "20.9.0",
+    "@types/react": "18.2.37",
+    "@types/react-dom": "18.2.15",
+    "aws-crt": "^1.19.0",
+    "aws-sdk": "^2.1497.0",
     "encoding": "^0.1.13",
-    "eslint": "8.36.0",
-    "eslint-config-next": "13.2.4",
-    "next": "^13.2.4",
+    "eslint": "8.53.0",
+    "eslint-config-next": "14.0.2",
+    "next": "^14.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.0.2",
-    "uuid": "^9.0.0"
+    "typescript": "5.2.2",
+    "uuid": "^9.0.1"
   }
 }

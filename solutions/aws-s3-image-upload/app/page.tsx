@@ -1,9 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Page() {
   const [file, setFile] = useState<File | null>(null)
@@ -39,8 +36,6 @@ export default function Page() {
       })
       formData.append('file', file)
 
-      console.log(formData.append)
-
       const uploadResponse = await fetch(url, {
         method: 'POST',
         body: formData,
@@ -61,7 +56,7 @@ export default function Page() {
 
   return (
     <main>
-      <h1 className={inter.className}>Upload a File to S3</h1>
+      <h1>Upload a File to S3</h1>
       <form onSubmit={handleSubmit}>
         <input
           id="file"
@@ -74,7 +69,7 @@ export default function Page() {
           }}
           accept="image/png, image/jpeg"
         />
-        <button className={inter.className} type="submit" disabled={uploading}>
+        <button type="submit" disabled={uploading}>
           Upload
         </button>
       </form>
