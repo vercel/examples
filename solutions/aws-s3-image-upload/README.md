@@ -3,7 +3,7 @@ name: AWS S3 Image Upload
 slug: aws-s3-image-upload
 description: Learn to use AWS S3 to upload images to your bucket.
 framework: Next.js
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-s3-image-upload&project-name=aws-s3-image-upload&repository-name=aws-s3-image-upload&env=AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_REGION,BUCKET_NAME
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-s3-image-upload&project-name=aws-s3-image-upload&repository-name=aws-s3-image-upload&env= AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,AWS_REGION,AWS_BUCKET_NAME
 ---
 
 # Next.js + AWS S3 Upload
