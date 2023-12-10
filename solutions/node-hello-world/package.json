@@ -3,6 +3,9 @@
   "license": "MIT",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "devDependencies": {
     "@types/node": "^18.18.13",
     "@vercel/node": "^3.0.11",
