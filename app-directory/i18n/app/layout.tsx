@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Layout path="app-directory/css-in-js">{children}</Layout>
+        <Layout path="app-directory/i18n">{children}</Layout>
       </body>
     </html>
   )
