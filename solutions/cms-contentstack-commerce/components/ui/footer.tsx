@@ -1,12 +1,6 @@
-import { FC } from 'react'
 import { Github } from '../icons'
 import { Container } from './container'
 import I18nWidget from './I18nWidget'
-
-interface Props {
-  className?: string
-  children?: any
-}
 
 const footerNavigation = {
   shop: [
@@ -37,7 +31,7 @@ const footerNavigation = {
   ],
 }
 
-export const Footer: FC<Props> = () => {
+export const Footer = () => {
   return (
     <footer
       className="border-gray-200 border-t"
