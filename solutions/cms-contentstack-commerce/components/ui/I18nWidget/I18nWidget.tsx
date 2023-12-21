@@ -1,9 +1,8 @@
-import cn from 'classnames'
 import Link from 'next/link'
 import { FC, useState } from 'react'
 import { useRouter } from 'next/router'
-import s from './I18nWidget.module.css'
 import { Cross } from '@components/icons'
+
 interface LOCALE_DATA {
   name: string
   img: {
@@ -41,9 +40,12 @@ const I18nWidget: FC = () => {
   const currentLocale = locale || defaultLocale
 
   return (
-    <nav className={s.root}>
+    <nav className="relative">
       <div className="flex items-center relative">
-        <button className={s.button} aria-label="Language selector" />
+        <button
+          className="h-10 px-2 rounded-md flex items-center justify-center focus:outline-none"
+          aria-label="Language selector"
+        />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="block mr-2 w-5"
@@ -70,12 +72,12 @@ const I18nWidget: FC = () => {
       </div>
       <div className="absolute top-0 right-0">
         {options?.length && display ? (
-          <div className={s.dropdownMenu}>
+          <div className="fixed right-0 top-10 mt-2 origin-top-right outline-none bg-white z-40 w-full h-full md:absolute md:border md:border-accents-1 md:shadow-lg md:w-56 md:h-auto">
             <div className="flex flex-row justify-end px-6">
               <button
                 onClick={() => setDisplay(false)}
                 aria-label="Close panel"
-                className={s.closeButton}
+                className="transition ease-in-out duration-150 hover:text-gray-500 md:hidden"
               >
                 <Cross className="h-6 w-6" />
               </button>
@@ -86,7 +88,7 @@ const I18nWidget: FC = () => {
                   <Link
                     href={currentPath}
                     locale={locale}
-                    className={cn(s.item)}
+                    className="flex cursor-pointer px-6 py-3 flex transition ease-in-out duration-150 text-black leading-6 font-medium items-center capitalize hover:bg-accents-1"
                     onClick={() => setDisplay(false)}
                   >
                     {LOCALES_MAP[locale].name}

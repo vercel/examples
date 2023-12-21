@@ -1,6 +1,3 @@
-import createFetch from '@vercel/fetch'
-const fetch = createFetch()
-
 const API_URL = `https://cdn.contentstack.io/v3`
 
 if (

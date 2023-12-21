@@ -1,6 +1,4 @@
 import Image from 'next/image'
-import s from './Hero.module.css'
-import cn from 'classnames'
 import Link from 'next/link'
 
 interface Props {
@@ -15,15 +13,20 @@ const Hero: React.FC<Props> = ({ data, variant, priority = false }) => {
       ? data.background_image.url
       : '/placeholder.png'
 
+  console.log('VARIANAT', variant)
+
   if (variant === 'to-r') {
     return (
-      <div className={s.toR} style={{ height: '467px' }}>
+      <div
+        className="relative flex flex-col mb-4 md:flex-row"
+        style={{ height: '467px' }}
+      >
         <div className="absolute inset-0 overflow-hidden">
           <Image
             className="object-fill"
             alt="img"
             src={image}
-            layout="fill"
+            fill
             quality="75"
             priority={priority}
           />
@@ -70,7 +73,7 @@ const Hero: React.FC<Props> = ({ data, variant, priority = false }) => {
               className="object-fill"
               alt="img"
               src={image}
-              layout="fill"
+              fill
               quality="75"
               priority={priority}
             />
@@ -81,7 +84,7 @@ const Hero: React.FC<Props> = ({ data, variant, priority = false }) => {
             {data.title}
           </h2>
           <div
-            className={cn(s.description, 'mb-6 text-center')}
+            className="w-72 text-center mb-6 [&>*]:text-center [&>img]:my-1 [&>img]:mx-auto"
             dangerouslySetInnerHTML={{ __html: data.description }}
           />
 
@@ -106,13 +109,7 @@ const Hero: React.FC<Props> = ({ data, variant, priority = false }) => {
       style={{ minHeight: '467px' }}
     >
       <div className="absolute inset-0 overflow-hidden">
-        <Image
-          className="object-cover"
-          alt="img"
-          src={image}
-          layout="fill"
-          priority
-        />
+        <Image className="object-cover" alt="img" src={image} fill priority />
       </div>
       <div className="bg-white bg-opacity-90 p-10 m-6 max-w-2xl z-10">
         <h2 className="text-2xl font-bold px-12 mb-2">{data.title}</h2>

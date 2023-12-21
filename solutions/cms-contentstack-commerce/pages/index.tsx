@@ -1,7 +1,6 @@
 import type { GetStaticPropsContext, GetStaticPropsResult } from 'next'
 import Head from 'next/head'
 import cs from '@lib/contentstack'
-import { Layout } from '@vercel/examples-ui'
 import { Navbar, Footer, UIComponent, Container } from '@components/ui'
 
 export async function getStaticProps({
@@ -34,12 +33,12 @@ export async function getStaticProps({
 
 function Index(props: Entry) {
   const { title, seo, modular_blocks = [], header = { links: [] } } = props
+  const _title = `${seo.title ? seo.title : title} - ${seo.description}`
+
   return (
     <>
       <Head>
-        <title>
-          {seo.title ? seo.title : title} - {seo.description}
-        </title>
+        <title>{_title}</title>
         <meta name="description" content={seo.description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -62,7 +61,5 @@ function Index(props: Entry) {
     </>
   )
 }
-
-Index.Layout = Layout
 
 export default Index

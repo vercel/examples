@@ -1,11 +1,7 @@
 import { FC } from 'react'
-import cn from 'classnames'
-import Link from 'next/link'
 import { Github } from '@components/icons'
-import Logo from '@components/ui/Logo'
 import Container from '@components/ui/Container'
 import I18nWidget from '@components/ui/I18nWidget'
-import s from './Footer.module.css'
 
 interface Props {
   className?: string
@@ -162,7 +158,7 @@ const Footer: FC<Props> = () => {
               <a
                 aria-label="Github Repository"
                 href="https://github.com/vercel/commerce"
-                className={s.link}
+                className="transform duration-75 ease-linear hover:scale-110"
               >
                 <Github />
               </a>
