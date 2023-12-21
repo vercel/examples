@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Container from '@components/ui/Container'
+import { Container } from '@components/ui/container'
 import I18nWidget from '@components/ui/I18nWidget'
 import Logo from '@components/ui/Logo'
 import UserNav from '@components/ui/UserNav'

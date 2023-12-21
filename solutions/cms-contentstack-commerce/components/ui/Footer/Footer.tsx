@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Github } from '@components/icons'
-import Container from '@components/ui/Container'
+import { Container } from '@components/ui/container'
 import I18nWidget from '@components/ui/I18nWidget'
 
 interface Props {
