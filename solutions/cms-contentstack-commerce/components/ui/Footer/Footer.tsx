@@ -6,7 +6,6 @@ import I18nWidget from '@components/ui/I18nWidget'
 interface Props {
   className?: string
   children?: any
-  pages?: Array<any>
 }
 
 const footerNavigation = {
@@ -37,8 +36,6 @@ const footerNavigation = {
     { name: 'Pinterest', href: '#' },
   ],
 }
-
-const LEGAL_PAGES = ['terms-of-use', 'shipping-returns', 'privacy-policy']
 
 const Footer: FC<Props> = () => {
   return (
@@ -148,7 +145,7 @@ const Footer: FC<Props> = () => {
             </div>
           </div>
 
-          <div className="flex flex-row border-t border-gray-200 py-10">
+          <div className="flex flex-row border-t border-gray-200 pt-10 pb-20">
             <div className="flex-1">
               <p className="text-sm text-gray-500">
                 &copy; 2020 ACME, Inc. All rights reserved.

@@ -88,7 +88,7 @@ const I18nWidget: FC = () => {
                   <Link
                     href={currentPath}
                     locale={locale}
-                    className="flex cursor-pointer px-6 py-3 flex transition ease-in-out duration-150 text-black leading-6 font-medium items-center capitalize hover:bg-accents-1"
+                    className="flex cursor-pointer px-6 py-3 transition ease-in-out duration-150 text-black leading-6 font-medium items-center capitalize hover:bg-accents-1"
                     onClick={() => setDisplay(false)}
                   >
                     {LOCALES_MAP[locale].name}

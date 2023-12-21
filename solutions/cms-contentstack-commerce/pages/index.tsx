@@ -27,7 +27,7 @@ export async function getStaticProps({
 
     throw new Error('Entry is not valid')
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -57,7 +57,7 @@ function Index(props: Entry) {
           )
         })}
       </Container>
-      <Footer pages={[]} />
+      <Footer />
     </>
   )
 }

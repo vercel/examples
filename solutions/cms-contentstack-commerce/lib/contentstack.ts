@@ -30,7 +30,7 @@ const contentStack = {
       const { entry } = await res.json()
       return entry
     } catch (err) {
-      console.log('An Error occurred while trying to fetch an Entry: ', err)
+      console.error('An Error occurred while trying to fetch an Entry: ', err)
       return null
     }
   },

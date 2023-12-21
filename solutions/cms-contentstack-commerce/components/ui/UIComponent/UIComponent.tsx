@@ -15,7 +15,7 @@ const UIComponent: React.FC<{
     hero: Hero,
     grid: Grid,
     default: () => {
-      console.log('Component Type not specified')
+      console.error('Component Type not specified')
       return null
     },
   }

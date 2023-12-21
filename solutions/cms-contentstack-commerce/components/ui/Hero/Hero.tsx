@@ -13,8 +13,6 @@ const Hero: React.FC<Props> = ({ data, variant, priority = false }) => {
       ? data.background_image.url
       : '/placeholder.png'
 
-  console.log('VARIANAT', variant)
-
   if (variant === 'to-r') {
     return (
       <div
