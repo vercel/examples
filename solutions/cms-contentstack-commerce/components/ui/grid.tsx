@@ -1,5 +1,5 @@
-import cn from 'classnames'
-import type { FC, ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -24,9 +24,9 @@ export interface LinkData {
 }
 
 export interface DataProps {
-  title: string
-  description: string
-  grid: GridData[]
+  title?: string
+  description?: string
+  grid?: GridData[]
 }
 
 interface Props {
@@ -36,16 +36,15 @@ interface Props {
   data?: DataProps
 }
 
-const Grid: FC<Props> = ({ className, children, variant, data = {} }) => {
-  const rootClassName = cn(
+export const Grid = ({ className, children, variant, data }: Props) => {
+  const rootClassName = clsx(
     'grid grid-cols-1 mb-6 gap-3 lg:grid-cols-3 lg:overflow-hidden',
     variant === 'cols4' && 'lg:grid-cols-4',
     className
   )
 
   // If it contains data we build the childrens.
-  const { grid } = data
-  if (!grid) return <div className={rootClassName}>{children}</div>
+  if (!data?.grid) return <div className={rootClassName}>{children}</div>
 
   const meassureProps =
     variant === 'cols4'
@@ -69,7 +68,7 @@ const Grid: FC<Props> = ({ className, children, variant, data = {} }) => {
         {data.description && <p className="">{data.description}</p>}
       </div>
       <div className={rootClassName}>
-        {grid.map(({ item }, i) => (
+        {data.grid.map(({ item }, i) => (
           <div
             className="flex flex-col items-center text-center mb-10"
             key={`item__${i}`}
@@ -109,5 +108,3 @@ const Grid: FC<Props> = ({ className, children, variant, data = {} }) => {
     </div>
   )
 }
-
-export default Grid

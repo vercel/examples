@@ -1,5 +1,5 @@
 import React from 'react'
-import Grid from '@components/ui/Grid/Grid'
+import { Grid } from '@components/ui/grid'
 import Hero from '@components/ui/Hero'
 
 const UIComponent: React.FC<{
