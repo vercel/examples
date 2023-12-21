@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import { Github } from '@components/icons'
-import { Container } from '@components/ui/container'
-import I18nWidget from '@components/ui/I18nWidget'
+import { Github } from '../icons'
+import { Container } from './container'
+import I18nWidget from './I18nWidget'
 
 interface Props {
   className?: string
@@ -37,7 +37,7 @@ const footerNavigation = {
   ],
 }
 
-const Footer: FC<Props> = () => {
+export const Footer: FC<Props> = () => {
   return (
     <footer
       className="border-gray-200 border-t"
@@ -167,5 +167,3 @@ const Footer: FC<Props> = () => {
     </footer>
   )
 }
-
-export default Footer
