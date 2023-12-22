@@ -1,5 +1,6 @@
 import type { GetStaticPropsContext, GetStaticPropsResult } from 'next'
 import Head from 'next/head'
+import type { Entry } from '@lib/types'
 import cs from '@lib/contentstack'
 import { Navbar } from '@components/ui/navbar'
 import { Footer } from '@components/ui/footer'

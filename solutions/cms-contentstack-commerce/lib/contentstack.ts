@@ -1,3 +1,5 @@
+import type { Entry } from './types'
+
 const API_URL = `https://cdn.contentstack.io/v3`
 
 if (
