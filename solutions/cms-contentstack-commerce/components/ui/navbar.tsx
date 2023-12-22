@@ -1,24 +1,25 @@
 import Link from 'next/link'
-import { Container } from '@components/ui/container'
-import { I18nWidget } from '@components/ui/i18n-widget'
-import Logo from '@components/icons/Logo'
-import UserNav from '@components/ui/UserNav'
-import { Menu, MapPin, Search, Bag, ChevronDown } from '@components/icons'
+import { Logo, Menu, MapPin, Search, Bag, ChevronDown } from '../icons'
+import { Container } from './container'
+import { I18nWidget } from './i18n-widget'
+import UserNav from './UserNav'
 
-const linkStyles =
-  'inline-flex items-center leading-6 font-medium transition ease-in-out duration-75 cursor-pointer text-accents-6 text-black underline text-sm hover:text-accents-9 focus:outline-none focus:text-accents-8'
-
-const Navbar: React.FC<{
+type Props = {
   data: {
     bannerText: string
     links: Array<Record<string, Link>>
   }
-}> = ({
+}
+
+const linkStyles =
+  'inline-flex items-center leading-6 font-medium transition ease-in-out duration-75 cursor-pointer text-accents-6 text-black underline text-sm hover:text-accents-9 focus:outline-none focus:text-accents-8'
+
+export const Navbar = ({
   data = {
     bannerText: 'Sale | Up To 50% Off Select Full-priced Styles',
     links: [],
   },
-}) => (
+}: Props) => (
   <div className="bg-white z-40 transition-all duration-150">
     <Container>
       <div className="flex items-center bg-slate-300 py-2 px-6">
@@ -104,5 +105,3 @@ const Navbar: React.FC<{
     </div>
   </div>
 )
-
-export default Navbar

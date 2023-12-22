@@ -1,7 +1,10 @@
 import type { GetStaticPropsContext, GetStaticPropsResult } from 'next'
 import Head from 'next/head'
 import cs from '@lib/contentstack'
-import { Navbar, Footer, UIComponent, Container } from '@components/ui'
+import { Navbar } from '@components/ui/navbar'
+import { Footer } from '@components/ui/footer'
+import { UIComponent } from '@components/ui/ui-component'
+import { Container } from '@components/ui/container'
 
 export async function getStaticProps({
   locale,
