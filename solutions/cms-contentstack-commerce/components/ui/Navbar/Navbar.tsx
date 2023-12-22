@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Container } from '@components/ui/container'
 import { I18nWidget } from '@components/ui/i18n-widget'
-import Logo from '@components/ui/Logo'
+import Logo from '@components/icons/Logo'
 import UserNav from '@components/ui/UserNav'
 import { Menu, MapPin, Search, Bag, ChevronDown } from '@components/icons'
 

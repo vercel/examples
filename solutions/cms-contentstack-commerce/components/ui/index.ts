@@ -1,4 +1,3 @@
-export { default as Logo } from './Logo'
 export { default as Navbar } from './Navbar'
 export * from './footer'
 export * from './container'
