@@ -5,6 +5,12 @@ module.exports = {
     defaultLocale: 'en-US',
   },
   images: {
-    domains: ['images.contentstack.io'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.contentstack.io',
+        port: '',
+      },
+    ],
   },
 }
