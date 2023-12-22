@@ -1,7 +1,7 @@
+import { useState } from 'react'
 import Link from 'next/link'
-import { FC, useState } from 'react'
 import { useRouter } from 'next/router'
-import { Cross } from '@components/icons'
+import { Cross } from '../icons'
 
 interface LOCALE_DATA {
   name: string
@@ -28,7 +28,7 @@ const LOCALES_MAP: Record<string, LOCALE_DATA> = {
   },
 }
 
-const I18nWidget: FC = () => {
+export const I18nWidget = () => {
   const [display, setDisplay] = useState(false)
   const {
     locale,
@@ -102,5 +102,3 @@ const I18nWidget: FC = () => {
     </nav>
   )
 }
-
-export default I18nWidget

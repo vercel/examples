@@ -1,6 +1,6 @@
 import { Github } from '../icons'
 import { Container } from './container'
-import I18nWidget from './I18nWidget'
+import { I18nWidget } from './i18n-widget'
 
 const footerNavigation = {
   shop: [
