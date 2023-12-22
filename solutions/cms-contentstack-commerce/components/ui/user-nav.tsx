@@ -1,14 +1,13 @@
-import type { FC } from 'react'
-import cn from 'classnames'
+import clsx from 'clsx'
 import { Bag } from '@components/icons'
 
 interface Props {
   className?: string
 }
 
-const UserNav: FC<Props> = ({ className }) => {
+export const UserNav = ({ className }: Props) => {
   return (
-    <nav className={cn('relative', className)}>
+    <nav className={clsx('relative', className)}>
       <div>
         <ul className="flex flex-row items-center justify-items-end h-full">
           <li className="mr-6 cursor-pointer relative transition ease-in-out duration-100 flex items-center outline-none text-black hover:text-accents-6 hover:scale-110 last:mr-0 focus:outline-none active:outline-none">
@@ -22,5 +21,3 @@ const UserNav: FC<Props> = ({ className }) => {
     </nav>
   )
 }
-
-export default UserNav

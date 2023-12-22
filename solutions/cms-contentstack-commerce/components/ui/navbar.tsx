@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Logo, Menu, MapPin, Search, Bag, ChevronDown } from '../icons'
 import { Container } from './container'
 import { I18nWidget } from './i18n-widget'
-import UserNav from './UserNav'
+import { UserNav } from './user-nav'
 
 type Props = {
   data: {
