@@ -1,14 +1,15 @@
-import React from 'react'
-import { Grid } from '@components/ui/grid'
-import { Hero } from '@components/ui/hero'
+import { Grid } from './grid'
+import { Hero } from './hero'
 
-const UIComponent: React.FC<{
+type Props = {
   componentType: UIComponentTypes
   componentVariant?: string
   data?: any
   children?: any
   priority?: boolean
-}> = (props) => {
+}
+
+export const UIComponent = (props: Props) => {
   const { componentType = 'default', componentVariant, data, ...rest } = props
 
   const componentMap = {
@@ -23,5 +24,3 @@ const UIComponent: React.FC<{
   const Component = componentMap[componentType]
   return <Component variant={componentVariant} data={data} {...rest} />
 }
-
-export default UIComponent
