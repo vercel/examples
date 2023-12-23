@@ -6,20 +6,15 @@ import { UserNav } from './user-nav'
 
 type Props = {
   data: {
-    bannerText: string
-    links: Array<Record<string, Link>>
+    bannertext: string
+    links: Array<Record<string, { url: string; title: string }>>
   }
 }
 
 const linkStyles =
   'inline-flex items-center leading-6 font-medium transition ease-in-out duration-75 cursor-pointer text-accents-6 text-black underline text-sm hover:text-accents-9 focus:outline-none focus:text-accents-8'
 
-export const Navbar = ({
-  data = {
-    bannerText: 'Sale | Up To 50% Off Select Full-priced Styles',
-    links: [],
-  },
-}: Props) => (
+export const Navbar = ({ data }: Props) => (
   <div className="bg-white z-40 transition-all duration-150">
     <Container>
       <div className="flex items-center bg-slate-300 py-2 px-6">
@@ -27,7 +22,7 @@ export const Navbar = ({
           <ChevronDown />
         </div>
         <span className="text-sm uppercase tracking-wider font-medium">
-          {data.bannerText}
+          {data.bannertext}
         </span>
       </div>
       <div className="flex justify-between items-center flex-row px-2 py-2 md:py-2 relative">

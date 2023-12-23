@@ -1,9 +1,5 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  i18n: {
-    locales: ['en-US', 'es'],
-    defaultLocale: 'en-US',
-  },
   images: {
     remotePatterns: [
       {
@@ -12,5 +8,13 @@ module.exports = {
         port: '',
       },
     ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/',
+        destination: '/en-US',
+      },
+    ]
   },
 }
