@@ -7,7 +7,7 @@ export interface Entry {
 }
 
 // Only two types of components are defined but we can create as many as we want
-type UIComponentTypes = 'hero' | 'grid'
+export type UIComponentTypes = 'hero' | 'grid'
 
 interface UIComponentEntity {
   component: UIComponentData

@@ -1,3 +1,4 @@
+import { UIComponentTypes } from '@lib/types'
 import { Grid } from './grid'
 import { Hero } from './hero'
 
