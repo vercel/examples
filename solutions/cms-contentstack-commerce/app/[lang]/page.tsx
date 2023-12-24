@@ -9,12 +9,16 @@ type Props = {
   params: { lang: string }
 }
 
-async function getHomeEntry(lang: string) {
+async function getHomeEntry(locale: string) {
   const entry = await getEntry(
-    // hardcoded example
-    'home_page',
-    'blt5c760b6ce70ae18b',
-    lang.toLocaleLowerCase()
+    {
+      contentType: 'home_page',
+      entryId: 'blt5c760b6ce70ae18b',
+      locale,
+    },
+    {
+      next: { revalidate: 3600 }, // revalidate every hour
+    }
   )
   if (!entry) throw new Error('Home entry not found')
   return entry
