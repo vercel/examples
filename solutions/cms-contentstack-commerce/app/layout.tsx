@@ -10,8 +10,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: '...',
-  description: '...',
+  title: 'Next.js and Contentstack',
+  description: 'Example using the Next.js App Router.',
 }
 
 export default function Layout({ children }: { children: ReactNode }) {
