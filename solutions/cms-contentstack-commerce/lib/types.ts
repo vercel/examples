@@ -1,18 +1,14 @@
-interface Entry {
+export interface Entry {
   title: string
-  header: HeaderEntity
+  header: any
   seo: Record<string, string>
   modular_blocks: UIComponentEntity[]
   locale: string
 }
 
-interface Link {
-  title: string
-  url: string
-}
+// Only two types of components are defined but we can create as many as we want
+export type UIComponentTypes = 'hero' | 'grid'
 
-// Only two types of components are defined but we can create as many as we
-type UIComponentTypes = 'hero' | 'grid'
 interface UIComponentEntity {
   component: UIComponentData
 }
@@ -20,5 +16,5 @@ interface UIComponentEntity {
 interface UIComponentData {
   component_variant: string
   component_type: UIComponentTypes
-  grid?: GridEntity
+  grid?: any
 }
