@@ -1,21 +1,23 @@
-import React from 'react'
-import Grid from '@components/ui/Grid/Grid'
-import Hero from '@components/ui/Hero'
+import { UIComponentTypes } from '@lib/types'
+import { Grid } from './grid'
+import { Hero } from './hero'
 
-const UIComponent: React.FC<{
+type Props = {
   componentType: UIComponentTypes
   componentVariant?: string
   data?: any
   children?: any
   priority?: boolean
-}> = (props) => {
+}
+
+export const UIComponent = (props: Props) => {
   const { componentType = 'default', componentVariant, data, ...rest } = props
 
   const componentMap = {
     hero: Hero,
     grid: Grid,
     default: () => {
-      console.log('Component Type not specified')
+      console.error('Component Type not specified')
       return null
     },
   }
@@ -23,5 +25,3 @@ const UIComponent: React.FC<{
   const Component = componentMap[componentType]
   return <Component variant={componentVariant} data={data} {...rest} />
 }
-
-export default UIComponent

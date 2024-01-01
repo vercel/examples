@@ -18,15 +18,15 @@
     "paths": {
       "@lib/*": ["lib/*"],
       "@components/*": ["components/*"]
-    }
+    },
+    "plugins": [{ "name": "next" }]
   },
-
   "include": [
     "next-env.d.ts",
     "**/*.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/test.ts"
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
