@@ -1,17 +1,6 @@
-import { FC } from 'react'
-import cn from 'classnames'
-import Link from 'next/link'
-import { Github } from '@components/icons'
-import Logo from '@components/ui/Logo'
-import Container from '@components/ui/Container'
-import I18nWidget from '@components/ui/I18nWidget'
-import s from './Footer.module.css'
-
-interface Props {
-  className?: string
-  children?: any
-  pages?: Array<any>
-}
+import { Github } from '../icons'
+import { Container } from './container'
+import { I18nWidget } from './i18n-widget'
 
 const footerNavigation = {
   shop: [
@@ -42,9 +31,7 @@ const footerNavigation = {
   ],
 }
 
-const LEGAL_PAGES = ['terms-of-use', 'shipping-returns', 'privacy-policy']
-
-const Footer: FC<Props> = () => {
+export const Footer = () => {
   return (
     <footer
       className="border-gray-200 border-t"
@@ -152,7 +139,7 @@ const Footer: FC<Props> = () => {
             </div>
           </div>
 
-          <div className="flex flex-row border-t border-gray-200 py-10">
+          <div className="flex flex-row border-t border-gray-200 pt-10 pb-20">
             <div className="flex-1">
               <p className="text-sm text-gray-500">
                 &copy; 2020 ACME, Inc. All rights reserved.
@@ -162,7 +149,7 @@ const Footer: FC<Props> = () => {
               <a
                 aria-label="Github Repository"
                 href="https://github.com/vercel/commerce"
-                className={s.link}
+                className="transform duration-75 ease-linear hover:scale-110"
               >
                 <Github />
               </a>
@@ -174,5 +161,3 @@ const Footer: FC<Props> = () => {
     </footer>
   )
 }
-
-export default Footer
