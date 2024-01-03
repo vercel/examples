@@ -1,7 +1,7 @@
 ---
 name: Vercel Postgres + Kysely Next.js Starter
 slug: postgres-kysely
-description: Simple Next.js template that uses Vercel Postgres as the database and Kysely as the ORM.
+description: Simple Next.js template that uses Vercel Postgres as the database and Kysely as the query builder.
 framework: Next.js
 useCase: Starter
 css: Tailwind
@@ -16,7 +16,7 @@ relatedTemplates:
 
 # Vercel Postgres + Kysely Next.js Starter
 
-Simple Next.js template that uses [Vercel Postgres](https://vercel.com/postgres) as the database and [Kysely](https://kysely.dev/) as the ORM.
+Simple Next.js template that uses [Vercel Postgres](https://vercel.com/postgres) as the database and [Kysely](https://kysely.dev/) as the query builder.
 
 ## Demo
 
@@ -46,7 +46,7 @@ Once that's done, copy the .env.example file in this directory to .env.local (wh
 cp .env.example .env.local
 ```
 
-Then open .env.local and set the environment variables to match the ones in your Vercel Storage Dashboard. Your keys should be available under your database's `.env` tab.
+Then open `.env.local` and set the environment variables to match the ones in your Vercel Storage Dashboard.
 
 Next, run Next.js in development mode:
 

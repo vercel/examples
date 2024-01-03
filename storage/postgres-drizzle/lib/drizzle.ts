@@ -5,7 +5,7 @@ import {
   timestamp,
   uniqueIndex,
 } from 'drizzle-orm/pg-core'
-import { InferModel } from 'drizzle-orm'
+import { InferSelectModel, InferInsertModel } from 'drizzle-orm'
 import { sql } from '@vercel/postgres'
 import { drizzle } from 'drizzle-orm/vercel-postgres'
 
@@ -25,8 +25,8 @@ export const UsersTable = pgTable(
   }
 )
 
-export type User = InferModel<typeof UsersTable>
-export type NewUser = InferModel<typeof UsersTable, 'insert'>
+export type User = InferSelectModel<typeof UsersTable>
+export type NewUser = InferInsertModel<typeof UsersTable>
 
 // Connect to Vercel Postgres
 export const db = drizzle(sql)

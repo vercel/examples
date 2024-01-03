@@ -24,3 +24,4 @@ export interface Database {
 }
 
 export const db = createKysely<Database>()
+export { sql } from 'kysely'

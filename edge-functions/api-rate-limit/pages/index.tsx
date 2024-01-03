@@ -5,14 +5,14 @@ export default function Index() {
   return (
     <Page>
       <Text variant="h2" className="mb-6">
-        API Rate Limiting with Upstash
+        API Rate Limiting with Vercel KV
       </Text>
       <Text className="mb-4">
-        By using Redis with Upstash we can keep a counter of requests by IP at
-        the edge.
+        By using Redis with Vercel KV, we can keep a counter of requests by IP
+        address.
       </Text>
       <Text className="mb-4">
-        For the demo below you can send a maximum of{' '}
+        For the demo below, you can send a maximum of{' '}
         <b>5 requests every 10 seconds</b>.
       </Text>
       <Headers path="/api/ping">Make a request</Headers>

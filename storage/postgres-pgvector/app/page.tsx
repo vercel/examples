@@ -4,9 +4,6 @@ import { Search } from '@/components/search'
 import Image from 'next/image'
 import Link from 'next/link'
 
-// Prisma does not support Edge without the Data Proxy currently
-export const runtime = 'nodejs' // default
-export const preferredRegion = 'home'
 export const dynamic = 'force-dynamic'
 
 export default function Home() {
@@ -22,7 +19,7 @@ export default function Home() {
       <h1 className="pt-4 pb-8 bg-gradient-to-br from-black via-[#171717] to-[#575757] bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
         Postgres on Vercel
       </h1>
-      <div className="bg-white/30 p-12 shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full">
+      <div className="bg-white/30 p-6 lg:p-12 shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full">
         <div className="flex justify-between items-center mb-4">
           <div className="space-y-1">
             <h2 className="text-xl font-semibold">
@@ -76,28 +73,33 @@ export default function Home() {
         </Link>
         .
       </p>
-      <Link href="https://vercel.com" className="absolute bottom-12 left-12">
-        <Image
-          src="/vercel.svg"
-          alt="Vercel Logo"
-          width={100}
-          height={24}
-          priority
-        />
-      </Link>
-      <Link
-        href="https://github.com/vercel/examples/tree/main/storage/postgres-prisma"
-        className="absolute bottom-12 right-12 flex items-center space-x-2"
-      >
-        <Image
-          src="/github.svg"
-          alt="GitHub Logo"
-          width={24}
-          height={24}
-          priority
-        />
-        <p className="font-light">Source</p>
-      </Link>
+      <div className="mt-12 w-full flex items-center justify-between px-6 ">
+        <Link
+          href="https://vercel.com"
+          className="block lg:absolute bottom-12 left-12"
+        >
+          <Image
+            src="/vercel.svg"
+            alt="Vercel Logo"
+            width={100}
+            height={24}
+            priority
+          />
+        </Link>
+        <Link
+          href="https://github.com/vercel/examples/tree/main/storage/postgres-pgvector"
+          className="lg:absolute bottom-12 right-12 flex items-center space-x-2"
+        >
+          <Image
+            src="/github.svg"
+            alt="GitHub Logo"
+            width={24}
+            height={24}
+            priority
+          />
+          <span className="font-light">Source</span>
+        </Link>
+      </div>
     </main>
   )
 }

@@ -5,7 +5,6 @@ import Table from '@/components/table'
 import TablePlaceholder from '@/components/table-placeholder'
 import ExpandingArrow from '@/components/expanding-arrow'
 
-export const runtime = 'edge'
 export const preferredRegion = 'home'
 export const dynamic = 'force-dynamic'
 
@@ -23,7 +22,6 @@ export default function Home() {
         Postgres on Vercel
       </h1>
       <Suspense fallback={<TablePlaceholder />}>
-        {/* @ts-expect-error Async Server Component */}
         <Table />
       </Suspense>
       <p className="font-light text-gray-600 w-full max-w-lg text-center mt-6">
@@ -62,6 +60,12 @@ export default function Home() {
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
         >
           Starter
+        </Link>
+        <Link
+          href="https://postgres-drizzle.vercel.app/"
+          className="font-medium underline underline-offset-4 hover:text-black transition-colors"
+        >
+          Drizzle
         </Link>
       </div>
 

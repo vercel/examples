@@ -1,37 +1,32 @@
-import React from 'react'
-import cn from 'clsx'
+import type { CSSProperties, ReactNode, ComponentType } from 'react'
+import clsx from 'clsx'
 
 interface Props {
   variant?: Variant
   className?: string
-  style?: React.CSSProperties
-  children?: React.ReactNode | any
+  style?: CSSProperties
+  children?: ReactNode
 }
 
 type Variant = 'ul' | 'ol'
 
-const List: React.FC<Props> = ({
+export const List = ({
   style,
   className = '',
   variant = 'ul',
   children,
-}) => {
+}: Props) => {
   const componentsMap: {
-    [P in Variant]: React.ComponentType<any> | string
+    [P in Variant]: ComponentType<any> | string
   } = {
     ul: 'ul',
     ol: 'ol',
   }
-
-  const Component:
-    | React.JSXElementConstructor<any>
-    | React.ReactElement<any>
-    | React.ComponentType<any>
-    | string = componentsMap[variant]
+  const Component: ComponentType<any> | string = componentsMap[variant]
 
   return (
     <Component
-      className={cn(
+      className={clsx(
         'pl-6 [&_li]:before:content-["-"] [&_li]:before:absolute [&_li]:before:text-accents-3 [&_li]:before:-ml-4',
         className
       )}
@@ -41,5 +36,3 @@ const List: React.FC<Props> = ({
     </Component>
   )
 }
-
-export default List

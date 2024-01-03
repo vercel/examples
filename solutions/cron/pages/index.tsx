@@ -4,6 +4,26 @@ import Head from 'next/head'
 
 const intervals = [
   {
+    id: '1m',
+    name: 'Every Minute',
+    cron: '* * * * *',
+  },
+  {
+    id: '10m',
+    name: 'Every 10 mins',
+    cron: '*/10 * * * *',
+  },
+  {
+    id: '1h',
+    name: 'Every Hour',
+    cron: '0 * * * *',
+  },
+  {
+    id: '12h',
+    name: 'Every 12 hours',
+    cron: '0 */12 * * *',
+  },
+  {
     id: '1d',
     name: 'Every Day',
     cron: '0 0 * * *',
@@ -30,7 +50,7 @@ export default function Home({ data }: { data: any }) {
         <meta name="twitter:image" content={image} />
       </Head>
       <section className="flex flex-col gap-6">
-        <Text variant="h1">Vercel Crob Jobs Example</Text>
+        <Text variant="h1">Vercel Cron Jobs Example</Text>
         <Text>
           This example shows you how you can use{' '}
           <Link
@@ -61,11 +81,11 @@ export default function Home({ data }: { data: any }) {
           </Link>{' '}
           and stored in{' '}
           <Link
-            href="https://docs.upstash.com/redis"
+            href="https://vercel.com/kv"
             target="_blank"
             rel="noreferrer noopener"
           >
-            Upstash Redis
+            Vercel KV
           </Link>
           .
         </Text>

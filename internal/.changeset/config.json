@@ -7,5 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@vercel/playwright"]
+  "ignore": ["@vercel/playwright", "ui-test-app"]
 }

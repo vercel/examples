@@ -4,7 +4,7 @@ import { Button, Quote } from '@acme/design-system'
 import { matchingTextColor, randomColor } from '@acme/utils'
 import Navbar from '../components/navbar'
 
-export default function Home() {
+export default function Home(): React.ReactNode {
   const [bgColor, setBgColor] = useState('')
   const [textColor, setTextColor] = useState('')
   const changeColor = () => {

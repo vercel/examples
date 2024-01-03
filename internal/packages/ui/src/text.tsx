@@ -1,11 +1,11 @@
-import React from 'react'
-import cn from 'clsx'
+import type { CSSProperties, ReactNode, ComponentType } from 'react'
+import clsx from 'clsx'
 
 interface Props {
   variant?: Variant
   className?: string
-  style?: React.CSSProperties
-  children?: React.ReactNode | any
+  style?: CSSProperties
+  children?: ReactNode
 }
 
 type Variant = 'h1' | 'h2' | 'description' | 'body' | 'smallText'
@@ -19,14 +19,14 @@ const variants: Record<Variant, string> = {
     'text-sm font-semibold text-blue uppercase tracking-tight pl-1 block',
 }
 
-const Text: React.FC<Props> = ({
+export const Text = ({
   style,
   className = '',
   variant = 'body',
   children,
-}) => {
+}: Props) => {
   const componentsMap: {
-    [P in Variant]: React.ComponentType<any> | string
+    [P in Variant]: ComponentType<any> | string
   } = {
     h1: 'h1',
     h2: 'h2',
@@ -34,18 +34,11 @@ const Text: React.FC<Props> = ({
     description: 'p',
     smallText: 'small',
   }
-
-  const Component:
-    | React.JSXElementConstructor<any>
-    | React.ReactElement<any>
-    | React.ComponentType<any>
-    | string = componentsMap[variant]
+  const Component: ComponentType<any> | string = componentsMap[variant]
 
   return (
-    <Component className={cn('', variants[variant], className)} style={style}>
+    <Component className={clsx(variants[variant], className)} style={style}>
       {children}
     </Component>
   )
 }
-
-export default Text

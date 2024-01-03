@@ -1,16 +1,17 @@
-import { sql } from '@vercel/postgres'
-import { db } from '@/lib/kysely'
+import { db, sql } from '@/lib/kysely'
 
 export async function seed() {
-  const createTable = await sql`
-    CREATE TABLE IF NOT EXISTS users (
-      id SERIAL PRIMARY KEY,
-      name VARCHAR(255) NOT NULL,
-      email VARCHAR(255) UNIQUE NOT NULL,
-      image VARCHAR(255),
-      "createdAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-    );
-  `
+  const createTable = await db.schema
+    .createTable('users')
+    .ifNotExists()
+    .addColumn('id', 'serial', (cb) => cb.primaryKey())
+    .addColumn('name', 'varchar(255)', (cb) => cb.notNull())
+    .addColumn('email', 'varchar(255)', (cb) => cb.notNull().unique())
+    .addColumn('image', 'varchar(255)')
+    .addColumn('createdAt', sql`timestamp with time zone`, (cb) =>
+      cb.defaultTo(sql`current_timestamp`)
+    )
+    .execute()
   console.log(`Created "users" table`)
   const addUsers = await db
     .insertInto('users')
@@ -19,19 +20,19 @@ export async function seed() {
         name: 'Guillermo Rauch',
         email: 'rauchg@vercel.com',
         image:
-          'https://pbs.twimg.com/profile_images/1576257734810312704/ucxb4lHy_400x400.jpg',
+          'https://images.ctfassets.net/e5382hct74si/2P1iOve0LZJRZWUzfXpi9r/9d4d27765764fb1ad7379d7cbe5f1043/ucxb4lHy_400x400.jpg',
       },
       {
         name: 'Lee Robinson',
         email: 'lee@vercel.com',
         image:
-          'https://pbs.twimg.com/profile_images/1587647097670467584/adWRdqQ6_400x400.jpg',
+          'https://images.ctfassets.net/e5382hct74si/4BtM41PDNrx4z1ml643tdc/7aa88bdde8b5b7809174ea5b764c80fa/adWRdqQ6_400x400.jpg',
       },
       {
         name: 'Steven Tey',
         email: 'stey@vercel.com',
         image:
-          'https://pbs.twimg.com/profile_images/1506792347840888834/dS-r50Je_400x400.jpg',
+          'https://images.ctfassets.net/e5382hct74si/4QEuVLNyZUg5X6X4cW4pVH/eb7cd219e21b29ae976277871cd5ca4b/profile.jpg',
       },
     ])
     .execute()

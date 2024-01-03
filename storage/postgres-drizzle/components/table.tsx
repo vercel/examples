@@ -1,29 +1,29 @@
-import { db, UsersTable } from '@/lib/drizzle';
-import { timeAgo } from '@/lib/utils';
-import Image from 'next/image';
-import RefreshButton from './refresh-button';
-import { seed } from '@/lib/seed';
+import { db, UsersTable } from '@/lib/drizzle'
+import { timeAgo } from '@/lib/utils'
+import Image from 'next/image'
+import RefreshButton from './refresh-button'
+import { seed } from '@/lib/seed'
 
 export default async function Table() {
-  let users;
-  let startTime = Date.now();
+  let users
+  let startTime = Date.now()
   try {
-    users = await db.select().from(UsersTable);
+    users = await db.select().from(UsersTable)
   } catch (e: any) {
     if (e.message === `relation "users" does not exist`) {
       console.log(
         'Table does not exist, creating and seeding it with dummy data now...'
-      );
+      )
       // Table is not created yet
-      await seed();
-      startTime = Date.now();
-      users = await db.select().from(UsersTable);
+      await seed()
+      startTime = Date.now()
+      users = await db.select().from(UsersTable)
     } else {
-      throw e;
+      throw e
     }
   }
 
-  const duration = Date.now() - startTime;
+  const duration = Date.now() - startTime
 
   return (
     <div className="bg-white/30 p-12 shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full">
@@ -60,5 +60,5 @@ export default async function Table() {
         ))}
       </div>
     </div>
-  );
+  )
 }

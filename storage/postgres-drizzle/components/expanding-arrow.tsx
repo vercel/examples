@@ -32,5 +32,5 @@ export default function ExpandingArrow({ className }: { className?: string }) {
         ></path>
       </svg>
     </div>
-  );
+  )
 }

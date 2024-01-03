@@ -1,9 +1,8 @@
-import kv from '@vercel/kv'
-
-export default defineEventHandler(async () => {
-  let pageVisits = (await kv.get('pageVisits')) as number
+export default eventHandler(async () => {
+  const storage = useStorage('data')
+  let pageVisits = (await storage.getItem('pageVisits')) as number
   const updatedPageVisits = pageVisits + 1
-  await kv.set('pageVisits', updatedPageVisits)
+  await storage.setItem('pageVisits', updatedPageVisits)
   return {
     pageVisits: updatedPageVisits,
   }

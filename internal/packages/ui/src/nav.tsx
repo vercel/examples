@@ -1,6 +1,6 @@
-import Link from './link.js'
-import Button from './button.js'
-import DeployButton, { DeployButtonProps } from './deploy-button.js'
+import { Link } from './link.js'
+import { Button } from './button.js'
+import { DeployButton, type DeployButtonProps } from './deploy-button.js'
 
 const REPO_URL = 'https://github.com/vercel/examples/tree/main'
 
@@ -9,7 +9,7 @@ export interface NavProps {
   deployButton?: Partial<DeployButtonProps>
 }
 
-export default function Nav({ path, deployButton }: NavProps) {
+export const Nav = ({ path, deployButton }: NavProps) => {
   const displayPath = ['Vercel Examples']
     .concat(path?.split('/').filter(Boolean) || [])
     .join(' / ')
@@ -17,7 +17,7 @@ export default function Nav({ path, deployButton }: NavProps) {
 
   return (
     <nav className="border-b border-gray-200 py-5 relative z-20 bg-background shadow-[0_0_15px_0_rgb(0,0,0,0.1)]">
-      <div className="flex items-center lg:px-6 px-8 mx-auto max-w-7xl px-14">
+      <div className="flex items-center lg:px-6 px-8 mx-auto max-w-7xl">
         <div className="flex flex-row items-center">
           <Link href="/">
             <span>
@@ -46,9 +46,9 @@ export default function Nav({ path, deployButton }: NavProps) {
             <li className="font-medium" style={{ letterSpacing: '.01px' }}>
               <Link
                 href={repositoryUrl}
-                className="text-accents-6 no-underline transition-colors duration-200 hover:text-accents-8 cursor-pointer"
                 target="_blank"
                 rel="noreferrer"
+                secondary
               >
                 {displayPath}
               </Link>

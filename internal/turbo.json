@@ -3,10 +3,21 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", "src/e2e/tests/generated/**"]
+      "outputs": [
+        "dist/**",
+        "src/e2e/tests/generated/**",
+        ".next/**",
+        "!.next/cache/**"
+      ]
     },
     "lint": {
       "outputs": []
+    },
+    "dev": {
+      "cache": false
+    },
+    "start": {
+      "cache": false
     },
     "test": {
       "dependsOn": ["^build"],
