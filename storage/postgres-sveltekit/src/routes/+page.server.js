@@ -1,5 +1,5 @@
-import { createPool } from '@vercel/postgres';
-import { sql } from "@vercel/postgres";
+import { createPool, sql } from '@vercel/postgres'
+import { POSTGRES_URL } from '$env/static/private'
 
 async function seed() {
   const createTable = await sql`
@@ -10,9 +10,9 @@ async function seed() {
       image VARCHAR(255),
       "createdAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
     );
-    `;
+    `
 
-  console.log(`Created "users" table`);
+  console.log(`Created "users" table`)
 
   const users = await Promise.all([
     sql`
@@ -30,41 +30,41 @@ async function seed() {
           VALUES ('Steven Tey', 'stey@vercel.com', 'https://images.ctfassets.net/e5382hct74si/4QEuVLNyZUg5X6X4cW4pVH/eb7cd219e21b29ae976277871cd5ca4b/profile.jpg')
           ON CONFLICT (email) DO NOTHING;
       `,
-  ]);
-  console.log(`Seeded ${users.length} users`);
+  ])
+  console.log(`Seeded ${users.length} users`)
 
   return {
     createTable,
     users,
-  };
+  }
 }
 
 export async function load() {
-	const db = createPool();
-  const startTime = Date.now();
+  const db = createPool({ connectionString: POSTGRES_URL })
+  const startTime = Date.now()
 
   try {
-		const { rows: users } = await db.query('SELECT * FROM users');
-		const duration = Date.now() - startTime;
-		return {
-			users: users,
-			duration: duration
-		};
-	} catch (error) {
-		if (error?.message === `relation "users" does not exist`) {
+    const { rows: users } = await db.query('SELECT * FROM users')
+    const duration = Date.now() - startTime
+    return {
+      users: users,
+      duration: duration,
+    }
+  } catch (error) {
+    if (error?.message === `relation "users" does not exist`) {
       console.log(
-        "Table does not exist, creating and seeding it with dummy data now..."
-      );
+        'Table does not exist, creating and seeding it with dummy data now...'
+      )
       // Table is not created yet
-      await seed();
-      const { rows: users } = await db.query('SELECT * FROM users');
-      const duration = Date.now() - startTime;
+      await seed()
+      const { rows: users } = await db.query('SELECT * FROM users')
+      const duration = Date.now() - startTime
       return {
         users: users,
-        duration: duration
-      };
+        duration: duration,
+      }
     } else {
-      throw error;
+      throw error
     }
-	}
+  }
 }
