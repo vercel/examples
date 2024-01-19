@@ -44,6 +44,10 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
+  // https://nextjs.org/docs/messages/edge-dynamic-code-evaluation
+  unstable_allowDynamic: [
+    '**/node_modules/.pnpm/lodash@*/node_modules/lodash/lodash.js',
+  ],
   matcher: [
     /*
      * Match all request paths except for the ones starting with:
