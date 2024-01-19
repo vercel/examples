@@ -1,6 +1,4 @@
-export interface Redirect {
+export interface RedirectEntry {
   target: string
   permanent: boolean
 }
-
-export type Redirects = Record<string, Redirect>
