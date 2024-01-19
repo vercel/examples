@@ -1,39 +1,18 @@
 import { ScalableBloomFilter } from 'bloom-filters'
-import type { RedirectEntries } from '../types'
 import { writeFileSync } from 'fs'
+import redirects from '@/redirects/redirects.json'
 
-const redirects: RedirectEntries = {
-  '/blog/should-redirect-to-google': {
-    target: 'https://www.google.com',
-    permanent: false,
-  },
-  '/blog/should-redirect-to-yahoo': {
-    target: 'https://www.yahoo.com',
-    permanent: false,
-  },
-  '/blog/should-redirect-to-vercel': {
-    target: 'https://www.vercel.com',
-    permanent: false,
-  },
-}
-
-for (let i = 0; i < 50000; i++) {
-  redirects[`/blog/should-redirect-to-${i}`] = {
-    target: `https://www.google.com/?redirect=${i}`,
-    permanent: false,
-  }
-}
-
+// Initialize bloom filter
 const filter = new ScalableBloomFilter(Object.keys(redirects).length, 0.0001)
 
+// Add all paths to the bloom filter
 for (const key in redirects) {
   filter.add(key)
 }
 
+// Save the bloom filter to a JSON file
 const filterJson = filter.saveAsJSON()
 writeFileSync(
   './redirects/redirects-bloom-filter.json',
   JSON.stringify(filterJson)
 )
-
-writeFileSync('./redirects/redirects.json', JSON.stringify(redirects))
