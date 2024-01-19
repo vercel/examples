@@ -1,6 +1,6 @@
 import { ScalableBloomFilter } from 'bloom-filters'
 import { writeFileSync } from 'fs'
-import redirects from '@/redirects/redirects.json'
+import redirects from './redirects.json'
 
 // Initialize bloom filter
 const filter = new ScalableBloomFilter(Object.keys(redirects).length, 0.0001)

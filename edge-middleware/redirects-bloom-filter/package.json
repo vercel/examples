@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "cat redirects/patches/reflect.js > ./node_modules/.pnpm/reflect-metadata@0.1.13/node_modules/reflect-metadata/Reflect.js && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "generate-bloom-filter": "ts-node redirects/bin/generate-bloom-filter.ts"
