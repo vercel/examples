@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import redirects from '@/redirects/redirects.json'
-import type { RedirectEntry } from '@/redirects/types'
+import type { RedirectEntries } from '@/redirects/types'
 
 export function GET(request: NextRequest) {
   const pathname = request.nextUrl.searchParams.get('pathname')
@@ -9,7 +9,7 @@ export function GET(request: NextRequest) {
   }
 
   // Get the redirect entry from the redirects.json file
-  const redirect = (redirects as Record<string, RedirectEntry>)[pathname]
+  const redirect = (redirects as RedirectEntries)[pathname]
 
   // Account for bloom filter false positives
   if (!redirect) {

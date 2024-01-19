@@ -1,10 +1,8 @@
 import { ScalableBloomFilter } from 'bloom-filters'
-import { Redirects } from '../types'
+import type { RedirectEntries } from '../types'
 import { writeFileSync } from 'fs'
 
-export function test() {}
-
-const redirects: Redirects = {
+const redirects: RedirectEntries = {
   '/blog/should-redirect-to-google': {
     target: 'https://www.google.com',
     permanent: false,
