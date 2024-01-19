@@ -13,9 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Layout path="edge-middleware/redirects-bloom-filter">
-        <Page>{children}</Page>
-      </Layout>
+      <body>
+        <Layout path="edge-middleware/redirects-bloom-filter">
+          <Page>{children}</Page>
+        </Layout>
+      </body>
     </html>
   )
 }
