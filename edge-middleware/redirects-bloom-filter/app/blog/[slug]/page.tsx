@@ -1,7 +1,14 @@
+import { Text } from '@vercel/examples-ui'
+
 export default async function Page({ params }: { params: { slug: string } }) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1 className="text-6xl font-bold">Blog Post: {params.slug}</h1>
-    </div>
+    <>
+      <h1 className="text-6xl font-bold">Blog Post</h1>
+      <Text className="mt-10">
+        This is a basic blog post that should redirect from{' '}
+        <strong>/should-render-basic-blog-post</strong> to{' '}
+        <strong>/{params.slug}</strong>.
+      </Text>
+    </>
   )
 }

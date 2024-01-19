@@ -10,6 +10,7 @@
     "generate-bloom-filter": "ts-node redirects/bin/generate-bloom-filter.ts"
   },
   "dependencies": {
+    "@vercel/examples-ui": "^2.0.3",
     "bloom-filters": "^3.0.1",
     "next": "14.0.3",
     "react": "^18",

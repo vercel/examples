@@ -1,81 +1,82 @@
-import Link from 'next/link'
+import { List, Link, Text } from '@vercel/examples-ui'
 
-export default function Component() {
+const redirectingLinks = [
+  {
+    href: '/blog/should-redirect-to-google',
+    text: 'Redirect to Google',
+  },
+  {
+    href: '/blog/should-redirect-to-yahoo',
+    text: 'Redirect to Yahoo',
+  },
+  {
+    href: '/blog/should-redirect-to-1',
+    text: 'Redirect to Google with query string 1',
+  },
+  {
+    href: '/blog/should-redirect-to-1000',
+    text: 'Redirect to Google with query string 1000',
+  },
+  {
+    href: '/blog/should-redirect-to-9999',
+    text: 'Redirect to Google with query string 9999',
+  },
+]
+
+const regularLinks = [
+  {
+    href: '/blog/should-render-basic-blog-post',
+    text: 'Render basic blog post',
+  },
+]
+
+export default function Page() {
   return (
     <>
-      <section className="space-y-4">
-        <h2 className="text-xl font-bold">Redirecting links</h2>
-        <div className="flex flex-col gap-2">
-          <LinkInstance
-            href="/blog/should-redirect-to-google"
-            label="Should redirect to Google"
-          />
-          <LinkInstance
-            href="/blog/should-redirect-to-yahoo"
-            label="Should redirect to Yahoo"
-          />
-          <LinkInstance
-            href="/blog/should-redirect-to-1"
-            label="Should redirect to Google with query string 1"
-          />
-          <LinkInstance
-            href="/blog/should-redirect-to-1000"
-            label="Should redirect to Google with query string 1000"
-          />
-          <LinkInstance
-            href="/blog/should-redirect-to-9999"
-            label="Should redirect to Google with query string 9999"
-          />
-        </div>
+      <h1 className="text-3xl font-bold">Redirects with Bloom Filter</h1>
+      <Text className="mt-4">
+        This example shows how you can use a{' '}
+        <Link href="https://en.wikipedia.org/wiki/Bloom_filter">
+          Bloom Filter
+        </Link>{' '}
+        and Edge Middleware to speed up the lookup of a large list of redirects
+        (50,000).
+      </Text>
+      <Text className="mt-4">
+        Although the redirects are stored in JSON file, the principles are the
+        same if storing the redirects in a database.
+      </Text>
+      <section className="mt-4">
+        <h2 className="text-xl font-bold my-4">Redirecting links</h2>
+        <LinkList links={redirectingLinks} />
       </section>
-      <section className="space-y-4">
-        <h2 className="text-xl font-bold">Regular Links</h2>
-        <div className="flex flex-col gap-2">
-          <LinkInstance
-            href="/blog/should-render-basic-blog-post"
-            label="Should render basic blog post"
-          />
-        </div>
+      <section>
+        <h2 className="text-xl font-bold my-4">Regular Links</h2>
+        <LinkList links={regularLinks} />
       </section>
     </>
   )
 }
 
-function LinkInstance({ href, label }: { href: string; label: string }) {
+function LinkList({ links }: { links: { href: string; text: string }[] }) {
   return (
-    <>
-      <Link className="flex items-center gap-2" href={href}>
-        <IconHome className="w-6 h-6 text-gray-900 dark:text-gray-50" />
-        <span className="text-gray-900 dark:text-gray-50">
-          {label} (Soft navigation)
-        </span>
-      </Link>
-      <a className="flex items-center gap-2" href={href} target="_blank">
-        <IconHome className="w-6 h-6 text-gray-900 dark:text-gray-50" />
-        <span className="text-gray-900 dark:text-gray-50">
-          {label} (New window)
-        </span>
-      </a>
-    </>
-  )
-}
-
-function IconHome({ className }: { className: string }) {
-  return (
-    <svg
-      className={className}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
+    <List>
+      {links.map(({ href, text }) => (
+        <div key={href}>
+          <li>
+            <Link href={href}>{text} (Soft Navigation)</Link>
+          </li>
+          <li>
+            <a
+              href={href}
+              target="_blank"
+              className="transition-colors no-underline text-link hover:text-link-light [&_code]:text-link [&_code]:hover:text-link-light [&_code]:transition-colors"
+            >
+              {text} (New window)
+            </a>
+          </li>
+        </div>
+      ))}
+    </List>
   )
 }
