@@ -39,12 +39,31 @@ export default function Page() {
         <Link href="https://en.wikipedia.org/wiki/Bloom_filter">
           Bloom Filter
         </Link>{' '}
-        and Edge Middleware to speed up the lookup of a large list of redirects
-        (50,000).
+        and{' '}
+        <Link href="https://nextjs.org/docs/app/building-your-application/routing/redirecting#managing-redirects-at-scale-advanced">
+          Edge Middleware{' '}
+        </Link>{' '}
+        to improve the lookup performance of a large list of redirects (50,000).
       </Text>
       <Text className="mt-4">
-        Although the redirects are stored in JSON file, the principles are the
-        same if storing the redirects in a database.
+        Although this example stores the redirects in a JSON file, you can also
+        use a database such as{' '}
+        <Link href="https://vercel.com/docs/storage/edge-config/get-started">
+          Edge Config
+        </Link>{' '}
+        or <Link href="https://vercel.com/docs/storage/vercel-kv">Redis</Link>.
+      </Text>
+      <Text className="mt-4">
+        Before using this example, you should measure which is more performant:
+        1. Directly querying your data or 2. Using a Bloom Filter to check if
+        the redirect exists before querying the data.
+      </Text>
+      <Text className="mt-4">
+        Learn more by reading the{' '}
+        <Link href="https://nextjs.org/docs/app/building-your-application/routing/redirecting#managing-redirects-at-scale-advanced">
+          documentation
+        </Link>
+        .
       </Text>
       <section className="mt-4">
         <h2 className="text-xl font-bold my-4">Redirecting links</h2>
