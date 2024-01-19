@@ -47,6 +47,7 @@ export const config = {
   // https://nextjs.org/docs/messages/edge-dynamic-code-evaluation
   unstable_allowDynamic: [
     '**/node_modules/.pnpm/lodash@*/node_modules/lodash/lodash.js',
+    '**/node_modules/.pnpm/reflect-metadata@*/node_modules/reflect-metadata/Reflect.js',
   ],
   matcher: [
     /*
