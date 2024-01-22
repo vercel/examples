@@ -5,7 +5,7 @@ description: Redirect a large list of redirects using a Bloom Filter and Edge Mi
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url==https://github.com/vercel/examples/tree/main/edge-middleware/bloom-filter-redicts&project-name=bloom-filter-redicts&repository-name=bloom-filter-redicts
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/redirects-bloom-filter&project-name=redirects-bloom-filter&repository-name=redirects-bloom-filter
 demoUrl: https://redirects-bloom-filter.vercel.app/
 relatedTemplates:
   - redirects-upstash
@@ -29,14 +29,14 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://github.com/vercel/examples/tree/main/edge-middleware/bloom-filter-redicts&project-name=bloom-filter-redicts&repository-name=bloom-filter-redicts)
+[![Deploy with Vercel](https://vercel.com/button)](https://github.com/vercel/examples/tree/main/edge-middleware/redirects-bloom-filter&project-name=redirects-bloom-filter&repository-name=redirects-bloom-filter)
 
 ### Clone and Deploy
 
 Use [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app) to bootstrap the example:
 
 ```bash
-npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/bloom-filter-redicts
+npx create-next-app --example https://github.com/vercel/examples/tree/main/edge-middleware/redirects-bloom-filter
 ```
 
 Next, run Next.js in development mode:
