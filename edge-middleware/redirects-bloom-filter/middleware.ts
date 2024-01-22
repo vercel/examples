@@ -13,6 +13,7 @@ export async function middleware(request: NextRequest) {
   // Check if the path is in the bloom filter
   if (bloomFilter.has(pathname)) {
     // Forward the pathname to the Route Handler
+    console.info('Redirect found in bloom filter', request.nextUrl.pathname)
     const api = new URL(
       `/api/redirects?pathname=${encodeURIComponent(request.nextUrl.pathname)}`,
       request.nextUrl.origin
@@ -29,6 +30,8 @@ export async function middleware(request: NextRequest) {
         if (redirectEntry) {
           // Determine the status code
           const statusCode = redirectEntry.permanent ? 308 : 307
+
+          console.info('Redirecting to', redirectEntry.target, statusCode)
 
           // Redirect to the destination
           return NextResponse.redirect(redirectEntry.target, statusCode)
