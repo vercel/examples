@@ -15,7 +15,7 @@
     "@vercel/edge-config": "^0.2.1",
     "@vercel/examples-ui": "^2.0.1",
     "js-cookie": "^3.0.5",
-    "next": "^13.5.1",
+    "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -26,7 +26,7 @@
     "autoprefixer": "^10.4.14",
     "eslint": "^8.45.0",
     "eslint-config-next": "^13.4.10",
-    "postcss": "^8.4.31",
+    "postcss": "^8.4.33",
     "prettier": "^3.0.0",
     "tailwindcss": "^3.3.3",
     "turbo": "^1.10.8",
