@@ -10,11 +10,11 @@ export default async function datadome(req: NextRequest) {
   if (DATADOME_URI_REGEX_EXCLUSION.test(pathname)) {
     return
   }
-
+  let { clientId, cookiesLength } = getCookieData(req.cookies)
   const requestData = {
     Key: process.env.DATADOME_SERVER_KEY,
     RequestModuleName: 'Next.js',
-    ModuleVersion: '0.1',
+    ModuleVersion: '0.2.0',
     ServerName: 'vercel',
     // this should be `x-real-ip` but it doesn't currently work on Edge Middleware
     IP: req.headers.get('x-forwarded-for')
@@ -32,36 +32,51 @@ export default async function datadome(req: NextRequest) {
     Host: req.headers.get('host'),
     UserAgent: req.headers.get('user-agent'),
     Referer: req.headers.get('referer'),
-    // Make sure Datadome always returns a JSON response in case of a 403
-    Accept: 'application/json',
+    Accept: req.headers.get('accept'),
     AcceptEncoding: req.headers.get('accept-encoding'),
     AcceptLanguage: req.headers.get('accept-language'),
     AcceptCharset: req.headers.get('accept-charset'),
     Origin: req.headers.get('origin'),
-    XForwaredForIP: req.headers.get('x-forwarded-for'),
+    XForwardedForIP: req.headers.get('x-forwarded-for'),
     Connection: req.headers.get('connection'),
     Pragma: req.headers.get('pragma'),
     CacheControl: req.headers.get('cache-control'),
     ContentType: req.headers.get('content-type'),
     From: req.headers.get('from'),
     Via: req.headers.get('via'),
-    CookiesLen: getCookiesLength(req.cookies),
+    CookiesLen: cookiesLength,
     AuthorizationLen: getAuthorizationLength(req),
     PostParamLen: req.headers.get('content-length'),
-    ClientID: req.cookies.get('datadome')?.value,
+    ClientID: clientId,
     ServerRegion: 'sfo1',
+    SecCHDeviceMemory: req.headers.get('sec-ch-device-memory'),
+    SecCHUA: req.headers.get('sec-ch-ua'),
+    SecCHUAArch: req.headers.get('sec-ch-ua-arch'),
+    SecCHUAFullVersionList: req.headers.get('sec-ch-ua-full-version-list'),
+    SecCHUAMobile: req.headers.get('sec-ch-ua-mobile'),
+    SecCHUAModel: req.headers.get('sec-ch-ua-model'),
+    SecCHUAPlatform: req.headers.get('sec-ch-ua-platform'),
+    SecFetchDest: req.headers.get('sec-fetch-dest'),
+    SecFetchMode: req.headers.get('sec-fetch-mode'),
+    SecFetchSite: req.headers.get('sec-fetch-site'),
+    SecFetchUser: req.headers.get('sec-fetch-user'),
+    'X-Real-IP': req.headers.get('x-real-ip'),
+    'X-Requested-With': req.headers.get('x-requested-with'),
   }
-  const dataDomeReq = fetch(
-    'http://api-cloudflare.datadome.co/validate-request/',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'User-Agent': 'DataDome',
-      },
-      body: stringify(requestData),
-    }
-  )
+
+  const options = {
+    method: 'POST',
+    body: stringify(requestData),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'DataDome',
+    },
+  }
+  if (req.headers.get('x-datadome-clientid')?.length) {
+    options.headers['X-DataDome-X-Set-Cookie'] = true
+    requestData.ClientID = req.headers.get('x-datadome-clientid')
+  }
+  const dataDomeReq = fetch('http://api.datadome.co/validate-request/', options)
 
   const timeoutPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -105,6 +120,7 @@ export default async function datadome(req: NextRequest) {
 
       if (dataDomeRes.status !== 200) {
         // blocked!
+        res = dataDomeRes
         const isBot = dataDomeRes.headers.get('x-datadome-isbot')
         if (isBot) {
           console.log(
@@ -114,9 +130,6 @@ export default async function datadome(req: NextRequest) {
             dataDomeRes.headers.get('x-datadome-botfamily')
           )
         }
-
-        const data = await dataDomeRes.json()
-        res = NextResponse.rewrite(data.url)
       }
 
       // Add Datadome headers to the response
@@ -200,11 +213,21 @@ function stringify(obj: Record<string, string | number | null | undefined>) {
         .join('&')
     : ''
 }
-
-function getCookiesLength(cookies: NextRequest['cookies']) {
+/**
+ * Returns a simple object with two properties:
+ *   - The client ID from the `datadome` cookie.
+ *   - The total length of the `Cookie` request header.
+ * @param {NextRequest['cookies']} cookies - Incoming client request cookie header
+ * @returns {{ clientId: string, cookiesLength: number }}
+ */
+function getCookieData(cookies: NextRequest['cookies']) {
+  let clientId = ''
   let cookiesLength = 0
   for (const [, cookie] of cookies) {
     cookiesLength += cookie.value.length
+    if (clientId == '' && cookie.name == 'datadome') {
+      clientId = cookie.value
+    }
   }
-  return cookiesLength
+  return { clientId, cookiesLength }
 }
