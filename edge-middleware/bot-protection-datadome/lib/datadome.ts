@@ -73,7 +73,7 @@ export default async function datadome(req: NextRequest) {
     },
   }
   if (req.headers.get('x-datadome-clientid')?.length) {
-    options.headers['X-DataDome-X-Set-Cookie'] = true
+    options.headers['X-DataDome-X-Set-Cookie'] = 'true'
     requestData.ClientID = req.headers.get('x-datadome-clientid')
   }
   const dataDomeReq = fetch('http://api.datadome.co/validate-request/', options)
