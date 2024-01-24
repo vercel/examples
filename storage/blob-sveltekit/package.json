@@ -23,7 +23,7 @@
     "tailwindcss": "^3.3.2",
     "turbo": "^1.9.3",
     "typescript": "^5.0.4",
-    "vite": "^5.0.10"
+    "vite": "^5.0.12"
   },
   "dependencies": {
     "@vercel/blob": "^0.16.1",
