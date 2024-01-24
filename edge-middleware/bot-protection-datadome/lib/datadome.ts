@@ -12,7 +12,7 @@ export default async function datadome(req: NextRequest) {
   }
   let { clientId, cookiesLength } = getCookieData(req.cookies)
   const requestData = {
-    Key: process.env.DATADOME_SERVER_KEY,
+    Key: process.env.DATADOME_SERVER_SIDE_KEY,
     RequestModuleName: 'Next.js',
     ModuleVersion: '0.2.0',
     ServerName: 'vercel',
@@ -107,7 +107,7 @@ export default async function datadome(req: NextRequest) {
   switch (dataDomeRes.status) {
     case 400:
       // Something is wrong with our authentication
-      console.log('DataDome returned 400', dataDomeRes.statusText)
+      console.log('DataDome returned 400', dataDomeRes.statusText, await dataDomeRes.text())
       return
 
     case 200:
