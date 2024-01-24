@@ -85,14 +85,14 @@ export default async function datadome(req: NextRequest) {
     }, DATADOME_TIMEOUT)
   })
 
-  let dataDomeRes: Response
+  let dataDomeRes: NextResponse
   const dataDomeStart = Date.now()
 
   try {
     dataDomeRes = (await Promise.race([
       dataDomeReq,
       timeoutPromise,
-    ])) as Response
+    ])) as NextResponse
   } catch (err: any) {
     console.error('Datadome failed with:', err.stack)
     return
