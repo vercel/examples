@@ -1,11 +1,14 @@
 {
-  "repository": "https://github.com/vercel/examples.git",
-  "license": "MIT",
+  "name": "slackbot",
   "private": true,
   "dependencies": {
-    "@upstash/redis": "^1.1.0",
-    "crypto": "^1.0.1",
-    "node-fetch": "^2.6.7",
-    "vercel": "^24.0.0"
+    "@slack/web-api": "7.0.1",
+    "openai": "4.26.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.16",
+    "@vercel/node": "3.0.17",
+    "typescript": "5.3.3",
+    "vercel": "33.4.1"
   }
 }
