@@ -1,64 +1,75 @@
-# Slackbot
+# OpenAI Slackbot with Node.js
 
-This is a Slack Bot, using Vercel for serverless deployment and Upstash Redis for database.
+This is a Slackbot you can ask questions and get answers from OpenAI's GPT model.
 
-## Deploy This Project on Vercel!
+### Environment Variables
 
-Simply fill the environmental variables defined below and your serverless functions will be up in seconds!
+After completing the setup instructions below, you will have the following `.env` file in your project for testing locally, and the same environment variables added on Vercel:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fslackbot&env=SLACK_SIGNING_SECRET,SLACK_BOT_TOKEN&integration-ids=oac_V3R1GIpkoJorr6fqyiwdhl17)
+```bash
+OPENAI_API_KEY=
+SLACK_BOT_TOKEN=
+SLACK_SIGNING_SECRET=
+SLACK_ADMIN_MEMBER_ID=
+```
 
-### Configuring Slack Bot - 1
+#### OpenAI API Key
 
-1. Go to [Slack API Apps Page](https://api.slack.com/apps):
-   - Create new App
-     - From Scratch
-     - Name your app & pick a workspace
-   - Go to Oauth & Permissions
-     - Add the following scopes
-       - app_mentions:read
-       - channels:read
-       - chat:write
-       - chat:write.public
-       - commands
-     - Install App to workspace
-       - Basic Information --> Install Your App --> Install To Workspace
-2. Note the variables (These will be the env variables for vercel deployment) :
-   - `SLACK_SIGNING_SECRET`:
-     - Go to Basic Information
-       - App Credentials --> Signing Secret
-   - `SLACK_BOT_TOKEN`:
-     - Go to OAuth & Permissions
-       - Bot User OAuth Token
+- Create a new key on [OpenAI API Keys](https://platform.openai.com/api-keys) and "Create new secret key", optionally naming the key.
+- Add the key to Vercel's environment variables as `OPENAI_API_KEY`.
 
----
+#### Slack Bot Token & Signing Secret
 
-### Deploying on Vercel
+Go to [Slack API Apps Page](https://api.slack.com/apps):
 
-1. Click the deploy button:
+- Create new App
+  - From Scratch
+  - Name your app & pick a workspace
+- Go to OAuth & Permissions
+  - Scroll to scopes
+  - Add the following scopes
+    - `app_mentions:read`
+    - `channels:history`
+    - `chat:write`
+    - `commands`
+  - Click "Install to Workplace"
+  - Copy **Bot User OAuth Token**
+  - Add the token to Vercel's environment variables as `SLACK_BOT_TOKEN`
+- Getting signing secret
+  - Basic Information --> App Credentials --> Copy **Signing Secret**
+  - Add the secret to Vercel's environment variables as `SLACK_SIGNING_SECRET`
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fslackbot&env=SLACK_SIGNING_SECRET,SLACK_BOT_TOKEN&integration-ids=oac_V3R1GIpkoJorr6fqyiwdhl17)
+#### Admin's Slack Member ID
 
-2. Fill the environmental variables defined above.
+- Click on your profile picture in Slack and click **Profile**.
+- Click on the three dots in the middle right corner and select **Copy member ID**.
+- Add the ID to Vercel's environment variables as `SLACK_ADMIN_MEMBER_ID`.
 
----
+### Enable Slack Events
 
-### Configuring Slack Bot - 2
+After successfully deploying the app, go to [Slack API Apps Page](https://api.slack.com/apps) and select your app:
 
-- After deployment, you can use the provided `vercel_domain`.
+- Go to **Event Subscriptions** and enable events.
+- Add the following URL to **Request URL**:
+  - `https://<your-vercel-app>.vercel.app/api/events`
+  - Make sure the URL is verified, otherwise check out [Vercel Logs](https://vercel.com/docs/observability/runtime-logs) for troubleshooting.
+  - Subscribe to bot events by adding:
+    - `app_mention`
+    - `channel_created`
+  - Click **Save Changes**.
+- Slack requires you to reinstall the app to apply the changes.
 
-1. Go to [Slack API Apps Page](https://api.slack.com/apps) and choose relevant app:
+## Local Development
 
-   - Go to Slash Commands:
-     - Create New Command:
-       - Command : `note`
-       - Request URL : `<vercel_domain>/api/note`
-       - Configure the rest however you like.
-   - Go to Event Subscribtions:
-     - Enable Events:
-       - Request URL: `<vercel_domain>/api/events`
-     - Subscribe to bot events by adding:
-       - app_mention
-       - channel_created
+Use the [Vercel CLI](https://vercel.com/docs/cli) and [localtunnel](https://github.com/localtunnel/localtunnel) to test out this project locally:
 
-2. After these changes, Slack may require reinstalling of the app.
+```sh
+pnpm i -g vercel
+pnpm vercel dev --listen 3000 --yes
+```
+
+```sh
+npx localtunnel --port 3000
+```
+
+Make sure to modify the [subscription URL](./README.md/#enable-slack-events) to the `localtunnel` URL.

@@ -1,6 +1,10 @@
 import crypto from 'crypto'
 import { sendGPTResponse } from './_chat'
 
+export const config = {
+  maxDuration: 30,
+}
+
 async function isValidSlackRequest(request: Request, body: any) {
   const signingSecret = process.env.SLACK_SIGNING_SECRET!
   const timestamp = request.headers.get('X-Slack-Request-Timestamp')!
@@ -11,7 +15,6 @@ async function isValidSlackRequest(request: Request, body: any) {
     .update(base)
     .digest('hex')
   const computedSignature = `v0=${hmac}`
-  console.log({ slackSignature, computedSignature })
   return computedSignature === slackSignature
 }
 

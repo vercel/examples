@@ -7,8 +7,6 @@
   },
   "devDependencies": {
     "@types/node": "20.11.16",
-    "@vercel/node": "3.0.17",
-    "typescript": "5.3.3",
-    "vercel": "33.4.1"
+    "typescript": "5.3.3"
   }
 }
