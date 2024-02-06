@@ -69,8 +69,7 @@ export default async function datadome(req: NextRequest) {
     body: stringify(requestData),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'User-Agent': 'DataDome',
-      'X-DataDome-X-Set-Cookie': 'false',
+      'User-Agent': 'DataDome'
     },
   }
   if (req.headers.get('x-datadome-clientid')?.length) {
@@ -121,7 +120,11 @@ export default async function datadome(req: NextRequest) {
 
       if (dataDomeRes.status !== 200) {
         // blocked!
+        // res.cookies.set('datadome', dataDomeRes.cookies.get('datadome')?.value)
+        // res = NextResponse.next(dataDomeRes)
+        // dataDomeRes.headers.set('x-datadome-headers', ' ')
         res = dataDomeRes
+        // res.headers.delete('x-datadome-headers')
         const isBot = dataDomeRes.headers.get('x-datadome-isbot')
         if (isBot) {
           console.log(
