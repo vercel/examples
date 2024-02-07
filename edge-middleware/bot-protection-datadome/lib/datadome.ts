@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const DATADOME_TIMEOUT = 500
+const DATADOME_TIMEOUT = parseInt(process.env.DATADOME_TIMEOUT??"300")
 const DATADOME_URI_REGEX_EXCLUSION =
-  /\.(avi|flv|mka|mkv|mov|mp4|mpeg|mpg|mp3|flac|ogg|ogm|opus|wav|webm|webp|bmp|gif|ico|jpeg|jpg|png|svg|svgz|swf|eot|otf|ttf|woff|woff2|css|less|js)$/i
+  /\.(avi|flv|mka|mkv|mov|mp4|mpeg|mpg|mp3|flac|ogg|ogm|opus|wav|webm|webp|bmp|gif|ico|jpeg|jpg|png|svg|svgz|swf|eot|otf|ttf|woff|woff2|css|less|js|map)$/i
 
 export default async function datadome(req: NextRequest) {
   const { pathname } = req.nextUrl
@@ -13,42 +13,42 @@ export default async function datadome(req: NextRequest) {
   let { clientId, cookiesLength } = getCookieData(req.cookies)
   const requestData = {
     Key: process.env.DATADOME_SERVER_SIDE_KEY,
-    RequestModuleName: 'Next.js',
-    ModuleVersion: '0.2.0',
-    ServerName: 'vercel',
     // this should be `x-real-ip` but it doesn't currently work on Edge Middleware
+    // localhost won't likely be blocked by Datadome unless you use your real IP
+    // IP: 'YOUR IP',
     IP: req.headers.get('x-forwarded-for')
       ? req.headers.get('x-forwarded-for')!.split(',')[0]
       : '127.0.0.1',
-    // localhost won't likely be blocked by Datadome unless you use your real IP
-    // IP: 'YOUR IP',
-    Port: 0,
-    TimeRequest: new Date().getTime() * 1000,
-    Protocol: req.headers.get('x-forwarded-proto'),
-    Method: req.method,
-    ServerHostname: req.headers.get('host'),
-    Request: pathname + encode(Object.fromEntries(req.nextUrl.searchParams)),
-    HeadersList: getHeadersList(req),
-    Host: req.headers.get('host'),
-    UserAgent: req.headers.get('user-agent'),
-    Referer: req.headers.get('referer'),
+    RequestModuleName: 'Next.js',
+    ModuleVersion: '0.2.0',
+    AuthorizationLen: getAuthorizationLength(req),
     Accept: req.headers.get('accept'),
     AcceptEncoding: req.headers.get('accept-encoding'),
     AcceptLanguage: req.headers.get('accept-language'),
     AcceptCharset: req.headers.get('accept-charset'),
-    Origin: req.headers.get('origin'),
-    XForwardedForIP: req.headers.get('x-forwarded-for'),
-    Connection: req.headers.get('connection'),
-    Pragma: req.headers.get('pragma'),
     CacheControl: req.headers.get('cache-control'),
-    ContentType: req.headers.get('content-type'),
-    From: req.headers.get('from'),
-    Via: req.headers.get('via'),
-    CookiesLen: cookiesLength,
-    AuthorizationLen: getAuthorizationLength(req),
-    PostParamLen: req.headers.get('content-length'),
     ClientID: clientId,
+    Connection: req.headers.get('connection'),
+    ContentType: req.headers.get('content-type'),
+    CookiesLen: cookiesLength,
+    From: req.headers.get('from'),
+    HeadersList: getHeadersList(req),
+    Host: req.headers.get('host'),
+    Method: req.method,
+    Origin: req.headers.get('origin'),
+    Port: 0,
+    Pragma: req.headers.get('pragma'),
+    PostParamLen: req.headers.get('content-length'),
+    Protocol: req.headers.get('x-forwarded-proto'),
+    Referer: req.headers.get('referer'),
+    Request: pathname + encode(Object.fromEntries(req.nextUrl.searchParams)),
+    ServerHostname: req.headers.get('host'),
+    ServerName: 'vercel',
     ServerRegion: 'sfo1',
+    TimeRequest: new Date().getTime() * 1000,
+    UserAgent: req.headers.get('user-agent'),
+    Via: req.headers.get('via'),
+    XForwardedForIP: req.headers.get('x-forwarded-for'),
     SecCHDeviceMemory: req.headers.get('sec-ch-device-memory'),
     SecCHUA: req.headers.get('sec-ch-ua'),
     SecCHUAArch: req.headers.get('sec-ch-ua-arch'),
@@ -123,7 +123,7 @@ export default async function datadome(req: NextRequest) {
         // res.cookies.set('datadome', dataDomeRes.cookies.get('datadome')?.value)
         // res = NextResponse.next(dataDomeRes)
         // dataDomeRes.headers.set('x-datadome-headers', ' ')
-        res = dataDomeRes
+        res = dataDomeRes as NextResponse;
         // res.headers.delete('x-datadome-headers')
         const isBot = dataDomeRes.headers.get('x-datadome-isbot')
         if (isBot) {
