@@ -121,9 +121,9 @@ export default async function datadome(req: NextRequest) {
       if (dataDomeRes.status !== 200) {
         // blocked!
         // res.cookies.set('datadome', dataDomeRes.cookies.get('datadome')?.value)
-        // res = NextResponse.next(dataDomeRes)
+        res = NextResponse.next(dataDomeRes)
         // dataDomeRes.headers.set('x-datadome-headers', ' ')
-        res = dataDomeRes.clone() as NextResponse;
+        // res = dataDomeRes.clone() as NextResponse;
         // res.headers.delete('x-datadome-headers')
         const isBot = dataDomeRes.headers.get('x-datadome-isbot')
         if (isBot) {
@@ -136,10 +136,16 @@ export default async function datadome(req: NextRequest) {
         }
       }
 
+      // const respHeaders = new Headers();
       // Add Datadome headers to the response
       toHeaders(req.headers, dataDomeRes.headers, 'x-datadome-headers').forEach(
         (v, k) => {
-          res.headers.set(k, v)
+          console.log('k:' + k + ', v:' + v);
+          try {
+            res.headers.set(k, v)
+          } catch (error) {
+            console.log(error);
+          }
         }
       )
 
