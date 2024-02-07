@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const DATADOME_TIMEOUT = parseInt(process.env.DATADOME_TIMEOUT??"300")
+const DATADOME_TIMEOUT = parseInt(process.env.DATADOME_TIMEOUT ?? "300")
+const DATADOME_ENDPOINT = process.env.DATADOME_ENDPOINT ?? "https://api.datadome.co"
 const DATADOME_URI_REGEX_EXCLUSION =
   /\.(avi|flv|mka|mkv|mov|mp4|mpeg|mpg|mp3|flac|ogg|ogm|opus|wav|webm|webp|bmp|gif|ico|jpeg|jpg|png|svg|svgz|swf|eot|otf|ttf|woff|woff2|css|less|js|map)$/i
 
@@ -76,7 +77,7 @@ export default async function datadome(req: NextRequest) {
     options.headers['X-DataDome-X-Set-Cookie'] = 'true'
     requestData.ClientID = req.headers.get('x-datadome-clientid') as string
   }
-  const dataDomeReq = fetch('http://api.datadome.co/validate-request/', options)
+  const dataDomeReq = fetch(DATADOME_ENDPOINT + '/validate-request/', options)
 
   const timeoutPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
