@@ -123,7 +123,7 @@ export default async function datadome(req: NextRequest) {
         // res.cookies.set('datadome', dataDomeRes.cookies.get('datadome')?.value)
         // res = NextResponse.next(dataDomeRes)
         // dataDomeRes.headers.set('x-datadome-headers', ' ')
-        res = dataDomeRes as NextResponse;
+        res = dataDomeRes.clone() as NextResponse;
         // res.headers.delete('x-datadome-headers')
         const isBot = dataDomeRes.headers.get('x-datadome-isbot')
         if (isBot) {
