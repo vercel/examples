@@ -121,7 +121,8 @@ export default async function datadome(req: NextRequest) {
       if (dataDomeRes.status !== 200) {
         // blocked!
         // res.cookies.set('datadome', dataDomeRes.cookies.get('datadome')?.value)
-        res = NextResponse.next(dataDomeRes)
+        res = new Response(dataDomeRes.body, {status: dataDomeRes.status}) as NextResponse
+        // res.body = dataDomeRes.body;
         // dataDomeRes.headers.set('x-datadome-headers', ' ')
         // res = dataDomeRes.clone() as NextResponse;
         // res.headers.delete('x-datadome-headers')
@@ -140,13 +141,18 @@ export default async function datadome(req: NextRequest) {
       // Add Datadome headers to the response
       toHeaders(req.headers, dataDomeRes.headers, 'x-datadome-headers').forEach(
         (v, k) => {
-          console.log('k:' + k + ', v:' + v);
           try {
             res.headers.set(k, v)
           } catch (error) {
+            console.log('failed for k:' + k + ', v:' + v);
             console.log(error);
           }
         }
+      )
+      console.log(
+        'Datadome response debug',
+        res.status,
+        JSON.stringify(Object.fromEntries(res.headers.entries()), null, 2)
       )
 
       // We're sending the latency for demo purposes, this is not something you need to do
