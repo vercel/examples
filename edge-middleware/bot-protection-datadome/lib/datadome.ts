@@ -21,7 +21,7 @@ export default async function datadome(req: NextRequest) {
       ? req.headers.get('x-forwarded-for')!.split(',')[0]
       : '127.0.0.1',
     RequestModuleName: 'Next.js',
-    ModuleVersion: '0.2.0',
+    ModuleVersion: '1.0.0',
     AuthorizationLen: getAuthorizationLength(req),
     Accept: req.headers.get('accept'),
     AcceptEncoding: req.headers.get('accept-encoding'),
