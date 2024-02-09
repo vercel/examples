@@ -11,7 +11,8 @@ export default async function datadome(req: NextRequest) {
   if (DATADOME_URI_REGEX_EXCLUSION.test(pathname)) {
     return
   }
-  let { clientId, cookiesLength } = getCookieData(req.cookies)
+  let clientId = getCookieData(req.cookies)
+  let cookiesLength = req.headers.get('cookie')?.length ?? 0
   const requestData = {
     Key: process.env.DATADOME_SERVER_SIDE_KEY,
     // this should be `x-real-ip` but it doesn't currently work on Edge Middleware
@@ -273,22 +274,17 @@ function truncateRequestData(requestData: Record<string, string | number | null 
 }
 
 /**
- * Returns a simple object with two properties:
- *   - The client ID from the `datadome` cookie.
- *   - The total length of the `Cookie` request header.
+ * Returns the client ID from the `datadome` cookie.
  * @param {NextRequest['cookies']} cookies - Incoming client request cookie header
- * @returns {{ clientId: string, cookiesLength: number }}
+ * @returns {{ clientId: string }}
  */
 function getCookieData(cookies: NextRequest['cookies']) {
-  let clientId = ''
-  let cookiesLength = 0
   for (const [, cookie] of cookies) {
-    cookiesLength += cookie.name.length + 1 + cookie.value.length /* name = value */
-    if (clientId == '' && cookie.name == 'datadome') {
-      clientId = cookie.value
+    if (cookie.name == 'datadome') {
+      return cookie.value
     }
   }
-  return { clientId, cookiesLength }
+  return '';
 }
 
 /**
