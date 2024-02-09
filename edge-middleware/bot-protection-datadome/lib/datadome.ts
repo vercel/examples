@@ -67,7 +67,7 @@ export default async function datadome(req: NextRequest) {
 
   const options = {
     method: 'POST',
-    body: stringify(requestData),
+    body: stringify(truncateRequestData(requestData)),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'User-Agent': 'DataDome'
@@ -218,6 +218,59 @@ function stringify(obj: Record<string, string | number | null | undefined>) {
         .join('&')
     : ''
 }
+function truncateRequestData(requestData: Record<string, string | number | null | undefined>) {
+  const limits = {
+    secfetchuser: 8,
+    secchdevicememory: 8,
+    secchuamobile: 8,
+    tlsprotocol: 8,
+    secchuaarch: 16,
+    contenttype: 64,
+    secchuaplatform: 32,
+    secfetchdest: 32,
+    secfetchmode: 32,
+    secfetchsite: 64,
+    tlscipher: 64,
+    clientid: 128,
+    from: 128,
+    "x-requested-with": 128,
+    acceptcharset: 128,
+    acceptencoding: 128,
+    connection: 128,
+    pragma: 128,
+    cachecontrol: 128,
+    secchua: 128,
+    secchuamodel: 128,
+    trueclientip: 128,
+    secchuafullversionlist: 256,
+    acceptlanguage: 256,
+    via: 256,
+    headerslist: 512,
+    origin: 512,
+    serverhostname: 512,
+    servername: 512,
+    xforwardedforip: -512,
+    accept: 512,
+    host: 512,
+    useragent: 768,
+    referer: 1024,
+    request: 2048,
+  };
+
+  for (let key in requestData) {
+    const value = requestData[key];
+    const limit = limits[key.toLowerCase()];
+    if (limit && value && typeof value == 'string' && value.length > Math.abs(limit)) {
+      if (limit > 0) {
+        requestData[key] = value.substring(0, limit);
+      } else {
+        requestData[key] = value.slice(limit);
+      }
+    }
+  }
+  return requestData;
+}
+
 /**
  * Returns a simple object with two properties:
  *   - The client ID from the `datadome` cookie.
@@ -229,7 +282,7 @@ function getCookieData(cookies: NextRequest['cookies']) {
   let clientId = ''
   let cookiesLength = 0
   for (const [, cookie] of cookies) {
-    cookiesLength += cookie.value.length
+    cookiesLength += cookie.name.length + 1 + cookie.value.length /* name = value */
     if (clientId == '' && cookie.name == 'datadome') {
       clientId = cookie.value
     }
