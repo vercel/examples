@@ -47,6 +47,7 @@ export default async function datadome(req: NextRequest) {
     ServerName: 'vercel',
     ServerRegion: 'sfo1',
     TimeRequest: new Date().getTime() * 1000,
+    TrueClientIP: req.headers.get('true-client-ip'),
     UserAgent: req.headers.get('user-agent'),
     Via: req.headers.get('via'),
     XForwardedForIP: req.headers.get('x-forwarded-for'),
