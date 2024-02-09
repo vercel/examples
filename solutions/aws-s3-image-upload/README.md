@@ -3,7 +3,7 @@ name: AWS S3 Image Upload
 slug: aws-s3-image-upload
 description: Learn to use AWS S3 to upload images to your bucket.
 framework: Next.js
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-s3-image-upload&project-name=aws-s3-image-upload&repository-name=aws-s3-image-upload&env=AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_REGION,BUCKET_NAME
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-s3-image-upload&project-name=aws-s3-image-upload&repository-name=aws-s3-image-upload&env=AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_REGION,AWS_BUCKET_NAME
 ---
 
 # Next.js + AWS S3 Upload
@@ -26,43 +26,42 @@ Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packag
 pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/aws-s3-image-upload
 ```
 
-1. Create a new [IAM User](https://aws.amazon.com/iam/):
-   1. Choose programatic access.
-   2. Select "Attach existing policies directly"
-   3. Add `AmazonS3FullAccess`.
+1. Create a new [S3 Bucket](https://console.aws.amazon.com/s3/).
+   1. In Object Ownership, select "ACLs enabled" and "Bucket owner prefered"
+   2. In Block Public Access settings for this bucket, uncheck "Block all public access".
+1. Create a new [IAM User](https://aws.amazon.com/iam/).
+   1. Select "Attach policies directly".
+   2. Add `s3:DeleteObject`, `s3:GetObject`, `s3:ListBucket`, `s3:PutObject`, `s3:PutObjectAcl`
 1. Save the access key and secret key for the IAM User.
-   1. This is used for programmatic access in the API Route.
-1. Install the [AWS CLI](https://aws.amazon.com/cli/):
-   1. Run `aws configure`.
-   2. Enter your root AWS user access key and secret key.
-   3. Enter your default region.
+   1. Select the newly created user (IAM > Users > "your-user") and navigate to "Security Credentials".
+   2. Under "Access Keys", create a key and save this information. We will use this in the next step.
 1. Create an `.env.local` file similar to `.env.example`.
-   1. Enter your access key and secret key from the IAM user.
-1. You must configure cors, for the upload to work
-   1. [S3 Documentation](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-photo-album.html)
-   ```json
-   {
-     "Version": "2012-10-17",
-     "Statement": [
-       {
-         "Effect": "Allow",
-         "Action": [
-           "s3:DeleteObject",
-           "s3:GetObject",
-           "s3:ListBucket",
-           "s3:PutObject",
-           "s3:PutObjectAcl"
-         ],
-         "Resource": ["arn:aws:s3:::BUCKET_NAME", "arn:aws:s3:::BUCKET_NAME/*"]
-       }
-     ]
-   }
+   1. In your `env.local` file, use the information from your access key, along with the region and bucket name.
+   1. Do not adjust the naming of the keys, only input your values. [This is to ensure S3 Client can read them as defaults](https://docs.aws.amazon.com/sdkref/latest/guide/settings-reference.html).
+1. Configure CORS to enable uploads from your browser.
+   1. Navigate to your bucket, and go to the "Permissions" tab.
+   2. Scroll down to find "Cross-origin resource sharing (CORS)" and click "Edit" on the right side.
+   3. Paste the following code below.
    ```
-1. Run `cdk bootstrap`.
-1. Run `cdk deploy` to create an S3 bucket with an IAM policy.
-1. Visit your newly created S3 bucket and retrieve the name and region.
-1. Add the name and region to `.env.local`.
-1. Run `pnpm dev` to start the Next.js app at http://localhost:3000.
+   [
+    {
+        "AllowedHeaders": [
+            "*"
+        ],
+        "AllowedMethods": [
+            "GET",
+            "PUT",
+            "POST",
+            "DELETE"
+        ],
+        "AllowedOrigins": [
+            "*"
+        ],
+        "ExposeHeaders": []
+    }
+   ]
+   ```
+1. Run `pnpm dev` or `npm run dev` to start the Next.js app at http://localhost:3000.
 1. Choose a `.png` or `.jpg` file.
 1. You should see your file successfully uploaded to S3.
 
@@ -87,14 +86,28 @@ const s3 = new S3Client({
 Instead, it can be replaced with this:
 
 ```
-const s3 = new S3Client({});
+const client = new S3Client({ region: process.env.AWS_REGION });
 ```
+
+[Source: AWS Environment Variable Default “Load Credential”](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html)
 
 The SDK will pick up the credentials from the environment automatically.
 
 ## Commands
 
-- `pnpm dev` – Starts the Next.js app at `localhost:3000`.
-- `cdk deploy` – Deploy this stack to your default AWS account/region
-- `cdk diff` – Compare deployed stack with current state
-- `cdk synth` – Emits the synthesized CloudFormation template
+- `pnpm dev` or `npm run dev` – Starts the Next.js app at `localhost:3000`.
+
+## Additional Resources
+
+### AWS Environment Variables
+
+- AWS Environment Variables: https://docs.aws.amazon.com/sdkref/latest/guide/settings-reference.html
+- AWS Environment Variable Default “Load Credential”: https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html
+
+### AWS SDK - Presigned Post
+
+- How to use PresignedPost URLs (this example includes adding user id as metadata): https://advancedweb.hu/how-to-use-s3-post-signed-urls/
+- AWS SDK v3 - S3Client Initalization (see Usage): https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/index.html
+- AWS SDK - Generate a Presigned Post: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_s3_presigned_post.html#generate-a-presigned-post
+- AWS S3 POST Policy - Condition Matching (only allow images): https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-HTTPPOSTConstructPolicy.html
+- AWS ACL Permissions: https://stackoverflow.com/a/70550540/19416953
