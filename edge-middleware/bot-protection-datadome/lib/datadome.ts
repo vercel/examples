@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 const DATADOME_TIMEOUT = parseInt(process.env.DATADOME_TIMEOUT ?? "300")
-const DATADOME_ENDPOINT = process.env.DATADOME_ENDPOINT ?? "https://api.datadome.co"
-const DATADOME_URI_REGEX_EXCLUSION =
+const DATADOME_ENDPOINT = validateEndpoint()
+const DATADOME_URI_REGEX_EXCLUSION = 
   /\.(avi|flv|mka|mkv|mov|mp4|mpeg|mpg|mp3|flac|ogg|ogm|opus|wav|webm|webp|bmp|gif|ico|jpeg|jpg|png|svg|svgz|swf|eot|otf|ttf|woff|woff2|css|less|js|map)$/i
 
 export default async function datadome(req: NextRequest) {
@@ -288,4 +288,16 @@ function getCookieData(cookies: NextRequest['cookies']) {
     }
   }
   return { clientId, cookiesLength }
+}
+
+/**
+ *
+ * @returns the default endpoint for the API if not set, enforcing https otherwise
+ */
+function validateEndpoint() {
+  let endpoint = process.env.DATADOME_ENDPOINT ?? 'https://api.datadome.co'
+  if (!(/https?:\/\//i).test(endpoint)) {
+    endpoint = "https://" + endpoint
+  }
+  return endpoint
 }
