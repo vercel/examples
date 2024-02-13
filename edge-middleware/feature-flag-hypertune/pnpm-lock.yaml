@@ -12,8 +12,8 @@ dependencies:
     specifier: ^2.0.3
     version: 2.0.3(next@14.1.1-canary.51)(react-dom@18.2.0)(react@18.2.0)
   '@vercel/flags':
-    specifier: ^0.1.9
-    version: 0.1.9(next@14.1.1-canary.51)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^0.2.0
+    version: 0.2.0(next@14.1.1-canary.51)(react-dom@18.2.0)(react@18.2.0)
   '@vercel/toolbar':
     specifier: ^0.1.11
     version: 0.1.11(next@14.1.1-canary.51)(react@18.2.0)
@@ -532,14 +532,14 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@vercel/flags@0.1.9(next@14.1.1-canary.51)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-R6lSX6yUJgZrL8b8NUu2iwmWTqazzRqCMaz9QqpAotyKGhCE09lEE5Fq5PguIJ7paSHfToLiHJhEe6gBvUM1aw==}
+  /@vercel/flags@0.2.0(next@14.1.1-canary.51)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-fFGsUExpVPqd+imXj+ReAOcVv6P6g1dVLLBZ1um9VG+ghU4F1Gv4WaVcAuxYVp2uJcdjvqooAVhpv+esrNxmmw==}
     peerDependencies:
       next: '*'
       react: '*'
       react-dom: '*'
     dependencies:
-      jose: 4.15.3
+      jose: 5.2.1
       next: 14.1.1-canary.51(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -2003,8 +2003,8 @@ packages:
     hasBin: true
     dev: true
 
-  /jose@4.15.3:
-    resolution: {integrity: sha512-RZJdL9Qjd1sqNdyiVteRGV/bnWtik/+PJh1JP4kT6+x1QQMn+7ryueRys5BEueuayvSVY8CWGCisCDazeRLTuw==}
+  /jose@5.2.1:
+    resolution: {integrity: sha512-qiaQhtQRw6YrOaOj0v59h3R6hUY9NvxBmmnMfKemkqYmBB0tEc97NbLP7ix44VP5p9/0YHG8Vyhzuo5YBNwviA==}
     dev: false
 
   /joycon@3.1.1:
