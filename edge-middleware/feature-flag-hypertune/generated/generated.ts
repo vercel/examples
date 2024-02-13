@@ -62,7 +62,7 @@ function mergeQueryAndArgs(
   );
 }
   
-export const vercelFlagDefinitions = {"exampleFlag":{"options":[{"value":true},{"value":false}],"origin":"https://app.hypertune.com/projects/2583/draft?view=logic&selected_field_path=root%3EexampleFlag"}};
+export const vercelFlagDefinitions = {"exampleFlag":{"options":[{"value":true},{"value":false}],"origin":"https://app.hypertune.com/projects/2583/draft?view=logic&selected_field_path=root%3EexampleFlag","description":"An example flag."}};
 
 export type Rec = {
 
@@ -91,6 +91,9 @@ export type Rec2 = {
 }
 
 export type Root = {
+  /**
+   * An example flag.
+   */
   exampleFlag: boolean;
 }
 
@@ -105,6 +108,7 @@ export class RootNode extends sdk.Node {
   }
 
   /**
+   * An example flag.
    * [Open in UI]({@link https://app.hypertune.com/projects/2583/draft?view=logic&selected_field_path=root%3EexampleFlag})
    */
   exampleFlag(args: Rec = {}): sdk.BooleanNode {
@@ -124,25 +128,7 @@ export class RootNode extends sdk.Node {
   }
 }
 
-/**
- * Welcome to Hypertune, the most powerful feature flag, A/B testing and app
- * configuration platform.
- * 
- * Follow the quickstart: https://docs.hypertune.com/quickstart
- * 
- * This is your schema, written in GraphQL. Use Boolean for feature flags,
- * custom enums for flags with more than two states, Int for numeric flags like
- * limits and timeouts, Strings for in-app copy, and custom object and list types
- * for more complex app configuration.
- * 
- * Once you've defined your schema, head to the Logic tab.
- */
 export type Query = {
-  /**
-   * You can add arguments to any field in your schema, which you can then
-   * reference when defining your logic. We've added a 'context' argument on your
-   * root field already, which contains details of the current 'user'.
-   */
   root: Root;
 }
 
@@ -156,19 +142,6 @@ export type Rec5 = {
   root: Rec6;
 }
 
-/**
- * Welcome to Hypertune, the most powerful feature flag, A/B testing and app
- * configuration platform.
- * 
- * Follow the quickstart: https://docs.hypertune.com/quickstart
- * 
- * This is your schema, written in GraphQL. Use Boolean for feature flags,
- * custom enums for flags with more than two states, Int for numeric flags like
- * limits and timeouts, Strings for in-app copy, and custom object and list types
- * for more complex app configuration.
- * 
- * Once you've defined your schema, head to the Logic tab.
- */
 export class QueryNode extends sdk.Node {
   typeName = "Query" as const;
 
@@ -177,11 +150,6 @@ export class QueryNode extends sdk.Node {
     return this.evaluate(getQuery, fallback) as Query
   }
 
-  /**
-   * You can add arguments to any field in your schema, which you can then
-   * reference when defining your logic. We've added a 'context' argument on your
-   * root field already, which contains details of the current 'user'.
-   */
   root(args: Rec2): RootNode {
     const props0 = this.getField("root", args);
     const expression0 = props0.expression;
