@@ -3,13 +3,13 @@ import hypertune from './hypertune'
 
 export default function useHypertune() {
   // Trigger a re-render when flags are updated
-  const [, setCommitHash] = React.useState<string | null>(
-    hypertune.getCommitHash(),
+  const [, setStateHash] = React.useState<string | null>(
+    hypertune.getStateHash(),
   )
   useEffect(() => {
-    hypertune.addUpdateListener(setCommitHash)
+    hypertune.addUpdateListener(setStateHash)
     return () => {
-      hypertune.removeUpdateListener(setCommitHash)
+      hypertune.removeUpdateListener(setStateHash)
     }
   }, [])
 
