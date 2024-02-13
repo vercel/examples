@@ -5,24 +5,28 @@ export const config = {
   maxDuration: 30,
 }
 
+const signingSecret = process.env.SLACK_SIGNING_SECRET!
+
+// See https://api.slack.com/authentication/verifying-requests-from-slack
 async function isValidSlackRequest(request: Request, body: any) {
-  const signingSecret = process.env.SLACK_SIGNING_SECRET!
-  const timestamp = request.headers.get('X-Slack-Request-Timestamp')!
-  const slackSignature = request.headers.get('X-Slack-Signature')!
+  const timestamp = request.headers.get('X-Slack-Request-Timestamp')
+  const slackSignature = request.headers.get('X-Slack-Signature')
+
   const base = `v0:${timestamp}:${JSON.stringify(body)}`
   const hmac = crypto
     .createHmac('sha256', signingSecret)
     .update(base)
     .digest('hex')
   const computedSignature = `v0=${hmac}`
+
   return computedSignature === slackSignature
 }
 
 export async function POST(request: Request) {
-  const rawBody = await request.text()
-  const body = JSON.parse(rawBody)
+  const body = await request.json()
   const requestType = body.type
 
+  // See https://api.slack.com/events/url_verification
   if (requestType === 'url_verification') {
     return new Response(body.challenge, { status: 200 })
   }
