@@ -62,7 +62,7 @@ function mergeQueryAndArgs(
   );
 }
   
-export const vercelFlagDefinitions = {"exampleFlag":{"options":[{"value":true},{"value":false}],"origin":"https://app.hypertune.com/projects/2583/draft?view=logic&selected_field_path=root%3EexampleFlag","description":"An example flag."}};
+export const vercelFlagDefinitions = {"exampleFlag":{"options":[{"value":true},{"value":false}],"origin":"https://app.hypertune.com/projects/2583/draft?view=logic&selected_field_path=root%3EexampleFlag"}};
 
 export type Rec = {
 
@@ -74,8 +74,16 @@ export type Rec4 = {
   email: string;
 }
 
+export const EnvironmentEnumValues = [
+  "DEVELOPMENT",
+  "STAGING",
+  "PRODUCTION"
+] as const;
+export type Environment = typeof EnvironmentEnumValues[number];
+
 export type Rec3 = {
   user: Rec4;
+  environment: Environment;
 }
 
 export type Rec2 = {
@@ -83,9 +91,6 @@ export type Rec2 = {
 }
 
 export type Root = {
-  /**
-   * An example flag.
-   */
   exampleFlag: boolean;
 }
 
@@ -100,7 +105,6 @@ export class RootNode extends sdk.Node {
   }
 
   /**
-   * An example flag.
    * [Open in UI]({@link https://app.hypertune.com/projects/2583/draft?view=logic&selected_field_path=root%3EexampleFlag})
    */
   exampleFlag(args: Rec = {}): sdk.BooleanNode {
@@ -120,6 +124,19 @@ export class RootNode extends sdk.Node {
   }
 }
 
+/**
+ * Welcome to Hypertune, the most powerful feature flag, A/B testing and app
+ * configuration platform.
+ * 
+ * Follow the quickstart: https://docs.hypertune.com/quickstart
+ * 
+ * This is your schema, written in GraphQL. Use Boolean for feature flags,
+ * custom enums for flags with more than two states, Int for numeric flags like
+ * limits and timeouts, Strings for in-app copy, and custom object and list types
+ * for more complex app configuration.
+ * 
+ * Once you've defined your schema, head to the Logic tab.
+ */
 export type Query = {
   /**
    * You can add arguments to any field in your schema, which you can then
@@ -139,6 +156,19 @@ export type Rec5 = {
   root: Rec6;
 }
 
+/**
+ * Welcome to Hypertune, the most powerful feature flag, A/B testing and app
+ * configuration platform.
+ * 
+ * Follow the quickstart: https://docs.hypertune.com/quickstart
+ * 
+ * This is your schema, written in GraphQL. Use Boolean for feature flags,
+ * custom enums for flags with more than two states, Int for numeric flags like
+ * limits and timeouts, Strings for in-app copy, and custom object and list types
+ * for more complex app configuration.
+ * 
+ * Once you've defined your schema, head to the Logic tab.
+ */
 export class QueryNode extends sdk.Node {
   typeName = "Query" as const;
 
