@@ -24,8 +24,8 @@ dependencies:
     specifier: ^13.4.19
     version: 13.5.4(eslint@8.50.0)(typescript@5.2.2)
   hypertune:
-    specifier: ^1.10.0
-    version: 1.10.0(encoding@0.1.13)
+    specifier: ^1.11.1
+    version: 1.11.1(encoding@0.1.13)
   next:
     specifier: canary
     version: 14.1.1-canary.61(react-dom@18.2.0)(react@18.2.0)
@@ -1728,8 +1728,8 @@ packages:
     engines: {node: '>=14.18.0'}
     dev: true
 
-  /hypertune@1.10.0(encoding@0.1.13):
-    resolution: {integrity: sha512-rQKAGiFfIZogz04hP5/TMMPUU9PQRQOcb/lnlW6wWgxp8I3qDOKZhwukIFeaLysXtm4LeafO9Dv38ei8+ElGJg==}
+  /hypertune@1.11.1(encoding@0.1.13):
+    resolution: {integrity: sha512-kfhbVCEatjzJH945Xo3+cp5XzNJbY4CZSS8uW8dcUqw1Wl4Vm9Hh3sLLwk2XycYY9ybKpD1NF23/rttv0x+zXA==}
     hasBin: true
     dependencies:
       cac: 6.7.14
