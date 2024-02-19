@@ -5,6 +5,7 @@ import hypertune from './hypertune'
 export default async function getHypertune(): Promise<RootNode> {
   await hypertune.initFromServerIfNeeded()
 
+  // Respect overrides set by the Vercel Toolbar
   const vercelFlagOverrides = await getVercelFlagOverrides()
   hypertune.setOverride<Query>({ root: vercelFlagOverrides })
 
