@@ -8,11 +8,15 @@ export const config = {
 const signingSecret = process.env.SLACK_SIGNING_SECRET!
 
 // See https://api.slack.com/authentication/verifying-requests-from-slack
-async function isValidSlackRequest(request: Request, body: any) {
+async function isValidSlackRequest(request: Request, rawBody: any) {
   const timestamp = request.headers.get('X-Slack-Request-Timestamp')
   const slackSignature = request.headers.get('X-Slack-Signature')
 
-  const base = `v0:${timestamp}:${JSON.stringify(body)}`
+  if (!timestamp || !slackSignature) {
+    return false
+  }
+
+  const base = `v0:${timestamp}:${rawBody}`
   const hmac = crypto
     .createHmac('sha256', signingSecret)
     .update(base)
@@ -23,7 +27,8 @@ async function isValidSlackRequest(request: Request, body: any) {
 }
 
 export async function POST(request: Request) {
-  const body = await request.json()
+  const rawBody = await request.text()
+  const body = JSON.parse(rawBody)
   const requestType = body.type
 
   // See https://api.slack.com/events/url_verification
@@ -31,7 +36,7 @@ export async function POST(request: Request) {
     return new Response(body.challenge, { status: 200 })
   }
 
-  if (await isValidSlackRequest(request, body)) {
+  if (await isValidSlackRequest(request, rawBody)) {
     if (requestType === 'event_callback') {
       const eventType = body.event.type
       if (eventType === 'app_mention') {
