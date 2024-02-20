@@ -2,7 +2,7 @@ import crypto from 'crypto'
 import { sendGPTResponse } from './_chat'
 
 export const config = {
-  maxDuration: 30,
+  maxDuration: 10,
 }
 
 const signingSecret = process.env.SLACK_SIGNING_SECRET!
