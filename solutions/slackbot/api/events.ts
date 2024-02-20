@@ -8,7 +8,7 @@ export const config = {
 const signingSecret = process.env.SLACK_SIGNING_SECRET!
 
 // See https://api.slack.com/authentication/verifying-requests-from-slack
-async function isValidSlackRequest(request: Request, rawBody: any) {
+async function isValidSlackRequest(request: Request, rawBody: string) {
   const timestamp = request.headers.get('X-Slack-Request-Timestamp')
   const slackSignature = request.headers.get('X-Slack-Signature')
 
