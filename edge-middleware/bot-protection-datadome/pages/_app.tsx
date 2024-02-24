@@ -13,14 +13,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       title="Bot Protection with DataDome"
       path="edge-middleware/bot-protection-datadome"
       deployButton={{
-        env: ['NEXT_PUBLIC_DATADOME_CLIENT_KEY', 'DATADOME_SERVER_KEY'],
+        env: ['NEXT_PUBLIC_DATADOME_CLIENT_SIDE_KEY', 'DATADOME_SERVER_SIDE_KEY'],
       }}
     >
       <Component {...pageProps} />
 
       {/* datadome bot protection */}
       <Script strategy="lazyOnload" id="load-datadome">{`
-        window.ddjskey = '${process.env.NEXT_PUBLIC_DATADOME_CLIENT_KEY}'
+        window.ddjskey = '${process.env.NEXT_PUBLIC_DATADOME_CLIENT_SIDE_KEY}'
         window.ddoptions = {
           endpoint: '${DATADOME_JS}'
         }
