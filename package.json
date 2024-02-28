@@ -2,9 +2,8 @@
   "name": "examples",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@8.14.1+sha256.2df78e65d433d7693b9d3fbdaf431b2d96bb4f96a2ffecd51a50efe16e50a6a8",
   "engines": {
-    "pnpm": "8.14.1"
+    "pnpm": "8.14.2"
   },
   "scripts": {
     "lint-staged": "lint-staged",
