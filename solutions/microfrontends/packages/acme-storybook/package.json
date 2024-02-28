@@ -29,11 +29,11 @@
     "eslint": "^8.38.0",
     "eslint-config-acme": "workspace:*",
     "eslint-plugin-storybook": "^0.6.11",
-    "postcss": "^8.4.23",
+    "postcss": "^8.4.31",
     "serve": "^14.2.0",
     "storybook": "^7.0.6",
     "tailwindcss": "^3.3.1",
     "typescript": "^5.0.4",
-    "vite": "^4.3.1"
+    "vite": "^4.5.2"
   }
 }

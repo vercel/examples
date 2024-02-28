@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-vercel": "^4.0.3",
-    "@sveltejs/kit": "^2.0.6",
+    "@sveltejs/kit": "^2.4.3",
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.23",
@@ -23,7 +23,7 @@
     "tailwindcss": "^3.3.2",
     "turbo": "^1.9.3",
     "typescript": "^5.0.4",
-    "vite": "^5.0.10"
+    "vite": "^5.0.12"
   },
   "dependencies": {
     "@vercel/blob": "^0.16.1",
