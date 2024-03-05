@@ -30,12 +30,6 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      {/* 
-        This would instruct the toolbar to set plaintext flag overrides
-        <head>
-          <meta name="vercel-flags-plaintext-overrides" />
-        </head>
-      */}
       <body className={inter.className}>
         {children}
         {/*
