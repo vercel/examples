@@ -6,23 +6,10 @@ import {
   decrypt,
   encrypt,
   type FlagValuesType,
-  type JsonValue,
   type FlagOverridesType,
 } from "@vercel/flags";
 import { FlagValues } from "@vercel/flags/react";
 import optimizely from '@optimizely/optimizely-sdk';
-
-function registerFlagValue(key: string, value: JsonValue) {
-  const symbol = Symbol.for("@vercel/request-context");
-  const ctx = Reflect.get(globalThis, symbol)?.get();
-  ctx?.flags?.reportValue(key, value);
-}
-
-function registerFlagValues(flags: FlagValuesType) {
-  Object.entries(flags).forEach(([key, value]) =>
-    registerFlagValue(key, value)
-  );
-}
 
 /**
  * A function which respects overrides set by the Toolbar, and returns feature flags.
@@ -52,7 +39,6 @@ async function getFlags() {
     // @ts-ignore
     deploy: overrides?.deploy?.variationKey ?? context.decide('deploy').variationKey,
   };
-  registerFlagValues(flags);
   return flags;
 }
 

@@ -6,23 +6,10 @@ import {
   encrypt,
   decrypt,
   type FlagValuesType,
-  type JsonValue,
   type FlagOverridesType,
 } from "@vercel/flags";
 import { SplitFactory } from '@splitsoftware/splitio';
 import { FlagValues } from "@vercel/flags/react";
-
-function registerFlagValue(key: string, value: JsonValue) {
-  const symbol = Symbol.for("@vercel/request-context");
-  const ctx = Reflect.get(globalThis, symbol)?.get();
-  ctx?.flags?.reportValue(key, value);
-}
-
-function registerFlagValues(flags: FlagValuesType) {
-  Object.entries(flags).forEach(([key, value]) =>
-    registerFlagValue(key, value)
-  );
-}
 
 /**
  * A function which respects overrides set by the Toolbar, and returns feature flags.
@@ -50,7 +37,7 @@ async function getFlags() {
     templates: overrides?.templates ?? client.getTreatment(key, 'templates'),
     deploy: overrides?.deploy ?? client.getTreatment(key, 'deploy'),
   };
-  registerFlagValues(flags);
+
   return flags;
 }
 

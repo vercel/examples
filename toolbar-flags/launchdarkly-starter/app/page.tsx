@@ -6,24 +6,11 @@ import {
   encrypt,
   decrypt,
   type FlagValuesType,
-  type JsonValue,
   type FlagOverridesType,
 } from "@vercel/flags";
 import { FlagValues } from "@vercel/flags/react";
 import { LDContext } from "@launchdarkly/node-server-sdk";
 import { getClient } from "./launchdarkly";
-
-function registerFlagValue(key: string, value: JsonValue) {
-  const symbol = Symbol.for("@vercel/request-context");
-  const ctx = Reflect.get(globalThis, symbol)?.get();
-  ctx?.flags?.reportValue(key, value);
-}
-
-function registerFlagValues(flags: FlagValuesType) {
-  Object.entries(flags).forEach(([key, value]) =>
-    registerFlagValue(key, value)
-  );
-}
 
 /**
  * A function which respects overrides set by the Toolbar, and returns feature flags.
@@ -49,7 +36,6 @@ async function getFlags() {
     deploy:
       overrides?.deploy ?? (await client.variation("deploy", context, false)),
   };
-  registerFlagValues(flags);
   return flags;
 }
 

@@ -6,23 +6,9 @@ import {
   decrypt,
   encrypt,
   type FlagValuesType,
-  type JsonValue,
-  type FlagOverridesType,
 } from "@vercel/flags";
 import Statsig from "statsig-node";
 import { FlagValues } from "@vercel/flags/react";
-
-function registerFlagValue(key: string, value: JsonValue) {
-  const symbol = Symbol.for("@vercel/request-context");
-  const ctx = Reflect.get(globalThis, symbol)?.get();
-  ctx?.flags?.reportValue(key, value);
-}
-
-function registerFlagValues(flags: FlagValuesType) {
-  Object.entries(flags).forEach(([key, value]) =>
-    registerFlagValue(key, value)
-  );
-}
 
 /**
  * A function which respects overrides set by the Toolbar, and returns feature flags.
@@ -47,7 +33,7 @@ async function getFlags() {
     // @ts-ignore
     get_started: overrides?.get_started?.show ?? Statsig.getExperimentSync(user, "get_started").getValue('show')
   };
-  registerFlagValues(flags);
+
   return flags;
 }
 
