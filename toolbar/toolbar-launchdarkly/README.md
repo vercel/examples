@@ -5,7 +5,7 @@ description: Learn how to set up the LaunchDarkly with the Vercel Toolbar
 framework: Next.js
 useCase: Vercel Toolbar
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/toolbar/toolbar-launchdarkly&project-name=toolbar-launchdarkly&repository-name=toolbar-launchdarkly&env=LAUNCHDARKLY_API_KEY&env=LAUNCHDARKLY_ENV&env=LAUNCHDARKLY_PROJECT_KEY&env=FLAGS_SECRET
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/toolbar/toolbar-launchdarkly&project-name=toolbar-launchdarkly&repository-name=toolbar-launchdarkly&env=LAUNCHDARKLY_API_KEY&env=LAUNCHDARKLY_SDK_KEY&env=LAUNCHDARKLY_ENV&env=LAUNCHDARKLY_PROJECT_KEY&env=FLAGS_SECRET
 demoUrl: https://toolbar-launchdarkly.vercel.app
 relatedTemplates:
   - toolbar-optimizely
@@ -17,7 +17,7 @@ relatedTemplates:
 
 This example shows how to combine the Vercel Toolbar with LaunchDarkly in Next.js.
 
-You will need to provide the `LAUNCHDARKLY_API_KEY`, `LAUNCHDARKLY_ENV` and `LAUNCHDARKLY_PROJECT_KEY` environment variables.
+You will need to provide the `LAUNCHDARKLY_API_KEY`, `LAUNCHDARKLY_SDK_KEY`, `LAUNCHDARKLY_ENV`, and `LAUNCHDARKLY_PROJECT_KEY` environment variables.
 
 You will also need to provide a `FLAGS_SECRET` environment variable. You can generate one with `node -e "console.log(crypto.randomBytes(32).toString('base64url'))"`.
 
@@ -35,7 +35,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/toolbar/toolbar-launchdarkly&project-name=toolbar-launchdarkly&repository-name=toolbar-launchdarkly&env=LAUNCHDARKLY_API_KEY&env=LAUNCHDARKLY_ENV&env=LAUNCHDARKLY_PROJECT_KEY&env=FLAGS_SECRET)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/toolbar/toolbar-launchdarkly&project-name=toolbar-launchdarkly&repository-name=toolbar-launchdarkly&env=LAUNCHDARKLY_API_KEY&env=LAUNCHDARKLY_SDK_KEY&env=LAUNCHDARKLY_ENV&env=LAUNCHDARKLY_PROJECT_KEY&env=FLAGS_SECRET)
 
 ### Clone and Deploy
 
