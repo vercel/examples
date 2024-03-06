@@ -9,8 +9,8 @@ dependencies:
     specifier: ^9.1.1
     version: 9.1.1
   '@vercel/flags':
-    specifier: 2.2.0
-    version: 2.2.0(next@14.1.2)(react-dom@18.2.0)(react@18.2.0)
+    specifier: 2.2.1
+    version: 2.2.1(next@14.1.2)(react-dom@18.2.0)(react@18.2.0)
   '@vercel/toolbar':
     specifier: ^0.1.10
     version: 0.1.10(next@14.1.2)(react@18.2.0)
@@ -532,8 +532,8 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /@vercel/flags@2.2.0(next@14.1.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-IBIOv9xX/1R12l/6L+QDlEGGR/E6LvHTlW7hsYqzXDunXLn9IbW72v12qp7bjt+/6shSDwqRAIOS0Y+PA+rlSg==}
+  /@vercel/flags@2.2.1(next@14.1.2)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-BJoSbCJmaOY5iw08jNZ0Nq/bor1DYKzVRUv72eiXMLnsX7ABpxLaoQSoVziW5zo0qp1l1YwqfB3Xl5D57XscXg==}
     peerDependencies:
       next: '*'
       react: '*'

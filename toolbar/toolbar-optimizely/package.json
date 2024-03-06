@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@optimizely/optimizely-sdk": "^5.1.0",
-    "@vercel/flags": "2.2.0",
+    "@vercel/flags": "2.2.1",
     "@vercel/toolbar": "^0.1.10",
     "next": "latest",
     "react": "^18",
