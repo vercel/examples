@@ -5,7 +5,7 @@ description: Learn how to set up the Split with the Vercel Toolbar
 framework: Next.js
 useCase: Vercel Toolbar
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/toolbar/toolbar-split&project-name=toolbar-split&repository-name=toolbar-split&env=SPLIT_ADMIN_API_KEY&env=SPLIT_WORKSPACE_ID&env=SPLIT_ORGANIZATION_ID&env=SPLIT_ENVIRONMENT_ID&env=FLAGS_SECRET
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/toolbar/toolbar-split&project-name=toolbar-split&repository-name=toolbar-split&env=SPLIT_ADMIN_API_KEY&env=SPLIT_SDK_API_KEY&env=SPLIT_WORKSPACE_ID&env=SPLIT_ORGANIZATION_ID&env=SPLIT_ENVIRONMENT_ID&env=FLAGS_SECRET
 demoUrl: https://toolbar-split.vercel.app
 relatedTemplates:
   - toolbar-launchdarkly
@@ -17,7 +17,7 @@ relatedTemplates:
 
 This example shows how to combine the Vercel Toolbar with Split in Next.js.
 
-You will need to provide the `SPLIT_ADMIN_API_KEY`, `SPLIT_WORKSPACE_ID`, `SPLIT_ORGANIZATION_ID` and `SPLIT_ENVIRONMENT_ID` environment variables.
+You will need to provide the `SPLIT_ADMIN_API_KEY`, `SPLIT_SDK_API_KEY`, `SPLIT_WORKSPACE_ID`, `SPLIT_ORGANIZATION_ID`, and `SPLIT_ENVIRONMENT_ID` environment variables.
 
 You will also need to provide a `FLAGS_SECRET` environment variable. You can generate one with `node -e "console.log(crypto.randomBytes(32).toString('base64url'))"`.
 
@@ -35,7 +35,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/toolbar/toolbar-split&project-name=toolbar-split&repository-name=toolbar-split&env=SPLIT_ADMIN_API_KEY&env=SPLIT_WORKSPACE_ID&env=SPLIT_ORGANIZATION_ID&env=SPLIT_ENVIRONMENT_ID&env=FLAGS_SECRET)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/toolbar/toolbar-split&project-name=toolbar-split&repository-name=toolbar-split&env=SPLIT_ADMIN_API_KEY&env=SPLIT_SDK_API_KEY&env=SPLIT_WORKSPACE_ID&env=SPLIT_ORGANIZATION_ID&env=SPLIT_ENVIRONMENT_ID&env=FLAGS_SECRET)
 
 ### Clone and Deploy
 
