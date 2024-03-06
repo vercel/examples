@@ -1,5 +1,5 @@
 {
-  "name": "toolbar-flags-launchdarkly-starter",
+  "name": "toolbar-launchdarkly",
   "version": "0.1.0",
   "private": true,
   "scripts": {
