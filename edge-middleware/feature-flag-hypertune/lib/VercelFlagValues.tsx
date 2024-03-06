@@ -1,4 +1,4 @@
-import { encryptValues } from '@vercel/flags'
+import { encrypt } from '@vercel/flags'
 import { FlagValues } from '@vercel/flags/react'
 import { Root } from '../generated/generated'
 
@@ -12,6 +12,6 @@ export default async function VercelFlagValues({
       ([flagKey, flagValue]) => !flagKey.startsWith('__'),
     ),
   )
-  const encryptedFlagValues = await encryptValues(filteredFlagValues)
+  const encryptedFlagValues = await encrypt(filteredFlagValues)
   return <FlagValues values={encryptedFlagValues} />
 }
