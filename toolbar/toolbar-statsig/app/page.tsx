@@ -25,8 +25,8 @@ async function getFlags() {
     learn: overrides?.learn ?? Statsig.checkGateSync(user, 'learn'),
     templates: overrides?.templates ?? Statsig.checkGateSync(user, 'templates'),
     deploy: overrides?.deploy ?? Statsig.checkGateSync(user, 'deploy'),
-    // @ts-ignore
     get_started:
+      // @ts-ignore
       overrides?.get_started?.show ??
       Statsig.getExperimentSync(user, 'get_started').getValue('show'),
   }

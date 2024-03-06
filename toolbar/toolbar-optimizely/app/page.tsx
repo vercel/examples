@@ -31,15 +31,15 @@ async function getFlags() {
     // flag provider instead
     // @ts-ignore
     docs: overrides?.docs?.variationKey ?? context.decide('docs').variationKey,
-    // @ts-ignore
     learn:
+      // @ts-ignore
       overrides?.learn?.variationKey ?? context.decide('learn').variationKey,
-    // @ts-ignore
     templates:
+      // @ts-ignore
       overrides?.templates?.variationKey ??
       context.decide('templates').variationKey,
-    // @ts-ignore
     deploy:
+      // @ts-ignore
       overrides?.deploy?.variationKey ?? context.decide('deploy').variationKey,
   }
   return flags
