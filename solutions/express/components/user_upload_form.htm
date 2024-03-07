@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<title>User Form</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f4f4f4;
+				justify-content: center;
+				align-items: center;
+				display: flex;
+				flex-direction: column;
+				height: 100vh;
+				margin: 0;
+			}
+
+			form {
+				background: white;
+				padding: 20px;
+				border-radius: 8px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				width: 300px;
+			}
+
+			h2 {
+				color: #333;
+			}
+
+			label {
+				color: #666;
+				font-size: 14px;
+			}
+
+			input[type='text'],
+			input[type='email'] {
+				width: 100%;
+				padding: 8px;
+				margin: 6px 0 20px;
+				display: inline-block;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				box-sizing: border-box;
+			}
+
+			input[type='submit'] {
+				width: 100%;
+				background-color: #000000;
+				color: white;
+				padding: 14px 20px;
+				margin: 8px 0;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+			}
+
+			input[type='submit']:hover {
+				background-color: #000000;
+			}
+			a {
+				text-decoration: none;
+				color: #0a16f7;
+				margin: 15px;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>User Information</h2>
+		<form action="/uploadSuccessful" method="post">
+			<label for="user_id">User ID:</label><br />
+			<input type="text" id="user_id" name="user_id" required /><br />
+			<label for="name">Name:</label><br />
+			<input type="text" id="name" name="name" required /><br />
+			<label for="email">Email:</label><br />
+			<input type="email" id="email" name="email" required /><br /><br />
+			<input type="submit" value="Submit" />
+		</form>
+		<div>
+			<a href="/allUsers">View all users</a>
+			<a href="/">Return to home</a>
+		</div>
+	</body>
+</html>

@@ -34,6 +34,8 @@ Deploy this example with Vercel in one click:
 
 You'll be guided through installing the [Hypertune Vercel integration](https://vercel.com/integrations/hypertune) and setting up the required environment variables.
 
+You will also need to provide a `FLAGS_SECRET` environment variable. You can generate one with `node -e "console.log(crypto.randomBytes(32).toString('base64url'))"`.
+
 ### Update your feature flag logic
 
 Once you've deployed your project, open the [Hypertune UI](https://app.hypertune.com/) to update your feature flag logic.
