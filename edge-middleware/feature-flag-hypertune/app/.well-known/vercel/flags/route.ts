@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   if (!access) return NextResponse.json(null, { status: 401 })
 
   const data = await getHypertuneData({
-    token: process.env.HYPERTUNE_TOKEN!,
+    token: process.env.NEXT_PUBLIC_HYPERTUNE_TOKEN!,
   })
 
   return NextResponse.json<ApiData>(data)
