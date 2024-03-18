@@ -20,16 +20,20 @@ export default function Home() {
         <section className="flex flex-col gap-6">
           <Text variant="h1">OG Image Generation Examples</Text>
           <Text>
-            In each page below, we add a <Code>meta</Code> tag that links the
-            content attribute of the <Code>og:image property</Code> to a
-            different implementation of the{' '}
+            For each page below, we define the openGraph property of the{' '}
+            <Link
+              href="https://nextjs.org/docs/app/api-reference/functions/generate-metadata#opengraph"
+              target="_blank"
+            >
+              metadata Object
+            </Link>{' '}
+            that comes with the Next.js metadata API. We set the OG image URL to
+            point to a different implementation of the{' '}
             <Link href="https://vercel.com/docs/functions/og-image-generation/og-image-api">
               @vercel/og package
             </Link>
             . You can open each link in an{' '}
-            <Link href="https://en.rakko.tools/tools/9/">
-              open graph simulator
-            </Link>{' '}
+            <Link href="https://www.opengraph.xyz/">open graph simulator</Link>{' '}
             to see the result.
           </Text>
         </section>
@@ -61,6 +65,13 @@ export default function Home() {
             <Text variant="h2">Using emoji in your image</Text>
           </Link>
           <Text>In this example, your post image is made up of emojis.</Text>
+        </section>
+
+        <section className="flex flex-col gap-3">
+          <Link href="/local-image">
+            <Text variant="h2">Using a local image</Text>
+          </Link>
+          <Text>In this example, you use an image stored locally.</Text>
         </section>
       </Page>
     </Layout>
