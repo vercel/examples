@@ -9,9 +9,7 @@ export const metadata: Metadata = {
     siteName: 'Vercel recipes',
     images: [
       {
-        url: `/api/emoji'
-        )}`,
-        alt: 'My Page Emoji',
+        url: '/api/emoji',
       },
     ],
   },
