@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     siteName: 'Vercel recipes',
     images: [
       {
-        url: `/api/dynamic-image?title=My Page Title'
+        url: `/api/param'
         )}`,
         alt: 'My Page Title',
       },

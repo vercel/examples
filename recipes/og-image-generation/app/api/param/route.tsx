@@ -1,13 +1,10 @@
-import { ImageResponse } from '@vercel/og'
-import { NextRequest } from 'next/server'
+import { ImageResponse } from 'next/og'
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
-export default function handler(req: NextRequest) {
+export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(req.url)
+    const { searchParams } = new URL(request.url)
 
     // ?title=<title>
     const hasTitle = searchParams.has('title')

@@ -1,15 +1,11 @@
-import { ImageResponse } from '@vercel/og'
+import { ImageResponse } from 'next/og'
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
-const font = fetch(new URL('../../assets/TYPEWR__.TTF', import.meta.url)).then(
-  (res) => res.arrayBuffer()
-)
-
-export default async function handler() {
-  const fontData = await font
+export async function GET() {
+  const fontData = await fetch(
+    new URL('../../../assets/TYPEWR__.ttf', import.meta.url)
+  ).then((res) => res.arrayBuffer())
 
   return new ImageResponse(
     (

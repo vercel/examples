@@ -55,6 +55,13 @@ export default function Home() {
             based on the username passed as a parameter.
           </Text>
         </section>
+
+        <section className="flex flex-col gap-3">
+          <Link href="/emoji">
+            <Text variant="h2">Using emoji in your image</Text>
+          </Link>
+          <Text>In this example, your post image is made up of emojis.</Text>
+        </section>
       </Page>
     </Layout>
   )

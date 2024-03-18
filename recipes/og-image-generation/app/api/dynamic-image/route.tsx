@@ -1,12 +1,9 @@
-import { ImageResponse } from '@vercel/og'
-import { NextRequest } from 'next/server'
+import { ImageResponse } from 'next/og'
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
-export default async function handler(req: NextRequest) {
-  const { searchParams } = req.nextUrl
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url)
   const username = searchParams.get('username')
   if (!username) {
     return new ImageResponse(<>{'Visit with "?username=vercel"'}</>, {
