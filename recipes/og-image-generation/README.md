@@ -4,15 +4,10 @@ This example shows how to use [Vercel OG](https://vercel.com/docs/functions/og-i
 
 ## Demo
 
-- Static Text
-- Vercel Card
 - Dynamic Text from URL Query
-- Embed SVG Image
-- Dynamic PNG Image Based on URL Queries
-- Custom Font
+- External Image
+- Include Local Image
 - Emoji
-- Languages
-- Encrypted Token
 
 ## How to Use
 
