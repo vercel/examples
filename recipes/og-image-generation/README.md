@@ -4,10 +4,10 @@ This example shows how to use [Vercel OG](https://vercel.com/docs/functions/og-i
 
 ## Demo
 
-- Dynamic Text from URL Query
-- External Image
-- Include Local Image
-- Emoji
+- [Dynamic Text from URL Query](https://docs-recipes-og-image.vercel.app/api/param)
+- [External Image](https://docs-recipes-og-image.vercel.app/api/dynamic-image)
+- [Include Local Image](https://docs-recipes-og-image.vercel.app/api/local-image)
+- [Emoji](https://docs-recipes-og-image.vercel.app/api/emoji)
 
 ## How to Use
 
