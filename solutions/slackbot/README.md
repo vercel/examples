@@ -2,6 +2,8 @@
 
 This is a Slackbot you can ask questions and get answers from OpenAI's GPT model.
 
+[![Deploy on Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/slackbot&env=OPENAI_API_KEY,SLACK_BOT_TOKEN,SLACK_SIGNING_SECRET)
+
 ### Environment Variables
 
 After completing the setup instructions below, you will have the following `.env` file in your project for testing locally, and the same environment variables added on Vercel:
@@ -10,7 +12,6 @@ After completing the setup instructions below, you will have the following `.env
 OPENAI_API_KEY=
 SLACK_BOT_TOKEN=
 SLACK_SIGNING_SECRET=
-SLACK_ADMIN_MEMBER_ID=
 ```
 
 #### OpenAI API Key
@@ -39,12 +40,6 @@ Go to [Slack API Apps Page](https://api.slack.com/apps):
   - Basic Information --> App Credentials --> Copy **Signing Secret**
   - Add the secret to Vercel's environment variables as `SLACK_SIGNING_SECRET`
 
-#### Admin's Slack Member ID
-
-- Click on your profile picture in Slack and click **Profile**.
-- Click on the three dots in the middle right corner and select **Copy member ID**.
-- Add the ID to Vercel's environment variables as `SLACK_ADMIN_MEMBER_ID`.
-
 ### Enable Slack Events
 
 After successfully deploying the app, go to [Slack API Apps Page](https://api.slack.com/apps) and select your app:
@@ -58,18 +53,3 @@ After successfully deploying the app, go to [Slack API Apps Page](https://api.sl
     - `channel_created`
   - Click **Save Changes**.
 - Slack requires you to reinstall the app to apply the changes.
-
-## Local Development
-
-Use the [Vercel CLI](https://vercel.com/docs/cli) and [localtunnel](https://github.com/localtunnel/localtunnel) to test out this project locally:
-
-```sh
-pnpm i -g vercel
-pnpm vercel dev --listen 3000 --yes
-```
-
-```sh
-npx localtunnel --port 3000
-```
-
-Make sure to modify the [subscription URL](./README.md/#enable-slack-events) to the `localtunnel` URL.
