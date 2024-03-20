@@ -48,7 +48,7 @@ export default function Home() {
         .
       </p>
 
-      <div className="flex justify-center space-x-5 pt-10 mt-10 border-t border-gray-300 w-full max-w-xl text-gray-600">
+      <div className="flex justify-center space-x-5 pt-10 mt-10 border-t border-gray-300 max-w-xl text-gray-600 z-10">
         <Link
           href="https://postgres-prisma.vercel.app/"
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
