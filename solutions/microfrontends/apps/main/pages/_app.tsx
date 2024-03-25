@@ -7,7 +7,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="Microfrontends" path="solutions/microfrontends">
+    <Layout title="Microfrontends 2" path="solutions/microfrontends">
       <Component {...pageProps} />
     </Layout>
   )
