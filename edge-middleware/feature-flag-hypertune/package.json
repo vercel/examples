@@ -13,7 +13,7 @@
   "dependencies": {
     "@vercel/edge-config": "^0.2.1",
     "@vercel/examples-ui": "^2.0.3",
-    "@vercel/flags": "^2.2.1",
+    "@vercel/flags": "2.3.0",
     "@vercel/toolbar": "^0.1.11",
     "autoprefixer": "^10.4.15",
     "eslint-config-next": "^13.4.19",
