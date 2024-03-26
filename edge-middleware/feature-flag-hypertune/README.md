@@ -5,7 +5,7 @@ description: Learn to use Hypertune, a powerful feature flag, A/B testing and ap
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fhypertunehq%2Fvercel-examples-fork%2Ftree%2Fmain%2Fedge-middleware%2Ffeature-flag-hypertune&env=NEXT_PUBLIC_HYPERTUNE_TOKEN,EDGE_CONFIG,EDGE_CONFIG_HYPERTUNE_ITEM_KEY,FLAGS_SECRET&envDescription=Environment%20variables%20needed%20to%20use%20Hypertune%20with%20Vercel%20Edge%20Config%20and%20the%20Vercel%20Toolbar&envLink=https%3A%2F%2Fdocs.hypertune.com%2Fgetting-started%2Fvercel-quickstart&project-name=feature-flag-hypertune&repository-name=feature-flag-hypertune&demo-title=Hypertune%20with%20Vercel&demo-description=Use%20Hypertune%20with%20Vercel%20Edge%20Config%20and%20the%20Vercel%20Toolbar&demo-url=https%3A%2F%2Ffeature-flag-hypertune.vercel.app%2F&demo-image=https%3A%2F%2Ffeature-flag-hypertune.vercel.app%2Fdemo.png&integration-ids=oac_naLXREDG2o9KihTGYBVz9fVl
+deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fhypertunehq%2Fvercel-examples-fork%2Ftree%2Fmain%2Fedge-middleware%2Ffeature-flag-hypertune&env=NEXT_PUBLIC_HYPERTUNE_TOKEN,HYPERTUNE_ADMIN_TOKEN,EDGE_CONFIG,EDGE_CONFIG_HYPERTUNE_ITEM_KEY,FLAGS_SECRET&envDescription=Environment%20variables%20needed%20to%20use%20Hypertune%20with%20Vercel%20Edge%20Config%20and%20the%20Vercel%20Toolbar&envLink=https%3A%2F%2Fdocs.hypertune.com%2Fgetting-started%2Fvercel-quickstart&project-name=feature-flag-hypertune&repository-name=feature-flag-hypertune&demo-title=Hypertune%20with%20Vercel&demo-description=Use%20Hypertune%20with%20Vercel%20Edge%20Config%20and%20the%20Vercel%20Toolbar&demo-url=https%3A%2F%2Ffeature-flag-hypertune.vercel.app%2F&demo-image=https%3A%2F%2Ffeature-flag-hypertune.vercel.app%2Fdemo.png&integration-ids=oac_naLXREDG2o9KihTGYBVz9fVl
 demoUrl: https://feature-flag-hypertune.vercel.app
 relatedTemplates:
   - maintenance-page
@@ -14,7 +14,7 @@ relatedTemplates:
 
 # Feature flags, A/B testing and app configuration with Hypertune and Vercel
 
-[Hypertune](https://www.hypertune.com/) is a powerful feature flag, A/B testing and app configuration platform. Optimized for TypeScript, React and Next.js. Built with full end-to-end type-safety and Git version control.
+[Hypertune](https://www.hypertune.com/) is a powerful feature flag, A/B testing, analytics and app configuration platform. Optimized for TypeScript, React and Next.js. Built with full end-to-end type-safety and Git version control.
 
 No need to juggle different SDKs for the server and the client. Install one SDK that works across the server and the client and is compatible with App Router and Server Components.
 
@@ -30,7 +30,7 @@ It also shows how to integrate with the Vercel Toolbar to let you easily set loc
 
 Deploy this example with Vercel in one click:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fhypertunehq%2Fvercel-examples-fork%2Ftree%2Fmain%2Fedge-middleware%2Ffeature-flag-hypertune&env=NEXT_PUBLIC_HYPERTUNE_TOKEN,EDGE_CONFIG,EDGE_CONFIG_HYPERTUNE_ITEM_KEY,FLAGS_SECRET&envDescription=Environment%20variables%20needed%20to%20use%20Hypertune%20with%20Vercel%20Edge%20Config%20and%20the%20Vercel%20Toolbar&envLink=https%3A%2F%2Fdocs.hypertune.com%2Fgetting-started%2Fvercel-quickstart&project-name=feature-flag-hypertune&repository-name=feature-flag-hypertune&demo-title=Hypertune%20with%20Vercel&demo-description=Use%20Hypertune%20with%20Vercel%20Edge%20Config%20and%20the%20Vercel%20Toolbar&demo-url=https%3A%2F%2Ffeature-flag-hypertune.vercel.app%2F&demo-image=https%3A%2F%2Ffeature-flag-hypertune.vercel.app%2Fdemo.png&integration-ids=oac_naLXREDG2o9KihTGYBVz9fVl)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fhypertunehq%2Fvercel-examples-fork%2Ftree%2Fmain%2Fedge-middleware%2Ffeature-flag-hypertune&env=NEXT_PUBLIC_HYPERTUNE_TOKEN,HYPERTUNE_ADMIN_TOKEN,EDGE_CONFIG,EDGE_CONFIG_HYPERTUNE_ITEM_KEY,FLAGS_SECRET&envDescription=Environment%20variables%20needed%20to%20use%20Hypertune%20with%20Vercel%20Edge%20Config%20and%20the%20Vercel%20Toolbar&envLink=https%3A%2F%2Fdocs.hypertune.com%2Fgetting-started%2Fvercel-quickstart&project-name=feature-flag-hypertune&repository-name=feature-flag-hypertune&demo-title=Hypertune%20with%20Vercel&demo-description=Use%20Hypertune%20with%20Vercel%20Edge%20Config%20and%20the%20Vercel%20Toolbar&demo-url=https%3A%2F%2Ffeature-flag-hypertune.vercel.app%2F&demo-image=https%3A%2F%2Ffeature-flag-hypertune.vercel.app%2Fdemo.png&integration-ids=oac_naLXREDG2o9KihTGYBVz9fVl)
 
 You'll be guided through installing the [Hypertune Vercel integration](https://vercel.com/integrations/hypertune) and setting up the required environment variables.
 
@@ -45,8 +45,8 @@ Once you've deployed your project, open the [Hypertune UI](https://app.hypertune
 1. Clone your project's repository and `cd` into it
 2. Run `vercel link` to link to the Vercel project
 3. Run `vercel env pull .env.development.local` to pull your environment variables
-4. Run `pnpm i`
-5. Run `pnpm run dev`
+4. Run `npm i`
+5. Run `npm run dev`
 
 ### Add new feature flags
 
