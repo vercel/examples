@@ -79,7 +79,7 @@ export const vercelFlagDefinitions = {
     options: [{ value: true }, { value: false }],
     origin:
       'https://app.hypertune.com/projects/2583/draft?view=logic&selected_field_path=root%3EexampleFlag',
-    description: ' An example flag.',
+    description: 'An example flag.',
   },
 }
 
