@@ -14,7 +14,7 @@ relatedTemplates:
 
 # Feature flags, A/B testing and app configuration with Hypertune and Vercel
 
-[Hypertune](https://www.hypertune.com/) is a powerful feature flag, A/B testing and app configuration platform. Optimized for TypeScript, React and Next.js. Built with full end-to-end type-safety and Git version control.
+[Hypertune](https://www.hypertune.com/) is a powerful feature flag, A/B testing, analytics and app configuration platform. Optimized for TypeScript, React and Next.js. Built with full end-to-end type-safety and Git version control.
 
 No need to juggle different SDKs for the server and the client. Install one SDK that works across the server and the client and is compatible with App Router and Server Components.
 
