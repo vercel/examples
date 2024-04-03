@@ -1,15 +1,27 @@
 /* eslint-disable */
 
-import * as sdk from "hypertune";
+import * as sdk from 'hypertune'
 
-const queryCode = `query FullQuery {
-  root {
-    exampleFlag
-  }
+const queryCode = `query FullQuery{root{exampleFlag}}`
+
+const query = {
+  Query: {
+    objectTypeName: 'Query',
+    selection: {
+      root: {
+        fieldArguments: { __isPartialObject__: true },
+        fieldQuery: {
+          Root: {
+            objectTypeName: 'Root',
+            selection: {
+              exampleFlag: { fieldArguments: {}, fieldQuery: null },
+            },
+          },
+        },
+      },
+    },
+  },
 }
-`;
-
-const query = {"Query":{"objectTypeName":"Query","selection":{"root":{"fieldArguments":{"__isPartialObject__":true},"fieldQuery":{"Root":{"objectTypeName":"Root","selection":{"exampleFlag":{"fieldArguments":{},"fieldQuery":null}}}}}}}};
 
 function mergeQueryAndArgs(
   query: sdk.Query<sdk.ObjectValueWithVariables>,
@@ -24,7 +36,7 @@ function mergeQueryAndArgs(
           queryArgs[objectTypeName] instanceof Object
           ? (queryArgs[objectTypeName] as sdk.ObjectValueWithVariables)
           : null
-        : queryArgs;
+        : queryArgs
 
       return [
         objectTypeName,
@@ -38,7 +50,7 @@ function mergeQueryAndArgs(
                   objectArgs[fieldName] &&
                   objectArgs[fieldName] instanceof Object
                     ? (objectArgs[fieldName] as sdk.ObjectValueWithVariables)
-                    : null;
+                    : null
 
                 return [
                   fieldName,
@@ -52,58 +64,63 @@ function mergeQueryAndArgs(
                       ? mergeQueryAndArgs(fieldQuery, fieldArgs, true)
                       : null,
                   },
-                ];
+                ]
               }
             )
           ),
         },
-      ];
+      ]
     })
-  );
+  )
 }
-  
-export const vercelFlagDefinitions = {"exampleFlag":{"options":[{"value":true},{"value":false}],"origin":"https://app.hypertune.com/projects/2583/draft?view=logic&selected_field_path=root%3EexampleFlag","description":"An example flag."}};
 
-export type Rec = {
-
+export const vercelFlagDefinitions = {
+  exampleFlag: {
+    options: [{ value: true }, { value: false }],
+    origin:
+      'https://app.hypertune.com/projects/2583/draft?view=logic&selected_field_path=root%3EexampleFlag',
+    description: 'An example flag.',
+  },
 }
+
+export type Rec = {}
 
 export type Rec4 = {
-  id: string;
-  name: string;
-  email: string;
+  id: string
+  name: string
+  email: string
 }
 
 export const EnvironmentEnumValues = [
-  "DEVELOPMENT",
-  "STAGING",
-  "PRODUCTION"
-] as const;
-export type Environment = typeof EnvironmentEnumValues[number];
+  'DEVELOPMENT',
+  'STAGING',
+  'PRODUCTION',
+] as const
+export type Environment = (typeof EnvironmentEnumValues)[number]
 
 export type Rec3 = {
-  user: Rec4;
-  environment: Environment;
+  user: Rec4
+  environment: Environment
 }
 
 export type Rec2 = {
-  context: Rec3;
+  context: Rec3
 }
 
 export type Root = {
   /**
    * An example flag.
    */
-  exampleFlag: boolean;
+  exampleFlag: boolean
 }
 
-const rootFallback = {exampleFlag:false};
+const rootFallback = { exampleFlag: false }
 
 export class RootNode extends sdk.Node {
-  typeName = "Root" as const;
+  typeName = 'Root' as const
 
   get(fallback: Root = rootFallback as Root): Root {
-    const getQuery = null;
+    const getQuery = null
     return this.evaluate(getQuery, fallback) as Root
   }
 
@@ -112,59 +129,56 @@ export class RootNode extends sdk.Node {
    * [Open in UI]({@link https://app.hypertune.com/projects/2583/draft?view=logic&selected_field_path=root%3EexampleFlag})
    */
   exampleFlag(args: Rec = {}): sdk.BooleanNode {
-    const props0 = this.getField("exampleFlag", args);
-    const expression0 = props0.expression;
+    const props0 = this.getField('exampleFlag', args)
+    const expression0 = props0.expression
 
-    if (
-      expression0 &&
-      expression0.type === "BooleanExpression"
-    ) {
-      return new sdk.BooleanNode(props0);
+    if (expression0 && expression0.type === 'BooleanExpression') {
+      return new sdk.BooleanNode(props0)
     }
 
-    const node = new sdk.BooleanNode(props0);
-    node._logUnexpectedTypeError();
-    return node;
+    const node = new sdk.BooleanNode(props0)
+    node._logUnexpectedTypeError()
+    return node
   }
 }
 
 export type Query = {
-  root: Root;
+  root: Root
 }
 
-const queryFallback = {root:{exampleFlag:false}};
+const queryFallback = { root: { exampleFlag: false } }
 
 export type Rec6 = {
-  args: Rec2;
+  args: Rec2
 }
 
 export type Rec5 = {
-  root: Rec6;
+  root: Rec6
 }
 
 export class QueryNode extends sdk.Node {
-  typeName = "Query" as const;
+  typeName = 'Query' as const
 
   get(args: Rec5, fallback: Query = queryFallback as Query): Query {
-    const getQuery = mergeQueryAndArgs(query, args);
+    const getQuery = mergeQueryAndArgs(query, args)
     return this.evaluate(getQuery, fallback) as Query
   }
 
   root(args: Rec2): RootNode {
-    const props0 = this.getField("root", args);
-    const expression0 = props0.expression;
+    const props0 = this.getField('root', args)
+    const expression0 = props0.expression
 
     if (
       expression0 &&
-      expression0.type === "ObjectExpression" &&
-      expression0.objectTypeName === "Root"
+      expression0.type === 'ObjectExpression' &&
+      expression0.objectTypeName === 'Root'
     ) {
-      return new RootNode(props0);
+      return new RootNode(props0)
     }
 
-    const node = new RootNode(props0);
-    node._logUnexpectedTypeError();
-    return node;
+    const node = new RootNode(props0)
+    node._logUnexpectedTypeError()
+    return node
   }
 }
 
@@ -175,11 +189,8 @@ export function initializeHypertune(
   const defaultOptions = {
     query,
     queryCode,
-    variableValues
+    variableValues,
   }
 
-  return sdk.initialize(
-    QueryNode,
-    { ...defaultOptions, ...options }
-  );
+  return sdk.initialize(QueryNode, { ...defaultOptions, ...options })
 }
