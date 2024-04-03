@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@launchdarkly/vercel-server-sdk": "^1.1.1",
-    "@vercel/edge-config": "^0.2.1",
+    "@vercel/edge-config": "^1.1.0",
     "@vercel/examples-ui": "^2.0.3",
     "next": "^13.4.19",
     "react": "^18.2.0",
