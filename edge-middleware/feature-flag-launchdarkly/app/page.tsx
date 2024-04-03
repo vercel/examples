@@ -1,6 +1,7 @@
 import { Text, Page, Link } from '@vercel/examples-ui'
 import { LDClient, init } from '@launchdarkly/vercel-server-sdk'
 import { createClient } from '@vercel/edge-config'
+import { cache } from 'react'
 
 export const metadata = {
   title: 'Vercel x LaunchDarkly example',
@@ -11,22 +12,36 @@ export const runtime = 'edge'
 
 const edgeConfigClient = createClient(process.env.EDGE_CONFIG)
 
-async function getLdClient(): Promise<LDClient> {
+// In Edge Runtime it's not possible to share promises across requests.
+//
+// waitForInitialization attempts to use a pending promise if one exists, so
+// we need to create a new client for every request to prevent reading a promise
+// created by an earlier request.
+//
+// However, we still want to allow reusing the LaunchDarkly client for the
+// duration of a specific request. This allows multiple components
+// to call getLdClient() and to get the same instance. We use cache() to
+// keep the LaunchDarkly client around for the duration of a request.
+//
+// cache resets for each server request, so a subsequent request will receive
+// a new instance of the LaunchDarkly client.
+//
+// Notes
+// - This setup is only necessary for Edge Functions, not for Serverless Functions
+// - "cache" does not work in Edge Middleware, so you'd need to create a fresh instance
+//   of the LaunchDarkly client for every request.
+const getLdClient = cache(async (): Promise<LDClient> => {
   const ldClient = init(
     process.env.NEXT_PUBLIC_LD_CLIENT_SIDE_ID!,
     edgeConfigClient
   )
   await ldClient.waitForInitialization()
-
   return ldClient
-}
+})
 
 export default async function Home() {
   const before = Date.now()
 
-  // get client from within the component so we get a fresh instance for every
-  // request, otherwise LaunchDarkly might share promises across requests, which
-  // can leads to timeouts in Edge Runtime
   const ldClient = await getLdClient()
 
   const ldContext = {
