@@ -1,5 +1,5 @@
 import { Text, Page, Link } from '@vercel/examples-ui'
-import { LDClient, init } from '@launchdarkly/vercel-server-sdk'
+import { type LDClient, init } from '@launchdarkly/vercel-server-sdk'
 import { createClient } from '@vercel/edge-config'
 import { cache } from 'react'
 
