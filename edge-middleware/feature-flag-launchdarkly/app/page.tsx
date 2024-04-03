@@ -1,5 +1,5 @@
 import { Text, Page, Link } from '@vercel/examples-ui'
-import { init } from '@launchdarkly/vercel-server-sdk'
+import { LDClient, init } from '@launchdarkly/vercel-server-sdk'
 import { createClient } from '@vercel/edge-config'
 
 export const metadata = {
@@ -9,12 +9,26 @@ export const metadata = {
 }
 export const runtime = 'edge'
 
-const edgeClient = createClient(process.env.EDGE_CONFIG)
-const ldClient = init(process.env.NEXT_PUBLIC_LD_CLIENT_SIDE_ID!, edgeClient)
+const edgeConfigClient = createClient(process.env.EDGE_CONFIG)
+
+async function getLdClient(): Promise<LDClient> {
+  const ldClient = init(
+    process.env.NEXT_PUBLIC_LD_CLIENT_SIDE_ID!,
+    edgeConfigClient
+  )
+  await ldClient.waitForInitialization()
+
+  return ldClient
+}
 
 export default async function Home() {
   const before = Date.now()
-  await ldClient.waitForInitialization()
+
+  // get client from within the component so we get a fresh instance for every
+  // request, otherwise LaunchDarkly might share promises across requests, which
+  // can leads to timeouts in Edge Runtime
+  const ldClient = await getLdClient()
+
   const ldContext = {
     kind: 'org',
     key: 'my-org-key',
