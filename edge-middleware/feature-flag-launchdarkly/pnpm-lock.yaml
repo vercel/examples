@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@launchdarkly/vercel-server-sdk':
-    specifier: ^1.1.1
-    version: 1.1.1
+    specifier: ^1.3.3
+    version: 1.3.3(typescript@5.1.6)
   '@vercel/edge-config':
     specifier: ^1.1.0
     version: 1.1.0(typescript@5.1.6)
@@ -159,30 +159,33 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@launchdarkly/js-sdk-common@1.1.0:
-    resolution: {integrity: sha512-abCOQGknrAIFL8c3oHiUu6pHeLXrUw4Zfh7ngAO2EoKPDn+tfbXXUJy2zOymaIAD8W8haaVz6mGEB7UwgcU4HQ==}
+  /@launchdarkly/js-sdk-common@2.3.1:
+    resolution: {integrity: sha512-gLCrL7eLtbip5fZ3vLO5pIwv3JcCT/zH2FSGcX2uYEfzLc8Mz/H2Ug71mgpzj4RpJ4Co4M0KvY3ntiU5jXj8cg==}
     dev: false
 
-  /@launchdarkly/js-server-sdk-common-edge@1.0.10:
-    resolution: {integrity: sha512-qOhZpqjkpCByQNtmOnPLbYa/4LI7ghuzJSUze/0VolrP3G8XI6MuFDxibXBmOmx7nTo+4DQHQt1yHWAzwDP+cQ==}
+  /@launchdarkly/js-server-sdk-common-edge@2.2.2:
+    resolution: {integrity: sha512-uUypRZmTl72TNyQuXgcxvxDKZcHNCLcQhXUWqyf4zkCchi7vK6T6umhxR1/ToHV6rPVaeYqx8Cr3+2cgSjGrFw==}
     dependencies:
-      '@launchdarkly/js-server-sdk-common': 1.2.0
+      '@launchdarkly/js-server-sdk-common': 2.2.2
       crypto-js: 4.1.1
     dev: false
 
-  /@launchdarkly/js-server-sdk-common@1.2.0:
-    resolution: {integrity: sha512-aUGQLQ7eWOAd5eRBZKtsrLW9qBnd3EPD4HeMLen3awvtNsshtiX6/ij3NB8iAWPYIRRyYJZyS7bhmwZdeW+RtA==}
+  /@launchdarkly/js-server-sdk-common@2.2.2:
+    resolution: {integrity: sha512-gFAEqC6xUbbDQavbjE25xXDruX6r9AwiCPMq5QN3qubVMjTT9DCQwcj181Wkjt3t60aDzkvZm9ZcMb4Sxwd/+g==}
     dependencies:
-      '@launchdarkly/js-sdk-common': 1.1.0
+      '@launchdarkly/js-sdk-common': 2.3.1
       semver: 7.5.4
     dev: false
 
-  /@launchdarkly/vercel-server-sdk@1.1.1:
-    resolution: {integrity: sha512-VRQxVtYT1npL+PP0qjs91zPAsqYgSuphyz3+sFov4g8OZMc26qBkZTELezYQ5NtUR9bsPSntjvrrZH0sUcEu6A==}
+  /@launchdarkly/vercel-server-sdk@1.3.3(typescript@5.1.6):
+    resolution: {integrity: sha512-i2ZA3X6RFjesy/WeexvoCp0vS4/OlWR3WCCcvbX4+4bd96pvzXnYU3RWVwwB/38Ao5M7BGfpRQ9wEcIEqZCDgw==}
     dependencies:
-      '@launchdarkly/js-server-sdk-common-edge': 1.0.10
-      '@vercel/edge-config': 0.1.11
+      '@launchdarkly/js-server-sdk-common-edge': 2.2.2
+      '@vercel/edge-config': 1.1.0(typescript@5.1.6)
       crypto-js: 4.1.1
+    transitivePeerDependencies:
+      - '@opentelemetry/api'
+      - typescript
     dev: false
 
   /@next/env@13.4.19:
@@ -396,13 +399,6 @@ packages:
 
   /@vercel/edge-config-fs@0.1.0:
     resolution: {integrity: sha512-NRIBwfcS0bUoUbRWlNGetqjvLSwgYH/BqKqDN7vK1g32p7dN96k0712COgaz6VFizAm9b0g6IG6hR6+hc0KCPg==}
-    dev: false
-
-  /@vercel/edge-config@0.1.11:
-    resolution: {integrity: sha512-3UQsy6VqJ6LAls6YJpWtkxXSdj0pgZHOwikWtp3Mbk2qUkZRtZRQCTyIZyp6aqFqkuJxaCH7I7h3dhb82/EEdQ==}
-    engines: {node: '>=14.6'}
-    dependencies:
-      '@vercel/edge-config-fs': 0.1.0
     dev: false
 
   /@vercel/edge-config@1.1.0(typescript@5.1.6):

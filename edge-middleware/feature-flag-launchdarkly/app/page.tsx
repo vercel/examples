@@ -28,8 +28,11 @@ const edgeConfigClient = createClient(process.env.EDGE_CONFIG)
 //
 // Notes
 // - This setup is only necessary for Edge Functions, not for Serverless Functions
-// - "cache" does not work in Edge Middleware, so you'd need to create a fresh instance
-//   of the LaunchDarkly client for every request.
+// - When using the LaunchDarkly client in Edge Middleware make sure to use
+//   a fresh instance for every request, as it has the same promise sharing
+//   problem as Edge Functions otherwise.
+// - "cache" does not work in Edge Middleware, so you'd need to create a fresh
+//   instance of the LaunchDarkly client for every request.
 const getLdClient = cache(async (): Promise<LDClient> => {
   const ldClient = init(
     process.env.NEXT_PUBLIC_LD_CLIENT_SIDE_ID!,
