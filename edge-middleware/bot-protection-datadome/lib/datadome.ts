@@ -22,7 +22,7 @@ export default async function datadome(req: NextRequest) {
       ? req.headers.get('x-forwarded-for')!.split(',')[0]
       : '127.0.0.1',
     RequestModuleName: 'Next.js',
-    ModuleVersion: '0.3.0',
+    ModuleVersion: '0.3.1',
     AuthorizationLen: getAuthorizationLength(req),
     Accept: req.headers.get('accept'),
     AcceptEncoding: req.headers.get('accept-encoding'),
@@ -43,7 +43,7 @@ export default async function datadome(req: NextRequest) {
     PostParamLen: req.headers.get('content-length'),
     Protocol: req.headers.get('x-forwarded-proto'),
     Referer: req.headers.get('referer'),
-    Request: pathname + encode(Object.fromEntries(req.nextUrl.searchParams)),
+    Request: pathname + req.nextUrl.search,
     ServerHostname: req.headers.get('host'),
     ServerName: 'vercel',
     ServerRegion: 'sfo1',
@@ -151,15 +151,6 @@ export default async function datadome(req: NextRequest) {
 
       return res
   }
-}
-
-function encode(query: Record<string, string>) {
-  let e = ''
-  for (const k in query) {
-    const v = query[k]
-    e += `${encodeURIComponent(k)}=${encodeURIComponent(v)}`
-  }
-  return e
 }
 
 function toHeaders(
