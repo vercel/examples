@@ -14,7 +14,7 @@ export default async function Home() {
   return (
     <Page className="flex flex-col gap-12">
       <section className="flex flex-col gap-6">
-        <Text variant="h1">Hypertune with Vercel Edge Config</Text>
+        <Text variant="h1">Hypertune with Vercel</Text>
         <Text>
           This example shows how to use the{' '}
           <Link
@@ -23,20 +23,24 @@ export default async function Home() {
           >
             Hypertune integration
           </Link>{' '}
-          with Edge Config.
+          with Vercel Edge Config to initialize the Hypertune SDK with near-zero
+          latency on the server so you can access your feature flags and run A/B
+          tests with no performance impact to your app. It also shows how to
+          integrate with the Vercel Toolbar to let you easily set local flag
+          overrides while developing.
         </Text>
       </section>
+
       <section className="flex flex-col gap-4">
         <ServerExample />
         <Text>
           Once you&apos;ve deployed this project, open the{' '}
           <Link href="https://app.hypertune.com/" target="_blank">
-            Hypertune console
+            Hypertune UI
           </Link>{' '}
           and try updating your feature flag logic.
         </Text>
         <Text>To develop your project locally:</Text>
-
         <List>
           <li>
             Clone your project&apos;s repository and <strong>cd</strong> into it
@@ -56,16 +60,12 @@ export default async function Home() {
           </li>
         </List>
         <Text>
-          This example assumes your Hypertune project has an{' '}
-          <strong>exampleFlag</strong> feature flag.
-        </Text>
-        <Text>
           To add a new feature flag, create it in the{' '}
           <Link href="https://app.hypertune.com/" target="_blank">
-            Hypertune console
+            Hypertune UI
           </Link>
           , then regenerate the client with <strong>npx hypertune</strong> so
-          you can access it with end-to-end type-safety.
+          you can access it with full end-to-end type-safety.
         </Text>
       </section>
     </Page>

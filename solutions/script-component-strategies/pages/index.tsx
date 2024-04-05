@@ -59,20 +59,6 @@ function Home() {
 
       <hr className="border-t border-accents-2 my-6" />
 
-      <section id="beforeInteractive" className="flex flex-col gap-3">
-        <Text variant="h2">beforeInteractive examples</Text>
-        <List>
-          <li>
-            Polyfill: <Link href="/polyfill">Demo</Link> -{' '}
-            <Link href="https://github.com/vercel/examples/blob/main/solutions/script-component-strategies/pages/polyfill.tsx">
-              Code
-            </Link>
-          </li>
-        </List>
-      </section>
-
-      <hr className="border-t border-accents-2 my-6" />
-
       <section id="afterInteractive" className="flex flex-col gap-3">
         <Text variant="h2">afterInteractive examples</Text>
         <List>
