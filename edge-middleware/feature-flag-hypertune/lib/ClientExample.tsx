@@ -1,17 +1,17 @@
 'use client'
 
 import { Text } from '@vercel/examples-ui'
-import { InitResponseBody } from 'hypertune'
+import { DehydratedState } from 'hypertune'
 import hypertune from './hypertune'
 import useHypertune from './useHypertune'
 
 export default function ClientExample({
-  hypertuneInitData,
+  hypertuneDehydratedState,
 }: {
-  hypertuneInitData?: InitResponseBody | null
+  hypertuneDehydratedState?: DehydratedState | null
 }): React.ReactElement {
-  if (hypertuneInitData) {
-    hypertune.initFromData(hypertuneInitData)
+  if (hypertuneDehydratedState) {
+    hypertune.hydrate(hypertuneDehydratedState)
   }
 
   const rootNode = useHypertune()
