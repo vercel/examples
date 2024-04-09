@@ -23,7 +23,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         window.ddjskey = '${process.env.NEXT_PUBLIC_DATADOME_CLIENT_SIDE_KEY}'
         window.ddoptions = {
           endpoint: '${DATADOME_JS}',
-          sessionByHeader: true
+          sessionByHeader: true,
+          ajaxListenerPath: true
         }
       `}</Script>
       <Script src={DATADOME_TAGS} strategy="lazyOnload" />
