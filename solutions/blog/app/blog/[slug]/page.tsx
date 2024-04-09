@@ -1,4 +1,3 @@
-import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
@@ -12,9 +11,7 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({
-  params,
-}): Promise<Metadata | undefined> {
+export function generateMetadata({ params }) {
   let post = getBlogPosts().find((post) => post.slug === params.slug)
   if (!post) {
     return
@@ -26,7 +23,7 @@ export async function generateMetadata({
     summary: description,
     image,
   } = post.metadata
-  let ogImage = image ? image : `/og?title=${encodeURIComponent(title)}`
+  let ogImage = image ? image : `${baseUrl}/og?title=${encodeURIComponent(title)}`
 
   return {
     title,
