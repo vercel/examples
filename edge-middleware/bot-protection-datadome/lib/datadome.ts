@@ -69,7 +69,7 @@ export default async function datadome(req: NextRequest) {
 
   const options = {
     method: 'POST',
-    body: stringify(truncateRequestData(requestData)),
+    body: undefined,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'User-Agent': 'DataDome'
@@ -79,6 +79,8 @@ export default async function datadome(req: NextRequest) {
     options.headers['X-DataDome-X-Set-Cookie'] = 'true'
     requestData.ClientID = req.headers.get('x-datadome-clientid') as string
   }
+  options.body = stringify(truncateRequestData(requestData));
+  
   const dataDomeReq = fetch(DATADOME_ENDPOINT + '/validate-request/', options)
 
   const timeoutPromise = new Promise((resolve, reject) => {
