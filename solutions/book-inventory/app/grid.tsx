@@ -1,20 +1,22 @@
 import { sql } from '@vercel/postgres';
 import { seed } from '../lib/seed';
 import Link from 'next/link';
-async function fetchFilteredBooks(selectedAuthors: string[], query: string) {
-	let data;
 
+async function ensureTableExists() {
 	try {
-		data = await sql`SELECT * FROM books`;
-	} catch (e) {
-		if (e.message.includes('relation "books" does not exist')) {
-			console.log('Table does not exist, creating and seeding it with dummy data now...');
-			await seed();
-			data = await sql`SELECT * FROM books LIMIT 1`;
-		} else {
-			throw e;
-		}
+			await sql`SELECT 1 FROM books LIMIT 1`;
+	} catch (e: any) {
+			if (e.message.includes('relation "books" does not exist')) {
+					console.log('Table does not exist, creating and seeding it with dummy data now...');
+					await seed();
+			} else {
+					throw e;
+			}
 	}
+}
+
+async function fetchFilteredBooks(selectedAuthors: string[], query: string) {
+	await ensureTableExists();
 	if (selectedAuthors.length > 0) {
 		try {
 			const books = await sql`
@@ -86,7 +88,7 @@ export default async function Grid({
 	const data = await fetchFilteredBooks(selectedAuthors, query);
 	return (
 		<>
-			<div className="mt-6 w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+			<div className="grid w-full grid-cols-2 gap-6 mt-6 sm:grid-cols-3 lg:grid-cols-5">
 				{data.length === 0 ? (
 					<p className="text-center text-gray-400 col-span-full">No books found.</p>
 				) : (
@@ -94,7 +96,8 @@ export default async function Grid({
 						<Link
 							href={`/${book.id}`}
 							key={book.id}
-							className="transition ease-in-out hover:scale-110"
+							prefetch={true}
+							className="mb-auto transition ease-in-out hover:scale-110 bg-white/10"
 						>
 							<div className="relative w-full aspect-[2/3]">
 								{/* TODO: Use Image component */}
@@ -107,8 +110,9 @@ export default async function Grid({
 							/> */}
 								<img
 									alt={book.title}
-									sizes="300px"
-									className="absolute inset-0 object-cover rounded-lg shadow-sm shadow-black"
+									width="150"
+									height="150"
+									className="absolute inset-0 object-cover w-full h-full rounded-lg shadow-sm shadow-black"
 									src={`http://images.amazon.com/images/P/${book.isbn}.01.LZZZZZZZ.jpg`}
 								/>
 							</div>
@@ -124,7 +128,7 @@ export default async function Grid({
 		// 				<Link
 		// 					href={`/${book.id}`}
 		// 					key={book.id}
-		// 					className="transition ease-in-out hover:scale-110 px-2 pb-4"
+		// 					className="px-2 pb-4 transition ease-in-out hover:scale-110"
 		// 				>
 		// 					<Card image={book['Image-URL-L']} title={book['Book-Title']} />
 		// 				</Link>

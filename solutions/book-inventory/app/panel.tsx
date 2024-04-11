@@ -21,9 +21,9 @@ export default function Panel({
 				className="sm:w-60 bg-white/10 rounded-md shadow-md shadow-gray-950/30 h-[70vh] overflow-y-auto"
 			>
 				<div className="p-4">
-					<h2 className="text-gray-100 tracking-tight font-semibold text-lg">Authors</h2>
+					<h2 className="text-lg font-semibold tracking-tight text-gray-100">Authors</h2>
 
-					<div className="mt-4 -mx-4 px-4 sm:px-0 sm:mx-0 pb-3 sm:pb-0 flex overflow-x-scroll sm:overflow-auto sm:flex-wrap gap-y-2 gap-x-1">
+					<div className="flex px-4 pb-3 mt-4 -mx-4 overflow-x-scroll sm:px-0 sm:mx-0 sm:pb-0 sm:overflow-auto sm:flex-wrap gap-y-2 gap-x-1">
 						{allAuthors.map((author) => (
 							<button
 								onClick={() => {
@@ -44,7 +44,7 @@ export default function Panel({
 								key={author}
 								className={`${
 									optimisticAuthors.includes(author)
-										? 'bg-accent text-white border-accent '
+										? 'bg-accent text-blue-500 border-blue-500'
 										: 'border-gray-500 hover:border-gray-400'
 								} px-2 py-1 rounded-full whitespace-nowrap font-medium border text-xs`}
 							>
@@ -56,9 +56,12 @@ export default function Panel({
 			</div>
 
 			{optimisticAuthors.length > 0 && (
-				<div className="p-1 border-t border-black bg-white/10">
+					<div className="p-1 border-t border-black bg-white/10">
+						{optimisticAuthors.map((author) => (
+						<p className="text-sm" key={author}>{author}</p>
+					))}
 					<button
-						className="text-sm py-2 rounded hover:bg-gray-600 font-medium w-full text-center"
+						className="w-full py-2 text-sm font-medium text-center rounded hover:bg-gray-600"
 						onClick={() => {
 							startTransition(() => {
 								setOptimisticAuthors([]);
