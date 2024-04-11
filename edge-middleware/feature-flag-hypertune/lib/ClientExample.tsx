@@ -1,7 +1,7 @@
 'use client'
 
 import { Text } from '@vercel/examples-ui'
-import { DehydratedState } from 'hypertune'
+import { DehydratedState } from '../generated/hypertune'
 import hypertune from './hypertune'
 import useHypertune from './useHypertune'
 
@@ -16,7 +16,7 @@ export default function ClientExample({
 
   const rootNode = useHypertune()
 
-  const exampleFlag = rootNode.exampleFlag().get(/* fallback */ false)
+  const exampleFlag = rootNode.exampleFlag({ fallback: false })
 
   return (
     <Text>

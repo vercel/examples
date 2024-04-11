@@ -8,7 +8,7 @@ import getHypertune from './getHypertune'
 export default async function ServerExample() {
   const rootNode = await getHypertune()
 
-  const exampleFlag = rootNode.exampleFlag().get(/* fallback */ false)
+  const exampleFlag = rootNode.exampleFlag({ fallback: false })
 
   return (
     <>

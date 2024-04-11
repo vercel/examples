@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic'
 export async function GET() {
   const rootNode = await getHypertune()
 
-  const exampleFlag = rootNode.exampleFlag().get(/* fallback */ false)
+  const exampleFlag = rootNode.exampleFlag({ fallback: false })
   console.log('Edge Function flag:', exampleFlag)
 
   return NextResponse.json({ exampleFlag })

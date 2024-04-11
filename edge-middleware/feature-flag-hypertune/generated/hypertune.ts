@@ -2,9 +2,9 @@
 
 import * as sdk from 'hypertune'
 
-const queryCode = `query FullQuery{root{exampleFlag}}`
+export const queryCode = `query FullQuery{root{exampleFlag}}`
 
-const query = {
+export const query = {
   Query: {
     objectTypeName: 'Query',
     selection: {
@@ -78,8 +78,7 @@ export const vercelFlagDefinitions = {
   exampleFlag: {
     options: [{ value: true }, { value: false }],
     origin:
-      'https://app.hypertune.com/projects/2583/draft?view=logic&selected_field_path=root%3EexampleFlag',
-    description: 'An example flag.',
+      'https://app.hypertune.com/projects/3262/draft?view=logic&selected_field_path=root%3EexampleFlag',
   },
 }
 
@@ -108,9 +107,6 @@ export type Rec2 = {
 }
 
 export type Root = {
-  /**
-   * An example flag.
-   */
   exampleFlag: boolean
 }
 
@@ -119,30 +115,54 @@ const rootFallback = { exampleFlag: false }
 export class RootNode extends sdk.Node {
   typeName = 'Root' as const
 
-  get(fallback: Root = rootFallback as Root): Root {
+  get({ fallback = rootFallback as Root }: { fallback?: Root } = {}): Root {
     const getQuery = null
     return this.evaluate(getQuery, fallback) as Root
   }
 
   /**
-   * An example flag.
-   * [Open in UI]({@link https://app.hypertune.com/projects/2583/draft?view=logic&selected_field_path=root%3EexampleFlag})
+   * [Open in UI]({@link https://app.hypertune.com/projects/3262/draft?view=logic&selected_field_path=root%3EexampleFlag})
    */
-  exampleFlag(args: Rec = {}): sdk.BooleanNode {
+  exampleFlag({
+    args = {},
+    fallback,
+  }: {
+    args?: Rec
+    fallback: boolean
+  }): boolean {
     const props0 = this.getField('exampleFlag', args)
     const expression0 = props0.expression
 
     if (expression0 && expression0.type === 'BooleanExpression') {
-      return new sdk.BooleanNode(props0)
+      const node = new sdk.BooleanNode(props0)
+      return node.get({ fallback })
     }
 
     const node = new sdk.BooleanNode(props0)
     node._logUnexpectedTypeError()
-    return node
+    return node.get({ fallback })
   }
 }
 
+/**
+ * Welcome to Hypertune, the most powerful feature flag, A/B testing and app
+ * configuration platform.
+ *
+ * Follow the quickstart: https://docs.hypertune.com/quickstart
+ *
+ * This is your schema, written in GraphQL. Use Boolean for feature flags,
+ * custom enums for flags with more than two states, Int for numeric flags like
+ * limits and timeouts, Strings for in-app copy, and custom object and list types
+ * for more complex app configuration.
+ *
+ * Once you've defined your schema, head to the Logic tab.
+ */
 export type Query = {
+  /**
+   * You can add arguments to any field in your schema, which you can then
+   * reference when defining your logic. We've added a 'context' argument on your
+   * root field already, which contains details of the current 'user'.
+   */
   root: Root
 }
 
@@ -156,15 +176,39 @@ export type Rec5 = {
   root: Rec6
 }
 
+/**
+ * Welcome to Hypertune, the most powerful feature flag, A/B testing and app
+ * configuration platform.
+ *
+ * Follow the quickstart: https://docs.hypertune.com/quickstart
+ *
+ * This is your schema, written in GraphQL. Use Boolean for feature flags,
+ * custom enums for flags with more than two states, Int for numeric flags like
+ * limits and timeouts, Strings for in-app copy, and custom object and list types
+ * for more complex app configuration.
+ *
+ * Once you've defined your schema, head to the Logic tab.
+ */
 export class QueryNode extends sdk.Node {
   typeName = 'Query' as const
 
-  get(args: Rec5, fallback: Query = queryFallback as Query): Query {
+  get({
+    args,
+    fallback = queryFallback as Query,
+  }: {
+    args: Rec5
+    fallback?: Query
+  }): Query {
     const getQuery = mergeQueryAndArgs(query, args)
     return this.evaluate(getQuery, fallback) as Query
   }
 
-  root(args: Rec2): RootNode {
+  /**
+   * You can add arguments to any field in your schema, which you can then
+   * reference when defining your logic. We've added a 'context' argument on your
+   * root field already, which contains details of the current 'user'.
+   */
+  root({ args }: { args: Rec2 }): RootNode {
     const props0 = this.getField('root', args)
     const expression0 = props0.expression
 
@@ -182,15 +226,26 @@ export class QueryNode extends sdk.Node {
   }
 }
 
-export function initializeHypertune(
-  variableValues: Rec,
-  options: sdk.InitializeOptions = {}
-): QueryNode {
-  const defaultOptions = {
+export type VariableValues = Rec
+export type DehydratedState = sdk.DehydratedState<Query, VariableValues>
+
+export function initHypertune({
+  token,
+  variableValues = {},
+  override,
+  ...options
+}: {
+  token: string
+  variableValues?: VariableValues
+  override?: sdk.DeepPartial<Query> | null
+} & sdk.InitOptions): QueryNode {
+  return sdk.init({
+    NodeConstructor: QueryNode,
+    token,
     query,
     queryCode,
     variableValues,
-  }
-
-  return sdk.initialize(QueryNode, { ...defaultOptions, ...options })
+    override,
+    options,
+  })
 }

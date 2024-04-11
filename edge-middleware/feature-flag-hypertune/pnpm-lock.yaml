@@ -24,8 +24,8 @@ dependencies:
     specifier: ^13.4.19
     version: 13.5.4(eslint@8.50.0)(typescript@5.2.2)
   hypertune:
-    specifier: ^1.13.4
-    version: 1.13.4(encoding@0.1.13)
+    specifier: ^2.0.0
+    version: 2.0.0(encoding@0.1.13)
   next:
     specifier: latest
     version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
@@ -1717,8 +1717,8 @@ packages:
     engines: {node: '>=14.18.0'}
     dev: true
 
-  /hypertune@1.13.4(encoding@0.1.13):
-    resolution: {integrity: sha512-qq77KcUDrN9FAtP5eZgifplE29eXWXhJ6GwJ4q3aPi4JkkI7bjMxRmKzCXUKKuZKj1n5px+jHDTf8xvxaQmOxg==}
+  /hypertune@2.0.0(encoding@0.1.13):
+    resolution: {integrity: sha512-/iUJB/az8R+BwxHzX/XywRwLNv+3yoCK0lnOtFEeHwPGfvjEnJt0F/L0rDPQpM43t8BqnHARW27LgOTKhOzKLw==}
     hasBin: true
     dependencies:
       cac: 6.7.14

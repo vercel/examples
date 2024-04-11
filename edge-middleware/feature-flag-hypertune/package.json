@@ -17,7 +17,7 @@
     "@vercel/toolbar": "^0.1.11",
     "autoprefixer": "^10.4.15",
     "eslint-config-next": "^13.4.19",
-    "hypertune": "^1.13.4",
+    "hypertune": "^2.0.0",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

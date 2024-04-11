@@ -4,7 +4,7 @@ import hypertune from './hypertune'
 export default function useHypertune() {
   // Trigger a re-render when flags are updated
   const [, setStateHash] = React.useState<string | null>(
-    hypertune.getStateHash(),
+    hypertune.getStateHash()
   )
   useEffect(() => {
     hypertune.addUpdateListener(setStateHash)
@@ -17,11 +17,13 @@ export default function useHypertune() {
   return useMemo(
     () =>
       hypertune.root({
-        context: {
-          environment: 'DEVELOPMENT',
-          user: { id: 'test_id', name: 'Test', email: 'test@test.com' },
+        args: {
+          context: {
+            environment: 'DEVELOPMENT',
+            user: { id: 'test_id', name: 'Test', email: 'test@test.com' },
+          },
         },
       }),
-    [],
+    []
   )
 }

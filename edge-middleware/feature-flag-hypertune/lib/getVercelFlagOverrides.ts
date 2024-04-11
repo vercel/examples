@@ -1,6 +1,6 @@
 import { type FlagOverridesType, decrypt } from '@vercel/flags'
 import { cookies } from 'next/headers'
-import { Root } from '../generated/generated'
+import { Root } from '../generated/hypertune'
 
 export default async function getVercelFlagOverrides(): Promise<Root | null> {
   const overridesCookieValue = cookies().get('vercel-flag-overrides')?.value
