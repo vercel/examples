@@ -15,28 +15,28 @@ export default function Panel({
 	let [optimisticAuthors, setOptimisticAuthors] = useOptimistic(authors);
 
 	return (
-		<div>
+		<div className="mb-auto bg-white rounded-md shadow-md dark:shadow-gray-950/30 dark:bg-white/10">
 			<div
 				data-pending={pending ? '' : undefined}
-				className="sm:w-60 bg-white/10 rounded-md shadow-md shadow-gray-950/30 h-[70vh] overflow-y-auto"
+				className="lg:w-60 md:h-80 lg:h-[70vh] overflow-y-auto"
 			>
 				<div className="p-4">
-					<h2 className="text-lg font-semibold tracking-tight text-gray-100">Authors</h2>
+					<h2 className="text-lg font-semibold tracking-tight dark:text-gray-100">Authors</h2>
 
 					<div className="flex px-4 pb-3 mt-4 -mx-4 overflow-x-scroll sm:px-0 sm:mx-0 sm:pb-0 sm:overflow-auto sm:flex-wrap gap-y-2 gap-x-1">
 						{allAuthors.map((author) => (
 							<button
 								onClick={() => {
-									let newGenres = !optimisticAuthors.includes(author)
+									let newAuthors = !optimisticAuthors.includes(author)
 										? [...optimisticAuthors, author]
 										: optimisticAuthors.filter((g) => g !== author);
 
 									let newParams = new URLSearchParams(
-										newGenres.sort().map((author) => ['author', author])
+										newAuthors.sort().map((author) => ['author', author])
 									);
 
 									startTransition(() => {
-										setOptimisticAuthors(newGenres.sort());
+										setOptimisticAuthors(newAuthors.sort());
 
 										router.push(`?${newParams}`);
 									});
@@ -56,17 +56,19 @@ export default function Panel({
 			</div>
 
 			{optimisticAuthors.length > 0 && (
-					<div className="p-1 border-t border-black bg-white/10">
-						{optimisticAuthors.map((author) => (
-						<p className="text-sm" key={author}>{author}</p>
-					))}
+					<div className="p-1 bg-white border-t dark:border-black dark:bg-white/10">
+						<div className="p-2 text-xs">
+							{optimisticAuthors.map((author) => (
+							<p key={author}>{author}</p>
+							))}
+						</div>
 					<button
-						className="w-full py-2 text-sm font-medium text-center rounded hover:bg-gray-600"
+						className="w-full py-2 text-sm font-medium text-center rounded dark:hover:bg-gray-600 hover:bg-black hover:text-white"
 						onClick={() => {
 							startTransition(() => {
 								setOptimisticAuthors([]);
 
-								router.push(`?`);
+								router.push(`/`);
 							});
 						}}
 					>

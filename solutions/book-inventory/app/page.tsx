@@ -21,7 +21,7 @@ export default async function Page({
 	return (
 		<main className="flex flex-col justify-between w-full">
 			<Search placeholder="Search books..." />
-			<div className="flex gap-6 py-6">
+			<div className="flex flex-col gap-6 py-6 lg:flex-row">
 				<Panel authors={selectedAuthors} allAuthors={allAuthors} />
 				<Suspense fallback={<div>Loading...</div>}>
 					<Grid selectedAuthors={selectedAuthors} query={query} />

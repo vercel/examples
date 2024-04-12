@@ -1,6 +1,7 @@
 import { sql } from '@vercel/postgres';
 import { seed } from '../lib/seed';
 import Link from 'next/link';
+import Image from 'next/image';
 
 async function ensureTableExists() {
 	try {
@@ -121,19 +122,5 @@ export default async function Grid({
 				)}
 			</div>
 		</>
-		// <div className="flex flex-wrap w-full">
-		// 	{data &&
-		// 		data.map((book) => {
-		// 			return (
-		// 				<Link
-		// 					href={`/${book.id}`}
-		// 					key={book.id}
-		// 					className="px-2 pb-4 transition ease-in-out hover:scale-110"
-		// 				>
-		// 					<Card image={book['Image-URL-L']} title={book['Book-Title']} />
-		// 				</Link>
-		// 			);
-		// 		})}
-		// </div>
 	);
 }
