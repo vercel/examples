@@ -1,14 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	experimental: {
+  experimental: {
     staleTimes: {
       dynamic: 30,
       static: 180,
     },
   },
-	images: {
-		domains: ['images.amazon.com'],
-	}
-};
+  images: {
+    domains: [],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'images.amazon.com',
+        port: '',
+      },
+    ],
+  },
+}
 
-export default nextConfig;
+export default nextConfig

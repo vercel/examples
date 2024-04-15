@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "node -r dotenv/config ./scripts/seed.js"
   },
   "dependencies": {
     "@vercel/postgres": "^0.8.0",
+    "dotenv": "^16.4.5",
     "next": "14.1.4",
     "papaparse": "^5.4.1",
     "prettier": "^3.2.5",
