@@ -81,7 +81,7 @@ export default function Home({ data }: { data: any }) {
           </Link>{' '}
           and stored in{' '}
           <Link
-            href="https://vercel.com/kv"
+            href="https://vercel.com/storage/kv"
             target="_blank"
             rel="noreferrer noopener"
           >
