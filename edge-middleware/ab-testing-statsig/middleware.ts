@@ -28,9 +28,24 @@ export async function middleware(req: NextRequest, event: NextFetchEvent) {
     hasUserId = false
   }
 
-  await Statsig.initialize(process.env.STATSIG_SERVER_API_KEY!, { dataAdapter })
+  await Statsig.initialize(process.env.STATSIG_SERVER_API_KEY!, {
+    dataAdapter,
+    // 🚨 It's extremly important to set this, otherwise Statsig will attempt
+    // to fetch the ID List over the network, which is slow and would render
+    // using the Edge Config Adapter useless.
+    //
+    // If you are not using the ID List feature, set this to "none".
+    //
+    // Otherwise consider setting it to "lazy" but be aware of the consequences
+    // that the ID List will not apply in most cases as it will only get fetched
+    // after the experiment ran
+    initStrategyForIDLists: 'lazy',
+    // 🚨 This setting will prevent Statsig from making any network requests,
+    // thus ensuring middleware stays extremly fast.
+    localMode: true,
+  })
 
-  const experiment = await Statsig.getExperiment({ userID: userId }, EXPERIMENT)
+  const experiment = Statsig.getExperimentSync({ userID: userId }, EXPERIMENT)
   const bucket = experiment.get<string>('bucket', GROUP_PARAM_FALLBACK)
 
   // Clone the URL and change its pathname to point to a bucket
@@ -48,7 +63,9 @@ export async function middleware(req: NextRequest, event: NextFetchEvent) {
   }
 
   // Flush exposure logs to Statsig
-  event.waitUntil(Statsig.flush())
+  // Disabled as we activated localMode. Turn localMode off if you need to log
+  // exposures from here.
+  // event.waitUntil(Statsig.flush())
 
   return res
 }
