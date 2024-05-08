@@ -15,7 +15,7 @@
     "next": "canary",
     "react": "latest",
     "react-dom": "latest",
-    "statsig-node": "^5.9.3",
+    "statsig-node": "^5.19.1",
     "statsig-node-vercel": "^0.2.0",
     "statsig-react": "^1.30.3"
   },
