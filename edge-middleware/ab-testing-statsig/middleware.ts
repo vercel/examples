@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse, NextFetchEvent } from 'next/server'
-import Statsig from 'statsig-node'
+import Statsig from 'statsig-node-lite'
 import { EdgeConfigDataAdapter } from 'statsig-node-vercel'
 import { createClient } from '@vercel/edge-config'
 import { EXPERIMENT, UID_COOKIE, GROUP_PARAM_FALLBACK } from './lib/constants'
@@ -29,7 +29,6 @@ export async function middleware(req: NextRequest, event: NextFetchEvent) {
   }
 
   await Statsig.initialize(process.env.STATSIG_SERVER_API_KEY!, {
-    dataAdapter,
     // 🚨 It's extremly important to set this, otherwise Statsig will attempt
     // to fetch the ID List over the network, which is slow and would render
     // using the Edge Config Adapter useless.
@@ -39,13 +38,22 @@ export async function middleware(req: NextRequest, event: NextFetchEvent) {
     // Otherwise consider setting it to "lazy" but be aware of the consequences
     // that the ID List will not apply in most cases as it will only get fetched
     // after the experiment ran
-    initStrategyForIDLists: 'lazy',
+    initStrategyForIDLists: 'none',
     // 🚨 This setting will prevent Statsig from making any network requests,
     // thus ensuring middleware stays extremly fast.
     localMode: true,
+    // This makes Statsig load experiments from Edge Config
+    dataAdapter,
+    // Disable any syncing to prevent network activity, as Edge Config will
+    // return the latest values anyhow, and as ID Lists are disabled.
+    disableIdListsSync: true,
+    disableRulesetsSync: true,
   })
 
-  const experiment = Statsig.getExperimentSync({ userID: userId }, EXPERIMENT)
+  const experiment = Statsig.getExperimentWithExposureLoggingDisabledSync(
+    { userID: userId },
+    EXPERIMENT
+  )
   const bucket = experiment.get<string>('bucket', GROUP_PARAM_FALLBACK)
 
   // Clone the URL and change its pathname to point to a bucket
