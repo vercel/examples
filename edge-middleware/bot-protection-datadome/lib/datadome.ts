@@ -47,7 +47,7 @@ export default async function datadome(req: NextRequest) {
     ServerHostname: req.headers.get('host'),
     ServerName: 'vercel',
     ServerRegion: 'sfo1',
-    TimeRequest: new Date().getTime() * 1000,
+    TimeRequest: Date.now() * 1000,
     TrueClientIP: req.headers.get('true-client-ip'),
     UserAgent: req.headers.get('user-agent'),
     Via: req.headers.get('via'),
@@ -69,13 +69,14 @@ export default async function datadome(req: NextRequest) {
 
   const options = {
     method: 'POST',
-    body: undefined,
+    body: '',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'User-Agent': 'DataDome'
     },
   }
   if (req.headers.get('x-datadome-clientid')?.length) {
+    //@ts-ignore - custom DataDome error
     options.headers['X-DataDome-X-Set-Cookie'] = 'true'
     requestData.ClientID = req.headers.get('x-datadome-clientid') as string
   }
@@ -254,6 +255,7 @@ function truncateRequestData(requestData: Record<string, string | number | null 
 
   for (let key in requestData) {
     const value = requestData[key];
+    //@ts-ignore
     const limit = limits[key.toLowerCase()];
     if (limit && value && typeof value == 'string' && value.length > Math.abs(limit)) {
       if (limit > 0) {
