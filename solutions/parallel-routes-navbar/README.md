@@ -4,7 +4,7 @@ This example shows how -------------------------
 
 ## Demo
 
-https://parallel-routes-navbar.vercel.app
+https://solutions-parallel-routes-navbar.vercel.app
 
 ## How to Use
 
