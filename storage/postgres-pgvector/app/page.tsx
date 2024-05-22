@@ -4,8 +4,6 @@ import { Search } from '@/components/search'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export const dynamic = 'force-dynamic'
-
 export default function Home() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
