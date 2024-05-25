@@ -1,5 +1,5 @@
 import prisma from '../lib/prisma'
-import { openai } from '@/lib/openai'
+import { openai } from '../lib/openai'
 import { embed } from 'ai'
 import pokemon from './pokemon-with-embeddings.json'
 
