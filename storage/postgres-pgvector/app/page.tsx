@@ -57,7 +57,7 @@ export default function Home() {
         </Link>
         , and{' '}
         <Link
-          href="https://platform.openai.com/docs/guides/embeddings"
+          href="https://sdk.vercel.ai/providers/ai-sdk-providers/openai#embedding-models"
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
         >
           OpenAI
