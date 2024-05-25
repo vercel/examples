@@ -9,7 +9,6 @@ import {
 } from '@/components/command'
 import { type Pokemon } from '@prisma/client'
 import { useEffect, useState } from 'react'
-import { toast } from 'react-hot-toast'
 import { useDebounce } from 'use-debounce'
 
 export interface SearchProps {
@@ -55,10 +54,6 @@ export function Search({ searchPokedex }: SearchProps) {
               key={pokemon.id}
               value={pokemon.name}
               className="flex items-center justify-between py-3"
-              onSelect={(p) => {
-                console.log(p)
-                toast.success(`You selected ${p}!`)
-              }}
             >
               <div className="flex items-center space-x-4">
                 <div className="space-y-1">
