@@ -4,6 +4,7 @@ import { pokemons } from './schema'
 import { eq } from 'drizzle-orm'
 import { openai } from '../lib/openai'
 import pokemon from './pokemon-with-embeddings.json'
+import { embed } from 'ai'
 
 if (!process.env.OPENAI_API_KEY) {
   throw new Error('process.env.OPENAI_API_KEY is not defined. Please set it.')
@@ -67,11 +68,9 @@ main()
 
 async function generateEmbedding(_input: string) {
   const input = _input.replace(/\n/g, ' ')
-  const embeddingData = await openai.embeddings.create({
-    model: 'text-embedding-ada-002',
-    input,
+  const { embedding } = await embed({
+    model: openai.embedding('text-embedding-ada-002'),
+    value: input,
   })
-  console.log(embeddingData)
-  const [{ embedding }] = (embeddingData as any).data
   return embedding
 }
