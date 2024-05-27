@@ -1,13 +1,14 @@
 'use server'
 
-import prisma from '@/lib/prisma'
+import { db } from '@/drizzle/db'
+import { SelectPokemon, pokemons } from '@/drizzle/schema'
 import { openai } from '@/lib/openai'
-import { type Pokemon } from '@prisma/client'
 import { ratelimit } from '@/lib/utils'
+import { desc, sql, cosineDistance, gt } from 'drizzle-orm'
 
 export async function searchPokedex(
   query: string
-): Promise<Array<Pokemon & { similarity: number }>> {
+): Promise<Array<Pick<SelectPokemon, 'id' | 'name'> & { similarity: number }>> {
   try {
     if (query.trim().length === 0) return []
 
@@ -16,18 +17,22 @@ export async function searchPokedex(
 
     const embedding = await generateEmbedding(query)
     const vectorQuery = `[${embedding.join(',')}]`
-    const pokemon = await prisma.$queryRaw`
-      SELECT
-        id,
-        "name",
-        1 - (embedding <=> ${vectorQuery}::vector) as similarity
-      FROM pokemon
-      where 1 - (embedding <=> ${vectorQuery}::vector) > .5
-      ORDER BY  similarity DESC
-      LIMIT 8;
-    `
 
-    return pokemon as Array<Pokemon & { similarity: number }>
+    const similarity = sql<number>`1 - (${cosineDistance(
+      pokemons.embedding,
+      vectorQuery
+    )})`.as('similarity')
+
+    const pokemon = await db
+      .select({ id: pokemons.id, name: pokemons.name, similarity })
+      .from(pokemons)
+      .where(
+        gt(sql`1 - (${cosineDistance(pokemons.embedding, vectorQuery)})`, 0.5)
+      )
+      .orderBy(desc(sql.raw(similarity.fieldAlias)))
+      .limit(8)
+
+    return pokemon
   } catch (error) {
     console.error(error)
     throw error
