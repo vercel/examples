@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "next dev",
     "db:seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' drizzle/seed.ts",
-    "build": "drizzle-kit generate && drizzle-kit migrate && pnpm db:seed && next build",
+    "build": "drizzle-kit push && pnpm db:seed && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -21,8 +21,6 @@
     "autoprefixer": "10.4.16",
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
-    "dotenv": "^16.4.5",
-    "drizzle-kit": "0.22.0-407e2e6",
     "drizzle-orm": "0.31.0-a70b6ea",
     "eslint": "8.51.0",
     "eslint-config-next": "13.5.4",
@@ -38,5 +36,9 @@
     "ts-node": "^10.9.1",
     "typescript": "5.2.2",
     "use-debounce": "^9.0.4"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "drizzle-kit": "0.22.0-72736ba"
   }
 }
