@@ -21,15 +21,13 @@ export async function searchPokedex(
     const similarity = sql<number>`1 - (${cosineDistance(
       pokemons.embedding,
       vectorQuery
-    )})`.as('similarity')
+    )})`
 
     const pokemon = await db
       .select({ id: pokemons.id, name: pokemons.name, similarity })
       .from(pokemons)
-      .where(
-        gt(sql`1 - (${cosineDistance(pokemons.embedding, vectorQuery)})`, 0.5)
-      )
-      .orderBy(desc(sql.raw(similarity.fieldAlias)))
+      .where(gt(similarity, 0.5))
+      .orderBy((t) => desc(t.similarity))
       .limit(8)
 
     return pokemon
