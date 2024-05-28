@@ -9,7 +9,6 @@ import {
 } from '@/components/command'
 import { type Pokemon } from '@prisma/client'
 import { useEffect, useState } from 'react'
-import { toast } from 'react-hot-toast'
 import { useDebounce } from 'use-debounce'
 
 export interface SearchProps {
@@ -37,6 +36,7 @@ export function Search({ searchPokedex }: SearchProps) {
       current = false
     }
   }, [debouncedQuery, searchPokedex])
+
   return (
     <div className="w-full">
       <Command label="Command Menu" shouldFilter={false} className="h-[200px]">
@@ -53,20 +53,16 @@ export function Search({ searchPokedex }: SearchProps) {
             <CommandItem
               key={pokemon.id}
               value={pokemon.name}
-              className="data-[selected='true']:bg-zinc-50  flex items-center justify-between py-3"
-              onSelect={(p) => {
-                console.log(p)
-                toast.success(`You selected ${p}!`)
-              }}
+              className="flex items-center justify-between py-3"
             >
               <div className="flex items-center space-x-4">
                 <div className="space-y-1">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-800">
                     {pokemon.name.substring(0, 90)}
                   </p>
                 </div>
               </div>
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-gray-800">
                 {pokemon.similarity ? (
                   <div className="text-xs font-mono p-0.5 rounded bg-zinc-100">
                     {pokemon.similarity.toFixed(3)}
