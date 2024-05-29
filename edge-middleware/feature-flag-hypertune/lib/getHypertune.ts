@@ -1,20 +1,29 @@
-import { Query, RootNode } from '../generated/hypertune'
-import getVercelFlagOverrides from './getVercelFlagOverrides'
-import hypertune from './hypertune'
+import 'server-only'
+import { createSource } from '../generated/hypertune'
+import { VercelEdgeConfigInitDataProvider } from 'hypertune'
+import { createClient } from '@vercel/edge-config'
 
-export default async function getHypertune(): Promise<RootNode> {
-  await hypertune.initIfNeeded()
+const hypertuneSource = createSource({
+  token: process.env.NEXT_PUBLIC_HYPERTUNE_TOKEN!,
+  initDataProvider:
+    process.env.EDGE_CONFIG && process.env.EDGE_CONFIG_HYPERTUNE_ITEM_KEY
+      ? new VercelEdgeConfigInitDataProvider({
+          edgeConfigClient: createClient(process.env.EDGE_CONFIG),
+          itemKey: process.env.EDGE_CONFIG_HYPERTUNE_ITEM_KEY,
+        })
+      : undefined,
+})
 
-  // Respect overrides set by the Vercel Toolbar
-  const vercelFlagOverrides = await getVercelFlagOverrides()
-  hypertune.setOverride<Query>({ root: vercelFlagOverrides })
+export default async function getHypertune() {
+  await hypertuneSource.initIfNeeded() // Check for flag updates
 
-  // Return the Hypertune root node initialized with the current user
-  return hypertune.root({
+  return hypertuneSource.root({
     args: {
       context: {
-        environment: 'DEVELOPMENT',
-        user: { id: 'test_id', name: 'Test', email: 'test@test.com' },
+        environment: process.env.NODE_ENV,
+        user: { id: '1', name: 'Test', email: 'hi@test.com' },
+        // Set placeholder values for browser-only args, e.g.
+        // browserOnlyId: "",
       },
     },
   })

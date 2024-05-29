@@ -32,6 +32,7 @@ export default async function Home() {
       </section>
 
       <section className="flex flex-col gap-4">
+        {/* @ts-expect-error Async Server Component */}
         <ServerExample />
         <Text>
           Once you&apos;ve deployed this project, open the{' '}
@@ -53,10 +54,10 @@ export default async function Home() {
             your environment variables
           </li>
           <li>
-            Run <strong>npm i</strong>
+            Run <strong>pnpm i</strong>
           </li>
           <li>
-            Run <strong>npm run dev</strong>
+            Run <strong>pnpm run dev</strong>
           </li>
         </List>
         <Text>
@@ -64,7 +65,7 @@ export default async function Home() {
           <Link href="https://app.hypertune.com/" target="_blank">
             Hypertune UI
           </Link>
-          , then regenerate the client with <strong>npx hypertune</strong> so
+          , then regenerate the client with <strong>pnpm hypertune</strong> so
           you can access it with full end-to-end type-safety.
         </Text>
       </section>

@@ -1,22 +1,12 @@
 'use client'
 
 import { Text } from '@vercel/examples-ui'
-import { DehydratedState } from '../generated/hypertune'
-import hypertune from './hypertune'
-import useHypertune from './useHypertune'
+import { useHypertune } from '../generated/hypertune.react'
 
-export default function ClientExample({
-  hypertuneDehydratedState,
-}: {
-  hypertuneDehydratedState?: DehydratedState | null
-}): React.ReactElement {
-  if (hypertuneDehydratedState) {
-    hypertune.hydrate(hypertuneDehydratedState)
-  }
+export default function ClientExample(): React.ReactElement {
+  const hypertune = useHypertune()
 
-  const rootNode = useHypertune()
-
-  const exampleFlag = rootNode.exampleFlag({ fallback: false })
+  const exampleFlag = hypertune.exampleFlag({ fallback: false })
 
   return (
     <Text>

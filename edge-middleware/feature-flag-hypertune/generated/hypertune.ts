@@ -78,32 +78,32 @@ export const vercelFlagDefinitions = {
   exampleFlag: {
     options: [{ value: true }, { value: false }],
     origin:
-      'https://app.hypertune.com/projects/3262/draft?view=logic&selected_field_path=root%3EexampleFlag',
+      'https://app.hypertune.com/projects/3385/draft?view=logic&selected_field_path=root%3EexampleFlag',
   },
 }
 
 export type Rec = {}
 
-export type Rec4 = {
+export type Rec3 = {
   id: string
   name: string
   email: string
 }
 
 export const EnvironmentEnumValues = [
-  'DEVELOPMENT',
-  'STAGING',
-  'PRODUCTION',
+  'production',
+  'development',
+  'test',
 ] as const
 export type Environment = (typeof EnvironmentEnumValues)[number]
 
-export type Rec3 = {
-  user: Rec4
+export type Rec2 = {
+  user: Rec3
   environment: Environment
 }
 
-export type Rec2 = {
-  context: Rec3
+export type RootArgs = {
+  context: Rec2
 }
 
 export type Root = {
@@ -115,13 +115,20 @@ const rootFallback = { exampleFlag: false }
 export class RootNode extends sdk.Node {
   typeName = 'Root' as const
 
+  getRootArgs(): RootArgs {
+    const { step } = this.props
+    return (
+      step?.type === 'GetFieldStep' ? step.fieldArguments : {}
+    ) as RootArgs
+  }
+
   get({ fallback = rootFallback as Root }: { fallback?: Root } = {}): Root {
     const getQuery = null
     return this.evaluate(getQuery, fallback) as Root
   }
 
   /**
-   * [Open in UI]({@link https://app.hypertune.com/projects/3262/draft?view=logic&selected_field_path=root%3EexampleFlag})
+   * [Open in UI]({@link https://app.hypertune.com/projects/3385/draft?view=logic&selected_field_path=root%3EexampleFlag})
    */
   exampleFlag({
     args = {},
@@ -157,7 +164,7 @@ export class RootNode extends sdk.Node {
  *
  * Once you've defined your schema, head to the Logic tab.
  */
-export type Query = {
+export type Source = {
   /**
    * You can add arguments to any field in your schema, which you can then
    * reference when defining your logic. We've added a 'context' argument on your
@@ -166,14 +173,14 @@ export type Query = {
   root: Root
 }
 
-const queryFallback = { root: { exampleFlag: false } }
-
-export type Rec6 = {
-  args: Rec2
-}
+const sourceFallback = { root: { exampleFlag: false } }
 
 export type Rec5 = {
-  root: Rec6
+  args: RootArgs
+}
+
+export type Rec4 = {
+  root: Rec5
 }
 
 /**
@@ -189,18 +196,18 @@ export type Rec5 = {
  *
  * Once you've defined your schema, head to the Logic tab.
  */
-export class QueryNode extends sdk.Node {
+export class SourceNode extends sdk.Node {
   typeName = 'Query' as const
 
   get({
     args,
-    fallback = queryFallback as Query,
+    fallback = sourceFallback as Source,
   }: {
-    args: Rec5
-    fallback?: Query
-  }): Query {
+    args: Rec4
+    fallback?: Source
+  }): Source {
     const getQuery = mergeQueryAndArgs(query, args)
-    return this.evaluate(getQuery, fallback) as Query
+    return this.evaluate(getQuery, fallback) as Source
   }
 
   /**
@@ -208,7 +215,7 @@ export class QueryNode extends sdk.Node {
    * reference when defining your logic. We've added a 'context' argument on your
    * root field already, which contains details of the current 'user'.
    */
-  root({ args }: { args: Rec2 }): RootNode {
+  root({ args }: { args: RootArgs }): RootNode {
     const props0 = this.getField('root', args)
     const expression0 = props0.expression
 
@@ -227,20 +234,21 @@ export class QueryNode extends sdk.Node {
 }
 
 export type VariableValues = Rec
-export type DehydratedState = sdk.DehydratedState<Query, VariableValues>
+export type DehydratedState = sdk.DehydratedState<Source, VariableValues>
+export type CreateSourceOptions = {
+  token: string
+  variableValues?: VariableValues
+  override?: sdk.DeepPartial<Source> | null
+} & sdk.CreateOptions
 
-export function initHypertune({
+export function createSource({
   token,
   variableValues = {},
   override,
   ...options
-}: {
-  token: string
-  variableValues?: VariableValues
-  override?: sdk.DeepPartial<Query> | null
-} & sdk.InitOptions): QueryNode {
-  return sdk.init({
-    NodeConstructor: QueryNode,
+}: CreateSourceOptions): SourceNode {
+  return sdk.create({
+    NodeConstructor: SourceNode,
     token,
     query,
     queryCode,
@@ -249,3 +257,35 @@ export function initHypertune({
     options,
   })
 }
+
+export const emptySource = new SourceNode({
+  context: null,
+  logger: null,
+  parent: null,
+  step: null,
+  expression: null,
+})
+
+export function createSourceForServerOnly({
+  token,
+  variableValues = {},
+  override,
+  ...options
+}: CreateSourceOptions): SourceNode {
+  return typeof window === 'undefined'
+    ? createSource({ token, variableValues, override, ...options })
+    : emptySource
+}
+
+/**
+ * @deprecated use createSource instead.
+ */
+export const initHypertune = createSource
+/**
+ * @deprecated use SourceNode instead.
+ */
+export type QueryNode = SourceNode
+/**
+ * @deprecated use Source instead.
+ */
+export type Query = Source

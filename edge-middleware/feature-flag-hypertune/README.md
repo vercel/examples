@@ -45,9 +45,9 @@ Once you've deployed your project, open the [Hypertune UI](https://app.hypertune
 1. Clone your project's repository and `cd` into it
 2. Run `vercel link` to link to the Vercel project
 3. Run `vercel env pull .env.development.local` to pull your environment variables
-4. Run `npm i`
-5. Run `npm run dev`
+4. Run `pnpm i`
+5. Run `pnpm run dev`
 
 ### Add new feature flags
 
-To add a new feature flag, create it in the [Hypertune UI](https://app.hypertune.com/), then regenerate the client with `npx hypertune` so you can access it with full end-to-end type-safety.
+To add a new feature flag, create it in the [Hypertune UI](https://app.hypertune.com/), then regenerate the client with `pnpm hypertune` so you can access it with full end-to-end type-safety.

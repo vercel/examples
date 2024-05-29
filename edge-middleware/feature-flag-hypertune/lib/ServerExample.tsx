@@ -1,6 +1,5 @@
 import { Text } from '@vercel/examples-ui'
 import ClientExample from './ClientExample'
-import hypertune from './hypertune'
 import { Suspense } from 'react'
 import VercelFlagValues from './VercelFlagValues'
 import getHypertune from './getHypertune'
@@ -16,8 +15,9 @@ export default async function ServerExample() {
         React Server Component (RSC) flag:{' '}
         <strong>{String(exampleFlag)}</strong>
       </Text>
-      <ClientExample hypertuneDehydratedState={hypertune.dehydrate()} />
+      <ClientExample />
       <Suspense fallback={null}>
+        {/* @ts-expect-error Async Server Component */}
         <VercelFlagValues flagValues={rootNode.get()} />
       </Suspense>
     </>
