@@ -4,8 +4,6 @@ import { Search } from '@/components/search'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export const dynamic = 'force-dynamic'
-
 export default function Home() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
@@ -59,7 +57,7 @@ export default function Home() {
         </Link>
         , and{' '}
         <Link
-          href="https://platform.openai.com/docs/guides/embeddings"
+          href="https://sdk.vercel.ai/providers/ai-sdk-providers/openai#embedding-models"
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
         >
           OpenAI

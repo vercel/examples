@@ -1,8 +1,6 @@
 import prisma from '../lib/prisma'
-import { type Pokemon } from '@prisma/client'
-import fs from 'fs'
 import { openai } from '../lib/openai'
-import path from 'path'
+import { embed } from 'ai'
 import pokemon from './pokemon-with-embeddings.json'
 
 if (!process.env.OPENAI_API_KEY) {
@@ -70,11 +68,9 @@ main()
 
 async function generateEmbedding(_input: string) {
   const input = _input.replace(/\n/g, ' ')
-  const embeddingData = await openai.embeddings.create({
-    model: 'text-embedding-ada-002',
-    input,
+  const { embedding } = await embed({
+    model: openai.embedding('text-embedding-ada-002'),
+    value: input,
   })
-  console.log(embeddingData)
-  const [{ embedding }] = (embeddingData as any).data
   return embedding
 }
