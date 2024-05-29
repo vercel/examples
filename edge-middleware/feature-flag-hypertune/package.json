@@ -20,7 +20,8 @@
     "hypertune": "^2.1.2",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.5.3",
