@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import getHypertune from '../../../lib/getHypertune'
 
 export const runtime = 'edge'
