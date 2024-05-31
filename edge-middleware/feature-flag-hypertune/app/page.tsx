@@ -32,7 +32,6 @@ export default async function Home() {
       </section>
 
       <section className="flex flex-col gap-4">
-        {/* @ts-expect-error Async Server Component */}
         <ServerExample />
         <Text>
           Once you&apos;ve deployed this project, open the{' '}

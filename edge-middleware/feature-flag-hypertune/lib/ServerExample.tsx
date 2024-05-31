@@ -17,7 +17,6 @@ export default async function ServerExample() {
       </Text>
       <ClientExample />
       <Suspense fallback={null}>
-        {/* @ts-expect-error Async Server Component */}
         <VercelFlagValues flagValues={rootNode.get()} />
       </Suspense>
     </>
