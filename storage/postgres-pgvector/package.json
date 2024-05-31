@@ -21,7 +21,7 @@
     "autoprefixer": "10.4.19",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
-    "drizzle-orm": "0.31.0-a70b6ea",
+    "drizzle-orm": "^0.31.0",
     "eslint": "9.3.0",
     "eslint-config-next": "14.2.3",
     "gpt3-tokenizer": "^1.1.5",
@@ -38,6 +38,6 @@
   },
   "devDependencies": {
     "dotenv": "^16.4.5",
-    "drizzle-kit": "0.22.0-72736ba"
+    "drizzle-kit": "^0.22.0"
   }
 }
