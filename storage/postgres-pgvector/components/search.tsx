@@ -7,20 +7,22 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/command'
-import { type Pokemon } from '@prisma/client'
+import { SelectPokemon } from '@/drizzle/schema'
 import { useEffect, useState } from 'react'
 import { useDebounce } from 'use-debounce'
 
 export interface SearchProps {
   searchPokedex: (
     content: string
-  ) => Promise<Array<Pokemon & { similarity: number }>>
+  ) => Promise<
+    Array<Pick<SelectPokemon, 'id' | 'name'> & { similarity: number }>
+  >
 }
 
 export function Search({ searchPokedex }: SearchProps) {
   const [query, setQuery] = useState('')
   const [searchResults, setSearchResults] = useState<
-    Array<Pokemon & { similarity?: number }>
+    Array<Pick<SelectPokemon, 'id' | 'name'> & { similarity?: number }>
   >([])
   const [debouncedQuery] = useDebounce(query, 150)
   useEffect(() => {

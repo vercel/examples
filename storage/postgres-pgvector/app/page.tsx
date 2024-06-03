@@ -43,17 +43,17 @@ export default function Home() {
         </Link>{' '}
         semantic search demo with{' '}
         <Link
-          href="https://github.com/pgvector/pgvector-node#prisma"
+          href="https://github.com/pgvector/pgvector-node#drizzle-orm"
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
         >
           pgvector
         </Link>
         ,{' '}
         <Link
-          href="https://prisma.io"
+          href="https://orm.drizzle.team"
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
         >
-          Prisma
+          Drizzle ORM
         </Link>
         , and{' '}
         <Link
