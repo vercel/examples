@@ -1,7 +1,7 @@
 ---
 name: Hypertune Integration example
 slug: feature-flag-hypertune
-description: Learn to use Hypertune, a powerful feature flag, A/B testing and app configuration platform.
+description: Learn to use Hypertune, a powerful feature flag, A/B testing, analytics and app configuration platform.
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
@@ -12,19 +12,21 @@ relatedTemplates:
   - feature-flag-apple-store
 ---
 
-# Feature flags, A/B testing and app configuration with Hypertune and Vercel
+# Feature flags, A/B testing, analytics and app configuration with Hypertune and Vercel
 
-[Hypertune](https://www.hypertune.com/) is a powerful feature flag, A/B testing, analytics and app configuration platform. Optimized for TypeScript, React and Next.js. Built with full end-to-end type-safety and Git version control.
+[Hypertune](https://www.hypertune.com/) is a powerful feature flag, A/B testing, analytics and app configuration platform. Optimized for TypeScript, React and Next.js. Built with full end-to-end type-safety and Git-style version control.
 
-No need to juggle different SDKs for the server and the client. Install one SDK that works across the server and the client and is compatible with App Router and Server Components.
+No need to juggle different SDKs for the server and the client. Install one SDK that works across the server and the client and is compatible with the App Router and Server Components.
 
-Avoid cumulative layout shift, UI flickers, hydration errors and page load delay. Instantly initialize the SDK on the server from Vercel Edge Config. And instantly initialize the SDK on the client from server props on the first render.
+Avoid layout shift, UI flickers, hydration errors and page load delay. Instantly initialize the SDK on the server from Vercel Edge Config. And instantly initialize the SDK on the client from server props on the first render.
 
 Static typing and code generation gives you full end-to-end type-safety across your flag inputs, outputs and logic so you can be confident in your code and upgrade your developer experience.
 
 This example shows how to use the [Hypertune integration](https://vercel.com/integrations/hypertune) with Vercel Edge Config to initialize the Hypertune SDK with near-zero latency on the server so you can access your feature flags and run A/B tests with no performance impact to your app.
 
-It also shows how to integrate with the Vercel Toolbar to let you easily set local flag overrides while developing.
+It also shows how to integrate with the Vercel Toolbar to let you easily view and override your feature flags without leaving your frontend.
+
+Finally, it shows how to use the Vercel Feature Flags pattern to use flags on a static page by precomputing flags in middleware.
 
 ## Deploy with Vercel
 

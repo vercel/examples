@@ -12,14 +12,14 @@ dependencies:
     specifier: ^2.0.3
     version: 2.0.3(next@14.1.4)(react-dom@18.2.0)(react@18.3.1)
   '@vercel/flags':
-    specifier: 2.5.0
-    version: 2.5.0(next@14.1.4)(react-dom@18.2.0)(react@18.3.1)
+    specifier: 2.5.1
+    version: 2.5.1(next@14.1.4)(react-dom@18.2.0)(react@18.3.1)
   '@vercel/toolbar':
     specifier: ^0.1.15
     version: 0.1.15(next@14.1.4)(react@18.3.1)
   hypertune:
-    specifier: ^2.1.2
-    version: 2.1.2(encoding@0.1.13)
+    specifier: ^2.2.3
+    version: 2.2.3(encoding@0.1.13)
   next:
     specifier: ^14.1.4
     version: 14.1.4(react-dom@18.2.0)(react@18.3.1)
@@ -561,8 +561,8 @@ packages:
       react-dom: 18.2.0(react@18.3.1)
     dev: false
 
-  /@vercel/flags@2.5.0(next@14.1.4)(react-dom@18.2.0)(react@18.3.1):
-    resolution: {integrity: sha512-dGaPYLEfo45zlj67IC+qnzWhpNj4mgTxK3jbbGL3hNN3NH7sJ714ATMnA6FZdv57NCJnd5tJEK5CbaxzqH8avQ==}
+  /@vercel/flags@2.5.1(next@14.1.4)(react-dom@18.2.0)(react@18.3.1):
+    resolution: {integrity: sha512-Nwnhrea6OxzJpm+mPHe4eQoFRAJDIWlniaDieH1iEzYDdFtRWLGpf74fhnbe83P5gcfXVmxM57XZEXHIU52e8Q==}
     peerDependencies:
       next: '*'
       react: '*'
@@ -1780,8 +1780,8 @@ packages:
     engines: {node: '>=10.17.0'}
     dev: false
 
-  /hypertune@2.1.2(encoding@0.1.13):
-    resolution: {integrity: sha512-NkqkUmQfLxRaN6x0XcealeejfZ96WgOAmk0UFfw9+7RoBXn0x7Xmo1D1oaBa4aIV/vnaFAuFJKEyBz7bdqaJDg==}
+  /hypertune@2.2.3(encoding@0.1.13):
+    resolution: {integrity: sha512-LsDJZu281Q300ZTpW+qm1fM7xNqObnyoIfmajTGtT5dnF952AbAyQpouraclo3nAWHeCdixTDdLVgNQ/G1POEA==}
     hasBin: true
     dependencies:
       cac: 6.7.14
@@ -1790,7 +1790,7 @@ packages:
       dotenv: 16.3.1
       joycon: 3.1.1
       json-stable-stringify: 1.0.2
-      nanoid: 3.3.6
+      nanoid: 3.3.7
       p-retry: 4.6.2
       regenerator-runtime: 0.13.11
     transitivePeerDependencies:
@@ -2229,17 +2229,10 @@ packages:
       thenify-all: 1.6.0
     dev: true
 
-  /nanoid@3.3.6:
-    resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
-    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-    dev: false
-
   /nanoid@3.3.7:
     resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
-    dev: true
 
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
@@ -2558,7 +2551,7 @@ packages:
     resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
-      nanoid: 3.3.6
+      nanoid: 3.3.7
       picocolors: 1.0.0
       source-map-js: 1.0.2
     dev: false

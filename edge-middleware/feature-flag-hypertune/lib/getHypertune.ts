@@ -1,9 +1,11 @@
 import 'server-only'
-import { createSource } from '../generated/hypertune'
 import { VercelEdgeConfigInitDataProvider } from 'hypertune'
-import { createClient } from '@vercel/edge-config'
 import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers'
 import { RequestCookies } from 'next/dist/server/web/spec-extension/cookies'
+import { unstable_noStore as noStore } from 'next/cache'
+import { createClient } from '@vercel/edge-config'
+import { Environment, createSource } from '../generated/hypertune'
+import { getVercelOverride } from '../generated/hypertune.vercel'
 
 const hypertuneSource = createSource({
   token: process.env.NEXT_PUBLIC_HYPERTUNE_TOKEN!,
@@ -20,12 +22,16 @@ export default async function getHypertune(params?: {
   headers: ReadonlyHeaders
   cookies: Omit<RequestCookies, 'set' | 'clear' | 'delete'>
 }) {
+  noStore()
   await hypertuneSource.initIfNeeded() // Check for flag updates
+
+  // Respect overrides set by the Vercel Toolbar
+  hypertuneSource.setOverride(await getVercelOverride())
 
   return hypertuneSource.root({
     args: {
       context: {
-        environment: process.env.NODE_ENV,
+        environment: process.env.NODE_ENV.toUpperCase() as Environment,
         user: { id: '1', name: 'Test', email: 'hi@test.com' },
         // Set placeholder values for browser-only args, e.g.
         // browserOnlyId: "",

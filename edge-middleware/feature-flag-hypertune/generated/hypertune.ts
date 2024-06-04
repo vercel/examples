@@ -74,11 +74,18 @@ function mergeQueryAndArgs(
   )
 }
 
+/**
+ * @deprecated use '@vercel/flags/providers/hypertune' package instead.
+ */
 export const vercelFlagDefinitions = {
   exampleFlag: {
-    options: [{ value: true }, { value: false }],
+    options: [
+      { label: 'Off', value: false },
+      { label: 'On', value: true },
+    ],
     origin:
-      'https://app.hypertune.com/projects/3385/draft?view=logic&selected_field_path=root%3EexampleFlag',
+      'https://app.hypertune.com/projects/2583/main/draft/logic?selected_field_path=root%3EexampleFlag',
+    description: 'An example flag.',
   },
 }
 
@@ -91,9 +98,9 @@ export type Rec3 = {
 }
 
 export const EnvironmentEnumValues = [
-  'production',
-  'development',
-  'test',
+  'DEVELOPMENT',
+  'STAGING',
+  'PRODUCTION',
 ] as const
 export type Environment = (typeof EnvironmentEnumValues)[number]
 
@@ -107,6 +114,9 @@ export type RootArgs = {
 }
 
 export type Root = {
+  /**
+   * An example flag.
+   */
   exampleFlag: boolean
 }
 
@@ -128,7 +138,8 @@ export class RootNode extends sdk.Node {
   }
 
   /**
-   * [Open in UI]({@link https://app.hypertune.com/projects/3385/draft?view=logic&selected_field_path=root%3EexampleFlag})
+   * An example flag.
+   * [Open in UI]({@link https://app.hypertune.com/projects/2583/main/draft/logic?selected_field_path=root%3EexampleFlag})
    */
   exampleFlag({
     args = {},
@@ -151,25 +162,7 @@ export class RootNode extends sdk.Node {
   }
 }
 
-/**
- * Welcome to Hypertune, the most powerful feature flag, A/B testing and app
- * configuration platform.
- *
- * Follow the quickstart: https://docs.hypertune.com/quickstart
- *
- * This is your schema, written in GraphQL. Use Boolean for feature flags,
- * custom enums for flags with more than two states, Int for numeric flags like
- * limits and timeouts, Strings for in-app copy, and custom object and list types
- * for more complex app configuration.
- *
- * Once you've defined your schema, head to the Logic tab.
- */
 export type Source = {
-  /**
-   * You can add arguments to any field in your schema, which you can then
-   * reference when defining your logic. We've added a 'context' argument on your
-   * root field already, which contains details of the current 'user'.
-   */
   root: Root
 }
 
@@ -183,19 +176,6 @@ export type Rec4 = {
   root: Rec5
 }
 
-/**
- * Welcome to Hypertune, the most powerful feature flag, A/B testing and app
- * configuration platform.
- *
- * Follow the quickstart: https://docs.hypertune.com/quickstart
- *
- * This is your schema, written in GraphQL. Use Boolean for feature flags,
- * custom enums for flags with more than two states, Int for numeric flags like
- * limits and timeouts, Strings for in-app copy, and custom object and list types
- * for more complex app configuration.
- *
- * Once you've defined your schema, head to the Logic tab.
- */
 export class SourceNode extends sdk.Node {
   typeName = 'Query' as const
 
@@ -210,11 +190,6 @@ export class SourceNode extends sdk.Node {
     return this.evaluate(getQuery, fallback) as Source
   }
 
-  /**
-   * You can add arguments to any field in your schema, which you can then
-   * reference when defining your logic. We've added a 'context' argument on your
-   * root field already, which contains details of the current 'user'.
-   */
   root({ args }: { args: RootArgs }): RootNode {
     const props0 = this.getField('root', args)
     const expression0 = props0.expression
