@@ -24,9 +24,7 @@ Static typing and code generation gives you full end-to-end type-safety across y
 
 This example shows how to use the [Hypertune integration](https://vercel.com/integrations/hypertune) with Vercel Edge Config to initialize the Hypertune SDK with near-zero latency on the server so you can access your feature flags and run A/B tests with no performance impact to your app.
 
-It also shows how to integrate with the Vercel Toolbar to let you easily view and override your feature flags without leaving your frontend.
-
-Finally, it shows how to use the Vercel Feature Flags pattern to use flags on a static page by precomputing flags in middleware.
+It also shows how to integrate Hypertune with Vercel's Flags SDK to use the Vercel Toolbar, to view and override your feature flags without leaving your frontend, and Vercel's Flags pattern.
 
 ## Deploy with Vercel
 
