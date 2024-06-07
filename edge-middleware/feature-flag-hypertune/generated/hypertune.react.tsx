@@ -63,9 +63,15 @@ export function HypertuneSourceProvider({
   )
   const router = useRouter()
   React.useEffect(() => {
+    let isReady = hypertuneSource.isReady()
+
     function updateListener(newStateHash: string): void {
       setStateHash(newStateHash) // Re-render
-      router.refresh()
+      if (isReady) {
+        // Only refresh the page if the sdk was ready before this update
+        router.refresh()
+      }
+      isReady = hypertuneSource.isReady()
     }
     hypertuneSource.addUpdateListener(updateListener)
     return () => {

@@ -139,7 +139,7 @@ export class RootNode extends sdk.Node {
 
   /**
    * An example flag.
-   * [Open in UI]({@link https://app.hypertune.com/projects/2583/main/draft/logic?selected_field_path=root%3EexampleFlag})
+   * [Open in Hypertune UI]({@link https://app.hypertune.com/projects/2583/main/draft/logic?selected_field_path=root%3EexampleFlag})
    */
   exampleFlag({
     args = {},
