@@ -1,7 +1,10 @@
-import prisma from '../lib/prisma'
+import 'dotenv/config'
+import { db } from './db'
+import { pokemons } from './schema'
+import { eq } from 'drizzle-orm'
 import { openai } from '../lib/openai'
-import { embed } from 'ai'
 import pokemon from './pokemon-with-embeddings.json'
+import { embed } from 'ai'
 
 if (!process.env.OPENAI_API_KEY) {
   throw new Error('process.env.OPENAI_API_KEY is not defined. Please set it.')
@@ -13,11 +16,10 @@ if (!process.env.POSTGRES_URL) {
 
 async function main() {
   try {
-    const pika = await prisma.pokemon.findFirst({
-      where: {
-        name: 'Pikachu',
-      },
+    const pika = await db.query.pokemons.findFirst({
+      where: (pokemons, { eq }) => eq(pokemons.name, 'Pikachu'),
     })
+
     if (pika) {
       console.log('Pokédex already seeded!')
       return
@@ -35,16 +37,14 @@ async function main() {
     const { embedding, ...p } = record
 
     // Create the pokemon in the database
-    const pokemon = await prisma.pokemon.create({
-      data: p,
-    })
+    const [pokemon] = await db.insert(pokemons).values(p).returning()
 
-    // Add the embedding
-    await prisma.$executeRaw`
-        UPDATE pokemon
-        SET embedding = ${embedding}::vector
-        WHERE id = ${pokemon.id}
-    `
+    await db
+      .update(pokemons)
+      .set({
+        embedding,
+      })
+      .where(eq(pokemons.id, pokemon.id))
 
     console.log(`Added ${pokemon.number} ${pokemon.name}`)
   }
@@ -58,11 +58,11 @@ async function main() {
 }
 main()
   .then(async () => {
-    await prisma.$disconnect()
+    process.exit(0)
   })
   .catch(async (e) => {
     console.error(e)
-    await prisma.$disconnect()
+
     process.exit(1)
   })
 

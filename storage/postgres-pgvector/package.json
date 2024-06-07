@@ -1,35 +1,33 @@
 {
-  "name": "postgres-prisma-pgvector-openai",
+  "name": "postgres-drizzle-orm-pgvector-openai",
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "prisma generate && next dev",
-    "build": "prisma generate && prisma db push && prisma db seed && next build",
+    "dev": "next dev",
+    "db:seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' drizzle/seed.ts",
+    "build": "drizzle-kit push && pnpm db:seed && next build",
     "start": "next start",
     "lint": "next lint"
   },
-  "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
-  },
   "dependencies": {
     "@ai-sdk/openai": "^0.0.14",
-    "@prisma/client": "^5.14.0",
     "@types/node": "20.12.12",
     "@types/react": "18.3.2",
     "@types/react-dom": "18.3.0",
+    "@vercel/postgres": "^0.8.0",
     "ai": "^3.1.14",
     "autoprefixer": "10.4.19",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
+    "drizzle-orm": "^0.31.0",
     "eslint": "9.3.0",
     "eslint-config-next": "14.2.3",
     "gpt3-tokenizer": "^1.1.5",
     "next": "14.2.3",
     "openai": "^4.47.1",
     "postcss": "8.4.38",
-    "prisma": "^5.14.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "tailwind-merge": "^2.3.0",
@@ -37,5 +35,9 @@
     "ts-node": "^10.9.2",
     "typescript": "5.4.5",
     "use-debounce": "^10.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "drizzle-kit": "^0.22.0"
   }
 }
