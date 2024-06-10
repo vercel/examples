@@ -65,13 +65,13 @@ export function HypertuneSourceProvider({
   const router = useRouter()
   React.useEffect(() => {
     const updateListener: sdk.UpdateListener = (newStateHash, metadata) => {
+      if (metadata.updateTrigger !== 'initDataProvider') {
+        return
+      }
       setStateHash(newStateHash) // Re-render
-      if (
-        !metadata.becameReady &&
-        metadata.updateTrigger === 'initDataProvider'
-      ) {
+
+      if (!metadata.becameReady) {
         // Only refresh the page if the sdk was ready before this update
-        // and the update was triggered by initDataProvider
         router.refresh()
       }
     }
