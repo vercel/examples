@@ -21,8 +21,8 @@ importers:
         specifier: ^0.1.15
         version: 0.1.15(next@14.1.4(react-dom@18.2.0(react@18.3.1))(react@18.3.1))(react@18.3.1)
       hypertune:
-        specifier: 2.3.2-alpha.0
-        version: 2.3.2-alpha.0(encoding@0.1.13)
+        specifier: 2.3.2
+        version: 2.3.2(encoding@0.1.13)
       next:
         specifier: ^14.1.4
         version: 14.1.4(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
@@ -965,8 +965,8 @@ packages:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
 
-  hypertune@2.3.2-alpha.0:
-    resolution: {integrity: sha512-Z9opzFpZ6dGNBycg8/sPEJyEzPp37nqdfadmMiw47sArVfUt9Jc/OGGLD2q91zxOd83TBODOD92A0DFGb5Bnmg==}
+  hypertune@2.3.2:
+    resolution: {integrity: sha512-39ug5mDRVZ67FLYIt+lhW4X6EDZkQqpyzQQt+cowQlF9HBxuidOHIx6QnRM/5t701ANE/UmJpaYH1K47lVBYZg==}
     hasBin: true
 
   iconv-lite@0.6.3:
@@ -2834,7 +2834,7 @@ snapshots:
 
   human-signals@2.1.0: {}
 
-  hypertune@2.3.2-alpha.0(encoding@0.1.13):
+  hypertune@2.3.2(encoding@0.1.13):
     dependencies:
       cac: 6.7.14
       core-js: 3.33.0

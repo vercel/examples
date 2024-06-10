@@ -5,6 +5,7 @@
 import * as React from 'react'
 import { useRouter } from 'next/navigation'
 import * as hypertune from './hypertune'
+import * as sdk from 'hypertune'
 
 // Hypertune
 
@@ -63,15 +64,16 @@ export function HypertuneSourceProvider({
   )
   const router = useRouter()
   React.useEffect(() => {
-    let isReady = hypertuneSource.isReady()
-
-    function updateListener(newStateHash: string): void {
+    const updateListener: sdk.UpdateListener = (newStateHash, metadata) => {
       setStateHash(newStateHash) // Re-render
-      if (isReady) {
+      if (
+        !metadata.becameReady &&
+        metadata.updateTrigger === 'initDataProvider'
+      ) {
         // Only refresh the page if the sdk was ready before this update
+        // and the update was triggered by initDataProvider
         router.refresh()
       }
-      isReady = hypertuneSource.isReady()
     }
     hypertuneSource.addUpdateListener(updateListener)
     return () => {
