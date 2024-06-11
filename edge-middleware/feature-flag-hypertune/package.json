@@ -11,26 +11,27 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/edge-config": "^0.2.1",
+    "@vercel/edge-config": "^1.1.1",
     "@vercel/examples-ui": "^2.0.3",
-    "@vercel/flags": "2.3.0",
-    "@vercel/toolbar": "^0.1.11",
-    "autoprefixer": "^10.4.15",
-    "eslint-config-next": "^13.4.19",
-    "hypertune": "^1.13.4",
-    "next": "latest",
+    "@vercel/flags": "2.5.1",
+    "@vercel/toolbar": "^0.1.15",
+    "hypertune": "2.3.3",
+    "next": "^14.1.4",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
-    "@types/node": "^20.5.3",
+    "@types/node": "^20.12.12",
     "@types/react": "latest",
+    "autoprefixer": "^10.4.19",
     "encoding": "^0.1.13",
-    "eslint": "^8.47.0",
-    "eslint-config-prettier": "^8.10.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "postcss": "^8.4.28",
-    "prettier": "^3.0.2",
-    "tailwindcss": "^3.3.3"
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.3",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "postcss": "^8.4.38",
+    "prettier": "^3.2.5",
+    "tailwindcss": "^3.4.3"
   }
 }
