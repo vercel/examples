@@ -1,7 +1,7 @@
 ---
 name: Domains API
 slug: domains-api
-description: Learn to leverage Vercel's Domains API to add and remove domains programmatically from your Platforms on Vercel project.
+description: Learn how to use Vercel's Domains API to add or remove domains programmatically from your Vercel app.
 framework: Next.js
 useCase: Documentation
 css: Tailwind
@@ -13,30 +13,25 @@ relatedTemplates:
 
 # Domains API
 
-This code snippet shows you how you can leverage Vercel's Domains API to add and remove domains programmatically from your Platforms on Vercel project.
+This template shows how you can use Vercel's Domains API to add and remove domains programmatically from your Vercel app.
 
-## Dependencies
+## Deploy your own
 
-- Tailwind CSS (`npm install tailwindcss`)
-- SWR (`npm install swr`)
-- React Hot Toast (`npm install react-hot-toast`) (optional)
-- JS Cookie (`npm install js-cookie`) (optional)
+Deploy the template using [Vercel](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/domains-api&project-name=domains-api&repository-name=domains-api&env=AUTH_BEARER_TOKEN,PROJECT_ID_VERCEL,TEAM_ID_VERCEL) or [view the demo](https://domains-api.vercel.app/).
 
-## Demo
-
-https://domains-api.vercel.app/
+View the [Vercel Domains API documentation](https://vercel.com/docs/rest-api/endpoints/domains) to learn more.
 
 ## Features
 
-### 0. Configure Env Vars
+### 1. Configure Environment Variables
 
-You'll need to configure 3 different environment variables for this project to work:
+You'll need to configure the follow environment variables for this project to work:
 
-- `PROJECT_ID_VERCEL`: The ID of the Vercel project you want to add/remove domains from. You can find it under the "Settings" tab in your project's dashboard.
-- `TEAM_ID_VERCEL`: The ID of the Vercel team you want to add/remove domains from. You can find it under the "Settings" tab in your team's dashboard.
-- `AUTH_BEARER_TOKEN`: Your personal auth bearer token that gives you programmatic access to your Vercel account. You can create one under the "Tokens" tab in your personal account's settings tab.
+- `PROJECT_ID_VERCEL`: The ID of the Vercel Project you want to add or remove domains from. Lean how to [find your Vercel Project ID](https://vercel.com/docs/projects/overview#project-id).
+- `TEAM_ID_VERCEL`: The ID of the Vercel Team you want to add or remove domains from. Lean how to [find your Vercel Team ID](https://vercel.com/docs/accounts/create-a-team#find-your-team-id).
+- `AUTH_BEARER_TOKEN`: A token that allows programmatic access to your Vercel account. Lean how to [create a Vercel Acces Token](https://vercel.com/docs/rest-api#creating-an-access-token).
 
-### 1. Adding Domains
+### 2. Adding Domains
 
 To add a domain, you can use the `/v8/projects/{idOrName}/domains` endpoint as shown [here](./pages/api/add-domain.js) ([full documentation](https://vercel.com/docs/rest-api#endpoints/projects/add-a-domain-to-a-project)).
 
@@ -50,7 +45,7 @@ When a domain is added, there are 3 possible outcomes:
 
 Verifying a project domain can be done with the `/v9/projects/{projectId}/domains/{domain}/verify` endpoint as shown [here](./pages/api/verify-domain.js) ([full documentation](https://vercel.com/docs/rest-api#endpoints/projects/verify-project-domain)).
 
-### 2. Auto-checking Domain Configuration
+### 3. Auto-checking Domain Configuration
 
 When a domain is first added to a project, we use [SWR](https://swr.vercel.app) to periodically check if the domain's DNS records are configured correctly. This is done using the `/v6/domains/{domain}/config` endpoint as shown [here](./pages/api/check-domain.js).
 
@@ -65,13 +60,13 @@ There are two ways that your users can configure their domains after they are ad
 Example:
 ![CleanShot 2021-12-08 at 19 00 52](https://user-images.githubusercontent.com/28986134/145327099-137dc60e-d260-4ba3-b8bb-413e7d70b9b1.png)
 
-### 3. Removing Domains
+### 4. Removing Domains
 
 To remove a domain, you can use the `/v8/projects/{idOrName}/domains` endpoint as shown [here](./pages/api/remove-domain.js) ([full documentation](https://vercel.com/docs/rest-api#endpoints/projects/remove-a-domain-from-a-project)).
 
 ## How to Use
 
-You can choose from one of the following two methods to use this repository:
+You can choose from one of the following methods to use this repository:
 
 ### One-Click Deploy
 
@@ -81,16 +76,20 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 ### Clone and Deploy
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
+Use [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) to bootstrap the example:
 
 ```bash
-pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/domains-api domains-api
+npx create-next-app --example https://github.com/vercel/examples/tree/main/solutions/domains-api domains-api
 ```
 
-Next, run Next.js in development mode:
+Then, run Next.js in development mode:
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=platforms-eap) ([Documentation](https://nextjs.org/docs/deployment)).
+When you're ready to deploy to [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=platforms-eap), install and use the [Vercel CLI](https://vercel.com/docs/cli) to create a new project and deployment.
+
+```bash
+vercel deploy
+```
