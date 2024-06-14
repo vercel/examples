@@ -17,8 +17,7 @@ This template shows how you can use Vercel's Domains API to add and remove domai
 
 ## Deploy your own
 
-Deploy the template using [Vercel](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/domains-api&project-name=domains-api&repository-name=domains-api&env=AUTH_BEARER_TOKEN,PROJECT_ID_VERCEL,TEAM_ID_VERCEL) [view the demo](https://domains-api.vercel.app/), or read the [documentation](https://vercel.com/docs/rest-api/endpoints/domains). 
-
+Deploy the template using [Vercel](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/domains-api&project-name=domains-api&repository-name=domains-api&env=AUTH_BEARER_TOKEN,PROJECT_ID_VERCEL,TEAM_ID_VERCEL) [view the demo](https://domains-api.vercel.app/), or read the [documentation](https://vercel.com/docs/rest-api/endpoints/domains).
 
 ## Features
 
