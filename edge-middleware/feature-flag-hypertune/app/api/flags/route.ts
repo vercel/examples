@@ -5,10 +5,9 @@ export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 export async function GET() {
-  const rootNode = await getHypertune()
+  const hypertune = await getHypertune()
 
-  const exampleFlag = rootNode.exampleFlag().get(/* fallback */ false)
-  console.log('Edge Function flag:', exampleFlag)
+  const exampleFlag = hypertune.exampleFlag({ fallback: false })
 
   return NextResponse.json({ exampleFlag })
 }

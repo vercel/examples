@@ -3,6 +3,7 @@ import useSWR, { mutate } from 'swr'
 import fetcher from '../lib/fetcher'
 import { useState } from 'react'
 import LoadingDots from '../components/loading-dots'
+import { restrictedDomains } from '../lib/consts'
 
 const DomainCard = ({ domain, revalidateDomains }) => {
   const { data: domainInfo, isValidating } = useSWR(
@@ -12,8 +13,8 @@ const DomainCard = ({ domain, revalidateDomains }) => {
   )
   const [removing, setRemoving] = useState(false)
   return (
-    <div className="w-full mt-10 sm:shadow-md border-y sm:border border-black sm:border-gray-50 sm:rounded-lg py-10">
-      <div className="flex justify-between space-x-4 px-2 sm:px-10">
+    <div className="w-full mt-10 shadow-md border-y border border-gray-50 rounded-lg py-10">
+      <div className="flex justify-between space-x-4 px-10">
         <a
           href={`http://${domain}`}
           target="_blank"
@@ -39,7 +40,7 @@ const DomainCard = ({ domain, revalidateDomains }) => {
             </svg>
           </span>
         </a>
-        <div className="flex space-x-3">
+        <div className="flex gap-3 flex-col sm:flex-row">
           <button
             onClick={() => {
               mutate(`/api/check-domain?domain=${domain}`)
@@ -53,25 +54,27 @@ const DomainCard = ({ domain, revalidateDomains }) => {
           >
             {isValidating ? <LoadingDots /> : 'Refresh'}
           </button>
-          <button
-            onClick={async () => {
-              setRemoving(true)
-              try {
-                await fetch(`/api/remove-domain?domain=${domain}`)
-                await revalidateDomains()
-              } catch (error) {
-                alert(`Error removing domain`)
-              } finally {
-                setRemoving(false)
-              }
-            }}
-            disabled={removing}
-            className={`${
-              removing ? 'cursor-not-allowed bg-gray-100' : ''
-            }bg-red-500 text-white border-red-500 hover:text-red-500 hover:bg-white py-1.5 w-24 text-sm border-solid border rounded-md focus:outline-none transition-all ease-in-out duration-150`}
-          >
-            {removing ? <LoadingDots /> : 'Remove'}
-          </button>
+          {!restrictedDomains.includes(domain) ? (
+            <button
+              onClick={async () => {
+                setRemoving(true)
+                try {
+                  await fetch(`/api/remove-domain?domain=${domain}`)
+                  await revalidateDomains()
+                } catch (error) {
+                  alert(`Error removing domain`)
+                } finally {
+                  setRemoving(false)
+                }
+              }}
+              disabled={removing}
+              className={`${
+                removing ? 'cursor-not-allowed ' : ''
+              }bg-red-500 text-white border-red-500 hover:text-red-500 hover:bg-white py-1.5 w-24 text-sm border-solid border rounded-md focus:outline-none transition-all ease-in-out duration-150`}
+            >
+              {removing ? <LoadingDots /> : 'Remove'}
+            </button>
+          ) : null}
         </div>
       </div>
 
