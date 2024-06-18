@@ -25,7 +25,7 @@ const ConfiguredSection = ({ domainInfo }) => {
     )
     return (
       <>
-        <div className="flex items-center space-x-3 my-3 px-6">
+        <div className="flex items-center space-x-3 mt-3 px-6 pb-6">
           <svg
             viewBox="0 0 24 24"
             width="24"
@@ -100,7 +100,7 @@ const ConfiguredSection = ({ domainInfo }) => {
 
   return (
     <>
-      <div className="flex items-center space-x-3 my-3 px-10">
+      <div className="flex items-center space-x-3 mt-3 px-6 pb-6">
         <svg
           viewBox="0 0 24 24"
           width="24"
