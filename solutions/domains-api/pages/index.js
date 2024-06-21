@@ -121,19 +121,22 @@ export default function Home() {
         )}
 
         <div className="w-full max-w-2xl">
-          {domainList
-            ? domainList.map((domain, index) => {
-                return (
-                  <DomainCard
-                    key={index}
-                    domain={domain.name}
-                    revalidateDomains={revalidateDomains}
-                  />
-                )
-              })
-            : [1, 2, 3, 4, 5].map((_, index) => {
-                return <DomainCardPlaceholder key={index} />
-              })}
+          {domainList ? (
+            domainList.map((domain, index) => {
+              return (
+                <DomainCard
+                  key={index}
+                  domain={domain.name}
+                  revalidateDomains={revalidateDomains}
+                />
+              )
+            })
+          ) : (
+            <>
+              <DomainCardPlaceholder />
+              <DomainCardPlaceholder />
+            </>
+          )}
         </div>
       </main>
 
