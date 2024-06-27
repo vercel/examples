@@ -1,11 +1,12 @@
 import React from 'react'
 import { Text, Page, Link, List } from '@vercel/examples-ui'
-import ServerExample from '../lib/ServerExample'
+import ServerComponent from '../components/ServerComponent'
+import ClientComponentWrapper from '../components/ClientComponentWrapper'
 
 export const metadata = {
   title: 'Vercel x Hypertune example',
   description:
-    'An example showing how to use Hypertune and Vercel. This example builds on top of the Hypertune integration which syncs Hypertune flags into Edge Config, so you can read them from your application near-instantly.',
+    'An example showing how to use Hypertune with Vercel. This example builds on top of the Hypertune integration which syncs Hypertune flags into Edge Config so you can read them from your application near-instantly. It also shows how to integrate with the Vercel Toolbar so you can easily view and override your feature flags without leaving your frontend. Finally, it shows how to use the Vercel Feature Flags pattern to use flags on a static page.',
 }
 
 export const runtime = 'edge'
@@ -25,14 +26,18 @@ export default async function Home() {
           </Link>{' '}
           with Vercel Edge Config to initialize the Hypertune SDK with near-zero
           latency on the server so you can access your feature flags and run A/B
-          tests with no performance impact to your app. It also shows how to
-          integrate with the Vercel Toolbar to let you easily set local flag
-          overrides while developing.
+          tests with no performance impact to your app.
+        </Text>
+        <Text>
+          It also shows how to integrate Hypertune with Vercel&apos;s Flags SDK
+          to use the Vercel Toolbar, to view and override your feature flags
+          without leaving your frontend, and Vercel&apos;s Flags pattern.
         </Text>
       </section>
 
       <section className="flex flex-col gap-4">
-        <ServerExample />
+        <ServerComponent />
+        <ClientComponentWrapper />
         <Text>
           Once you&apos;ve deployed this project, open the{' '}
           <Link href="https://app.hypertune.com/" target="_blank">
@@ -53,10 +58,10 @@ export default async function Home() {
             your environment variables
           </li>
           <li>
-            Run <strong>npm i</strong>
+            Run <strong>pnpm i</strong>
           </li>
           <li>
-            Run <strong>npm run dev</strong>
+            Run <strong>pnpm run dev</strong>
           </li>
         </List>
         <Text>
@@ -64,7 +69,7 @@ export default async function Home() {
           <Link href="https://app.hypertune.com/" target="_blank">
             Hypertune UI
           </Link>
-          , then regenerate the client with <strong>npx hypertune</strong> so
+          , then regenerate the client with <strong>pnpm hypertune</strong> so
           you can access it with full end-to-end type-safety.
         </Text>
       </section>

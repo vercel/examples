@@ -3,8 +3,8 @@ import ConfiguredSectionPlaceholder from './configured-section-placeholder'
 
 const DomainCardPlaceholder = () => {
   return (
-    <div className="w-full mt-10 sm:shadow-md border-y sm:border border-black sm:border-gray-50 sm:rounded-lg py-10">
-      <div className="flex justify-between space-x-4 px-2 sm:px-10">
+    <div className="w-full mt-10 shadow-md border-y border border-gray-50 rounded-lg">
+      <div className="flex justify-between flex-col gap-4 md:flex-row p-6 pb-0">
         <div className="h-7 w-36 bg-gray-300 rounded-md animate-pulse" />
         <div className="flex space-x-3">
           <button
