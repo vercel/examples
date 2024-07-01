@@ -6,7 +6,7 @@ framework: Svelte
 useCase: Starter
 css: None
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fstorage%2Fpostgres-sveltekit&project-name=postgres-sveltekit&repository-name=postgres-sveltekit&demo-title=Vercel%20Postgres%20Starter%sveltekit&demo-description=Simple%20Svelte.js%20template%20that%20uses%20Vercel%20Postgres%20as%20the%20database.&demo-url=https%3A%2F%2Fpostgres-sveltekit.vercel.app%2F&demo-image=https%3A%2F%2Fpostgres-starter.vercel.app%2Fopengraph-image.png&stores=%5B%7B"type"%3A"postgres"%7D%5D
-demoUrl: TODO-DEMO-URL
+demoUrl: https://toolbar-feature-flags-sveltekit.vercel.app/
 relatedTemplates:
   - toolbar-launchdarkly
   - toolbar-optimizely
@@ -20,7 +20,7 @@ Simple SvelteKit template that uses the [Vercel Toolbar](https://vercel.com/docs
 
 ## Demo
 
-TODO-DEMO-URL
+https://toolbar-feature-flags-sveltekit.vercel.app/
 
 ## How to Use
 
