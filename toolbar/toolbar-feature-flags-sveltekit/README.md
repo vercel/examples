@@ -46,7 +46,7 @@ After installing the dependencies using `pnpm install`, create a new project in 
 node -e "console.log(crypto.randomBytes(32).toString('base64url'))"
 ```
 
-In your local environment, pull your environment variables with vercel env pull to make them available to your project.
+In your local environment, pull your environment variables with `vercel env pull` to make them available to your project.
 
 Next, run SvelteKit in development mode:
 
