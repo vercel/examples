@@ -1,8 +1,12 @@
 import type { ReactNode } from 'react'
 import { Layout, getMetadata } from '@vercel/examples-ui'
 import { VercelToolbar } from '@vercel/toolbar/next'
-import { HypertuneSourceProvider } from '../generated/hypertune.react'
+import {
+  HypertuneProvider,
+  HypertuneSourceProvider,
+} from '../generated/hypertune.react'
 import '@vercel/examples-ui/globals.css'
+import getHypertune from '../lib/getHypertune'
 
 export const metadata = getMetadata({
   title: 'feature-flag-hypertune',
@@ -14,9 +18,18 @@ export const runtime = 'edge'
 export default async function RootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
+  const hypertune = await getHypertune()
+
+  const serverDehydratedState = hypertune.dehydrate()
+  const serverRootArgs = hypertune.getRootArgs()
+
   return (
-    <HypertuneSourceProvider
-      createSourceOptions={{ token: process.env.NEXT_PUBLIC_HYPERTUNE_TOKEN! }}
+    <HypertuneProvider
+      createSourceOptions={{
+        token: process.env.NEXT_PUBLIC_HYPERTUNE_TOKEN!,
+      }}
+      dehydratedState={serverDehydratedState}
+      rootArgs={serverRootArgs}
     >
       <html lang="en">
         <body>
@@ -32,6 +45,6 @@ export default async function RootLayout({
           </Layout>
         </body>
       </html>
-    </HypertuneSourceProvider>
+    </HypertuneProvider>
   )
 }

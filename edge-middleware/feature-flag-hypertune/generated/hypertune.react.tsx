@@ -129,20 +129,37 @@ export function HypertuneRootProvider({
 }
 
 export function useHypertune(): hypertune.RootNode {
-  return React.useContext(HypertuneRootContext)
+  const hypertuneRoot = React.useContext(HypertuneRootContext)
+
+  if (hypertuneRoot.props.context === null) {
+    console.warn(
+      '[Hypertune] Calling `useHypertune` hook outside of the `HypertuneProvider`. Fallback values will be used.'
+    )
+  }
+  return hypertuneRoot
 }
 
 export function HypertuneHydrator({
   dehydratedState,
+  rootArgs,
   children,
 }: {
   dehydratedState?: hypertune.DehydratedState | null
+  rootArgs?: hypertune.RootArgs
   children: React.ReactElement | null
 }): React.ReactElement | null {
   const hypertuneSource = useHypertuneSource()
 
   if (dehydratedState) {
     hypertuneSource.hydrate(dehydratedState)
+  }
+
+  if (rootArgs) {
+    return (
+      <HypertuneRootProvider rootArgs={rootArgs}>
+        {children}
+      </HypertuneRootProvider>
+    )
   }
 
   return children
