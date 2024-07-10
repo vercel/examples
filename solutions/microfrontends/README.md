@@ -31,7 +31,15 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/microfrontends&project-name=microfrontends&repository-name=microfrontends&root-directory=apps/main&install-command=pnpm%20install&build-command=cd%20..%2F..%20%26%26%20pnpm%20build%3Amain&ignore-command=npx%20turbo-ignore)
+[![Deploy main app with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/microfrontends&project-name=microfrontends&repository-name=microfrontends&root-directory=apps/main&install-command=pnpm%20install&build-command=cd%20..%2F..%20%26%26%20pnpm%20build%3Amain&ignore-command=npx%20turbo-ignore)
+
+When you deploy this project, it will automatically create a Vercel project for the `main` app, and deploy it. By default, there is a rewrite rule in the `main` app that rewrites `/docs` to a separate URL, this URL is an environment variable `DOCS_URL` that, by default, is set in `.env` to `https://solutions-microfrontends-docs.vercel.app`.
+
+After you deploy the `main` project, you can deploy the `docs` project which will be a separate application the `main` app will point to. 
+
+[![Deploy docs app with Vercel](https://vercel.com/button)](https://vercel.com/new/dan-fein-vercel/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fmicrofrontends&project-name=microfrontends&repository-name=microfrontends&root-directory=apps%2Fdocs&install-command=pnpm%20install&build-command=cd%20..%2F..%20%26%26%20pnpm%20build%3Adocs&ignore-command=npx%20turbo-ignore)
+
+Finally, in the settings for your `main` project, override the environment variable `DOCS_URL` with the domain of your newly created `docs` app, including `https://`. Redeploy your main app, and you will have a complete Next.js multi-zone setup with two applications navigable under one domain.
 
 ### Clone and deploy
 
