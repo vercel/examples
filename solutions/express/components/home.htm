@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			body {
+				font-family: 'Arial', sans-serif;
+				background-color: #f0f0f0;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				color: #333;
+			}
+
+			div {
+				text-align: center;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+				padding: 20px;
+				background-color: white;
+				border-radius: 8px;
+			}
+
+			h1 {
+				color: #171717;
+			}
+
+			nav {
+				margin-top: 20px;
+			}
+
+			a {
+				display: inline-block;
+				margin: 5px;
+				padding: 10px 15px;
+				background-color: #000000;
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				transition: background-color 0.3s;
+			}
+
+			a:hover {
+				background-color: #171717;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<h1>Welcome to your user dashboard!</h1>
+			<p>This user dashboard was built with Express.js on Vercel.</p>
+			<nav>
+				<a href="/about">About Us</a>
+				<a href="/allUsers">View Users</a>
+				<a href="/uploadUser">Upload New User</a>
+				<a href="/images/logo.png">View Logo</a>
+			</nav>
+		</div>
+	</body>
+</html>

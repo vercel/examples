@@ -5,7 +5,7 @@
   let file: File | null = null
 
   function onChange(
-    event: Event & { currentTarget: EventTarget & HTMLInputElement }
+    event: Event & { currentTarget: EventTarget & HTMLInputElement },
   ) {
     file = (event.target as HTMLInputElement)?.files?.[0] ?? null
   }
@@ -31,16 +31,15 @@
   >
     <form
       class="grid gap-6 w-full"
-      
       action="?/upload"
       method="POST"
       enctype="multipart/form-data"
       use:enhance={() => {
-        return async ({  update }) => {
+        return async ({ update }) => {
           file = null
           update({ reset: true })
-        };
-    }}
+        }
+      }}
     >
       <div>
         <div class="space-y-1 mb-4">
@@ -53,7 +52,7 @@
           for="image-upload"
           class="group relative mt-2 flex h-72 cursor-pointer flex-col items-center justify-center rounded-md border border-gray-300 bg-white shadow-sm transition-all hover:bg-gray-50"
         >
-          {#if !file }
+          {#if !file}
             <div class="absolute z-[5] h-full w-full rounded-md">
               <div
                 class={`${''} absolute z-[3] flex h-full w-full flex-col items-center justify-center rounded-md px-10 transition-all ${'bg-white opacity-100 hover:bg-gray-50'}`}

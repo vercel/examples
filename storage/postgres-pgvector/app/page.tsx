@@ -4,8 +4,6 @@ import { Search } from '@/components/search'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export const dynamic = 'force-dynamic'
-
 export default function Home() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
@@ -45,21 +43,21 @@ export default function Home() {
         </Link>{' '}
         semantic search demo with{' '}
         <Link
-          href="https://github.com/pgvector/pgvector-node#prisma"
+          href="https://github.com/pgvector/pgvector-node#drizzle-orm"
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
         >
           pgvector
         </Link>
         ,{' '}
         <Link
-          href="https://prisma.io"
+          href="https://orm.drizzle.team"
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
         >
-          Prisma
+          Drizzle ORM
         </Link>
         , and{' '}
         <Link
-          href="https://platform.openai.com/docs/guides/embeddings"
+          href="https://sdk.vercel.ai/providers/ai-sdk-providers/openai#embedding-models"
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
         >
           OpenAI

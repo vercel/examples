@@ -1,3 +1,5 @@
+import { restrictedDomains } from '../../lib/consts'
+
 export default async function handler(req, res) {
   const { domain } = req.query
 
@@ -19,5 +21,3 @@ export default async function handler(req, res) {
   const json = await response.json()
   res.status(200).send(json)
 }
-
-const restrictedDomains = ['portfolio.steventey.com', 'cat.vercel.pub']

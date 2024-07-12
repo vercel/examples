@@ -2,6 +2,9 @@
   "name": "examples",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "pnpm": "8.15.1"
+  },
   "scripts": {
     "lint-staged": "lint-staged",
     "new-example": "plop example",
