@@ -15,8 +15,8 @@
     "next": "canary",
     "react": "latest",
     "react-dom": "latest",
-    "statsig-node-lite": "0.2.0",
-    "statsig-node-vercel": "0.2.0",
+    "statsig-node-lite": "0.2.2",
+    "statsig-node-vercel": "0.4.0",
     "statsig-react": "^1.30.3"
   },
   "devDependencies": {
