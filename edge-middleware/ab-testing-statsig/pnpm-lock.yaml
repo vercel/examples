@@ -24,11 +24,11 @@ dependencies:
     specifier: latest
     version: 18.2.0(react@18.2.0)
   statsig-node-lite:
-    specifier: 0.2.0
-    version: 0.2.0
+    specifier: 0.2.2
+    version: 0.2.2
   statsig-node-vercel:
-    specifier: 0.2.0
-    version: 0.2.0(@vercel/edge-config@0.3.0)
+    specifier: 0.4.0
+    version: 0.4.0(@vercel/edge-config@0.3.0)
   statsig-react:
     specifier: ^1.30.3
     version: 1.30.3(react@18.2.0)
@@ -311,15 +311,9 @@ packages:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
 
-  /@types/node-fetch@2.6.4:
-    resolution: {integrity: sha512-1ZX9fcN4Rvkvgv4E6PAY5WXUFWFcRWxZa3EW83UjycOB9ljJCedb2CupIP4RZMEwF/M3eTcCihbBRgwtGbg5Rg==}
-    dependencies:
-      '@types/node': 17.0.45
-      form-data: 3.0.1
-    dev: false
-
   /@types/node@17.0.45:
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
+    dev: true
 
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -574,10 +568,6 @@ packages:
       has-symbols: 1.0.3
     dev: true
 
-  /asynckit@0.4.0:
-    resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
-    dev: false
-
   /autoprefixer@10.4.15(postcss@8.4.29):
     resolution: {integrity: sha512-KCuPB8ZCIqFdA4HwKXsvz7j6gvSDNhDP7WnUjBleRkKjPdvCmHFuQ77ocavI8FT6NdvlBnE2UFr2H4Mycn8Vew==}
     engines: {node: ^10 || ^12 || >=14}
@@ -714,13 +704,6 @@ packages:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
     dev: true
 
-  /combined-stream@1.0.8:
-    resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
-    engines: {node: '>= 0.8'}
-    dependencies:
-      delayed-stream: 1.0.0
-    dev: false
-
   /commander@4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
     engines: {node: '>= 6'}
@@ -787,11 +770,6 @@ packages:
       has-property-descriptors: 1.0.0
       object-keys: 1.1.1
     dev: true
-
-  /delayed-stream@1.0.0:
-    resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
-    engines: {node: '>=0.4.0'}
-    dev: false
 
   /dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
@@ -1284,15 +1262,6 @@ packages:
     dependencies:
       is-callable: 1.2.7
     dev: true
-
-  /form-data@3.0.1:
-    resolution: {integrity: sha512-RHkBKtLWUVwd7SqRIvCZMEvAMoGUp0XU+seQiZejj0COz3RI3hWP4sCv3gZWWLjJTd7rGwcsF5eKZGii0r/hbg==}
-    engines: {node: '>= 6'}
-    dependencies:
-      asynckit: 0.4.0
-      combined-stream: 1.0.8
-      mime-types: 2.1.35
-    dev: false
 
   /fraction.js@4.3.6:
     resolution: {integrity: sha512-n2aZ9tNfYDwaHhvFTkhFErqOMIb8uyzSQ+vGJBjZyanAKZVbGUQ1sngfk9FdkBw7G26O7AgNjLcecLffD1c7eg==}
@@ -1818,18 +1787,6 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /mime-db@1.52.0:
-    resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
-    engines: {node: '>= 0.6'}
-    dev: false
-
-  /mime-types@2.1.35:
-    resolution: {integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==}
-    engines: {node: '>= 0.6'}
-    dependencies:
-      mime-db: 1.52.0
-    dev: false
-
   /minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
@@ -1915,11 +1872,6 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
-    dev: false
-
-  /node-forge@1.3.1:
-    resolution: {integrity: sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==}
-    engines: {node: '>= 6.13.0'}
     dev: false
 
   /node-releases@2.0.13:
@@ -2378,8 +2330,8 @@ packages:
       uuid: 8.3.2
     dev: false
 
-  /statsig-node-lite@0.2.0:
-    resolution: {integrity: sha512-M0lb02rUyNszPFsjRl3r3cAscpmzzFKtMMETsL0SmF0vG3L03gEAmBaNcfrM7xgRLGzYZVPEcCL9ZQQXlvehag==}
+  /statsig-node-lite@0.2.2:
+    resolution: {integrity: sha512-n6u/uLWU6+/3M719Y+vitE7opSKg+BXdn+KNaOQ3M1rTsixvEa5WRJ9TUW/t7Fkbl33CzcZzeNONQXdgKeJUNg==}
     dependencies:
       node-fetch: 2.7.0
       sha.js: 2.4.11
@@ -2389,24 +2341,22 @@ packages:
       - encoding
     dev: false
 
-  /statsig-node-vercel@0.2.0(@vercel/edge-config@0.3.0):
-    resolution: {integrity: sha512-XDs2DpBPqI6mdXN/Mup/MRM4R1wItOg9k7nLzLaOEoWeqbX56ZikM9FDJ/Lg7qoesy1FAn0m9VpcN09OpRLGNg==}
+  /statsig-node-vercel@0.4.0(@vercel/edge-config@0.3.0):
+    resolution: {integrity: sha512-Q0jOfOqb/jTDJbgI/4O4TFODPOLYlPE4FCaNJzjr+8EiIPJ7lWbOQ8bq1d06MSQk33axZ0XaRKQsz6L5vEAhvQ==}
     peerDependencies:
       '@vercel/edge-config': ^0.1.4
     dependencies:
       '@vercel/edge-config': 0.3.0
-      statsig-node: 5.1.0
+      statsig-node: 5.22.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /statsig-node@5.1.0:
-    resolution: {integrity: sha512-pDMdeuYP71R90L/tuRalvcmhKHd0wEnZmnO/PgJDd9UFwBflKxqOMlbxPDyATNcgFFa9YW6IdqJExgdRf0zV7g==}
+  /statsig-node@5.22.0:
+    resolution: {integrity: sha512-g3ULqEbC6o5pu4FhOg1IjJp8IDGA7IUeMbaX+v2DUyk0cja7jH13TPznuHgJxy4ICyOlTBMV1JLagMGNtQdXSg==}
     dependencies:
-      '@types/node-fetch': 2.6.4
       ip3country: 5.0.0
       node-fetch: 2.7.0
-      node-forge: 1.3.1
       ua-parser-js: 1.0.36
       uuid: 8.3.2
     transitivePeerDependencies:

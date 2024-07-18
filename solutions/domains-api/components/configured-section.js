@@ -25,7 +25,7 @@ const ConfiguredSection = ({ domainInfo }) => {
     )
     return (
       <>
-        <div className="flex items-center space-x-3 my-3 px-10">
+        <div className="flex items-center space-x-3 mt-3 px-6 pb-6">
           <svg
             viewBox="0 0 24 24"
             width="24"
@@ -46,7 +46,7 @@ const ConfiguredSection = ({ domainInfo }) => {
 
         <div className="w-full border-t border-gray-100 mt-5 mb-8" />
 
-        <div className="px-10">
+        <div className="px-6">
           <div className="flex justify-start space-x-4">
             <div
               onClick={() => setRecordType('CNAME')}
@@ -64,7 +64,7 @@ const ConfiguredSection = ({ domainInfo }) => {
               Please set the following TXT record on {domainInfo.apexName} to
               prove ownership of {domainInfo.name}:
             </p>
-            <div className="flex justify-start items-start space-x-10 bg-gray-50 p-2 rounded-md">
+            <div className="flex justify-start items-start gap-8 bg-gray-50 p-2 rounded-md flex-col md:flex-row md:gap-10">
               <div>
                 <p className="text-sm font-bold">Type</p>
                 <p className="text-sm font-mono mt-2">{txtVerification.type}</p>
@@ -100,7 +100,7 @@ const ConfiguredSection = ({ domainInfo }) => {
 
   return (
     <>
-      <div className="flex items-center space-x-3 my-3 px-10">
+      <div className="flex items-center space-x-3 mt-3 px-6 pb-6">
         <svg
           viewBox="0 0 24 24"
           width="24"
