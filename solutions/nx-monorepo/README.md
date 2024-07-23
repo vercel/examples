@@ -5,8 +5,7 @@ description: Learn to implement a monorepo with a single Next.js site using Nx.
 framework: Next.js
 useCase: Documentation
 css: CSS
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/nx-monorepo&project-name=nx-monorepo&output-directory=dist%2Fapps%2Fapp%2F.next&build-command=npx%20nx%20build%20app%20--prod&ignore-command=npx%20nx-ignore%20app&repository-name=nx-monorepo
-demoUrl: https://solutions-nx-monorepo.vercel.sh
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/nx-monorepo&project-name=nx-monorepo&output-directory=dist%2Fapps%2Fapp%2F.next&build-command=npx%20nx%20build%20app%20--prod&repository-name=nx-monorepo
 relatedTemplates:
   - monorepo-turborepo
   - turborepo-next-basic
