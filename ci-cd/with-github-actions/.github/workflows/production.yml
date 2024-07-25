@@ -1,0 +1,53 @@
+name: CI
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  # For Remote Caching
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Globally install Turborepo
+        run: pnpm install -g turbo@^2
+
+      - name: Build
+        run: |
+          # Builds the dependencies of the docs target
+          # https://turbo.build/repo/docs/reference/run#microsyntaxes-for-filtering
+          # We need to do this since  `vc build` does not currently
+          # follow the package or task graph (like Turborepo can).
+          turbo build --filter=docs^...
+          # Pull environment info
+          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy
+        run: |
+          vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
