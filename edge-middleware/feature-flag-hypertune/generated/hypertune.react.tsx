@@ -52,6 +52,8 @@ export function HypertuneSourceProvider({
         remoteLogging: {
           mode: typeof window === 'undefined' ? 'off' : undefined,
         },
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        localLogger: typeof window === 'undefined' ? () => {} : undefined,
         ...createSourceOptions,
       }),
     // Don't recreate the source even if createSourceOptions changes
@@ -131,7 +133,7 @@ export function HypertuneRootProvider({
 export function useHypertune(): hypertune.RootNode {
   const hypertuneRoot = React.useContext(HypertuneRootContext)
 
-  if (hypertuneRoot.props.context === null) {
+  if (!hypertuneRoot.props.context) {
     console.warn(
       '[Hypertune] Calling `useHypertune` hook outside of the `HypertuneProvider`. Fallback values will be used.'
     )
