@@ -52,7 +52,7 @@ export default function Home() {
         <Image src="/github.svg" alt="Github" width={25} height={25} />
       </a>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 sm:px-20 text-center my-20">
+      <main className="flex flex-col items-center justify-center w-full flex-1 px-8 text-center my-20">
         <h1 className="text-4xl sm:text-6xl font-bold">Domains API</h1>
 
         <form
@@ -80,7 +80,7 @@ export default function Home() {
             placeholder="mydomain.com"
             pattern="^(?:[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.)?[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$"
             required
-            className="rounded-md border border-gray-300 focus:ring-0 focus:border-black px-4 flex-auto min-w-0 sm:text-sm"
+            className="rounded-md border border-gray-300 focus:ring-0 focus:border-black px-4 flex-auto min-w-0 text-sm"
           />
           <button
             type="submit"
@@ -121,19 +121,22 @@ export default function Home() {
         )}
 
         <div className="w-full max-w-2xl">
-          {domainList
-            ? domainList.map((domain, index) => {
-                return (
-                  <DomainCard
-                    key={index}
-                    domain={domain.name}
-                    revalidateDomains={revalidateDomains}
-                  />
-                )
-              })
-            : [1, 2, 3, 4, 5].map((_, index) => {
-                return <DomainCardPlaceholder key={index} />
-              })}
+          {domainList ? (
+            domainList.map((domain, index) => {
+              return (
+                <DomainCard
+                  key={index}
+                  domain={domain.name}
+                  revalidateDomains={revalidateDomains}
+                />
+              )
+            })
+          ) : (
+            <>
+              <DomainCardPlaceholder />
+              <DomainCardPlaceholder />
+            </>
+          )}
         </div>
       </main>
 
