@@ -1,10 +1,7 @@
 import type { ReactNode } from 'react'
 import { Layout, getMetadata } from '@vercel/examples-ui'
 import { VercelToolbar } from '@vercel/toolbar/next'
-import {
-  HypertuneProvider,
-  HypertuneSourceProvider,
-} from '../generated/hypertune.react'
+import { HypertuneProvider } from '../generated/hypertune.react'
 import '@vercel/examples-ui/globals.css'
 import getHypertune from '../lib/getHypertune'
 
