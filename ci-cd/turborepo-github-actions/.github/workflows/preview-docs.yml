@@ -8,7 +8,7 @@ env:
 
 on:
   pull_request:
-    branches: ['main']
+    branches: ["main"]
     types: [opened, synchronize]
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install
