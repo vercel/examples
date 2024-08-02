@@ -39,7 +39,7 @@ async function seed() {
 }
 export default defineEventHandler(async () => {
   const startTime = Date.now()
-  const db = createPool()
+  const db = createPool({ connectionString: process.env.POSTGRES_URL_NO_SSL})
   try {
     const { rows: users } = await db.query('SELECT * FROM users')
     const duration = Date.now() - startTime
