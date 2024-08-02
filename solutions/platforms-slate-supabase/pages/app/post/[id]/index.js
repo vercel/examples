@@ -111,16 +111,13 @@ export default function Post() {
     }
   }, [debouncedData])
 
-  useEffect(() => {
-    if (
-      postData?.title &&
-      postData?.description &&
-      postData?.content &&
-      !publishing
-    )
-      setDisabled(false)
-    else setDisabled(true)
-  }, [publishing, postData])
+  if (
+    postData?.title &&
+    postData?.description &&
+    postData?.content &&
+    !publishing
+  ) { setDisabled(false) }
+  else setDisabled(true)
 
   useEffect(() => {
     const clickedSave = (e) => {
