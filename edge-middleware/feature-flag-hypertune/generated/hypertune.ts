@@ -4,74 +4,29 @@ import * as sdk from 'hypertune'
 
 export const queryCode = `query FullQuery{root{exampleFlag}}`
 
-export const query = {
-  Query: {
-    objectTypeName: 'Query',
-    selection: {
-      root: {
-        fieldArguments: { __isPartialObject__: true },
-        fieldQuery: {
-          Root: {
-            objectTypeName: 'Root',
-            selection: {
-              exampleFlag: { fieldArguments: {}, fieldQuery: null },
+export const query: sdk.Query<sdk.ObjectValueWithVariables> = {
+  variableDefinitions: {},
+  fragmentDefinitions: {},
+  fieldQuery: {
+    Query: {
+      type: 'InlineFragment',
+      objectTypeName: 'Query',
+      selection: {
+        root: {
+          fieldArguments: { __isPartialObject__: true },
+          fieldQuery: {
+            Root: {
+              type: 'InlineFragment',
+              objectTypeName: 'Root',
+              selection: {
+                exampleFlag: { fieldArguments: {}, fieldQuery: null },
+              },
             },
           },
         },
       },
     },
   },
-}
-
-function mergeQueryAndArgs(
-  query: sdk.Query<sdk.ObjectValueWithVariables>,
-  queryArgs: sdk.ObjectValueWithVariables | null,
-  unwrapObjectArgs = false
-): sdk.Query<sdk.ObjectValueWithVariables> {
-  return Object.fromEntries(
-    Object.entries(query).map(([objectTypeName, fragment]) => {
-      const objectArgs = unwrapObjectArgs
-        ? queryArgs &&
-          queryArgs[objectTypeName] &&
-          queryArgs[objectTypeName] instanceof Object
-          ? (queryArgs[objectTypeName] as sdk.ObjectValueWithVariables)
-          : null
-        : queryArgs
-
-      return [
-        objectTypeName,
-        {
-          objectTypeName,
-          selection: Object.fromEntries(
-            Object.entries(fragment.selection).map(
-              ([fieldName, { fieldQuery }]) => {
-                const fieldArgs =
-                  objectArgs &&
-                  objectArgs[fieldName] &&
-                  objectArgs[fieldName] instanceof Object
-                    ? (objectArgs[fieldName] as sdk.ObjectValueWithVariables)
-                    : null
-
-                return [
-                  fieldName,
-                  {
-                    fieldArguments: {
-                      ...(fieldArgs && fieldArgs.args
-                        ? (fieldArgs.args as sdk.ObjectValueWithVariables)
-                        : {}),
-                    },
-                    fieldQuery: fieldQuery
-                      ? mergeQueryAndArgs(fieldQuery, fieldArgs, true)
-                      : null,
-                  },
-                ]
-              }
-            )
-          ),
-        },
-      ]
-    })
-  )
 }
 
 /**
@@ -123,7 +78,7 @@ export type Root = {
 const rootFallback = { exampleFlag: false }
 
 export class RootNode extends sdk.Node {
-  typeName = 'Root' as const
+  override typeName = 'Root' as const
 
   getRootArgs(): RootArgs {
     const { step } = this.props
@@ -134,7 +89,7 @@ export class RootNode extends sdk.Node {
 
   get({ fallback = rootFallback as Root }: { fallback?: Root } = {}): Root {
     const getQuery = null
-    return this.evaluate(getQuery, fallback) as Root
+    return this.getValue({ query: getQuery, fallback }) as Root
   }
 
   /**
@@ -148,7 +103,9 @@ export class RootNode extends sdk.Node {
     args?: Rec
     fallback: boolean
   }): boolean {
-    const props0 = this.getField('exampleFlag', args)
+    const props0 = this.getFieldNodeProps('exampleFlag', {
+      fieldArguments: args,
+    })
     const expression0 = props0.expression
 
     if (expression0 && expression0.type === 'BooleanExpression') {
@@ -177,7 +134,7 @@ export type Rec4 = {
 }
 
 export class SourceNode extends sdk.Node {
-  typeName = 'Query' as const
+  override typeName = 'Query' as const
 
   get({
     args,
@@ -186,12 +143,16 @@ export class SourceNode extends sdk.Node {
     args: Rec4
     fallback?: Source
   }): Source {
-    const getQuery = mergeQueryAndArgs(query, args)
-    return this.evaluate(getQuery, fallback) as Source
+    const getQuery = sdk.mergeFieldQueryAndArgs(
+      query.fragmentDefinitions,
+      sdk.getFieldQueryForPath(query.fragmentDefinitions, query.fieldQuery, []),
+      args
+    )
+    return this.getValue({ query: getQuery, fallback }) as Source
   }
 
   root({ args }: { args: RootArgs }): RootNode {
-    const props0 = this.getField('root', args)
+    const props0 = this.getFieldNodeProps('root', { fieldArguments: args })
     const expression0 = props0.expression
 
     if (
