@@ -1,1 +1,1 @@
-export const restrictedDomains = ['cat.vercel.pub']
+export const restrictedDomains = ['cat.vercel.pub', 'domains-api.vercel.app']
