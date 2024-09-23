@@ -54,11 +54,11 @@ Deploy on [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&ut
 The example is a monorepo built with [Turborepo](https://turborepo.org/) with the following setup:
 
 - Everything is in [TypeScript](https://www.typescriptlang.org/)
-- Next.js is used for the applications in [./apps](./apps)
-- Shared packages used by the apps in [./packages](./packages)
+- Next.js is used for the applications in [./apps](https://github.com/vercel/examples/edit/main/solutions/microfrontends/apps)
+- Shared packages used by the apps in [./packages](https://github.com/vercel/examples/edit/main/solutions/microfrontends/packages)
 - [Tailwind CSS](https://tailwindcss.com) for utility CSS in React components and to build the design system
-- Storybook is used for the components that are part of the [`acme-design-system`](./packages/acme-design-system) package and its setup is shared in the [`acme-storybook`](./packages/acme-storybook) package
-- The ESLint config lives in [eslint-config-acme](./packages/eslint-config-acme)
+- Storybook is used for the components that are part of the [`acme-design-system`](https://github.com/vercel/examples/edit/main/solutions/microfrontends/packages/acme-design-system) package and its setup is shared in the [`acme-storybook`](https://github.com/vercel/examples/edit/main/solutions/microfrontends/packages/acme-storybook) package
+- The ESLint config lives in [eslint-config-acme](https://github.com/vercel/examples/edit/main/solutions/microfrontends/packages/eslint-config-acme)
 - [Changesets](https://github.com/changesets/changesets) to manage versioning and publishing of packages. Learn more in the [Versioning & Publishing Packages](#versioning--publishing-packages) section.
 
 ## How it Works
@@ -71,7 +71,7 @@ One of the challenges of building microfrontends is dependency management and bu
 
 ### Design System with Tailwind and CSS Modules
 
-[./packages/acme-design-system](./packages/acme-design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/). The components are installed in the app as a dependency and the compilation step is handled by [SWC](https://swc.rs/).
+[./packages/acme-design-system](https://github.com/vercel/examples/edit/main/solutions/microfrontends/packages/acme-design-system) features multiple components with CSS Modules and [Tailwind](https://tailwindcss.com/). The components are installed in the app as a dependency and the compilation step is handled by [SWC](https://swc.rs/).
 
 All the CSS used by the app and components is unified by Tailwind, so having components outside the app doens't increase the CSS bundle size.
 
@@ -79,7 +79,7 @@ HMR and React Fast Refresh work as expected even though the components live outs
 
 ### Pages Living Outside the Next.js App
 
-[./packages/acme-pages](./packages/acme-pages) contains all the pages that are used in the Next.js app. They are compiled with [SWC](https://swc.rs/) and work in the same way as [./packages/acme-design-system](./packages/acme-design-system).
+[./packages/acme-pages](https://github.com/vercel/examples/edit/main/solutions/microfrontends/packages/acme-pages) contains all the pages that are used in the Next.js app. They are compiled with [SWC](https://swc.rs/) and work in the same way as [./packages/acme-design-system](https://github.com/vercel/examples/edit/main/solutions/microfrontends/packages/acme-design-system).
 
 With this approach, we will need to be mindful of dead code elimination when there is server-only code (e.g. `getStaticProps`, `getStaticPaths` or `getServerSideProps`) which can't be properly distinguished by the Next.js app. To avoid including server code in pages, it's recommended to have data fetching methods in a different file and import them from the page in the Next.js app.
 
@@ -87,7 +87,7 @@ With this approach, we will need to be mindful of dead code elimination when the
 
 [Multi Zones](https://nextjs.org/docs/advanced-features/multi-zones) are a way of having independent Next.js applications that merge on a common domain. This is a method for building separation of concerns in large teams.
 
-In this example, [./apps/main](./apps/main) is our main app, and [./apps/docs](./apps/docs) is a separate app that handles all routes for [`/docs/**`](./apps/main/next.config.js). In the demo, you'll notice that navigating to `/docs` keeps you in the same domain. We have multiple apps in the same domain that are built independent to each other.
+In this example, [./apps/main](https://github.com/vercel/examples/edit/main/solutions/microfrontends/apps/main) is our main app, and [./apps/docs](https://github.com/vercel/examples/edit/main/solutions/microfrontends/apps/docs) is a separate app that handles all routes for [`/docs/**`](https://github.com/vercel/examples/edit/main/solutions/microfrontends/apps/main/next.config.js). In the demo, you'll notice that navigating to `/docs` keeps you in the same domain. We have multiple apps in the same domain that are built independent to each other.
 
 You'll notice that transitions between `/docs/*` and `/` are not as smooth as you're used to with typical Next.js applications. You will get a full page refresh because Next.js apps can't share their JS and don't have common chunks, prefetching is not possible because the build outputs are different.
 
