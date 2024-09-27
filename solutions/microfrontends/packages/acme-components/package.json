@@ -7,12 +7,16 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
-    "./navbar": "./src/navbar.tsx"
+    "./navbar": "./src/navbar.tsx",
+    "./prefetch": "./src/prefetch-cross-zone-links.tsx"
   },
   "typesVersions": {
     "*": {
       "navbar": [
         "./src/navbar.tsx"
+      ],
+      "prefetch": [
+        "./src/prefetch-cross-zone-links.tsx"
       ]
     }
   },
