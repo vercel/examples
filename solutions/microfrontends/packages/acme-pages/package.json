@@ -42,9 +42,9 @@
     }
   },
   "peerDependencies": {
-    "next": "*",
-    "react": "^17.0.0 || ^18.0.0-0",
-    "react-dom": "^17.0.0 || ^18.0.0-0"
+    "next": "^14.0.0",
+    "react": "^18.0.0-0",
+    "react-dom": "^18.0.0-0"
   },
   "dependencies": {
     "@acme/design-system": "workspace:*",
@@ -56,7 +56,7 @@
   "devDependencies": {
     "@swc/cli": "^0.1.62",
     "@swc/core": "^1.3.53",
-    "@types/react": "^18.0.37",
+    "@types/react": "^18.3.10",
     "chokidar": "^3.5.3",
     "eslint": "^8.38.0",
     "eslint-config-acme": "workspace:*",

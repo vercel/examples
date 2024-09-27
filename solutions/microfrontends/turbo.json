@@ -1,6 +1,6 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "pipeline": {
+  "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": [
@@ -14,21 +14,26 @@
       "dependsOn": ["^build", "$DOCS_URL"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
-    "test": {
-      "dependsOn": ["^build"],
-      "outputs": []
+    "clean": {
+      "cache": false
+    },
+    "dev": {
+      "cache": false,
+      "dependsOn": ["^build"]
     },
     "lint": {
       "outputs": []
     },
-    "dev": {
-      "cache": false
-    },
     "start": {
       "cache": false
     },
-    "clean": {
-      "cache": false
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "type-check": {
+      "dependsOn": ["^build"],
+      "outputs": ["**/node_modules/.cache/tsbuildinfo.json"]
     }
   }
 }
