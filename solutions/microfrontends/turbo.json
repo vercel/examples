@@ -10,10 +10,6 @@
         "storybook-static/**"
       ]
     },
-    "main#build": {
-      "dependsOn": ["^build", "$DOCS_URL"],
-      "outputs": [".next/**", "!.next/cache/**"]
-    },
     "clean": {
       "cache": false
     },
