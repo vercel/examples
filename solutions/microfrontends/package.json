@@ -1,4 +1,5 @@
 {
+  "name": "microfrontends",
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "private": true,
@@ -10,20 +11,25 @@
     "build": "turbo run build",
     "build:main": "turbo run build --filter=main...",
     "build:docs": "turbo run build --filter=docs...",
-    "dev": "turbo run dev",
-    "start": "turbo run start",
-    "clean": "turbo run clean && rm -rf node_modules",
-    "lint": "turbo run lint",
-    "format": "prettier --write .",
     "changeset": "changeset",
-    "version-packages": "changeset version",
-    "release": "turbo run build --filter=main... && changeset publish"
+    "clean": "turbo run clean && rm -rf node_modules",
+    "dev": "turbo run dev",
+    "format": "prettier --write .",
+    "lint": "turbo run lint",
+    "release": "turbo run build --filter=main... && changeset publish",
+    "type-check": "turbo run type-check",
+    "start": "turbo run start",
+    "version-packages": "changeset version"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.1",
-    "@types/node": "^18.16.16",
-    "prettier": "^2.8.8",
-    "turbo": "^1.10.1"
+    "@changesets/cli": "^2.27.8",
+    "@types/node": "20.11.30",
+    "prettier": "3.2.5",
+    "turbo": "^2.1.2"
   },
-  "packageManager": "pnpm@7.15.0"
+  "packageManager": "pnpm@9.4.0",
+  "engines": {
+    "node": "20.x",
+    "pnpm": "9.4.0"
+  }
 }

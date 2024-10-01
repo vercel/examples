@@ -1,17 +1,16 @@
-import type { FC } from 'react'
 import { Link, A } from '@vercel/examples-ui'
 
-const Navbar: FC<{ isDocsApp?: boolean }> = ({ isDocsApp }) =>
-  isDocsApp ? (
+export function Navbar({ isDocsApp }: { isDocsApp?: boolean }) {
+  return isDocsApp ? (
     <ul className="inline-flex mb-4">
       <li>
-        <A href="/">Home (Multi Zones)</A>
+        <A href="/">Home (Multi-Zones)</A>
       </li>
       <li className="ml-4">
-        <Link href="/">Docs</Link>
+        <Link href="/docs">Docs</Link>
       </li>
       <li className="ml-4">
-        <Link href="/about">About Docs</Link>
+        <Link href="/docs/about">About Docs</Link>
       </li>
     </ul>
   ) : (
@@ -23,9 +22,8 @@ const Navbar: FC<{ isDocsApp?: boolean }> = ({ isDocsApp }) =>
         <Link href="/about">About</Link>
       </li>
       <li className="ml-4">
-        <A href="/docs">Docs (Multi Zones)</A>
+        <A href="/docs">Docs (Multi-Zones)</A>
       </li>
     </ul>
   )
-
-export default Navbar
+}
