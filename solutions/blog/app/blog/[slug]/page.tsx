@@ -11,10 +11,16 @@ export async function generateStaticParams() {
   }))
 }
 
-export function generateMetadata({ params }) {
+type Props = {
+  params: {
+    slug: string
+  }
+}
+
+export function generateMetadata({ params }: Props) {
   let post = getBlogPosts().find((post) => post.slug === params.slug)
   if (!post) {
-    return
+    return {}
   }
 
   let {
@@ -51,7 +57,7 @@ export function generateMetadata({ params }) {
   }
 }
 
-export default function Blog({ params }) {
+export default function Blog({ params }: Props) {
   let post = getBlogPosts().find((post) => post.slug === params.slug)
 
   if (!post) {
