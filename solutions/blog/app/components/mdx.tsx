@@ -6,10 +6,10 @@ import React from 'react'
 
 type TableProps = {
   data: {
-    headers: React.ReactNode[],
-    rows: React.ReactNode[][],
-  },
-};
+    headers: React.ReactNode[]
+    rows: React.ReactNode[][]
+  }
+}
 
 function Table({ data }: TableProps) {
   let headers = data.headers.map((header, index) => (
@@ -33,7 +33,7 @@ function Table({ data }: TableProps) {
   )
 }
 
-type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
+type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement>
 
 function CustomLink(props: CustomLinkProps) {
   let href = props.href

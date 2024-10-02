@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
 }
 
-type ClassName = Array<React.HTMLAttributes<HTMLHtmlElement>['className']>;
+type ClassName = Array<React.HTMLAttributes<HTMLHtmlElement>['className']>
 
 const cx = (...classes: ClassName) => classes.filter(Boolean).join(' ')
 
