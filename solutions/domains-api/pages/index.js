@@ -19,17 +19,13 @@ export default function Home() {
   const [adding, setAdding] = useState(false)
   const [error, setError] = useState(null)
 
-  useEffect(() => {
-    if (domain.length == 0) {
-      setDisabled(true)
-    } else {
-      setDisabled(false)
-    }
-  }, [domain])
+  if (domain.length == 0) {
+    setDisabled(true)
+  } else {
+    setDisabled(false)
+  }
 
-  useEffect(() => {
-    if (adding) setDisabled(true)
-  }, [adding])
+  if (adding) setDisabled(true)
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
