@@ -1,7 +1,11 @@
-import { kv } from '@vercel/kv'
+import { Redis } from '@upstash/redis'
 
 export default async function ViewCounter() {
-  const views = await kv.incr('views')
+  const redis = new Redis({
+    url: process.env.KV_REST_API_URL,
+    token: process.env.KV_REST_API_TOKEN,
+  })
+  const views = await redis.incr('views')
 
   return (
     <p className="text-sm text-gray-500">
