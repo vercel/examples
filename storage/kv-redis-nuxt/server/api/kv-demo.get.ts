@@ -1,17 +1,13 @@
-import Redis from 'ioredis'
+import { Redis } from '@upstash/redis'
 
 export default eventHandler(async () => {
-  if (!process.env.KV_URL) {
-    throw new Error(
-      'KV_URL is not set. It is either not set on your Vercel project or is not being pulled in the GitHub Actions workflow.'
-    )
-  }
-  const redis = new Redis(process.env.KV_URL)
-  const pageVisits = Number.parseInt((await redis.get('pageVisits')) || '0')
+  const redis = new Redis({
+    url: process.env.KV_REST_API_URL,
+    token: process.env.KV_REST_API_TOKEN,
+  })
+  const views = await redis.incr('views')
 
-  const updatedPageVisits = pageVisits + 1
-  await redis.set('pageVisits', updatedPageVisits)
   return {
-    pageVisits: updatedPageVisits,
+    pageVisits: views,
   }
 })

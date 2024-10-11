@@ -20,6 +20,6 @@
     "turbo": "^1.9.3"
   },
   "dependencies": {
-    "ioredis": "^5.4.1"
+    "@upstash/redis": "^1.34.3"
   }
 }
