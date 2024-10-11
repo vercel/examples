@@ -1,7 +1,7 @@
-import { Layout, Page, Text, Code, Link } from '@vercel/examples-ui'
-import Navbar from '../components/navbar'
+import { Page, Text, Code, Link } from '@vercel/examples-ui'
+import { Navbar } from '@acme/components/navbar'
 
-export default function About(): React.ReactNode {
+export default function AboutPage(): React.ReactNode {
   return (
     <Page>
       <Navbar />
@@ -10,8 +10,7 @@ export default function About(): React.ReactNode {
       </Text>
       <Text>
         This is the about page, defined in{' '}
-        <Code>packages/acme-pages/src/about</Code> and imported by{' '}
-        <Code>apps/main/pages/about.tsx</Code>
+        <Code>apps/main/app/about/page.tsx</Code>
       </Text>
       <Text className="mt-4">
         Navigations between <Link href="/">Home</Link> and{' '}
@@ -22,12 +21,10 @@ export default function About(): React.ReactNode {
           className="text-link hover:text-link-light transition-colors"
           href="/docs"
         >
-          Docs (Multi Zones)
+          Docs (Multi-Zones)
         </a>{' '}
         requires a page refresh because it lives in a different Next.js app.
       </Text>
     </Page>
   )
 }
-
-About.Layout = Layout

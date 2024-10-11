@@ -1,36 +1,35 @@
-import { useState, useEffect } from 'react'
-import { Layout, Page, Text, Code, Link, Snippet } from '@vercel/examples-ui'
+import { Page, Text, Code, Link, Snippet } from '@vercel/examples-ui'
+import { Navbar } from '@acme/components/navbar'
 import { Button, Quote } from '@acme/design-system'
-import { matchingTextColor, randomColor } from '@acme/utils'
-import Navbar from '../components/navbar'
+import { ColoredButton } from './components/colored-button'
 
 export default function Home(): React.ReactNode {
-  const [bgColor, setBgColor] = useState('')
-  const [textColor, setTextColor] = useState('')
-  const changeColor = () => {
-    const bg = randomColor()
-    setBgColor(bg)
-    setTextColor(matchingTextColor(bg))
-  }
-
-  useEffect(changeColor, [])
-
   return (
     <Page>
       <Navbar />
       <Text variant="h1" className="mb-6">
-        Microfrontends
+        Micro-Frontends
       </Text>
       <Text className="mb-4">
-        In this Microfrontends app we have a Monorepo with multiple packages,
-        each using TypeScript and going through a different Microfrontend
-        tehnique:
+        In this Micro-Frontends app we have a monorepo using{' '}
+        <a
+          className="text-link hover:text-link-light transition-colors"
+          href="https://turbo.build/repo/docs"
+        >
+          Turborepo
+        </a>{' '}
+        with multiple packages, each using TypeScript and going through a
+        different Micro-Frontend technique:
       </Text>
       <Text variant="h2" className="mt-10 mb-6">
         apps/main
       </Text>
       <Text className="mb-4">
         This is the current Next.js site you&apos;re looking at!
+      </Text>
+      <Text className="mb-4">
+        You&apos;re currently looking at the Home page, defined in{' '}
+        <Code>apps/main/app/page.tsx</Code>.
       </Text>
       <Text variant="h2" className="mt-10 mb-6">
         packages/acme-design-system
@@ -39,26 +38,18 @@ export default function Home(): React.ReactNode {
         Example of how you could build a Design System, it&apos;s a set of React
         Components that ship with CSS Modules.
       </Text>
-      {bgColor && textColor && (
-        <>
-          <Button className="mb-4">This is a button</Button>
-        </>
-      )}
+      <Button className="mb-4">This is a button</Button>
       <Quote className="mb-4">
         This is the <Code>Quote</Code> component in the design system.
       </Quote>
       <Text variant="h2" className="mt-10 mb-6">
-        packages/acme-pages
+        packages/acme-components
       </Text>
       <Text className="mb-4">
         Works in the same way as <Code>packages/acme-design-system</Code> but
         instead of building a design system it&apos;s about having shared
-        components that represent pages.
-      </Text>
-      <Text className="mb-4">
-        You&apos;re currently looking at the Home page, defined in{' '}
-        <Code>packages/acme-pages/src/home</Code> and imported by{' '}
-        <Code>apps/main/pages/index.tsx</Code>.
+        components that can be used across applications such as the navigation
+        bar.
       </Text>
       <Text variant="h2" className="mt-10 mb-6">
         packages/acme-utils
@@ -68,42 +59,30 @@ export default function Home(): React.ReactNode {
         The button below uses an utility function from this package to change
         its color when clicked:
       </Text>
-      {bgColor && textColor && (
-        <>
-          <Button
-            className="mb-4"
-            style={{
-              backgroundColor: bgColor,
-              color: textColor,
-              borderColor: textColor,
-            }}
-            onClick={changeColor}
-          >
-            Change Color
-          </Button>
-        </>
-      )}
+      <ColoredButton />
       <Text variant="h2" className="mt-10 mb-6">
-        apps/docs (Multi Zones)
+        apps/docs (Multi-Zones)
       </Text>
       <Text className="mb-4">
         Next.js application that takes care of handling the pages for{' '}
         <Code>/docs/**</Code>.
       </Text>
       <Text className="mb-4">
-        This example shows how Multi Zones can be managed in Next.js to merge
+        This example shows how Multi-Zones can be managed in Next.js to merge
         multiple Next.js applications in the same domain.
       </Text>
       <Text className="mb-4">
-        Compared with the approaches above, there&apos;s an actual UX impact
-        when doing multi zones because Next.js assets of different builds
-        can&apos;t be shared so they have to be downloaded again and transitions
-        are a full page refresh.
+        In a Multi-Zones set-up, different paths can be served by different
+        applications. However, when a user navigates between those different
+        applications, there is a hard navigation and the assets of the other
+        application have to be downloaded again. Multi-Zones are therefore good
+        for sites where there are logical separations of pages that a user
+        doesn&apos;t navigate between often.
       </Text>
       <Text className="mb-4">
-        Local development can also be affected by HMR because changes to one app
-        outside its domain don&apos;t live reload (<Code>apps/main</Code> lives
-        in port 3000, and <Code>apps/docs</Code> in 3001).
+        In local development, you can run some zones locally or point them to
+        production. When pointing a zone to production, code changes won&apos;t
+        be reflected unless you also run that application locally.
       </Text>
       <Text variant="h2" className="mt-10 my-6">
         packages/acme-storybook
@@ -139,5 +118,3 @@ export default function Home(): React.ReactNode {
     </Page>
   )
 }
-
-Home.Layout = Layout
