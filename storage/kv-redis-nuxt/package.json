@@ -20,6 +20,6 @@
     "turbo": "^1.9.3"
   },
   "dependencies": {
-    "@vercel/kv": "^0.2.1"
+    "ioredis": "^5.4.1"
   }
 }
