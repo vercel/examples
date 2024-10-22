@@ -1,9 +1,13 @@
 import type { NextRequest } from 'next/server'
 import { Ratelimit } from '@upstash/ratelimit'
-import { kv } from '@vercel/kv'
+import { Redis } from '@upstash/redis'
 
+const redis = new Redis({
+  url: process.env.KV_REST_API_URL,
+  token: process.env.KV_REST_API_TOKEN,
+})
 const ratelimit = new Ratelimit({
-  redis: kv,
+  redis,
   // 5 requests from the same IP in 10 seconds
   limiter: Ratelimit.slidingWindow(5, '10 s'),
 })
