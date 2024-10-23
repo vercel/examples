@@ -8,7 +8,7 @@ export const config = {
   matcher: '/',
 }
 
-export function middleware(req: NextRequest) {
+export default function middleware(req: NextRequest) {
   const token = crypto.randomUUID()
   const url = req.nextUrl
 

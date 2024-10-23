@@ -4,6 +4,6 @@ export const config = {
   matcher: '/',
 }
 
-export function middleware() {
+export default function middleware() {
   return NextResponse.json({ message: 'hello world!' })
 }
