@@ -10,7 +10,7 @@ export const config = {
   matcher: '/',
 }
 
-export function middleware(req: NextRequest) {
+export default function middleware(req: NextRequest) {
   // Extract country
   const country = req.geo.country || 'US'
 

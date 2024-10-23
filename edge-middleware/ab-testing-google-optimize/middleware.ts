@@ -6,7 +6,7 @@ export const config = {
   matcher: ['/marketing', '/about'],
 }
 
-export function middleware(req: NextRequest) {
+export default function middleware(req: NextRequest) {
   let cookie = req.cookies.get(COOKIE_NAME)?.value
 
   if (!cookie) {

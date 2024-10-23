@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-export function middleware() {
+export default function middleware() {
   // Store the response so we can modify its headers
   const response = NextResponse.next()
 

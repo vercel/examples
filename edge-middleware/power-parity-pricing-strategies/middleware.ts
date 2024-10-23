@@ -5,7 +5,7 @@ export const config = {
   matcher: '/edge',
 }
 
-export function middleware(req: NextRequest) {
+export default function middleware(req: NextRequest) {
   // Get country
   const country = req.geo.country?.toLowerCase() || 'us'
 
