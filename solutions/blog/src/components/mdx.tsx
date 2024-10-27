@@ -1,11 +1,11 @@
 import React, { PropsWithChildren } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import Image, { ImageProps } from 'next/image'
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import { serialize } from 'next-mdx-remote/serialize'
 
-function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
+function Table({ data }: { data: { headers: React.ReactNode[]; rows: React.ReactNode[][] } }) {
   let headers = data.headers.map((header, index) => (
     <th key={index}>{header}</th>
   ))
@@ -28,11 +28,7 @@ function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
 }
 
 function CustomLink({ href, children, ...props }: React.LinkHTMLAttributes<HTMLAnchorElement>) {
-  if (!href) {
-    return null;
-  }
-
-  if (href.startsWith('/')) {
+  if (href?.startsWith('/')) {
     return (
       <Link href={href} {...props}>
         {children}
@@ -40,28 +36,25 @@ function CustomLink({ href, children, ...props }: React.LinkHTMLAttributes<HTMLA
     )
   }
 
-  if (href.startsWith('#')) {
+  if (href?.startsWith('#')) {
     return <a {...props} />
   }
 
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
-function RoundedImage(props: React.ImgHTMLAttributes<HTMLImageElement>) {
+function RoundedImage(props: ImageProps) {
   return (
     <Image 
       {...props} 
-      alt={props.alt ?? ""} 
-      src={props.src ?? ""} 
-      width={Number(props.width)} 
-      height={Number(props.height)} 
+      alt={props.alt} 
       className="rounded-lg"  
     />
   )
 }
 
 function Code({ children, ...props }: PropsWithChildren) {
-  let codeHTML = highlight(children as string)
+  let codeHTML = highlight(children?.toString() ?? "")
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
 }
 
@@ -78,7 +71,7 @@ function slugify(str: string) {
 
 function createHeading(level: number) {
   const Heading = ({ children }: PropsWithChildren) => {
-    let slug = slugify(children as string)
+    let slug = slugify(children?.toString() ?? '')
     return React.createElement(
       `h${level}`,
       { id: slug },
@@ -112,7 +105,7 @@ let components = {
 }
 
 export default async function CustomMDX(
-  props: PropsWithChildren<MDXRemoteProps>
+  props: MDXRemoteProps
 ) {
   const serializedSource = await serialize(props.source)
 

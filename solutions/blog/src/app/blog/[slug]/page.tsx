@@ -17,12 +17,12 @@ type Props = {
   params: { id: string, slug: string }
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata | undefined> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
 
   let post = getBlogPosts().find((post) => post.slug === slug)
   if (!post) {
-    return 
+    return {}
   }
 
   let {
