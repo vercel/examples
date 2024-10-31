@@ -16,7 +16,9 @@ concurrency:
 jobs:
   release:
     name: Release
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+             macos
+             ubuntu-latest
     defaults:
       run:
         shell: bash
