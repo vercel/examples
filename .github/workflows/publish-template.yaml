@@ -14,9 +14,8 @@ concurrency:
 jobs:
   publish_template:
     name: Publish Template
-    runs-on: self-hosted
-             ubuntu-latest
-             macos
+    runs-on: 'self-hosted'
+             'macos'
     defaults:
       run:
         shell: bash
@@ -50,3 +49,4 @@ jobs:
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           CONTENTFUL_ENVIRONMENT: ${{ secrets.CONTENTFUL_ENVIRONMENT }}
           CONTENTFUL_CONTENT_TYPE: ${{ secrets.CONTENTFUL_CONTENT_TYPE }}
+o
