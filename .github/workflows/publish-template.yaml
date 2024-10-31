@@ -14,7 +14,9 @@ concurrency:
 jobs:
   publish_template:
     name: Publish Template
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+             ubuntu-latest
+             macos
     defaults:
       run:
         shell: bash
