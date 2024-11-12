@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/functions": "^1.5.0",
     "next": "canary",
     "react": "latest",
     "react-dom": "latest"
