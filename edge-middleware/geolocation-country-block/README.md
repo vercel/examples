@@ -5,13 +5,14 @@ marketplace: false
 # Geolocation Country Block
 
 ```ts
+import { geolocation } from '@vercel/functions'
 import type { NextRequest } from 'next/server'
 
 // Block Austria, prefer Germany
 const BLOCKED_COUNTRY = 'AT'
 
 export default function middleware(req: NextRequest) {
-  const country = req.geo.country || 'US'
+  const country = geolocation(req).country || 'US'
 
   if (country === BLOCKED_COUNTRY) {
     return new Response('Blocked for legal reasons', { status: 451 })
