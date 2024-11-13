@@ -15,13 +15,30 @@ relatedTemplates:
 
 # Geolocation
 
-This example shows how to use the `event.request.geo` object to determine a user's location.
+This example shows how to use the `event.request` object to determine a user's location.
 
 ```ts
-geo: {
-  city?: string
-  country?: string
-  region?: string
+import { geolocation } from '@vercel/functions'
+
+const geo = geolocation(req)
+
+console.log(geo)
+
+{
+  /** The city that the request originated from. */
+  city?: string;
+  /** The country that the request originated from. */
+  country?: string;
+  /** The flag emoji for the country the request originated from. */
+  flag?: string;
+  /** The Vercel Edge Network region that received the request. */
+  region?: string;
+  /** The region part of the ISO 3166-2 code of the client IP. */
+  countryRegion?: string;
+  /** The latitude of the client. */
+  latitude?: string;
+  /** The longitude of the client. */
+  longitude?: string;
 }
 ```
 
