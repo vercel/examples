@@ -15,11 +15,11 @@ relatedTemplates:
 
 # Vercel Blob Next.js Starter
 
-Simple Next.js template that uses [Vercel Blob](https://vercel.com/blob)for image uploads
+Simple Next.js template that uses [Vercel Blob](https://vercel.com/blob) for image uploads
 
 ## Demo
 
-https://blob-starter.vercel.app/
+https://blob-starter.vercel.app
 
 ## How to Use
 
