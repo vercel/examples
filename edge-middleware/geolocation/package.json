@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@vercel/examples-ui": "^1.0.5",
+    "@vercel/functions": "^1.5.0",
     "next": "canary",
     "react": "latest",
     "react-dom": "latest"

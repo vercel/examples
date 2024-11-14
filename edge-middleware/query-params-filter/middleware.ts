@@ -6,7 +6,7 @@ export const config = {
   matcher: '/',
 }
 
-export function middleware(req: NextRequest) {
+export default function middleware(req: NextRequest) {
   const url = req.nextUrl
   let changed = false
 

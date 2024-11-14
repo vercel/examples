@@ -17,6 +17,13 @@ export const config = {
   matcher: '/',
 }
 
+// Manually sync as the SDK cannot poll for updates across requests since
+// Edge Middleware does not allow for timers outside of the request handler
+//
+// See https://docs.statsig.com/integrations/vercel/#polling-for-updates-v5130
+let lastSyncTime = 0
+const syncInterval = 60_000 // 1 minute
+
 export async function middleware(req: NextRequest, event: NextFetchEvent) {
   // Get the user ID from the cookie or get a new one
   let userId = req.cookies.get(UID_COOKIE)?.value
@@ -39,16 +46,24 @@ export async function middleware(req: NextRequest, event: NextFetchEvent) {
     // that the ID List will not apply in most cases as it will only get fetched
     // after the experiment ran
     initStrategyForIDLists: 'none',
-    // 🚨 This setting will prevent Statsig from making any network requests,
-    // thus ensuring middleware stays extremly fast.
-    localMode: true,
     // This makes Statsig load experiments from Edge Config
     dataAdapter,
     // Disable any syncing to prevent network activity, as Edge Config will
     // return the latest values anyhow, and as ID Lists are disabled.
     disableIdListsSync: true,
-    disableRulesetsSync: true,
   })
+
+  // init within middleware so we get the actual time, as Date.now() will not
+  // return accourate time outside of the request lifecycle.
+  //
+  // Avoid syncing initially as we just initialized and will sync on the
+  // first request anyway.
+  if (lastSyncTime === 0) {
+    lastSyncTime = Date.now()
+  } else if (lastSyncTime < Date.now() - syncInterval) {
+    lastSyncTime = Date.now()
+    event.waitUntil(Statsig.syncConfigSpecs())
+  }
 
   const experiment = Statsig.getExperimentWithExposureLoggingDisabledSync(
     { userID: userId },
