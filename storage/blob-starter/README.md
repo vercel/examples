@@ -15,7 +15,7 @@ relatedTemplates:
 
 # Vercel Blob Next.js Starter
 
-Simple Next.js template that uses [Vercel Blob](https://vercel.com/blob) for image uploads
+A Next.js template that uses [Vercel Blob](https://vercel.com/blob) for image uploads and storage.
 
 ## Demo
 
