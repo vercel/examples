@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "pnpm": "^9"
+    "pnpm": "9.13.0"
   },
   "scripts": {
     "dev": "next dev --turbopack",
