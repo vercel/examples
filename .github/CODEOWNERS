@@ -12,4 +12,4 @@ solutions/testing @vercel/turbo-oss @goncy @lfades @leerob @steven-tey @lpalmes
 
 # For the build output API the engineering team takes care of it.
 # A member of Solutions and Dev Rel is also added
-build-output-api @tootallnate @styfle @EndangeredMassa @lfades @leerob @steven-tey @lpalmes
+build-output-api @tootallnate @EndangeredMassa @lfades @leerob @lpalmes
