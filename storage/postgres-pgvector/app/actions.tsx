@@ -3,7 +3,7 @@
 import { db } from '@/drizzle/db'
 import { SelectPokemon, pokemons } from '@/drizzle/schema'
 import { openai } from '@/lib/openai'
-import { desc, sql, cosineDistance, gt } from 'drizzle-orm'
+import { asc, sql, cosineDistance, lt } from 'drizzle-orm'
 import { embed } from 'ai'
 
 export async function searchPokedex(
@@ -15,16 +15,16 @@ export async function searchPokedex(
     const embedding = await generateEmbedding(query)
     const vectorQuery = `[${embedding.join(',')}]`
 
-    const similarity = sql<number>`1 - (${cosineDistance(
+    const similarity = sql<number>`${cosineDistance(
       pokemons.embedding,
       vectorQuery
-    )})`
+    )}`
 
     const pokemon = await db
       .select({ id: pokemons.id, name: pokemons.name, similarity })
       .from(pokemons)
-      .where(gt(similarity, 0.5))
-      .orderBy((t) => desc(t.similarity))
+      .where(lt(similarity, 0.5))
+      .orderBy((t) => asc(t.similarity))
       .limit(8)
 
     return pokemon
