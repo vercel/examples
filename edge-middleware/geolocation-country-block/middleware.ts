@@ -1,5 +1,5 @@
+import { geolocation } from '@vercel/functions'
 import type { NextRequest } from 'next/server'
-
 import { NextResponse } from 'next/server'
 
 // Block Austria, prefer Germany
@@ -10,9 +10,10 @@ export const config = {
   matcher: '/',
 }
 
-export function middleware(req: NextRequest) {
+export default function middleware(req: NextRequest) {
+  const geo = geolocation(req)
   // Extract country
-  const country = req.geo.country || 'US'
+  const country = geo.country || 'US'
 
   // Specify the correct pathname
   if (country === BLOCKED_COUNTRY) {

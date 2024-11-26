@@ -1,9 +1,13 @@
+import { Redis } from '@upstash/redis'
+
 export default eventHandler(async () => {
-  const storage = useStorage('data')
-  let pageVisits = (await storage.getItem('pageVisits')) as number
-  const updatedPageVisits = pageVisits + 1
-  await storage.setItem('pageVisits', updatedPageVisits)
+  const redis = new Redis({
+    url: process.env.KV_REST_API_URL,
+    token: process.env.KV_REST_API_TOKEN,
+  })
+  const views = await redis.incr('views')
+
   return {
-    pageVisits: updatedPageVisits,
+    pageVisits: views,
   }
 })
