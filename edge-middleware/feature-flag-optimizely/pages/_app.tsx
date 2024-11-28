@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       deployButton={{
         env: ['OPTIMIZELY_SDK_KEY'],
         repositoryUrl:
-          'https://github.com/optimizely/vercel-examples/tree/main/edge-middleware/feature-flag-optimizely',
+          'https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-optimizely',
       }}
     >
       <Component {...pageProps} />
