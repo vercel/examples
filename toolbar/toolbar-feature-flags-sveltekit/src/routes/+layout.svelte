@@ -1,7 +1,13 @@
 <script lang="ts">
   import { mountVercelToolbar } from '@vercel/toolbar/vite'
-  import { onMount } from 'svelte'
+  import { onMount, type Snippet } from 'svelte'
   import Footer from './Footer.svelte'
+
+  interface Props {
+    children?: Snippet;
+  }
+
+  let { children }: Props = $props();
 
   // This always shows the toolbar in production. In your project, you probably
   // want to show it only under certain conditions.
@@ -9,7 +15,7 @@
 </script>
 
 <main>
-  <slot />
+  {@render children?.()}
 </main>
 <Footer />
 
