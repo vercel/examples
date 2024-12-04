@@ -3,13 +3,15 @@
   import { onMount } from 'svelte'
   import Footer from './Footer.svelte'
 
+  let { children } = $props()
+
   // This always shows the toolbar in production. In your project, you probably
   // want to show it only under certain conditions.
   onMount(() => mountVercelToolbar())
 </script>
 
 <main>
-  <slot />
+  {@render children?.()}
 </main>
 <Footer />
 

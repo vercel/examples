@@ -1,5 +1,5 @@
 <script>
-  export let data
+  let { data } = $props()
   function refreshPage() {
     location.reload()
   }
@@ -27,7 +27,7 @@
       the page and watch it increase!
     </div>
     <button
-      on:click={refreshPage}
+      onclick={refreshPage}
       class="mb-6 font-bold underline opacity-70 hover:opacity-100"
     >
       Refresh Page
