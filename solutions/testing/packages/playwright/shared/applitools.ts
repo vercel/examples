@@ -1,11 +1,15 @@
-import { test as base } from '@playwright/test'
+/* eslint-disable turbo/no-undeclared-env-vars -- The APPLITOOLS_API_KEY and APPLITOOLS_BATCH_ID keys are part of turbo.json in the test scripts. */
+import type {
+  TestType,
+  PlaywrightTestArgs,
+  PlaywrightTestOptions,
+  PlaywrightWorkerArgs,
+  PlaywrightWorkerOptions,
+} from '@playwright/test'
 import {
   BatchInfo,
   Configuration,
   VisualGridRunner,
-  BrowserType,
-  DeviceName,
-  ScreenOrientation,
   Eyes,
   BatchInfoPlain,
   RectangleSizePlain,
@@ -29,7 +33,13 @@ export type ApplitoolsOptions = {
   config?: (config: Configuration) => Configuration
 }
 
-export const applitoolsTest = (options: ApplitoolsOptions) => {
+type TestArgs = PlaywrightTestArgs & PlaywrightTestOptions
+type WorkerArgs = PlaywrightWorkerArgs & PlaywrightWorkerOptions
+
+export function applitoolsTest<T extends TestType<TestArgs, WorkerArgs>>(
+  base: T,
+  options: ApplitoolsOptions
+) {
   // Applitools objects to share for all tests
   let batch: BatchInfo
   let config: Configuration
@@ -79,7 +89,9 @@ export const applitoolsTest = (options: ApplitoolsOptions) => {
 
       await use(eyes)
     },
-  })
+  }) as T extends TestType<infer A, infer W>
+    ? TestType<A & ApplitoolsExtensions, W>
+    : never
 
   if (!process.env.APPLITOOLS_API_KEY) return test
 
