@@ -5,3 +5,6 @@
     "import/no-anonymous-default-export": "off"
   }
 }
+
+// This configuration file extends the Next.js core web vitals rules.
+// It also disables the rule for no HTML links for pages and the rule for no anonymous default exports.
