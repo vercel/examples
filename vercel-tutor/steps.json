@@ -1,0 +1,31 @@
+{
+  "smaller-triangle": {
+    "type": "createBranch-commit-openPr",
+    "base": {
+      "templatePath": "app/page.tsx",
+      "branchName": "main"
+    },
+    "target": {
+      "templatePath": "app/smaller-triangle/page.tsx",
+      "branchName": "vercel-bot-patch"
+    },
+    "path": "app/page.tsx",
+    "commitMessage": "Make triangle smaller",
+    "prTitle": "Your first preview deployment, created by the Vercel bot",
+    "prBody": "#### Hello, I’m the Vercel bot.\n\n- To update your Vercel Tutor template, I created a new branch, pushed some changes, and opened this pull request.\n- This creates a preview deployment on Vercel.\n\n#### Next Steps:\n\n- Wait until the “Status” becomes “✅ Ready” on the table below.\n- Then click “Visit Preview” to view the deployment."
+  },
+  "helpful-links": {
+    "type": "commit-merge-comment",
+    "base": {
+      "templatePath": "app/smaller-triangle/page.tsx",
+      "branchName": "vercel-bot-patch"
+    },
+    "target": {
+      "templatePath": "app/helpful-links/page.tsx",
+      "branchName": "vercel-bot-patch"
+    },
+    "path": "app/page.tsx",
+    "commitMessage": "Add helpful links",
+    "prComment": "#### We just pushed a new commit to add some helpful links.\n\n- This creates a new preview deployment (accessible via the same URL once it becomes “✅ Ready”).\n\n#### Then, we merged the pull request.\n\n- This creates a new production deployment.\n\n#### Next Step:\n\n- [Click here to see the deployment progress on the Vercel dashboard](https://vercel.com/{{teamSlug}}/{{projectName}}?vercel-tutor=done)."
+  }
+}
