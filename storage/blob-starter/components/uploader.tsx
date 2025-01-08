@@ -1,116 +1,95 @@
 'use client'
 
-import { useState, useCallback, useMemo, ChangeEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 import toast from 'react-hot-toast'
-import LoadingDots from './loading-dots'
-import { PutBlobResult } from '@vercel/blob'
+import { upload } from '@vercel/blob/client'
+import ProgressBar from './progress-bar'
 
 export default function Uploader() {
-  const [data, setData] = useState<{
-    image: string | null
-  }>({
-    image: null,
-  })
+  const [preview, setPreview] = useState<string | null>(null)
   const [file, setFile] = useState<File | null>(null)
-
   const [dragActive, setDragActive] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
+  const [progress, setProgress] = useState(0)
 
-  const onChangePicture = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      const file = event.currentTarget.files && event.currentTarget.files[0]
-      if (file) {
-        if (file.size / 1024 / 1024 > 50) {
-          toast.error('File size too big (max 50MB)')
+  function reset() {
+    setIsUploading(false)
+    setFile(null)
+    if (preview) {
+      URL.revokeObjectURL(preview)
+    }
+    setPreview(null)
+  }
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setIsUploading(true)
+
+    if (file) {
+      try {
+        const blob = await upload(file.name, file, {
+          access: 'public',
+          handleUploadUrl: '/api/upload',
+          onUploadProgress: (progressEvent) => {
+            setProgress(progressEvent.percentage)
+          },
+        })
+
+        toast(
+          (t: { id: string }) => (
+            <div className="relative">
+              <div className="p-2">
+                <p className="font-semibold text-gray-900">File uploaded!</p>
+                <p className="mt-1 text-sm text-gray-500">
+                  Your file has been uploaded to{' '}
+                  <a
+                    className="font-medium text-gray-900 underline"
+                    href={blob.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {blob.url}
+                  </a>
+                </p>
+              </div>
+            </div>
+          ),
+          { duration: Number.POSITIVE_INFINITY }
+        )
+      } catch (error) {
+        if (error instanceof Error) {
+          toast.error(error.message)
         } else {
-          setFile(file)
-          const reader = new FileReader()
-          reader.onload = (e) => {
-            setData((prev) => ({ ...prev, image: e.target?.result as string }))
-          }
-          reader.readAsDataURL(file)
+          throw error
         }
       }
-    },
-    [setData]
-  )
 
-  const [saving, setSaving] = useState(false)
+      reset()
+    }
+  }
 
-  const saveDisabled = useMemo(() => {
-    return !data.image || saving
-  }, [data.image, saving])
+  function handleFileChange(file: File) {
+    toast.dismiss()
+
+    if (file.type.split('/')[0] !== 'image') {
+      toast.error('We only accept image files')
+      return
+    }
+
+    if (file.size / 1024 / 1024 > 50) {
+      toast.error('File size too big (max 50MB)')
+      return
+    }
+
+    setFile(file)
+    setPreview(URL.createObjectURL(file))
+  }
 
   return (
-    <form
-      className="grid gap-6"
-      onSubmit={async (e) => {
-        e.preventDefault()
-        setSaving(true)
-        fetch('/api/upload', {
-          method: 'POST',
-          headers: { 'content-type': file?.type || 'application/octet-stream' },
-          body: file,
-        }).then(async (res) => {
-          if (res.status === 200) {
-            const { url } = (await res.json()) as PutBlobResult
-            toast(
-              (t: { id: string } 
-                ) => (
-                <div className="relative">
-                  <div className="p-2">
-                    <p className="font-semibold text-gray-900">
-                      File uploaded!
-                    </p>
-                    <p className="mt-1 text-sm text-gray-500">
-                      Your file has been uploaded to{' '}
-                      <a
-                        className="font-medium text-gray-900 underline"
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {url}
-                      </a>
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => toast.dismiss(t.id)}
-                    className="absolute top-0 -right-2 inline-flex text-gray-400 focus:outline-none focus:text-gray-500 rounded-full p-1.5 hover:bg-gray-100 transition ease-in-out duration-150"
-                  >
-                    <svg
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.293 5.293a1 1 0 011.414 0L10
-                          8.586l3.293-3.293a1 1 0 111.414 1.414L11.414
-                          10l3.293 3.293a1 1 0 01-1.414 1.414L10
-                          11.414l-3.293 3.293a1 1 0 01-1.414-1.414L8.586
-                          10 5.293 6.707a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              ),
-              { duration: 300000 }
-            )
-          } else {
-            const error = await res.text()
-            toast.error(error)
-          }
-          setSaving(false)
-        })
-      }}
-    >
+    <form className="grid gap-6" onSubmit={handleSubmit}>
       <div>
         <div className="space-y-1 mb-4">
-          <h2 className="text-xl font-semibold">Upload a file</h2>
-          <p className="text-sm text-gray-500">
-            Accepted formats: .png, .jpg, .gif, .mp4
-          </p>
+          <h2 className="text-xl font-semibold">Upload an image</h2>
         </div>
         <label
           htmlFor="image-upload"
@@ -138,21 +117,9 @@ export default function Uploader() {
               e.stopPropagation()
               setDragActive(false)
 
-              const file = e.dataTransfer.files && e.dataTransfer.files[0]
+              const file = e.dataTransfer?.files?.[0]
               if (file) {
-                if (file.size / 1024 / 1024 > 50) {
-                  toast.error('File size too big (max 50MB)')
-                } else {
-                  setFile(file)
-                  const reader = new FileReader()
-                  reader.onload = (e) => {
-                    setData((prev) => ({
-                      ...prev,
-                      image: e.target?.result as string,
-                    }))
-                  }
-                  reader.readAsDataURL(file)
-                }
+                handleFileChange(file)
               }
             }}
           />
@@ -160,7 +127,7 @@ export default function Uploader() {
             className={`${
               dragActive ? 'border-2 border-black' : ''
             } absolute z-[3] flex h-full w-full flex-col items-center justify-center rounded-md px-10 transition-all ${
-              data.image
+              preview
                 ? 'bg-white/80 opacity-0 hover:opacity-100 hover:backdrop-blur-md'
                 : 'bg-white opacity-100 hover:bg-gray-50'
             }`}
@@ -179,9 +146,10 @@ export default function Uploader() {
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
-              <path d="M12 12v9"></path>
-              <path d="m16 16-4-4-4 4"></path>
+              <title>Upload icon</title>
+              <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+              <path d="M12 12v9" />
+              <path d="m16 16-4-4-4 4" />
             </svg>
             <p className="mt-2 text-center text-sm text-gray-500">
               Drag and drop or click to upload.
@@ -191,10 +159,10 @@ export default function Uploader() {
             </p>
             <span className="sr-only">Photo upload</span>
           </div>
-          {data.image && (
-            // eslint-disable-next-line @next/next/no-img-element
+          {preview && (
+            // eslint-disable-next-line @next/next/no-img-element -- We want a simple preview here, no <Image> needed
             <img
-              src={data.image}
+              src={preview}
               alt="Preview"
               className="h-full w-full rounded-md object-cover"
             />
@@ -207,25 +175,36 @@ export default function Uploader() {
             type="file"
             accept="image/*"
             className="sr-only"
-            onChange={onChangePicture}
+            onChange={(event) => {
+              const file = event.currentTarget?.files?.[0]
+              if (file) {
+                handleFileChange(file)
+              }
+            }}
           />
         </div>
       </div>
 
-      <button
-        disabled={saveDisabled}
-        className={`${
-          saveDisabled
-            ? 'cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400'
-            : 'border-black bg-black text-white hover:bg-white hover:text-black'
-        } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
-      >
-        {saving ? (
-          <LoadingDots color="#808080" />
-        ) : (
-          <p className="text-sm">Confirm upload</p>
-        )}
-      </button>
+      <div className="space-y-2">
+        {isUploading && <ProgressBar value={progress} />}
+
+        <button
+          type="submit"
+          disabled={isUploading || !file}
+          className="border-black bg-black text-white hover:bg-white hover:text-black disabled:cursor-not-allowed disabled:border-gray-200 disabled:bg-gray-100 disabled:text-gray-400 flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none"
+        >
+          <p className="text-sm">Upload</p>
+        </button>
+
+        <button
+          type="reset"
+          onClick={reset}
+          disabled={isUploading || !file}
+          className="border-gray-200 bg-gray-100 text-gray-700 hover:bg-white hover:text-black disabled:cursor-not-allowed disabled:border-gray-200 disabled:bg-gray-100 disabled:text-gray-400 flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none"
+        >
+          Reset
+        </button>
+      </div>
     </form>
   )
 }

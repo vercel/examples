@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { geolocation } from '@vercel/functions'
+import { type NextRequest, NextResponse } from 'next/server'
 
 // only run middleware on home page
 export const config = {
@@ -6,7 +7,7 @@ export const config = {
 }
 
 export default function middleware(req: NextRequest) {
-  const country = req.geo?.country?.toLowerCase() || 'us'
+  const country = geolocation(req).country?.toLowerCase() || 'us'
   const locale = req.headers.get('accept-language')?.split(',')?.[0] || 'en-US'
 
   // Rewrite the path (`/`) to the localized page (pages/[locale]/[country])

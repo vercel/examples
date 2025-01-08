@@ -1,0 +1,45 @@
+{
+  "name": "@acme/components",
+  "version": "0.0.1",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "private": "true",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    "./navbar": "./src/navbar.tsx",
+    "./prefetch": "./src/prefetch-cross-zone-links.tsx"
+  },
+  "typesVersions": {
+    "*": {
+      "navbar": [
+        "./src/navbar.tsx"
+      ],
+      "prefetch": [
+        "./src/prefetch-cross-zone-links.tsx"
+      ]
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist && rm -rf .turbo",
+    "lint": "TIMING=1 eslint \"**/*.{ts,tsx,js,jsx}\" --fix",
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "next": "^14.0.0",
+    "react": "^18.0.0-0",
+    "react-dom": "^18.0.0-0"
+  },
+  "dependencies": {
+    "@acme/design-system": "workspace:*",
+    "@acme/utils": "workspace:*",
+    "@vercel/examples-ui": "^1.0.5",
+    "clsx": "^1.2.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.10",
+    "eslint": "^8.38.0",
+    "eslint-config-acme": "workspace:*",
+    "typescript": "^5.0.4"
+  }
+}

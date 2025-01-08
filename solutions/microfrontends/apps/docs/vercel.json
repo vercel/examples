@@ -1,3 +1,9 @@
 {
-  "ignoreCommand": "pnpm dlx turbo-ignore"
+  "buildCommand": "pnpm --workspace-root exec turbo --no-daemon --filter docs build --env-mode loose",
+  "installCommand": "node -v && pnpm --workspace-root --filter docs... install --config.dedupe-peer-dependents=false",
+  "build": {
+    "env": {
+      "ENABLE_EXPERIMENTAL_COREPACK": "1"
+    }
+  }
 }

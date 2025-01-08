@@ -21,7 +21,7 @@ Below is the code from [middleware.ts](middleware.ts) showing how to add/update/
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export function middleware(request: NextRequest) {
+export default function middleware(request: NextRequest) {
   // Clone the request headers
   // You can modify them with headers API: https://developer.mozilla.org/en-US/docs/Web/API/Headers
   const requestHeaders = new Headers(request.headers)

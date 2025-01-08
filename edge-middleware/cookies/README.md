@@ -32,7 +32,7 @@ export const config = {
   matcher: '/',
 }
 
-export function middleware(req: NextRequest) {
+export default function middleware(req: NextRequest) {
   // Parse the cookie
   const isInBeta = JSON.parse(req.cookies.get('beta')?.value || 'false')
 

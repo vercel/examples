@@ -15,7 +15,7 @@ relatedTemplates:
 
 # Microfrontends
 
-Microfrontends allow teams to work independently of each other by splitting the application into smaller, shareable, and modular components. The primary goal for a microfrontend strategy is to improve collaboration across teams of developers.
+Microfrontends allow teams to work independently of each other by splitting the application into smaller, shareable, and modular components. The primary goal for a microfrontend strategy is to reduce the size of a single application to improve developer velocity while still allowing teams to collaborate with each other.
 
 We recommend reading the ["How it works"](#how-it-works) section to understand the reasoning behind our implementation and the ["What's included"](#whats-included) section to know more about the tools we used.
 
@@ -47,7 +47,7 @@ Next, run the included Next.js apps in development mode:
 pnpm dev
 ```
 
-Deploy on [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
+Deploy on [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples) ([Documentation](https://nextjs.org/docs/deployment)).
 
 ## What's Included?
 
@@ -65,9 +65,15 @@ The example is a monorepo built with [Turborepo](https://turborepo.org/) with th
 
 There are many strategies for designing microfrontends and your approach will be dictated by how you want to structure your applications and teams. We'll share a few different approaches and how they work.
 
-### Monorepo Support
+### Multi-Zones
 
-One of the challenges of building microfrontends is dependency management and build systems. In the packages and apps in this monorepo, we'll be using [Turborepo](https://turborepo.org/) and Changesets to earn great developer experience for our teams with minimal configuration.
+[Multi-Zones](https://nextjs.org/docs/app/building-your-application/deploying/multi-zones) is a way of having independent Next.js applications that all render on a common domain. This is a method for building separation of concerns in large teams. It works well if a single domain has separate groupings of pages where a user doesn't navigate between the groups very often.
+
+In this example, [./apps/main](./apps/main) is our main app, and [./apps/docs](./apps/docs) is a separate app that handles all routes for [`/docs/**`](./apps/main/next.config.js). In the demo, you'll notice that navigating to `/docs` keeps you in the same domain. We have multiple apps in the same domain that are built independent of each other.
+
+You'll notice that transitions between `/docs/*` and `/` have to perform a full page refresh because the separate Next.js apps can't share their JS and don't have common chunks. Next.js prefetching is not possible here, and you have to rely on your own browser prefetching to streamline the transitions (see `packages/acme-components/src/prefetch-cross-zone-links.tsx` for an example). The slower transitions between apps may or may not be a problem depending on your specific use case. For that reason, we only recommend using Multi-Zones for cases where you have pages that are logically in separate applications but need to be served on the same domain.
+
+For example, having a home app with your landing, marketing and legal pages and then having another app that handles all the pages related to documentation is a good separation of concerns, your users will only notice a slow transition once they move from your home app to view your documentation. Pro tip: Using `target="_blank"` in this situation is a nice improvement!
 
 ### Design System with Tailwind and CSS Modules
 
@@ -93,11 +99,13 @@ You'll notice that transitions between `/docs/*` and `/` are not as smooth as yo
 
 Compared with the internal packaging approach from above, there's a UX impact when employing a Multi Zone strategy. The slower transitions between apps may or may not be a problem depending on your specific use case. For that reason, we only recommend using Multi Zones for cases where you need to merge applications that work on their own, but not as a way of arbitrarily moving pages out of an app.
 
-For example, having a home app with your landing, marketing and legal pages and then having another app that handles all the pages related to documentation is a good separation of concerns, your users will only notice a slow transition once they move from your home app to view your documentation. Pro tip: Using `target="_blank"` in this situation is a nice improvement!
+### Monorepo Support
+
+This example uses a monorepo to make it easier to share code across separate microfrontends. When a change is made to a component used by multiple applications, the developer only has to change one repository and Vercel will automatically deploy all affected applications. This example uses [Turborepo](https://turborepo.org/) to improve the monorepo experience.
 
 ### Polyrepos
 
-The tooling and approaches described above should also work with polyrepos. The most important difference is that, when packages are outside of your application's repository, you won't be able to have hot module reloading for your packages out-of-the-box. In this case, you will install the package in your applications and control updates with versioning. To earn HMR, you would need to [link node modules with a package manager](https://pnpm.io/cli/link).
+While a monorepo is very useful, the tooling and approaches described above should also work with polyrepos. The most important difference is that, when packages are outside of your application's repository, you won't be able to have hot module reloading for your packages out-of-the-box. In this case, you will install the package in your applications and control updates with versioning. To earn HMR, you would need to [link node modules with a package manager](https://pnpm.io/cli/link). Any time the common code is changed, the package version would need to be bumped and consumers would have to update their dependency and release the application.
 
 ### Module Federation
 
@@ -105,7 +113,7 @@ Module federation is a strategy for building applications in a large organizatio
 
 ## Versioning & Publishing Packages
 
-We enjoy using [Changesets](https://github.com/changesets/changesets) to manage versions, create changelogs, and publish to npm. It's preconfigured in this example so you can start publishing packages immediately.
+If sharing code across repositories, [Changesets](https://github.com/changesets/changesets) is a great tool to manage versions, create changelogs, and publish to npm. It's preconfigured in this example so you can start publishing packages immediately.
 
 > It's worth installing the [Changesets bot](https://github.com/apps/changeset-bot) on your repository to more easily manage contributions.
 

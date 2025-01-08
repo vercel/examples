@@ -62,7 +62,7 @@ export const config = {
   matcher: '/',
 }
 
-export function middleware(req) {
+export default function middleware(req) {
   // Parse user agent
   const { device } = userAgent(req)
 
