@@ -1,6 +1,11 @@
 name: Prebuild Vercel Tutor
 
-on: push
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
 
 jobs:
   clone-build-deploy:
@@ -16,15 +21,16 @@ jobs:
 
       - run: |
           node --version
-          corepack enable
+          npm --version
 
       - run: |
-          pnpm i -g vercel@latest
+          npm install -g vercel@latest
           vc --version
 
       - working-directory: ./vercel-tutor
         run: |
-          pnpm i
+          corepack enable
+          pnpm install
         env:
           NPM_CONFIG_LOGLEVEL: http
 
