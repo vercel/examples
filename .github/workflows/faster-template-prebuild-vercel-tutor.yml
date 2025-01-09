@@ -37,7 +37,7 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_EXAMPLES_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_EXAMPLES_ORG_ID }}
 
-      - working-directory: ./examples/nextjs
+      - working-directory: ./vercel-tutor
         run: |
           vc deploy --debug --token $VERCEL_TOKEN --yes --prod --prebuilt --archive=tgz
         env:
