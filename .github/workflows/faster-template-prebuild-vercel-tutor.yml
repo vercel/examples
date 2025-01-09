@@ -1,11 +1,6 @@
 name: Prebuild Vercel Tutor
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-    inputs:
+on: push
 
 jobs:
   clone-build-deploy:
