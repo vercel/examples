@@ -12,7 +12,7 @@ export async function middleware(req: NextRequest) {
   const geo = geolocation(req)
   const country = geo.country || 'US'
   const city = geo.city || 'San Francisco'
-  const region = geo.region || 'CA'
+  const region = geo.countryRegion || 'CA'
 
   const countryInfo = countries.find((x) => x.cca2 === country)
 
