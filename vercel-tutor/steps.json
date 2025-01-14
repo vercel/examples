@@ -6,7 +6,7 @@
       "branchName": "main"
     },
     "target": {
-      "templatePath": "app/smaller-triangle/page.tsx",
+      "templatePath": "app/smaller-triangle.tsx",
       "branchName": "vercel-bot-patch"
     },
     "path": "app/page.tsx",
@@ -17,11 +17,11 @@
   "helpful-links": {
     "type": "commit-merge-comment",
     "base": {
-      "templatePath": "app/smaller-triangle/page.tsx",
+      "templatePath": "app/smaller-triangle.tsx",
       "branchName": "vercel-bot-patch"
     },
     "target": {
-      "templatePath": "app/helpful-links/page.tsx",
+      "templatePath": "app/helpful-links.tsx",
       "branchName": "vercel-bot-patch"
     },
     "path": "app/page.tsx",
