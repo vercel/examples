@@ -61,11 +61,6 @@ function BucketPage({ bucket }: Props) {
           experiment.
         </Text>
         <Text>
-          Buckets are statically generated at build time in a{' '}
-          <Code>/[bucket]</Code> page so its fast to rewrite to them. Take a
-          look at the <Code>middleware.ts</Code> file to know more.
-        </Text>
-        <Text>
           You can reset the bucket multiple times to get a different bucket
           assigned. You can configure your experiments, see diagnostics and
           results in your account.{' '}
