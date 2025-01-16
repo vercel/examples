@@ -41,7 +41,7 @@ export const getStaticPaths: GetStaticPaths<{ bucket: string }> = async () => {
 }
 
 function BucketPage({ bucket }: Props) {
-  const { reload } = useRouter()
+  const { query, reload } = useRouter()
 
   function resetBucket() {
     Cookie.remove(UID_COOKIE)
@@ -52,14 +52,10 @@ function BucketPage({ bucket }: Props) {
   return (
     <Page className="flex flex-col gap-12">
       <section className="flex flex-col gap-6">
-        <Text variant="h1">Performant experimentation with Statsig</Text>
+        <Text variant="h1">Experimentation with Statsig</Text>
         <Text>
           In this demo we use Statsig&apos;s Server SDK at the edge to pull
-          experiment variants and show the resulting allocation. We leverage the{' '}
-          <Link href="https://vercel.com/integrations/statsig" target="_blank">
-            edge config integration
-          </Link>{' '}
-          to pull Statsig configurations from the edge. As long as you have a
+          experiment variants and show the resulting allocation. As long as you have a
           bucket assigned you will always see the same result, otherwise you
           will be assigned a bucket to mantain the odds specified in the
           experiment.
@@ -99,6 +95,42 @@ function BucketPage({ bucket }: Props) {
           src={exampleScreenshot}
           alt="Example Statsig Experiment Setup"
         />
+      </section>
+
+      <section className="flex flex-col gap-6">
+        <Text variant="h1">Leveraging Edge Config For Performance</Text>
+        {
+          query.missingEdgeConfigEnvVars ? 
+          <Text> 
+            You can leverage the {' '}
+            <Link href="https://vercel.com/integrations/statsig" target="_blank">
+              edge config integration
+            </Link>{' '} to pull Statsig configurations from the edge to improve performance. Follow the README for more information.
+          </Text> :
+          <Text>
+            We leverage the{' '}
+            <Link href="https://vercel.com/integrations/statsig" target="_blank">
+              edge config integration
+            </Link>{' '}
+            to pull Statsig configurations from the edge.
+          </Text>
+        }
+
+        {
+          query.missingConsoleApiEnvVars ?         
+          <Text>
+            Set the STATSIG_CONSOLE_API_KEY env variable to leverage static page  
+            generation. The sample pre-renders pages at build time in a{' '}
+            <Code>/[bucket]</Code> page based on the experiment variants
+            so its fast to rewrite to them. Take a look at the 
+            <Code>middleware.ts</Code> file to know more.
+          </Text> :
+          <Text>
+            Buckets are statically generated at build time in a{' '}
+            <Code>/[bucket]</Code> page so its fast to rewrite to them. Take a
+            look at the <Code>middleware.ts</Code> file to know more.
+          </Text>
+        }
       </section>
 
       <section className="flex flex-col gap-6">
