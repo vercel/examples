@@ -1,5 +1,5 @@
 const STATSIG_URL = 'https://statsigapi.net'
-const STATSIG_CONSOLE_API_KEY = process.env.STATSIG_CONSOLE_API_KEY
+const STATSIG_CONSOLE_API_KEY = process.env.STATSIG_CONSOLE_API_KEY ?? ''
 
 /**
  * Fetch wrapper for the Statsig API
@@ -49,7 +49,7 @@ const api = {
       const experimentConfig = await statsig(
         `/console/v1/experiments/${experiment}`,
         'GET',
-        { apiKey: STATSIG_CONSOLE_API_KEY }
+        { apiKey: STATSIG_CONSOLE_API_KEY  }
       )
 
       return experimentConfig.data.groups.map(
