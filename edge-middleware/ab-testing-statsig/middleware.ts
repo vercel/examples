@@ -16,7 +16,7 @@ if (!missingEdgeConfigEnvVars) {
   const edgeConfigClient = createClient(process.env.EDGE_CONFIG)
   dataAdapter = new EdgeConfigDataAdapter({
     edgeConfigClient,
-    edgeConfigItemKey: process.env.EDGE_CONFIG_ITEM_KEY,
+    edgeConfigItemKey: process.env.EDGE_CONFIG_ITEM_KEY!,
   })
 }
 
