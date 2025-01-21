@@ -6,7 +6,7 @@ This directory is a brief example of an [Ionic Angular](https://ionicframework.c
 
 Deploy your own Ionic Angular project with Vercel.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/framework-boilerplates/ionic-angular&template=ionic-angular)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/ionic-angular&template=ionic-angular)
 
 _Live Example: https://ionic-angular-template.vercel.app_
 
@@ -15,5 +15,5 @@ _Live Example: https://ionic-angular-template.vercel.app_
 To get started with Ionic Angular deployed with Vercel, you can use the [Ionic CLI](https://ionicframework.com/docs/cli) to initialize the project:
 
 ```shell
-$ npx @ionic/cli start [project-name] conference --type angular && cd [project-name]
+$ npx @ionic/cli start [project-name] tabs --type angular && cd [project-name]
 ```
