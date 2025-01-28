@@ -27,6 +27,7 @@ function Circle() {
 
 export default function Home() {
   const [nextUrl, setNextUrl] = useState("#");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const host = window.location.hostname;
@@ -74,8 +75,15 @@ export default function Home() {
           <a
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground font-medium text-background hover:bg-[#383838] dark:hover:bg-[#ccc] h-12 font-[family-name:var(--font-geist-sans)]"
             href={nextUrl}
+            onClick={(e) => {
+              if (isLoading) {
+                e.preventDefault();
+              } else {
+                setIsLoading(true);
+              }
+            }}
           >
-            View Pull Request
+            {isLoading ? 'Loading…' : 'View Pull Request'}
           </a>
           <a
             className="font-[family-name:var(--font-geist-sans)] text-secondary hover:underline flex items-center justify-center h-12 font-medium"
