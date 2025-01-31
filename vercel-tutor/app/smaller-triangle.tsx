@@ -55,8 +55,8 @@ export default function Home() {
     if (host !== "localhost") {
       setNextUrl(
         `https://vercel.com/vercel-tutor/step?origin=${encodeURIComponent(
-          host
-        )}&stepName=helpful-links`
+          host,
+        )}&stepName=helpful-links`,
       );
     }
   }, []);

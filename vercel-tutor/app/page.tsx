@@ -35,8 +35,8 @@ export default function Home() {
     if (host !== "localhost") {
       setNextUrl(
         `https://vercel.com/vercel-tutor/step?origin=${encodeURIComponent(
-          host
-        )}&stepName=smaller-triangle`
+          host,
+        )}&stepName=smaller-triangle`,
       );
     }
   }, []);
