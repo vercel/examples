@@ -128,7 +128,7 @@ export default function Home() {
               }
             }}
           >
-            {isLoading ? 'Loading…' : 'Push Commit and Merge Pull Request'}
+            {isLoading ? "Loading…" : "Push Commit and Merge Pull Request"}
           </a>
           <a
             className="font-[family-name:var(--font-geist-sans)] text-secondary hover:underline flex items-center justify-center h-12 font-medium"
