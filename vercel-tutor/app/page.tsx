@@ -35,8 +35,8 @@ export default function Home() {
     if (host !== "localhost") {
       setNextUrl(
         `https://vercel.com/vercel-tutor/step?origin=${encodeURIComponent(
-          host,
-        )}&stepName=smaller-triangle`,
+          host
+        )}&stepName=smaller-triangle`
       );
     }
   }, []);
@@ -83,7 +83,7 @@ export default function Home() {
               }
             }}
           >
-            {isLoading ? 'Loading…' : 'View Pull Request'}
+            {isLoading ? "Loading…" : "View Pull Request"}
           </a>
           <a
             className="font-[family-name:var(--font-geist-sans)] text-secondary hover:underline flex items-center justify-center h-12 font-medium"
