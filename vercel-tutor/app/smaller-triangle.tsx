@@ -45,6 +45,57 @@ function Check() {
   );
 }
 
+function Toolbar() {
+  return (
+    <span className="rounded-full border border-white w-[24px] h-[24px] inline-flex items-center justify-center align-middle">
+      <svg
+        aria-hidden="true"
+        width="24"
+        height="24"
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="inline-flex"
+      >
+        <g clip-path="url(#clip0_7590_8914)">
+          <circle
+            cx="23"
+            cy="20"
+            r="3.65625"
+            fill="white"
+            stroke="white"
+            stroke-width="1.6875"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M23 17.5801L25.4844 21.9277H20.5156L23 17.5801Z"
+            fill="#1A1A1A"
+          />
+        </g>
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M9.75 10H9V11.5H9.75H22.25H23V10H22.25H9.75ZM9.75 20H9V21.5H9.75H17.189C17.0656 21.0206 17 20.5179 17 20H9.75ZM18.126 16.5H9.75H9V15H9.75H19.6822C19.0774 15.4022 18.5497 15.9111 18.126 16.5Z"
+          fill="#EDEDED"
+        />
+        <defs>
+          <clipPath id="clip0_7590_8914">
+            <rect
+              width="9"
+              height="9"
+              fill="white"
+              transform="translate(18.5 15.5)"
+            />
+          </clipPath>
+        </defs>
+      </svg>
+    </span>
+  );
+}
+
 export default function Home() {
   const [nextUrl, setNextUrl] = useState("#");
   const [isLoading, setIsLoading] = useState(false);
@@ -96,9 +147,11 @@ export default function Home() {
               </span>
               <span className="text-secondary">
                 Vercel lets you collaborate with others by commenting directly
-                on a preview deployment. Press{" "}
-                <span className="text-foreground">“c”</span> on your keyboard
-                and click on the triangle logo at the top. Leave a comment like{" "}
+                on a preview deployment. First, click the Vercel Toolbar icon{" "}
+                <Toolbar /> on the page. Then, select{" "}
+                <span className="text-foreground">“Comment”</span> in the
+                toolbar menu. Now, click on the triangle logo at the top. Leave
+                a comment like{" "}
                 <span className="text-foreground">
                   “The triangle looks much better now!”
                 </span>
