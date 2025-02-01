@@ -149,9 +149,9 @@ export default function Home() {
                 Vercel lets you collaborate with others by commenting directly
                 on a preview deployment. First, click the Vercel Toolbar icon{" "}
                 <Toolbar /> on the page. Then, choose{" "}
-                <span className="text-foreground">“Comment”</span> on the
-                Toolbar. Now, click on the triangle logo at the top. Leave a
-                comment like{" "}
+                <span className="text-foreground">“Comment”</span> from the
+                toolbar menu. Now, click on the triangle logo at the top. Leave
+                a comment like{" "}
                 <span className="text-foreground">
                   “The triangle looks much better now!”
                 </span>
