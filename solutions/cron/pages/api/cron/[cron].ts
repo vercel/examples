@@ -1,18 +1,15 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextApiRequest, NextApiResponse } from 'next'
 import { kv } from '@vercel/kv'
 
-export const config = {
-  runtime: 'edge',
-}
-
-export default async function handler(req: NextRequest) {
-  const cron = req.nextUrl.pathname.split('/')[3]
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const cron = req.url?.split('/')[3]
   console.log(cron)
-  if (!cron) return new Response('No cron provided', { status: 400 })
+  if (!cron) return res.status(400).json({ error: 'No cron provided' })
   const response = await update(cron)
-  return new NextResponse(JSON.stringify(response), {
-    status: 200,
-  })
+  return res.status(200).json(response)
 }
 
 async function update(interval: string) {
@@ -22,7 +19,7 @@ async function update(interval: string) {
 
   const response = await kv.set(interval, {
     fetchedAt: Date.now(),
-    id: topstories[0],
+    id: topstories[0]
   })
 
   return response

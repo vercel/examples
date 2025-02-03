@@ -1,28 +1,22 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextApiRequest, NextApiResponse } from 'next'
 import { kv } from '@vercel/kv'
 
-export const config = {
-  runtime: 'edge',
-}
-
-export default async function handler(req: NextRequest) {
-  const interval = req.nextUrl.searchParams.get('interval')
-  if (!interval) return new Response('No interval provided', { status: 400 })
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  const interval = req.query.interval as string
+  if (!interval) return res.status(400).json({ error: 'No interval provided' })
   const { id, fetchedAt } =
     (await kv.get<{
       id: string
       fetchedAt: string
     } | null>(interval)) || {}
-  const res = await fetch(
-    `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`
+  const response = await fetch(
+    `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`,
   ).then((res) => res.json())
-  return new NextResponse(
-    JSON.stringify({
-      fetchedAt,
-      ...res,
-    }),
-    {
-      status: 200,
-    }
-  )
+  return res.status(200).json({
+    fetchedAt,
+    ...response,
+  })
 }
