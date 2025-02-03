@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { kv } from '@vercel/kv'
 
-export const config = {
-  runtime: 'edge',
-}
-
 export default async function handler(req: NextRequest) {
   const cron = req.nextUrl.pathname.split('/')[3]
   console.log(cron)
