@@ -1,10 +1,9 @@
-import { Redis } from '@upstash/redis'
+import { createClient } from "redis";
 
 export default async function ViewCounter() {
-  const redis = new Redis({
-    url: process.env.KV_REST_API_URL,
-    token: process.env.KV_REST_API_TOKEN,
-  })
+  const redis = await createClient({
+    url: process.env.REDIS_URL ?? process.env.KV_URL,
+  }).connect();
   const views = await redis.incr('views')
 
   return (
