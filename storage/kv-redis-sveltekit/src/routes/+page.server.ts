@@ -1,17 +1,16 @@
-import { KV_REST_API_TOKEN, KV_REST_API_URL } from '$env/static/private'
-import { Redis } from '@upstash/redis'
+import { REDIS_URL, KV_URL } from "$env/static/private";
+import { createClient } from "redis";
 
 /** @type {import('./$types').PageLoad} */
 export async function load() {
-  const kv = new Redis({
-    url: KV_REST_API_URL,
-    token: KV_REST_API_TOKEN,
-  })
-  const pageVisits = await kv.get<number>('pageVisits')
-  await kv.set('pageVisits', (pageVisits || 0) + 1)
-  const updatedPageVisits = await kv.get('pageVisits')
+	const kv = await createClient({
+		url: REDIS_URL ?? KV_URL,
+	}).connect();
+	const pageVisits = await kv.get("pageVisits");
+	await kv.set("pageVisits", Number.parseInt(pageVisits ?? "0", 10) + 1);
+	const updatedPageVisits = await kv.get("pageVisits");
 
-  return {
-    pageVisits: updatedPageVisits,
-  }
+	return {
+		pageVisits: updatedPageVisits,
+	};
 }
