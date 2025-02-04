@@ -17,13 +17,13 @@ export default function Home() {
         <ExpandingArrow />
       </Link>
       <h1 className="pt-4 pb-8 bg-gradient-to-br from-black via-[#171717] to-[#575757] bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
-        KV on Vercel
+        Redis on Vercel
       </h1>
       <div className="bg-white/30 p-12 shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full">
         <div className="flex justify-between items-center mb-4">
           <div className="space-y-1">
             <h2 className="text-xl font-semibold">
-              Announcing Vercel KV for Redis
+              Announcing Redis
             </h2>
             <p className="text-sm text-gray-500">
               The best description in the world
@@ -50,13 +50,7 @@ export default function Home() {
         </div>
       </div>
       <p className="font-light text-gray-600 w-full max-w-lg text-center mt-6">
-        <Link
-          href="https://vercel.com/kv"
-          className="font-medium underline underline-offset-4 hover:text-black transition-colors"
-        >
-          Vercel KV for Redis
-        </Link>{' '}
-        demo. Built with{' '}
+        Redis demo. Built with{' '}
         <Link
           href="https://nextjs.org/docs"
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
