@@ -1,5 +1,7 @@
-import { createPool, sql } from '@vercel/postgres'
+import postgres from 'postgres'
 import { POSTGRES_URL } from '$env/static/private'
+
+const sql = postgres(POSTGRES_URL, { ssl: 'require' })
 
 async function seed() {
   const createTable = await sql`
@@ -40,11 +42,10 @@ async function seed() {
 }
 
 export async function load() {
-  const db = createPool({ connectionString: POSTGRES_URL })
   const startTime = Date.now()
 
   try {
-    const { rows: users } = await db.query('SELECT * FROM users')
+    const users = await sql`SELECT * FROM users`
     const duration = Date.now() - startTime
     return {
       users: users,
@@ -57,7 +58,7 @@ export async function load() {
       )
       // Table is not created yet
       await seed()
-      const { rows: users } = await db.query('SELECT * FROM users')
+      const users = await sql`SELECT * FROM users`
       const duration = Date.now() - startTime
       return {
         users: users,
