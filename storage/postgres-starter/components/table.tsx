@@ -1,8 +1,10 @@
-import { sql } from '@vercel/postgres'
+import postgres from 'postgres'
 import { timeAgo } from '@/lib/utils'
 import Image from 'next/image'
 import RefreshButton from './refresh-button'
 import { seed } from '@/lib/seed'
+
+const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 export default async function Table() {
   let data
@@ -24,7 +26,7 @@ export default async function Table() {
     }
   }
 
-  const { rows: users } = data
+  const users = data
   const duration = Date.now() - startTime
 
   return (
