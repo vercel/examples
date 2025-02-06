@@ -12,7 +12,7 @@ import postgres from "postgres";
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 export const UsersTable = pgTable(
-	"users",
+	"profiles",
 	{
 		id: serial("id").primaryKey(),
 		name: text("name").notNull(),
