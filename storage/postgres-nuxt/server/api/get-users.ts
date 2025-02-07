@@ -49,8 +49,10 @@ export default defineEventHandler(async () => {
       duration: duration,
     }
   } catch (error) {
-    // @ts-ignore
-    if (error?.message === `relation "profiles" does not exist`) {
+    if (
+      error instanceof Error &&
+      error?.message === `relation "profiles" does not exist`
+    ) {
       console.log(
         'Table does not exist, creating and seeding it with dummy data now...'
       )
