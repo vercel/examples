@@ -27,7 +27,7 @@ const newUsers: NewUser[] = [
 
 export async function seed() {
   // Create table with raw SQL
-  const createTable = await sql.query(`
+  const createTable = await sql`
       CREATE TABLE IF NOT EXISTS profiles (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
@@ -35,7 +35,7 @@ export async function seed() {
         image VARCHAR(255),
         "createdAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       );
-  `)
+  `
   console.log(`Created "profiles" table`)
 
   const insertedUsers: User[] = await db
