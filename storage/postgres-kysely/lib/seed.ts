@@ -2,7 +2,7 @@ import { db, sql } from '@/lib/kysely'
 
 export async function seed() {
   const createTable = await db.schema
-    .createTable('users')
+    .createTable('profiles')
     .ifNotExists()
     .addColumn('id', 'serial', (cb) => cb.primaryKey())
     .addColumn('name', 'varchar(255)', (cb) => cb.notNull())
@@ -12,9 +12,9 @@ export async function seed() {
       cb.defaultTo(sql`current_timestamp`)
     )
     .execute()
-  console.log(`Created "users" table`)
+  console.log(`Created "profiles" table`)
   const addUsers = await db
-    .insertInto('users')
+    .insertInto('profiles')
     .values([
       {
         name: 'Guillermo Rauch',
@@ -36,7 +36,7 @@ export async function seed() {
       },
     ])
     .execute()
-  console.log('Seeded database with 3 users')
+  console.log('Seeded database with 3 profiles')
   return {
     createTable,
     addUsers,
