@@ -45,20 +45,20 @@ export async function load() {
   const startTime = Date.now()
 
   try {
-    const users = await sql`SELECT * FROM users`
+    const users = await sql`SELECT * FROM profiles`
     const duration = Date.now() - startTime
     return {
       users: users,
       duration: duration,
     }
   } catch (error) {
-    if (error?.message === `relation "users" does not exist`) {
+    if (error?.message === `relation "profiles" does not exist`) {
       console.log(
         'Table does not exist, creating and seeding it with dummy data now...'
       )
       // Table is not created yet
       await seed()
-      const users = await sql`SELECT * FROM users`
+      const users = await sql`SELECT * FROM profiles`
       const duration = Date.now() - startTime
       return {
         users: users,
