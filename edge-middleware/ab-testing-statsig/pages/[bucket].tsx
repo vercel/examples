@@ -18,12 +18,16 @@ import exampleScreenshot from '../public/example_experiment.png'
 
 interface Props {
   bucket: string
+  missingEdgeConfigEnvVars: boolean
+  missingConsoleApiEnvVars: boolean
 }
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   return {
     props: {
       bucket: params?.bucket as string,
+      missingEdgeConfigEnvVars: !process.env.EDGE_CONFIG || !process.env.EDGE_CONFIG_ITEM_KEY,
+      missingConsoleApiEnvVars: !process.env.STATSIG_CONSOLE_API_KEY,
     },
   }
 }
@@ -35,13 +39,13 @@ export const getStaticPaths: GetStaticPaths<{ bucket: string }> = async () => {
     .filter(Boolean)
 
   return {
-    paths: groups.map((group) => ({ params: { bucket: group } })),
+    paths: groups.map((group) => ({ params: { bucket: group, missingEdgeConfigEnvVars: !process.env.EDGE_CONFIG || !process.env.EDGE_CONFIG_ITEM_KEY, missingConsoleApiEnvVars: !process.env.STATSIG_CONSOLE_API_KEY } })),
     fallback: 'blocking',
   }
 }
 
-function BucketPage({ bucket }: Props) {
-  const { query, reload } = useRouter()
+function BucketPage({ bucket, missingEdgeConfigEnvVars, missingConsoleApiEnvVars }: Props) {
+  const { reload } = useRouter()
 
   function resetBucket() {
     Cookie.remove(UID_COOKIE)
@@ -81,8 +85,8 @@ function BucketPage({ bucket }: Props) {
         <Text>
           In order to set this demo up yourself, in the <Link href="https://console.statsig.com/" target="_blank">
             Statsig console
-          </Link>, create a new experiment called &quot;statsig_example&quot;. 
-          Create experiment groups, each with a &quot;bucket&quot; parameter. 
+          </Link>, create a new experiment called &quot;statsig_example&quot;.
+          Create experiment groups, each with a &quot;bucket&quot; parameter.
           Make sure to start the experiment, and from there this example will display the bucket that the user was assigned to.
           See the screenshot below for an example experiment setup.
         </Text>
@@ -95,36 +99,36 @@ function BucketPage({ bucket }: Props) {
       <section className="flex flex-col gap-6">
         <Text variant="h1">Leveraging Edge Config For Performance</Text>
         {
-          query.missingEdgeConfigEnvVars ? 
-          <Text> 
-            You can leverage the {' '}
-            <Link href="https://vercel.com/integrations/statsig" target="_blank">
-              edge config integration
-            </Link>{' '} to pull Statsig configurations from the edge to improve performance. Follow the README for more information.
-          </Text> :
-          <Text>
-            We leverage the{' '}
-            <Link href="https://vercel.com/integrations/statsig" target="_blank">
-              edge config integration
-            </Link>{' '}
-            to pull Statsig configurations from the edge.
-          </Text>
+          missingEdgeConfigEnvVars ?
+            <Text>
+              You can leverage the {' '}
+              <Link href="https://vercel.com/integrations/statsig" target="_blank">
+                edge config integration
+              </Link>{' '} to pull Statsig configurations from the edge to improve performance. Follow the README for more information.
+            </Text> :
+            <Text>
+              We leverage the{' '}
+              <Link href="https://vercel.com/integrations/statsig" target="_blank">
+                edge config integration
+              </Link>{' '}
+              to pull Statsig configurations from the edge.
+            </Text>
         }
 
         {
-          query.missingConsoleApiEnvVars ?         
-          <Text>
-            Set the STATSIG_CONSOLE_API_KEY env variable to leverage static page  
-            generation. The sample pre-renders pages at build time in a{' '}
-            <Code>/[bucket]</Code> page based on the experiment variants
-            so its fast to rewrite to them. Take a look at the 
-            <Code>middleware.ts</Code> file to know more.
-          </Text> :
-          <Text>
-            Buckets are statically generated at build time in a{' '}
-            <Code>/[bucket]</Code> page so its fast to rewrite to them. Take a
-            look at the <Code>middleware.ts</Code> file to know more.
-          </Text>
+          missingConsoleApiEnvVars ?
+            <Text>
+              Set the STATSIG_CONSOLE_API_KEY env variable to leverage static page
+              generation. The sample pre-renders pages at build time in a{' '}
+              <Code>/[bucket]</Code> page based on the experiment variants
+              so its fast to rewrite to them. Take a look at the
+              <Code>middleware.ts</Code> file to know more.
+            </Text> :
+            <Text>
+              Buckets are statically generated at build time in a{' '}
+              <Code>/[bucket]</Code> page so its fast to rewrite to them. Take a
+              look at the <Code>middleware.ts</Code> file to know more.
+            </Text>
         }
       </section>
 

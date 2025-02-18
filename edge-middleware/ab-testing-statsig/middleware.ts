@@ -10,7 +10,6 @@ const IS_UUID = /^[0-9a-f-]+$/i
 let dataAdapter: EdgeConfigDataAdapter;
 
 const missingEdgeConfigEnvVars = !process.env.EDGE_CONFIG || !process.env.EDGE_CONFIG_ITEM_KEY
-const missingConsoleApiEnvVars = !process.env.STATSIG_CONSOLE_API_KEY
 
 if (!missingEdgeConfigEnvVars) {
   const edgeConfigClient = createClient(process.env.EDGE_CONFIG)
@@ -81,14 +80,6 @@ export async function middleware(req: NextRequest, event: NextFetchEvent) {
   // Clone the URL and change its pathname to point to a bucket
   const url = req.nextUrl.clone()
   url.pathname = `/${bucket}`
-
-  if (missingEdgeConfigEnvVars) {
-    url.searchParams.set('missingEdgeConfigEnvVars', 'true');
-  }
-
-  if (missingConsoleApiEnvVars) {
-    url.searchParams.set('missingConsoleApiEnvVars', 'true');
-  }
 
   // Response that'll rewrite to the selected bucket
   const res = NextResponse.rewrite(url)
