@@ -27,7 +27,7 @@ export default function Index() {
         saved under the <Code>{USER_TOKEN}</Code> cookie.
       </Text>
       <Text className="mb-4">
-        If you visit <Link href="/protected">/protected</Link> if will redirect
+        If you visit <Link href="/protected">/protected</Link>, it will redirect
         you here if you aren&apos;t authenticated. Click the button below to
         authenticate and be able to see the page:
       </Text>
