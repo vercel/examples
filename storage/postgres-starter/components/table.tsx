@@ -1,30 +1,32 @@
-import { sql } from '@vercel/postgres'
+import postgres from 'postgres'
 import { timeAgo } from '@/lib/utils'
 import Image from 'next/image'
 import RefreshButton from './refresh-button'
 import { seed } from '@/lib/seed'
+
+const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 export default async function Table() {
   let data
   let startTime = Date.now()
 
   try {
-    data = await sql`SELECT * FROM users`
+    data = await sql`SELECT * FROM profiles`
   } catch (e: any) {
-    if (e.message.includes('relation "users" does not exist')) {
+    if (e.message.includes('relation "profiles" does not exist')) {
       console.log(
         'Table does not exist, creating and seeding it with dummy data now...'
       )
       // Table is not created yet
       await seed()
       startTime = Date.now()
-      data = await sql`SELECT * FROM users`
+      data = await sql`SELECT * FROM profiles`
     } else {
       throw e
     }
   }
 
-  const { rows: users } = data
+  const profiles = data
   const duration = Date.now() - startTime
 
   return (
@@ -33,13 +35,13 @@ export default async function Table() {
         <div className="space-y-1">
           <h2 className="text-xl font-semibold">Recent Users</h2>
           <p className="text-sm text-gray-500">
-            Fetched {users.length} users in {duration}ms
+            Fetched {profiles.length} users in {duration}ms
           </p>
         </div>
         <RefreshButton />
       </div>
       <div className="divide-y divide-gray-900/5">
-        {users.map((user) => (
+        {profiles.map((user) => (
           <div
             key={user.name}
             className="flex items-center justify-between py-3"

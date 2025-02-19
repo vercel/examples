@@ -9,7 +9,7 @@
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/app",
-        "outputPath": "dist/apps/app"
+        "outputPath": "apps/app/out"
       },
       "configurations": {
         "development": {

@@ -25,13 +25,7 @@ export default function Home() {
         <Table />
       </Suspense>
       <p className="font-light text-gray-600 w-full max-w-lg text-center mt-6">
-        <Link
-          href="https://vercel.com/postgres"
-          className="font-medium underline underline-offset-4 hover:text-black transition-colors"
-        >
-          Vercel Postgres
-        </Link>{' '}
-        demo with{' '}
+        Postgres demo with{' '}
         <Link
           href="https://kysely.dev/"
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"

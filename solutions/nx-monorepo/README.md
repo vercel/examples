@@ -5,7 +5,7 @@ description: Learn to implement a monorepo with a single Next.js site using Nx.
 framework: Next.js
 useCase: Documentation
 css: CSS
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/nx-monorepo&project-name=nx-monorepo&output-directory=dist%2Fapps%2Fapp%2F.next&build-command=npx%20nx%20build%20app%20--prod&repository-name=nx-monorepo
+deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fnx-monorepo&project-name=nx-monorepo&output-directory=out%2F.next&build-command=cd+..%2F..%2F+%26%26+npx+nx+build+app+--prod&repository-name=nx-monorepo&root-directory=apps%2Fapp
 relatedTemplates:
   - monorepo-turborepo
   - turborepo-next-basic
@@ -28,7 +28,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/nx-monorepo&project-name=nx-monorepo&output-directory=dist%2Fapps%2Fapp%2F.next&build-command=npx%20nx%20build%20app%20--prod&ignore-command=npx%20nx-ignore%20app&repository-name=nx-monorepo)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fnx-monorepo&project-name=nx-monorepo&output-directory=out%2F.next&build-command=cd+..%2F..%2F+%26%26+npx+nx+build+app+--prod&repository-name=nx-monorepo&root-directory=apps%2Fapp)
 
 ## Getting Started
 

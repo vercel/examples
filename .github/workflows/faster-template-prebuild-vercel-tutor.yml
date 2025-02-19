@@ -29,7 +29,7 @@ jobs:
 
       - working-directory: ./vercel-tutor
         run: |
-          corepack enable
+          npm install -g pnpm@9.15.3
           pnpm install
         env:
           NPM_CONFIG_LOGLEVEL: http
