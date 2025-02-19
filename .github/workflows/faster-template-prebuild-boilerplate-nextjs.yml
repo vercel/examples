@@ -37,7 +37,7 @@ jobs:
         run: |
           vc build --debug --token $VERCEL_TOKEN --yes --prod
         env:
-          VERCEL_PROJECT_ID: prj_qav3SWw0ZQDfehj7w47xPaBESx8P
+          VERCEL_PROJECT_ID: prj_D1Kp06w4jE67wyV3WlMHjtfDLjhC
           VERCEL_TOKEN: ${{ secrets.VERCEL_EXAMPLES_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_EXAMPLES_ORG_ID }}
 
@@ -45,6 +45,6 @@ jobs:
         run: |
           vc deploy --debug --token $VERCEL_TOKEN --yes --prod --prebuilt --archive=tgz
         env:
-          VERCEL_PROJECT_ID: prj_qav3SWw0ZQDfehj7w47xPaBESx8P
+          VERCEL_PROJECT_ID: prj_D1Kp06w4jE67wyV3WlMHjtfDLjhC
           VERCEL_TOKEN: ${{ secrets.VERCEL_EXAMPLES_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_EXAMPLES_ORG_ID }}
