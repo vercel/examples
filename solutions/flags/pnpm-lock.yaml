@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@vercel/flags':
+        specifier: ^3.1.1
+        version: 3.1.1(next@15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       next:
         specifier: 15.1.7
         version: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -30,9 +33,6 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.0.4(@types/react@19.0.10)
-      '@vercel/flags':
-        specifier: ^3.1.1
-        version: 3.1.1(next@15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       eslint:
         specifier: ^9
         version: 9.20.1(jiti@1.21.7)
