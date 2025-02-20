@@ -1,17 +1,35 @@
-import type { ReactNode } from 'react'
-import { Layout, getMetadata } from '@vercel/examples-ui'
-import '@vercel/examples-ui/globals.css'
+import type { Metadata } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
+import { VercelToolbar } from '@vercel/toolbar/next'
+import './globals.css'
 
-export const metadata = getMetadata({
-  title: 'flags',
-  description: 'flags',
+const geistSans = Geist({
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 })
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+})
+
+export const metadata: Metadata = {
+  title: 'Flags',
+  description: 'Flags SDK example with Next.js and App Directory',
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
     <html lang="en">
-      <body>
-        <Layout path="solutions/flags">{children}</Layout>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {children}
+        <VercelToolbar />
       </body>
     </html>
   )

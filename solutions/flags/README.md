@@ -1,10 +1,8 @@
-# flags example
+# Flags Solution
 
-This example shows how -------------------------
+This solution uses [Flags SDK](https://flags-sdk.dev) to declare flags in code, and uses the app directory with server components to render variations of the home page.
 
-## Demo
-
-https://flags.vercel.app
+[Link your project to Vercel](#deploy-on-vercel) to use the [Flags Explorer](#use-vercel-flags-explorer).
 
 ## How to Use
 
@@ -31,3 +29,36 @@ pnpm dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
+
+## Getting Started
+
+First, install dependencies:
+
+```bash
+pnpm install
+```
+
+Then, run the development server:
+
+```bash
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Use Vercel Flags Explorer
+
+When deploying with Vercel, you can use the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar) to override flags for your app.
+
+![](https://vercel.com/_next/image?url=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Fv1726747095%2Fdocs-assets%2Fstatic%2Fdocs%2Fworkflow-collaboration%2Ffeature-flags%2Ffeature-flags-overview-dark.jpg&w=1200&q=75)
+
+You must link your project to Vercel. You can do this for new and existing projects using the [Vercel CLI](https://vercel.com/docs/cli):
+
+```bash
+vercel link
+# ? Link to existing project? no
+# ? What’s your project’s name? my-flags-example
+# ...
+```
+
+Now you should be able to see the Vercel Toolbar in development. Search for "Flags" in the toolbar and click "Get Started".
