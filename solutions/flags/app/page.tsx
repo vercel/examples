@@ -33,7 +33,11 @@ export default async function Home() {
             </code>
             .
           </li>
-          <li>Save and see your changes instantly.</li>
+          <li className="mb-2">Save and see your changes instantly.</li>
+          <li className="mb-2">
+            Refresh the page to see random flag variations.
+          </li>
+          <li className="mb-2">Connect to Vercel to try Flags Explorer.</li>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
