@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@vercel/examples-ui": "^2.0.3",
-    "@vercel/flags": "^3.1.1",
     "@vercel/toolbar": "^0.1.31",
+    "flags": "^3.1.1",
     "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

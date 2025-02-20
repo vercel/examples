@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { FlagValues } from '@vercel/flags/react'
+import { FlagValues } from 'flags/react'
 import { exampleFlag } from '@/flags'
 
 export default async function Home() {
