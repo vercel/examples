@@ -13,16 +13,18 @@ export default async function Home() {
         }}
       />
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className={
-            exampleFlagValue ? 'dark:invert opacity-50' : 'dark:invert'
-          }
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
+        <div className="w-[180px] h-[40px] grid place-items-center">
+          <Image
+            className={
+              exampleFlagValue ? 'dark:invert opacity-50' : 'dark:invert'
+            }
+            src="/next.svg"
+            alt="Next.js logo"
+            width={180}
+            height={36.5446}
+            priority
+          />
+        </div>
         <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">
             Get started by editing{' '}
