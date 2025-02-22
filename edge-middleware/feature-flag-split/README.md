@@ -48,7 +48,7 @@ Then open `.env.local` and set the environment variables to match the ones in yo
 
 #### Set up environment variables
 
-Copy [.env.example](./env.example) to `.env.local`:
+Copy [.env.example](./.env.example) to `.env.local`:
 
 ```bash
 cp .env.example .env.local
