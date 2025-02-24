@@ -28,6 +28,7 @@ function Circle() {
 
 export default function Home() {
   const [nextUrl, setNextUrl] = useState("#");
+  const [isLocalhost, setIsLocalhost] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const searchParams = useSearchParams();
   const prUrl = searchParams.get("prUrl");
@@ -47,6 +48,8 @@ export default function Home() {
           host,
         )}&stepName=smaller-triangle`,
       );
+    } else {
+      setIsLocalhost(true);
     }
   }, [prUrl]);
 
@@ -61,48 +64,58 @@ export default function Home() {
           height={150}
           priority
         />
-        <div className="text-left font-[family-name:var(--font-geist-sans)] leading-relaxed">
-          <h1 className="mb-6 font-semibold">
-            Congratulations! You&apos;ve created your first production
-            deployment.
-          </h1>
-          <ul>
-            <li className="flex gap-3 items-start">
-              <span className="inline-flex mt-[0.3rem]">
-                <Circle />
-              </span>
-              <span className="text-secondary">
-                Next, let&apos;s try to improve this page. Maybe the triangle
-                logo is too big. To make it easy for you, we&apos;ve already
-                created a pull request to make the triangle smaller. Check it
-                out:
-              </span>
-            </li>
-          </ul>
-        </div>
-        <div className="flex flex-col gap-4">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground font-medium text-background hover:bg-[#383838] dark:hover:bg-[#ccc] h-12 font-[family-name:var(--font-geist-sans)]"
-            href={nextUrl}
-            onClick={(e) => {
-              if (isLoading) {
-                e.preventDefault();
-              } else {
-                setIsLoading(true);
-              }
-            }}
-          >
-            {isLoading ? "Loading…" : "View Pull Request"}
-          </a>
-          <a
-            className="font-[family-name:var(--font-geist-sans)] text-secondary hover:underline flex items-center justify-center h-12 font-medium"
-            href="https://vercel.com/dashboard?utm_source=vercel-tutor&utm_medium=template&utm_campaign=vercel-tutor"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Go to Dashboard
-          </a>
-        </div>
+        {isLocalhost ? (
+          <div className="text-left font-[family-name:var(--font-geist-sans)] leading-relaxed">
+            <h1 className="mb-6 font-semibold">
+              Please deploy this template to Vercel to continue.
+            </h1>
+          </div>
+        ) : (
+          <>
+            <div className="text-left font-[family-name:var(--font-geist-sans)] leading-relaxed">
+              <h1 className="mb-6 font-semibold">
+                Congratulations! You&apos;ve created your first production
+                deployment.
+              </h1>
+              <ul>
+                <li className="flex gap-3 items-start">
+                  <span className="inline-flex mt-[0.3rem]">
+                    <Circle />
+                  </span>
+                  <span className="text-secondary">
+                    Next, let&apos;s try to improve this page. Maybe the
+                    triangle logo is too big. To make it easy for you,
+                    we&apos;ve already created a pull request to make the
+                    triangle smaller. Check it out:
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div className="flex flex-col gap-4">
+              <a
+                className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground font-medium text-background hover:bg-[#383838] dark:hover:bg-[#ccc] h-12 font-[family-name:var(--font-geist-sans)]"
+                href={nextUrl}
+                onClick={(e) => {
+                  if (isLoading) {
+                    e.preventDefault();
+                  } else {
+                    setIsLoading(true);
+                  }
+                }}
+              >
+                {isLoading ? "Loading…" : "View Pull Request"}
+              </a>
+              <a
+                className="font-[family-name:var(--font-geist-sans)] text-secondary hover:underline flex items-center justify-center h-12 font-medium"
+                href="https://vercel.com/dashboard?utm_source=vercel-tutor&utm_medium=template&utm_campaign=vercel-tutor"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Go to Dashboard
+              </a>
+            </div>
+          </>
+        )}
       </main>
     </div>
   );
