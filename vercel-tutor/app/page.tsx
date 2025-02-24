@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import vercelSvg from "@/app/vercel.svg";
 
@@ -30,11 +29,10 @@ export default function Home() {
   const [nextUrl, setNextUrl] = useState("#");
   const [isLocalhost, setIsLocalhost] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const searchParams = useSearchParams();
-  const prUrl = searchParams.get("prUrl");
 
   useEffect(() => {
     const host = window.location.hostname;
+    const prUrl = new URLSearchParams(window.location.search).get("prUrl");
 
     if (
       prUrl?.match(
@@ -51,7 +49,7 @@ export default function Home() {
     } else {
       setIsLocalhost(true);
     }
-  }, [prUrl]);
+  }, []);
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
