@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import vercelSvg from "@/app/vercel.svg";
 
@@ -28,18 +29,26 @@ function Circle() {
 export default function Home() {
   const [nextUrl, setNextUrl] = useState("#");
   const [isLoading, setIsLoading] = useState(false);
+  const searchParams = useSearchParams();
+  const prUrl = searchParams.get("prUrl");
 
   useEffect(() => {
     const host = window.location.hostname;
 
-    if (host !== "localhost") {
+    if (
+      prUrl?.match(
+        /^https:\/\/github.com\/[a-zA-Z0-9-]+\/vercel-tutor\/pull\/1$/,
+      )
+    ) {
+      setNextUrl(prUrl);
+    } else if (host !== "localhost") {
       setNextUrl(
         `https://vercel.com/vercel-tutor/step?origin=${encodeURIComponent(
           host,
         )}&stepName=smaller-triangle`,
       );
     }
-  }, []);
+  }, [prUrl]);
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
