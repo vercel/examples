@@ -1,6 +1,6 @@
 # Vercel Tutor
 
-This is a [Next.js](https://nextjs.org/?utm_source=vercel-tutor&utm_medium=readme&utm_campaign=vercel-tutor) template that provides a step-by-step tutorial on how to use [Preview Deployments and Preview Comments](https://vercel.com/products/previews?utm_source=vercel-tutor&utm_medium=readme&utm_campaign=vercel-tutor) on [Vercel](https://vercel.com?utm_source=vercel-tutor&utm_medium=readme&utm_campaign=vercel-tutor). It is intended for users who are new to Vercel.
+This is a [Next.js](https://nextjs.org/?utm_source=vercel-tutor&utm_medium=readme&utm_campaign=vercel-tutor) template that provides a step-by-step tutorial on how to use [Preview Deployments](https://vercel.com/docs/deployments/preview-deployments?utm_source=vercel-tutor&utm_medium=readme&utm_campaign=vercel-tutor) and [Comments](https://vercel.com/docs/workflow-collaboration/comments?utm_source=vercel-tutor&utm_medium=readme&utm_campaign=vercel-tutor) on [Vercel](https://vercel.com?utm_source=vercel-tutor&utm_medium=readme&utm_campaign=vercel-tutor). It is intended for users who are new to Vercel.
 
 ### Get Started
 
