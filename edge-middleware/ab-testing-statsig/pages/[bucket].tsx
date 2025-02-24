@@ -26,7 +26,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   return {
     props: {
       bucket: params?.bucket as string,
-      missingEdgeConfigEnvVars: !process.env.EDGE_CONFIG || !process.env.EDGE_CONFIG_ITEM_KEY,
+      missingEdgeConfigEnvVars: !process.env.EXPERIMENTATION_CONFIG || !process.env.EXPERIMENTATION_CONFIG_ITEM_KEY,
       missingConsoleApiEnvVars: !process.env.STATSIG_CONSOLE_API_KEY,
     },
   }
@@ -39,7 +39,7 @@ export const getStaticPaths: GetStaticPaths<{ bucket: string }> = async () => {
     .filter(Boolean)
 
   return {
-    paths: groups.map((group) => ({ params: { bucket: group, missingEdgeConfigEnvVars: !process.env.EDGE_CONFIG || !process.env.EDGE_CONFIG_ITEM_KEY, missingConsoleApiEnvVars: !process.env.STATSIG_CONSOLE_API_KEY } })),
+    paths: groups.map((group) => ({ params: { bucket: group, missingEdgeConfigEnvVars: !process.env.EXPERIMENTATION_CONFIG || !process.env.EXPERIMENTATION_CONFIG_ITEM_KEY, missingConsoleApiEnvVars: !process.env.STATSIG_CONSOLE_API_KEY } })),
     fallback: 'blocking',
   }
 }

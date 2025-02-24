@@ -9,13 +9,13 @@ const IS_UUID = /^[0-9a-f-]+$/i
 
 let dataAdapter: EdgeConfigDataAdapter;
 
-const missingEdgeConfigEnvVars = !process.env.EDGE_CONFIG || !process.env.EDGE_CONFIG_ITEM_KEY
+const missingEdgeConfigEnvVars = !process.env.EXPERIMENTATION_CONFIG || !process.env.EXPERIMENTATION_CONFIG_ITEM_KEY
 
 if (!missingEdgeConfigEnvVars) {
-  const edgeConfigClient = createClient(process.env.EDGE_CONFIG)
+  const edgeConfigClient = createClient(process.env.EXPERIMENTATION_CONFIG)
   dataAdapter = new EdgeConfigDataAdapter({
     edgeConfigClient,
-    edgeConfigItemKey: process.env.EDGE_CONFIG_ITEM_KEY!,
+    edgeConfigItemKey: process.env.EXPERIMENTATION_CONFIG_ITEM_KEY!,
   })
 }
 
