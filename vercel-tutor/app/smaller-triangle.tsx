@@ -47,7 +47,7 @@ function Check() {
 
 function Toolbar() {
   return (
-    <span className="rounded-full border border-white w-[24px] h-[24px] inline-flex items-center justify-center align-middle">
+    <span className="rounded-full border border-secondary bg-[rgba(0,0,0,.8)] w-[24px] h-[24px] inline-flex items-center justify-center align-middle">
       <svg
         aria-hidden="true"
         width="24"
