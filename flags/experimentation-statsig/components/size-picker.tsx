@@ -1,7 +1,6 @@
 'use client';
 
 import { Radio, RadioGroup } from '@headlessui/react';
-import { product } from '@/app/data';
 import clsx from 'clsx';
 import { useState } from 'react';
 
