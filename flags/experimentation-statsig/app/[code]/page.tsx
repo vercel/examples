@@ -35,11 +35,11 @@ export default async function Page(props: {
 
   return (
     <div className="bg-white">
-      {showFreeDeliveryBanner && <FreeDeliveryBanner />}
+      <FreeDeliveryBanner show={showFreeDeliveryBanner} />
 
       <Navigation />
 
-      {showSummerBanner && <SummerBanner />}
+      <SummerBanner show={showSummerBanner} />
 
       <main className="mx-auto max-w-2xl px-4 pb-16 sm:px-6 sm:pb-24 lg:max-w-7xl lg:px-8">
         <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">

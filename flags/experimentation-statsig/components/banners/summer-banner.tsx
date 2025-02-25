@@ -1,11 +1,17 @@
+'use client';
+
 import pool from '@/public/images/pool.jpg'
 import Image from 'next/image';
 import { track } from '@vercel/analytics/react';
 
-export function SummerBanner() {
+export function SummerBanner(props: {
+  show: boolean;
+}) {
+  if (!props.show) return null;
+
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-lg">
           <div className="absolute inset-0">
             <Image
@@ -20,9 +26,9 @@ export function SummerBanner() {
                 <span className="block sm:inline">Summer Sale</span>
               </h2>
               <p className="mt-3 text-xl text-white">
-                Enjoy 20% off all summer styles,
+                Enjoy 20% off all summer basics,
                 <br />
-                from bright dresses to pastel-hued tops.
+                including swimwear and accessories.
               </p>
               <button
                 type="button"
