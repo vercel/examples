@@ -1,4 +1,5 @@
 "use client";
+
 /**
  * This file exports a StatsigProvider with a client-side bootstrap.
  * It requires a client-side fetch to retrieve the bootstrap payload.
@@ -12,7 +13,8 @@ import {
   useClientBootstrapInit,
 } from "@statsig/react-bindings";
 import { StatsigAutoCapturePlugin } from "@statsig/web-analytics";
-import { createContext } from "react";
+import { createContext, useMemo } from "react";
+import { Statsig } from "statsig-node-lite";
 import useSWR from "swr";
 
 export const StatsigAppBootstrapContext = createContext<{
@@ -50,6 +52,7 @@ export function StaticStatsigProvider({
   children: React.ReactNode;
 }) {
   const { data, error } = useBootstrap();
+  const values = useMemo(() => JSON.stringify(data), [data]);
 
   if (!data) {
     return (
@@ -61,7 +64,7 @@ export function StaticStatsigProvider({
 
   return (
     <StatsigAppBootstrapContext.Provider value={{ isLoading: false, error }}>
-      <BootstrappedStatsigProvider user={data.user} values={data.values}>
+      <BootstrappedStatsigProvider user={data.user} values={values}>
         {children}
       </BootstrappedStatsigProvider>
     </StatsigAppBootstrapContext.Provider>
@@ -76,5 +79,5 @@ const fetcher = (url: string) =>
   }).then((res) => res.json());
 
 export function useBootstrap() {
-  return useSWR("/api/bootstrap", fetcher);
+  return useSWR<Awaited<ReturnType<typeof Statsig.getClientInitializeResponse>>>("/api/bootstrap", fetcher);
 }

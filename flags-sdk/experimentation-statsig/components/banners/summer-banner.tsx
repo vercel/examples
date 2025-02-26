@@ -2,7 +2,6 @@
 
 import pool from '@/public/images/pool.jpg'
 import Image from 'next/image';
-import { track } from '@vercel/analytics/react';
 
 export function SummerBanner(props: {
   show: boolean;
@@ -33,9 +32,6 @@ export function SummerBanner(props: {
               <button
                 type="button"
                 className="mt-8 block w-full rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-gray-900 hover:bg-gray-100 sm:w-auto"
-                onClick={() => {
-                  track('Clicked Shop Now');
-                }}
               >
                 Shop now
               </button>

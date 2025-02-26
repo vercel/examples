@@ -35,9 +35,6 @@ importers:
       '@tailwindcss/typography':
         specifier: 0.5.16
         version: 0.5.16(tailwindcss@4.0.8)
-      '@vercel/analytics':
-        specifier: ^1.5.0
-        version: 1.5.0(next@15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       '@vercel/edge':
         specifier: 1.2.1
         version: 1.2.1
@@ -1620,6 +1617,7 @@ snapshots:
     optionalDependencies:
       next: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
+    optional: true
 
   '@vercel/edge-config-fs@0.1.0': {}
 

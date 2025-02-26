@@ -1,10 +1,12 @@
 "use client";
+
 /**
  * This file exports exposure helpers for Static/ISR pages.
  * - Wait for Statsig to initialize
  * - Log exposures when ready
  * - Add debug info outside of production
  */
+
 import { useContext } from "react";
 import { StatsigAppBootstrapContext } from "./statsig-provider";
 import {
@@ -80,7 +82,7 @@ function DebugInfoUnlessProduction({
   details: Record<string, unknown>;
   value: unknown;
 }) {
-  if (process.env.VERCEL_ENV === "production") return null;
+  if (process.env.NEXT_PUBLIC_VERCEL_ENV === "production") return null;
 
   return (
     <pre className="statsig-debug-info text-sm px-8 py-4 hidden" hidden>

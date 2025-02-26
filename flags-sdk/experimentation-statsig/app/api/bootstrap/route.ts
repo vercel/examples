@@ -21,17 +21,8 @@ export async function GET(request: Request): Promise<NextResponse> {
     hash: "djb2",
   });
 
-  /**
-   * ```
-   * Response {
-   *  values: <StatsigClientInitializeResponse>
-   *  user: <StatsigUser>,
-   *  }
-   */
-  return new NextResponse(JSON.stringify({ user, values: JSON.stringify(values) }), {
-    status: 200,
+  return NextResponse.json(values, {
     headers: {
-      "Content-Type": "application/json",
       "Cache-Control": "private, max-age=60",
       Vary: "Cookie",
     },

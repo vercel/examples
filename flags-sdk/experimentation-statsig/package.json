@@ -18,7 +18,6 @@
     "@tailwindcss/forms": "0.5.10",
     "@tailwindcss/postcss": "^4.0.8",
     "@tailwindcss/typography": "0.5.16",
-    "@vercel/analytics": "^1.5.0",
     "@vercel/edge": "1.2.1",
     "@vercel/edge-config": "1.4.0",
     "@vercel/toolbar": "0.1.33",
