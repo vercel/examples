@@ -3,7 +3,7 @@ import { dedupe } from 'flags/next';
 import { nanoid } from 'nanoid';
 
 /**
- * Reads the visitor id from the cookie or returns a new visitor id
+ * Reads the stable id from the cookie or returns a new stable id
  */
 export const getStableId = dedupe(async () => {
   const cookiesStore = await cookies();

@@ -2,6 +2,7 @@ import { AddToCartButton } from '@/components/add-to-cart-button'
 import { FreeDeliveryBanner } from '@/components/banners/free-delivery-banner'
 import { SummerBanner } from '@/components/banners/summer-banner'
 import { ColorPicker } from '@/components/color-picker'
+import { DevTools } from '@/components/dev-tools'
 import { Footer } from '@/components/footer'
 import { ImageGallery } from '@/components/image-gallery'
 import { Navigation } from '@/components/navigation'
@@ -14,14 +15,7 @@ import {
   showFreeDeliveryBannerFlag,
   showSummerBannerFlag,
 } from '@/flags'
-import { generatePermutations, getPrecomputed } from 'flags/next'
-
-export const dynamicParams = true;
-
-export async function generateStaticParams() {
-  const codes = await generatePermutations(productFlags);
-  return codes.map((code) => ({ code }));
-}
+import { getPrecomputed } from 'flags/next'
 
 export default async function Page(props: {
   params: Promise<{ code: string }>;
@@ -59,6 +53,7 @@ export default async function Page(props: {
       </main>
 
       <Footer />
+      <DevTools />
     </div>
   )
 }

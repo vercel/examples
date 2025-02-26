@@ -7,11 +7,13 @@ export const runtime = "edge";
 
 export async function GET(request: Request): Promise<NextResponse> {
   await statsigAdapter.initialize();
-  const visitorId = await getStableId();
+  const stableId = await getStableId();
 
   const user: StatsigUser = {
     customIDs: {
-      stableID: visitorId.value,
+      // since we're not having authentication, we're using the stable id for targeting
+      // otherwise, you can define a userID at the root of the user object
+      stableID: stableId.value,
     },
   };
 
