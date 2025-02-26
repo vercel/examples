@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="">
         {children}
-        <VercelToolbar />
+      <VercelToolbar />
       </body>
     </html>
   );
