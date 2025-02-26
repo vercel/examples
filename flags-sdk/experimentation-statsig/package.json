@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@flags-sdk/statsig": "0.2.0-056afe2d-20250225085919",
+    "@flags-sdk/statsig": "0.2.0",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "2.2.0",
     "@statsig/react-bindings": "^3.12.1",
@@ -27,7 +27,6 @@
     "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "statsig-node-lite": "^0.4.2",
     "swr": "^2.3.2"
   },
   "devDependencies": {

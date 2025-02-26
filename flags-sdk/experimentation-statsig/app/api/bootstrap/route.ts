@@ -1,7 +1,6 @@
 import { getStableId } from "@/utils/get-stable-id";
-import { statsigAdapter } from "@flags-sdk/statsig";
+import { statsigAdapter, Statsig, type StatsigUser } from "@flags-sdk/statsig";
 import { NextResponse } from "next/server";
-import Statsig, { StatsigUser } from "statsig-node-lite";
 
 export const runtime = "edge";
 

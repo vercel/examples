@@ -1,5 +1,6 @@
 "use client";
 
+import { Statsig } from "@flags-sdk/statsig";
 /**
  * This file exports a StatsigProvider with a client-side bootstrap.
  * It requires a client-side fetch to retrieve the bootstrap payload.
@@ -14,7 +15,6 @@ import {
 } from "@statsig/react-bindings";
 import { StatsigAutoCapturePlugin } from "@statsig/web-analytics";
 import { createContext, useMemo } from "react";
-import { Statsig } from "statsig-node-lite";
 import useSWR from "swr";
 
 export const StatsigAppBootstrapContext = createContext<{

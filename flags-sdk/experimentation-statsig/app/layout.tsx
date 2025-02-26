@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/next';
 import { VercelToolbar } from '@vercel/toolbar/next';
 import type { Metadata } from 'next';
 
@@ -21,7 +20,6 @@ export default function RootLayout({
         {children}
 
         {shouldInjectToolbar && <VercelToolbar />}
-        <Analytics />
       </body>
     </html>
   );
