@@ -8,8 +8,9 @@ import { Navigation } from '@/components/navigation'
 import { ProductDetails } from '@/components/product-details'
 import { ProductHeader } from '@/components/product-header'
 import { SizePicker } from '@/components/size-picker'
+import { StatsigGateExposure } from '@/components/statsig/statsig-gate-exposure'
 import {
-  precomputeFlags,
+  productFlags,
   showFreeDeliveryBannerFlag,
   showSummerBannerFlag,
 } from '@/flags'
@@ -18,7 +19,7 @@ import { generatePermutations, getPrecomputed } from 'flags/next'
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  const codes = await generatePermutations(precomputeFlags);
+  const codes = await generatePermutations(productFlags);
   return codes.map((code) => ({ code }));
 }
 
@@ -29,17 +30,19 @@ export default async function Page(props: {
 
   const [showSummerBanner, showFreeDeliveryBanner] = await getPrecomputed(
     [showSummerBannerFlag, showFreeDeliveryBannerFlag],
-    precomputeFlags,
+    productFlags,
     params.code,
   );
 
   return (
     <div className="bg-white">
       <FreeDeliveryBanner show={showFreeDeliveryBanner} />
+      <StatsigGateExposure gate={showFreeDeliveryBannerFlag.key} />
 
       <Navigation />
 
       <SummerBanner show={showSummerBanner} />
+      <StatsigGateExposure gate={showSummerBannerFlag.key} />
 
       <main className="mx-auto max-w-2xl px-4 pb-16 sm:px-6 sm:pb-24 lg:max-w-7xl lg:px-8">
         <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">

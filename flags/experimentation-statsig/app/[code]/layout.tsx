@@ -1,4 +1,5 @@
-import { precomputeFlags } from '@/flags';
+import { StaticStatsigProvider } from '@/components/statsig/statsig-provider';
+import { productFlags } from '@/flags';
 import { type FlagValuesType, encrypt } from 'flags';
 import { deserialize, generatePermutations } from 'flags/next';
 import { FlagValues } from 'flags/react';
@@ -17,7 +18,7 @@ export async function generateStaticParams() {
 
   // Instead of returning an empty array you could also call generatePermutations
   // to generate the permutations upfront.
-  const codes = await generatePermutations(precomputeFlags);
+  const codes = await generatePermutations(productFlags);
   return codes.map((code) => ({ code }));
 }
 
@@ -28,17 +29,14 @@ export default async function Layout(props: {
   }>;
 }) {
   const params = await props.params;
-
-  const { children } = props;
-
-  const values = await deserialize(precomputeFlags, params.code);
+  const values = await deserialize(productFlags, params.code);
 
   return (
-    <>
-      {children}
+    <StaticStatsigProvider>
+      {props.children}
       <Suspense fallback={null}>
         <ConfidentialFlagValues values={values} />
       </Suspense>
-    </>
+    </StaticStatsigProvider>
   );
 }

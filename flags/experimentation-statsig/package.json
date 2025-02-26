@@ -9,8 +9,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@flags-sdk/statsig": "0.2.0-056afe2d-20250225085919",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "2.2.0",
+    "@statsig/react-bindings": "^3.12.1",
+    "@statsig/web-analytics": "^3.12.1",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/forms": "0.5.10",
     "@tailwindcss/postcss": "^4.0.8",
@@ -24,7 +27,9 @@
     "nanoid": "5.1.2",
     "next": "15.1.7",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "statsig-node-lite": "^0.4.2",
+    "swr": "^2.3.2"
   },
   "devDependencies": {
     "@types/node": "^22.13.5",

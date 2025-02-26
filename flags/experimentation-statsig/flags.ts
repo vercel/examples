@@ -1,43 +1,34 @@
-import { flag, dedupe } from 'flags/next';
-import { getOrGenerateVisitorId } from './utils/generateVisitorId';
+import { statsigAdapter } from "@flags-sdk/statsig";
+import { Identify } from "flags";
+import { dedupe, flag } from "flags/next";
+import type { StatsigUser } from "statsig-node-lite";
+import { getStableId } from "./utils/get-stable-id";
 
 const identify = dedupe(async () => {
+  const stableId = await getStableId();
+
   return {
-    visitor: { id: (await getOrGenerateVisitorId()).value },
-    user: {
-      vercelian: true,
-      id: 'uid1',
-      authenticated: true,
-      teamIds: ['team1'],
+    customIDs: {
+      stableID: stableId.value
     },
   };
-});
+}) satisfies Identify<StatsigUser>;
 
-export const showSummerBannerFlag = flag<boolean, any>({
-  key: 'summer-sale',
+export const showSummerBannerFlag = flag<boolean, StatsigUser>({
+  key: 'summer_sale',
+  adapter: statsigAdapter.featureGate((gate) => gate.value),
+  defaultValue: false,
   identify,
-  decide: async () => {
-    return false;
-  },
 });
 
-export const showFreeDeliveryBannerFlag = flag<boolean>({
-  key: 'free-delivery',
+export const showFreeDeliveryBannerFlag = flag<boolean, StatsigUser>({
+  key: 'free_delivery',
+  adapter: statsigAdapter.featureGate((gate) => gate.value),
+  defaultValue: false,
   identify,
-  async decide() {
-    return true;
-  },
-  origin:
-    'https://app.launchdarkly.com/toggle-runner-demo/production/features/free-delivery/targeting',
-  description: 'Show free delivery banner',
-  defaultValue: true,
-  options: [
-    { value: false, label: 'Hide' },
-    { value: true, label: 'Show' },
-  ],
 });
 
-export const precomputeFlags = [
+export const productFlags = [
   showFreeDeliveryBannerFlag,
   showSummerBannerFlag,
 ] as const;

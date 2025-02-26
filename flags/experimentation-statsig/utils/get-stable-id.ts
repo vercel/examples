@@ -5,9 +5,9 @@ import { nanoid } from 'nanoid';
 /**
  * Reads the visitor id from the cookie or returns a new visitor id
  */
-export const getOrGenerateVisitorId = dedupe(async () => {
+export const getStableId = dedupe(async () => {
   const cookiesStore = await cookies();
-  const visitorId = cookiesStore.get('visitor-id')?.value;
-  if (!visitorId) return { value: nanoid(), fresh: true };
-  return { value: visitorId, fresh: false };
+  const stableId = cookiesStore.get('stable-id')?.value;
+  if (!stableId) return { value: nanoid(), isFresh: true };
+  return { value: stableId, isFresh: false };
 });
