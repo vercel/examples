@@ -1,14 +1,8 @@
 import { StaticStatsigProvider } from '@/components/statsig/statsig-provider';
 import { productFlags } from '@/flags';
-import { type FlagValuesType, encrypt } from 'flags';
 import { deserialize, generatePermutations } from 'flags/next';
 import { FlagValues } from 'flags/react';
 import { Suspense } from 'react';
-
-async function ConfidentialFlagValues({ values }: { values: FlagValuesType }) {
-  const encryptedFlagValues = await encrypt(values);
-  return <FlagValues values={encryptedFlagValues} />;
-}
 
 export async function generateStaticParams() {
   // Returning an empty array here is important as it enables ISR, so
@@ -35,7 +29,7 @@ export default async function Layout(props: {
     <StaticStatsigProvider>
       {props.children}
       <Suspense fallback={null}>
-        <ConfidentialFlagValues values={values} />
+        <FlagValues values={values} />
       </Suspense>
     </StaticStatsigProvider>
   );
