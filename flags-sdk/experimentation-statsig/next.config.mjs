@@ -2,6 +2,10 @@
 import withVercelToolbar from '@vercel/toolbar/plugins/next';
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  experimental: {
+    nodeMiddleware: true,
+  },
+};
 
 export default withVercelToolbar()(nextConfig);
