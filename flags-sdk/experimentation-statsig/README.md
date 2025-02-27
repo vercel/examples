@@ -1,6 +1,6 @@
 # Statsig Flags SDK Example
 
-This example uses [Statsig](https://vercel.com/integrations/statsig) for feature flags with the [Flags SDK](https://flags-sdk.dev) along with the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar).
+This example uses [Statsig](https://vercel.com/marketplace/statsig) for feature flags with the [Flags SDK](https://flags-sdk.dev) along with the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar).
 
 ## Demo
 
