@@ -59,3 +59,11 @@ Select the `Free Delivery` and `Free Shipping` feature gates and configure them 
 Create a new rule by clicking on "+ Add New Rule" and set the percentage to 50%.
 
 After that, click on "Save" at the bottom right corner.
+
+### Step 5 (optional): Set additional environment variables
+
+If you provide the `STATSIG_CONSOLE_API_KEY` and `STATSIG_PROJECT_ID` environment variables, the Flags Explorer will fetch additional metadata from the Statsig API.
+
+This will show the description (if set) and displays a link to the feature gate on the Statsig Console.
+
+You can find both values in the [Statsig Console](https://console.statsig.com/settings/project).
