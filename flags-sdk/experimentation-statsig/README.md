@@ -1,6 +1,6 @@
 # Statsig Flags SDK Example
 
-This example uses [Statsig](https://vercel.com/marketplace/statsig) for feature flags with the [Flags SDK](https://flags-sdk.dev) along with the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar).
+This example uses [Statsig](https://vercel.com/marketplace/statsig) for feature flags with the [Flags SDK](https://flags-sdk.dev) along with the `@flags-sdk/statsig` [Statsig adapter](https://flags-sdk.dev/docs/api-reference/adapters/statsig) and the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar).
 
 ## Demo
 
@@ -17,7 +17,7 @@ Since this example is using a stable id to identify users, you will see the same
 To test different variations, you can use the Dev Tools at the bottom to reset the stable id and reload the page.
 This allows you to test different variations of the banners.
 
-If you deployed your own and configured the feature gates on Statsig, you can also use the Flags Explorer to test different variations by creating overrides.
+If you deployed your own and configured the feature gates on Statsig, you can also use the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar) to test different variations by creating overrides.
 
 ## Deploy this template
 
