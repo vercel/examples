@@ -23,7 +23,7 @@ If you deployed your own and configured the feature gates on Statsig, you can al
 
 The easiest way to get started with Statsig is through the native integration in the [Vercel Marketplace](https://vercel.com/marketplace/statsig).
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/flags-sdk/experimentation-statsig&env=FLAGS_SECRET&envDescription=The FLAGS_SECRET will be used by the Flags Explorer to securely overwrite feature flags. Must be 32 random bytes, base64-encoded. Use the generated value or set your own.&envLink=https://vercel.com/docs/workflow-collaboration/feature-flags/supporting-feature-flags#flags_secret-environment-variable&project-name=statsig-flags-sdk-example&repository-name=statsig-flags-sdk-example&products=[{\"integrationSlug\":\"statsig\",\"productSlug\":\"statsig\",\"type\":\"integration\",\"protocol\":\"experimentation\"}])
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Fexperimentation-statsig&env=FLAGS_SECRET&envDescription=The+FLAGS_SECRET+will+be+used+by+the+Flags+Explorer+to+securely+overwrite+feature+flags.+Must+be+32+random+bytes%2C+base64-encoded.+Use+the+generated+value+or+set+your+own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fworkflow-collaboration%2Ffeature-flags%2Fsupporting-feature-flags%23flags_secret-environment-variable&project-name=statsig-flags-sdk-example&repository-name=statsig-flags-sdk-example&products=%5B%7B%22integrationSlug%22%3A%22statsig%22%2C%22productSlug%22%3A%22statsig%22%2C%22type%22%3A%22integration%22%2C%22protocol%22%3A%22experimentation%22%7D%5D)
 
 ### Step 1: Link the project
 
