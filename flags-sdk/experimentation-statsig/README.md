@@ -56,7 +56,7 @@ You can also find the gate ids in the `flags.ts` file.
 
 ### Step 4: Configure the Feature Gates
 
-Select the `Free Delivery` and `Free Shipping` feature gates and configure them on the Statsig Console.
+Select the `Summer Sale` and `Free Shipping` feature gates and configure them on the Statsig Console.
 
 Create a new rule by clicking on "+ Add New Rule" and set the percentage to 50%.
 
