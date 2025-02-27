@@ -4,8 +4,7 @@ import { productFlags } from '@/flags';
 import { getStableId } from './utils/get-stable-id';
 
 export const config = {
-  matcher: ['/'],
-  runtime: 'nodejs',
+  matcher: ['/']
 };
 
 export async function middleware(request: NextRequest) {
