@@ -4,8 +4,7 @@ import { productFlags } from '@/flags';
 import { getStableId } from './utils/get-stable-id';
 
 export const config = {
-  matcher: ['/'],
-  unstable_allowDynamic: ['**/node_modules/statsig-node-lite/**'],
+  matcher: ['/']
 };
 
 export async function middleware(request: NextRequest) {
