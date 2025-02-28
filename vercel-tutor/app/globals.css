@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --background: var(--background);
-  --foreground: var(--foreground);
-  --secondary: var(--secondary);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-secondary: var(--secondary);
 }
 
 :root {
