@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --background: var(--background);
+  --foreground: var(--foreground);
+  --secondary: var(--secondary);
+}
 
 :root {
   --background: #ffffff;
