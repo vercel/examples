@@ -12,7 +12,7 @@ jobs:
   e2e:
     name: 'E2E'
     # Only run on a Preview or Production deployment.
-    if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'repository_dispatch' }}
     uses: ./.github/workflows/playwright-reusable.yml
     with:
       test-type: 'e2e'
@@ -20,7 +20,7 @@ jobs:
 
   integration:
     name: Integration
-    if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'repository_dispatch' }}
     uses: ./.github/workflows/playwright-reusable.yml
     with:
       test-type: 'integration'
