@@ -62,7 +62,7 @@ jobs:
       - name: Run ${{ inputs.test-type }} tests
         run: pnpm run ${{ inputs.test-type }}
         env:
-          BASE_URL: ${{ github.event_name == 'deployment_status' && github.event.deployment_status.environment_url || 'https://solutions-testing.vercel.app' }}
+          BASE_URL: ${{ github.event_name == 'workflow_dispatch' && github.event.client_payload.url || 'https://solutions-testing.vercel.app' }}
 
       - name: Upload test results to GitHub
         if: ${{ always() }}
