@@ -10,6 +10,7 @@ We're going to be shipping new examples weekly. Stay tuned!
 
 - [Solutions](/solutions) – Demos, Architectures, and Best Practices
 - [Starter](/starter) – Fully functional applications that encompass an idea as a robust starting point.
+- [Edge Middleware](/edge-middleware) – Provide speed and personalization to your users. [Learn more.](https://vercel.com/docs/concepts/functions/edge-middleware)
 
 ## Vercel Templates
 
