@@ -5,12 +5,9 @@
   </a>
 </p>
 
-Enjoy our curated collection of examples and solutions. Use these patterns to build your own robust and scalable applications.
-We're going to be shipping new examples weekly. Stay tuned!
-
-- [Solutions](/solutions) – Demos, Architectures, and Best Practices
-- [Starter](/starter) – Fully functional applications that encompass an idea as a robust starting point.
-- [Edge Middleware](/edge-middleware) – Provide speed and personalization to your users. [Learn more.](https://vercel.com/docs/concepts/functions/edge-middleware)
+- [Solutions](/solutions) – Demos, reference architecture, and best practices
+- [Starter](/starter) – Functional applications which can act as a starting point
+- And more!
 
 ## Vercel Templates
 
