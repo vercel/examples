@@ -1,15 +1,16 @@
-'use client';
+'use client'
 
-import { ArrowPathIcon } from "@heroicons/react/24/outline";
-import { useRouter } from "next/navigation";
+import { ArrowPathIcon } from '@heroicons/react/24/outline'
+import { useRouter } from 'next/navigation'
 
 export function DevTools() {
-  const router = useRouter();
+  const router = useRouter()
 
   const deleteCookie = () => {
-    document.cookie = 'stable-id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    router.refresh();
-  };
+    document.cookie =
+      'stable-id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+    router.refresh()
+  }
 
   return (
     <div className="fixed bottom-2 right-2 p-3 bg-[#333333] rounded shadow-lg z-50 flex flex-col gap-2">
@@ -23,5 +24,5 @@ export function DevTools() {
         Reset Stable ID
       </button>
     </div>
-  );
+  )
 }

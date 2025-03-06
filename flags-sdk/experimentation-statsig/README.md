@@ -43,14 +43,20 @@ This allows the Flags SDK and the Flags Explorer to work correctly, by getting a
 vercel env pull
 ```
 
-### Step 3: Create feature flags on Statsig
+### Step 3: Create Feature Gates and Experiments
 
-Head over to the [Statsig Console](console.statsig.com) and create the two feature flags under Feature Gates:
+Head over to the [Statsig Console](console.statsig.com) and create the feature gates and experiments required by this template.
+
+Ensure you select `Stable ID` instead of `User ID` when creating the gates and experiments.
+
+Feature Gates:
 
 - `Summer Sale` with the gate id `summer_sale`, targeting the `Stable ID`
 - `Free Shipping` with the gate id `free_delivery`, targeting the `Stable ID`
 
-Note: please make sure you select the `Stable ID` instead of the `User ID` which is selected by default.
+Experiments:
+
+- `Proceed to Checkout` with the id `proceed_to_checkout`, targeting the `Stable ID`
 
 You can also find the gate ids in the `flags.ts` file.
 
@@ -62,7 +68,17 @@ Create a new rule by clicking on "+ Add New Rule" and set the percentage to 50%.
 
 After that, click on "Save" at the bottom right corner.
 
-### Step 5 (optional): Set additional environment variables
+### Step 5: Configure the Experiments
+
+Configure the `Proceed to Checkout` experiment:
+
+- Besides the default `Control` and `Test` groups, add a new group called `Test #2`
+- Add a parameter called `color` of type `string`
+- Use `blue`, `green` and `red` as the values for the different groups
+
+After that, start the Experiment.
+
+### Step 6 (optional): Set additional environment variables
 
 If you provide the `STATSIG_CONSOLE_API_KEY` and `STATSIG_PROJECT_ID` environment variables, the Flags Explorer will fetch additional metadata from the Statsig API.
 

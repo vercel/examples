@@ -1,44 +1,25 @@
-import { AddToCartButton } from '@/components/add-to-cart-button'
-import { FreeDeliveryBanner } from '@/components/banners/free-delivery-banner'
-import { SummerBanner } from '@/components/banners/summer-banner'
-import { ColorPicker } from '@/components/color-picker'
-import { DevTools } from '@/components/dev-tools'
-import { Footer } from '@/components/footer'
+import { SummerSale } from '@/app/summer-sale'
 import { ImageGallery } from '@/components/image-gallery'
-import { Navigation } from '@/components/navigation'
-import { ProductDetails } from '@/components/product-details'
-import { ProductHeader } from '@/components/product-header'
-import { SizePicker } from '@/components/size-picker'
-import { StatsigGateExposure } from '@/components/statsig/statsig-gate-exposure'
-import {
-  productFlags,
-  showFreeDeliveryBannerFlag,
-  showSummerBannerFlag,
-} from '@/flags'
-import { getPrecomputed } from 'flags/next'
+import { ProductDetails } from '@/components/product-detail-page/product-details'
+import { ProductHeader } from '@/components/product-detail-page/product-header'
+import { AddToCart } from '@/app/[code]/add-to-cart'
+import { ColorPicker } from '@/components/product-detail-page/color-picker'
+import { SizePicker } from '@/components/product-detail-page/size-picker'
+import { ProductDetailPageProvider } from '@/components/utils/product-detail-page-context'
+
+import { productFlags, showSummerBannerFlag } from '@/flags'
+import { Main } from '@/components/main'
 
 export default async function Page(props: {
-  params: Promise<{ code: string }>;
+  params: Promise<{ code: string }>
 }) {
-  const params = await props.params;
-
-  const [showSummerBanner, showFreeDeliveryBanner] = await getPrecomputed(
-    [showSummerBannerFlag, showFreeDeliveryBannerFlag],
-    productFlags,
-    params.code,
-  );
+  const params = await props.params
+  const showSummerBanner = await showSummerBannerFlag(params.code, productFlags)
 
   return (
-    <div className="bg-white">
-      <FreeDeliveryBanner show={showFreeDeliveryBanner} />
-      <StatsigGateExposure gate={showFreeDeliveryBannerFlag.key} />
-
-      <Navigation />
-
-      <SummerBanner show={showSummerBanner} />
-      <StatsigGateExposure gate={showSummerBannerFlag.key} />
-
-      <main className="mx-auto max-w-2xl px-4 pb-16 sm:px-6 sm:pb-24 lg:max-w-7xl lg:px-8">
+    <ProductDetailPageProvider>
+      <SummerSale show={showSummerBanner} gate={showSummerBannerFlag.key} />
+      <Main>
         <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
           <ProductHeader />
           <ImageGallery />
@@ -46,14 +27,11 @@ export default async function Page(props: {
           <div className="mt-8 lg:col-span-5">
             <ColorPicker />
             <SizePicker />
-            <AddToCartButton />
+            <AddToCart />
             <ProductDetails />
           </div>
         </div>
-      </main>
-
-      <Footer />
-      <DevTools />
-    </div>
+      </Main>
+    </ProductDetailPageProvider>
   )
 }
