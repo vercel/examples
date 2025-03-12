@@ -17,7 +17,7 @@ export const showFreeDeliveryBannerFlag = flag<boolean, StatsigUser>({
 })
 
 export const proceedToCheckoutColorFlag = flag<string, StatsigUser>({
-  key: 'proceed_to_checkout.color',
+  key: 'proceed_to_checkout',
   adapter: statsigAdapter.experiment<string>((gate) =>
     gate.get('color', 'blue')
   ),
