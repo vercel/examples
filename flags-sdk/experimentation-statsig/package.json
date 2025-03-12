@@ -21,12 +21,14 @@
     "@vercel/edge": "1.2.1",
     "@vercel/edge-config": "1.4.0",
     "@vercel/toolbar": "0.1.33",
+    "framer-motion": "12.4.7",
     "clsx": "2.1.1",
     "flags": "^3.1.1",
     "nanoid": "5.1.2",
-    "next": "15.1.7",
+    "next": "15.2.1-canary.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "sonner": "2.0.1",
     "swr": "^2.3.2"
   },
   "devDependencies": {
@@ -36,7 +38,7 @@
     "eslint": "^9.21.0",
     "eslint-config-next": "^15.2.0",
     "postcss": "^8.5.3",
-    "tailwindcss": "^4.0.8",
+    "tailwindcss": "^4.0.9",
     "typescript": "^5.7.3"
   }
 }
