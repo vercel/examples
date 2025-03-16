@@ -1,24 +1,24 @@
-<script>
+<script lang="ts">
 	import { spring } from 'svelte/motion';
 
-	let count = 0;
+	let count = $state(0);
 
-	const displayed_count = spring();
-	$: displayed_count.set(count);
-	$: offset = modulo($displayed_count, 1);
+	// svelte-ignore state_referenced_locally
+	const displayedCount = spring(count);
 
-	/**
-	 * @param {number} n
-	 * @param {number} m
-	 */
-	function modulo(n, m) {
+	$effect(() => {
+		displayedCount.set(count);
+	});
+	let offset = $derived(modulo($displayedCount, 1));
+
+	function modulo(n: number, m: number) {
 		// handle negative numbers
 		return ((n % m) + m) % m;
 	}
 </script>
 
 <div class="counter">
-	<button on:click={() => (count -= 1)} aria-label="Decrease the counter by one">
+	<button onclick={() => (count -= 1)} aria-label="Decrease the counter by one">
 		<svg aria-hidden="true" viewBox="0 0 1 1">
 			<path d="M0,0.5 L1,0.5" />
 		</svg>
@@ -26,12 +26,12 @@
 
 	<div class="counter-viewport">
 		<div class="counter-digits" style="transform: translate(0, {100 * offset}%)">
-			<strong class="hidden" aria-hidden="true">{Math.floor($displayed_count + 1)}</strong>
-			<strong>{Math.floor($displayed_count)}</strong>
+			<strong class="hidden" aria-hidden="true">{Math.floor($displayedCount + 1)}</strong>
+			<strong>{Math.floor($displayedCount)}</strong>
 		</div>
 	</div>
 
-	<button on:click={() => (count += 1)} aria-label="Increase the counter by one">
+	<button onclick={() => (count += 1)} aria-label="Increase the counter by one">
 		<svg aria-hidden="true" viewBox="0 0 1 1">
 			<path d="M0,0.5 L1,0.5 M0.5,0 L0.5,1" />
 		</svg>
@@ -55,12 +55,11 @@
 		border: 0;
 		background-color: transparent;
 		touch-action: manipulation;
-		color: var(--text-color);
 		font-size: 2rem;
 	}
 
 	.counter button:hover {
-		background-color: var(--secondary-color);
+		background-color: var(--color-bg-1);
 	}
 
 	svg {
@@ -71,7 +70,7 @@
 	path {
 		vector-effect: non-scaling-stroke;
 		stroke-width: 2px;
-		stroke: var(--text-color);
+		stroke: #444;
 	}
 
 	.counter-viewport {
@@ -88,7 +87,7 @@
 		width: 100%;
 		height: 100%;
 		font-weight: 400;
-		color: var(--accent-color);
+		color: var(--color-theme-1);
 		font-size: 4rem;
 		align-items: center;
 		justify-content: center;
