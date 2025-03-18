@@ -47,7 +47,7 @@ function Check() {
 
 function Toolbar() {
   return (
-    <span className="rounded-full border border-white w-[24px] h-[24px] inline-flex items-center justify-center align-middle">
+    <span className="rounded-full border border-secondary bg-[rgba(0,0,0,.8)] w-[24px] h-[24px] inline-flex items-center justify-center align-middle">
       <svg
         aria-hidden="true"
         width="24"
@@ -98,6 +98,7 @@ function Toolbar() {
 
 export default function Home() {
   const [nextUrl, setNextUrl] = useState("#");
+  const [isLocalhost, setIsLocalhost] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -109,6 +110,8 @@ export default function Home() {
           host,
         )}&stepName=helpful-links`,
       );
+    } else {
+      setIsLocalhost(true);
     }
   }, []);
 
@@ -123,75 +126,86 @@ export default function Home() {
           height={50}
           priority
         />
-        <div className="text-left font-[family-name:var(--font-geist-sans)] leading-relaxed">
-          <h1 className="mb-6 font-semibold">
-            Congratulations! You&apos;ve created your first preview deployment.
-          </h1>
-          <ul>
-            <li className="flex gap-3 items-start mb-6">
-              <span className="inline-flex mt-[0.3rem]">
-                <Check />
-              </span>
-              <span className="text-secondary">
-                <del>
-                  Next, let&apos;s try to improve this page. Maybe the triangle
-                  logo is too big. To make it easy for you, we&apos;ve already
-                  created a pull request to make the triangle smaller. Check it
-                  out:
-                </del>
-              </span>
-            </li>
-            <li className="flex gap-3 items-start mb-6">
-              <span className="inline-flex mt-[0.3rem]">
-                <Circle />
-              </span>
-              <span className="text-secondary">
-                Vercel lets you collaborate with others by commenting directly
-                on a preview deployment. First, click the Vercel Toolbar icon{" "}
-                <Toolbar /> on the page. Then, select{" "}
-                <span className="text-foreground">“Comment”</span> in the
-                toolbar menu. Now, click on the triangle logo at the top. Leave
-                a comment like{" "}
-                <span className="text-foreground">
-                  “The triangle looks much better now!”
-                </span>
-              </span>
-            </li>
-            <li className="flex gap-3 items-start">
-              <span className="inline-flex mt-[0.3rem]">
-                <Circle />
-              </span>
-              <span className="text-secondary">
-                Once you&apos;re done commenting, let&apos;s push one more
-                commit to add some helpful links on this page, and then merge
-                the pull request.
-              </span>
-            </li>
-          </ul>
-        </div>
-        <div className="flex flex-col gap-4">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground font-medium text-background hover:bg-[#383838] dark:hover:bg-[#ccc] h-12 font-[family-name:var(--font-geist-sans)]"
-            href={nextUrl}
-            onClick={(e) => {
-              if (isLoading) {
-                e.preventDefault();
-              } else {
-                setIsLoading(true);
-              }
-            }}
-          >
-            {isLoading ? "Loading…" : "Push Commit and Merge Pull Request"}
-          </a>
-          <a
-            className="font-[family-name:var(--font-geist-sans)] text-secondary hover:underline flex items-center justify-center h-12 font-medium"
-            href="https://vercel.com/dashboard?utm_source=vercel-tutor&utm_medium=template&utm_campaign=vercel-tutor"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Go to Dashboard
-          </a>
-        </div>
+        {isLocalhost ? (
+          <div className="text-left font-[family-name:var(--font-geist-sans)] leading-relaxed">
+            <h1 className="mb-6 font-semibold">
+              Please deploy this template to Vercel to continue.
+            </h1>
+          </div>
+        ) : (
+          <>
+            <div className="text-left font-[family-name:var(--font-geist-sans)] leading-relaxed">
+              <h1 className="mb-6 font-semibold">
+                Congratulations! You&apos;ve created your first preview
+                deployment.
+              </h1>
+              <ul>
+                <li className="flex gap-3 items-start mb-6">
+                  <span className="inline-flex mt-[0.3rem]">
+                    <Check />
+                  </span>
+                  <span className="text-secondary">
+                    <del>
+                      Next, let&apos;s try to improve this page. Maybe the
+                      triangle logo is too big. To make it easy for you,
+                      we&apos;ve already created a pull request to make the
+                      triangle smaller. Check it out:
+                    </del>
+                  </span>
+                </li>
+                <li className="flex gap-3 items-start mb-6">
+                  <span className="inline-flex mt-[0.3rem]">
+                    <Circle />
+                  </span>
+                  <span className="text-secondary">
+                    Vercel lets you collaborate with others by commenting
+                    directly on a preview deployment. First, click the Vercel
+                    Toolbar icon <Toolbar /> on the page. Then, select{" "}
+                    <span className="text-foreground">“Comment”</span> in the
+                    toolbar menu. Now, click on the triangle logo at the top.
+                    Leave a comment like{" "}
+                    <span className="text-foreground">
+                      “The triangle looks much better now!”
+                    </span>
+                  </span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <span className="inline-flex mt-[0.3rem]">
+                    <Circle />
+                  </span>
+                  <span className="text-secondary">
+                    Once you&apos;re done commenting, let&apos;s push one more
+                    commit to add some helpful links on this page, and then
+                    merge the pull request.
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div className="flex flex-col gap-4">
+              <a
+                className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground font-medium text-background hover:bg-[#383838] dark:hover:bg-[#ccc] h-12 font-[family-name:var(--font-geist-sans)]"
+                href={nextUrl}
+                onClick={(e) => {
+                  if (isLoading) {
+                    e.preventDefault();
+                  } else {
+                    setIsLoading(true);
+                  }
+                }}
+              >
+                {isLoading ? "Loading…" : "Push Commit and Merge Pull Request"}
+              </a>
+              <a
+                className="font-[family-name:var(--font-geist-sans)] text-secondary hover:underline flex items-center justify-center h-12 font-medium"
+                href="https://vercel.com/dashboard?utm_source=vercel-tutor&utm_medium=template&utm_campaign=vercel-tutor"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Go to Dashboard
+              </a>
+            </div>
+          </>
+        )}
       </main>
     </div>
   );

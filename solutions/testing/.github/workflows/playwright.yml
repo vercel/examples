@@ -1,7 +1,9 @@
 name: Playwright
 
 on:
-  deployment_status:
+  repository_dispatch:
+    types:
+      - 'vercel.deployment.success'
   schedule:
     # Runs at the minute 30 of every hour
     - cron: '30 0/1 * * *'
@@ -10,7 +12,7 @@ jobs:
   e2e:
     name: 'E2E'
     # Only run on a Preview or Production deployment.
-    if: ${{ github.event_name == 'schedule' || (github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success') }}
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'repository_dispatch' }}
     uses: ./.github/workflows/playwright-reusable.yml
     with:
       test-type: 'e2e'
@@ -18,7 +20,7 @@ jobs:
 
   integration:
     name: Integration
-    if: ${{ github.event_name == 'schedule' || (github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success') }}
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'repository_dispatch' }}
     uses: ./.github/workflows/playwright-reusable.yml
     with:
       test-type: 'integration'
