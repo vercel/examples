@@ -12,7 +12,7 @@ This demo uses two feature gates on Statsig to control the visibility of two ban
 Both gates are configured to show/hide each banner 50% of the time.
 
 Once you visit the page, you can see a variation of both/one/none of the banners.
-Since this example is using a stable id to identify users, you will see the same variation all the time.
+Since this example is using a stable id to identify users, you will see the same variation until you reset your id.
 
 To test different variations, you can use the Dev Tools at the bottom to reset the stable id and reload the page.
 This allows you to test different variations of the banners.
