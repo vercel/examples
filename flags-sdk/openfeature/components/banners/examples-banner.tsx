@@ -40,7 +40,7 @@ export function ExamplesBanner() {
                 rel="noreferrer"
                 href="https://github.com/vercel/examples/tree/main/flags-sdk/openfeature"
               >
-                Vercel Examples / flags-sdk / OpenFeature
+                Vercel Examples / Flags SDK / OpenFeature
               </Link>
             </li>
           </ul>
