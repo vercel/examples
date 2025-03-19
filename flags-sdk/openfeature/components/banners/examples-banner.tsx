@@ -12,12 +12,13 @@ export function ExamplesBanner() {
             <span>
               <svg height="26" viewBox="0 0 75 65" fill="#000">
                 <title>Vercel Logo</title>
-                <path d="M37.59.25l36.95 64H.64l36.95-64z"></path>
+                <path d="M37.59.25l36.95 64H.64l36.95-64z" />
               </svg>
             </span>
           </Link>
           <ul className="flex items-center content-center">
             <li className="ml-2 text-gray-200">
+              {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
               <svg
                 viewBox="0 0 24 24"
                 width="32"
@@ -29,7 +30,7 @@ export function ExamplesBanner() {
                 fill="none"
                 shapeRendering="geometricPrecision"
               >
-                <path d="M16.88 3.549L7.12 20.451"></path>
+                <path d="M16.88 3.549L7.12 20.451" />
               </svg>
             </li>
             <li className="font-medium" style={{ letterSpacing: '.01px' }}>
@@ -37,9 +38,9 @@ export function ExamplesBanner() {
                 className="text-link hover:text-link-light transition-colors no-underline [&_code]:text-link [&_code]:hover:text-link-light [&_code]:transition-colors text-accents-6 duration-200 hover:text-accents-8 cursor-pointer"
                 target="_blank"
                 rel="noreferrer"
-                href="https://github.com/vercel/flags/tree/main/examples/shirt-shop"
+                href="https://github.com/vercel/examples/tree/main/flags-sdk/openfeature"
               >
-                Vercel Examples / flags-sdk / shirt-shop
+                Vercel Examples / flags-sdk / OpenFeature
               </Link>
             </li>
           </ul>
@@ -61,7 +62,7 @@ export function ExamplesBanner() {
               <Link
                 data-variant="primary"
                 className="relative inline-flex items-center justify-center cursor pointer no-underline px-3.5 rounded-md font-medium outline-0 select-none align-middle whitespace-nowrap transition-colors ease-in duration-200 border border-solid text-background bg-success border-success-dark hover:bg-success/90 shadow-[0_5px_10px_rgb(0,68,255,0.12)] h-10 leading-10 text-[15px]"
-                href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fflags%2Ftree%2Fmain%2Fexamples%2Fshirt-shop&env=FLAGS_SECRET&envDescription=The%20FLAGS_SECRET%20will%20be%20used%20by%20the%20Flags%20Explorer%20to%20securely%20overwrite%20feature%20flags.%20Must%20be%2032%20random%20bytes%2C%20base64-encoded.%20Use%20the%20generated%20value%20or%20set%20your%20own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fworkflow-collaboration%2Ffeature-flags%2Fsupporting-feature-flags%23flags_secret-environment-variable&project-name=shirt-shop-example&repository-name=shirt-shop-example"
+                href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Fopenfeature&env=FLAGS_SECRET&envDescription=The+FLAGS_SECRET+will+be+used+by+the+Flags+Explorer+to+securely+overwrite+feature+flags.+Must+be+32+random+bytes%2C+base64-encoded.+Use+the+generated+value+or+set+your+own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fworkflow-collaboration%2Ffeature-flags%2Fsupporting-feature-flags%23flags_secret-environment-variable&project-name=openfeature-flags-sdk-example&repository-name=openfeature-flags-sdk-example"
                 target="_blank"
                 rel="noreferrer"
               >

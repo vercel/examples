@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { Cart, CartItem } from '@/components/utils/cart-types'
+import type { Cart, CartItem } from '@/components/utils/cart-types'
 import { delayFlag } from '@/flags'
 import { getCartId } from './get-cart-id'
 

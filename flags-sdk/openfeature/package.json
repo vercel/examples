@@ -1,5 +1,5 @@
 {
-  "name": "shirt-shop",
+  "name": "flags-sdk-openfeature-example",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -12,8 +12,6 @@
     "@flags-sdk/openfeature": "0.1.1",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "2.2.0",
-    "@launchdarkly/node-server-sdk": "^9.7.4",
-    "@launchdarkly/openfeature-node-server": "^1.0.0",
     "@openfeature/core": "^1.7.2",
     "@openfeature/server-sdk": "^1.17.1",
     "@tailwindcss/aspect-ratio": "0.4.2",
@@ -22,7 +20,6 @@
     "@tailwindcss/typography": "0.5.16",
     "@vercel/analytics": "1.5.0",
     "@vercel/edge": "1.2.1",
-    "@vercel/edge-config": "1.4.0",
     "@vercel/toolbar": "0.1.33",
     "clsx": "2.1.1",
     "flags": "3.1.1",
@@ -42,6 +39,5 @@
     "postcss": "^8.5.3",
     "tailwindcss": "^4.0.9",
     "typescript": "^5.7.3"
-  },
-  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c"
+  }
 }
