@@ -17,12 +17,6 @@ importers:
       '@heroicons/react':
         specifier: 2.2.0
         version: 2.2.0(react@19.0.0)
-      '@launchdarkly/node-server-sdk':
-        specifier: ^9.7.4
-        version: 9.7.4
-      '@launchdarkly/openfeature-node-server':
-        specifier: ^1.0.0
-        version: 1.0.0(@launchdarkly/node-server-sdk@9.7.4)(@openfeature/server-sdk@1.17.1(@openfeature/core@1.7.2))
       '@openfeature/core':
         specifier: ^1.7.2
         version: 1.7.2
@@ -47,9 +41,6 @@ importers:
       '@vercel/edge':
         specifier: 1.2.1
         version: 1.2.1
-      '@vercel/edge-config':
-        specifier: 1.4.0
-        version: 1.4.0
       '@vercel/toolbar':
         specifier: 0.1.33
         version: 0.1.33(@vercel/analytics@1.5.0(next@15.2.2-canary.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0))(next@15.2.2-canary.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -316,21 +307,6 @@ packages:
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [win32]
-
-  '@launchdarkly/js-sdk-common@2.13.0':
-    resolution: {integrity: sha512-cRoOQWBEOOynY3YDHIF4am1ZxiGu6MFK4v8WyNR0zN+nVjdQiuuyfAbHB//1Q0nrc1aB0flOy6e8C51eHy+VeA==}
-
-  '@launchdarkly/js-server-sdk-common@2.11.1':
-    resolution: {integrity: sha512-mz5meN+tII/By8TjPRhuI5SSztFSIYXQpK1IlUX1uUlM8xDlS/HrzM4KcP7BRLpO0TQcZKl4roEkkoMBoukPsA==}
-
-  '@launchdarkly/node-server-sdk@9.7.4':
-    resolution: {integrity: sha512-bqu4oow2Onnc4lQkvL3aUSg0Zif25ZMjsS4PgUV6mjjxo2Hl4j8l5d2lEB9uTc7yXo6n6zmfZ0x84KtdPrZdmQ==}
-
-  '@launchdarkly/openfeature-node-server@1.0.0':
-    resolution: {integrity: sha512-4O4bQSqM+9BUZo8L+rQkxUdrv3sqC8vGcC0U0yBvELXmd9Q8jJZkY+7+idcx/zJsInYwnfmS0TUA4YeOyQw89A==}
-    peerDependencies:
-      '@launchdarkly/node-server-sdk': 9.x
-      '@openfeature/server-sdk': ^1.14.0
 
   '@next/env@15.2.2-canary.4':
     resolution: {integrity: sha512-m4jjOoJwFv6bmGq1KiAT6me8pkIvjPA6qWc1aRyUxzVzg/7Pm3b5BP2ze8jNwdjIwPmMQGtV0Lv50vLeDUlC0A==}
@@ -650,18 +626,6 @@ packages:
       vue-router:
         optional: true
 
-  '@vercel/edge-config-fs@0.1.0':
-    resolution: {integrity: sha512-NRIBwfcS0bUoUbRWlNGetqjvLSwgYH/BqKqDN7vK1g32p7dN96k0712COgaz6VFizAm9b0g6IG6hR6+hc0KCPg==}
-
-  '@vercel/edge-config@1.4.0':
-    resolution: {integrity: sha512-69Wg5gw9DzwnyUmnjToSeLRm1nm8mCPgN0kflX8EHRHyqvzH80wPem5A8rI2LXPb2Y9tJNoqN3vXPcQhS2Wh5g==}
-    engines: {node: '>=14.6'}
-    peerDependencies:
-      '@opentelemetry/api': ^1.7.0
-    peerDependenciesMeta:
-      '@opentelemetry/api':
-        optional: true
-
   '@vercel/edge@1.2.1':
     resolution: {integrity: sha512-1++yncEyIAi68D3UEOlytYb1IUcIulMWdoSzX2h9LuSeeyR7JtaIgR8DcTQ6+DmYOQn+5MCh6LY+UmK6QBByNA==}
 
@@ -709,10 +673,6 @@ packages:
     resolution: {integrity: sha512-OvQ/2pUDKmgfCg++xsTX1wGxfTaszcHVcTctW4UJB4hibJx2HXxxO5UmVgyjMa+ZDsiaf5wWLXYpRWMmBI0QHg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
-
-  agent-base@6.0.2:
-    resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
-    engines: {node: '>= 6.0.0'}
 
   ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
@@ -1021,10 +981,6 @@ packages:
     resolution: {integrity: sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==}
     engines: {node: '>=8.0.0'}
 
-  https-proxy-agent@5.0.1:
-    resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
-    engines: {node: '>= 6'}
-
   human-signals@2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
@@ -1103,10 +1059,6 @@ packages:
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
-
-  launchdarkly-eventsource@2.0.3:
-    resolution: {integrity: sha512-VhFjppK7jXlcEKaS7bxdoibB5j01NKyeDR7a8XfssdDGNWCTsbF0/5IExSmPi44eDncPhkoPNxlSZhEZvrbD5w==}
-    engines: {node: '>=0.12.0'}
 
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
@@ -1188,10 +1140,6 @@ packages:
 
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
-
-  lru-cache@6.0.0:
-    resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
-    engines: {node: '>=10'}
 
   merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
@@ -1377,11 +1325,6 @@ packages:
   scheduler@0.25.0:
     resolution: {integrity: sha512-xFVuu11jh+xcO7JOAGJNOXld8/TcEHK/4CituBUeUb5hqxJLj9YuemAEuvm9gQ/+pgXYfbQuqAkiYu+u7YEsNA==}
 
-  semver@7.5.4:
-    resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
-    engines: {node: '>=10'}
-    hasBin: true
-
   semver@7.7.1:
     resolution: {integrity: sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==}
     engines: {node: '>=10'}
@@ -1491,9 +1434,6 @@ packages:
   word-wrap@1.2.5:
     resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
     engines: {node: '>=0.10.0'}
-
-  yallist@4.0.0:
-    resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
 
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
@@ -1683,26 +1623,6 @@ snapshots:
 
   '@img/sharp-win32-x64@0.33.5':
     optional: true
-
-  '@launchdarkly/js-sdk-common@2.13.0': {}
-
-  '@launchdarkly/js-server-sdk-common@2.11.1':
-    dependencies:
-      '@launchdarkly/js-sdk-common': 2.13.0
-      semver: 7.5.4
-
-  '@launchdarkly/node-server-sdk@9.7.4':
-    dependencies:
-      '@launchdarkly/js-server-sdk-common': 2.11.1
-      https-proxy-agent: 5.0.1
-      launchdarkly-eventsource: 2.0.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@launchdarkly/openfeature-node-server@1.0.0(@launchdarkly/node-server-sdk@9.7.4)(@openfeature/server-sdk@1.17.1(@openfeature/core@1.7.2))':
-    dependencies:
-      '@launchdarkly/node-server-sdk': 9.7.4
-      '@openfeature/server-sdk': 1.17.1(@openfeature/core@1.7.2)
 
   '@next/env@15.2.2-canary.4': {}
 
@@ -1977,12 +1897,6 @@ snapshots:
       next: 15.2.2-canary.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
 
-  '@vercel/edge-config-fs@0.1.0': {}
-
-  '@vercel/edge-config@1.4.0':
-    dependencies:
-      '@vercel/edge-config-fs': 0.1.0
-
   '@vercel/edge@1.2.1': {}
 
   '@vercel/microfrontends@1.0.0(@vercel/analytics@1.5.0(next@15.2.2-canary.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0))(next@15.2.2-canary.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
@@ -2027,12 +1941,6 @@ snapshots:
       acorn: 8.14.1
 
   acorn@8.14.1: {}
-
-  agent-base@6.0.2:
-    dependencies:
-      debug: 4.4.0
-    transitivePeerDependencies:
-      - supports-color
 
   ajv@6.12.6:
     dependencies:
@@ -2336,13 +2244,6 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  https-proxy-agent@5.0.1:
-    dependencies:
-      agent-base: 6.0.2
-      debug: 4.4.0
-    transitivePeerDependencies:
-      - supports-color
-
   human-signals@2.1.0: {}
 
   ignore@5.3.2: {}
@@ -2398,8 +2299,6 @@ snapshots:
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
-
-  launchdarkly-eventsource@2.0.3: {}
 
   levn@0.4.1:
     dependencies:
@@ -2460,10 +2359,6 @@ snapshots:
   lodash.isplainobject@4.0.6: {}
 
   lodash.merge@4.6.2: {}
-
-  lru-cache@6.0.0:
-    dependencies:
-      yallist: 4.0.0
 
   merge-stream@2.0.0: {}
 
@@ -2618,10 +2513,6 @@ snapshots:
 
   scheduler@0.25.0: {}
 
-  semver@7.5.4:
-    dependencies:
-      lru-cache: 6.0.0
-
   semver@7.7.1:
     optional: true
 
@@ -2722,7 +2613,5 @@ snapshots:
       isexe: 2.0.0
 
   word-wrap@1.2.5: {}
-
-  yallist@4.0.0: {}
 
   yocto-queue@0.1.0: {}
