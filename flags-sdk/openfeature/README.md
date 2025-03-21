@@ -28,6 +28,12 @@ If you deployed your own instance of this example you can also use the [Flags Ex
 First, install the latest version of the Vercel CLI:
 
 ```bash
+pnpm i -g vercel
+```
+
+or
+
+```bash
 npm i -g vercel
 ```
 
@@ -50,10 +56,22 @@ vercel env pull
 ### Step 3: Install dependencies
 
 ```bash
-npm install
+pnpm install
+```
+
+or
+
+```bash
+npm install --legacy-peer-deps
 ```
 
 ### Step 4: Run the project
+
+```bash
+pnpm run dev
+```
+
+or
 
 ```bash
 npm run dev

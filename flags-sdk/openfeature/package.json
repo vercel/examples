@@ -26,7 +26,7 @@
     "framer-motion": "12.4.7",
     "js-xxhash": "4.0.0",
     "nanoid": "5.1.2",
-    "next": "15.2.2",
+    "next": "15.2.2-canary.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sonner": "2.0.1"
