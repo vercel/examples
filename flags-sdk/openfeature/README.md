@@ -25,6 +25,12 @@ If you deployed your own instance of this example you can also use the [Flags Ex
 
 ### Step 1: Link the project
 
+Install the Vercel CLI.
+
+```bash
+npm i -g vercel
+```
+
 In order to use the Flags Explorer, you need to link the project on your local machine.
 
 ```bash
