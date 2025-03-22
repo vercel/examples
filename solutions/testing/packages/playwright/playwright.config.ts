@@ -11,6 +11,12 @@ dotenv.config({ path: resolve(__dirname, '.env.local') })
  * See https://playwright.dev/docs/test-configuration.
  */
 const config = defineConfig<ApplitoolsConfig>({
+  // webServer: {
+  //   command:
+  //     'cd ../ && pnpm dev --filter=main-site -- --experimental-test-proxy',
+  //   url: 'http://localhost:3000',
+  //   reuseExistingServer: !IS_CI,
+  // },
   globalSetup: join(__dirname, 'shared', 'global-setup.ts'),
   testDir: TEST_TYPE ? join(__dirname, TEST_TYPE, 'tests') : '.',
   testMatch: '*.spec.ts',
