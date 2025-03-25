@@ -25,6 +25,7 @@
     "clsx": "2.1.1",
     "flags": "^4.0.0",
     "nanoid": "5.1.2",
+    "htmlrewriter": "^0.0.12",
     "next": "15.4.0-canary.79",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

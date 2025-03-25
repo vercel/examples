@@ -22,6 +22,13 @@ export default function RootLayout({
         {children}
         <Toaster />
         <VercelToolbar />
+        <script
+          id="embed"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+          dangerouslySetInnerHTML={{ __html: '' }}
+          suppressHydrationWarning
+          type="application/json"
+        />
       </body>
     </html>
   )
