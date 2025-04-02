@@ -75,6 +75,7 @@ Finally, let’s add the required values from Vercel as CI/CD variables in Gitla
 4. Inside the generated `.vercel` folder, save the `projectId` and `orgId` from the `project.json`
 5. Inside Gitlab, add `VERCEL_TOKEN`, `VERCEL_PROJECT_ID_X`, and `VERCEL_ORG_ID_X` as [CI/CD variables](https://docs.gitlab.com/ee/ci/variables/).
 
+## Deploying Your Vercel Application with Gitlab CI/CD
 
 Now that your Vercel application is configured with Gitlab CI/CD, you can try out the workflow:
 
