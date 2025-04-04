@@ -1,13 +1,152 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import Barcode from "react-barcode";
+
+export default function BookLabelGenerator() {
+  const [bookData, setBookData] = useState({
+    title: "",
+    author: "",
+    publisher: "",
+    subject: "",
+    edition: ""
+  });
+  const [generatedLabel, setGeneratedLabel] = useState(null);
+
+  const generateDeweyDecimalCode = (subject) => {
+    const deweyCategories = {
+      "generalidades": "000",
+      "bibliografia": "010",
+      "biblioteca e informática": "020",
+      "enciclopédias": "030",
+      "publicações em série": "050",
+      "organizações e museografia": "060",
+      "mídia, jornalismo e publicação": "070",
+      "coleções em geral": "080",
+      "manuscritos e livros raros": "090",
+      "filosofia e psicologia": "100",
+      "metafísica": "110",
+      "epistemologia": "120",
+      "fenômenos paranormais": "130",
+      "psicologia": "150",
+      "lógica": "160",
+      "ética": "170",
+      "filosofia antiga": "180",
+      "filosofia moderna": "190",
+      "religião": "200",
+      "teologia cristã": "230",
+      "bíblia": "220",
+      "moral cristã": "240",
+      "história da igreja cristã": "270",
+      "denominações cristãs": "280",
+      "outras religiões": "290",
+      "ciências sociais": "300",
+      "estatística geral": "310",
+      "ciência política": "320",
+      "economia": "330",
+      "direito": "340",
+      "administração pública": "350",
+      "educação": "370",
+      "comércio e transporte": "380",
+      "costumes e folclore": "390",
+      "línguas": "400",
+      "linguística": "410",
+      "inglês": "420",
+      "francês": "440",
+      "português": "460",
+      "espanhol": "460",
+      "matemática": "510",
+      "astronomia": "520",
+      "física": "530",
+      "química": "540",
+      "biologia": "570",
+      "ecologia": "580",
+      "ciências da terra": "550",
+      "medicina": "610",
+      "engenharia": "620",
+      "agricultura": "630",
+      "administração": "650",
+      "economia doméstica": "640",
+      "arquitetura": "720",
+      "artes": "700",
+      "música": "780",
+      "teatro": "792",
+      "literatura": "800",
+      "literatura americana": "810",
+      "literatura inglesa": "820",
+      "literatura brasileira": "870",
+      "geografia": "910",
+      "história": "930",
+      "história do mundo antigo": "930",
+      "história da europa": "940",
+      "história da ásia": "950",
+      "história da áfrica": "960",
+      "história da américa": "970",
+    };
+
+    const normalizedSubject = subject.toLowerCase();
+    for (const key in deweyCategories) {
+      if (normalizedSubject.includes(key)) {
+        return deweyCategories[key];
+      }
+    }
+    return "000";
+  };
+
+  const generatePHACode = (author) => {
+    const surname = author.trim().split(" ").pop();
+    let sum = 0;
+    for (let i = 0; i < surname.length; i++) {
+      sum += surname.charCodeAt(i);
+    }
+    const code = ((sum % 900) + 100).toString();
+    return code;
+  };
+
+  const buildLabel = () => {
+    const classificationCode = generateDeweyDecimalCode(bookData.subject);
+    const surname = bookData.author.trim().split(" ").pop();
+    const authorInitial = surname.charAt(0).toUpperCase();
+    const phaCode = generatePHACode(bookData.author);
+    const titleLetter = bookData.title.trim().charAt(0).toLowerCase();
+    const editionPart = bookData.edition ? `${bookData.edition}.ed.` : "";
+    
+    const label = `${classificationCode} ${authorInitial}${phaCode}${titleLetter} ${editionPart}`.trim();
+    return label;
+  };
+
+  const handleChange = (e) => {
+    setBookData({ ...bookData, [e.target.name]: e.target.value });
+  };
+
+  const generateLabel = () => {
+    const label = buildLabel();
+    setGeneratedLabel({ ...bookData, label, barcode: label });
+  };
+
+  return (
+    <div className="p-4 max-w-md mx-auto">
+      <h1 className="text-xl font-bold mb-4">Gerador de Etiquetas</h1>
+      <div className="space-y-2">
+        <Input placeholder="Título" name="title" onChange={handleChange} />
+        <Input placeholder="Autor" name="author" onChange={handleChange} />
+        <Input placeholder="Editora" name="publisher" onChange={handleChange} />
+        <Input placeholder="Assunto (ex: Literatura, Direito)" name="subject" onChange={handleChange} />
+        <Input placeholder="Edição (ex: 13)" name="edition" onChange={handleChange} />
+        <Button onClick={generateLabel}>Gerar Etiqueta</Button>
+      </div>
+      {generatedLabel && (
+        <Card className="mt-4 p-4 border border-gray-300">
+          <CardContent>
+            <p className="font-bold">Título: {generatedLabel.title}</p>
+            <p>Autor: {generatedLabel.author}</p>
+            <p>Editora: {generatedLabel.publisher}</p>
+            <p className="font-mono">Etiqueta: {generatedLabel.label}</p>
+            <Barcode value={generatedLabel.barcode} />
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+}
