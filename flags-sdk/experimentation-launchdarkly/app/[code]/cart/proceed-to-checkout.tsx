@@ -20,7 +20,7 @@ function ProceedToCheckoutImpl({
       <ProceedToCheckoutButton
         color={color}
         onClick={() => {
-          trackLDEvent('proceed-to-checkout-clicked');
+          trackLDEvent('proceed-to-checkout-clicked', ldClient);
           toast('End reached', {
             className: 'my-classname',
             description:
