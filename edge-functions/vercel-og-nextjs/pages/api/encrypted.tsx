@@ -5,9 +5,7 @@
 import { ImageResponse } from '@vercel/og'
 import { NextRequest } from 'next/server'
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
 const key = crypto.subtle.importKey(
   'raw',

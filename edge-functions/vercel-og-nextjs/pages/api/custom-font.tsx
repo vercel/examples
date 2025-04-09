@@ -1,8 +1,6 @@
 import { ImageResponse } from '@vercel/og'
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
 const font = fetch(new URL('../../assets/TYPEWR__.TTF', import.meta.url)).then(
   (res) => res.arrayBuffer()

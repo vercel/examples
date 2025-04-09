@@ -1,9 +1,7 @@
 import type { NextRequest } from 'next/server'
 import { tokenRateLimit } from '@lib/api/keys'
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
 export default async function handler(req: NextRequest) {
   const res = await tokenRateLimit(req)

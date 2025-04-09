@@ -21,9 +21,7 @@ Below is the code from `pages/api/hello.ts`:
 import { NextRequest } from 'next/server'
 import cors from '../../lib/cors'
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
 export default async function handler(req: NextRequest) {
   // `cors` also takes care of handling OPTIONS requests

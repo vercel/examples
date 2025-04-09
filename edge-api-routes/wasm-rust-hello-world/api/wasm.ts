@@ -1,9 +1,7 @@
 //@ts-ignore
 import wasm from '../wasm/pkg/wasm_bg.wasm?module'
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
 export default async function handler() {
   const { exports } = (await WebAssembly.instantiate(wasm)) as any

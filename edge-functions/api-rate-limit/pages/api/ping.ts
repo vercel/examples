@@ -12,9 +12,7 @@ const ratelimit = new Ratelimit({
   limiter: Ratelimit.slidingWindow(5, '10 s'),
 })
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
 export default async function handler(request: NextRequest) {
   // You could alternatively limit based on user ID or similar

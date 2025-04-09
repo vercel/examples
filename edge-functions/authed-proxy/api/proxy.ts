@@ -1,6 +1,4 @@
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
 export default async (req: Request) => {
   // Fetch from the backend, but copy the user's authorization cookie into

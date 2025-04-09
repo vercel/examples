@@ -1,6 +1,4 @@
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
 // http://localhost:3000/api/edge?email=test@test.com
 

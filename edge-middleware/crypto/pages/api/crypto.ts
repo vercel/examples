@@ -4,9 +4,7 @@ import type { NextRequest } from 'next/server'
 // Using Crypto with Edge Middleware and Edge Functions
 // ------------------
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
 export default async function CryptoEdgeAPIRoute(request: NextRequest) {
   const url = request.nextUrl

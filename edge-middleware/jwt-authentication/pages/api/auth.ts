@@ -2,9 +2,7 @@ import { type NextRequest } from 'next/server'
 import { setUserCookie } from '@lib/auth'
 import { jsonResponse } from '@lib/utils'
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
 export default async function auth(req: NextRequest) {
   if (req.method !== 'POST') {
