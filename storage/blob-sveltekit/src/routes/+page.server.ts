@@ -13,6 +13,7 @@ export const actions = {
 
     const { url } = await put(file.name, file, {
       access: 'public',
+      addRandomSuffix: true,
       token: BLOB_READ_WRITE_TOKEN,
     })
     return { uploaded: url }

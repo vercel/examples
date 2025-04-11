@@ -26,26 +26,41 @@ Let’s create our CI/CD Pipeline by creating a new file `.gitlab-ci.yml`:
 default:
   image: node:16.16.0
 
+stages:
+  - deploy
+
 deploy_preview:
   stage: deploy
   except:
     - main
+  variables:
+    TOKEN: $VERCEL_TOKEN
+    VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID_X
+    VERCEL_ORG_ID: $VERCEL_ORG_ID_X
   script:
     - npm install --global vercel
-    - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
-    - vercel build --token=$VERCEL_TOKEN
-    - vercel deploy --prebuilt  --token=$VERCEL_TOKEN
+    - vercel pull --yes --environment=preview --token="$TOKEN"
+    - vercel build --token="$TOKEN"
+    - vercel deploy --prebuilt --token="$TOKEN"
 
 deploy_production:
   stage: deploy
   only:
     - main
+  variables:
+    TOKEN: $VERCEL_TOKEN
+    VERCEL_PROJECT_ID: $VERCEL_PROJECT_ID_X
+    VERCEL_ORG_ID: $VERCEL_ORG_ID_X
   script:
     - npm install --global vercel
-    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-    - vercel build --prod --token=$VERCEL_TOKEN
-    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+    - vercel pull --yes --environment=production --token="$TOKEN"
+    - vercel build --prod --token="$TOKEN"
+    - vercel deploy --prebuilt --prod --token="$TOKEN"
 ```
+
+> 💡 **Note:** GitLab does not expand CI/CD variables defined in the UI when reused with the *same name* in `.gitlab-ci.yml`.  
+> To avoid this, assign different names in GitLab UI like `VERCEL_ORG_ID_X` and `VERCEL_PROJECT_ID_X`, and map them inside your pipeline.  
+> See [GitLab docs](https://docs.gitlab.com/ci/variables/#in-service-containers) for more details.
 
 This pipeline has two triggers:
 
@@ -58,7 +73,7 @@ Finally, let’s add the required values from Vercel as CI/CD variables in Gitla
 2. Install the [Vercel CLI](https://vercel.com/cli) and run `vercel login`
 3. Inside your folder, run `vercel link` to create a new Vercel project
 4. Inside the generated `.vercel` folder, save the `projectId` and `orgId` from the `project.json`
-5. Inside Gitlab, add `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` as [CI/CD variables](https://docs.gitlab.com/ee/ci/variables/).
+5. Inside Gitlab, add `VERCEL_TOKEN`, `VERCEL_PROJECT_ID_X`, and `VERCEL_ORG_ID_X` as [CI/CD variables](https://docs.gitlab.com/ee/ci/variables/).
 
 ## Deploying Your Vercel Application with Gitlab CI/CD
 

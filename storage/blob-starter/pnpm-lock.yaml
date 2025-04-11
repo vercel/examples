@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@vercel/blob':
-        specifier: ^0.26.0
-        version: 0.26.0
+        specifier: ^1.0.0
+        version: 1.0.0
       next:
         specifier: ^15.0.3
         version: 15.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -414,8 +414,8 @@ packages:
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
-  '@vercel/blob@0.26.0':
-    resolution: {integrity: sha512-5aF+bDYGFx5WgxGE+CeOWWI8GYD1I/JxAWl+R//+MgNjkTPpCKkUVjdchFOr622rEu2wuHAOtpLr5HYg7/uRAA==}
+  '@vercel/blob@1.0.0':
+    resolution: {integrity: sha512-fe4fzpL0h/2gRhaCixygaconaMXVgPo06L5ZyTlz9FSVTXDu+MBOu06DqDZ3Ye1s84m1g2sJ9w8Z5SbKCfkQ0A==}
     engines: {node: '>=16.14'}
 
   acorn-jsx@5.3.2:
@@ -550,10 +550,6 @@ packages:
   busboy@1.6.0:
     resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
     engines: {node: '>=10.16.0'}
-
-  bytes@3.1.2:
-    resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
-    engines: {node: '>= 0.8'}
 
   call-bind@1.0.7:
     resolution: {integrity: sha512-GHTSNSYICQ7scH7sZ+M2rFopRoLh8t2bLSW6BbgrtLsahOIB5iyAVJf9GjWK3cYTDaMj4XdBpM1cA6pIS0Kv2w==}
@@ -2148,10 +2144,9 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vercel/blob@0.26.0':
+  '@vercel/blob@1.0.0':
     dependencies:
       async-retry: 1.3.3
-      bytes: 3.1.2
       is-buffer: 2.0.5
       is-node-process: 1.2.0
       throttleit: 2.1.0
@@ -2311,8 +2306,6 @@ snapshots:
   busboy@1.6.0:
     dependencies:
       streamsearch: 1.1.0
-
-  bytes@3.1.2: {}
 
   call-bind@1.0.7:
     dependencies:
