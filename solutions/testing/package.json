@@ -18,9 +18,9 @@
     "e2e": "turbo run e2e"
   },
   "devDependencies": {
-    "eslint": "^8.38.0",
-    "eslint-config-turbo": "^1.9.3",
-    "turbo": "^1.9.3"
+    "eslint": "^8.47.0",
+    "eslint-config-turbo": "^1.10.13",
+    "turbo": "^1.10.13"
   },
   "packageManager": "pnpm@7.17.1"
 }

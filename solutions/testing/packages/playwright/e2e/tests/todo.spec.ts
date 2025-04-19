@@ -20,6 +20,8 @@ test.describe('Todo Page', () => {
     const { input, submitButton } = todoPage.getNewTodoForm()
     const todoItems = todoPage.getTodos()
 
+    await expect(todoItems).toHaveCount(0)
+
     // Create 1st todo.
     const addFirstTodo = async () => {
       await input.fill(todos[0])

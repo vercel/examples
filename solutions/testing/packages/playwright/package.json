@@ -11,6 +11,7 @@
     "clean": "rm -rf .turbo"
   },
   "dependencies": {
+    "@applitools/eyes-playwright": "1.17.22",
     "@playwright/test": "^1.28.1",
     "arg": "^5.0.2",
     "chokidar": "^3.5.3",
@@ -19,11 +20,11 @@
     "eslint": "^8.11.0",
     "eslint-config-custom": "workspace:*",
     "main-site": "workspace:*",
+    "next": "13.4.20-canary.4",
     "tsconfig": "workspace:*",
     "typescript": "^4.9.3"
   },
   "devDependencies": {
-    "@applitools/eyes-playwright": "^1.15.1",
     "@types/node": "^18.15.11",
     "dotenv": "^16.0.3"
   }

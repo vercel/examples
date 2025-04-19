@@ -1,3 +1,4 @@
+import { test as base } from 'next/experimental/testmode/playwright'
 import { IS_CI, PAUSE_ON_FAILURE } from './constants'
 import pauseOnFailure from './fixtures/pause-on-failure'
 import { createUtils, type Utils } from './fixtures/utils'
@@ -10,7 +11,7 @@ import {
 
 type BaseExtensions = { utils: Utils }
 
-const test = applitoolsTest({
+const test = applitoolsTest(base, {
   appName: 'Main Site',
   config(config) {
     // Add 3 desktop browsers with different viewports for cross-browser testing in the Ultrafast Grid.
