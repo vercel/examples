@@ -14,7 +14,7 @@ export default function Home(): React.ReactNode {
         In this microfrontends app we have a monorepo using{' '}
         <a
           className="text-link hover:text-link-light transition-colors"
-          href="https://turbo.build/repo/docs"
+          href="https://turborepo.com/repo/docs"
         >
           Turborepo
         </a>{' '}
