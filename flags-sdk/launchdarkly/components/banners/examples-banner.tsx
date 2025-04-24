@@ -41,9 +41,9 @@ export function ExamplesBanner() {
                 className="text-link hover:text-link-light transition-colors no-underline [&_code]:text-link [&_code]:hover:text-link-light [&_code]:transition-colors text-accents-6 duration-200 hover:text-accents-8 cursor-pointer"
                 target="_blank"
                 rel="noreferrer"
-                href="https://github.com/vercel/examples/tree/main/flags-sdk/experimentation-launchdarkly"
+                href="https://github.com/vercel/examples/tree/main/flags-sdk/launchdarkly"
               >
-                Vercel Examples / Flags SDK / experimentation-launchdarkly
+                Vercel Examples / Flags SDK / launchdarkly
               </Link>
             </li>
           </ul>

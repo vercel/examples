@@ -1,5 +1,5 @@
 {
-  "name": "experimentation-launchdarkly",
+  "name": "flags-sdk-launchdarkly-example",
   "version": "0.0.0",
   "private": true,
   "scripts": {
