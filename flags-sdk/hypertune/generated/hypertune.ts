@@ -37,9 +37,9 @@ export const query: sdk.Query<sdk.ObjectValueWithVariables> = {
 export const vercelFlagDefinitions = {
   proceedToCheckout: {
     options: [
-      { value: 'Blue', label: 'Blue' },
-      { value: 'Green', label: 'Green' },
-      { value: 'Red', label: 'Red' },
+      { value: 'blue', label: 'Blue' },
+      { value: 'green', label: 'Green' },
+      { value: 'red', label: 'Red' },
     ],
     origin:
       'https://app.hypertune.com/projects/4526/main/draft/logic?selected_field_path=root%3EproceedToCheckout',
@@ -77,7 +77,7 @@ export type FlagValues = {
 export type FlagPaths = keyof FlagValues & string
 
 export const flagFallbacks: FlagValues = {
-  proceedToCheckout: 'Blue',
+  proceedToCheckout: 'blue',
   delay: 0,
   freeDelivery: false,
   summerSale: false,
@@ -100,13 +100,6 @@ export const EnvironmentEnumValues = [
 ] as const
 export type Environment = (typeof EnvironmentEnumValues)[number]
 
-/**
- * This `Context` input type is used for the `context` argument on your root field.
- * It contains details of the current `user` and `environment`.
- *
- * You can define other custom input types with fields that are primitives, enums
- * or other input types.
- */
 export type Context = {
   stableId: string
   environment: Environment
@@ -118,7 +111,7 @@ export type RootArgs = {
 
 export type EmptyObject = {}
 
-export const ButtonColorEnumValues = ['Blue', 'Green', 'Red'] as const
+export const ButtonColorEnumValues = ['blue', 'green', 'red'] as const
 export type ButtonColor = (typeof ButtonColorEnumValues)[number]
 
 export class ButtonColorNode extends sdk.Node {
@@ -157,7 +150,7 @@ export type Root = {
 }
 
 const rootFallback = {
-  proceedToCheckout: 'Blue',
+  proceedToCheckout: 'blue',
   delay: 0,
   freeDelivery: false,
   summerSale: false,
@@ -307,7 +300,7 @@ export type Source = {
 
 const sourceFallback = {
   root: {
-    proceedToCheckout: 'Blue',
+    proceedToCheckout: 'blue',
     delay: 0,
     freeDelivery: false,
     summerSale: false,

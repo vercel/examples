@@ -24,11 +24,11 @@ export default async function Layout(props: {
     code: string
   }>
 }) {
-  const params = await props.params
-  const values = await deserialize(productFlags, params.code)
+  const { code } = await props.params
+  const values = await deserialize(productFlags, code)
 
   const showFreeDeliveryBanner = await showFreeDeliveryBannerFlag(
-    params.code,
+    code,
     productFlags
   )
 

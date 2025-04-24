@@ -6,6 +6,7 @@ const colorMap: Record<string, string> = {
   blue: 'bg-blue-600 hover:bg-blue-700',
   red: 'bg-red-600 hover:bg-red-700',
   green: 'bg-green-600 hover:bg-green-700',
+  skeleton: 'bg-gray-300 animate-pulse',
 }
 
 export function ProceedToCheckoutButton({ color }: { color: string }) {

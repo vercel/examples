@@ -12,8 +12,8 @@ import { SummerSaleBanner } from '@/components/banners/summer-sale-banner'
 export default async function Page(props: {
   params: Promise<{ code: string }>
 }) {
-  const params = await props.params
-  const showSummerBanner = await showSummerBannerFlag(params.code, productFlags)
+  const { code } = await props.params
+  const showSummerBanner = await showSummerBannerFlag(code, productFlags)
 
   return (
     <ProductDetailPageProvider>

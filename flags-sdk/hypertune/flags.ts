@@ -9,10 +9,10 @@ import { createHypertuneFlagFactory } from '@flags-sdk/hypertune'
 import { identify } from './lib/identify'
 
 const hypertuneFlag = createHypertuneFlagFactory<FlagValues, Context>({
+  identify,
   createSource,
   flagFallbacks,
   flagDefinitions: vercelFlagDefinitions,
-  identify,
 })
 
 export const showSummerBannerFlag = hypertuneFlag('summerSale')
