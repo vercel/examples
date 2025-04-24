@@ -2,18 +2,17 @@
 
 import { ProceedToCheckoutButton } from '@/components/shopping-cart/proceed-to-checkout-button';
 import { toast } from 'sonner';
-import { type LDClient, withLDConsumer } from 'launchdarkly-react-client-sdk';
+import { useLDClient } from 'launchdarkly-react-client-sdk';
 import { useLDFlagExposure, trackLDEvent } from '@/launchdarkly/launchdarkly-flag-exposure';
 
-function ProceedToCheckoutImpl({
+export function ProceedToCheckout({
   color,
   flagKey,
-  ldClient,
 }: {
   color: string;
   flagKey: string;
-  ldClient?: LDClient;
 }) {
+  const ldClient = useLDClient();
   useLDFlagExposure(flagKey, ldClient);
   return (
     <>
@@ -32,5 +31,3 @@ function ProceedToCheckoutImpl({
     </>
   );
 }
-
-export const ProceedToCheckout = withLDConsumer({ clientOnly: true })(ProceedToCheckoutImpl);

@@ -2,18 +2,17 @@
 
 import { toast } from 'sonner';
 import { SummerSaleBanner } from '@/components/banners/summer-sale-banner';
-import { type LDClient, withLDConsumer } from 'launchdarkly-react-client-sdk';
+import { useLDClient } from 'launchdarkly-react-client-sdk';
 import { useLDFlagExposure, trackLDEvent } from '@/launchdarkly/launchdarkly-flag-exposure';
 
-function SummerSaleImpl({
+export function SummerSale({
   flagKey,
   show,
-  ldClient,
 }: {
   show: boolean;
   flagKey: string;
-  ldClient?: LDClient;
 }) {
+  const ldClient = useLDClient();
   useLDFlagExposure(flagKey, ldClient);
   return (
     <>
@@ -32,5 +31,3 @@ function SummerSaleImpl({
     </>
   );
 }
-
-export const SummerSale = withLDConsumer({ clientOnly: true })(SummerSaleImpl);

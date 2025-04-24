@@ -1,18 +1,17 @@
 'use client';
 
 import { FreeDeliveryBanner } from '@/components/banners/free-delivery-banner';
-import { type LDClient, withLDConsumer } from 'launchdarkly-react-client-sdk';
+import { useLDClient } from 'launchdarkly-react-client-sdk';
 import { useLDFlagExposure } from '@/launchdarkly/launchdarkly-flag-exposure';
 
-function FreeDeliveryImpl({
+export function FreeDelivery({
   flagKey,
   show,
-  ldClient,
 }: {
   flagKey: string;
   show: boolean;
-  ldClient?: LDClient;
 }) {
+  const ldClient = useLDClient();
   useLDFlagExposure(flagKey, ldClient);
   return (
     <>
@@ -20,5 +19,3 @@ function FreeDeliveryImpl({
     </>
   );
 }
-
-export const FreeDelivery = withLDConsumer({ clientOnly: true })(FreeDeliveryImpl);
