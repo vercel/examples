@@ -16,8 +16,7 @@ export async function delay(ms: number) {
 
 export async function getCart(): Promise<Cart> {
   const cartId = await getCartId()
-  const delayMs = await delayFlag()
-  await delay(delayMs)
+
   return fetch(`${BACKEND_URL}/api/cart/${cartId.value}`).then((res) =>
     res.json()
   )

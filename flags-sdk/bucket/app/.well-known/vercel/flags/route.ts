@@ -4,7 +4,6 @@ import { NextResponse, type NextRequest } from 'next/server'
 import * as flags from '../../../../flags'
 import { getProviderData as getBucketProviderData } from '@flags-sdk/bucket'
 
-export const runtime = 'edge'
 export const dynamic = 'force-dynamic' // defaults to auto
 
 export async function GET(request: NextRequest) {

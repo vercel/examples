@@ -5,6 +5,7 @@ import withVercelToolbar from '@vercel/toolbar/plugins/next'
 const nextConfig = {
   experimental: {
     ppr: 'incremental',
+    nodeMiddleware: true,
   },
 }
 
