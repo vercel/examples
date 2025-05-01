@@ -7,7 +7,7 @@ export const identify = dedupe(async () => {
   const stableId = await getStableId()
 
   return {
-    user: {
+    company: {
       id: stableId.value,
     },
   }

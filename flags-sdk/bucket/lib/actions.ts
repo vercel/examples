@@ -2,7 +2,6 @@
 
 import { revalidatePath } from 'next/cache'
 import type { Cart, CartItem } from '@/components/utils/cart-types'
-import { delayFlag } from '@/flags'
 import { getCartId } from './get-cart-id'
 
 // Using a fallback here so we don't need to make the BACKEND_URL part of the env,
