@@ -1,7 +1,7 @@
 'use client'
 
 import { removeFromCart } from '@/lib/actions'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import { useState } from 'react'
 import type { CartItem } from '@/components/utils/cart-types'
 
@@ -11,7 +11,13 @@ function Spinner() {
       initial={{ scale: 0, x: 0, opacity: 0, rotate: 0 }}
       animate={{ scale: 1, x: 0, opacity: 1, rotate: 360 }}
       exit={{ scale: 0, x: 0, opacity: 0, rotate: 0 }}
-      transition={{ rotate: { duration: 1, ease: 'linear', repeat: Infinity } }}
+      transition={{
+        rotate: {
+          duration: 1,
+          ease: 'linear',
+          repeat: Number.POSITIVE_INFINITY,
+        },
+      }}
       className="inline-block size-4 rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em]"
     />
   )

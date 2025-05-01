@@ -1,27 +1,43 @@
+/** Generated with `npx hypertune` */
 import {
   createSource,
-  flagFallbacks,
   vercelFlagDefinitions,
+  flagFallbacks,
+  type TopLevelFlagValues,
   type Context,
-  type FlagValues,
 } from './generated/hypertune'
-import { createHypertuneFlagFactory } from '@flags-sdk/hypertune'
+import { flag } from 'flags/next'
+import { createHypertuneAdapter } from '@flags-sdk/hypertune'
 import { identify } from './lib/identify'
 
-const hypertuneFlag = createHypertuneFlagFactory<FlagValues, Context>({
-  identify,
+const hypertuneAdapter = createHypertuneAdapter<TopLevelFlagValues, Context>({
   createSource,
-  flagFallbacks,
   flagDefinitions: vercelFlagDefinitions,
+  flagFallbacks,
+  identify,
 })
 
-export const showSummerBannerFlag = hypertuneFlag('summerSale')
+export const showSummerBannerFlag = flag(
+  hypertuneAdapter.declarations.summerSale
+)
 
-export const showFreeDeliveryBannerFlag = hypertuneFlag('freeDelivery')
+export const showFreeDeliveryBannerFlag = flag(
+  hypertuneAdapter.declarations.freeDelivery
+)
 
-export const proceedToCheckoutColorFlag = hypertuneFlag('proceedToCheckout')
+export const proceedToCheckoutColorFlag = flag(
+  hypertuneAdapter.declarations.proceedToCheckout
+)
 
-export const delayFlag = hypertuneFlag('delay')
+export const delayFlag = flag({
+  ...hypertuneAdapter.declarations.delay,
+  options: [
+    { value: 0, label: 'No delay' },
+    { value: 1_000, label: '1 second' },
+    { value: 2_000, label: '2 seconds' },
+    { value: 3_000, label: '3 seconds' },
+  ],
+})
 
 export const productFlags = [
   showFreeDeliveryBannerFlag,
