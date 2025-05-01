@@ -35,7 +35,7 @@ This allows the Flags SDK and the Flags Explorer to work correctly, by getting a
 vercel env pull
 ```
 
-### Step 3: Create Feature Gates and Experiments
+### Step 3: Create Features
 
 Head over to the [Bucket application](app.bucket.co) and create the features required by this template.
 
