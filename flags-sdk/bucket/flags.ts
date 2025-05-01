@@ -4,14 +4,20 @@ import { identify } from './lib/identify'
 
 export const showSummerBannerFlag = flag<boolean, Context>({
   key: 'summer_sale',
-  adapter: bucketAdapter.featureIsEnabled(),
+  // adapter: bucketAdapter.featureIsEnabled(),
+  decide() {
+    return true
+  },
   defaultValue: false,
   identify,
 })
 
 export const showFreeDeliveryBannerFlag = flag<boolean, Context>({
   key: 'free_delivery',
-  adapter: bucketAdapter.featureIsEnabled(),
+  // adapter: bucketAdapter.featureIsEnabled(),
+  decide() {
+    return true
+  },
   defaultValue: false,
   identify,
 })

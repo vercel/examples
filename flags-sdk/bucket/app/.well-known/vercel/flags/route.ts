@@ -14,10 +14,8 @@ export async function GET(request: NextRequest) {
   const providerData = await mergeProviderData([
     // Data declared from Flags in Code
     getProviderData(flags),
-    // metadata from Bucket API
-    getBucketProviderData({
-      bucketClient: flags.bucketClient,
-    }),
+    // metadata from Bucket API using the default bucket adapter
+    getBucketProviderData(),
   ])
 
   return NextResponse.json<ApiData>(providerData)
