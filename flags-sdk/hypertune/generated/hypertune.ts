@@ -2,7 +2,7 @@
 
 import * as sdk from 'hypertune'
 
-export const queryCode = `query FullQuery{root{foo proceedToCheckout delay freeDelivery summerSale}}`
+export const queryCode = `query FullQuery{root{proceedToCheckout delay freeDelivery summerSale}}`
 
 export const query: sdk.Query<sdk.ObjectValueWithVariables> = {
   variableDefinitions: {},
@@ -19,7 +19,6 @@ export const query: sdk.Query<sdk.ObjectValueWithVariables> = {
               type: 'InlineFragment',
               objectTypeName: 'Root',
               selection: {
-                foo: { fieldArguments: {}, fieldQuery: null },
                 proceedToCheckout: { fieldArguments: {}, fieldQuery: null },
                 delay: { fieldArguments: {}, fieldQuery: null },
                 freeDelivery: { fieldArguments: {}, fieldQuery: null },
@@ -34,14 +33,6 @@ export const query: sdk.Query<sdk.ObjectValueWithVariables> = {
 }
 
 export const vercelFlagDefinitions = {
-  foo: {
-    options: [
-      { label: 'Off', value: false },
-      { label: 'On', value: true },
-    ],
-    origin:
-      'https://app.hypertune.com/projects/4526/main/draft/logic?selected_field_path=root%3Efoo',
-  },
   proceedToCheckout: {
     options: [
       { value: 'blue', label: 'Blue' },
@@ -75,15 +66,13 @@ export const vercelFlagDefinitions = {
 }
 
 export type FlagValues = {
-  foo: boolean
   proceedToCheckout: ButtonColor
   delay: number
   freeDelivery: boolean
   summerSale: boolean
 }
 
-export type TopLevelFlagValues = {
-  foo: boolean
+export type AllFlagValues = {
   proceedToCheckout: ButtonColor
   delay: number
   freeDelivery: boolean
@@ -93,7 +82,6 @@ export type TopLevelFlagValues = {
 export type FlagPaths = keyof FlagValues & string
 
 export const flagFallbacks: FlagValues = {
-  foo: false,
   proceedToCheckout: 'blue',
   delay: 0,
   freeDelivery: false,
@@ -160,7 +148,6 @@ export class ButtonColorNode extends sdk.Node {
 }
 
 export type Root = {
-  foo: boolean
   proceedToCheckout: ButtonColor
   delay: number
   freeDelivery: boolean
@@ -168,7 +155,6 @@ export type Root = {
 }
 
 const rootFallback = {
-  foo: false,
   proceedToCheckout: 'blue',
   delay: 0,
   freeDelivery: false,
@@ -188,29 +174,6 @@ export class RootNode extends sdk.Node {
   get({ fallback = rootFallback as Root }: { fallback?: Root } = {}): Root {
     const getQuery = null
     return this.getValue({ query: getQuery, fallback }) as Root
-  }
-
-  /**
-   * [Open in Hypertune UI]({@link https://app.hypertune.com/projects/4526/main/draft/logic?selected_field_path=root%3Efoo})
-   */
-  foo({
-    args = {},
-    fallback,
-  }: {
-    args?: EmptyObject
-    fallback: boolean
-  }): boolean {
-    const props0 = this.getFieldNodeProps('foo', { fieldArguments: args })
-    const expression0 = props0.expression
-
-    if (expression0 && expression0.type === 'BooleanExpression') {
-      const node = new sdk.BooleanNode(props0)
-      return node.get({ fallback })
-    }
-
-    const node = new sdk.BooleanNode(props0)
-    node._logUnexpectedTypeError()
-    return node.get({ fallback })
   }
 
   /**
@@ -342,7 +305,6 @@ export type Source = {
 
 const sourceFallback = {
   root: {
-    foo: false,
     proceedToCheckout: 'blue',
     delay: 0,
     freeDelivery: false,
