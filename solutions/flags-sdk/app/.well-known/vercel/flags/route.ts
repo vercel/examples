@@ -1,17 +1,8 @@
-import { verifyAccess, type ApiData } from 'flags'
-import { getProviderData } from 'flags/next'
-import { NextResponse, type NextRequest } from 'next/server'
+import { createFlagsDiscoveryEndpoint, getProviderData } from 'flags/next'
 import * as flags from '../../../../flags'
 
 /**
  * This route sets up the Flags Explorer
- * https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar
+ * https://vercel.com/docs/feature-flags/flags-explorer/getting-started#creating-the-flags-api-endpoint
  */
-export async function GET(request: NextRequest) {
-  const access = await verifyAccess(request.headers.get('Authorization'))
-  if (!access) return NextResponse.json(null, { status: 401 })
-
-  const providerData = getProviderData({ ...flags })
-
-  return NextResponse.json<ApiData>(providerData)
-}
+export const GET = createFlagsDiscoveryEndpoint(() => getProviderData(flags))

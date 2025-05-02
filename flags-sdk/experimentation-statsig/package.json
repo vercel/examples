@@ -23,7 +23,7 @@
     "@vercel/toolbar": "0.1.33",
     "framer-motion": "12.4.7",
     "clsx": "2.1.1",
-    "flags": "^3.1.1",
+    "flags": "^4.0.0",
     "nanoid": "5.1.2",
     "next": "15.2.1-canary.4",
     "react": "^19.0.0",
