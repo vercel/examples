@@ -6,7 +6,8 @@ framework: Next.js
 useCase: Edge Functions
 css: CSS Modules
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/functions/hello-world-next&project-name=edge-hello-world-nextjs&repository-name=edge-hello-world-nextjs
-demoUrl: https://next-edge-api-route.vercel.app/api/edge
+demoUrl: https://next-edge-api-route.vercel.app/api/location
+relatedTemplates:
   - edge-hello-world
   - edge-query-parameters
   - edge-json-response
