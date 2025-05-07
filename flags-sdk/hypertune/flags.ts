@@ -3,14 +3,14 @@ import {
   createSource,
   vercelFlagDefinitions,
   flagFallbacks,
-  type TopLevelFlagValues,
+  type FlagValues,
   type Context,
 } from './generated/hypertune'
 import { flag } from 'flags/next'
 import { createHypertuneAdapter } from '@flags-sdk/hypertune'
 import { identify } from './lib/identify'
 
-const hypertuneAdapter = createHypertuneAdapter<TopLevelFlagValues, Context>({
+const hypertuneAdapter = createHypertuneAdapter<FlagValues, Context>({
   createSource,
   flagDefinitions: vercelFlagDefinitions,
   flagFallbacks,

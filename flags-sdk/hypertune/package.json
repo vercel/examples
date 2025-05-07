@@ -21,7 +21,7 @@
     "@vercel/otel": "^1.11.0",
     "@vercel/toolbar": "0.1.33",
     "clsx": "2.1.1",
-    "flags": "^3.2.0",
+    "flags": "^4.0.0",
     "hypertune": "^2.7.2",
     "js-xxhash": "^4.0.0",
     "motion": "^12.9.4",
