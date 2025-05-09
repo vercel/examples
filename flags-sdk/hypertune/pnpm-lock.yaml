@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@flags-sdk/hypertune':
-        specifier: link:../../../flags/packages/adapter-hypertune
-        version: link:../../../flags/packages/adapter-hypertune
+        specifier: 0.1.0-a9836b7d-20250509103313
+        version: 0.1.0-a9836b7d-20250509103313(@opentelemetry/api@1.9.0)
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -45,8 +45,8 @@ importers:
         specifier: 2.1.1
         version: 2.1.1
       flags:
-        specifier: ^3.2.0
-        version: 3.2.0(@opentelemetry/api@1.9.0)(next@15.2.1-canary.4(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^4.0.0
+        version: 4.0.0(@opentelemetry/api@1.9.0)(next@15.2.1-canary.4(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       hypertune:
         specifier: ^2.7.2
         version: 2.7.2
@@ -153,6 +153,9 @@ packages:
   '@eslint/plugin-kit@0.2.8':
     resolution: {integrity: sha512-ZAoA40rNMPwSm+AeHpCq8STiNAwzWLJuP8Xv4CHIc9wv/PSuExjMrmjfYNj682vW0OOiZ1HKxzvjQr9XZIisQA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@flags-sdk/hypertune@0.1.0-a9836b7d-20250509103313':
+    resolution: {integrity: sha512-6hz2jZ9GkbOiR9Co1ZSXMdeuKQ5Xg/4903lxd82INXkZdK/YAqLXDE7/giIhJxYdHYU+6PXMZfKQ7oPDn7oNlg==}
 
   '@floating-ui/core@1.6.9':
     resolution: {integrity: sha512-uMXCuQ3BItDUbAMhIXw7UPXRfAlOAvZzdK9BWpE60MCn+Svt3aLn9jsPTi/WNGlRUu2uI0v5S7JiIUsbsvh3fw==}
@@ -1333,8 +1336,8 @@ packages:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
 
-  flags@3.2.0:
-    resolution: {integrity: sha512-rmJHXg4ijRgWNf/OdEGbd3FaqMwvKlcrtelKwTtPCzsNWuian9Tz+wXU+3XSO3ljqlpQYyzMgdwz3CBs/5DtZA==}
+  flags@4.0.0:
+    resolution: {integrity: sha512-CpONOK/nflKfaTT36r+Y4SP5rb9mv3AdqY/2Ws+TScrEGlT4PK+PZNiKJgIH87HooTXDblz31807q7lZ3LpuYQ==}
     peerDependencies:
       '@opentelemetry/api': ^1.7.0
       '@sveltejs/kit': '*'
@@ -2410,6 +2413,14 @@ snapshots:
     dependencies:
       '@eslint/core': 0.13.0
       levn: 0.4.1
+
+  '@flags-sdk/hypertune@0.1.0-a9836b7d-20250509103313(@opentelemetry/api@1.9.0)':
+    dependencies:
+      '@vercel/edge-config': 1.4.0(@opentelemetry/api@1.9.0)
+      hypertune: 2.7.2
+    transitivePeerDependencies:
+      - '@opentelemetry/api'
+      - encoding
 
   '@floating-ui/core@1.6.9':
     dependencies:
@@ -3693,7 +3704,7 @@ snapshots:
       locate-path: 6.0.0
       path-exists: 4.0.0
 
-  flags@3.2.0(@opentelemetry/api@1.9.0)(next@15.2.1-canary.4(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  flags@4.0.0(@opentelemetry/api@1.9.0)(next@15.2.1-canary.4(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@edge-runtime/cookies': 5.0.2
       jose: 5.10.0
