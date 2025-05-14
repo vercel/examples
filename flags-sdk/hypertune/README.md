@@ -17,7 +17,7 @@ Since this example is using a stable id to identify users, you will see the same
 To test different variations, you can use the Dev Tools at the bottom to reset the stable id and reload the page.
 This allows you to test different variations of the banners.
 
-If you clone the example, you can also use the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar) to test different variations by creating overrides.
+If you clone the example, you can also use the [Flags Explorer](https://vercel.com/docs/feature-flags/flags-explorer) to test different variations by creating overrides.
 
 ## Deploy this template
 
