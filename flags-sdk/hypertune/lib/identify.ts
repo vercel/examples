@@ -9,10 +9,6 @@ export const identify: Identify<Context> = dedupe(async () => {
     process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? 'development'
   return {
     stableId,
-    environment: environment as
-      | 'development'
-      | 'production'
-      | 'test'
-      | 'preview',
+    environment: environment as 'development' | 'production' | 'test',
   }
 })

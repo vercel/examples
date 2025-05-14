@@ -40,3 +40,56 @@ This allows the Flags SDK and the Flags Explorer to work correctly, by getting a
 ```bash
 vercel env pull
 ```
+
+### Step 3: Set up Hypertune
+
+#### Use the Schema for this example
+
+In the Hypertune dashboard, try this example by pasting the following schema into the Schema tab:
+
+![Hypertune Schema](https://cdn.zappy.app/c52947e955bb0dbe1ff8bb6ef36c82d7.png)
+
+```graphql
+"""
+This `Context` input type is used for the `context` argument on your root field.
+It contains details of the current `user` and `environment`.
+
+You can define other custom input types with fields that are primitives, enums
+or other input types.
+"""
+input Context {
+  stableId: String!
+  environment: Environment!
+}
+
+type Root {
+  delay: Int!
+  proceedToCheckout: ProceedToCheckout!
+  freeDelivery: Boolean!
+  summerSale: Boolean!
+}
+
+enum Environment {
+  development
+  production
+  test
+}
+
+enum ProceedToCheckout {
+  blue
+  red
+  green
+}
+```
+
+#### Use the Logic for this example
+
+You will also need to create the logic for the flags to enable the flags to return different variants.
+
+![Hypertune Logic](https://cdn.zappy.app/4c4f45a4d402e23b1802b3d506019049.png)
+
+Create a **Flag** for the **delay** flag, and set the **Type** to **Number**.
+
+Create a **Test** for each flag that splits traffic between users, and select the appropriate type for each flag.
+
+Flags should be called `delay`, `proceedToCheckout`, `freeDelivery`, and `summerSale` as seen in `flags.ts`
