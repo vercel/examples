@@ -1,3 +1,11 @@
+---
+name: Flags SDK with Hypertune and Next.js
+slug: flags-sdk-hypertune-nextjs
+description: Learn to use Hypertune with the Flags SDK and Next.js.
+framework: Next.js
+deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Fhypertune&env=FLAGS_SECRET&envDescription=The+FLAGS_SECRET+will+be+used+by+the+Flags+Explorer+to+securely+overwrite+feature+flags.+Must+be+32+random+bytes%2C+base64-encoded.+Use+the+generated+value+or+set+your+own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fworkflow-collaboration%2Ffeature-flags%2Fsupporting-feature-flags%23flags_secret-environment-variable&project-name=flags-sdk-hypertune&repository-name=flags-sdk-hypertune
+---
+
 # Flags SDK Template
 
 This example uses a template adapter for feature flags with the [Flags SDK](https://flags-sdk.dev) that works with the [Flags Explorer](https://vercel.com/docs/feature-flags/flags-explorer).

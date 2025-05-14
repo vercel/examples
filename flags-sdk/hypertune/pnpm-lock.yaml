@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@flags-sdk/hypertune':
-        specifier: 0.1.0-a9836b7d-20250509103313
-        version: 0.1.0-a9836b7d-20250509103313(@opentelemetry/api@1.9.0)
+        specifier: 0.2.0
+        version: 0.2.0(@opentelemetry/api@1.9.0)
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -154,8 +154,8 @@ packages:
     resolution: {integrity: sha512-ZAoA40rNMPwSm+AeHpCq8STiNAwzWLJuP8Xv4CHIc9wv/PSuExjMrmjfYNj682vW0OOiZ1HKxzvjQr9XZIisQA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@flags-sdk/hypertune@0.1.0-a9836b7d-20250509103313':
-    resolution: {integrity: sha512-6hz2jZ9GkbOiR9Co1ZSXMdeuKQ5Xg/4903lxd82INXkZdK/YAqLXDE7/giIhJxYdHYU+6PXMZfKQ7oPDn7oNlg==}
+  '@flags-sdk/hypertune@0.2.0':
+    resolution: {integrity: sha512-AB9gZBlznSdH2/J2Ut/e2k/3z1TWrc6x+x3a7g0V1shibENyCz71xM6l7MbljS1xvBH1Q4E5rUBXsJuCBoyOCw==}
 
   '@floating-ui/core@1.6.9':
     resolution: {integrity: sha512-uMXCuQ3BItDUbAMhIXw7UPXRfAlOAvZzdK9BWpE60MCn+Svt3aLn9jsPTi/WNGlRUu2uI0v5S7JiIUsbsvh3fw==}
@@ -2414,7 +2414,7 @@ snapshots:
       '@eslint/core': 0.13.0
       levn: 0.4.1
 
-  '@flags-sdk/hypertune@0.1.0-a9836b7d-20250509103313(@opentelemetry/api@1.9.0)':
+  '@flags-sdk/hypertune@0.2.0(@opentelemetry/api@1.9.0)':
     dependencies:
       '@vercel/edge-config': 1.4.0(@opentelemetry/api@1.9.0)
       hypertune: 2.7.2
