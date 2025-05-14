@@ -2,7 +2,7 @@
 
 import * as sdk from 'hypertune'
 
-export const queryCode = `query FullQuery{root{proceedToCheckout delay freeDelivery summerSale}}`
+export const queryCode = `query FullQuery{root{delay proceedToCheckout freeDelivery summerSale}}`
 
 export const query: sdk.Query<sdk.ObjectValueWithVariables> = {
   variableDefinitions: {},
@@ -19,8 +19,8 @@ export const query: sdk.Query<sdk.ObjectValueWithVariables> = {
               type: 'InlineFragment',
               objectTypeName: 'Root',
               selection: {
-                proceedToCheckout: { fieldArguments: {}, fieldQuery: null },
                 delay: { fieldArguments: {}, fieldQuery: null },
+                proceedToCheckout: { fieldArguments: {}, fieldQuery: null },
                 freeDelivery: { fieldArguments: {}, fieldQuery: null },
                 summerSale: { fieldArguments: {}, fieldQuery: null },
               },
@@ -33,19 +33,19 @@ export const query: sdk.Query<sdk.ObjectValueWithVariables> = {
 }
 
 export const vercelFlagDefinitions = {
-  proceedToCheckout: {
-    options: [
-      { value: 'blue', label: 'Blue' },
-      { value: 'green', label: 'Green' },
-      { value: 'red', label: 'Red' },
-    ],
-    origin:
-      'https://app.hypertune.com/projects/4526/main/draft/logic?selected_field_path=root%3EproceedToCheckout',
-  },
   delay: {
     options: [],
     origin:
-      'https://app.hypertune.com/projects/4526/main/draft/logic?selected_field_path=root%3Edelay',
+      'https://app.hypertune.com/projects/4585/main/draft/logic?selected_field_path=root%3Edelay',
+  },
+  proceedToCheckout: {
+    options: [
+      { value: 'blue', label: 'Blue' },
+      { value: 'red', label: 'Red' },
+      { value: 'green', label: 'Green' },
+    ],
+    origin:
+      'https://app.hypertune.com/projects/4585/main/draft/logic?selected_field_path=root%3EproceedToCheckout',
   },
   freeDelivery: {
     options: [
@@ -53,7 +53,7 @@ export const vercelFlagDefinitions = {
       { label: 'On', value: true },
     ],
     origin:
-      'https://app.hypertune.com/projects/4526/main/draft/logic?selected_field_path=root%3EfreeDelivery',
+      'https://app.hypertune.com/projects/4585/main/draft/logic?selected_field_path=root%3EfreeDelivery',
   },
   summerSale: {
     options: [
@@ -61,20 +61,20 @@ export const vercelFlagDefinitions = {
       { label: 'On', value: true },
     ],
     origin:
-      'https://app.hypertune.com/projects/4526/main/draft/logic?selected_field_path=root%3EsummerSale',
+      'https://app.hypertune.com/projects/4585/main/draft/logic?selected_field_path=root%3EsummerSale',
   },
 }
 
-export type FlagValues = {
-  proceedToCheckout: ButtonColor
+export type RootFlagValues = {
   delay: number
+  proceedToCheckout: ProceedToCheckout
   freeDelivery: boolean
   summerSale: boolean
 }
 
-export type AllFlagValues = {
-  proceedToCheckout: ButtonColor
+export type FlagValues = {
   delay: number
+  proceedToCheckout: ProceedToCheckout
   freeDelivery: boolean
   summerSale: boolean
 }
@@ -82,8 +82,8 @@ export type AllFlagValues = {
 export type FlagPaths = keyof FlagValues & string
 
 export const flagFallbacks: FlagValues = {
-  proceedToCheckout: 'blue',
   delay: 0,
+  proceedToCheckout: 'blue',
   freeDelivery: false,
   summerSale: false,
 }
@@ -98,13 +98,19 @@ export function decodeFlagValues<TFlagPaths extends keyof FlagValues & string>(
 export type VariableValues = {}
 
 export const EnvironmentEnumValues = [
-  'production',
-  'preview',
-  'test',
   'development',
+  'production',
+  'test',
 ] as const
 export type Environment = (typeof EnvironmentEnumValues)[number]
 
+/**
+ * This `Context` input type is used for the `context` argument on your root field.
+ * It contains details of the current `user` and `environment`.
+ *
+ * You can define other custom input types with fields that are primitives, enums
+ * or other input types.
+ */
 export type Context = {
   stableId: string
   environment: Environment
@@ -116,19 +122,19 @@ export type RootArgs = {
 
 export type EmptyObject = {}
 
-export const ButtonColorEnumValues = ['blue', 'green', 'red'] as const
-export type ButtonColor = (typeof ButtonColorEnumValues)[number]
+export const ProceedToCheckoutEnumValues = ['blue', 'red', 'green'] as const
+export type ProceedToCheckout = (typeof ProceedToCheckoutEnumValues)[number]
 
-export class ButtonColorNode extends sdk.Node {
-  override typeName = 'ButtonColor' as const
+export class ProceedToCheckoutNode extends sdk.Node {
+  override typeName = 'ProceedToCheckout' as const
 
   get({
     fallback,
     shouldReturnUnrecognizedValues = false,
   }: {
-    fallback: ButtonColor
+    fallback: ProceedToCheckout
     shouldReturnUnrecognizedValues?: boolean
-  }): ButtonColor {
+  }): ProceedToCheckout {
     const value = this.getValue({ fallback })
 
     if (typeof value !== 'string' || !value) {
@@ -137,26 +143,26 @@ export class ButtonColorNode extends sdk.Node {
     }
     if (
       !shouldReturnUnrecognizedValues &&
-      !ButtonColorEnumValues.includes(value as ButtonColor)
+      !ProceedToCheckoutEnumValues.includes(value as ProceedToCheckout)
     ) {
       this.logUnexpectedValueError(value)
       return fallback
     }
 
-    return value as ButtonColor
+    return value as ProceedToCheckout
   }
 }
 
 export type Root = {
-  proceedToCheckout: ButtonColor
   delay: number
+  proceedToCheckout: ProceedToCheckout
   freeDelivery: boolean
   summerSale: boolean
 }
 
 const rootFallback = {
-  proceedToCheckout: 'blue',
   delay: 0,
+  proceedToCheckout: 'blue',
   freeDelivery: false,
   summerSale: false,
 }
@@ -177,39 +183,7 @@ export class RootNode extends sdk.Node {
   }
 
   /**
-   * [Open in Hypertune UI]({@link https://app.hypertune.com/projects/4526/main/draft/logic?selected_field_path=root%3EproceedToCheckout})
-   */
-  proceedToCheckout({
-    args = {},
-    fallback,
-    shouldReturnUnrecognizedValues = false,
-  }: {
-    args?: EmptyObject
-    fallback: ButtonColor
-    shouldReturnUnrecognizedValues?: boolean
-  }): ButtonColor {
-    const props0 = this.getFieldNodeProps('proceedToCheckout', {
-      fieldArguments: args,
-    })
-    const expression0 = props0.expression
-
-    if (
-      expression0 &&
-      (expression0.type === 'StringExpression' ||
-        expression0.type === 'EnumExpression') &&
-      ButtonColorEnumValues.includes(expression0.value as ButtonColor)
-    ) {
-      const node = new ButtonColorNode(props0)
-      return node.get({ fallback, shouldReturnUnrecognizedValues })
-    }
-
-    const node = new ButtonColorNode(props0)
-    node._logUnexpectedTypeError()
-    return fallback
-  }
-
-  /**
-   * [Open in Hypertune UI]({@link https://app.hypertune.com/projects/4526/main/draft/logic?selected_field_path=root%3Edelay})
+   * [Open in Hypertune UI]({@link https://app.hypertune.com/projects/4585/main/draft/logic?selected_field_path=root%3Edelay})
    */
   delay({
     args = {},
@@ -232,7 +206,41 @@ export class RootNode extends sdk.Node {
   }
 
   /**
-   * [Open in Hypertune UI]({@link https://app.hypertune.com/projects/4526/main/draft/logic?selected_field_path=root%3EfreeDelivery})
+   * [Open in Hypertune UI]({@link https://app.hypertune.com/projects/4585/main/draft/logic?selected_field_path=root%3EproceedToCheckout})
+   */
+  proceedToCheckout({
+    args = {},
+    fallback,
+    shouldReturnUnrecognizedValues = false,
+  }: {
+    args?: EmptyObject
+    fallback: ProceedToCheckout
+    shouldReturnUnrecognizedValues?: boolean
+  }): ProceedToCheckout {
+    const props0 = this.getFieldNodeProps('proceedToCheckout', {
+      fieldArguments: args,
+    })
+    const expression0 = props0.expression
+
+    if (
+      expression0 &&
+      (expression0.type === 'StringExpression' ||
+        expression0.type === 'EnumExpression') &&
+      ProceedToCheckoutEnumValues.includes(
+        expression0.value as ProceedToCheckout
+      )
+    ) {
+      const node = new ProceedToCheckoutNode(props0)
+      return node.get({ fallback, shouldReturnUnrecognizedValues })
+    }
+
+    const node = new ProceedToCheckoutNode(props0)
+    node._logUnexpectedTypeError()
+    return fallback
+  }
+
+  /**
+   * [Open in Hypertune UI]({@link https://app.hypertune.com/projects/4585/main/draft/logic?selected_field_path=root%3EfreeDelivery})
    */
   freeDelivery({
     args = {},
@@ -257,7 +265,7 @@ export class RootNode extends sdk.Node {
   }
 
   /**
-   * [Open in Hypertune UI]({@link https://app.hypertune.com/projects/4526/main/draft/logic?selected_field_path=root%3EsummerSale})
+   * [Open in Hypertune UI]({@link https://app.hypertune.com/projects/4585/main/draft/logic?selected_field_path=root%3EsummerSale})
    */
   summerSale({
     args = {},
@@ -305,8 +313,8 @@ export type Source = {
 
 const sourceFallback = {
   root: {
-    proceedToCheckout: 'blue',
     delay: 0,
+    proceedToCheckout: 'blue',
     freeDelivery: false,
     summerSale: false,
   },
