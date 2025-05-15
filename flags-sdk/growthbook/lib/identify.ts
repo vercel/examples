@@ -4,9 +4,9 @@ import { dedupe } from 'flags/next'
 import { getStableId } from './get-stable-id'
 
 export const identify = dedupe(async () => {
-  const id = await getStableId()
+  const stableId = await getStableId()
 
   return {
-    id,
+    id: stableId.value,
   }
 }) satisfies Identify<Attributes>
