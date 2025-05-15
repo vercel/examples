@@ -1,0 +1,49 @@
+import { Inter } from 'next/font/google'
+import { Footer } from '@/components/footer'
+import { Navigation } from '@/components/navigation'
+import { Toaster } from 'sonner'
+import { FreeDelivery } from '@/app/free-delivery'
+import { FlagValues } from 'flags/react'
+import { DevTools } from '@/components/dev-tools'
+import { productFlags, showFreeDeliveryBannerFlag } from '@/flags'
+import { deserialize } from 'flags/next'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export async function generateStaticParams() {
+  return [{ code: 'default' }]
+}
+
+export default async function Layout(props: {
+  children: React.ReactNode
+  params: Promise<{
+    code: string
+  }>
+}) {
+  const params = await props.params
+  const values = await deserialize(productFlags, params.code)
+
+  const showFreeDeliveryBanner = await showFreeDeliveryBannerFlag(
+    params.code,
+    productFlags
+  )
+
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <Toaster />
+        <div className="bg-white">
+          <FreeDelivery
+            show={showFreeDeliveryBanner}
+            gate={showFreeDeliveryBannerFlag.key}
+          />
+          <Navigation />
+          {props.children}
+          <FlagValues values={values} />
+          <Footer />
+          <DevTools />
+        </div>
+      </body>
+    </html>
+  )
+}
