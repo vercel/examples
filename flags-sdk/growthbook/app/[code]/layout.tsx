@@ -6,12 +6,13 @@ import { FreeDelivery } from '@/app/free-delivery'
 import { FlagValues } from 'flags/react'
 import { DevTools } from '@/components/dev-tools'
 import { productFlags, showFreeDeliveryBannerFlag } from '@/flags'
-import { deserialize } from 'flags/next'
+import { deserialize, generatePermutations } from 'flags/next'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export async function generateStaticParams() {
-  return [{ code: 'default' }]
+  const codes = await generatePermutations(productFlags)
+  return codes.map((code) => ({ code }))
 }
 
 export default async function Layout(props: {

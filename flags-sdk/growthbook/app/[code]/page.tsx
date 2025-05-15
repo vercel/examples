@@ -18,7 +18,7 @@ export default async function Page(props: {
 
   return (
     <ProductDetailPageProvider>
-      <SummerSale show={showSummerBanner} gate={showSummerBannerFlag.key} />
+      <SummerSale show={showSummerBanner} />
       <Main>
         <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
           <ProductHeader />

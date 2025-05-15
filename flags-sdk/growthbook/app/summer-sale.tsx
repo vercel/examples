@@ -3,7 +3,7 @@
 import { toast } from 'sonner'
 import { SummerSaleBanner } from '@/components/banners/summer-sale-banner'
 
-export function SummerSale({ gate, show }: { show: boolean; gate: string }) {
+export function SummerSale({ show }: { show: boolean }) {
   return (
     <>
       {show && (
