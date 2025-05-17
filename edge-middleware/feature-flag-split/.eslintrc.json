@@ -2,3 +2,5 @@
   "root": true,
   "extends": "next/core-web-vitals"
 }
+
+// This configuration file sets the root to true and extends the Next.js core web vitals rules.
