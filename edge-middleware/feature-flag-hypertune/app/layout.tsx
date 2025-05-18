@@ -10,8 +10,6 @@ export const metadata = getMetadata({
   description: 'An example showing how to use Hypertune with Vercel.',
 })
 
-export const runtime = 'edge'
-
 export default async function RootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
