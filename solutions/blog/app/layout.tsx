@@ -36,7 +36,9 @@ export const metadata: Metadata = {
   },
 }
 
-const cx = (...classes) => classes.filter(Boolean).join(' ')
+type ClassName = Array<React.HTMLAttributes<HTMLHtmlElement>['className']>
+
+const cx = (...classes: ClassName) => classes.filter(Boolean).join(' ')
 
 export default function RootLayout({
   children,
