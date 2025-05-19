@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@flags-sdk/hypertune':
-        specifier: 0.2.0
+        specifier: ^0.2.0
         version: 0.2.0(@opentelemetry/api@1.9.0)
       '@headlessui/react':
         specifier: ^2.2.0
