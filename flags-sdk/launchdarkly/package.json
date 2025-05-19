@@ -20,7 +20,7 @@
     "@vercel/edge-config": "1.4.0",
     "@vercel/toolbar": "0.1.33",
     "clsx": "2.1.1",
-    "flags": "^3.1.1",
+    "flags": "^4.0.0",
     "framer-motion": "12.4.7",
     "launchdarkly-react-client-sdk": "^3.6.1",
     "nanoid": "5.1.2",

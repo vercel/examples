@@ -21,7 +21,7 @@ If you deployed your own and configured the feature flags on LaunchDarkly, you c
 
 ## Deploy this template
 
-The easiest way to get started with LaunchDarkly is through the native integration in the [Vercel Marketplace](https://vercel.com/marketplace/launchdarkly).
+The easiest way to get started with LaunchDarkly is through the integration in [Vercel Marketplace](https://vercel.com/marketplace/launchdarkly).
 
 [![Deploy with Vercel](https://vercel.com/button)]()
 
@@ -58,7 +58,7 @@ Feature Flags:
   - Name: `Test`, Value: `green`
   - Name: `Test #2`, Value: `red`
 
-You can also find the gate ids in the `flags.ts` file.
+You can also find the flag keys in the `flags.ts` file.
 
 Ensure all Flags are ON.
 
@@ -85,9 +85,17 @@ Create the `Proceed to Checkout` experiment:
 
 After that, start the Experiment.
 
-### Step 6 (optional): Set additional environment variables
+### Step 6: Set environment variables
 
-If you provide the `LAUNCHDARKLY_API_KEY`, `LAUNCHDARKLY_PROJECT_KEY` and `LAUNCHDARKLY_ENVIRONMENT` environment variables, the Flags Explorer will fetch additional metadata from the LaunchDarkly API.
+See `.env.example` for a template.
+
+- [`FLAGS_SECRET`](https://vercel.com/docs/feature-flags/flags-explorer/reference#flags_secret-environment-variable)
+- `EDGE_CONFIG` (Vercel Edge Config connection string)
+- `LAUNCHDARKLY_PROJECT_SLUG`
+- `LAUNCHDARKLY_CLIENT_SIDE_ID`
+- `NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID` (set to same value as `LAUNCHDARKLY_CLIENT_SIDE_ID`)
+
+_(Optional)_ If you provide the `LAUNCHDARKLY_API_KEY`, `LAUNCHDARKLY_PROJECT_KEY` and `LAUNCHDARKLY_ENVIRONMENT` environment variables, the Flags Explorer will fetch additional metadata from the LaunchDarkly API.
 
 This will show the description (if set) and displays a link to the feature flag on the LaunchDarkly Console.
 
