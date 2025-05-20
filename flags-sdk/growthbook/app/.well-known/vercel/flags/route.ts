@@ -12,12 +12,9 @@ export const GET = createFlagsDiscoveryEndpoint(async () => {
   if (process.env.GROWTHBOOK_API_KEY) {
     growthbookData = await getGrowthbookProviderData({
       apiKey: process.env.GROWTHBOOK_API_KEY,
+      // clientKey: process.env.GROWTHBOOK_CLIENT_KEY,
     })
   }
 
-  return mergeProviderData([
-    getProviderData(flags),
-    // metadata from GrowthBook API
-    growthbookData,
-  ])
+  return mergeProviderData([getProviderData(flags), growthbookData])
 })

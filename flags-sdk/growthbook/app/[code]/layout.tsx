@@ -34,10 +34,7 @@ export default async function Layout(props: {
       <body className={inter.className}>
         <Toaster />
         <div className="bg-white">
-          <FreeDelivery
-            show={showFreeDeliveryBanner}
-            gate={showFreeDeliveryBannerFlag.key}
-          />
+          <FreeDelivery show={showFreeDeliveryBanner} />
           <Navigation />
           {props.children}
           <FlagValues values={values} />

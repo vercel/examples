@@ -2,6 +2,6 @@
 
 import { FreeDeliveryBanner } from '@/components/banners/free-delivery-banner'
 
-export function FreeDelivery({ gate, show }: { show: boolean; gate: string }) {
+export function FreeDelivery({ show }: { show: boolean }) {
   return <>{show && <FreeDeliveryBanner />}</>
 }

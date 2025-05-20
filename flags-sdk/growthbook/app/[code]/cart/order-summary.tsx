@@ -16,12 +16,7 @@ export async function OrderSummary({
     <OrderSummarySection
       showSummerBanner={showSummerBanner}
       freeDelivery={freeDelivery}
-      proceedToCheckout={
-        <ProceedToCheckout
-          color={proceedToCheckoutColor}
-          experiment="proceed_to_checkout"
-        />
-      }
+      proceedToCheckout={<ProceedToCheckout color={proceedToCheckoutColor} />}
     />
   )
 }
