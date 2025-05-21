@@ -6,7 +6,6 @@ export const metadata = getMetadata({
   title: 'feature-flag-launchdarkly',
   description: 'An example showing how to use Vercel with LaunchDarkly',
 })
-export const runtime = 'edge'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

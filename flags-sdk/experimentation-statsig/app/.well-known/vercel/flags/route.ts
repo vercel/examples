@@ -3,8 +3,6 @@ import { type ProviderData, mergeProviderData } from 'flags'
 import { createFlagsDiscoveryEndpoint, getProviderData } from 'flags/next'
 import * as flags from '../../../../flags'
 
-export const dynamic = 'force-dynamic' // defaults to auto
-
 export const GET = createFlagsDiscoveryEndpoint(async () => {
   // Fetches additional metadata from the Statsig API for the Flags Explorer
   let statsigData: ProviderData = { definitions: {}, hints: [] }

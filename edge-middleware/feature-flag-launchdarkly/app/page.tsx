@@ -8,7 +8,6 @@ export const metadata = {
   description:
     'An example showing how to use LaunchDarkly and Vercel. This example builds on top of the LaunchDarkly integration which syncs LaunchDarkly flags into Edge Config, so you can read them from your application near-instantly.',
 }
-export const runtime = 'edge'
 
 const edgeConfigClient = createClient(process.env.EDGE_CONFIG)
 
