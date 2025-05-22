@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@flags-sdk/posthog':
-        specifier: 0.1.0-2e7a523a-20250522190315
-        version: 0.1.0-2e7a523a-20250522190315
+        specifier: 0.1.0
+        version: 0.1.0
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -138,8 +138,8 @@ packages:
     resolution: {integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@flags-sdk/posthog@0.1.0-2e7a523a-20250522190315':
-    resolution: {integrity: sha512-pic/9v49l2yzuJLv1LQHN9QpgOgrv4PeQ7s/A3AwABX+ir47GhQVefG2yNv74sYmoYq+olZJLsA1O5Sx5b1jeA==}
+  '@flags-sdk/posthog@0.1.0':
+    resolution: {integrity: sha512-7zhIvzQGyJvQ/AOibFQDIYuPNvrPVItxd7sFtMQhczMPWhLa0CBHh89V++a0NLsp22+uHXVSfhWHfNTGqcQ7AQ==}
 
   '@floating-ui/core@1.6.9':
     resolution: {integrity: sha512-uMXCuQ3BItDUbAMhIXw7UPXRfAlOAvZzdK9BWpE60MCn+Svt3aLn9jsPTi/WNGlRUu2uI0v5S7JiIUsbsvh3fw==}
@@ -2221,7 +2221,7 @@ snapshots:
       '@eslint/core': 0.12.0
       levn: 0.4.1
 
-  '@flags-sdk/posthog@0.1.0-2e7a523a-20250522190315':
+  '@flags-sdk/posthog@0.1.0':
     dependencies:
       '@vercel/edge-config': 1.4.0
       posthog-node: 4.11.1
