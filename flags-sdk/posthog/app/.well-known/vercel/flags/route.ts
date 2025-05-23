@@ -12,8 +12,8 @@ export const GET = createFlagsDiscoveryEndpoint(
       getProviderData(flags),
       // metadata from PostHog API using the default posthog adapter
       getPostHogProviderData({
-        personalApiKey: process.env.POSTHOG_PERSONAL_API_KEY,
-        projectId: process.env.POSTHOG_PROJECT_ID,
+        personalApiKey: process.env.POSTHOG_PERSONAL_API_KEY as string,
+        projectId: process.env.POSTHOG_PROJECT_ID as string,
       }),
     ])
   },
