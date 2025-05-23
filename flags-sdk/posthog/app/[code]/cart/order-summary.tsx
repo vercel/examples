@@ -12,9 +12,7 @@ export async function OrderSummary({
     <OrderSummarySection
       showSummerBanner={showSummerBanner}
       freeDelivery={freeDelivery}
-      proceedToCheckout={
-        <ProceedToCheckout color={'blue'} experiment="proceed_to_checkout" />
-      }
+      proceedToCheckout={<ProceedToCheckout color={'blue'} />}
     />
   )
 }

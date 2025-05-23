@@ -4,13 +4,7 @@ import { ProceedToCheckoutButton } from '@/components/shopping-cart/proceed-to-c
 
 import { toast } from 'sonner'
 
-export function ProceedToCheckout({
-  color,
-  experiment,
-}: {
-  color: string
-  experiment: string
-}) {
+export function ProceedToCheckout({ color }: { color: string }) {
   return (
     <>
       <ProceedToCheckoutButton
