@@ -4,7 +4,7 @@ This example uses [LaunchDarkly](https://vercel.com/marketplace/launchdarkly) fo
 
 ## Demo
 
-TODO
+https://flags-sdk-launchdarkly.vercel.app/
 
 ## How it works
 
@@ -51,8 +51,8 @@ Be sure to enable the `SDKs using Client-side ID` option for each Feature Flag.
 
 Feature Flags:
 
-- `Summer Sale` (type boolean) with the key `summer-sale` and the variations `true` and `false`.  Edit the default targeting rule to serve a percentage rollout with a 50/50 split by `user.key`.
-- `Free Delivery` (type boolean) with the key `free-delivery` and the variations `true` and `false`.  Edit the default targeting rule to serve a percentage rollout with a 50/50 split by `user.key`.
+- `Summer Sale` (type boolean) with the key `summer-sale` and the variations `true` and `false`. Edit the default targeting rule to serve a percentage rollout with a 50/50 split by `user.key`.
+- `Free Delivery` (type boolean) with the key `free-delivery` and the variations `true` and `false`. Edit the default targeting rule to serve a percentage rollout with a 50/50 split by `user.key`.
 - `Proceed to Checkout` (type string) with the key `proceed-to-checkout` and the following variations:
   - Name: `Control`, Value: `blue`
   - Name: `Test`, Value: `green`
@@ -78,7 +78,7 @@ Create the `Proceed to Checkout` experiment:
   - Metric definition: `Percentage of user units that sent the event, where higher is better`
   - Metric name: `Proceed to Checkout Clicked`
 - Varaiations: Choose flag `proceed-to-checkout`
-- Audience: 
+- Audience:
   - In this experiment: Choose `Custom` and enter `100`%
   - Split audience: Choose `Split equally`
 - Statistical approach: Default values

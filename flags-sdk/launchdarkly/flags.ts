@@ -1,28 +1,28 @@
-import { ldAdapter, type LDContext } from '@flags-sdk/launchdarkly';
-import { flag } from 'flags/next';
-import { identify } from './lib/identify';
+import { ldAdapter, type LDContext } from '@flags-sdk/launchdarkly'
+import { flag } from 'flags/next'
+import { identify } from './lib/identify'
 
 export const showSummerBannerFlag = flag<boolean, LDContext>({
   key: 'summer-sale',
   adapter: ldAdapter.variation(),
   defaultValue: false,
   identify,
-});
+})
 
 export const showFreeDeliveryBannerFlag = flag<boolean, LDContext>({
   key: 'free-delivery',
   adapter: ldAdapter.variation(),
   defaultValue: false,
   identify,
-});
+})
 
 export const proceedToCheckoutColorFlag = flag<string, LDContext>({
-  key: 'proceed-to-checkout',
+  key: 'proceed-to-checkout-color',
   adapter: ldAdapter.variation(),
   options: ['blue', 'green', 'red'],
   defaultValue: 'blue',
   identify,
-});
+})
 
 export const delayFlag = flag<number>({
   key: 'delay',
@@ -37,12 +37,12 @@ export const delayFlag = flag<number>({
     { value: 10_000, label: '10s' },
   ],
   decide() {
-    return this.defaultValue as number;
+    return this.defaultValue as number
   },
-});
+})
 
 export const productFlags = [
   showFreeDeliveryBannerFlag,
   showSummerBannerFlag,
   proceedToCheckoutColorFlag,
-] as const;
+] as const
