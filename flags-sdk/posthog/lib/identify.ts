@@ -1,13 +1,13 @@
-import { Identify } from 'flags';
-import { dedupe } from 'flags/next';
-import { getStableId } from './get-stable-id';
+import type { Identify } from 'flags'
+import { dedupe } from 'flags/next'
+import { getStableId } from './get-stable-id'
 
 export type PostHogEntities = {
-  distinctId: string;
-};
+  distinctId: string
+}
 
 export const identify = dedupe(async () => {
-  const stableId = await getStableId();
+  const stableId = await getStableId()
 
-  return { distinctId: stableId.value };
-}) satisfies Identify<PostHogEntities>;
+  return { distinctId: stableId.value }
+}) satisfies Identify<PostHogEntities>
