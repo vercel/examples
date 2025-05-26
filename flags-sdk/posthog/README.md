@@ -1,6 +1,6 @@
 # PostHog Flags SDK Example
 
-This example uses [PostHog](https://posthog.com) for feature flags with the [Flags SDK](https://flags-sdk.dev) along with the `@flags-sdk/posthog` [PostHog adapter](https://flags-sdk.dev/docs/api-reference/adapters/posthog) and the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar).
+This example uses [PostHog](https://posthog.com) for feature flags with the [Flags SDK](https://flags-sdk.dev) along with the `@flags-sdk/posthog` [PostHog adapter](https://flags-sdk.dev/providers/posthog) and the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar).
 
 ## Demo
 
