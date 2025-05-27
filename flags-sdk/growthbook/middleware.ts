@@ -3,7 +3,6 @@ import { precompute } from 'flags/next'
 import { productFlags } from '@/flags'
 import { getStableId } from './lib/get-stable-id'
 import { getCartId } from './lib/get-cart-id'
-import { growthbookAdapter } from '@flags-sdk/growthbook'
 
 export const config = {
   matcher: ['/', '/cart'],
@@ -12,14 +11,6 @@ export const config = {
 export async function middleware(request: NextRequest) {
   const stableId = await getStableId()
   const cartId = await getCartId()
-
-  // Initialize GrowthBook tracking
-  growthbookAdapter.setTrackingCallback((experiment, result) => {
-    console.log('Viewed Experiment', {
-      experimentId: experiment.key,
-      variationId: result.key,
-    })
-  })
 
   const code = await precompute(productFlags)
 
