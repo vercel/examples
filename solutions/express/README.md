@@ -17,7 +17,7 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 ### Clone and Deploy
 
 ```bash
-git clone https://github.com/vercel/examples/tree/main/solutions/express
+pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/express express
 ```
 
 Install the Vercel CLI:
@@ -26,8 +26,8 @@ Install the Vercel CLI:
 npm i -g vercel
 ```
 
-Then run the app at the root of the repository:
+Then deploy your app:
 
 ```bash
-vercel dev
+vercel
 ```
