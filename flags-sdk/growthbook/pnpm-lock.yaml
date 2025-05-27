@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@flags-sdk/growthbook':
-        specifier: file:../../../flags/packages/adapter-growthbook
-        version: file:../../../flags/packages/adapter-growthbook
+        specifier: file:../../../vercel-flags/packages/adapter-growthbook
+        version: file:../../../vercel-flags/packages/adapter-growthbook
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -138,8 +138,8 @@ packages:
     resolution: {integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@flags-sdk/growthbook@file:../../../flags/packages/adapter-growthbook':
-    resolution: {directory: ../../../flags/packages/adapter-growthbook, type: directory}
+  '@flags-sdk/growthbook@file:../../../vercel-flags/packages/adapter-growthbook':
+    resolution: {directory: ../../../vercel-flags/packages/adapter-growthbook, type: directory}
 
   '@floating-ui/core@1.6.9':
     resolution: {integrity: sha512-uMXCuQ3BItDUbAMhIXw7UPXRfAlOAvZzdK9BWpE60MCn+Svt3aLn9jsPTi/WNGlRUu2uI0v5S7JiIUsbsvh3fw==}
@@ -2205,7 +2205,7 @@ snapshots:
       '@eslint/core': 0.12.0
       levn: 0.4.1
 
-  '@flags-sdk/growthbook@file:../../../flags/packages/adapter-growthbook':
+  '@flags-sdk/growthbook@file:../../../vercel-flags/packages/adapter-growthbook':
     dependencies:
       '@growthbook/growthbook': 1.5.1
       '@vercel/edge-config': 1.4.0

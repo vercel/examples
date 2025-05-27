@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@flags-sdk/growthbook": "file:../../../flags/packages/adapter-growthbook",
+    "@flags-sdk/growthbook": "file:../../../vercel-flags/packages/adapter-growthbook",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "2.2.0",
     "@tailwindcss/aspect-ratio": "0.4.2",
