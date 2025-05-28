@@ -1,6 +1,6 @@
 # Growthbook Flags SDK Example
 
-This example uses Growthbook for feature flags with the [Flags SDK](https://flags-sdk.dev) along with the `@flags-sdk/growthbook` [Growthbook adapter](https://flags-sdk.dev/providers/growthbook) and the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar).
+This example uses GrowthBook for feature flags with the [Flags SDK](https://flags-sdk.dev) along with the `@flags-sdk/growthbook` [GrowthBook adapter](https://flags-sdk.dev/providers/growthbook) and the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar).
 
 ## Demo
 
@@ -42,12 +42,12 @@ If you are building this on the CLI, you can set the environment variables with 
 
 ### Step 3: Create Feature Gates and Experiments
 
-On Growthbook, create a project with the following flags split by `id`:
+On GrowthBook, create a project with the following flags split by `id`:
 
 - `free_delivery` (50% rollout or experiment)
 - `summer_sale` (50% rollout or experiment)
 - `proceed_to_checkout` (Multiple variants serving `red`, `green` or `blue`)
 
-The key of the flags in Growthbook should match the key of the flags in the `flags.ts` file.
+The id of the flags in GrowthBook should match the key of the flags in the `flags.ts` file.
 
 If you have not started your experiments yet, you must do so in order to see the traffic split.
