@@ -1,6 +1,14 @@
-import { growthbookAdapter, Attributes } from '@flags-sdk/growthbook'
+import { growthbookAdapter, type Attributes } from '@flags-sdk/growthbook'
 import { flag } from 'flags/next'
 import { identify } from './lib/identify'
+
+// Initialize GrowthBook tracking
+growthbookAdapter.setTrackingCallback((experiment, result) => {
+  console.log('Viewed Experiment', {
+    experimentId: experiment.key,
+    variationId: result.key,
+  })
+})
 
 export const showSummerBannerFlag = flag<boolean, Attributes>({
   key: 'summer_sale',
