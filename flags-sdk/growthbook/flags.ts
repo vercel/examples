@@ -1,12 +1,16 @@
 import { growthbookAdapter, type Attributes } from '@flags-sdk/growthbook'
 import { flag } from 'flags/next'
 import { identify } from './lib/identify'
+import { after } from 'next/server'
 
 // Initialize GrowthBook tracking
 growthbookAdapter.setTrackingCallback((experiment, result) => {
-  console.log('Viewed Experiment', {
-    experimentId: experiment.key,
-    variationId: result.key,
+  // Safely fire and forget async calls (Next.js)
+  after(async () => {
+    console.log('Viewed Experiment', {
+      experimentId: experiment.key,
+      variationId: result.key,
+    })
   })
 })
 
