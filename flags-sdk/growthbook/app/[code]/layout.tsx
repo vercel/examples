@@ -7,7 +7,7 @@ import { FlagValues } from 'flags/react'
 import { DevTools } from '@/components/dev-tools'
 import { productFlags, showFreeDeliveryBannerFlag } from '@/flags'
 import { deserialize, generatePermutations } from 'flags/next'
-import { GrowthbookTracking } from '@/app/growthbook/client-side-tracking/growthbook-tracking'
+import { GrowthbookTracking } from '@/components/growthbook/client-side-tracking/growthbook-tracking'
 
 const inter = Inter({ subsets: ['latin'] })
 
