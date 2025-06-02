@@ -7,7 +7,7 @@ import {
   type StickyAssignmentsDocument,
   type FeatureApiResponse,
   type UserContext,
-} from '@flags-sdk/growthbook'
+} from '@growthbook/growthbook'
 import { useEffect } from 'react'
 
 // You may also use type TrackingCallbackWithUser if your tracking library requires user context.
@@ -42,7 +42,9 @@ export function GrowthbookTrackingClient({
       const ctx: UserContext = {
         attributes,
         stickyBucketAssignmentDocs,
-        saveStickyBucketAssignmentDoc: (doc: StickyAssignmentsDocument) => {},
+        saveStickyBucketAssignmentDoc: async (
+          doc: StickyAssignmentsDocument
+        ) => {},
         trackingCallback,
         trackedExperiments,
       }

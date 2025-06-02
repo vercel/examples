@@ -9,8 +9,11 @@ importers:
   .:
     dependencies:
       '@flags-sdk/growthbook':
-        specifier: 0.1.0-30ce6a90-20250527200941
-        version: 0.1.0-30ce6a90-20250527200941
+        specifier: 0.1.0
+        version: 0.1.0
+      '@growthbook/growthbook':
+        specifier: 1.5.1
+        version: 1.5.1
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -138,8 +141,8 @@ packages:
     resolution: {integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@flags-sdk/growthbook@0.1.0-30ce6a90-20250527200941':
-    resolution: {integrity: sha512-0WOPipgvO3S52c5TINiAQ34bHLt8yQZTrAvdzKxClPEe0bYWIconHXAtuExOgwDvHKyuUqU2JeWArQnhBLLtuA==}
+  '@flags-sdk/growthbook@0.1.0':
+    resolution: {integrity: sha512-ZN6gMVD1z1uxsDdlA5gkrchF17rTnSm8vkVXKoqQ4PkSL/a3VWJBiUckU/8Jzf2cbF7OLsbyn4dMJFXL/5YnCw==}
 
   '@floating-ui/core@1.6.9':
     resolution: {integrity: sha512-uMXCuQ3BItDUbAMhIXw7UPXRfAlOAvZzdK9BWpE60MCn+Svt3aLn9jsPTi/WNGlRUu2uI0v5S7JiIUsbsvh3fw==}
@@ -2205,7 +2208,7 @@ snapshots:
       '@eslint/core': 0.12.0
       levn: 0.4.1
 
-  '@flags-sdk/growthbook@0.1.0-30ce6a90-20250527200941':
+  '@flags-sdk/growthbook@0.1.0':
     dependencies:
       '@growthbook/growthbook': 1.5.1
       '@vercel/edge-config': 1.4.0
