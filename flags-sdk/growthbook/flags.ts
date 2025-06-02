@@ -3,11 +3,12 @@ import { flag } from 'flags/next'
 import { identify } from './lib/identify'
 import { after } from 'next/server'
 
-// Initialize GrowthBook tracking
+// Initialize GrowthBook server-side tracking
+// Note: if using client-side tracking you do not need to set this.
 growthbookAdapter.setTrackingCallback((experiment, result) => {
-  // Safely fire and forget async calls (Next.js)
+  // Safely fire and forget async calls
   after(async () => {
-    console.log('Viewed Experiment', {
+    console.log('Viewed Experiment (server-side tracking)', {
       experimentId: experiment.key,
       variationId: result.key,
     })

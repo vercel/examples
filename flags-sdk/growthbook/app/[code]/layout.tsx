@@ -7,6 +7,7 @@ import { FlagValues } from 'flags/react'
 import { DevTools } from '@/components/dev-tools'
 import { productFlags, showFreeDeliveryBannerFlag } from '@/flags'
 import { deserialize, generatePermutations } from 'flags/next'
+import { GrowthbookTracking } from '@/app/growthbook/client-side-tracking/growthbook-tracking'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,7 +23,11 @@ export default async function Layout(props: {
   }>
 }) {
   const params = await props.params
-  const values = await deserialize(productFlags, params.code)
+  const values: Record<string, any> = await deserialize(
+    productFlags,
+    params.code
+  )
+  const featureIds = Object.keys(values)
 
   const showFreeDeliveryBanner = await showFreeDeliveryBannerFlag(
     params.code,
@@ -38,6 +43,10 @@ export default async function Layout(props: {
           <Navigation />
           {props.children}
           <FlagValues values={values} />
+
+          {/* If using client-side tracking, include this component whenever a feature with experiment is evaluated */}
+          <GrowthbookTracking featureIds={featureIds} />
+
           <Footer />
           <DevTools />
         </div>
