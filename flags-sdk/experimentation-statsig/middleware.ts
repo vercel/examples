@@ -38,16 +38,17 @@ export async function middleware(request: NextRequest) {
   // Create a new request with the modified headers
   const modifiedRequest = new Request(nextUrl, { ...request, headers })
 
-  const [statsig, statsigUser] = await Promise.all([
+  const [statsig, statsigUser, response] = await Promise.all([
     statsigAdapter.initialize(),
     identify(),
+    fetch(modifiedRequest),
   ])
+
   const clientInitializeResponse = statsig.getClientInitializeResponse(
     statsigUser,
     { hash: 'djb2' }
   )
 
-  const response = await fetch(modifiedRequest)
   const rewriter = new HTMLRewriter()
   rewriter.on('script#embed', {
     element(element) {
