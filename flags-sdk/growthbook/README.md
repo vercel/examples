@@ -4,7 +4,7 @@ This example uses GrowthBook for feature flags with the [Flags SDK](https://flag
 
 ## Demo
 
-[https://flags-sdk-growthbook.vercel.app/](https://flags-sdk-growthbook.vercel.app/)
+[https://growthbook-flags-sdk-example.vercel.app](https://growthbook-flags-sdk-example.vercel.app)
 
 ## How it works
 
