@@ -10,11 +10,9 @@
   },
   "dependencies": {
     "@flags-sdk/flagsmith": "link:../../../../flags/packages/adapter-flagsmith",
-    "@flags-sdk/openfeature": "0.1.1",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "2.2.0",
-    "@openfeature/core": "^1.7.2",
-    "@openfeature/server-sdk": "^1.17.1",
+    "flagsmith": "^9.2.2",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/forms": "0.5.10",
     "@tailwindcss/postcss": "^4.0.9",
