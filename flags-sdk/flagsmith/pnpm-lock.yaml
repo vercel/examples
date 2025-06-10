@@ -11,21 +11,12 @@ importers:
       '@flags-sdk/flagsmith':
         specifier: link:../../../../flags/packages/adapter-flagsmith
         version: link:../../../../flags/packages/adapter-flagsmith
-      '@flags-sdk/openfeature':
-        specifier: 0.1.1
-        version: 0.1.1(@openfeature/server-sdk@1.17.1(@openfeature/core@1.7.2))
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroicons/react':
         specifier: 2.2.0
         version: 2.2.0(react@19.0.0)
-      '@openfeature/core':
-        specifier: ^1.7.2
-        version: 1.7.2
-      '@openfeature/server-sdk':
-        specifier: ^1.17.1
-        version: 1.17.1(@openfeature/core@1.7.2)
       '@tailwindcss/aspect-ratio':
         specifier: 0.4.2
         version: 0.4.2(tailwindcss@4.0.15)
@@ -53,6 +44,9 @@ importers:
       flags:
         specifier: 4.0.0
         version: 4.0.0(next@15.2.2-canary.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      flagsmith:
+        specifier: ^9.2.2
+        version: 9.2.2
       framer-motion:
         specifier: 12.4.7
         version: 12.4.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -147,11 +141,6 @@ packages:
   '@eslint/plugin-kit@0.2.7':
     resolution: {integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@flags-sdk/openfeature@0.1.1':
-    resolution: {integrity: sha512-A9vpWiVN2I83b50PbefhrQ44jIPZ7eF71DpkJ0xx7qC0QPbTNtA2HsEqUOBdGwregp8MsXueW8deMXH0Bm8ZHA==}
-    peerDependencies:
-      '@openfeature/server-sdk': ^1.17.1
 
   '@floating-ui/core@1.6.9':
     resolution: {integrity: sha512-uMXCuQ3BItDUbAMhIXw7UPXRfAlOAvZzdK9BWpE60MCn+Svt3aLn9jsPTi/WNGlRUu2uI0v5S7JiIUsbsvh3fw==}
@@ -373,15 +362,6 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
-
-  '@openfeature/core@1.7.2':
-    resolution: {integrity: sha512-pbpREdO/8D6ocFYWIzAJ24iJ1td04Anl+TehUzx9r1xR8vKJab+O4TlC/XP7s9JuD5hRPBfmo5gDha/KWVSG4A==}
-
-  '@openfeature/server-sdk@1.17.1':
-    resolution: {integrity: sha512-z5MaVvSNnk1SpRSuU02usnoX9rY9BtnLBNp9T08JOitwiuXs4byR8R5Es4WpsGRnnzBSoBQJL1iGIIYEeeEyxw==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@openfeature/core': ^1.7.0
 
   '@react-aria/focus@3.20.1':
     resolution: {integrity: sha512-lgYs+sQ1TtBrAXnAdRBQrBo0/7o5H6IrfDxec1j+VRpcXL0xyk0xPq+m3lZp8typzIghqDgpnKkJ5Jf4OrzPIw==}
@@ -917,6 +897,9 @@ packages:
         optional: true
       react-dom:
         optional: true
+
+  flagsmith@9.2.2:
+    resolution: {integrity: sha512-9UNI5Rdtv4r3rEruT3sLinZDKH1o7co8kSopmGDB5q9fCWHXLa1HLbjAwe9xPoMtWMpdS8gqLdY2UZBdfxuVdg==}
 
   flat-cache@4.0.1:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
@@ -1497,10 +1480,6 @@ snapshots:
       '@eslint/core': 0.12.0
       levn: 0.4.1
 
-  '@flags-sdk/openfeature@0.1.1(@openfeature/server-sdk@1.17.1(@openfeature/core@1.7.2))':
-    dependencies:
-      '@openfeature/server-sdk': 1.17.1(@openfeature/core@1.7.2)
-
   '@floating-ui/core@1.6.9':
     dependencies:
       '@floating-ui/utils': 0.2.9
@@ -1664,12 +1643,6 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
-
-  '@openfeature/core@1.7.2': {}
-
-  '@openfeature/server-sdk@1.17.1(@openfeature/core@1.7.2)':
-    dependencies:
-      '@openfeature/core': 1.7.2
 
   '@react-aria/focus@3.20.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
@@ -2199,6 +2172,8 @@ snapshots:
       next: 15.2.2-canary.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
+
+  flagsmith@9.2.2: {}
 
   flat-cache@4.0.1:
     dependencies:
