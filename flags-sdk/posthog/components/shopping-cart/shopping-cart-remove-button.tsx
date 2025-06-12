@@ -1,7 +1,7 @@
 'use client'
 
 import { removeFromCart } from '@/lib/actions'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import { useState } from 'react'
 import type { CartItem } from '@/components/utils/cart-types'
 

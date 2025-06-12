@@ -21,7 +21,7 @@
     "@vercel/toolbar": "0.1.33",
     "clsx": "2.1.1",
     "flags": "^4.0.0",
-    "framer-motion": "12.4.7",
+    "motion": "12.17.0",
     "launchdarkly-react-client-sdk": "^3.6.1",
     "nanoid": "5.1.2",
     "next": "15.2.2-canary.7",

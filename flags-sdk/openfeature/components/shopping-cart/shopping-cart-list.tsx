@@ -1,6 +1,6 @@
 'use client'
 
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'motion/react'
 
 export function ShoppingCartList({ children }: { children: React.ReactNode }) {
   return (
