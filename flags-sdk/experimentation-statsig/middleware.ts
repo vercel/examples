@@ -6,7 +6,7 @@ import { getCartId } from './lib/get-cart-id'
 import { HTMLRewriter } from 'htmlrewriter'
 import { statsigAdapter } from '@flags-sdk/statsig'
 import { identify } from './lib/identify'
-import { safeJsonStringify } from 'flags'
+import { embedBootstrapData } from 'flags/next'
 
 export const config = {
   matcher: ['/', '/cart'],
@@ -49,17 +49,10 @@ export async function middleware(request: NextRequest) {
     { hash: 'djb2' }
   )
 
-  const rewriter = new HTMLRewriter()
-  rewriter.on('script#embed', {
-    element(element) {
-      element.setInnerContent(
-        safeJsonStringify({ clientInitializeResponse, statsigUser }),
-        { html: true }
-      )
-      // element.setAttribute('style', 'display: block')
-    },
+  const modifiedResponse = embedBootstrapData(response, {
+    clientInitializeResponse,
+    statsigUser,
   })
-  const modifiedResponse = rewriter.transform(response)
   const h = new Headers(modifiedResponse.headers)
   h.append('set-cookie', `stable-id=${stableId.value}`)
   h.append('set-cookie', `cart-id=${cartId.value}`)
