@@ -48,11 +48,8 @@ importers:
         specifier: 2.1.1
         version: 2.1.1
       flags:
-        specifier: ^4.0.0
-        version: 4.0.0(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      htmlrewriter:
-        specifier: ^0.0.12
-        version: 0.0.12
+        specifier: 4.1.0-c84914eb-20250613112941
+        version: 4.1.0-c84914eb-20250613112941(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       motion:
         specifier: 12.17.0
         version: 12.17.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -1224,8 +1221,8 @@ packages:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
 
-  flags@4.0.0:
-    resolution: {integrity: sha512-CpONOK/nflKfaTT36r+Y4SP5rb9mv3AdqY/2Ws+TScrEGlT4PK+PZNiKJgIH87HooTXDblz31807q7lZ3LpuYQ==}
+  flags@4.1.0-c84914eb-20250613112941:
+    resolution: {integrity: sha512-d1NNvlJMwKPaOBOLsk9AAa2bD38A02lC1hqaLUIo6iux0LGOdL4lkRYcOI+8WjXqMjNGQQumZ8fDDPKctE56YQ==}
     peerDependencies:
       '@opentelemetry/api': ^1.7.0
       '@sveltejs/kit': '*'
@@ -1369,8 +1366,8 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  htmlrewriter@0.0.12:
-    resolution: {integrity: sha512-Tw+wORUlNL9+JQCIo7J4SuX/T3M1xRAC/0XaifnRPLHCX95jbZy/0CI06n7BhuFQJhSdNA7ZoxnStJmF31FZRw==}
+  htmlrewriter@0.0.13:
+    resolution: {integrity: sha512-HPxT+y/i9RzNeKrJ6MBFXwB+FeTfHPfcBzoKHVnk3oiKn2s6x13tLoxjggI+0/yOSBG1n8SV//PGDBJYT/4XQw==}
 
   http-proxy@1.18.1:
     resolution: {integrity: sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==}
@@ -3469,9 +3466,10 @@ snapshots:
       locate-path: 6.0.0
       path-exists: 4.0.0
 
-  flags@4.0.0(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  flags@4.1.0-c84914eb-20250613112941(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@edge-runtime/cookies': 5.0.2
+      htmlrewriter: 0.0.13
       jose: 5.10.0
     optionalDependencies:
       next: 15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -3591,7 +3589,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  htmlrewriter@0.0.12: {}
+  htmlrewriter@0.0.13: {}
 
   http-proxy@1.18.1:
     dependencies:

@@ -1,6 +1,7 @@
 import { VercelToolbar } from '@vercel/toolbar/next'
 import type { Metadata } from 'next'
 import { Toaster } from 'sonner'
+import { FlagBootstrapData } from 'flags/react'
 
 import './globals.css'
 import { ExamplesBanner } from '@/components/banners/examples-banner'
@@ -22,13 +23,7 @@ export default function RootLayout({
         {children}
         <Toaster />
         <VercelToolbar />
-        <script
-          id="embed"
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
-          dangerouslySetInnerHTML={{ __html: '' }}
-          suppressHydrationWarning
-          type="application/json"
-        />
+        <FlagBootstrapData />
       </body>
     </html>
   )

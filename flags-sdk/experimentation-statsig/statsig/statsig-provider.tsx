@@ -15,6 +15,7 @@ import {
   useClientBootstrapInit,
 } from '@statsig/react-bindings'
 import { StatsigAutoCapturePlugin } from '@statsig/web-analytics'
+import { useBootstrapData } from 'flags/react'
 import { createContext, useMemo, useState, useEffect } from 'react'
 
 export const StatsigAppBootstrapContext = createContext<{
@@ -24,16 +25,6 @@ export const StatsigAppBootstrapContext = createContext<{
   isLoading: true,
   error: null,
 })
-
-export function useEmbed<T>(id: string, initialData?: T) {
-  const [data, setData] = useState<T | undefined>(initialData || undefined)
-  useEffect(() => {
-    // biome-ignore lint/style/noNonNullAssertion: <explanation>
-    const text = document.getElementById(id)!.textContent
-    setData(text ? JSON.parse(text) : undefined)
-  }, [id])
-  return data
-}
 
 function BootstrappedStatsigProvider({
   user,
@@ -62,13 +53,12 @@ export function StaticStatsigProvider({
   children: React.ReactNode
 }) {
   // wait for the script#embed to appear and read its contents as json
-  // TODO use actual embed library
-  const data = useEmbed<{
+  const data = useBootstrapData<{
     statsigUser: StatsigUser
     clientInitializeResponse: Awaited<
       ReturnType<typeof Statsig.getClientInitializeResponse>
     >
-  }>('embed')
+  }>()
 
   const values = useMemo(
     () => (data ? JSON.stringify(data.clientInitializeResponse) : null),
