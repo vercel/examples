@@ -1,21 +1,22 @@
 'use client'
 
-import { Statsig } from '@flags-sdk/statsig'
 /**
  * This file exports a StatsigProvider with a client-side bootstrap.
- * It requires a client-side fetch to retrieve the bootstrap payload.
+ *
+ * The bootstrap reads the data embedded by Edge Middleware.
+ *
  * Elements that determine page layout should have precomputed variants with flags-sdk.
  * Exposures can be logged with helpers in the `statsig-exposure` module.
  */
-
+import type { Statsig, StatsigUser } from '@flags-sdk/statsig'
 import {
   LogLevel,
   StatsigProvider,
   useClientBootstrapInit,
 } from '@statsig/react-bindings'
 import { StatsigAutoCapturePlugin } from '@statsig/web-analytics'
-import { createContext, useMemo } from 'react'
-import useSWR from 'swr'
+import { useBootstrapData } from 'flags/react'
+import { createContext, useMemo, useState, useEffect } from 'react'
 
 export const StatsigAppBootstrapContext = createContext<{
   isLoading: boolean
@@ -51,35 +52,36 @@ export function StaticStatsigProvider({
 }: {
   children: React.ReactNode
 }) {
-  const { data, error } = useBootstrap()
-  const values = useMemo(() => JSON.stringify(data), [data])
+  // wait for the script#embed to appear and read its contents as json
+  const data = useBootstrapData<{
+    statsigUser: StatsigUser
+    clientInitializeResponse: Awaited<
+      ReturnType<typeof Statsig.getClientInitializeResponse>
+    >
+  }>()
 
-  if (!data) {
+  const values = useMemo(
+    () => (data ? JSON.stringify(data.clientInitializeResponse) : null),
+    [data]
+  )
+
+  if (!data || !values) {
     return (
-      <StatsigAppBootstrapContext.Provider value={{ isLoading: true, error }}>
+      <StatsigAppBootstrapContext.Provider
+        value={{ isLoading: true, error: null }}
+      >
         {children}
       </StatsigAppBootstrapContext.Provider>
     )
   }
 
   return (
-    <StatsigAppBootstrapContext.Provider value={{ isLoading: false, error }}>
-      <BootstrappedStatsigProvider user={data.user} values={values}>
+    <StatsigAppBootstrapContext.Provider
+      value={{ isLoading: false, error: null }}
+    >
+      <BootstrappedStatsigProvider user={data.statsigUser} values={values}>
         {children}
       </BootstrappedStatsigProvider>
     </StatsigAppBootstrapContext.Provider>
   )
-}
-
-const fetcher = (url: string) =>
-  fetch(url, {
-    headers: {
-      Vary: 'Cookie',
-    },
-  }).then((res) => res.json())
-
-export function useBootstrap() {
-  return useSWR<
-    Awaited<ReturnType<typeof Statsig.getClientInitializeResponse>>
-  >('/api/bootstrap', fetcher)
 }
