@@ -4,7 +4,7 @@ This example uses GrowthBook for feature flags with the [Flags SDK](https://flag
 
 ## Demo
 
-[https://growthbook-flags-sdk-example.vercel.app](https://growthbook-flags-sdk-example.vercel.app)
+[https://flags-sdk-growthbook.vercel.app](https://flags-sdk-growthbook.vercel.app)
 
 ## How it works
 
@@ -18,7 +18,7 @@ When you create and link a project on Vercel, you may use the [Flags Explorer](h
 
 ## Deploy this template
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Fgrowthbook&env=GROWTHBOOK_CLIENT_KEY&env=FLAGS_SECRET&envDescription=The+FLAGS_SECRET+will+be+used+by+the+Flags+Explorer+to+securely+overwrite+feature+flags.+Must+be+32+random+bytes%2C+base64-encoded.+Use+the+generated+value+or+set+your+own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fworkflow-collaboration%2Ffeature-flags%2Fsupporting-feature-flags%23flags_secret-environment-variable&project-name=growthbook-flags-sdk-example&repository-name=growthbook-flags-sdk-example)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Fgrowthbook&env=GROWTHBOOK_CLIENT_KEY&env=FLAGS_SECRET&envDescription=The+FLAGS_SECRET+will+be+used+by+the+Flags+Explorer+to+securely+overwrite+feature+flags.+Must+be+32+random+bytes%2C+base64-encoded.+Use+the+generated+value+or+set+your+own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fworkflow-collaboration%2Ffeature-flags%2Fsupporting-feature-flags%23flags_secret-environment-variable&project-name=flags-sdk-growthbook-example&repository-name=flags-sdk-growthbook-example)
 
 ### Step 1: Link the project
 
