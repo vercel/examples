@@ -8,7 +8,7 @@ Deploy your own Nitro project with Vercel.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/framework-boilerplates/nitro&template=nitro)
 
-_Live Example: https://nitro.vercel.app_
+_Live Example: https://nitro-hello-world.vercel.app/_
 
 ## Developing
 
