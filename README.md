@@ -9,6 +9,34 @@
 - [Starter](/starter) – Functional applications which can act as a starting point
 - And more!
 
+## Purpose and Usage
+
+This repository contains a collection of examples and solutions to help you build robust and scalable applications using Vercel. The examples cover various use cases, including Edge Functions, Edge Middleware, and more. You can use these examples as a starting point for your own projects or as a reference to learn best practices and patterns.
+
+## Repository Structure
+
+The repository is organized into several directories, each containing examples and solutions for different use cases. Here is an overview of the main directories:
+
+- `edge-functions/`: Examples of high-performance APIs deployed to every Edge Network region.
+- `edge-middleware/`: Examples of providing speed and personalization to users.
+- `solutions/`: Demos, architectures, and best practices for various use cases.
+- `starter/`: Fully functional applications that serve as robust starting points for new projects.
+- `ci-cd/`: Continuous integration and deployment configurations for various CI/CD providers.
+- `internal/`: Internal tools and scripts used for maintaining and deploying the examples.
+
+## Dependencies and Installation
+
+To get started with the examples in this repository, you need to have the following dependencies installed:
+
+- [Node.js](https://nodejs.org/) (version 14 or higher)
+- [pnpm](https://pnpm.io/) (version 6 or higher)
+
+To install the dependencies, run the following command:
+
+```bash
+pnpm install
+```
+
 ## Vercel Templates
 
 Multiple examples are being featured in [Vercel's Templates](https://vercel.com/templates), visit that page for more advanced filtering options.
