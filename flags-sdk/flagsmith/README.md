@@ -53,26 +53,14 @@ This allows the Flags SDK and the Flags Explorer to work correctly, by getting a
 vercel env pull
 ```
 
-### Step 3: Install dependencies
+Step 3: Create Feature Flags
+Head over to Flagsmith dashboard and create the feature flags required by this template.
 
-```bash
-pnpm install
-```
+Feature Flags:
 
-or
+Summer Sale with the key summer-sale
+Free Shipping with the key free-delivery
+Proceed To Checkout with the key proceed-to-checkout-color
+You can also find the feature flag keys in the flags.ts file.
 
-```bash
-npm install --legacy-peer-deps
-```
-
-### Step 4: Run the project
-
-```bash
-pnpm run dev
-```
-
-or
-
-```bash
-npm run dev
-```
+Set both feature flags to rollout to 50% of users.
