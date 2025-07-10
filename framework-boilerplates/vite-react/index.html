@@ -1,4 +1,207 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <title>CHIMERA OMEGA v18.2 :: Quantum Core (FINAL POWER UP)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00e5ff; --secondary: #9d00ff; --success: #28a745;
+            --warning: #ffcc00; --danger: #dc3545; --dark: #0f172a;
+            --hot: #ff5555; --odd: #fde047; --even: #7dd3fc;
+        }
+        body{font-family:'Share Tech Mono',monospace;background:radial-gradient(circle at center,#0f172a,#000);min-height:100vh}.font-sans{font-family:'Orbitron',sans-serif}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}@keyframes glow{0%{box-shadow:0 0 5px var(--primary)}50%{box-shadow:0 0 20px var(--primary)}100%{box-shadow:0 0 5px var(--primary)}}
+        .signal-segment{transition:all .4s ease;border-radius:2px}.signal-segment.lit-green{background-color:var(--success);box-shadow:0 0 10px var(--success)}.signal-segment.lit-blue{background-color:var(--primary);box-shadow:0 0 10px var(--primary)}.signal-segment.lit-yellow{background-color:var(--warning);box-shadow:0 0 10px var(--warning)}.signal-segment.lit-red{background-color:var(--danger);box-shadow:0 0 10px var(--danger)}.signal-segment.lit-purple{background-color:var(--secondary);box-shadow:0 0 10px var(--secondary)}
+        .history-outcome-win{color:var(--success)}.history-outcome-loss{color:var(--danger)}.type-rate{color:var(--primary)}.key-button{transition:all .2s;background:linear-gradient(145deg,#1e293b,#0f172a);box-shadow:3px 3px 6px #0a0f1a,-3px -3px 6px #141f3a;border:1px solid rgba(0,229,255,.1)}.key-button:hover{transform:scale(1.05)}.key-button:active{transform:scale(.95);box-shadow:inset 2px 2px 4px #0a0f1a,inset -2px -2px 4px #141f3a}
+        .feedback-number-btn.big{border-color:#f472b6;color:#f472b6}.feedback-number-btn.small{border-color:#60a5fa;color:#60a5fa}.feedback-number-btn:hover{background:rgba(0,229,255,.1)}.predict-button{transition:all .3s;background:linear-gradient(135deg,var(--primary),var(--secondary));box-shadow:0 0 15px rgba(0,229,255,.5),0 0 15px rgba(157,0,255,.5);letter-spacing:1px;font-weight:700;animation:glow 2s infinite}.predict-button:hover{transform:translateY(-2px);box-shadow:0 0 25px var(--primary),0 0 25px var(--secondary);animation:none}
+        .lobby-btn.active{text-shadow:0 0 10px var(--primary);color:var(--primary);background:rgba(0,229,255,.1);border:1px solid var(--primary)}.lobby-btn:hover:not(.active){color:var(--primary);text-shadow:0 0 5px var(--primary)}.icon-btn{transition:all .2s ease;cursor:pointer;text-shadow:0 0 5px currentColor}.icon-btn:hover{transform:scale(1.1);color:var(--primary)}
+        .strategy-tag{font-size:.65rem;padding:.15rem .4rem;border-radius:.25rem;font-family:'Orbitron',sans-serif;font-weight:700;border:1px solid currentColor;background:rgba(0,0,0,.3);text-shadow:0 0 3px currentColor}.T-Rev{color:#d8b4fe}.D-Alt{color:#7dd3fc}.Alt{color:#fde047}.T-Cont{color:#fca5a5}.HYBRID{color:#6ee7b7}.COLD{color:#fdba74}.ADAPTIVE{color:#a78bfa}.DRAGON{color:#f472b6}.D-Cont{color:#fca5a5}.Quad-Rev{color:#d8b4fe}.STREAK-BREAKER{color:#ff5555;font-weight:900}.QUANTUM{color:#00e5ff}
+        /* Existing new patterns from previous update */
+        .R-B-S { color: #81c784; } .REGULAR { color: #ffeb3b; }
+        .SMALL-BI { color: #bbdefb; } .ALT-CONT { color: #f06292; }
+        /* NEW Small-focused patterns from last update */
+        .S-REV { color: #d8b4fe; } 
+        .S-D-CONT { color: #fca5a5; } 
+        .S-ALT { color: #fde047; } 
+        .S-REGULAR { color: #ffeb3b; } 
+        .S-DRAGON { color: #f472b6; } 
+        /* NEW POWERFUL PATTERNS from previous update */
+        .TRIPLE-ALT { color: #ffd700; } /* Gold */
+        .BLOCK-CONT { color: #4CAF50; } /* Green */
+        .STREAK-CONF { color: #FF69B4; } /* Hot Pink */
+        .REV-BLOCK { color: #BA55D3; } /* Medium Orchid */
+        /* NEW POWERFUL PATTERNS (Last Update) */
+        .ZIGZAG-CONT { color: #ADD8E6; } /* Light Blue */
+        .TSMR { color: #FFDAB9; } /* PeachPuff */
+        .FOUR-BLOCK { color: #98FB98; } /* PaleGreen */
+        .OTRIPLE-CONT { color: #DDA0DD; } /* Plum */
+        /* FINAL POWER UP - META STRATEGIES (This Update) */
+        .MOMENTUM { color: #32CD32; } /* LimeGreen */
+        .VOLATILE { color: #FF8C00; } /* DarkOrange */
+        .PATTERN-BREAKER { color: #9932CC; } /* DarkOrchid */
+        .DEEP-ALT { color: #87CEEB; } /* SkyBlue */
+        .ANTI-DRAGON { color: #DAA520; } /* Goldenrod */
+
+        .panel{background:linear-gradient(145deg,#1e293b,#0f172a);border:1px solid rgba(0,229,255,.1);border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.5),0 0 15px rgba(0,229,255,.1)}
+        .pattern-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px}.pattern-item{background:rgba(30,41,59,.7);border:1px solid rgba(0,229,255,.2);border-radius:8px;padding:6px;text-align:center;font-size:.8rem}.number-badge{display:inline-block;width:28px;height:28px;line-height:28px;border-radius:50%;text-align:center;font-weight:700;background:linear-gradient(145deg,#1e293b,#0f172a);box-shadow:2px 2px 4px #0a0f1a,-2px -2px 4px #141f3a;margin:0 2px}.number-badge.big{color:#f472b6}.number-badge.small{color:#60a5fa}
+        .number-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.number-item{background:rgba(30,41,59,.7);border-radius:6px;padding:4px;text-align:center;font-size:.9rem}
+        .number-item.cold{border:1px solid rgba(253,186,116,.3)}.number-item.cold.active{background:rgba(253,186,116,.2);border:1px solid var(--warning);box-shadow:0 0 8px var(--warning)}
+        .number-item.hot{border:1px solid rgba(255,85,85,.3)}.number-item.hot.active{background:rgba(255,85,85,.2);border:1px solid var(--hot);box-shadow:0 0 8px var(--hot)}
+        .fade-in{animation:fadeIn .5s ease-out}.pulse-anim{animation:pulse 1.5s infinite}
+        .grid-bg,.matrix-effect,.scanline{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1}
+        .grid-bg{background:linear-gradient(rgba(0,229,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.05) 1px,transparent 1px);background-size:20px 20px}.scanline{height:10px;background:linear-gradient(to bottom,rgba(0,229,255,.3),transparent);animation:scan 6s linear infinite;z-index:1}.matrix-effect{overflow:hidden}
+        .matrix-column{position:absolute;top:-50px;color:rgba(0,229,255,.2);font-size:18px;writing-mode:vertical-rl;text-orientation:mixed;text-shadow:0 0 5px rgba(0,229,255,.5);animation:fall linear infinite}@keyframes fall{to{top:100%}}
+        .parity-tag{border:1px solid currentColor;padding:2px 6px;border-radius:4px;font-size:1.5rem}.parity-tag.Odd{color:var(--odd)}.parity-tag.Even{color:var(--even)}
+        .quantum-core {background: linear-gradient(135deg, rgba(0,229,255,0.1), rgba(157,0,255,0.1)); border: 1px solid rgba(0,229,255,0.3);}
+        .progress-bar {height: 4px; background: rgba(0,229,255,0.2); position: relative; overflow: hidden;}
+        .progress-bar::after {content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 100%; background: linear-gradient(90deg, transparent, rgba(0,229,255,0.8), transparent); animation: scanning 2s linear infinite;}
+        @keyframes scanning {0% {transform: translateX(-100%);} 100% {transform: translateX(100%);}}
+    </style>
+</head>
+<body class="text-gray-100 flex flex-col items-center min-h-screen p-4 relative">
+    <div class="matrix-effect" id="matrixEffect"></div>
+    <div class="grid-bg"></div>
+    <div class="scanline"></div>
+    
+    <audio id="soundPredict" src="https://cdn.pixabay.com/audio/2022/03/15/audio_731c519a81.mp3" preload="auto"></audio>
+    <audio id="soundWin" src="https://cdn.pixabay.com/audio/2022/03/10/audio_c3b0923528.mp3" preload="auto"></audio>
+    <audio id="soundLoss" src="https://cdn.pixabay.com/audio/2021/08/04/audio_a538221b34.mp3" preload="auto"></audio>
+
+    <div class="w-full max-w-2xl panel flex justify-between items-center p-4 mb-6">
+        <div class="flex items-center gap-3">
+            <div class="text-left text-xs text-gray-400">
+                <div>B/S: <span id="winRateBS" class="type-rate">0%</span> (W/L: <span id="winLossBS">0/0</span>)</div>
+                <div>O/E: <span id="winRateOE" class="type-rate">0%</span> (W/L: <span id="winLossOE">0/0</span>)</div>
+            </div>
+        </div>
+        <div class="font-sans text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-purple-500 tracking-tighter">
+            CHIMERA OMEGA <span class="text-xs text-pink-500">v18.2</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <i id="adaptiveModeToggle" class="icon-btn fa-solid fa-brain text-lg text-green-400" title="Adaptive Mode"></i>
+            <i id="patternToggle" class="icon-btn fa-solid fa-cubes text-lg text-cyan-400" title="Pattern Analysis"></i>
+            <i id="themeToggle" class="icon-btn fa-solid fa-moon text-lg" title="Toggle Theme"></i>
+            <i id="resetButton" class="icon-btn fa-solid fa-arrows-rotate text-lg" title="Reset System"></i>
+        </div>
+    </div>
+
+    <div class="w-full max-w-2xl flex flex-col md:flex-row gap-6">
+        <div class="flex-1 flex flex-col gap-6">
+            <div class="panel p-6 flex flex-col gap-6">
+                <div class="flex justify-around bg-gray-900 p-1 rounded-lg mb-2">
+                    <button class="lobby-btn text-gray-400 px-3 py-1 font-sans text-sm rounded-md transition-colors" data-lobby="30s">30s</button>
+                    <button class="lobby-btn text-gray-400 px-3 py-1 font-sans text-sm rounded-md transition-colors" data-lobby="1m">1m</button>
+                    <button class="lobby-btn text-gray-400 px-3 py-1 font-sans text-sm rounded-md transition-colors" data-lobby="3m">3m</button>
+                    <button class="lobby-btn text-gray-400 px-3 py-1 font-sans text-sm rounded-md transition-colors" data-lobby="5m">5m</button>
+                </div>
+                
+                <div class="flex flex-col gap-4 quantum-core p-4 rounded-lg">
+                    <div class="progress-bar rounded-full mb-2"></div>
+                    <input id="periodInput" class="w-full bg-gray-900 border border-cyan-500/30 text-cyan-400 font-sans text-3xl text-center rounded-lg p-3 shadow-inner shadow-cyan-500/10 focus:outline-none focus:ring-1 focus:ring-cyan-500" type="text" maxlength="20" placeholder="Enter Period..." autocomplete="off">
+                    <div class="grid grid-cols-3 gap-2">
+                        <button class="key-button text-white font-sans text-2xl rounded-lg p-4" data-key="1">1</button>
+                        <button class="key-button text-white font-sans text-2xl rounded-lg p-4" data-key="2">2</button>
+                        <button class="key-button text-white font-sans text-2xl rounded-lg p-4" data-key="3">3</button>
+                        <button class="key-button text-white font-sans text-2xl rounded-lg p-4" data-key="4">4</button>
+                        <button class="key-button text-white font-sans text-2xl rounded-lg p-4" data-key="5">5</button>
+                        <button class="key-button text-white font-sans text-2xl rounded-lg p-4" data-key="6">6</button>
+                        <button class="key-button text-white font-sans text-2xl rounded-lg p-4" data-key="7">7</button>
+                        <button class="key-button text-white font-sans text-2xl rounded-lg p-4" data-key="8">8</button>
+                        <button class="key-button text-white font-sans text-2xl rounded-lg p-4" data-key="9">9</button>
+                        <button class="key-button bg-rose-700 hover:bg-rose-600 border-rose-600 text-white font-sans text-xl rounded-lg p-4" data-key="C">C</button>
+                        <button class="key-button text-white font-sans text-2xl rounded-lg p-4" data-key="0">0</button>
+                        <button class="key-button bg-amber-700 hover:bg-amber-600 border-amber-600 text-white font-sans text-xl rounded-lg p-4" data-key="B">←</button>
+                    </div>
+                    <button id="predictButton" class="predict-button text-white font-sans text-lg py-4 rounded-lg uppercase tracking-wider"><i class="fa-solid fa-bolt"></i> Quantum Predict</button>
+                </div>
+                
+                <div id="resultContainer" class="min-h-[200px] flex justify-center items-center"></div>
+                
+                <div class="mt-2 px-4">
+                    <div class="flex justify-between mb-1"><h5 class="text-sm text-gray-400 font-sans">QUANTUM CONFIDENCE (B/S)</h5><span id="confidenceValue" class="text-sm font-bold text-cyan-400">0%</span></div>
+                    <div id="signalTower" class="flex flex-col gap-2 w-full mx-auto">
+                        <div class="signal-segment w-full h-4 rounded bg-gray-700 border border-gray-600/50"></div>
+                        <div class="signal-segment w-full h-4 rounded bg-gray-700 border border-gray-600/50"></div>
+                        <div class="signal-segment w-full h-4 rounded bg-gray-700 border border-gray-600/50"></div>
+                        <div class="signal-segment w-full h-4 rounded bg-gray-700 border border-gray-600/50"></div>
+                        <div class="signal-segment w-full h-4 rounded bg-gray-700 border border-gray-600/50"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <div class="panel p-4">
+                    <h4 class="font-sans font-bold text-center mb-3 text-red-400">HOT NUMBERS</h4>
+                    <div class="number-grid" id="hotGrid"></div>
+                    <div class="text-xs text-gray-500 mt-2 text-center">Highest frequency</div>
+                </div>
+                <div class="panel p-4">
+                    <h4 class="font-sans font-bold text-center mb-3 text-amber-400">COLD NUMBERS</h4>
+                    <div class="number-grid" id="coldGrid"></div>
+                    <div class="text-xs text-gray-500 mt-2 text-center">Lowest frequency</div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-1 flex flex-col gap-6">
+            <div id="patternPanel" class="panel p-4">
+                <h4 class="font-sans font-bold text-center mb-3">PATTERN RECOGNITION</h4>
+                <div class="pattern-grid">
+                    <!-- Original Patterns -->
+                    <div class="pattern-item">
+                        <div class="text-xs text-gray-400 mb-1">T-REV</div>
+                        <div><span class="number-badge big">B</span><span class="number-badge big">B</span><span class="number-badge big">B</span><span class="text-green-400">→</span><span class="number-badge small">S</span></div>
+                        <div class="text-xs text-gray-500 mt-1">Triple Reverse</div>
+                    </div>
+                    <div class="pattern-item">
+                        <div class="text-xs text-gray-400 mb-1">D-ALT</div>
+                        <div><span class="number-badge small">S</span><span class="number-badge big">B</span><span class="number-badge small">S</span><span class="number-badge big">B</span><span class="text-green-400">→</span><span class="number-badge big">B</span></div>
+                        <div class="text-xs text-gray-500 mt-1">Double Alternate</div>
+                    </div>
+                    <div class="pattern-item">
+                        <div class="text-xs text-gray-400 mb-1">ALT</div>
+                        <div><span class="number-badge big">B</span><span class="number-badge small">S</span><span class="number-badge big">B</span><span class="text-green-400">→</span><span class="number-badge small">S</span></div>
+                        <div class="text-xs text-gray-500 mt-1">Alternate</div>
+                    </div>
+                    <div class="pattern-item">
+                        <div class="text-xs text-gray-400 mb-1">T-CONT</div>
+                        <div><span class="number-badge small">S</span><span class="number-badge big">B</span><span class="number-badge big">B</span><span class="text-green-400">→</span><span class="number-badge big">B</span></div>
+                        <div class="text-xs text-gray-500 mt-1">Triple Continue</div>
+                    </div>
+                     <div class="pattern-item">
+                        <div class="text-xs text-gray-400 mb-1">D-CONT</div>
+                        <div><span class="number-badge small">S</span><span class="number-badge small">S</span><span class="number-badge big">B</span><span class="text-green-400">→</span><span class="number-badge big">B</span></div>
+                        <div class="text-xs text-gray-500 mt-1">Double Continue</div>
+                    </div>
+                    <div class="pattern-item">
+                        <div class="text-xs text-gray-400 mb-1">DRAGON</div>
+                        <div><span class="number-badge big">B</span><span class="number-badge big">B</span><span class="number-badge big">B</span><span class="number-badge big">B</span><span class="text-green-400">→</span><span class="number-badge big">B</span></div>
+                        <div class="text-xs text-gray-500 mt-1">Dragon Streak</div>
+                    </div>
+                    <div class="pattern-item">
+                        <div class="text-xs text-gray-400 mb-1">Quad-Rev</div>
+                        <div><span class="number-badge big">B</span><span class="number-badge big">B</span><span class="number-badge big">B</span><span class="number-badge big">B</span><span class="text-green-400">→</span><span class="number-badge small">S</span></div>
+                        <div class="text-xs text-gray-500 mt-1">Quadruple Reverse</div>
+                    </div>
+                    <!-- Patterns added in previous update -->
+                    <div class="pattern-item">
+                        <div class="text-xs text-gray-400 mb-1">R-B-S</div>
+                        <div><span class="number-badge big">B</span><span class="number-badge small">S</span><span class="number-badge big">B</span><span class="number-badge small">S</span><span class="text-green-400">→</span><span class="number-badge big">B</span></div>
+                        <div class="text-xs text-gray-500 mt-1">Regular B-S Pattern</div>
+                    </div>
+                    <div class="pattern-item">
+                        <div class="text-xs text-gray-400 mb-1">REGULAR</div>
+                        <div><span class="number-badge big">B</span><span class="number-badge big">B</span><span class="number-badge small">S</span><span class="number-badge small">S</span><span class="text-green-400">→</span><span class="number-badge big">B</span></div>
+                        <div class="text-xs text-gray-500 mt-1">Regular Pattern (BBSS)</div>
+                    </div>
+                    <div class="pattern-item">
+                        <div class="text-xs text-gray-400 mb-1">SMALL-BI</div>
+                        <div><span class="number-badge small">S</span><span class="number-badge small">S</span><span class="number-badge small">S</span><span class="number-badge big">B</span><span class="text-green-400">→</span><span class="number-badge small">S</span><<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
