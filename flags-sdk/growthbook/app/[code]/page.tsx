@@ -10,6 +10,9 @@ import { ProductDetailPageProvider } from '@/components/utils/product-detail-pag
 import { productFlags, showSummerBannerFlag } from '@/flags'
 import { Main } from '@/components/main'
 
+// We will precompute and rewrite to static variants.
+export const dynamic = 'force-static'
+
 export default async function Page(props: {
   params: Promise<{ code: string }>
 }) {
