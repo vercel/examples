@@ -7,6 +7,7 @@ import { ColorPicker } from '@/components/product-detail-page/color-picker'
 import { SizePicker } from '@/components/product-detail-page/size-picker'
 import { ProductDetailPageProvider } from '@/components/utils/product-detail-page-context'
 
+// test
 import { productFlags, showSummerBannerFlag } from '@/flags'
 import { Main } from '@/components/main'
 
