@@ -1,1 +1,0 @@
-import{RenderFn as r}from"../index.js";import{__unsafeRenderFn as i}from"../index.js";import{querySelectorAll as s}from"../selector.js";function d(t={}){return o=>{for(let[f,e]of Object.entries(t))for(let n of s(o,f))typeof e=="string"?(n.name=e,r in n&&delete n[r]):typeof e=="function"&&i(n,e);return o}}export{d as default};

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../src/transformers/swap.ts"],
-  "sourcesContent": ["import { ElementNode, RenderFn } from '../index.js';\nimport { Node, __unsafeRenderFn } from '../index.js';\nimport { querySelectorAll } from '../selector.js';\n\nexport default function swap(\n\tcomponents: Record<\n\t\tstring,\n\t\tstring | ((props: Record<string, any>, ...children: any[]) => any)\n\t> = {},\n) {\n\treturn (doc: Node): Node => {\n\t\tfor (const [selector, component] of Object.entries(components)) {\n\t\t\tfor (const node of querySelectorAll(doc, selector)) {\n\t\t\t\tif (typeof component === 'string') {\n\t\t\t\t\tnode.name = component;\n\t\t\t\t\tif (RenderFn in node) {\n\t\t\t\t\t\tdelete (node as any)[RenderFn];\n\t\t\t\t\t}\n\t\t\t\t} else if (typeof component === 'function') {\n\t\t\t\t\t__unsafeRenderFn(node as ElementNode, component);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn doc;\n\t};\n}\n"],
-  "mappings": "AAAA,OAAsB,YAAAA,MAAgB,cACtC,OAAe,oBAAAC,MAAwB,cACvC,OAAS,oBAAAC,MAAwB,iBAElB,SAARC,EACNC,EAGI,CAAC,EACJ,CACD,OAAQC,GAAoB,CAC3B,OAAW,CAACC,EAAUC,CAAS,IAAK,OAAO,QAAQH,CAAU,EAC5D,QAAWI,KAAQN,EAAiBG,EAAKC,CAAQ,EAC5C,OAAOC,GAAc,UACxBC,EAAK,KAAOD,EACRP,KAAYQ,GACf,OAAQA,EAAaR,CAAQ,GAEpB,OAAOO,GAAc,YAC/BN,EAAiBO,EAAqBD,CAAS,EAIlD,OAAOF,CACR,CACD",
-  "names": ["RenderFn", "__unsafeRenderFn", "querySelectorAll", "swap", "components", "doc", "selector", "component", "node"]
-}
