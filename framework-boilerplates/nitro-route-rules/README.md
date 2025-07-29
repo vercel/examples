@@ -6,7 +6,7 @@ This directory is a brief example of [Nitro](https://nitro.build/) using Route R
 
 Deploy your own Nitro project with Vercel.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/framework-boilerplates/nitro&template=nitro-plugins)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/framework-boilerplates/nitro&template=nitro-route-rules)
 
 Live Example: https://nitro-route-rules.vercel.app
 
