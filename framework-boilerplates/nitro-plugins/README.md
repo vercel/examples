@@ -1,6 +1,6 @@
 # Nitro
 
-This directory is a brief example of [Nitro](https://nitro.build/) using Route Rules that can be deployed to Vercel with zero configuration. Go to the [nitro quick start](https://nitro.unjs.io/guide#quick-start) to learn more.
+This directory is a brief example of [Nitro](https://nitro.build/) using plugins that can be deployed to Vercel with zero configuration. Go to the [nitro quick start](https://nitro.unjs.io/guide#quick-start) to learn more.
 
 ## Deploy Your Own
 
@@ -8,7 +8,7 @@ Deploy your own Nitro project with Vercel.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/framework-boilerplates/nitro&template=nitro-plugins)
 
-Live Example: https://nitro-route-rules.vercel.app
+Live Example: https://nitro-plugins.labs.vercel.app
 
 ## Developing
 
