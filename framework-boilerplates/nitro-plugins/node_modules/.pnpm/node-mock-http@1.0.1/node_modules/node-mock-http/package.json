@@ -1,0 +1,63 @@
+{
+  "name": "node-mock-http",
+  "version": "1.0.1",
+  "description": "",
+  "repository": "unjs/node-mock-http",
+  "license": "MIT",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./_polyfill/buffer": {
+      "import": {
+        "node": "./dist/_polyfill/buffer/node.mjs",
+        "default": "./dist/_polyfill/buffer/nodeless.mjs"
+      },
+      "require": {
+        "node": "./dist/_polyfill/buffer/node.cjs",
+        "default": "./dist/_polyfill/buffer/nodeless.cjs"
+      }
+    },
+    "./_polyfill/events": {
+      "import": {
+        "node": "./dist/_polyfill/events/node.mjs",
+        "default": "./dist/_polyfill/events/nodeless.mjs"
+      },
+      "require": {
+        "node": "./dist/_polyfill/events/node.cjs",
+        "default": "./dist/_polyfill/events/nodeless.cjs"
+      }
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild --minify",
+    "dev": "vitest dev --coverage",
+    "lint": "eslint . && prettier -c .",
+    "lint:fix": "automd && eslint . --fix && prettier -w .",
+    "prepack": "pnpm build",
+    "release": "pnpm test && changelogen --release && npm publish && git push --follow-tags",
+    "test": "pnpm lint && pnpm test:types && vitest run --coverage",
+    "test:types": "tsc --noEmit --skipLibCheck"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.4",
+    "@vitest/coverage-v8": "^3.2.4",
+    "automd": "^0.4.0",
+    "changelogen": "^0.6.1",
+    "eslint": "^9.29.0",
+    "eslint-config-unjs": "^0.4.2",
+    "jiti": "^2.4.2",
+    "prettier": "^3.6.1",
+    "typescript": "^5.8.3",
+    "unbuild": "^3.5.0",
+    "vitest": "^3.2.4"
+  },
+  "packageManager": "pnpm@10.12.3"
+}

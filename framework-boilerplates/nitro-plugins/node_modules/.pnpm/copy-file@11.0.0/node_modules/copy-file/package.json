@@ -1,0 +1,74 @@
+{
+	"name": "copy-file",
+	"version": "11.0.0",
+	"description": "Copy a file",
+	"license": "MIT",
+	"repository": "sindresorhus/copy-file",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"test": "xo && nyc ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts",
+		"copy-file-error.js",
+		"fs.js"
+	],
+	"keywords": [
+		"copy",
+		"copying",
+		"cp",
+		"file",
+		"clone",
+		"fs",
+		"stream",
+		"file-system",
+		"filesystem",
+		"ncp",
+		"fast",
+		"quick",
+		"data",
+		"content",
+		"contents",
+		"read",
+		"write",
+		"io"
+	],
+	"dependencies": {
+		"graceful-fs": "^4.2.11",
+		"p-event": "^6.0.0"
+	},
+	"devDependencies": {
+		"ava": "^5.3.1",
+		"clear-module": "^4.1.2",
+		"coveralls": "^3.1.1",
+		"del": "^7.1.0",
+		"import-fresh": "^3.3.0",
+		"nyc": "^15.1.0",
+		"sinon": "^17.0.1",
+		"tsd": "^0.29.0",
+		"xo": "^0.56.0"
+	},
+	"xo": {
+		"rules": {
+			"ava/assertion-arguments": "off"
+		}
+	},
+	"ava": {
+		"workerThreads": false,
+		"serial": true
+	}
+}

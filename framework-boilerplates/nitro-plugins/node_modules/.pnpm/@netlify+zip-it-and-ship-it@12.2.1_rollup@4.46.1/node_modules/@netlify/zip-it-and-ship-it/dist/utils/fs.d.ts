@@ -1,0 +1,10 @@
+import { promises as fs, Stats } from 'fs';
+import { FileCache, LstatCache, ReaddirCache } from './cache.js';
+export declare const cachedLstat: (cache: LstatCache, path: string) => Promise<Stats>;
+export declare const cachedReaddir: (cache: ReaddirCache, path: string) => Promise<string[]>;
+export declare const cachedReadFile: (cache: FileCache, path: string) => Promise<string>;
+export declare const getPathWithExtension: (path: string, extension: string) => string;
+export declare const safeUnlink: (path: string) => Promise<void>;
+export declare const listFunctionsDirectories: (srcFolders: string[]) => Promise<string[]>;
+export declare const resolveFunctionsDirectories: (input: string | string[]) => string[];
+export declare const mkdirAndWriteFile: typeof fs.writeFile;

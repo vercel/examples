@@ -1,0 +1,52 @@
+{
+  "name": "radix3",
+  "version": "1.1.2",
+  "description": "Lightweight and fast router for JavaScript based on Radix Tree",
+  "repository": "unjs/radix3",
+  "license": "MIT",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "bench": "node ./benchmark/direct.mjs",
+    "bench:http": "node ./benchmark/http.mjs",
+    "bench:profile": "0x -o -D benchmark/.profile -- node ./benchmark/direct.mjs",
+    "build": "unbuild",
+    "dev": "vitest",
+    "lint": "eslint --ext .ts,.mjs . && prettier -c src tests",
+    "lint:fix": "eslint --fix --ext .ts,.mjs . && prettier -w src tests",
+    "playground": "pnpm jiti ./playground.ts",
+    "release": "pnpm test && pnpm build && changelogen --release && git push --follow-tags && npm publish",
+    "test": "pnpm lint && pnpm test:types && vitest run",
+    "test:types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "0x": "^5.7.0",
+    "@vitest/coverage-v8": "^1.4.0",
+    "autocannon": "^7.15.0",
+    "benchmark": "^2.1.4",
+    "changelogen": "^0.5.5",
+    "eslint": "^8.57.0",
+    "eslint-config-unjs": "^0.2.1",
+    "jiti": "^1.21.0",
+    "listhen": "^1.7.2",
+    "prettier": "^3.2.5",
+    "standard-version": "^9.5.0",
+    "typescript": "^5.4.3",
+    "unbuild": "^2.0.0",
+    "vitest": "^1.4.0"
+  },
+  "packageManager": "pnpm@8.15.5"
+}

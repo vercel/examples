@@ -1,0 +1,10 @@
+import type nodeInspectorPromises from "node:inspector/promises";
+export declare const console: typeof nodeInspectorPromises.console;
+export declare const Network: unknown;
+export declare const Session: unknown;
+export declare const url: unknown;
+export declare const waitForDebugger: unknown;
+export declare const open: unknown;
+export declare const close: unknown;
+declare const _default: {};
+export default _default;

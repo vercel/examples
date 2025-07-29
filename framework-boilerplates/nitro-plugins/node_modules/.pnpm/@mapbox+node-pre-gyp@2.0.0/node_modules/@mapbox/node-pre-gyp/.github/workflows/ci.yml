@@ -1,0 +1,29 @@
+# https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: ci
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+jobs:
+  ci:
+    strategy:
+      fail-fast: false
+      max-parallel: 9
+      matrix:
+        node-version: ['18.x', '20.x', '22.x']
+        os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm audit
+      - run: npm run lint
+      # - run: npm run update-crosswalk  # To support newer versions of Node.js
+      - run: npm run build --if-present
+      - run: npm test

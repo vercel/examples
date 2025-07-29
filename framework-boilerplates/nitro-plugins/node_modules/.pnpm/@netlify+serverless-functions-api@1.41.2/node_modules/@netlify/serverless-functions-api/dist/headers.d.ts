@@ -1,0 +1,14 @@
+import { LambdaEvent } from './lambda/event.js';
+export declare const NFClientConnectionIP = "x-nf-client-connection-ip";
+export declare const NFGeo = "x-nf-geo";
+export declare const NFAccountID = "x-nf-account-id";
+export declare const NFDeployID = "x-nf-deploy-id";
+export declare const NFDeployContext = "x-nf-deploy-context";
+export declare const NFDeployPublished = "x-nf-deploy-published";
+export declare const NFSiteID = "x-nf-site-id";
+export declare const NFRequestFlags = "x-nf-request-flags";
+export declare const NFInvocationMetadata = "x-nf-invocation-metadata";
+export declare const NFRequestID = "x-nf-request-id";
+export declare const NFStartTimestamp = "x-nf-start-timestamp";
+export declare const fromEventHeaders: (eventHeaders: LambdaEvent["headers"]) => Headers;
+export declare const toMultiValueHeaders: (headers: Headers) => Record<string, string[]>;

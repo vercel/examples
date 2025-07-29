@@ -1,0 +1,81 @@
+{
+  "name": "jwt-decode",
+  "version": "4.0.0",
+  "description": "Decode JWT tokens, mostly useful for browser applications.",
+  "type": "module",
+  "main": "build/cjs/index.js",
+  "module": "build/esm/index.js",
+  "types": "build/cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./build/esm/index.d.ts",
+        "default": "./build/esm/index.js"
+      },
+      "require": {
+        "types": "./build/cjs/index.d.ts",
+        "default": "./build/cjs/index.js"
+      }
+    }
+  },
+  "keywords": [
+    "jwt",
+    "browser"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/auth0/jwt-decode"
+  },
+  "url": "https://github.com/auth0/jwt-decode/issues",
+  "homepage": "https://github.com/auth0/jwt-decode#readme",
+  "scripts": {
+    "dev": "concurrently --kill-others \"npm run build:watch\" \"npm run dev:server\"",
+    "dev:server": "browser-sync start --config bs-config.json",
+    "prebuild": "shx rm -rf ./build && shx mkdir -p ./build/cjs && shx echo '{\"type\": \"commonjs\"}'> build/cjs/package.json",
+    "build": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json",
+    "build:watch": "npm run build -- --watch",
+    "lint": "eslint .",
+    "lint:package": "publint",
+    "test": "npm run test:node && npm run test:browser",
+    "test:node": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' jest --coverage",
+    "test:browser": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' jest --coverage --testEnvironment=jsdom",
+    "prepack": "npm run build",
+    "prepare": "husky install"
+  },
+  "author": "Jose F. Romaniello <jfromaniello@gmail.com>",
+  "contributors": [
+    "Sam Bellen <sam.bellen@auth0.com>"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "7.23.2",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "browser-sync": "^2.29.3",
+    "concurrently": "^8.2.0",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.6.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.6.2",
+    "lint-staged": "^15.0.2",
+    "prettier": "^3.0.2",
+    "publint": "^0.2.2",
+    "shx": "^0.3.4",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "files": [
+    "build"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --fix"
+  }
+}

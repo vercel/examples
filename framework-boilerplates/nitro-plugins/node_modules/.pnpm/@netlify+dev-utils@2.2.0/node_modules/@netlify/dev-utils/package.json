@@ -1,0 +1,71 @@
+{
+  "name": "@netlify/dev-utils",
+  "version": "2.2.0",
+  "description": "TypeScript utilities for the local emulation of the Netlify environment",
+  "type": "module",
+  "engines": {
+    "node": "^14.16.0 || >=16.0.0"
+  },
+  "main": "./dist/main.cjs",
+  "module": "./dist/main.js",
+  "types": "./dist/main.d.ts",
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./dist/main.d.cts",
+        "default": "./dist/main.cjs"
+      },
+      "import": {
+        "types": "./dist/main.d.ts",
+        "default": "./dist/main.js"
+      },
+      "default": {
+        "types": "./dist/main.d.ts",
+        "default": "./dist/main.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/**/*",
+    "server.d.ts"
+  ],
+  "scripts": {
+    "build": "tsup-node",
+    "prepack": "npm run build",
+    "test": "vitest run",
+    "test:dev": "vitest",
+    "test:ci": "npm run build && vitest run",
+    "dev": "tsup-node --watch",
+    "publint": "npx -y publint --strict"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "repository": "netlify/primitives",
+  "bugs": {
+    "url": "https://github.com/netlify/primitives/issues"
+  },
+  "author": "Netlify Inc.",
+  "devDependencies": {
+    "@types/lodash.debounce": "^4.0.9",
+    "@types/node": "^20.5.1",
+    "@types/parse-gitignore": "^1.0.2",
+    "@types/write-file-atomic": "^4.0.3",
+    "tmp-promise": "^3.0.3",
+    "tsup": "^8.0.0",
+    "vitest": "^3.0.0"
+  },
+  "dependencies": {
+    "@whatwg-node/server": "^0.9.60",
+    "chokidar": "^4.0.1",
+    "decache": "^4.6.2",
+    "dot-prop": "9.0.0",
+    "env-paths": "^3.0.0",
+    "find-up": "7.0.0",
+    "lodash.debounce": "^4.0.8",
+    "netlify": "^13.3.5",
+    "parse-gitignore": "^2.0.0",
+    "uuid": "^11.1.0",
+    "write-file-atomic": "^6.0.0"
+  }
+}

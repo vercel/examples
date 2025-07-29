@@ -1,0 +1,48 @@
+{
+	"name": "filter-obj",
+	"version": "6.1.0",
+	"description": "Filter object keys and values into a new object",
+	"license": "MIT",
+	"repository": "sindresorhus/filter-obj",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
+	"sideEffects": false,
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"filter",
+		"object",
+		"key",
+		"keys",
+		"value",
+		"values",
+		"iterate",
+		"iterator",
+		"include",
+		"exclude",
+		"pick",
+		"omit"
+	],
+	"devDependencies": {
+		"ava": "^6.1.2",
+		"tsd": "^0.30.7",
+		"xo": "^0.58.0"
+	}
+}

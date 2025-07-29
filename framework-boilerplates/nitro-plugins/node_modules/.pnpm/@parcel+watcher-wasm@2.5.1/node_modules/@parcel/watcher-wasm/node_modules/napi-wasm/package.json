@@ -1,0 +1,33 @@
+{
+  "name": "napi-wasm",
+  "version": "1.1.0",
+  "description": "An implementation of napi for wasm",
+  "main": "index.mjs",
+  "exports": {
+    "import": "./index.mjs",
+    "require": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "index.mjs"
+  ],
+  "scripts": {
+    "prepublishOnly": "sed 's/^export //g' index.mjs > index.js && echo '\nexports.Environment = Environment;\nexports.napi = napi;' >> index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devongovett/napi-wasm.git"
+  },
+  "keywords": [
+    "napi",
+    "wasm",
+    "node-api",
+    "rust"
+  ],
+  "author": "Devon Govett <devongovett@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devongovett/napi-wasm/issues"
+  },
+  "homepage": "https://github.com/devongovett/napi-wasm#readme"
+}

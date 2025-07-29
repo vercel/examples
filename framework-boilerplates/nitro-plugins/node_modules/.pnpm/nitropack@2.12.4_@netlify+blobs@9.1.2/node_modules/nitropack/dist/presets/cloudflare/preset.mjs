@@ -1,0 +1,183 @@
+import { defineNitroPreset } from "nitropack/kit";
+import { writeFile } from "nitropack/kit";
+import { resolve } from "pathe";
+import { unenvCfExternals } from "../_unenv/preset-workerd.mjs";
+import {
+  enableNodeCompat,
+  writeWranglerConfig,
+  writeCFRoutes,
+  writeCFHeaders,
+  writeCFPagesRedirects
+} from "./utils.mjs";
+import cfLegacyPresets from "./preset-legacy.mjs";
+const cloudflarePages = defineNitroPreset(
+  {
+    extends: "cloudflare",
+    entry: "./runtime/cloudflare-pages",
+    exportConditions: ["workerd"],
+    commands: {
+      preview: "npx wrangler --cwd {{ output.dir }} pages dev",
+      deploy: "npx wrangler --cwd {{ output.dir }} pages deploy"
+    },
+    output: {
+      dir: "{{ rootDir }}/dist",
+      publicDir: "{{ output.dir }}/{{ baseURL }}",
+      serverDir: "{{ output.dir }}/_worker.js"
+    },
+    unenv: [unenvCfExternals],
+    alias: {
+      // Hotfix: Cloudflare appends /index.html if mime is not found and things like ico are not in standard lite.js!
+      // https://github.com/nitrojs/nitro/pull/933
+      _mime: "mime/index.js"
+    },
+    wasm: {
+      lazy: false,
+      esmImport: true
+    },
+    rollupConfig: {
+      output: {
+        entryFileNames: "index.js",
+        format: "esm",
+        inlineDynamicImports: false
+      }
+    },
+    hooks: {
+      "build:before": async (nitro) => {
+        await enableNodeCompat(nitro);
+        if (!nitro.options.cloudflare?.deployConfig) {
+          nitro.options.commands.preview = "npx wrangler pages dev {{ output.dir }}";
+          nitro.options.commands.deploy = "npx wrangler pages deploy {{ output.dir }}";
+        }
+      },
+      async compiled(nitro) {
+        await writeWranglerConfig(nitro, "pages");
+        await writeCFRoutes(nitro);
+        await writeCFHeaders(nitro);
+        await writeCFPagesRedirects(nitro);
+      }
+    }
+  },
+  {
+    name: "cloudflare-pages",
+    stdName: "cloudflare_pages",
+    url: import.meta.url
+  }
+);
+const cloudflarePagesStatic = defineNitroPreset(
+  {
+    extends: "static",
+    output: {
+      dir: "{{ rootDir }}/dist",
+      publicDir: "{{ output.dir }}/{{ baseURL }}"
+    },
+    commands: {
+      preview: "npx wrangler --cwd {{ output.dir }} pages dev",
+      deploy: "npx wrangler --cwd {{ output.dir }} pages deploy"
+    },
+    hooks: {
+      "build:before": async (nitro) => {
+        if (!nitro.options.cloudflare?.deployConfig) {
+          nitro.options.commands.preview = "npx wrangler pages dev {{ output.dir }}";
+          nitro.options.commands.deploy = "npx wrangler pages deploy {{ output.dir }}";
+        }
+      },
+      async compiled(nitro) {
+        await writeCFHeaders(nitro);
+        await writeCFPagesRedirects(nitro);
+      }
+    }
+  },
+  {
+    name: "cloudflare-pages-static",
+    stdName: "cloudflare_pages",
+    url: import.meta.url,
+    static: true
+  }
+);
+export const cloudflareDev = defineNitroPreset(
+  {
+    extends: "nitro-dev",
+    modules: [
+      async (nitro) => await import("./dev.mjs").then((m) => m.cloudflareDev(nitro))
+    ]
+  },
+  {
+    name: "cloudflare-dev",
+    aliases: ["cloudflare-module", "cloudflare-durable", "cloudflare-pages"],
+    compatibilityDate: "2025-07-15",
+    url: import.meta.url,
+    dev: true
+  }
+);
+const cloudflareModule = defineNitroPreset(
+  {
+    extends: "base-worker",
+    entry: "./runtime/cloudflare-module",
+    output: {
+      publicDir: "{{ output.dir }}/public/{{ baseURL }}"
+    },
+    exportConditions: ["workerd"],
+    commands: {
+      preview: "npx wrangler --cwd {{ output.dir }} dev",
+      deploy: "npx wrangler --cwd {{ output.dir }} deploy"
+    },
+    unenv: [unenvCfExternals],
+    rollupConfig: {
+      output: {
+        format: "esm",
+        exports: "named",
+        inlineDynamicImports: false
+      }
+    },
+    wasm: {
+      lazy: false,
+      esmImport: true
+    },
+    hooks: {
+      "build:before": async (nitro) => {
+        await enableNodeCompat(nitro);
+        if (!nitro.options.cloudflare?.deployConfig) {
+          nitro.options.commands.preview = "npx wrangler dev {{ output.serverDir }}/index.mjs --assets {{ output.publicDir }}";
+          nitro.options.commands.deploy = "npx wrangler deploy {{ output.serverDir }}/index.mjs --assets {{ output.publicDir }}";
+        }
+      },
+      async compiled(nitro) {
+        await writeWranglerConfig(nitro, "module");
+        await writeCFHeaders(nitro);
+        await writeFile(
+          resolve(nitro.options.output.dir, "package.json"),
+          JSON.stringify({ private: true, main: "./server/index.mjs" }, null, 2)
+        );
+        await writeFile(
+          resolve(nitro.options.output.dir, "package-lock.json"),
+          JSON.stringify({ lockfileVersion: 1 }, null, 2)
+        );
+      }
+    }
+  },
+  {
+    name: "cloudflare-module",
+    stdName: "cloudflare_workers",
+    compatibilityDate: "2024-09-19",
+    url: import.meta.url
+  }
+);
+const cloudflareDurable = defineNitroPreset(
+  {
+    extends: "cloudflare-module",
+    entry: "./runtime/cloudflare-durable"
+  },
+  {
+    name: "cloudflare-durable",
+    compatibilityDate: "2024-09-19",
+    url: import.meta.url
+  }
+);
+export default [
+  ...cfLegacyPresets,
+  cloudflarePages,
+  cloudflarePagesStatic,
+  cloudflareModule,
+  cloudflareDurable,
+  cloudflareDev
+];

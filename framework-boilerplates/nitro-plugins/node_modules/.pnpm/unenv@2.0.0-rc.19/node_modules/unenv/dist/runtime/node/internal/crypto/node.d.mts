@@ -1,0 +1,76 @@
+import type nodeCrypto from "node:crypto";
+// ---- implemented Utils ----
+export declare const webcrypto: unknown;
+export declare const randomBytes: typeof nodeCrypto.randomBytes;
+export declare const rng: unknown;
+export declare const prng: unknown;
+// ---- Constants ----
+export declare const fips: typeof nodeCrypto.fips;
+// ---- Unimplemented utils ----
+export declare const checkPrime: unknown;
+export declare const checkPrimeSync: unknown;
+/** @deprecated */
+export declare const createCipher: unknown;
+/** @deprecated */
+export declare const createDecipher: unknown;
+export declare const pseudoRandomBytes: unknown;
+export declare const createCipheriv: unknown;
+export declare const createDecipheriv: unknown;
+export declare const createDiffieHellman: unknown;
+export declare const createDiffieHellmanGroup: unknown;
+export declare const createECDH: unknown;
+export declare const createHash: unknown;
+export declare const createHmac: unknown;
+export declare const createPrivateKey: unknown;
+export declare const createPublicKey: unknown;
+export declare const createSecretKey: unknown;
+export declare const createSign: unknown;
+export declare const createVerify: unknown;
+export declare const diffieHellman: unknown;
+export declare const generatePrime: unknown;
+export declare const generatePrimeSync: unknown;
+export declare const getCiphers: unknown;
+export declare const getCipherInfo: unknown;
+export declare const getCurves: unknown;
+export declare const getDiffieHellman: unknown;
+export declare const getHashes: unknown;
+export declare const hkdf: unknown;
+export declare const hkdfSync: unknown;
+export declare const pbkdf2: unknown;
+export declare const pbkdf2Sync: unknown;
+export declare const generateKeyPair: unknown;
+export declare const generateKeyPairSync: unknown;
+export declare const generateKey: unknown;
+export declare const generateKeySync: unknown;
+export declare const privateDecrypt: unknown;
+export declare const privateEncrypt: unknown;
+export declare const publicDecrypt: unknown;
+export declare const publicEncrypt: unknown;
+export declare const randomFill: unknown;
+export declare const randomFillSync: unknown;
+export declare const randomInt: unknown;
+export declare const scrypt: unknown;
+export declare const scryptSync: unknown;
+export declare const sign: unknown;
+export declare const setEngine: unknown;
+export declare const timingSafeEqual: unknown;
+export declare const getFips: unknown;
+export declare const setFips: unknown;
+export declare const verify: unknown;
+export declare const secureHeapUsed: unknown;
+export declare const hash: unknown;
+// ---- Unimplemented Classes ----
+export declare const Certificate: typeof nodeCrypto.Certificate;
+export declare const Cipher: typeof nodeCrypto.Cipher;
+export declare const Cipheriv: typeof nodeCrypto.Cipheriv;
+export declare const Decipher: typeof nodeCrypto.Decipher;
+export declare const Decipheriv: typeof nodeCrypto.Decipheriv;
+export declare const DiffieHellman: typeof nodeCrypto.DiffieHellman;
+export declare const DiffieHellmanGroup: typeof nodeCrypto.DiffieHellmanGroup;
+export declare const ECDH: typeof nodeCrypto.ECDH;
+export declare const Hash: typeof nodeCrypto.Hash;
+export declare const Hmac: typeof nodeCrypto.Hmac;
+export declare const KeyObject: typeof nodeCrypto.KeyObject;
+export declare const Sign: typeof nodeCrypto.Sign;
+export declare const Verify: typeof nodeCrypto.Verify;
+export declare const X509Certificate: typeof nodeCrypto.X509Certificate;

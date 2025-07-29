@@ -1,0 +1,15 @@
+import type nodeTimers from "node:timers";
+import promises from "node:timers/promises";
+export { promises };
+export declare const clearImmediate: typeof nodeTimers.clearImmediate;
+export declare const clearInterval: typeof nodeTimers.clearInterval;
+export declare const clearTimeout: typeof nodeTimers.clearTimeout;
+export declare const setImmediate: typeof nodeTimers.setImmediate;
+export declare const setTimeout: typeof nodeTimers.setTimeout;
+export declare const setInterval: typeof nodeTimers.setInterval;
+export declare const active: unknown;
+export declare const _unrefActive: unknown;
+export declare const enroll: unknown;
+export declare const unenroll: unknown;
+declare const _default: {};
+export default _default;

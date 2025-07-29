@@ -1,0 +1,25 @@
+import { defineNitroPreset } from "nitropack/kit";
+const zerops = defineNitroPreset(
+  {
+    extends: "node-server"
+  },
+  {
+    name: "zerops",
+    url: import.meta.url
+  }
+);
+const zeropsStatic = defineNitroPreset(
+  {
+    extends: "static",
+    output: {
+      dir: "{{ rootDir }}/.zerops/output",
+      publicDir: "{{ output.dir }}/static"
+    }
+  },
+  {
+    name: "zerops-static",
+    url: import.meta.url,
+    static: true
+  }
+);
+export default [zerops, zeropsStatic];

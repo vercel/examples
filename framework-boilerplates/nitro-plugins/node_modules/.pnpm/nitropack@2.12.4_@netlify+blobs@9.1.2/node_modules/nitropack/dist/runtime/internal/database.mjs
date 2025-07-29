@@ -1,0 +1,14 @@
+import { createDatabase } from "db0";
+import { connectionConfigs } from "#nitro-internal-virtual/database";
+const instances = /* @__PURE__ */ Object.create(null);
+export function useDatabase(name = "default") {
+  if (instances[name]) {
+    return instances[name];
+  }
+  if (!connectionConfigs[name]) {
+    throw new Error(`Database connection "${name}" not configured.`);
+  }
+  return instances[name] = createDatabase(
+    connectionConfigs[name].connector(connectionConfigs[name].options || {})
+  );
+}

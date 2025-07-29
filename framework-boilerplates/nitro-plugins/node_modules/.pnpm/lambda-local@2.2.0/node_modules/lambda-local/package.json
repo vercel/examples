@@ -1,0 +1,59 @@
+{
+  "name": "lambda-local",
+  "version": "2.2.0",
+  "description": "Commandline tool and API to run Lambda functions on your local machine.",
+  "main": "build/lambdalocal.js",
+  "types": "build/lambdalocal.d.ts",
+  "bin": {
+    "lambda-local": "build/cli.js"
+  },
+  "scripts": {
+    "test": "mocha",
+    "build": "tsc"
+  },
+  "files": [
+    "*.json",
+    "build",
+    "examples",
+    "Makefile"
+  ],
+  "keywords": [
+    "lambda",
+    "amazon",
+    "aws",
+    "AWS",
+    "local",
+    "run"
+  ],
+  "author": "ashiina",
+  "maintainers": [
+    {
+      "name": "Gabriel Potter (gpotter2)",
+      "email": "10530980+gpotter2@users.noreply.github.com"
+    }
+  ],
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "commander": "^10.0.1",
+    "dotenv": "^16.3.1",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.4",
+    "chai": "^4.3.7",
+    "mocha": "<8.0.0",
+    "sinon": "^15.2.0",
+    "typescript": "<5.1.0"
+  },
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashiina/lambda-local.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ashiina/lambda-local/issues"
+  },
+  "license": "MIT"
+}

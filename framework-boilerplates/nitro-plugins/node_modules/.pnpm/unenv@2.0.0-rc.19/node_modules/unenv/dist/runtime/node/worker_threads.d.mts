@@ -1,0 +1,23 @@
+import type nodeWorkerThreads from "node:worker_threads";
+export { BroadcastChannel } from "./internal/worker_threads/broadcast-channel.mjs";
+export { MessageChannel } from "./internal/worker_threads/message-channel.mjs";
+export { MessagePort } from "./internal/worker_threads/message-port.mjs";
+export { Worker } from "./internal/worker_threads/worker.mjs";
+export declare const getEnvironmentData: typeof nodeWorkerThreads.getEnvironmentData;
+export declare const setEnvironmentData: typeof nodeWorkerThreads.setEnvironmentData;
+export declare const isMainThread: typeof nodeWorkerThreads.isMainThread;
+export declare const isMarkedAsUntransferable: any;
+export declare const markAsUntransferable: typeof nodeWorkerThreads.markAsUntransferable;
+export declare const markAsUncloneable: typeof nodeWorkerThreads.markAsUncloneable;
+export declare const moveMessagePortToContext: typeof nodeWorkerThreads.moveMessagePortToContext;
+export declare const parentPort: typeof nodeWorkerThreads.parentPort;
+export declare const receiveMessageOnPort: typeof nodeWorkerThreads.receiveMessageOnPort;
+export declare const SHARE_ENV: typeof nodeWorkerThreads.SHARE_ENV;
+export declare const resourceLimits: typeof nodeWorkerThreads.resourceLimits;
+export declare const threadId: typeof nodeWorkerThreads.threadId;
+export declare const workerData: typeof nodeWorkerThreads.workerData;
+// https://nodejs.org/api/worker_threads.html#workerpostmessagetothreadthreadid-value-transferlist-timeout
+export declare const postMessageToThread: unknown;
+export declare const isInternalThread: boolean;
+declare const _default: typeof nodeWorkerThreads;
+export default _default;

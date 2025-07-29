@@ -1,0 +1,36 @@
+export const TLSSocket: any;
+export const connect: any;
+export const SecureContext: any;
+export const checkServerIdentity: any;
+export const convertALPNProtocols: any;
+export const createSecureContext: any;
+export const CLIENT_RENEG_LIMIT: any;
+export const CLIENT_RENEG_WINDOW: any;
+export const DEFAULT_CIPHERS: any;
+export const DEFAULT_ECDH_CURVE: any;
+export const DEFAULT_MAX_VERSION: any;
+export const DEFAULT_MIN_VERSION: any;
+export const Server: any;
+export const createServer: any;
+export const getCiphers: any;
+export const rootCertificates: any;
+declare namespace _default {
+    export { TLSSocket };
+    export { connect };
+    export { CLIENT_RENEG_LIMIT };
+    export { CLIENT_RENEG_WINDOW };
+    export { DEFAULT_CIPHERS };
+    export { DEFAULT_ECDH_CURVE };
+    export { DEFAULT_MAX_VERSION };
+    export { DEFAULT_MIN_VERSION };
+    export { SecureContext };
+    export { Server };
+    export { checkServerIdentity };
+    export { convertALPNProtocols };
+    export { createSecureContext };
+    export { createServer };
+    export { getCiphers };
+    export { rootCertificates };
+    export { createSecurePair };
+}
+export default _default;

@@ -1,0 +1,31 @@
+import { EventEmitter } from "node:events";
+import type nodeNet from "node:net";
+import type nodeDgram from "node:dgram";
+export declare class Socket extends EventEmitter implements nodeDgram.Socket {
+	readonly __unenv__: true;
+	bind(): this;
+	close(): this;
+	ref(): this;
+	unref(): this;
+	getRecvBufferSize(): number;
+	getSendBufferSize(): number;
+	getSendQueueSize(): number;
+	getSendQueueCount(): number;
+	setMulticastLoopback(): boolean;
+	setMulticastTTL(): number;
+	setTTL(): number;
+	address(): nodeNet.AddressInfo;
+	remoteAddress(): nodeNet.AddressInfo;
+	[Symbol.asyncDispose]();
+	addMembership();
+	addSourceSpecificMembership();
+	connect();
+	disconnect();
+	dropMembership();
+	dropSourceSpecificMembership();
+	send();
+	setSendBufferSize();
+	setBroadcast();
+	setRecvBufferSize();
+	setMulticastInterface();
+}

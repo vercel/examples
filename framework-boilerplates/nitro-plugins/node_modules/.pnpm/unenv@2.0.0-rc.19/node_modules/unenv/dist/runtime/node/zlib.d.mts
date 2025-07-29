@@ -1,0 +1,16 @@
+import type nodeZlib from "node:zlib";
+// prettier-ignore
+import { Z_NO_FLUSH, Z_PARTIAL_FLUSH, Z_SYNC_FLUSH, Z_FULL_FLUSH, Z_FINISH, Z_BLOCK, Z_OK, Z_STREAM_END, Z_NEED_DICT, Z_ERRNO, Z_STREAM_ERROR, Z_DATA_ERROR, Z_MEM_ERROR, Z_BUF_ERROR, Z_VERSION_ERROR, Z_NO_COMPRESSION, Z_BEST_SPEED, Z_BEST_COMPRESSION, Z_DEFAULT_COMPRESSION, Z_FILTERED, Z_HUFFMAN_ONLY, Z_RLE, Z_FIXED, Z_DEFAULT_STRATEGY, ZLIB_VERNUM, DEFLATE, INFLATE, GZIP, GUNZIP, DEFLATERAW, INFLATERAW, UNZIP, Z_MIN_WINDOWBITS, Z_MAX_WINDOWBITS, Z_DEFAULT_WINDOWBITS, Z_MIN_CHUNK, Z_MAX_CHUNK, Z_DEFAULT_CHUNK, Z_MIN_MEMLEVEL, Z_MAX_MEMLEVEL, Z_DEFAULT_MEMLEVEL, Z_MIN_LEVEL, Z_MAX_LEVEL, Z_DEFAULT_LEVEL } from "./internal/zlib/constants.mjs";
+// prettier-ignore
+export declare const constants: typeof nodeZlib.constants;
+export { codes } from "./internal/zlib/codes.mjs";
+export * from "./internal/zlib/formats/brotli.mjs";
+export * from "./internal/zlib/formats/deflate.mjs";
+export * from "./internal/zlib/formats/gzip.mjs";
+export * from "./internal/zlib/formats/zip.mjs";
+export declare const crc32: unknown;
+// prettier-ignore
+export { Z_NO_FLUSH, Z_PARTIAL_FLUSH, Z_SYNC_FLUSH, Z_FULL_FLUSH, Z_FINISH, Z_BLOCK, Z_OK, Z_STREAM_END, Z_NEED_DICT, Z_ERRNO, Z_STREAM_ERROR, Z_DATA_ERROR, Z_MEM_ERROR, Z_BUF_ERROR, Z_VERSION_ERROR, Z_NO_COMPRESSION, Z_BEST_SPEED, Z_BEST_COMPRESSION, Z_DEFAULT_COMPRESSION, Z_FILTERED, Z_HUFFMAN_ONLY, Z_RLE, Z_FIXED, Z_DEFAULT_STRATEGY, ZLIB_VERNUM, DEFLATE, INFLATE, GZIP, GUNZIP, DEFLATERAW, INFLATERAW, UNZIP, Z_MIN_WINDOWBITS, Z_MAX_WINDOWBITS, Z_DEFAULT_WINDOWBITS, Z_MIN_CHUNK, Z_MAX_CHUNK, Z_DEFAULT_CHUNK, Z_MIN_MEMLEVEL, Z_MAX_MEMLEVEL, Z_DEFAULT_MEMLEVEL, Z_MIN_LEVEL, Z_MAX_LEVEL, Z_DEFAULT_LEVEL };
+// prettier-ignore
+declare const _default: {};
+export default _default;

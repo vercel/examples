@@ -1,0 +1,44 @@
+{
+  "name": "@parcel/watcher-wasm",
+  "version": "2.5.1",
+  "main": "index.mjs",
+  "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/parcel-bundler/watcher.git"
+  },
+  "description": "A native C++ Node module for querying and subscribing to filesystem events. Used by Parcel 2.",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/parcel"
+  },
+  "files": [
+    "*.js",
+    "*.cjs",
+    "*.mjs",
+    "*.d.ts",
+    "*.wasm"
+  ],
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "dependencies": {
+    "napi-wasm": "^1.1.0",
+    "is-glob": "^4.0.3",
+    "micromatch": "^4.0.5"
+  },
+  "module": "index.mjs",
+  "sideEffects": false,
+  "exports": {
+    "types": "./index.d.ts",
+    "import": "./index.mjs",
+    "require": "./index.cjs"
+  },
+  "bundledDependencies": [
+    "napi-wasm"
+  ]
+}
