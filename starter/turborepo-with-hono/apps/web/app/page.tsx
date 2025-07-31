@@ -12,14 +12,16 @@ const ThemeImage = (props: Props) => {
 
   return (
     <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
+      <Image {...rest} src={srcLight} className="imgLight" alt="" />
+      <Image {...rest} src={srcDark} className="imgDark" alt="" />
     </>
   )
 }
 
 export default async function Home() {
-  const result = await fetch('http://localhost:3000').then((res) => res.text())
+  const result = await fetch(
+    process.env.VERCEL ? 'TODO' : 'http://localhost:3000'
+  ).then((res) => res.text())
 
   return (
     <div className={styles.page}>
@@ -40,7 +42,7 @@ export default async function Home() {
           <li>Save and see your changes instantly.</li>
         </ol>
 
-        <div>{result}</div>
+        <div>{result ?? 'Hello from the Hono API!'}</div>
 
         <div className={styles.ctas}>
           <a
