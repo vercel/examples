@@ -1,5 +1,4 @@
 import Image, { type ImageProps } from 'next/image'
-import { Button } from '@repo/ui/button'
 import styles from './page.module.css'
 
 type Props = Omit<ImageProps, 'src'> & {
@@ -18,10 +17,12 @@ const ThemeImage = (props: Props) => {
   )
 }
 
+const API_URL = process.env.VERCEL
+  ? 'hono-turborepo-api-demo.vercel.app'
+  : 'http://localhost:3000'
+
 export default async function Home() {
-  const result = await fetch(
-    process.env.VERCEL ? 'TODO' : 'http://localhost:3000'
-  ).then((res) => res.text())
+  const result = await fetch(API_URL).then((res) => res.text())
 
   return (
     <div className={styles.page}>
@@ -41,8 +42,6 @@ export default async function Home() {
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
-
-        <div>{result ?? 'Hello from the Hono API!'}</div>
 
         <div className={styles.ctas}>
           <a
@@ -69,9 +68,16 @@ export default async function Home() {
             Read our docs
           </a>
         </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
+        <div className={styles.result}>
+          <h3>
+            API Response from{' '}
+            <a href={API_URL} target="_blank" rel="noreferrer">
+              <code>{API_URL}</code>
+            </a>
+            :
+          </h3>
+          <pre>{result}</pre>
+        </div>
       </main>
       <footer className={styles.footer}>
         <a
