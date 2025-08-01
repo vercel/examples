@@ -15,7 +15,6 @@
       "dependsOn": ["^check-types"]
     },
     "dev": {
-      "env": ["VERCEL"],
       "cache": false,
       "persistent": true
     }
