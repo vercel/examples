@@ -6,7 +6,6 @@
     "build": "vc build"
   },
   "dependencies": {
-    "@hono/node-server": "^1.18.0",
     "hono": "^4.8.10"
   },
   "devDependencies": {

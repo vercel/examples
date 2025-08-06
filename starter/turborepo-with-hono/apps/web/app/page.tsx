@@ -18,7 +18,7 @@ const ThemeImage = (props: Props) => {
 }
 
 const API_URL = process.env.VERCEL
-  ? 'hono-turborepo-api-demo.vercel.app'
+  ? 'https://hono-turborepo-api-demo.vercel.app'
   : 'http://localhost:3000'
 
 export default async function Home() {
