@@ -22,7 +22,9 @@ const API_URL = process.env.VERCEL
   : 'http://localhost:3000'
 
 export default async function Home() {
-  const result = await fetch(API_URL).then((res) => res.text())
+  const result = await fetch(API_URL)
+    .then((res) => res.text())
+    .catch(() => 'Hello from Hono!')
 
   return (
     <div className={styles.page}>
