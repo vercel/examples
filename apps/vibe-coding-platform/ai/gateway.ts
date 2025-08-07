@@ -13,10 +13,7 @@ interface AvailableModel {
 
 export async function getAvailableModels(): Promise<AvailableModel[]> {
   const response = await gateway.getAvailableModels()
-  return [
-    ...response.models.map(({ id, name }) => ({ id, name })),
-    { id: 'openai/gpt-5', name: 'GPT-5' },
-  ]
+  return [...response.models.map(({ id, name }) => ({ id, name }))]
 }
 
 interface ModelOptions {
