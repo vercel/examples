@@ -14,7 +14,7 @@ interface Activity {
 }
 
 export async function RecentActivity() {
-  const response = await fetch('http://localhost:3024/api/dashboard/activity');
+  const response = await fetch(`${process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3024'}/api/dashboard/activity`);
   const activities = (await response.json()).activities.slice(0, 6) as Activity[];
 
   return (
