@@ -7,16 +7,13 @@ const gateway = createGatewayProvider({
 })
 
 interface AvailableModel {
-  id: GatewayModelId | 'openai/wagyu-a5'
+  id: GatewayModelId | 'openai/gpt-5'
   name: string
 }
 
 export async function getAvailableModels(): Promise<AvailableModel[]> {
   const response = await gateway.getAvailableModels()
-  return [
-    ...response.models.map(({ id, name }) => ({ id, name })),
-    { id: 'openai/wagyu-a5', name: 'GPT-5' },
-  ]
+  return [...response.models.map(({ id, name }) => ({ id, name }))]
 }
 
 interface ModelOptions {
@@ -38,7 +35,7 @@ export function getModelOptions(modelId: string): ModelOptions {
     }
   }
 
-  if (modelId === 'openai/wagyu-a5') {
+  if (modelId === 'openai/gpt-5') {
     return {
       model: modelId,
       providerOptions: {
