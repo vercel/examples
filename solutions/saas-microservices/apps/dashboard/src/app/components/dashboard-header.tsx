@@ -1,12 +1,16 @@
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { Bell, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export async function DashboardHeader() {
+  const reqHeaders = await headers();
+  const host = reqHeaders.get('host');
+  const protocol = host?.includes('localhost') ? 'http' : 'https';
+  console.log('host', host);
   const cookieStore = await cookies();
-  const response = await fetch('http://localhost:3024/api/users/user', {
+  const response = await fetch(`${host ? `${protocol}://${host}` : 'http://localhost:3024'}/api/users/user`, {
     headers: {
       Cookie: cookieStore.toString(),
     },

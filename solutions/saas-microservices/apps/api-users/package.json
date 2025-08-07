@@ -2,7 +2,7 @@
     "name": "api-users",
     "type": "module",
     "scripts": {
-        "dev": "vc dev --listen $(microfrontends port)",
+        "dev": "vc dev --listen $(microfrontends port) --cwd ../../../..",
         "build": "vc build"
     },
     "dependencies": {

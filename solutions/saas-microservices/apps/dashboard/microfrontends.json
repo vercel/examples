@@ -4,7 +4,8 @@
         "saas-microservices-dashboard": {
             "development": {
                 "fallback": "dashboard-acme.vercel.app"
-            }
+            },
+            "packageName": "dashboard"
         },
         "saas-microservices-api-dashboard": {
             "routing": [
@@ -13,7 +14,8 @@
                         "/api/dashboard/:path*"
                     ]
                 }
-            ]
+            ],
+            "packageName": "api-dashboard"
         },
         "saas-microservices-api-users": {
             "routing": [
@@ -22,7 +24,8 @@
                         "/api/users/:path*"
                     ]
                 }
-            ]
+            ],
+            "packageName": "api-users"
         }
     }
 }
