@@ -1,0 +1,28 @@
+{
+    "$schema": "./node_modules/@vercel/microfrontends/schema/schema.json",
+    "applications": {
+        "dashboard": {
+            "development": {
+                "fallback": "dashboard-acme.vercel.app"
+            }
+        },
+        "api-dashboard": {
+            "routing": [
+                {
+                    "paths": [
+                        "/api/dashboard/:path*"
+                    ]
+                }
+            ]
+        },
+        "api-users": {
+            "routing": [
+                {
+                    "paths": [
+                        "/api/users/:path*"
+                    ]
+                }
+            ]
+        }
+    }
+}

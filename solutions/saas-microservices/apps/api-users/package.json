@@ -1,0 +1,16 @@
+{
+    "name": "api-users",
+    "type": "module",
+    "scripts": {
+        "dev": "vc dev --listen $(microfrontends port)",
+        "build": "vc build"
+    },
+    "dependencies": {
+        "hono": "^4.8.9"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.17",
+        "@vercel/microfrontends": "2.0.0",
+        "typescript": "^5.8.3"
+    }
+}
