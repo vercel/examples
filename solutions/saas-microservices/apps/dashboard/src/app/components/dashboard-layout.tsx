@@ -12,9 +12,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
         <DashboardNav />
-        <SidebarInset className="flex w-full flex-col">
-          {children}
-        </SidebarInset>
+        <SidebarInset className="flex w-full flex-col">{children}</SidebarInset>
       </div>
     </SidebarProvider>
   );

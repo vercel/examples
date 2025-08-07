@@ -16,15 +16,21 @@ interface Activity {
 
 export async function RecentActivity() {
   const reqHeaders = await headers();
-  const host = reqHeaders.get('host');
-  const isLocalhost = !host || host.includes('localhost');
+  const host = reqHeaders.get("host");
+  const isLocalhost = !host || host.includes("localhost");
   const cookieStore = await cookies();
-  const response = await fetch(`${isLocalhost ? 'http://localhost:3024' : 'https://saas-microservices-dashboard.vercel.app'}/api/dashboard/activity`, {
-    headers: {
-      Cookie: `saas_microservices_authed_user=${cookieStore.get('saas_microservices_authed_user')?.value}`,
+  const response = await fetch(
+    `${isLocalhost ? "http://localhost:3024" : "https://saas-microservices-dashboard.vercel.app"}/api/dashboard/activity`,
+    {
+      headers: {
+        Cookie: `saas_microservices_authed_user=${cookieStore.get("saas_microservices_authed_user")?.value}`,
+      },
     },
-  });
-  const activities = (await response.json()).activities.slice(0, 6) as Activity[];
+  );
+  const activities = (await response.json()).activities.slice(
+    0,
+    6,
+  ) as Activity[];
 
   return (
     <Card>

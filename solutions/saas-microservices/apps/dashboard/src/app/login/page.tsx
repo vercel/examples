@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
 export default function LoginPage() {
-    const redirectToLogin = () => {
-        console.log('redirecting to login');
-        window.location.href = '/api/users/login';
-    }
+  const redirectToLogin = () => {
+    console.log("redirecting to login");
+    window.location.href = "/api/users/login";
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="w-full bg-white shadow-lg p-8">
