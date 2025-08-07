@@ -1,12 +1,12 @@
 {
     "$schema": "./node_modules/@vercel/microfrontends/schema/schema.json",
     "applications": {
-        "dashboard": {
+        "saas-microservices-dashboard": {
             "development": {
                 "fallback": "dashboard-acme.vercel.app"
             }
         },
-        "api-dashboard": {
+        "saas-microservices-api-dashboard": {
             "routing": [
                 {
                     "paths": [
@@ -15,7 +15,7 @@
                 }
             ]
         },
-        "api-users": {
+        "saas-microservices-api-users": {
             "routing": [
                 {
                     "paths": [
