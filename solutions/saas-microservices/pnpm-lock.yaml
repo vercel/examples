@@ -36,6 +36,9 @@ importers:
       '@vercel/microfrontends':
         specifier: 2.0.0
         version: 2.0.0(next@15.1.2(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      srvx:
+        specifier: ^0.8.6
+        version: 0.8.6
       typescript:
         specifier: ^5.8.3
         version: 5.9.2
@@ -3050,6 +3053,11 @@ packages:
 
   spdx-license-ids@3.0.22:
     resolution: {integrity: sha512-4PRT4nh1EImPbt2jASOKHX7PB7I+e4IWNLvkKFDxNhJlfjbYlleYQh285Z/3mPTHSAK/AvdMmw5BNNuYH8ShgQ==}
+
+  srvx@0.8.6:
+    resolution: {integrity: sha512-jnIxPn5A7ugRKGZ/+TlcD2hKIkMx64aTAk1ct0y+S4MWXIzTbpq+7B1gdpZTwJZvNJu5/ayx7c/1YT0pAmD0Kw==}
+    engines: {node: '>=20.16.0'}
+    hasBin: true
 
   stack-trace@0.0.10:
     resolution: {integrity: sha512-KGzahc7puUKkzyMt+IqAep+TVNbKP+k2Lmwhub39m1AsTSkaDutx56aDCo+HLDzf/D26BIHTJWNiTG1KAJiQCg==}
@@ -6315,6 +6323,10 @@ snapshots:
       spdx-license-ids: 3.0.22
 
   spdx-license-ids@3.0.22: {}
+
+  srvx@0.8.6:
+    dependencies:
+      cookie-es: 2.0.0
 
   stack-trace@0.0.10: {}
 

@@ -2,7 +2,7 @@
     "name": "api-users",
     "type": "module",
     "scripts": {
-        "dev": "vc dev --listen $(microfrontends port) --cwd ../../../..",
+        "dev": "srvx --port $(microfrontends port)",
         "build": "vc build"
     },
     "dependencies": {
@@ -11,6 +11,7 @@
     "devDependencies": {
         "@types/node": "^20.11.17",
         "@vercel/microfrontends": "2.0.0",
+        "srvx": "^0.8.6",
         "typescript": "^5.8.3"
     }
 }
