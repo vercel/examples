@@ -8,6 +8,7 @@
 # from Solutions and Dev Rel
 solutions/monorepo @vercel/turbo-oss @goncy @lfades @leerob @lpalmes
 solutions/microfrontends @vercel/turbo-oss @goncy @lfades @leerob @lpalmes
+solutions/saas-microservices @vercel/ci-cd-workflow @mknichel
 solutions/testing @vercel/turbo-oss @goncy @lfades @leerob @lpalmes
 
 # For the build output API the engineering team takes care of it.
