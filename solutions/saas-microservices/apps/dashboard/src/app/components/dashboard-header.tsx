@@ -1,10 +1,18 @@
+import { cookies } from "next/headers";
 import { Bell, Search } from "lucide-react";
-import { Link } from "@vercel/microfrontends/next/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-toggle";
 
-export function DashboardHeader() {
+export async function DashboardHeader() {
+  const cookieStore = await cookies();
+  const response = await fetch('http://localhost:3024/api/users/user', {
+    headers: {
+      Cookie: cookieStore.toString(),
+    },
+  });
+  const user = await response.json();
+
   return (
     <header className="flex h-14 items-center gap-4 border-b bg-background px-6">
       <form className="flex-1">
@@ -17,9 +25,7 @@ export function DashboardHeader() {
           />
         </div>
       </form>
-      <Link href="/docs" className="relative">
-        <span className="text-sm">Docs</span>
-      </Link>
+      <span className="text-sm">{user.name}</span>
       <ThemeToggle />
       <Button variant="ghost" size="icon" className="relative">
         <Bell className="h-4 w-4" />
