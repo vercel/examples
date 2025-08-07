@@ -12,8 +12,7 @@
     "dev:api-dashboard": "turbo run dev -F api-dashboard",
     "dev:api-users": "turbo run dev -F api-users",
     "dev:dashboard": "turbo run dev -F dashboard",
-    "typecheck": "turbo run type-check",
-    "start": "turbo run start"
+    "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
     "@types/node": "20.11.30",

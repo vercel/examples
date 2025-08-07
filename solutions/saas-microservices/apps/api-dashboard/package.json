@@ -5,7 +5,8 @@
     "build": "nitro build",
     "dev": "nitro dev --port $(microfrontends port)",
     "prepare": "nitro prepare",
-    "preview": "node .output/server/index.mjs"
+    "preview": "node .output/server/index.mjs",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@vercel/microfrontends": "2.0.0",

@@ -6,7 +6,7 @@
     "dev": "next dev --port $(microfrontends port)",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.4",

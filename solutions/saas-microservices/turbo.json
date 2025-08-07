@@ -9,13 +9,6 @@
       "cache": false,
       "dependsOn": ["^build"]
     },
-    "start": {
-      "cache": false
-    },
-    "test": {
-      "dependsOn": ["^build"],
-      "outputs": []
-    },
     "typecheck": {
       "dependsOn": ["^build"],
       "outputs": ["**/node_modules/.cache/tsbuildinfo.json"]

@@ -3,7 +3,8 @@
   "type": "module",
   "scripts": {
     "dev": "srvx --port $(microfrontends port)",
-    "build": "vc build"
+    "build": "vc build",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "hono": "^4.8.9"
