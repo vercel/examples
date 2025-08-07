@@ -7,12 +7,11 @@ import { ThemeToggle } from "@/components/theme-toggle";
 export async function DashboardHeader() {
   const reqHeaders = await headers();
   const host = reqHeaders.get('host');
-  const protocol = host?.includes('localhost') ? 'http' : 'https';
-  console.log('host', host);
+  const isLocalhost = !host || host.includes('localhost');
   const cookieStore = await cookies();
-  const response = await fetch(`${host ? `${protocol}://${host}` : 'http://localhost:3024'}/api/users/user`, {
+  const response = await fetch(`${isLocalhost ? 'http://localhost:3024' : 'https://saas-microservices-dashboard.vercel.app'}/api/users/user`, {
     headers: {
-      Cookie: cookieStore.toString(),
+      Cookie: `saas_microservices_authed_user=${cookieStore.get('saas_microservices_authed_user')?.value}`,
     },
   });
   const user = await response.json();
