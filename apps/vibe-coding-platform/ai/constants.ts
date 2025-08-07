@@ -1,6 +1,6 @@
 import { type GatewayModelId } from '@ai-sdk/gateway'
 
-export const DEFAULT_MODEL: GatewayModelId[number] = 'openai/wagyu-a5'
+export const DEFAULT_MODEL: GatewayModelId[number] = 'openai/gpt-5'
 
 export const SUPPORTED_MODELS: GatewayModelId[] = [
   'amazon/nova-pro',
@@ -8,8 +8,8 @@ export const SUPPORTED_MODELS: GatewayModelId[] = [
   'google/gemini-2.5-flash',
   'moonshotai/kimi-k2',
   'openai/gpt-4o',
+  'openai/gpt-5',
   'openai/o4-mini',
-  'openai/wagyu-a5',
   'xai/grok-3-fast',
 ]
 
