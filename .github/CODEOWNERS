@@ -2,17 +2,17 @@
 # https://help.github.com/en/articles/about-code-owners
 
 # Solutions Eng and Dev Rel are the default owners of everything
-* @okbel @lfades @goncy @dominiksipowicz @leerob @lpalmes
+* @okbel @lfades @goncy @dominiksipowicz @lpalmes
 
 # For examples that are a Monorepo we add the Turbo team and some members
 # from Solutions and Dev Rel
-solutions/monorepo @vercel/turbo-oss @goncy @lfades @leerob @lpalmes
-solutions/microfrontends @vercel/turbo-oss @goncy @lfades @leerob @lpalmes
+solutions/monorepo @vercel/turbo-oss @goncy @lfades @lpalmes
+solutions/microfrontends @vercel/turbo-oss @goncy @lfades @lpalmes
 solutions/saas-microservices @vercel/ci-cd-workflow @mknichel
-solutions/testing @vercel/turbo-oss @goncy @lfades @leerob @lpalmes
+solutions/testing @vercel/turbo-oss @goncy @lfades @lpalmes
 
 # For the build output API the engineering team takes care of it.
 # A member of Solutions and Dev Rel is also added
-build-output-api @tootallnate @EndangeredMassa @lfades @leerob @lpalmes
+build-output-api @tootallnate @lfades @lpalmes
 
 vercel-tutor @chibicode
