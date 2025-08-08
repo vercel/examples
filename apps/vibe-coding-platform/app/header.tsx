@@ -12,7 +12,7 @@ export async function Header({ className }: Props) {
       <div className="flex items-center">
         <VercelDashed className="ml-1 md:ml-2.5 mr-1.5" />
         <span className="hidden md:inline text-sm uppercase font-mono font-bold tracking-tight">
-          OSS Vibe Coding Platform
+          turkpac
         </span>
       </div>
       <div className="flex items-center ml-auto space-x-1.5">
