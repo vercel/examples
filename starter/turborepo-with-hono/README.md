@@ -52,10 +52,11 @@ pnpm exec turbo build --filter=docs
 
 ### Develop
 
-To develop all apps and packages, run the following command:
+To develop all apps and packages, run the following commands:
 
 ```
 cd my-turborepo
+vc link --repo # Connect your repository to Vercel
 
 # With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
 turbo dev
