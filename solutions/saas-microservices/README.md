@@ -23,9 +23,14 @@ There are 3 separate applications in this example:
 
 These all run under the same domain. Paths to each application are routed using Vercel's [microfrontends](https://vercel.com/docs/microfrontends) support:
 
-- `/api/dashboard/*` - Routes to the `api-dashboard` backend
-- `/api/users/*` - Routes to the `api-users` backend
-- Everything else - Routes to the `dashboard` application
+```mermaid
+graph TD
+    Request --> Vercel{Vercel}
+
+    Vercel -->|"/api/dashboard/*"| ApiDashboard[api-dashboard]
+    Vercel -->|"/api/users/*"| ApiUsers[api-users]
+    Vercel -->|"Everything else"| DashboardApp[Dashboard]
+```
 
 ## Running Locally
 
