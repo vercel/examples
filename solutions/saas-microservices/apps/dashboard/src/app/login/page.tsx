@@ -2,7 +2,6 @@
 
 export default function LoginPage() {
   const redirectToLogin = () => {
-    console.log("redirecting to login");
     window.location.href = "/api/users/login";
   };
   return (

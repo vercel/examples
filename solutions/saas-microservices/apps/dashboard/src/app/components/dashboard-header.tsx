@@ -3,21 +3,14 @@ import { Bell, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { fetchApi } from "@/lib/fetch-api";
+
+interface User {
+  name: string;
+}
 
 export async function DashboardHeader() {
-  const reqHeaders = await headers();
-  const host = reqHeaders.get("host");
-  const isLocalhost = !host || host.includes("localhost");
-  const cookieStore = await cookies();
-  const response = await fetch(
-    `${isLocalhost ? "http://localhost:3024" : "https://saas-microservices-dashboard.vercel.app"}/api/users/user`,
-    {
-      headers: {
-        Cookie: `saas_microservices_authed_user=${cookieStore.get("saas_microservices_authed_user")?.value}`,
-      },
-    },
-  );
-  const user = await response.json();
+  const user = await fetchApi<User>("/api/users/user");
 
   return (
     <header className="flex h-14 items-center gap-4 border-b bg-background px-6">
