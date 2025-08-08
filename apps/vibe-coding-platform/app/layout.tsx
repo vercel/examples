@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Vercel Vibe Coding Agent',
+  title: 'turkpac Vibe Coding Agent',
   description: '',
 }
 
