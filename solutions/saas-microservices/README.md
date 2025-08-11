@@ -17,7 +17,7 @@ dashboard.
 
 There are 3 separate applications in this example:
 
-- `dashboard` - A [Next.js](https://nextjs.org/) application to show the UI. This application also controls the `microfrontnds.json` configuration to route API paths to the other microservices (see below).
+- `dashboard` - A [Next.js](https://nextjs.org/) application to show the UI. This application also controls the `microfrontends.json` configuration to route API paths to the other microservices (see below).
 - `api-dashboard` - A [Nitro](https://nitro.build/) backend serving data displayed in the dashboard.
 - `api-users` - A [Hono](https://hono.dev/) backend authenticating users and returning user information.
 
