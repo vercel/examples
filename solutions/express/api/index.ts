@@ -1,112 +1,55 @@
-require('dotenv').config();
-
+// api/index.js
 const express = require('express');
-const app = express();
-const { sql } = require('@vercel/postgres');
-
-const bodyParser = require('body-parser');
 const path = require('path');
 
-// Create application/x-www-form-urlencoded parser
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const app = express();
 
-app.use(express.static('public'));
+// Serve static files from /public
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
-app.get('/', function (req, res) {
-	res.sendFile(path.join(__dirname, '..', 'components', 'home.htm'));
+// Home route - HTML
+app.get('/', (req, res) => {
+  res.type('html').send(`
+    <!doctype html>
+    <html>
+      <head>
+        <meta charset="utf-8"/>
+        <title>Express on Vercel</title>
+        <link rel="stylesheet" href="/style.css" />
+      </head>
+      <body>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/api-data">API Data</a>
+          <a href="/healthz">Health</a>
+        </nav>
+        <h1>Welcome to Express on Vercel 🚀</h1>
+        <p>This is a minimal example without a database or forms.</p>
+        <img src="/logo.png" alt="Logo" width="120" />
+      </body>
+    </html>
+  `);
 });
 
 app.get('/about', function (req, res) {
 	res.sendFile(path.join(__dirname, '..', 'components', 'about.htm'));
 });
 
-app.get('/uploadUser', function (req, res) {
-	res.sendFile(path.join(__dirname, '..', 'components', 'user_upload_form.htm'));
+// Example API endpoint - JSON
+app.get('/api-data', (req, res) => {
+  res.json({
+    message: 'Here is some sample API data',
+    items: ['apple', 'banana', 'cherry']
+  });
 });
 
-app.post('/uploadSuccessful', urlencodedParser, async (req, res) => {
-	try {
-		await sql`INSERT INTO Users (Id, Name, Email) VALUES (${req.body.user_id}, ${req.body.name}, ${req.body.email});`;
-		res.status(200).send('<h1>User added successfully</h1>');
-	} catch (error) {
-		console.error(error);
-		res.status(500).send('Error adding user');
-	}
+// Health check
+app.get('/healthz', (req, res) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-app.get('/allUsers', async (req, res) => {
-	try {
-		const users = await sql`SELECT * FROM Users;`;
-		if (users && users.rows.length > 0) {
-			let tableContent = users.rows
-				.map(
-					(user) =>
-						`<tr>
-                        <td>${user.id}</td>
-                        <td>${user.name}</td>
-                        <td>${user.email}</td>
-                    </tr>`
-				)
-				.join('');
-
-			res.status(200).send(`
-                <html>
-                    <head>
-                        <title>Users</title>
-                        <style>
-                            body {
-                                font-family: Arial, sans-serif;
-                            }
-                            table {
-                                width: 100%;
-                                border-collapse: collapse;
-                                margin-bottom: 15px;
-                            }
-                            th, td {
-                                border: 1px solid #ddd;
-                                padding: 8px;
-                                text-align: left;
-                            }
-                            th {
-                                background-color: #f2f2f2;
-                            }
-                            a {
-                                text-decoration: none;
-                                color: #0a16f7;
-                                margin: 15px;
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        <h1>Users</h1>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>User ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${tableContent}
-                            </tbody>
-                        </table>
-                        <div>
-                            <a href="/">Home</a>
-                            <a href="/uploadUser">Add User</a>
-                        </div>
-                    </body>
-                </html>
-            `);
-		} else {
-			res.status(404).send('Users not found');
-		}
-	} catch (error) {
-		console.error(error);
-		res.status(500).send('Error retrieving users');
-	}
-});
-
-app.listen(3000, () => console.log('Server ready on port 3000.'));
+// Local dev listener (ignored on Vercel)
+app.listen(3000, () => console.log('Server running on http://localhost:3000'));
 
 module.exports = app;
