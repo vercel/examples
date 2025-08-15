@@ -1,12 +1,6 @@
 {
   "name": "hono-mcp",
   "type": "module",
-  "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "start": "tsx src/index.ts",
-    "build": "tsc",
-    "typecheck": "tsc --noEmit"
-  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.3",
     "hono": "^4.9.2",
@@ -15,7 +9,6 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
-    "tsx": "^4.7.1",
     "typescript": "^5.8.3"
   }
 }
