@@ -7,8 +7,6 @@ const app = new Hono()
 // Create MCP handler
 const handler = createMcpHandler(
   (server) => {
-    // Add tool
-    console.log('haha')
     server.tool(
       'add',
       'Add two numbers',
@@ -24,7 +22,6 @@ const handler = createMcpHandler(
       }
     )
 
-    // Subtract tool
     server.tool(
       'subtract',
       'Subtract two numbers',
@@ -40,7 +37,6 @@ const handler = createMcpHandler(
       }
     )
 
-    // Multiply tool
     server.tool(
       'multiply',
       'Multiply two numbers',
@@ -56,7 +52,6 @@ const handler = createMcpHandler(
       }
     )
 
-    // Divide tool
     server.tool(
       'divide',
       'Divide two numbers',
@@ -81,7 +76,7 @@ const handler = createMcpHandler(
   },
   {},
   {
-    basePath: '/mcp',
+    basePath: '/',
     maxDuration: 60,
     verboseLogs: true,
   }
