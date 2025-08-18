@@ -1,7 +1,5 @@
 import dotenv from 'dotenv';
 import express, { type Request, type Response } from 'express';
-import { sql } from '@vercel/postgres';
-import bodyParser from 'body-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -12,110 +10,52 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const rootDir = path.dirname(__filename);
 
-
 // Serve static files from the public directory
 app.use(express.static(path.join(rootDir, '..', 'public')));
 
-app.get('/', function (req: Request, res: Response) {
-	res.sendFile(path.join(rootDir, '..', 'components', 'home.htm'));
+// Home route - HTML
+app.get('/', (req, res) => {
+    res.type('html').send(`
+      <!doctype html>
+      <html>
+        <head>
+          <meta charset="utf-8"/>
+          <title>Express on Vercel</title>
+          <link rel="stylesheet" href="/style.css" />
+        </head>
+        <body>
+          <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/api-data">API Data</a>
+            <a href="/healthz">Health</a>
+          </nav>
+          <h1>Welcome to Express on Vercel 🚀</h1>
+          <p>This is a minimal example without a database or forms.</p>
+          <img src="/images/logo.png" alt="Logo" width="120" />
+        </body>
+      </html>
+    `);
 });
+
 
 app.get('/about', function (req: Request, res: Response) {
-	res.sendFile(path.join(rootDir, '..', 'components', 'about.htm'));
+    res.sendFile(path.join(rootDir, '..', 'components', 'about.htm'));
 });
 
-app.get('/uploadUser', function (req: Request, res: Response) {
-	res.sendFile(path.join(rootDir, '..', 'components', 'user_upload_form.htm'));
+// Example API endpoint - JSON
+app.get('/api-data', (req, res) => {
+    res.json({
+        message: 'Here is some sample API data',
+        items: ['apple', 'banana', 'cherry']
+    });
 });
 
-type UploadBody = { user_id: string; name: string; email: string };
-
-app.post('/uploadSuccessful', bodyParser.urlencoded({ extended: false }), async (
-	req: Request<Record<string, unknown>, any, UploadBody>,
-	res: Response
-) => {
-	try {
-		await sql`INSERT INTO Users (Id, Name, Email) VALUES (${req.body.user_id}, ${req.body.name}, ${req.body.email});`;
-		res.status(200).send('<h1>User added successfully</h1>');
-	} catch (error) {
-		console.error(error);
-		res.status(500).send('Error adding user');
-	}
+// Health check
+app.get('/healthz', (req, res) => {
+    res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-app.get('/allUsers', async (req: Request, res: Response) => {
-	try {
-		const users = await sql`SELECT * FROM Users;`;
-		if (users && users.rows.length > 0) {
-			let tableContent = users.rows
-				.map(
-					(user: any) =>
-						`<tr>
-                        <td>${user.id}</td>
-                        <td>${user.name}</td>
-                        <td>${user.email}</td>
-                    </tr>`
-				)
-				.join('');
-
-			res.status(200).send(`
-                <html>
-                    <head>
-                        <title>Users</title>
-                        <style>
-                            body {
-                                font-family: Arial, sans-serif;
-                            }
-                            table {
-                                width: 100%;
-                                border-collapse: collapse;
-                                margin-bottom: 15px;
-                            }
-                            th, td {
-                                border: 1px solid #ddd;
-                                padding: 8px;
-                                text-align: left;
-                            }
-                            th {
-                                background-color: #f2f2f2;
-                            }
-                            a {
-                                text-decoration: none;
-                                color: #0a16f7;
-                                margin: 15px;
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        <h1>Users</h1>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>User ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${tableContent}
-                            </tbody>
-                        </table>
-                        <div>
-                            <a href="/">Home</a>
-                            <a href="/uploadUser">Add User</a>
-                        </div>
-                    </body>
-                </html>
-            `);
-		} else {
-			res.status(404).send('Users not found');
-		}
-	} catch (error) {
-		console.error(error);
-		res.status(500).send('Error retrieving users');
-	}
-});
-
-app.listen(3009, () => console.log('Server ready on port 3000.'));
+app.listen(3000, () => console.log('Server ready on port 3000.'));
 
 export default app;
