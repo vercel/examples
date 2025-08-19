@@ -1,0 +1,14 @@
+{
+  "name": "hono-mcp",
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.3",
+    "hono": "^4.9.2",
+    "mcp-handler": "^1.0.1",
+    "zod": "^3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "typescript": "^5.8.3"
+  }
+}
