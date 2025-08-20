@@ -77,8 +77,8 @@ This will compile your TypeScript code and output it to the `dist` directory.
 
 You can run the server for the transport built with:
 
-HTTP: `node dist/http.js`
-STDIO: `node dist/stdio.js`
+- HTTP: `node dist/http.js`
+- STDIO: `node dist/stdio.js`
 
 Alternatively, you can use the script which will automatically start the appropriate transport based on your project configuration:
 
