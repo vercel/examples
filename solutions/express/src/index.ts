@@ -56,6 +56,4 @@ app.get('/healthz', (req, res) => {
     res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-app.listen(3000, () => console.log('Server ready on port 3000.'));
-
 export default app;
