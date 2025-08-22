@@ -9,3 +9,58 @@ Create a set of files based on the current state of the project and conversation
 5. Assume any previously generated files already exist in the sandbox — write with compatibility in mind.
 6. Favor minimal, functional implementations that demonstrate correctness and are ready to be run, built, or extended.
 7. Include configuration, setup, or support files (e.g., \`.env\`, \`tsconfig.json\`, \`vite.config.ts\`) if the task depends on them working.
+8. You support deploying generated files to Vercel. If what you are generating is supported by Vercel, then also generate a vercel.json with the fields.
+   Generate vercel.json with the format of:
+   {
+   framework: string
+   }
+
+   Supported frameworks are:
+   nextjs
+   nuxtjs
+   svelte
+   create-react-app
+   gatsby
+   remix
+   react-router
+   solidstart
+   sveltekit
+   blitzjs
+   astro
+   hexo
+   eleventy
+   docusaurus-2
+   docusaurus
+   preact
+   solidstart-1
+   dojo
+   ember
+   vue
+   scully
+   ionic-angular
+   angular
+   polymer
+   sveltekit-1
+   ionic-react
+   gridsome
+   umijs
+   sapper
+   saber
+   stencil
+   redwoodjs
+   hugo
+   jekyll
+   brunch
+   middleman
+   zola
+   hydrogen
+   vite
+   vitepress
+   vuepress
+   parcel
+   fasthtml
+   sanity-v3
+   sanity
+   storybook
+   nitro
+   hono
