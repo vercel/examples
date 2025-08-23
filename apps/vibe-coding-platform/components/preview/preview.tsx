@@ -72,6 +72,7 @@ export function Preview({ className, disabled, url }: Props) {
           </a>
           <button
             onClick={refreshIframe}
+            type="button"
             className={cn('cursor-pointer px-1', {
               'animate-spin': isLoading,
             })}
@@ -125,6 +126,7 @@ export function Preview({ className, disabled, url }: Props) {
                 <span className="text-red-500">Failed to load page</span>
                 <button
                   className="text-blue-500 hover:underline text-sm"
+                  type="button"
                   onClick={() => {
                     if (currentUrl) {
                       setIsLoading(true)
