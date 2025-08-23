@@ -1,7 +1,6 @@
 'use client'
 
-import type { Command, CommandLog } from './types'
-import { CommandLogs } from './command-logs'
+import type { Command } from './types'
 import { Panel, PanelHeader } from '@/components/panels/panels'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { SquareChevronRight } from 'lucide-react'
@@ -10,8 +9,6 @@ import { useEffect, useRef } from 'react'
 interface Props {
   className?: string
   commands: Command[]
-  onLog: (data: { sandboxId: string; cmdId: string; log: CommandLog }) => void
-  onCompleted: (data: Command) => void
 }
 
 export function CommandsLogs(props: Props) {
@@ -32,14 +29,28 @@ export function CommandsLogs(props: Props) {
       <div className="h-[calc(100%-2rem)]">
         <ScrollArea className="h-full">
           <div className="p-2 space-y-2">
-            {props.commands.map((command) => (
-              <CommandLogs
-                key={command.cmdId}
-                command={command}
-                onLog={props.onLog}
-                onCompleted={props.onCompleted}
-              />
-            ))}
+            {props.commands.map((command) => {
+              const date = new Date(command.startedAt).toLocaleTimeString(
+                'en-US',
+                {
+                  hour12: false,
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  second: '2-digit',
+                }
+              )
+
+              const line = `${command.command} ${command.args.join(' ')}`
+              const body = command.logs?.map((log) => log.data).join('') || ''
+              return (
+                <pre
+                  key={command.cmdId}
+                  className="whitespace-pre-wrap font-mono text-sm"
+                >
+                  {`[${date}] ${line}\n${body}`}
+                </pre>
+              )
+            })}
           </div>
           <div ref={bottomRef} />
         </ScrollArea>

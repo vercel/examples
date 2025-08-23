@@ -1,22 +1,26 @@
 'use client'
 
 import type { ChatUIMessage } from '@/components/chat/types'
-import { DEFAULT_MODEL, TEST_PROMPTS, SUPPORTED_MODELS } from '@/ai/constants'
+import { TEST_PROMPTS } from '@/ai/constants'
 import { MessageCircleIcon, SendIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import {
+  Conversation,
+  ConversationContent,
+  ConversationScrollButton,
+} from '@/components/ai-elements/conversation'
 import { Input } from '@/components/ui/input'
 import { Message } from '@/components/chat/message'
-import { ModelSelector } from '@/components/model-selector/model-selector'
+import { ModelSelector } from '@/components/settings/model-selector'
 import { MoonLoader } from 'react-spinners'
 import { Panel, PanelHeader } from '@/components/panels/panels'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { createParser, useQueryState } from 'nuqs'
-import { toast } from 'sonner'
-import { mutate } from 'swr'
+import { Settings } from '@/components/settings/settings'
 import { useChat } from '@ai-sdk/react'
-import { useDataStateMapper } from './state'
 import { useLocalStorageValue } from '@/lib/use-local-storage-value'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect } from 'react'
+import { useSharedChatContext } from '@/lib/chat-context'
+import { useSettings } from '@/components/settings/use-settings'
+import { useSandboxStore } from './state'
 
 interface Props {
   className: string
@@ -24,29 +28,25 @@ interface Props {
 }
 
 export function Chat({ className }: Props) {
-  const [modelId, setModelId] = useQueryState('modelId', modelParser)
   const [input, setInput] = useLocalStorageValue('prompt-input')
-  const mapDataToState = useDataStateMapper()
-  const messagesEndRef = useRef<HTMLDivElement>(null)
-  const { messages, sendMessage, status } = useChat<ChatUIMessage>({
-    onToolCall: () => mutate('/api/auth/info'),
-    onData: mapDataToState,
-    onError: (error) => {
-      toast.error(`Communication error with the AI: ${error.message}`)
-      console.error('Error sending message:', error)
+  const { chat } = useSharedChatContext()
+  const { modelId, reasoningEffort } = useSettings()
+  const { messages, sendMessage, status } = useChat<ChatUIMessage>({ chat })
+  const { setChatStatus } = useSandboxStore()
+
+  const validateAndSubmitMessage = useCallback(
+    (text: string) => {
+      if (text.trim()) {
+        sendMessage({ text }, { body: { modelId, reasoningEffort } })
+        setInput('')
+      }
     },
-  })
+    [sendMessage, modelId, setInput, reasoningEffort]
+  )
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages])
-
-  const validateAndSubmitMessage = (text: string) => {
-    if (text.trim()) {
-      sendMessage({ text }, { body: { modelId } })
-      setInput('')
-    }
-  }
+    setChatStatus(status)
+  }, [status, setChatStatus])
 
   return (
     <Panel className={className}>
@@ -59,8 +59,8 @@ export function Chat({ className }: Props) {
       </PanelHeader>
 
       {/* Messages Area */}
-      <div className="flex-1 min-h-0">
-        {messages.length === 0 ? (
+      {messages.length === 0 ? (
+        <div className="flex-1 min-h-0">
           <div className="flex flex-col items-center justify-center h-full text-sm text-muted-foreground font-mono">
             <p className="flex items-center font-semibold">
               Click and try one of these prompts:
@@ -77,19 +77,17 @@ export function Chat({ className }: Props) {
               ))}
             </ul>
           </div>
-        ) : (
-          <ScrollArea className="h-full">
-            <div className="p-4 space-y-4">
-              <div className="space-y-4">
-                {messages.map((message) => (
-                  <Message key={message.id} message={message} />
-                ))}
-              </div>
-              <div ref={messagesEndRef} />
-            </div>
-          </ScrollArea>
-        )}
-      </div>
+        </div>
+      ) : (
+        <Conversation className="relative w-full">
+          <ConversationContent className="space-y-4">
+            {messages.map((message) => (
+              <Message key={message.id} message={message} />
+            ))}
+          </ConversationContent>
+          <ConversationScrollButton />
+        </Conversation>
+      )}
 
       <form
         className="flex space-x-1 p-2 border-t border-primary/18 bg-background items-center"
@@ -98,12 +96,8 @@ export function Chat({ className }: Props) {
           validateAndSubmitMessage(input)
         }}
       >
-        <ModelSelector
-          modelId={modelId}
-          onModelChange={(newModelId: string) => {
-            setModelId(newModelId)
-          }}
-        />
+        <Settings />
+        <ModelSelector />
         <Input
           className="w-full text-sm border-0 bg-background font-mono rounded-sm"
           disabled={status === 'streaming' || status === 'submitted'}
@@ -122,8 +116,3 @@ export function Chat({ className }: Props) {
     </Panel>
   )
 }
-
-const modelParser = createParser({
-  parse: (value) => (SUPPORTED_MODELS.includes(value) ? value : DEFAULT_MODEL),
-  serialize: (value) => value,
-}).withDefault(DEFAULT_MODEL)

@@ -1,6 +1,6 @@
 import type { DataPart } from '@/ai/messages/data-parts'
-import { CloudUploadIcon } from 'lucide-react'
-import { MessageSpinner } from '../message-spinner'
+import { CheckIcon, CloudUploadIcon, XIcon } from 'lucide-react'
+import { Spinner } from './spinner'
 import { ToolHeader } from '../tool-header'
 import { ToolMessage } from '../tool-message'
 
@@ -8,15 +8,17 @@ export function GenerateFiles(props: {
   className?: string
   message: DataPart['generating-files']
 }) {
-  const generated =
-    props.message.status === 'generating'
-      ? props.message.paths.slice(0, props.message.paths.length - 1)
-      : props.message.paths
+  const lastInProgress = ['error', 'uploading', 'generating'].includes(
+    props.message.status
+  )
 
-  const generating =
-    props.message.status === 'generating'
-      ? props.message.paths[props.message.paths.length - 1]
-      : null
+  const generated = lastInProgress
+    ? props.message.paths.slice(0, props.message.paths.length - 1)
+    : props.message.paths
+
+  const generating = lastInProgress
+    ? props.message.paths[props.message.paths.length - 1] ?? ''
+    : null
 
   return (
     <ToolMessage className={props.className}>
@@ -28,19 +30,28 @@ export function GenerateFiles(props: {
             : 'Generating files'}
         </span>
       </ToolHeader>
-
-      <div className="pl-2 space-y-0.5">
+      <div className="text-sm relative min-h-5">
         {generated.map((path) => (
-          <div className="whitespace-pre-wrap" key={'gen' + path}>
-            ✔︎ {path}
+          <div className="flex items-center" key={'gen' + path}>
+            <CheckIcon className="w-4 h-4 mx-1" />
+            <span className="whitespace-pre-wrap">{path}</span>
           </div>
         ))}
-        {generating && (
-          <div className="whitespace-pre-wrap">
-            <span>{`  ${generating}`}</span>
+        {typeof generating === 'string' && (
+          <div className="flex">
+            <Spinner
+              className="mr-1"
+              loading={props.message.status !== 'error'}
+            >
+              {props.message.status === 'error' ? (
+                <XIcon className="w-4 h-4 text-red-700" />
+              ) : (
+                <CheckIcon className="w-4 h-4" />
+              )}
+            </Spinner>
+            <span>{generating}</span>
           </div>
         )}
-        {props.message.status !== 'done' && <MessageSpinner />}
       </div>
     </ToolMessage>
   )
