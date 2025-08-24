@@ -10,7 +10,7 @@ import { FileContent } from '@/components/file-explorer/file-content'
 import { Panel, PanelHeader } from '@/components/panels/panels'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import { buildFileTree, type FileNode } from './build-file-tree'
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useCallback, memo } from 'react'
 import { cn } from '@/lib/utils'
 
 interface Props {
@@ -20,76 +20,58 @@ interface Props {
   sandboxId?: string
 }
 
-export function FileExplorer({ className, disabled, paths, sandboxId }: Props) {
+export const FileExplorer = memo(function FileExplorer({
+  className,
+  disabled,
+  paths,
+  sandboxId,
+}: Props) {
   const fileTree = useMemo(() => buildFileTree(paths), [paths])
   const [selected, setSelected] = useState<FileNode | null>(null)
   const [fs, setFs] = useState<FileNode[]>(fileTree)
 
   useEffect(() => {
     setFs(fileTree)
-  }, [fileTree, paths])
+  }, [fileTree])
 
-  const toggleFolder = (path: string) => {
-    const updateNode = (nodes: FileNode[]): FileNode[] =>
-      nodes.map((node) => {
-        if (node.path === path && node.type === 'folder') {
-          return { ...node, expanded: !node.expanded }
-        } else if (node.children) {
-          return { ...node, children: updateNode(node.children) }
-        } else {
-          return node
-        }
-      })
-    setFs(updateNode(fs))
-  }
+  const toggleFolder = useCallback((path: string) => {
+    setFs((prev) => {
+      const updateNode = (nodes: FileNode[]): FileNode[] =>
+        nodes.map((node) => {
+          if (node.path === path && node.type === 'folder') {
+            return { ...node, expanded: !node.expanded }
+          } else if (node.children) {
+            return { ...node, children: updateNode(node.children) }
+          } else {
+            return node
+          }
+        })
+      return updateNode(prev)
+    })
+  }, [])
 
-  const selectFile = (node: FileNode) => {
+  const selectFile = useCallback((node: FileNode) => {
     if (node.type === 'file') {
       setSelected(node)
     }
-  }
+  }, [])
 
-  const renderFileTree = (nodes: FileNode[], depth = 0) => {
-    return nodes.map((node) => (
-      <div key={node.path}>
-        <div
-          className={cn(
-            `flex items-center py-0.5 px-1 hover:bg-gray-100 cursor-pointer`,
-            { 'bg-gray-200/80': selected?.path === node.path }
-          )}
-          style={{ paddingLeft: `${depth * 16 + 8}px` }}
-          onClick={() => {
-            if (node.type === 'folder') {
-              toggleFolder(node.path)
-            } else {
-              selectFile(node)
-            }
-          }}
-        >
-          {node.type === 'folder' ? (
-            <>
-              {node.expanded ? (
-                <ChevronDownIcon className="w-4 mr-1" />
-              ) : (
-                <ChevronRightIcon className="w-4 mr-1" />
-              )}
-              <FolderIcon className="w-4 mr-2" />
-            </>
-          ) : (
-            <>
-              <div className="w-4 mr-1" />
-              <FileIcon className="w-4 mr-2 " />
-            </>
-          )}
-          <span className="">{node.name}</span>
-        </div>
-
-        {node.type === 'folder' && node.expanded && node.children && (
-          <div>{renderFileTree(node.children, depth + 1)}</div>
-        )}
-      </div>
-    ))
-  }
+  const renderFileTree = useCallback(
+    (nodes: FileNode[], depth = 0) => {
+      return nodes.map((node) => (
+        <FileTreeNode
+          key={node.path}
+          node={node}
+          depth={depth}
+          selected={selected}
+          onToggleFolder={toggleFolder}
+          onSelectFile={selectFile}
+          renderFileTree={renderFileTree}
+        />
+      ))
+    },
+    [selected, toggleFolder, selectFile]
+  )
 
   return (
     <Panel className={className}>
@@ -119,4 +101,63 @@ export function FileExplorer({ className, disabled, paths, sandboxId }: Props) {
       </div>
     </Panel>
   )
-}
+})
+
+// Memoized file tree node component
+const FileTreeNode = memo(function FileTreeNode({
+  node,
+  depth,
+  selected,
+  onToggleFolder,
+  onSelectFile,
+  renderFileTree,
+}: {
+  node: FileNode
+  depth: number
+  selected: FileNode | null
+  onToggleFolder: (path: string) => void
+  onSelectFile: (node: FileNode) => void
+  renderFileTree: (nodes: FileNode[], depth: number) => React.ReactNode
+}) {
+  const handleClick = useCallback(() => {
+    if (node.type === 'folder') {
+      onToggleFolder(node.path)
+    } else {
+      onSelectFile(node)
+    }
+  }, [node, onToggleFolder, onSelectFile])
+
+  return (
+    <div>
+      <div
+        className={cn(
+          `flex items-center py-0.5 px-1 hover:bg-gray-100 cursor-pointer`,
+          { 'bg-gray-200/80': selected?.path === node.path }
+        )}
+        style={{ paddingLeft: `${depth * 16 + 8}px` }}
+        onClick={handleClick}
+      >
+        {node.type === 'folder' ? (
+          <>
+            {node.expanded ? (
+              <ChevronDownIcon className="w-4 mr-1" />
+            ) : (
+              <ChevronRightIcon className="w-4 mr-1" />
+            )}
+            <FolderIcon className="w-4 mr-2" />
+          </>
+        ) : (
+          <>
+            <div className="w-4 mr-1" />
+            <FileIcon className="w-4 mr-2 " />
+          </>
+        )}
+        <span className="">{node.name}</span>
+      </div>
+
+      {node.type === 'folder' && node.expanded && node.children && (
+        <div>{renderFileTree(node.children, depth + 1)}</div>
+      )}
+    </div>
+  )
+})

@@ -1,4 +1,5 @@
 export interface Command {
+  background?: boolean
   sandboxId: string
   cmdId: string
   startedAt: number

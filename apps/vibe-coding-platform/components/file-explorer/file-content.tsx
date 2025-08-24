@@ -1,5 +1,6 @@
 import { SyntaxHighlighter } from './syntax-highlighter'
 import { PulseLoader } from 'react-spinners'
+import { memo } from 'react'
 import useSWR from 'swr'
 
 interface Props {
@@ -7,7 +8,10 @@ interface Props {
   path: string
 }
 
-export function FileContent({ sandboxId, path }: Props) {
+export const FileContent = memo(function FileContent({
+  sandboxId,
+  path,
+}: Props) {
   const searchParams = new URLSearchParams({ path })
   const content = useSWR(
     `/api/sandboxes/${sandboxId}/files?${searchParams.toString()}`,
@@ -16,7 +20,7 @@ export function FileContent({ sandboxId, path }: Props) {
       const text = await response.text()
       return text
     },
-    { refreshInterval: 500 }
+    { refreshInterval: 1000 }
   )
 
   if (content.isLoading || !content.data) {
@@ -30,4 +34,4 @@ export function FileContent({ sandboxId, path }: Props) {
   }
 
   return <SyntaxHighlighter path={path} code={content.data} />
-}
+})

@@ -17,14 +17,16 @@ interface FileNodeBuilder {
 }
 
 export function buildFileTree(paths: string[]): FileNode[] {
+  if (paths.length === 0) return []
   const root: { [key: string]: FileNodeBuilder } = {}
 
-  paths.forEach((path) => {
+  for (const path of paths) {
     const parts = path.split('/').filter(Boolean)
     let current = root
     let currentPath = ''
 
-    parts.forEach((part, index) => {
+    for (let index = 0; index < parts.length; index++) {
+      const part = parts[index]
       currentPath += '/' + part
       const isFile = index === parts.length - 1
 
@@ -44,8 +46,8 @@ export function buildFileTree(paths: string[]): FileNode[] {
       if (!isFile) {
         current = current[part].children!
       }
-    })
-  })
+    }
+  }
 
   const convertToArray = (obj: {
     [key: string]: FileNodeBuilder

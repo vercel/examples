@@ -1,8 +1,9 @@
 import type { UIMessageStreamWriter, UIMessage } from 'ai'
 import type { DataPart } from '../messages/data-parts'
-import { Sandbox } from '@vercel/sandbox'
-import description from './run-command.md'
+import { Command, Sandbox } from '@vercel/sandbox'
+import { getRichError } from './get-rich-error'
 import { tool } from 'ai'
+import description from './run-command.md'
 import z from 'zod/v3'
 
 interface Params {
@@ -31,43 +32,173 @@ export const runCommand = ({ writer }: Params) =>
         .boolean()
         .optional()
         .describe('Whether to run the command with sudo'),
+      wait: z
+        .boolean()
+        .describe(
+          'Whether to wait for the command to finish before returning. If true, the command will block until it completes, and you will receive its output.'
+        ),
     }),
     execute: async (
-      { sandboxId, command, sudo, args = [] },
+      { sandboxId, command, sudo, wait, args = [] },
       { toolCallId }
     ) => {
       writer.write({
         id: toolCallId,
         type: 'data-run-command',
-        data: { command, args, status: 'loading', sandboxId },
+        data: { sandboxId, command, args, status: 'executing' },
       })
 
-      const sandbox = await Sandbox.get({ sandboxId })
-      const cmd = await sandbox.runCommand({
-        detached: true,
-        cmd: command,
-        args,
-        sudo,
-      })
+      let sandbox: Sandbox | null = null
+
+      try {
+        sandbox = await Sandbox.get({ sandboxId })
+      } catch (error) {
+        const richError = getRichError({
+          action: 'get sandbox by id',
+          args: { sandboxId },
+          error,
+        })
+
+        writer.write({
+          id: toolCallId,
+          type: 'data-run-command',
+          data: {
+            sandboxId,
+            command,
+            args,
+            error: richError.error,
+            status: 'error',
+          },
+        })
+
+        return richError.message
+      }
+
+      let cmd: Command | null = null
+
+      try {
+        cmd = await sandbox.runCommand({
+          detached: true,
+          cmd: command,
+          args,
+          sudo,
+        })
+      } catch (error) {
+        const richError = getRichError({
+          action: 'run command in sandbox',
+          args: { sandboxId },
+          error,
+        })
+
+        writer.write({
+          id: toolCallId,
+          type: 'data-run-command',
+          data: {
+            sandboxId,
+            command,
+            args,
+            error: richError.error,
+            status: 'error',
+          },
+        })
+
+        return richError.message
+      }
 
       writer.write({
         id: toolCallId,
         type: 'data-run-command',
         data: {
-          command,
-          args,
-          status: 'done',
           sandboxId,
           commandId: cmd.cmdId,
+          command,
+          args,
+          status: 'executing',
         },
       })
 
-      return `The command \`${command} ${args.join(
-        ' '
-      )}\` has been started in the sandbox with ID \`${sandboxId}\`. You can use the command ID \`${
-        cmd.cmdId
-      }\` to wait for its completion or check its status later. Remember, each command runs in a fresh shell session, so you cannot rely on previous commands' state. If this command need to finish before running anything else you must use the \`waitCommand\` tool with the command ID \`${
-        cmd.cmdId
-      }\`. If you want to run this command in the background, you can ignore the command ID.`
+      if (!wait) {
+        writer.write({
+          id: toolCallId,
+          type: 'data-run-command',
+          data: {
+            sandboxId,
+            commandId: cmd.cmdId,
+            command,
+            args,
+            status: 'running',
+          },
+        })
+
+        return `The command \`${command} ${args.join(
+          ' '
+        )}\` has been started in the background in the sandbox with ID \`${sandboxId}\` with the commandId ${
+          cmd.cmdId
+        }.`
+      }
+
+      writer.write({
+        id: toolCallId,
+        type: 'data-run-command',
+        data: {
+          sandboxId,
+          commandId: cmd.cmdId,
+          command,
+          args,
+          status: 'waiting',
+        },
+      })
+
+      const done = await cmd.wait()
+      try {
+        const [stdout, stderr] = await Promise.all([
+          done.stdout(),
+          done.stderr(),
+        ])
+
+        writer.write({
+          id: toolCallId,
+          type: 'data-run-command',
+          data: {
+            sandboxId,
+            commandId: cmd.cmdId,
+            command,
+            args,
+            exitCode: done.exitCode,
+            status: 'done',
+          },
+        })
+
+        return (
+          `The command \`${command} ${args.join(
+            ' '
+          )}\` has finished with exit code ${done.exitCode}.` +
+          `Stdout of the command was: \n` +
+          `\`\`\`\n${stdout}\n\`\`\`\n` +
+          `Stderr of the command was: \n` +
+          `\`\`\`\n${stderr}\n\`\`\``
+        )
+      } catch (error) {
+        const richError = getRichError({
+          action: 'wait for command to finish',
+          args: { sandboxId, commandId: cmd.cmdId },
+          error,
+        })
+
+        writer.write({
+          id: toolCallId,
+          type: 'data-run-command',
+          data: {
+            sandboxId,
+            commandId: cmd.cmdId,
+            command,
+            args,
+            error: richError.error,
+            status: 'error',
+          },
+        })
+
+        return richError.message
+      }
     },
   })

@@ -13,13 +13,7 @@ interface Props {
 export function TabContent({ children, tabId, className }: Props) {
   const [activeTabId] = useTabState()
   return (
-    <div
-      className={cn(
-        'hidden min-h-0 h-full lg:flex ',
-        { flex: activeTabId === tabId },
-        className
-      )}
-    >
+    <div className={cn('hidden', { flex: activeTabId === tabId }, className)}>
       {children}
     </div>
   )
