@@ -1,0 +1,12 @@
+{
+  "name": "hono",
+  "type": "module",
+  "dependencies": {
+    "ai": "5.0.0-beta.34",
+    "hono": "^4.8.9"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "typescript": "^5.8.3"
+  }
+}
