@@ -20,6 +20,9 @@ importers:
 
   apps/api:
     dependencies:
+      '@repo/constants':
+        specifier: workspace:*
+        version: link:../../packages/constants
       hono:
         specifier: ^4.8.10
         version: 4.8.10
@@ -70,6 +73,12 @@ importers:
       typescript:
         specifier: 5.8.2
         version: 5.8.2
+
+  packages/constants:
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
 
   packages/eslint-config:
     devDependencies:
