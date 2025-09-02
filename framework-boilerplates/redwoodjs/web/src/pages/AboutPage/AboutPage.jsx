@@ -1,6 +1,6 @@
 import { Link, routes } from '@redwoodjs/router'
 
-const HomePage = () => (
+const AboutPage = () => (
   <main>
     <style
       dangerouslySetInnerHTML={{
@@ -38,16 +38,16 @@ const HomePage = () => (
       }}
     />
     <section>
-      <h1>Welcome to RedwoodJS!</h1>
+      <h1>About</h1>
       <p>
-        Find me in <code>./web/src/pages/HomePage/HomePage.js</code>
+        Find me in <code>./web/src/pages/AboutPage/AboutPage.jsx</code>
       </p>
       <p>
-        My default route is named <code>home</code>, link to me with `
-        <Link to={routes.home()}>Home</Link>`
+        My default route is named <code>about</code>, link to me with `
+        <Link to={routes.about()}>About</Link>`
       </p>
     </section>
   </main>
 )
 
-export default HomePage
+export default AboutPage

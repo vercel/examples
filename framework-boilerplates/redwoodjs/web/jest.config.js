@@ -1,6 +1,8 @@
-const { getConfig } = require('@redwoodjs/core')
+// More info at https://redwoodjs.com/docs/project-configuration-dev-test-build
 
-const config = getConfig({ type: 'jest', target: 'browser' })
-config.displayName.name = 'web'
+const config = {
+  rootDir: '../',
+  preset: '@redwoodjs/testing/config/jest/web',
+}
 
 module.exports = config

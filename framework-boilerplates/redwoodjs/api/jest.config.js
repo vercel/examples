@@ -1,6 +1,8 @@
-const { getConfig } = require('@redwoodjs/core')
+// More info at https://redwoodjs.com/docs/project-configuration-dev-test-build
 
-const config = getConfig({ type: 'jest', target: 'node' })
-config.displayName.name = 'api'
+const config = {
+  rootDir: '../',
+  preset: '@redwoodjs/testing/config/jest/api',
+}
 
 module.exports = config
