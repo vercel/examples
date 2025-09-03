@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/api/hello",
+      "permanent": false
+    }
+  ]
+}
