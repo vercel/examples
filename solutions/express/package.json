@@ -2,15 +2,17 @@
 	"name": "express",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.ts",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node api/index.ts"
-	},
+	"type": "module",
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"express": "^4.18.2"
+		"@types/express": "^5.0.0",
+		"@vercel/postgres": "0.10.0",
+		"dotenv": "^16.4.0",
+		"express": "5.1.0"
+	},
+	"devDependencies": {
+		"@types/node": "^22.0.0"
 	}
 }
