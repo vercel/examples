@@ -8,12 +8,14 @@ interface Props {
 }
 
 export function Preview({ className }: Props) {
-  const { status, url } = useSandboxStore()
+  const { status, url, paths, sandboxId } = useSandboxStore()
   return (
     <PreviewComponent
       className={className}
       disabled={status === 'stopped'}
       url={url}
+      paths={paths}
+      sandboxId={sandboxId}
     />
   )
 }
