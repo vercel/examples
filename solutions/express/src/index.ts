@@ -1,14 +1,7 @@
-import express, { type Request, type Response } from 'express'
+import express from 'express'
 import path from 'path'
-import { fileURLToPath } from 'url'
 
 const app = express()
-
-const __filename = fileURLToPath(import.meta.url)
-const rootDir = path.dirname(__filename)
-
-// Serve static files from the public directory
-app.use(express.static(path.join(rootDir, '..', 'public')))
 
 // Home route - HTML
 app.get('/', (req, res) => {
