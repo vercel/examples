@@ -1,11 +1,7 @@
-// api/index.js
-const express = require('express');
-const path = require('path');
+import express from 'express'
+import path from 'path'
 
-const app = express();
-
-// Serve static files from /public
-app.use(express.static(path.join(__dirname, '..', 'public')));
+const app = express()
 
 // Home route - HTML
 app.get('/', (req, res) => {
@@ -29,27 +25,24 @@ app.get('/', (req, res) => {
         <img src="/logo.png" alt="Logo" width="120" />
       </body>
     </html>
-  `);
-});
+  `)
+})
 
 app.get('/about', function (req, res) {
-	res.sendFile(path.join(__dirname, '..', 'components', 'about.htm'));
-});
+  res.sendFile(path.join(__dirname, '..', 'components', 'about.htm'))
+})
 
 // Example API endpoint - JSON
 app.get('/api-data', (req, res) => {
   res.json({
     message: 'Here is some sample API data',
-    items: ['apple', 'banana', 'cherry']
-  });
-});
+    items: ['apple', 'banana', 'cherry'],
+  })
+})
 
 // Health check
 app.get('/healthz', (req, res) => {
-  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
-});
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() })
+})
 
-// Local dev listener (ignored on Vercel)
-app.listen(3000, () => console.log('Server running on http://localhost:3000'));
-
-module.exports = app;
+export default app
