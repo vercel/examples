@@ -1,5 +1,5 @@
+import { type ChatUIMessage } from '@/components/chat/types'
 import {
-  type UIMessage,
   convertToModelMessages,
   createUIMessageStream,
   createUIMessageStreamResponse,
@@ -14,8 +14,9 @@ import { tools } from '@/ai/tools'
 import prompt from './prompt.md'
 
 interface BodyData {
-  messages: UIMessage[]
+  messages: ChatUIMessage[]
   modelId?: string
+  reasoningEffort?: 'low' | 'medium'
 }
 
 export async function POST(req: Request) {
@@ -24,10 +25,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: `Bot detected` }, { status: 403 })
   }
 
-  const [models, { messages, modelId = DEFAULT_MODEL }] = await Promise.all([
-    getAvailableModels(),
-    req.json() as Promise<BodyData>,
-  ])
+  const [models, { messages, modelId = DEFAULT_MODEL, reasoningEffort }] =
+    await Promise.all([getAvailableModels(), req.json() as Promise<BodyData>])
 
   const model = models.find((model) => model.id === modelId)
   if (!model) {
@@ -42,9 +41,29 @@ export async function POST(req: Request) {
       originalMessages: messages,
       execute: ({ writer }) => {
         const result = streamText({
-          ...getModelOptions(modelId),
+          ...getModelOptions(modelId, { reasoningEffort }),
           system: prompt,
-          messages: convertToModelMessages(messages),
+          messages: convertToModelMessages(
+            messages.map((message) => {
+              message.parts = message.parts.map((part) => {
+                if (part.type === 'data-report-errors') {
+                  return {
+                    type: 'text',
+                    text:
+                      `There are errors in the generated code. This is the summary of the errors we have:\n` +
+                      `\`\`\`${part.data.summary}\`\`\`\n` +
+                      (part.data.paths?.length
+                        ? `The following files may contain errors:\n` +
+                          `\`\`\`${part.data.paths?.join('\n')}\`\`\`\n`
+                        : '') +
+                      `Fix the errors reported.`,
+                  }
+                }
+                return part
+              })
+              return message
+            })
+          ),
           stopWhen: stepCountIs(20),
           tools: tools({ modelId, writer }),
           onError: (error) => {
@@ -55,6 +74,7 @@ export async function POST(req: Request) {
         result.consumeStream()
         writer.merge(
           result.toUIMessageStream({
+            sendReasoning: true,
             sendStart: false,
             messageMetadata: () => ({
               model: model.name,
