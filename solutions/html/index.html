@@ -1,96 +1,580 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여행탐정 돈두댓! - 망하는 여행 선택!? 돈두댓!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* 메인 페이지 */
+        .main-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .detective-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: detectiveFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes detectiveFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .slogan {
+            font-size: 1.5rem;
+            color: #fbbf24;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #bfdbfe;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .analysis-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .url-input {
+            width: 100%;
+            padding: 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            color: #1f2937;
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
+        }
+
+        .analyze-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border: none;
+            padding: 1.5rem 2rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            color: white;
+            text-align: center;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #fbbf24;
+        }
+
+        /* 로딩 페이지 */
+        .loading-page {
+            display: none;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .loading-detective {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            animation: detectiveWork 2s ease-in-out infinite;
+        }
+
+        @keyframes detectiveWork {
+            0%, 100% { transform: rotate(-10deg) scale(1); }
+            50% { transform: rotate(10deg) scale(1.1); }
+        }
+
+        .loading-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .loading-progress {
+            width: 400px;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #f59e0b, #fbbf24);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            color: #bfdbfe;
+            min-height: 1.5rem;
+        }
+
+        .loading-steps {
+            margin-top: 2rem;
+            text-align: left;
+            max-width: 400px;
+        }
+
+        .step {
+            padding: 0.5rem 0;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .step.active {
+            opacity: 1;
+            color: #fbbf24;
+        }
+
+        .step.completed {
+            opacity: 0.7;
+            text-decoration: line-through;
+        }
+
+        /* 결과 페이지 */
+        .result-page {
+            display: none;
+            min-height: 100vh;
+            background: #f8fafc;
+            padding: 2rem 0;
+        }
+
+        .result-header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .case-number {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .report-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .report-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: #1e3a8a;
+            color: white;
+            padding: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .section-content {
+            padding: 2rem;
+        }
+
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .score-item {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .score-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .score-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f59e0b;
+            margin-bottom: 0.5rem;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .pros, .cons {
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .pros {
+            background: #ecfdf5;
+            border: 1px solid #10b981;
+        }
+
+        .cons {
+            background: #fef2f2;
+            border: 1px solid #ef4444;
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .slogan {
+                font-size: 1.2rem;
+            }
+            
+            .analysis-form {
+                padding: 1.5rem;
+                margin: 0 1rem 2rem;
+            }
+            
+            .loading-progress {
+                width: 300px;
+            }
+            
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 메인 페이지 -->
+    <div class="main-page" id="mainPage">
+        <div class="hero-content">
+            <div class="detective-icon">🕵️‍♂️</div>
+            <h1 class="main-title">여행탐정 돈두댓!</h1>
+            <p class="slogan">망하는 여행 선택!? 돈두댓!</p>
+            <p class="subtitle">
+                여행 상품의 숨겨진 진실을 파헤치는 AI 탐정이<br>
+                20초 내에 완벽한 분석 보고서를 제공합니다
+            </p>
+            
+            <div class="analysis-form">
+                <input 
+                    type="url" 
+                    class="url-input" 
+                    placeholder="분석을 원하는 하나투어 상품 URL을 붙여넣어 주세요."
+                    id="urlInput"
+                />
+                <button class="analyze-btn" onclick="startAnalysis()">
+                    🔍 분석 시작하기
+                </button>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <span class="feature-icon">⚡</span>
+                    <h3>압도적인 속도</h3>
+                    <p>20초 내 분석 완료</p>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🛡️</span>
+                    <h3>불안 해소</h3>
+                    <p>객관적 데이터 분석</p>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">⏰</span>
+                    <h3>시간 절약</h3>
+                    <p>정보 탐색 시간 90% 단축</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 로딩 페이지 -->
+    <div class="loading-page" id="loadingPage">
+        <div class="loading-detective">🕵️‍♂️</div>
+        <h2 class="loading-title">탐정이 현장으로 출동했습니다...</h2>
+        
+        <div class="loading-progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div class="loading-text" id="loadingText">기본 정보 수집 중...</div>
+        
+        <div class="loading-steps">
+            <div class="step" id="step1">🔍 기본 정보 수집 중...</div>
+            <div class="step" id="step2">🏨 호텔 정보 분석 중...</div>
+            <div class="step" id="step3">✈️ 항공편 정보 확인 중...</div>
+            <div class="step" id="step4">🎯 관광지 정보 조사 중...</div>
+            <div class="step" id="step5">📊 최종 보고서 작성 중...</div>
+        </div>
+    </div>
+
+    <!-- 결과 페이지 -->
+    <div class="result-page" id="resultPage">
+        <div class="result-header">
+            <div class="case-number">사건 번호: ICE-WINTER-007</div>
+            <h1 class="report-title">아이슬란드 오로라 6박 8일 패키지</h1>
+            <p>분석 완료일: 2025년 9월 5일</p>
+        </div>
+        
+        <div class="report-content">
+            <!-- 핵심 역량 분석 -->
+            <div class="section">
+                <div class="section-header">
+                    🎯 핵심 역량 분석: 9대 단서
+                </div>
+                <div class="section-content">
+                    <div class="score-grid">
+                        <div class="score-item">
+                            <div class="score-name">가성비</div>
+                            <div class="score-value">4/5</div>
+                            <div>겨울 성수기 치고 합리적인 가격대</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-name">일정 효율성</div>
+                            <div class="score-value">3/5</div>
+                            <div>이동 시간이 다소 길지만 핵심 코스 포함</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-name">숙박 만족도</div>
+                            <div class="score-value">5/5</div>
+                            <div>현지 4성급 호텔, 오로라 관측 최적 위치</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-name">관광지 매력</div>
+                            <div class="score-value">5/5</div>
+                            <div>골든서클, 블루라군 등 필수 코스 모두 포함</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-name">상품 독특성</div>
+                            <div class="score-value">4/5</div>
+                            <div>오로라 헌팅과 얼음동굴 탐험 포함</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-name">교통 편의성</div>
+                            <div class="score-value">3/5</div>
+                            <div>경유 1회, 총 이동시간 적절</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 최종 브리핑 -->
+            <div class="section">
+                <div class="section-header">
+                    📋 탐정의 최종 브리핑
+                </div>
+                <div class="section-content">
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h3 style="color: #10b981; margin-bottom: 1rem;">✅ 결정적 장점 3가지</h3>
+                            <ul style="padding-left: 1rem;">
+                                <li>오로라 관측 확률 90% 이상 (12월 최적 시기)</li>
+                                <li>현지 특급 호텔 + 온천 포함으로 휴식 완벽</li>
+                                <li>얼음동굴, 빙하 투어 등 독특한 체험 가능</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h3 style="color: #ef4444; margin-bottom: 1rem;">⚠️ 주의할 점 3가지</h3>
+                            <ul style="padding-left: 1rem;">
+                                <li>극한 추위 (-10°C 이하) 대비 필수</li>
+                                <li>일몰 16시, 일출 11시로 낮 시간 매우 짧음</li>
+                                <li>날씨 변수로 선택관광 취소 가능성</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: #fef3c7; border-radius: 10px; border-left: 4px solid #f59e0b;">
+                        <h3 style="color: #92400e; margin-bottom: 1rem;">🕵️‍♂️ 탐정의 최종 판결</h3>
+                        <p style="color: #92400e; font-size: 1.1rem; line-height: 1.6;">
+                            <strong>추천도: 85%</strong><br>
+                            "겨울 아이슬란드의 마법을 경험하고 싶다면 주저 말고 도전하세요! 
+                            다만 극한 추위와 짧은 낮 시간을 각오하고 가시기 바랍니다. 
+                            평생 잊지 못할 오로라와 얼음 세계가 여러분을 기다리고 있습니다."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function startAnalysis() {
+            const urlInput = document.getElementById('urlInput');
+            const url = urlInput.value.trim();
+            
+            if (!url) {
+                alert('URL을 입력해주세요.');
+                return;
+            }
+            
+            if (!url.includes('hanatour.com')) {
+                alert('하나투어 패키지여행 URL이 아닙니다. URL을 다시 확인해주세요.');
+                return;
+            }
+            
+            // 메인 페이지 숨기고 로딩 페이지 보이기
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('loadingPage').style.display = 'flex';
+            
+            // 진행 상태 시뮬레이션
+            simulateProgress();
+        }
+        
+        function simulateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const loadingText = document.getElementById('loadingText');
+            const steps = [
+                { text: '기본 정보 수집 중...', progress: 20, stepId: 'step1' },
+                { text: '호텔 정보 분석 중...', progress: 40, stepId: 'step2' },
+                { text: '항공편 정보 확인 중...', progress: 60, stepId: 'step3' },
+                { text: '관광지 정보 조사 중...', progress: 80, stepId: 'step4' },
+                { text: '최종 보고서 작성 중...', progress: 100, stepId: 'step5' }
+            ];
+            
+            let currentStep = 0;
+            
+            const interval = setInterval(() => {
+                if (currentStep < steps.length) {
+                    const step = steps[currentStep];
+                    progressBar.style.width = step.progress + '%';
+                    loadingText.textContent = step.text;
+                    
+                    // 이전 단계들을 completed로 표시
+                    for (let i = 0; i < currentStep; i++) {
+                        document.getElementById(steps[i].stepId).className = 'step completed';
+                    }
+                    
+                    // 현재 단계를 active로 표시
+                    document.getElementById(step.stepId).className = 'step active';
+                    
+                    currentStep++;
+                } else {
+                    clearInterval(interval);
+                    
+                    // 모든 단계 완료 표시
+                    steps.forEach(step => {
+                        document.getElementById(step.stepId).className = 'step completed';
+                    });
+                    
+                    setTimeout(() => {
+                        // 로딩 페이지 숨기고 결과 페이지 보이기
+                        document.getElementById('loadingPage').style.display = 'none';
+                        document.getElementById('resultPage').style.display = 'block';
+                    }, 1000);
+                }
+            }, 3000); // 3초마다 단계 진행
+        }
+    </script>
+</body>
 </html>
