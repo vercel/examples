@@ -12,7 +12,6 @@ import {
 import { Input } from '@/components/ui/input'
 import { Message } from '@/components/chat/message'
 import { ModelSelector } from '@/components/settings/model-selector'
-import { MoonLoader } from 'react-spinners'
 import { Panel, PanelHeader } from '@/components/panels/panels'
 import { Settings } from '@/components/settings/settings'
 import { useChat } from '@ai-sdk/react'
@@ -51,17 +50,17 @@ export function Chat({ className }: Props) {
   return (
     <Panel className={className}>
       <PanelHeader>
-        <div className="flex items-center font-mono uppercase font-semibold">
+        <div className="flex items-center font-mono font-semibold uppercase">
           <MessageCircleIcon className="mr-2 w-4" />
           Chat
         </div>
-        <div className="ml-auto text-xs opacity-50 font-mono">[{status}]</div>
+        <div className="ml-auto font-mono text-xs opacity-50">[{status}]</div>
       </PanelHeader>
 
       {/* Messages Area */}
       {messages.length === 0 ? (
         <div className="flex-1 min-h-0">
-          <div className="flex flex-col items-center justify-center h-full text-sm text-muted-foreground font-mono">
+          <div className="flex flex-col justify-center items-center h-full font-mono text-sm text-muted-foreground">
             <p className="flex items-center font-semibold">
               Click and try one of these prompts:
             </p>
@@ -69,7 +68,7 @@ export function Chat({ className }: Props) {
               {TEST_PROMPTS.map((prompt, idx) => (
                 <li
                   key={idx}
-                  className="border border-dashed border-border rounded-sm cursor-pointer py-2 px-4 shadow-sm hover:bg-secondary/50 hover:text-primary"
+                  className="px-4 py-2 rounded-sm border border-dashed shadow-sm cursor-pointer border-border hover:bg-secondary/50 hover:text-primary"
                   onClick={() => validateAndSubmitMessage(prompt)}
                 >
                   {prompt}
@@ -90,7 +89,7 @@ export function Chat({ className }: Props) {
       )}
 
       <form
-        className="flex space-x-1 p-2 border-t border-primary/18 bg-background items-center"
+        className="flex items-center p-2 space-x-1 border-t border-primary/18 bg-background"
         onSubmit={async (event) => {
           event.preventDefault()
           validateAndSubmitMessage(input)
@@ -99,18 +98,14 @@ export function Chat({ className }: Props) {
         <Settings />
         <ModelSelector />
         <Input
-          className="w-full text-sm border-0 bg-background font-mono rounded-sm"
+          className="w-full font-mono text-sm rounded-sm border-0 bg-background"
           disabled={status === 'streaming' || status === 'submitted'}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type your message..."
           value={input}
         />
         <Button type="submit" disabled={status !== 'ready' || !input.trim()}>
-          {status === 'streaming' || status === 'submitted' ? (
-            <MoonLoader color="currentColor" size={16} />
-          ) : (
-            <SendIcon className="w-4 h-4" />
-          )}
+        <SendIcon className="w-4 h-4" />
         </Button>
       </form>
     </Panel>
