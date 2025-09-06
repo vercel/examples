@@ -19,3 +19,5 @@ To get started with RedwoodJS on Vercel, you can [use Yarn to initialize](https:
 ```shell
 $ yarn create redwood-app ./my-redwood-app
 ```
+
+This repository enables the [Corepack](https://vercel.com/docs/builds/configure-a-build#corepack) using the [build.env](https://vercel.com/docs/project-configuration#build.env) property in the `vercel.json` file. However, we recommend adding `ENABLE_EXPERIMENTAL_COREPACK=1` as an Environment Variable in your project settings instead.
