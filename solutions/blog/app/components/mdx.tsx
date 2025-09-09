@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React from 'react'
 
@@ -99,11 +98,36 @@ let components = {
   Table,
 }
 
+function parseMarkdown(content: string): string {
+  // Handle code blocks first
+  content = content.replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
+    const highlighted = highlight(code.trim())
+    return `<pre><code class="language-${lang || 'text'}">${highlighted}</code></pre>`
+  })
+  
+  // Handle other markdown
+  return content
+    .replace(/^### (.*$)/gm, '<h3 id="$1">$1</h3>')
+    .replace(/^## (.*$)/gm, '<h2 id="$1">$1</h2>')
+    .replace(/^# (.*$)/gm, '<h1 id="$1">$1</h1>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .split('\n\n')
+    .map(para => para.trim())
+    .filter(para => para)
+    .map(para => {
+      if (para.startsWith('<h') || para.startsWith('<pre>')) {
+        return para
+      }
+      return `<p>${para}</p>`
+    })
+    .join('\n')
+}
+
 export function CustomMDX(props) {
+  const htmlContent = parseMarkdown(props.source)
   return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
-    />
+    <div className="prose" dangerouslySetInnerHTML={{ __html: htmlContent }} />
   )
 }
