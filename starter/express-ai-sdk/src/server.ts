@@ -1,4 +1,3 @@
-import { openai } from '@ai-sdk/openai'
 import {
   createUIMessageStream,
   pipeUIMessageStreamToResponse,
@@ -11,7 +10,7 @@ const app = express()
 
 app.post('/', async (req: Request, res: Response) => {
   const result = streamText({
-    model: openai('gpt-4o'),
+    model: 'anthropic/claude-sonnet-4',
     prompt: 'Invent a new holiday and describe its traditions.',
   })
 
@@ -33,7 +32,7 @@ app.post('/custom-data-parts', async (req: Request, res: Response) => {
         })
 
         const result = streamText({
-          model: openai('gpt-4o'),
+          model: 'anthropic/claude-sonnet-4',
           prompt: 'Invent a new holiday and describe its traditions.',
         })
 
@@ -43,6 +42,6 @@ app.post('/custom-data-parts', async (req: Request, res: Response) => {
   })
 })
 
-app.listen(8080, () => {
-  console.log(`Example app listening on port ${8080}`)
+app.listen(3000, () => {
+  console.log(`Example app listening on port ${3000}`)
 })
