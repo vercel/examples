@@ -35,6 +35,7 @@ export default () => (
             `,
       }}
     />
+
     <section>
       <h1>
         <span>404 Page Not Found</span>
