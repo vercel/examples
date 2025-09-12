@@ -20,6 +20,9 @@ importers:
 
   apps/api:
     dependencies:
+      '@repo/constants':
+        specifier: workspace:*
+        version: link:../../packages/constants
       hono:
         specifier: ^4.8.10
         version: 4.8.10
@@ -27,6 +30,9 @@ importers:
       '@types/node':
         specifier: ^20.11.17
         version: 20.19.9
+      srvx:
+        specifier: ^0.8.7
+        version: 0.8.7
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -67,6 +73,12 @@ importers:
       typescript:
         specifier: 5.8.2
         version: 5.8.2
+
+  packages/constants:
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
 
   packages/eslint-config:
     devDependencies:
@@ -581,6 +593,9 @@ packages:
 
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+
+  cookie-es@2.0.0:
+    resolution: {integrity: sha512-RAj4E421UYRgqokKUmotqAwuplYw15qtdXfY+hGzgCJ/MBjCVZcSoHK/kH9kocfjRjcDME7IiDWR/1WX1TM2Pg==}
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -1287,6 +1302,11 @@ packages:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
+  srvx@0.8.7:
+    resolution: {integrity: sha512-g3+15LlwVOGL2QpoTPZlvRjg+9a5Tx/69CatXjFP6txvhIaW2FmGyzJfb8yft5wyfGddvJmP/Yx+e/uNDMRSLQ==}
+    engines: {node: '>=20.16.0'}
+    hasBin: true
+
   stop-iteration-iterator@1.1.0:
     resolution: {integrity: sha512-eLoXW/DHyl62zxY4SCaIgnRhuMr6ri4juEYARS8E6sCEqzKpOiE521Ucofdx+KnDZl5xmvGYaaKCk5FEOxJCoQ==}
     engines: {node: '>= 0.4'}
@@ -1911,6 +1931,8 @@ snapshots:
     optional: true
 
   concat-map@0.0.1: {}
+
+  cookie-es@2.0.0: {}
 
   cross-spawn@7.0.6:
     dependencies:
@@ -2790,6 +2812,10 @@ snapshots:
     optional: true
 
   source-map-js@1.2.1: {}
+
+  srvx@0.8.7:
+    dependencies:
+      cookie-es: 2.0.0
 
   stop-iteration-iterator@1.1.0:
     dependencies:
