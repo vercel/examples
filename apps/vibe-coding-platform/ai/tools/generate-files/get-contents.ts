@@ -1,7 +1,5 @@
-import { type OpenAIResponsesProviderOptions } from '@ai-sdk/openai'
-import { type ModelOptions } from '@/ai/gateway'
 import { streamObject, type ModelMessage } from 'ai'
-import { Models } from '@/ai/constants'
+import { getModelOptions } from '@/ai/gateway'
 import { Deferred } from '@/lib/deferred'
 import z from 'zod/v3'
 
@@ -38,7 +36,7 @@ export async function* getContents(
   const generated: z.infer<typeof fileSchema>[] = []
   const deferred = new Deferred<void>()
   const result = streamObject({
-    ...getModelOptions(params.modelId),
+    ...getModelOptions(params.modelId, { reasoningEffort: 'minimal' }),
     system:
       'You are a file content generator. You must generate files based on the conversation history and the provided paths. NEVER generate lock files (pnpm-lock.yaml, package-lock.json, yarn.lock) - these are automatically created by package managers.',
     messages: [
@@ -93,37 +91,5 @@ export async function* getContents(
   if (files.length > 0) {
     yield { files, written, paths }
     generated.push(...files)
-  }
-}
-
-function getModelOptions(modelId: string): ModelOptions {
-  if (modelId === Models.OpenAIGPT5) {
-    return {
-      model: modelId,
-      providerOptions: {
-        openai: {
-          include: ['reasoning.encrypted_content'],
-          reasoningEffort: 'minimal',
-          reasoningSummary: 'auto',
-          serviceTier: 'priority',
-        } satisfies OpenAIResponsesProviderOptions,
-      },
-    }
-  }
-
-  if (modelId === Models.AnthropicClaude4Sonnet) {
-    return {
-      model: modelId,
-      headers: { 'anthropic-beta': 'fine-grained-tool-streaming-2025-05-14' },
-      providerOptions: {
-        anthropic: {
-          cacheControl: { type: 'ephemeral' },
-        },
-      },
-    }
-  }
-
-  return {
-    model: modelId,
   }
 }
