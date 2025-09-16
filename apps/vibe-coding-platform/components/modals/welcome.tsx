@@ -56,7 +56,7 @@ export function Welcome(props: {
               full stack application.
             </p>
             <p className="text-base text-secondary-foreground">
-              It uses Vercel&quot;s AI Cloud services like{' '}
+              It uses Vercel&apos;s AI Cloud services like{' '}
               <ExternalLink href="https://vercel.com/docs/vercel-sandbox">
                 Sandbox
               </ExternalLink>{' '}
@@ -68,7 +68,7 @@ export function Welcome(props: {
               <ExternalLink href="https://vercel.com/fluid">
                 Fluid Compute
               </ExternalLink>{' '}
-              for efficient rendering and streaming, and it&quot;s built with{' '}
+              for efficient rendering and streaming, and it&apos;s built with{' '}
               <ExternalLink href="https://nextjs.org/">Next.js</ExternalLink>{' '}
               and the{' '}
               <ExternalLink href="https://ai-sdk.dev/docs/introduction">
@@ -97,7 +97,7 @@ export function ToggleWelcome() {
       variant="outline"
       size="sm"
     >
-      <InfoIcon /> <span className="hidden lg:inline">What&quot;s this?</span>
+      <InfoIcon /> <span className="hidden lg:inline">What&apos;s this?</span>
     </Button>
   )
 }
