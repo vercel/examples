@@ -1,5 +1,5 @@
 import { getProviderData, createFlagsDiscoveryEndpoint } from 'flags/next'
-import { getProviderData as getBucketProviderData } from '@flags-sdk/bucket'
+import { getProviderData as getReflagProviderData } from '@flags-sdk/reflag'
 import { mergeProviderData } from 'flags'
 import * as flags from '../../../../flags'
 
@@ -9,7 +9,7 @@ export const GET = createFlagsDiscoveryEndpoint(async (request) => {
   return mergeProviderData([
     // Data declared from Flags in Code
     getProviderData(flags),
-    // metadata from Bucket API using the default bucket adapter
-    getBucketProviderData(),
+    // metadata from Reflag API using the default reflag adapter
+    getReflagProviderData(),
   ])
 })

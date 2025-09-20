@@ -6,8 +6,8 @@ import './globals.css'
 import { ExamplesBanner } from '@/components/banners/examples-banner'
 
 export const metadata: Metadata = {
-  title: 'Bucket - Flags SDK Example',
-  description: 'A Flags SDK ecommerce example using Bucket',
+  title: 'Reflag - Flags SDK Example',
+  description: 'A Flags SDK ecommerce example using Reflag',
 }
 
 export default function RootLayout({
