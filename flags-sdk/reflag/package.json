@@ -1,5 +1,5 @@
 {
-  "name": "bucket",
+  "name": "reflag",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@flags-sdk/bucket": "link:../../../flags/packages/adapter-bucket",
+    "@flags-sdk/reflag": "1.0.0",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "2.2.0",
     "@tailwindcss/aspect-ratio": "0.4.2",
@@ -20,7 +20,7 @@
     "@vercel/edge-config": "1.4.0",
     "@vercel/toolbar": "0.1.33",
     "clsx": "2.1.1",
-    "flags": "^4.0.0",
+    "flags": "^4.0.1",
     "motion": "12.17.0",
     "nanoid": "5.1.2",
     "next": "15.4.0-canary.79",

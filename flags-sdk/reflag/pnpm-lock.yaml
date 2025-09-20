@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@flags-sdk/bucket':
-        specifier: link:../../../flags/packages/adapter-bucket
-        version: link:../../../flags/packages/adapter-bucket
+      '@flags-sdk/reflag':
+        specifier: 1.0.0
+        version: 1.0.0
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -42,8 +42,8 @@ importers:
         specifier: 2.1.1
         version: 2.1.1
       flags:
-        specifier: ^4.0.0
-        version: 4.0.0(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^4.0.1
+        version: 4.0.1(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       motion:
         specifier: 12.17.0
         version: 12.17.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -137,6 +137,9 @@ packages:
   '@eslint/plugin-kit@0.2.7':
     resolution: {integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@flags-sdk/reflag@1.0.0':
+    resolution: {integrity: sha512-de+yBGqf8cAwAsZ08ySKzlb+8rw/gUsyUaI7AiKxKQ+Ek3uW+j+NuTzTLzjpzmDL3kRedcSPGOcgGysVCfC6mw==}
 
   '@floating-ui/core@1.6.9':
     resolution: {integrity: sha512-uMXCuQ3BItDUbAMhIXw7UPXRfAlOAvZzdK9BWpE60MCn+Svt3aLn9jsPTi/WNGlRUu2uI0v5S7JiIUsbsvh3fw==}
@@ -410,6 +413,12 @@ packages:
     resolution: {integrity: sha512-gvznmLhi6JPEf0bsq7SwRYTHAKKq/wcmKqFez9sRdbED+SPMUmK5omfZ6w3EwUFQHbYUa4zPBYedQ7Knv70RMw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+
+  '@reflag/flag-evaluation@1.0.0':
+    resolution: {integrity: sha512-3N35ICE9SNlSK6edorjBIAEqB2wvOKRy+ZktXRAfJpQHKcwnjfcFyIIzGKOenm9DCPFxo2hv9Yz7QhUFrcntow==}
+
+  '@reflag/node-sdk@1.0.1':
+    resolution: {integrity: sha512-UUmxjspx3hExHDzmtBrZux9fDP44SQok9sQawM+OV0zvJzPyR9b6g3UuK/vNnr+RPMgKoaBvlPeU4kEB70Gt1A==}
 
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
@@ -1189,8 +1198,8 @@ packages:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
 
-  flags@4.0.0:
-    resolution: {integrity: sha512-CpONOK/nflKfaTT36r+Y4SP5rb9mv3AdqY/2Ws+TScrEGlT4PK+PZNiKJgIH87HooTXDblz31807q7lZ3LpuYQ==}
+  flags@4.0.1:
+    resolution: {integrity: sha512-nJNY97LoI+BDNCSnGIEvBAxYkRYeRuMZ3KtdjCj60quGH3cnyjnSQfw9vB/kvb3+wAtdn2sm5t+jO6dy5tpi1w==}
     peerDependencies:
       '@opentelemetry/api': ^1.7.0
       '@sveltejs/kit': '*'
@@ -1488,6 +1497,9 @@ packages:
 
   jose@5.10.0:
     resolution: {integrity: sha512-s+3Al/p9g32Iq+oqXxkW//7jk2Vig6FF1CFqzVXoTUXt2qz89YWbL+OwS17NFYEvxC35n0FKeGO2LGYSxeM2Gg==}
+
+  js-sha256@0.11.0:
+    resolution: {integrity: sha512-6xNlKayMZvds9h1Y1VWc0fQHQ82BxTXizWPEtEeGvmOUYpBRy4gbWroHLpzowe6xiQhHpelCQiE7HEdznyBL9Q==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -2204,6 +2216,10 @@ snapshots:
       '@eslint/core': 0.12.0
       levn: 0.4.1
 
+  '@flags-sdk/reflag@1.0.0':
+    dependencies:
+      '@reflag/node-sdk': 1.0.1
+
   '@floating-ui/core@1.6.9':
     dependencies:
       '@floating-ui/utils': 0.2.9
@@ -2422,6 +2438,14 @@ snapshots:
   '@react-types/shared@3.27.0(react@19.0.0)':
     dependencies:
       react: 19.0.0
+
+  '@reflag/flag-evaluation@1.0.0':
+    dependencies:
+      js-sha256: 0.11.0
+
+  '@reflag/node-sdk@1.0.1':
+    dependencies:
+      '@reflag/flag-evaluation': 1.0.0
 
   '@rtsao/scc@1.1.0': {}
 
@@ -3367,7 +3391,7 @@ snapshots:
       locate-path: 6.0.0
       path-exists: 4.0.0
 
-  flags@4.0.0(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  flags@4.0.1(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@edge-runtime/cookies': 5.0.2
       jose: 5.10.0
@@ -3650,6 +3674,8 @@ snapshots:
   jiti@2.4.2: {}
 
   jose@5.10.0: {}
+
+  js-sha256@0.11.0: {}
 
   js-tokens@4.0.0: {}
 

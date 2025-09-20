@@ -1,5 +1,5 @@
 import type { Identify } from 'flags'
-import type { Context } from '@flags-sdk/bucket'
+import type { Context } from '@flags-sdk/reflag'
 import { dedupe } from 'flags/next'
 import { getStableId } from './get-stable-id'
 
