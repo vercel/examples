@@ -1,0 +1,16 @@
+{
+  "name": "api",
+  "type": "module",
+  "scripts": {
+    "dev": "srvx"
+  },
+  "dependencies": {
+    "hono": "^4.8.10",
+    "@repo/constants": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "srvx": "^0.8.7",
+    "typescript": "^5.8.3"
+  }
+}

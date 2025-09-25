@@ -17,6 +17,7 @@ export async function POST(request: Request): Promise<NextResponse> {
           // Otherwise, you're allowing anonymous uploads.
           return {
             allowedContentTypes: ['image/*'],
+            addRandomSuffix: true,
             maximumSizeInBytes: 50 * 1024 * 1024, // 50MB
           }
         },

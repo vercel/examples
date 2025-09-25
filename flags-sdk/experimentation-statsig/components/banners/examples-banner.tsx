@@ -40,7 +40,7 @@ export function ExamplesBanner() {
                 rel="noreferrer"
                 href="https://github.com/vercel/examples/tree/main/flags-sdk/experimentation-statsig"
               >
-                Vercel Examples / flags-sdk / experimentation-statsig
+                Vercel Examples / Flags SDK / experimentation-statsig
               </Link>
             </li>
           </ul>

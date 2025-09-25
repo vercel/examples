@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-link: rgb(0 112 243 / 1);
+  --color-success: rgb(0 112 243 / 1);
+  --color-background: white;
+  --color-success-dark: rgb(7 97 209 / 1);
+}
