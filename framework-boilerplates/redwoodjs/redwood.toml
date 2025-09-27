@@ -6,10 +6,16 @@
 # https://redwoodjs.com/docs/app-configuration-redwood-toml
 
 [web]
+  title = "Redwood App"
   port = 8910
-  apiProxyPath = "/api"
+  apiUrl = "/api"
+  includeEnvironmentVariables = [
+    # Add any ENV vars that should be available to the web side to this array
+    # See https://redwoodjs.com/docs/environment-variables#web
+  ]
 [api]
   port = 8911
-  schemaPath = "./api/db/schema.prisma"
 [browser]
-  open = false
+  open = true
+[notifications]
+  versionUpdates = ["latest"]
