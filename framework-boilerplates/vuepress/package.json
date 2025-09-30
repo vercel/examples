@@ -5,7 +5,7 @@
     "build": "vuepress build src"
   },
   "engines": {
-    "node": ">=16.0.0 <18.0.0"
+    "node": "22.x"
   },
   "devDependencies": {
     "vuepress": "1.9.7"
