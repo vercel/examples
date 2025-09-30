@@ -37,6 +37,7 @@ export async function* getContents(
   const deferred = new Deferred<void>()
   const result = streamObject({
     ...getModelOptions(params.modelId, { reasoningEffort: 'minimal' }),
+    maxOutputTokens: 64000,
     system:
       'You are a file content generator. You must generate files based on the conversation history and the provided paths. NEVER generate lock files (pnpm-lock.yaml, package-lock.json, yarn.lock) - these are automatically created by package managers.',
     messages: [

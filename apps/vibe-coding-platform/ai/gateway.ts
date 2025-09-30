@@ -7,9 +7,7 @@ import type { LanguageModelV2 } from '@ai-sdk/provider'
 export async function getAvailableModels() {
   const gateway = gatewayInstance()
   const response = await gateway.getAvailableModels()
-  return response.models
-    .map((model) => ({ id: model.id, name: model.name }))
-    .concat([{ id: Models.OpenAIGPT5, name: 'GPT-5' }])
+  return response.models.map((model) => ({ id: model.id, name: model.name }))
 }
 
 export interface ModelOptions {
@@ -37,7 +35,10 @@ export function getModelOptions(
     }
   }
 
-  if (modelId === Models.AnthropicClaude4Sonnet) {
+  if (
+    modelId === Models.AnthropicClaude4Sonnet ||
+    modelId === Models.AnthropicClaude45Sonnet
+  ) {
     return {
       model: gateway(modelId),
       headers: { 'anthropic-beta': 'fine-grained-tool-streaming-2025-05-14' },
