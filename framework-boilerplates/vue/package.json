@@ -5,7 +5,9 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "packageManager": "pnpm@9.13.0",
   "engines": {
+    "pnpm": "9.13.0",
     "node": "22.x"
   },
   "dependencies": {

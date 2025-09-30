@@ -62,5 +62,8 @@
     "tailwindcss": "^4",
     "tw-animate-css": "1.3.6",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }
