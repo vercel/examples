@@ -1,6 +1,5 @@
 import type { UIMessageStreamWriter, UIMessage } from 'ai'
 import type { DataPart } from '../messages/data-parts'
-import { Sandbox } from '@vercel/sandbox'
 import { tool } from 'ai'
 import description from './get-sandbox-url.md'
 import z from 'zod/v3'
@@ -31,15 +30,16 @@ export const getSandboxURL = ({ writer }: Params) =>
         data: { status: 'loading' },
       })
 
-      const sandbox = await Sandbox.get({ sandboxId })
-      const url = sandbox.domain(port)
+      const customUrl = `https://${sandboxId}.sjksldjflksjkfjdslj.xyz${
+        port && port !== 80 && port !== 443 ? `:${port}` : ''
+      }`
 
       writer.write({
         id: toolCallId,
         type: 'data-get-sandbox-url',
-        data: { url, status: 'done' },
+        data: { url: customUrl, status: 'done' },
       })
 
-      return { url }
+      return { url: customUrl }
     },
   })
