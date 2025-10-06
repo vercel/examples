@@ -4,9 +4,10 @@ import { stream } from 'hono/streaming'
 
 const app = new Hono()
 
-const prompt = 'Why is the sky blue?'
+const defaultPrompt = 'Why is the sky blue?'
 
 app.get('/', async (c) => {
+  const prompt = c.req.query('prompt') ?? defaultPrompt
   const result = streamText({
     model: 'xai/grok-3',
     prompt,
