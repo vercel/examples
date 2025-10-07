@@ -1,6 +1,47 @@
-# CMS GraphQL Fragments
+---
+name: CMS GraphQL Fragments with Sanity
+slug: cms-sanity-graphql-fragments
+description: A Next.js blog powered by Sanity CMS and GraphQL with ISR, featuring GraphQL fragment colocation and type-safe queries using gql.tada
+framework: Next.js
+useCase: CMS
+css: Tailwind
+deployUrl: https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/starter/starter/cms-sanity-graphql-fragments&project-name=cms-sanity-graphql-fragments&repository-name=cms-sanity-graphql-fragments
+demoUrl: https://cms-graphql-fragments.vercel.app/
+ignoreE2E: true
+---
+# CMS GraphQL Fragments example
 
-A Next.js blog powered by Sanity CMS and GraphQL with Incremental Static Regeneration (ISR), featuring GraphQL fragment colocation and type-safe queries.
+This example shows a Next.js blog powered by Sanity CMS and GraphQL with Incremental Static Regeneration (ISR), featuring GraphQL fragment colocation and type-safe queries.
+
+## Demo
+
+https://cms-graphql-fragments.vercel.app/
+
+## How to Use
+
+You can choose from one of the following two methods to use this repository:
+
+### One-Click Deploy
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/starter/starter/cms-sanity-graphql-fragments&project-name=cms-sanity-graphql-fragments&repository-name=cms-sanity-graphql-fragments)
+
+### Clone and Deploy
+
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+
+```bash
+pnpm create next-app --example https://github.com/vercel/examples/tree/main/starter/starter/cms-sanity-graphql-fragments
+```
+
+Next, run Next.js in development mode:
+
+```bash
+pnpm dev
+```
+
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
+
 
 ## Features
 
