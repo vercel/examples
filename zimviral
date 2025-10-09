@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Watch Live • Join WhatsApp</title>
+  <meta name="description" content="Watch the video and join the WhatsApp group." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card: #121826;
+      --muted: #8a93a6;
+      --primary: #22c55e; /* green */
+      --accent: #ef4444;  /* red for LIVE */
+      --text: #e5e7eb;
+      --link: #60a5fa; /* blue */
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 70% -20%, #1b2540 0%, var(--bg) 45%),
+                  radial-gradient(800px 600px at 10% 120%, #132038 0%, var(--bg) 45%),
+                  var(--bg);
+      color: var(--text);
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 120px; }
+    .hero { text-align: center; margin: 16px 0 28px; }
+    .hero h1 { font-size: clamp(1.8rem, 3.2vw, 3rem); line-height: 1.1; margin: 0 0 10px; font-weight: 800; }
+    .hero p { margin: 0; color: var(--muted); font-size: clamp(0.95rem, 1.3vw, 1.05rem); }
+
+    /* Video card */
+    .video-wrap { position: relative; border-radius: 18px; overflow: hidden; background: #0d1424; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+    .video-topbar { position: absolute; inset: 0 0 auto 0; height: 54px; display:flex; align-items:center; justify-content:space-between; padding: 12px 16px; background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,0)); z-index: 2; }
+    .live-badge { display:inline-flex; align-items:center; gap:8px; font-weight:700; color:#fff; background: linear-gradient(135deg, #ff3b3b, #ff7a7a); padding:6px 10px; border-radius:999px; letter-spacing:.3px; font-size:12px; box-shadow:0 6px 20px rgba(239,68,68,.45); }
+    .live-dot { width:8px; height:8px; background:#fff; border-radius:50%; box-shadow:0 0 0 2px rgba(255,255,255,.35); }
+    .viewers { display:flex; align-items:center; gap:8px; color:#fff; font-size:12px; background: rgba(0,0,0,.35); padding:6px 10px; border-radius:999px; }
+
+    .poster {
+      aspect-ratio: 16/9; width: 100%;
+      background:
+        radial-gradient(60% 60% at 70% 30%, rgba(18, 213, 110, .25), rgba(0,0,0,0) 60%),
+        radial-gradient(50% 50% at 20% 70%, rgba(96, 165, 250, .22), rgba(0,0,0,0) 60%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="%230b1222"/><stop offset="1" stop-color="%2311182b"/></linearGradient></defs><rect width="800" height="450" fill="url(%23g)"/><g opacity="0.08"><rect x="0" y="200" width="800" height="50" fill="white"/><rect x="0" y="270" width="800" height="50" fill="white"/></g></svg>') center/cover no-repeat;
+      position: relative;
+    }
+
+    /* Play button */
+    .play {
+      position: absolute; inset: 0; display:grid; place-items:center; z-index: 2; text-decoration: none;
+    }
+    .play .btn {
+      position: relative; width: 92px; height: 92px; border-radius: 999px; display:grid; place-items:center;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #d1fae5 70%);
+      box-shadow: 0 18px 40px rgba(0,0,0,.45), inset 0 -6px 14px rgba(0,0,0,.15);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .play .btn:hover { transform: translateY(-1px) scale(1.03); box-shadow: 0 22px 55px rgba(0,0,0,.55), inset 0 -6px 14px rgba(0,0,0,.15); }
+    .play svg { width: 38px; height: 38px; margin-left: 4px; }
+
+    /* Fake controls */
+    .controls { position: absolute; inset: auto 0 0 0; height: 72px; padding: 12px 16px; display:flex; align-items:center; gap:14px; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.75)); z-index: 2; }
+    .timeline { position: relative; flex: 1; height: 8px; border-radius: 999px; background: rgba(255,255,255,.18); overflow: hidden; }
+    .timeline .progress { position: absolute; inset: 0 auto 0 0; width: 22%; background: linear-gradient(90deg, #34d399, #60a5fa); }
+    .timeline .knob { position: absolute; left: 22%; top: 50%; transform: translate(-50%,-50%); width: 16px; height: 16px; border-radius: 999px; background: #fff; box-shadow: 0 6px 16px rgba(0,0,0,.45); }
+    .time { font-variant-numeric: tabular-nums; color: #e5e7eb; font-size: 12px; background: rgba(0,0,0,.35); padding: 4px 8px; border-radius: 8px; }
+
+    /* CTA buttons */
+    .cta-row { display:grid; grid-template-columns: 1fr; gap:14px; margin: 20px auto 0; max-width: 760px; }
+    @media (min-width: 720px) { .cta-row { grid-template-columns: 1fr 1fr; } }
+    .cta { display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:16px 18px; border-radius:14px; font-weight:800; text-decoration:none; letter-spacing:.3px; transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease; box-shadow: 0 10px 30px rgba(0,0,0,.28); }
+    .cta:hover { transform: translateY(-1px); box-shadow: 0 14px 44px rgba(0,0,0,.38); }
+    .cta:active { transform: translateY(0); }
+    .cta-primary { background: linear-gradient(135deg, #22c55e, #16a34a); color: #06210f; }
+    .cta-secondary { background: linear-gradient(135deg, #60a5fa, #2563eb); color: #03172e; }
+
+    /* Card wrapper shadow and border */
+    .frame { border: 1px solid rgba(255,255,255,.06); background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); padding: 12px; border-radius: 22px; backdrop-filter: blur(4px); }
+
+    /* Floating action buttons */
+    .fab { position: fixed; right: 18px; display:flex; flex-direction: column; gap: 14px; z-index: 50; }
+    .fab a { width: 58px; height: 58px; border-radius: 999px; display:grid; place-items:center; background: #10b981; color:#001b0f; text-decoration:none; box-shadow: 0 14px 38px rgba(0,0,0,.45); transition: transform .15s ease, box-shadow .15s ease; }
+    .fab a:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 18px 58px rgba(0,0,0,.55); }
+    .fab a:nth-child(2) { background: #3b82f6; color:#001127; }
+
+    /* Footer */
+    footer { text-align:center; color: var(--muted); font-size: 12px; margin-top: 18px; }
+
+    /* Safe area for bottom spacing so floating buttons don't overlap */
+    .spacer { height: 24px; }
+
+    /* Small pulse on LIVE dot */
+    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.25); opacity: .65; } }
+    .live-dot { animation: pulse 1.6s infinite; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>You're Just One Click Away</h1>
+      <p>Tap play to watch now — or jump straight into the WhatsApp group.</p>
+    </header>
+
+    <main>
+      <div class="frame">
+        <!-- Entire video card is clickable -->
+        <a class="video-wrap" href="https://niecesprivilegelimelight.com/w3jdgdsfsr?key=26d823aa637a5977e5e103004a9a20de" target="_blank" rel="noopener noreferrer" aria-label="Open the live video">
+          <div class="video-topbar">
+            <span class="live-badge"><span class="live-dot"></span> LIVE</span>
+            <span class="viewers" aria-hidden="true">
+              <!-- eye icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 5c-5 0-9 4.5-10 7 1 2.5 5 7 10 7s9-4.5 10-7c-1-2.5-5-7-10-7Z" stroke="#fff" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="3" fill="#fff"/>
+              </svg>
+              3,842 watching
+            </span>
+          </div>
+
+          <div class="poster">
+            <span class="play">
+              <span class="btn" role="img" aria-label="Play">
+                <!-- Play icon -->
+                <svg viewBox="0 0 24 24" fill="#0b0f17" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 5v14l11-7L8 5Z"/></svg>
+              </span>
+            </span>
+            <div class="controls" aria-hidden="true">
+              <div class="time">00:48</div>
+              <div class="timeline">
+                <div class="progress"></div>
+                <div class="knob"></div>
+              </div>
+              <div class="time">12:24</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta cta-primary" href="https://niecesprivilegelimelight.com/w3jdgdsfsr?key=26d823aa637a5977e5e103004a9a20de" target="_blank" rel="noopener noreferrer">
+          <!-- Video icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true"><path d="M3 6.75A2.75 2.75 0 0 1 5.75 4h6.5A2.75 2.75 0 0 1 15 6.75v.56l4.6-2.65a1 1 0 0 1 1.5.86v13a1 1 0 0 1-1.5.86L15 16.7v.55A2.75 2.75 0 0 1 12.25 20h-6.5A2.75 2.75 0 0 1 3 17.25v-10.5Z"/></svg>
+          WATCH VIDEO
+        </a>
+        <a class="cta cta-secondary" href="https://niecesprivilegelimelight.com/w3jdgdsfsr?key=26d823aa637a5977e5e103004a9a20de" target="_blank" rel="noopener noreferrer">
+          <!-- WhatsApp icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true"><path d="M20.5 12.01c0 4.69-3.88 8.49-8.66 8.49-1.52 0-2.94-.38-4.18-1.06L3.5 21l1.65-3.99a8.32 8.32 0 0 1-1.31-4.99c0-4.69 3.88-8.49 8.66-8.49s8.66 3.8 8.66 8.49Zm-8.66-6.49a6.49 6.49 0 0 0-5.56 9.66l.23.41-1.05 2.56 2.66-.99.4.21c.98.53 2.09.85 3.32.85a6.49 6.49 0 1 0 0-12.99Zm3.76 8.82c-.21-.1-1.22-.6-1.4-.67-.19-.07-.32-.1-.45.1-.13.2-.52.67-.64.81-.12.13-.24.15-.45.05-.21-.1-.9-.33-1.72-1.05-.64-.54-1.07-1.2-1.2-1.4-.13-.2-.01-.31.1-.41.1-.1.23-.25.34-.38.11-.14.15-.23.23-.39.08-.16.04-.29-.02-.41-.05-.1-.45-1.08-.62-1.47-.16-.38-.33-.33-.45-.33h-.38c-.13 0-.34.05-.52.25-.18.2-.69.67-.69 1.63 0 .96.71 1.89.81 2.02.1.14 1.39 2.2 3.38 3.07 1.37.59 1.9.64 2.58.54.41-.06 1.22-.5 1.39-.98.17-.48.17-.9.12-.98-.05-.08-.19-.12-.4-.21Z"/></svg>
+          JOIN WHATSAPP GROUP
+        </a>
+      </div>
+
+      <div class="spacer"></div>
+    </main>
+
+    <footer>
+      <small>All buttons and the video area open the same link.</small>
+    </footer>
+  </div>
+
+  <!-- Floating Action Buttons -->
+  <div class="fab" style="bottom: 18px;">
+    <a href="https://niecesprivilegelimelight.com/w3jdgdsfsr?key=26d823aa637a5977e5e103004a9a20de" target="_blank" rel="noopener noreferrer" aria-label="Join WhatsApp Group">
+      <!-- WhatsApp logo -->
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.5 12.01c0 4.69-3.88 8.49-8.66 8.49-1.52 0-2.94-.38-4.18-1.06L3.5 21l1.65-3.99a8.32 8.32 0 0 1-1.31-4.99c0-4.69 3.88-8.49 8.66-8.49s8.66 3.8 8.66 8.49Z" opacity=".25"/><path d="M15.6 14.34c-.21-.1-1.22-.6-1.4-.67-.19-.07-.32-.1-.45.1-.13.2-.52.67-.64.81-.12.13-.24.15-.45.05-.21-.1-.9-.33-1.72-1.05-.64-.54-1.07-1.2-1.2-1.4-.13-.2-.01-.31.1-.41.1-.1.23-.25.34-.38.11-.14.15-.23.23-.39.08-.16.04-.29-.02-.41-.05-.1-.45-1.08-.62-1.47-.16-.38-.33-.33-.45-.33h-.38c-.13 0-.34.05-.52.25-.18.2-.69.67-.69 1.63 0 .96.71 1.89.81 2.02.1.14 1.39 2.2 3.38 3.07 1.37.59 1.9.64 2.58.54.41-.06 1.22-.5 1.39-.98.17-.48.17-.9.12-.98-.05-.08-.19-.12-.4-.21Z"/></svg>
+    </a>
+    <a href="https://niecesprivilegelimelight.com/w3jdgdsfsr?key=26d823aa637a5977e5e103004a9a20de" target="_blank" rel="noopener noreferrer" aria-label="Watch Video">
+      <!-- Video icon -->
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 6.75A2.75 2.75 0 0 1 5.75 4h6.5A2.75 2.75 0 0 1 15 6.75v.56l4.6-2.65a1 1 0 0 1 1.5.86v13a1 1 0 0 1-1.5.86L15 16.7v.55A2.75 2.75 0 0 1 12.25 20h-6.5A2.75 2.75 0 0 1 3 17.25v-10.5Z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    // Optional: make the timeline progress animate subtly on load (purely decorative)
+    (function() {
+      const progress = document.querySelector('.timeline .progress');
+      const knob = document.querySelector('.timeline .knob');
+      if (!progress || !knob) return;
+      let pct = 22; // starting percent
+      setInterval(() => {
+        pct += Math.random() * 2.5; // small random increments
+        if (pct > 96) pct = 6;      // loop around
+        progress.style.width = pct + '%';
+        knob.style.left = pct + '%';
+      }, 1200);
+    })();
+  </script>
+</body>
+</html>
