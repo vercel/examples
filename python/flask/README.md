@@ -18,8 +18,8 @@ This example uses the Web Server Gateway Interface (WSGI) with Flask to handle r
 npm i -g vercel
 python -m venv .venv
 source .venv/bin/activate
-uv sync  # or alternatively pip install flask
-vercel dev
+uv sync  # or alternatively pip install flask gunicorn
+gunicorn main:app
 ```
 
 Your Flask application is now available at `http://localhost:3000`.

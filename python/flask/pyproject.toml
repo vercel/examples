@@ -3,5 +3,6 @@ name = "vercel-flask-starter"
 version = "0.1.0"
 requires-python = ">=3.9"
 dependencies = [
-  "flask>=3.1",
+  "flask~=3.1",
+  "gunicorn~=23.0.0
 ]
