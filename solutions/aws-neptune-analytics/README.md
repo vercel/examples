@@ -8,7 +8,7 @@ deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel
 
 # Next.js + AWS Neptune Analytics
 
-This is an example of a Next.js application using AWS Neptune Analytics for creating, reading, updating, and deleting graph nodes with OpenCypher queries.
+This is an example of a Next.js application using AWS Neptune Analytics for creating, reading, updating, and deleting graph nodes and edges with OpenCypher queries.
 
 ## How to Use
 
@@ -55,12 +55,21 @@ const client = new NeptuneGraphClient({})
 
 ## API Endpoints
 
-The application provides a RESTful API for graph node operations:
+The application provides a RESTful API for graph node and edge operations:
+
+### Node Operations
 
 - `GET /api/node?id={id}` - Retrieve a node by ID
 - `POST /api/node` - Create a new node
 - `PUT /api/node` - Update an existing node
 - `DELETE /api/node?id={id}` - Delete a node and its relationships
+
+### Edge Operations
+
+- `GET /api/edge?id={id}` - Retrieve an edge by ID
+- `POST /api/edge` - Create a new edge
+- `PUT /api/edge` - Update an existing edge
+- `DELETE /api/edge?id={id}` - Delete an edge
 
 ## Testing
 
@@ -90,4 +99,32 @@ curl -X PUT http://localhost:3000/api/node \
 
 ```bash
 curl -X DELETE "http://localhost:3000/api/node?id=user-123"
+```
+
+### Create Edge (POST)
+
+```bash
+curl -X POST http://localhost:3000/api/edge \
+  -d '{"fromId": "user-123", "toId": "user-456", "type": "FOLLOWS"}' \
+  -H "Content-type: application/json"
+```
+
+### Get Edge (GET)
+
+```bash
+curl "http://localhost:3000/api/edge?id=follows-001"
+```
+
+### Update Edge (PUT)
+
+```bash
+curl -X PUT http://localhost:3000/api/edge \
+  -d '{"id": "follows-001", "since": "2024-01-15", "strength": "strong"}' \
+  -H "Content-type: application/json"
+```
+
+### Delete Edge (DELETE)
+
+```bash
+curl -X DELETE "http://localhost:3000/api/edge?id=follows-001"
 ```
