@@ -1,0 +1,15 @@
+{
+  "name": "eslint-config-custom",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "@next/eslint-plugin-next": "15.1.6",
+    "@typescript-eslint/parser": "^8.22.0",
+    "@vercel/style-guide": "^6.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}
