@@ -21,6 +21,46 @@ This example consists of two separate microfrontends that can be deployed indepe
 
 ---
 
+## Getting Started
+
+### Prerequisites
+
+Ensure you have the following installed:
+
+- **Node.js 20.x** or later
+- **pnpm 9.4.0** (recommended package manager)
+- **Git** for version control
+
+### Local Development Setup
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/vercel/examples
+   cd microfrontends/nextjs-multi-zones
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   pnpm install
+   ```
+
+3. **Start the development environment**:
+   ```bash
+   pnpm dev
+   ```
+
+This command starts both applications simultaneously:
+
+- **Marketing app**: http://localhost:3000
+- **Documentation app**: http://localhost:3001 (automatically proxied through marketing app)
+
+4. **Access the application**:
+   Open http://localhost:3024 in your browser and navigate between different sections to see the microfrontend routing in action.
+
+---
+
 ## Why Multi-Zones?
 
 Multi-Zones, or splitting a single domain into multiple applications, allows you to build and iterate on different parts of an application independently. The benefits include:
@@ -28,7 +68,6 @@ Multi-Zones, or splitting a single domain into multiple applications, allows you
 - **Independent Deployments**: Deploy each microfrontend without affecting others
 - **Team Autonomy**: Enable teams to work independently while maintaining consistency
 - **Technology Flexibility**: Each microfrontend can use different technologies or versions
-- **Deployment Independence**: Deploy features without coordinating with other teams
 - **Fault Isolation**: Issues in one microfrontend don't affect others
 - **Incremental Upgrades**: Modernize parts of your application gradually
 
@@ -86,46 +125,6 @@ block-beta
    - Common TypeScript configurations
    - Shared ESLint rules and formatting standards
    - Ensures consistency across all applications
-
----
-
-## Getting Started
-
-### Prerequisites
-
-Ensure you have the following installed:
-
-- **Node.js 20.x** or later
-- **pnpm 9.4.0** (recommended package manager)
-- **Git** for version control
-
-### Local Development Setup
-
-1. **Clone the repository**:
-
-   ```bash
-   git clone https://github.com/vercel/examples
-   cd microfrontends/nextjs-multi-zones
-   ```
-
-2. **Install dependencies**:
-
-   ```bash
-   pnpm install
-   ```
-
-3. **Start the development environment**:
-   ```bash
-   pnpm dev
-   ```
-
-This command starts both applications simultaneously:
-
-- **Marketing app**: http://localhost:3000
-- **Documentation app**: http://localhost:3001 (automatically proxied through marketing app)
-
-4. **Access the application**:
-   Open http://localhost:3024 in your browser and navigate between different sections to see the microfrontend routing in action.
 
 ---
 
@@ -201,7 +200,6 @@ During development, both applications run simultaneously, and the routing happen
 ### 4. **Production Deployment**
 
 In production, each microfrontend is deployed independently to Vercel, and the routing configuration ensures requests are directed to the correct deployment.
-
 
 Learn more in the [routing documentation](https://vercel.com/docs/microfrontends/path-routing).
 
