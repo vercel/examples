@@ -16,3 +16,5 @@ solutions/testing @vercel/turbo-oss @goncy @lfades @lpalmes
 build-output-api @tootallnate @lfades @lpalmes
 
 vercel-tutor @chibicode
+
+microfrontends @kitfoster @lazarv @mknichel
