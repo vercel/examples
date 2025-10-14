@@ -1,17 +1,18 @@
-import { postHogAdapter, type PostHogEntities } from '@flags-sdk/posthog'
+import { flagsmithAdapter } from '@flags-sdk/flagsmith'
 import { flag } from 'flags/next'
 import { identify } from './lib/identify'
+import { IIdentity } from '@flags-sdk/flagsmith'
 
-export const showSummerBannerFlag = flag<boolean, PostHogEntities>({
+export const showSummerBannerFlag = flag<boolean, IIdentity>({
   key: 'summer_sale',
-  adapter: postHogAdapter.isFeatureEnabled(),
+  adapter: flagsmithAdapter.booleanValue(),
   defaultValue: false,
   identify,
 })
 
-export const showFreeDeliveryBannerFlag = flag<boolean, PostHogEntities>({
+export const showFreeDeliveryBannerFlag = flag<boolean, IIdentity>({
   key: 'free_delivery',
-  adapter: postHogAdapter.isFeatureEnabled(),
+  adapter: flagsmithAdapter.booleanValue(),
   defaultValue: false,
   identify,
 })

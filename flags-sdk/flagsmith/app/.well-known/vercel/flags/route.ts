@@ -1,5 +1,5 @@
 import { getProviderData, createFlagsDiscoveryEndpoint } from 'flags/next'
-import { getProviderData as getPostHogProviderData } from '@flags-sdk/posthog'
+import { getProviderData as getFlagSmithProviderData } from '@flags-sdk/flagsmith'
 import { mergeProviderData } from 'flags'
 import * as flags from '../../../../flags'
 
@@ -10,10 +10,10 @@ export const GET = createFlagsDiscoveryEndpoint(
     return mergeProviderData([
       // Data declared from Flags in Code
       getProviderData(flags),
-      // metadata from PostHog API using the default posthog adapter
-      getPostHogProviderData({
-        personalApiKey: process.env.POSTHOG_PERSONAL_API_KEY as string,
-        projectId: process.env.POSTHOG_PROJECT_ID as string,
+      // metadata from Flagsmith API using the default flagsmith adapter
+      getFlagSmithProviderData({
+        environmentKey: process.env.FLAGSMITH_ENVIRONMENT_ID as string,
+        projectId: process.env.FLAGSMITH_PROJECT_ID as string,
       }),
     ])
   },

@@ -6,8 +6,8 @@ import './globals.css'
 import { ExamplesBanner } from '@/components/banners/examples-banner'
 
 export const metadata: Metadata = {
-  title: 'PostHog - Flags SDK Example',
-  description: 'A Flags SDK ecommerce example using PostHog',
+  title: 'Flagsmith - Flags SDK Example',
+  description: 'A Flags SDK ecommerce example using Flagsmith',
 }
 
 export default function RootLayout({

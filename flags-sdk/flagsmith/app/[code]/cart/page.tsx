@@ -19,6 +19,8 @@ export default async function CartPage({
     productFlags
   )
 
+  console.log('freeDeliveryBanner', freeDeliveryBanner)
+
   return (
     <Main>
       <div className="lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">

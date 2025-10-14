@@ -1,5 +1,5 @@
 {
-  "name": "posthog",
+  "name": "flagsmith",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@flags-sdk/posthog": "0.1.0",
+    "@flags-sdk/flagsmith": "file:../../../flags/packages/adapter-flagsmith",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "2.2.0",
     "@tailwindcss/aspect-ratio": "0.4.2",
@@ -20,7 +20,8 @@
     "@vercel/edge-config": "1.4.0",
     "@vercel/toolbar": "0.1.33",
     "clsx": "2.1.1",
-    "flags": "^4.0.0",
+    "flags": "^4.0.1",
+    "flagsmith": "^9.3.2",
     "motion": "12.17.0",
     "nanoid": "5.1.2",
     "next": "15.4.0-canary.79",

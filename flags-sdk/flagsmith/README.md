@@ -1,21 +1,21 @@
-# PostHog Flags SDK Example
+# Flagsmith Flags SDK Example
 
-This example uses [PostHog](https://posthog.com) for feature flags with the [Flags SDK](https://flags-sdk.dev) along with the `@flags-sdk/posthog` [PostHog adapter](https://flags-sdk.dev/providers/posthog) and the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar).
+This example uses [Flagsmith](https://flagsmith.com) for feature flags with the [Flags SDK](https://flags-sdk.dev) along with the `@flags-sdk/flagsmith` [Flagsmith adapter](https://flags-sdk.dev/providers/flagsmith) and the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar).
 
 ## Demo
 
-[https://flags-sdk-posthog.vercel.app/](https://flags-sdk-posthog.vercel.app/)
+[https://flags-sdk-flagsmith.vercel.app/](https://flags-sdk-flagsmith.vercel.app/)
 
 ## How it works
 
-This demo uses two feature flags in PostHog to control the visibility of two banners on the page.
+This demo uses two feature flags in Flagsmith to control the visibility of two banners on the page.
 Both gates are configured to show/hide each banner 50% of the time.
 
-If you deploy your own and configure the feature flags in PostHog, you can also use the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar) to enabled/disabled the features.
+If you deploy your own and configure the feature flags in Flagsmith, you can also use the [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar) to enabled/disabled the features.
 
 ## Deploy this template
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk/posthog&env=FLAGS_SECRET&envDescription=The+FLAGS_SECRET+will+be+used+by+the+Flags+Explorer+to+securely+overwrite+feature+flags.+Must+be+32+random+bytes%2C+base64-encoded.+Use+the+generated+value+or+set+your+own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fworkflow-collaboration%2Ffeature-flags%2Fsupporting-feature-flags%23flags_secret-environment-variable&project-name=posthog-flags-sdk-example&repository-name=posthog-flags-sdk-example)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk/flagsmith&env=FLAGS_SECRET&env=FLAGSMITH_ENVIRONMENT_ID&env=FLAGSMITH_PROJECT_ID&envDescription=The+FLAGS_SECRET+will+be+used+by+the+Flags+Explorer+to+securely+overwrite+feature+flags.+Must+be+32+random+bytes%2C+base64-encoded.+Use+the+generated+value+or+set+your+own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fworkflow-collaboration%2Ffeature-flags%2Fsupporting-feature-flags%23flags_secret-environment-variable&project-name=flagsmith-flags-sdk-example&repository-name=flagsmith-flags-sdk-example)
 
 ### Step 1: Link the project
 
@@ -37,7 +37,7 @@ vercel env pull
 
 ### Step 3: Create Feature Flags
 
-Head over to [PostHog](posthog.com) and create the feature flags required by this template.
+Head over to [Flagsmith](https://flagsmith.com) and create the feature flags required by this template.
 
 Feature Flags:
 
