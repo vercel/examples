@@ -12,10 +12,10 @@ Demo URL: https://microfrontends-single-spa-module-federation-root.labs.vercel.d
 
 Deploy each microfrontend independently to experience the full power of distributed development:
 
-| Application | Description                                                           | Deploy                                                                                                                                                                                                                                 |
-| ----------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Root        | Main shell application orchestrating single-spa and Module Federation | [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples&project-name=single-spa-root-microfrontend&root-directory=microfrontends/single-spa/apps/root)       |
-| Content     | Content microfrontend exposing landing page components                | [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples&project-name=single-spa-content-microfrontend&root-directory=microfrontends/single-spa/apps/content) |
+| Application | Description                                                           | Deploy                                                                                                                                                                                                                                               |
+| ----------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Root        | Main shell application orchestrating single-spa and Module Federation | [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https:%2F%2Fgithub.com%2Fvercel%2Fexamples&project-name=single-spa-root-microfrontend&root-directory=microfrontends%2Fsingle-spa%2Fapps%2Froot)       |
+| Content     | Content microfrontend exposing landing page components                | [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https:%2F%2Fgithub.com%2Fvercel%2Fexamples&project-name=single-spa-content-microfrontend&root-directory=microfrontends%2Fsingle-spa%2Fapps%2Fcontent) |
 
 ## Getting Started
 
@@ -40,8 +40,8 @@ Follow these steps to set up the example on your local machine. Make sure you ha
 1. **Clone the repository:**
 
    ```sh
-   git clone https://github.com/vercel-labs/microfrontends-single-spa-module-federation.git
-   cd microfrontends-single-spa-module-federation
+   git clone https://github.com/vercel/examples.git
+   cd microfrontends/single-spa
    ```
 
 2. **Install dependencies:**
@@ -60,7 +60,6 @@ Follow these steps to set up the example on your local machine. Make sure you ha
 
    - Root app
    - Content app
-   - Navigation app
 
 4. **Access the application:**
 
@@ -71,7 +70,7 @@ Follow these steps to set up the example on your local machine. Make sure you ha
 1. **Root Application (`apps/root/`)**
 
    - Acts as the shell application and single-spa orchestrator
-   - Dynamically imports components from content and navigation remotes
+   - Dynamically imports components from content remotes
    - Manages the overall application layout and routing with single-spa
    - Configures federated remotes and manages dependencies
 
