@@ -1,0 +1,27 @@
+{
+  "name": "saas-microservices",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "build:api-dashboard": "turbo run build -F api-dashboard",
+    "build:api-users": "turbo run build -F api-users",
+    "build:dashboard": "turbo run build -F dashboard",
+    "dev": "turbo run dev",
+    "dev:api-dashboard": "turbo run dev -F api-dashboard",
+    "dev:api-users": "turbo run dev -F api-users",
+    "dev:dashboard": "turbo run dev -F dashboard",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.30",
+    "prettier": "^3.6.2",
+    "turbo": "^2.5.5"
+  },
+  "packageManager": "pnpm@10.14.0",
+  "engines": {
+    "node": "22.x",
+    "pnpm": "10.x"
+  }
+}

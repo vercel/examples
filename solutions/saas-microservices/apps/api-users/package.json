@@ -1,0 +1,17 @@
+{
+  "name": "api-users",
+  "type": "module",
+  "scripts": {
+    "dev": "srvx --port $(microfrontends port)",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "hono": "^4.8.9"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "@vercel/microfrontends": "2.0.0",
+    "srvx": "^0.8.6",
+    "typescript": "^5.8.3"
+  }
+}
