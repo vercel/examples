@@ -126,7 +126,7 @@ function generateRandomActivity() {
   const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
   const randomTime = new Date(
     thirtyDaysAgo.getTime() +
-      Math.random() * (now.getTime() - thirtyDaysAgo.getTime())
+      Math.random() * (now.getTime() - thirtyDaysAgo.getTime()),
   );
 
   return {
@@ -140,7 +140,7 @@ function generateRandomActivity() {
 export default defineEventHandler((event) => {
   const activities = Array.from({ length: 20 }, () => generateRandomActivity());
   activities.sort(
-    (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+    (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
   );
 
   return {

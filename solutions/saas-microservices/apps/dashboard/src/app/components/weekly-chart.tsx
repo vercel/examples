@@ -192,7 +192,7 @@ export function WeeklyChart({ chartData }: WeeklyChartProps) {
                   (data, index) =>
                     `L ${90 + index * 50 + 17.5} ${
                       180 - (data.value / maxValue) * 140
-                    }`
+                    }`,
                 )
                 .join(" ")}`}
               fill="none"
