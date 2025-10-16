@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@flags-sdk/flagsmith':
-        specifier: file:../../../flags/packages/adapter-flagsmith
-        version: file:../../../flags/packages/adapter-flagsmith
+        specifier: link:../../../flags/packages/adapter-flagsmith
+        version: link:../../../flags/packages/adapter-flagsmith
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -140,9 +140,6 @@ packages:
   '@eslint/plugin-kit@0.2.7':
     resolution: {integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@flags-sdk/flagsmith@file:../../../flags/packages/adapter-flagsmith':
-    resolution: {directory: ../../../flags/packages/adapter-flagsmith, type: directory}
 
   '@floating-ui/core@1.6.9':
     resolution: {integrity: sha512-uMXCuQ3BItDUbAMhIXw7UPXRfAlOAvZzdK9BWpE60MCn+Svt3aLn9jsPTi/WNGlRUu2uI0v5S7JiIUsbsvh3fw==}
@@ -2212,10 +2209,6 @@ snapshots:
     dependencies:
       '@eslint/core': 0.12.0
       levn: 0.4.1
-
-  '@flags-sdk/flagsmith@file:../../../flags/packages/adapter-flagsmith':
-    dependencies:
-      flagsmith: 9.3.2
 
   '@floating-ui/core@1.6.9':
     dependencies:
