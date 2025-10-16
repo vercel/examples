@@ -1,7 +1,7 @@
 import type { Identify } from 'flags'
 import { dedupe } from 'flags/next'
 import { getStableId } from './get-stable-id'
-import { IIdentity } from 'flagsmith/types'
+import type { IIdentity } from 'flagsmith/types'
 
 export const identify = dedupe(async () => {
   const stableId = await getStableId()
@@ -10,6 +10,6 @@ export const identify = dedupe(async () => {
   // but Flagsmith expects you to return a singular string as the identity.
   //
   // See https://docs.flagsmith.com/basic-features/managing-identities
-
+  console.log('stableId', stableId)
   return stableId.value
 }) satisfies Identify<IIdentity>
