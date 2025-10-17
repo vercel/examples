@@ -6,8 +6,6 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 import { createGraphQLClient, graphql } from "@/lib/graphql";
 
-export const dynamic = "force-static";
-
 const { getClient } = registerUrql(createGraphQLClient);
 
 const GET_PAGE_BY_SLUG = graphql(`
@@ -59,6 +57,10 @@ export async function generateMetadata({
       title: "Page Not Found",
     };
   }
+}
+
+export function generateStaticParams() {
+  return [];
 }
 
 interface PageProps {
