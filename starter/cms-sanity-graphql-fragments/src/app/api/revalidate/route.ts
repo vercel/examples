@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
 
     // Verify webhook secret for security
     const secret = request.nextUrl.searchParams.get("secret");
-    if (secret !== process.env.SANITY_REVALIDATE_SECRET) {
+    if (secret == null || secret !== process.env.SANITY_REVALIDATE_SECRET) {
       return NextResponse.json({ message: "Invalid secret" }, { status: 401 });
     }
 
