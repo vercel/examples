@@ -67,7 +67,7 @@ export function Search({ searchPokedex }: SearchProps) {
               <div className="text-sm text-gray-800">
                 {pokemon.similarity ? (
                   <div className="text-xs font-mono p-0.5 rounded bg-zinc-100">
-                    {pokemon.similarity.toFixed(3)}
+                    {(1 - pokemon.similarity).toFixed(3)}
                   </div>
                 ) : (
                   <div />
