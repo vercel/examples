@@ -1,0 +1,37 @@
+<div style="text-align: center; padding: 2rem 0;">
+  <h2 style="color: #667eea; font-size: 2rem; margin-bottom: 1rem;">
+    <%= @message %>
+  </h2>
+  
+  <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">
+    Your Rails application is up and running!
+  </p>
+  
+  <div style="background: #f8f9fa; padding: 2rem; border-radius: 8px; margin: 2rem 0;">
+    <h3 style="margin-bottom: 1rem;">Getting Started</h3>
+    <ul style="list-style: none; text-align: left; max-width: 600px; margin: 0 auto;">
+      <li style="padding: 0.5rem 0; border-bottom: 1px solid #ddd;">
+        ✅ Rails <%= Rails.version %> is installed and running
+      </li>
+      <li style="padding: 0.5rem 0; border-bottom: 1px solid #ddd;">
+        ✅ Server started successfully on port <%= ENV.fetch('PORT', 3000) %>
+      </li>
+      <li style="padding: 0.5rem 0; border-bottom: 1px solid #ddd;">
+        ✅ Routing is configured in <code>config/routes.rb</code>
+      </li>
+      <li style="padding: 0.5rem 0;">
+        ✅ Views are rendering with ERB templates
+      </li>
+    </ul>
+  </div>
+
+  <div style="margin: 2rem 0;">
+    <p style="color: #666;">Current server time: <strong><%= @timestamp.strftime('%B %d, %Y at %I:%M %p') %></strong></p>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <p style="color: #999; font-size: 0.95rem;">
+      Start building by editing <code style="background: #e9ecef; padding: 0.25rem 0.5rem; border-radius: 3px;">app/controllers/home_controller.rb</code> and <code style="background: #e9ecef; padding: 0.25rem 0.5rem; border-radius: 3px;">app/views/home/index.html.erb</code>
+    </p>
+  </div>
+</div>

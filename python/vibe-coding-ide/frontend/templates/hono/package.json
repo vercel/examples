@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch server.ts",
+    "start": "node --loader tsx server.ts"
+  },
+  "dependencies": {
+    "hono": "latest",
+    "@hono/node-server": "latest"
+  },
+  "devDependencies": {
+    "tsx": "latest"
+  }
+}
