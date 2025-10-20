@@ -664,7 +664,7 @@ function App() {
                     tmpl?.suggestions && tmpl.suggestions.length > 0
                       ? tmpl!.suggestions
                       : [
-                          'Create a minimal HTTP API scaffold (FastAPI/Express/Go/Rails) and run',
+                          'Create a minimal Python API with FastAPI and run',
                           'Add /health and /time endpoints with basic request logging and run',
                           'Implement /text/wordcount that accepts JSON and returns counts and run',
                         ]
