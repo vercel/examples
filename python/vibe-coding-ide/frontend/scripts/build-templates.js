@@ -5,12 +5,12 @@
  * This avoids Turbopack/Next dev server having to process the entire templates tree.
  */
 
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs')
+const path = require('path')
 
-const ROOT = path.join(__dirname, '..');
-const TEMPLATES_DIR = path.join(ROOT, 'templates');
-const OUTPUT_FILE = path.join(ROOT, 'src', 'templates-data.json');
+const ROOT = path.join(__dirname, '..')
+const TEMPLATES_DIR = path.join(ROOT, 'templates')
+const OUTPUT_FILE = path.join(ROOT, 'src', 'templates-data.json')
 
 const TEMPLATE_METADATA = [
   {
@@ -20,9 +20,21 @@ const TEMPLATE_METADATA = [
     directory: 'blank',
     defaultActiveFile: 'README.md',
     suggestions: [
-      'Create a minimal HTTP API scaffold (FastAPI/Express/Go/Rails) and run',
+      'Create a minimal Python API with FastAPI and run',
       'Add /health and /time endpoints with basic request logging and run',
       'Implement /text/wordcount that accepts JSON and returns counts and run',
+    ],
+  },
+  {
+    id: 'react_fastapi',
+    label: 'Next.js + FastAPI',
+    description: 'Decoupled frontend (Next.js) and backend (FastAPI)',
+    directory: 'react-fastapi',
+    defaultActiveFile: 'backend/main.py',
+    suggestions: [
+      'Add FastAPI /todos and a Next.js page to list/add todos; connect API and run',
+      'Implement FastAPI /math/fibonacci?n=20 and display results in Next.js and run',
+      'Add FastAPI logging, /health, /time; add a Next.js status page and run',
     ],
   },
   {
@@ -116,99 +128,68 @@ const TEMPLATE_METADATA = [
     directory: 'react_stack',
     defaultActiveFile: 'src/App.tsx',
   },
-  {
-    id: 'go',
-    label: 'Go API',
-    description: 'Minimal Go HTTP server',
-    directory: 'go',
-    defaultActiveFile: 'main.go',
-    suggestions: [
-      'Run this code.',
-      'Add /todos API with in-memory CRUD (GET, POST, DELETE) and run',
-      'Implement /math/fibonacci?n=20 that returns the sequence as JSON and run',
-      'Add request logging middleware plus /health and /time endpoints and run',
-    ],
-  },
-  {
-    id: 'rails',
-    label: 'Ruby on Rails',
-    description: 'Full-featured Rails 7.1 app with MVC architecture',
-    directory: 'rails',
-    defaultActiveFile: 'README.md',
-    suggestions: [
-      'Run this code.',
-      'Create a todo-app.',
-      'Build a blog app with authentication where users can create, like, and comment on posts and follow other users.',
-      'Create a fully functional Hacker News clone that actually looks like Hacker News.',
-    ],
-  },
-  {
-    id: 'react_fastapi',
-    label: 'Next.js + FastAPI',
-    description: 'Decoupled frontend (Next.js) and backend (FastAPI)',
-    directory: 'react-fastapi',
-    defaultActiveFile: 'backend/main.py',
-    suggestions: [
-      'Add FastAPI /todos and a Next.js page to list/add todos; connect API and run',
-      'Implement FastAPI /math/fibonacci?n=20 and display results in Next.js and run',
-      'Add FastAPI logging, /health, /time; add a Next.js status page and run',
-    ],
-  },
-];
+]
 
-const BINARY_IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp'];
+const BINARY_IMAGE_EXTENSIONS = [
+  '.png',
+  '.jpg',
+  '.jpeg',
+  '.gif',
+  '.webp',
+  '.bmp',
+]
 
 function isBinaryImage(filename) {
-  const ext = path.extname(filename).toLowerCase();
-  return BINARY_IMAGE_EXTENSIONS.includes(ext);
+  const ext = path.extname(filename).toLowerCase()
+  return BINARY_IMAGE_EXTENSIONS.includes(ext)
 }
 
 function readDirRecursive(dir, baseDir = dir) {
-  const files = {};
+  const files = {}
 
   function walk(currentDir) {
-    const entries = fs.readdirSync(currentDir, { withFileTypes: true });
+    const entries = fs.readdirSync(currentDir, { withFileTypes: true })
 
     for (const entry of entries) {
-      const fullPath = path.join(currentDir, entry.name);
-      const relativePath = path.relative(baseDir, fullPath).replace(/\\/g, '/');
+      const fullPath = path.join(currentDir, entry.name)
+      const relativePath = path.relative(baseDir, fullPath).replace(/\\/g, '/')
 
       if (entry.isDirectory()) {
-        walk(fullPath);
+        walk(fullPath)
       } else if (entry.isFile()) {
         // Skip metadata file if present
-        if (entry.name === 'index.ts') continue;
+        if (entry.name === 'index.ts') continue
 
         if (isBinaryImage(entry.name)) {
           // For binary images, store as base64 data URL
-          const buffer = fs.readFileSync(fullPath);
-          const base64 = buffer.toString('base64');
-          const ext = path.extname(entry.name).slice(1);
-          files[relativePath] = `data:image/${ext};base64,${base64}`;
+          const buffer = fs.readFileSync(fullPath)
+          const base64 = buffer.toString('base64')
+          const ext = path.extname(entry.name).slice(1)
+          files[relativePath] = `data:image/${ext};base64,${base64}`
         } else {
           // For text files, store as raw string
-          files[relativePath] = fs.readFileSync(fullPath, 'utf-8');
+          files[relativePath] = fs.readFileSync(fullPath, 'utf-8')
         }
       }
     }
   }
 
-  walk(dir);
-  return files;
+  walk(dir)
+  return files
 }
 
 function buildTemplates() {
-  const templates = [];
+  const templates = []
 
   for (const meta of TEMPLATE_METADATA) {
-    const templateDir = path.join(TEMPLATES_DIR, meta.directory);
+    const templateDir = path.join(TEMPLATES_DIR, meta.directory)
 
     if (!fs.existsSync(templateDir)) {
-      console.warn(`Warning: Template directory not found: ${templateDir}`);
-      continue;
+      console.warn(`Warning: Template directory not found: ${templateDir}`)
+      continue
     }
 
-    const files = readDirRecursive(templateDir);
+    const files = readDirRecursive(templateDir)
 
     templates.push({
       id: meta.id,
@@ -217,27 +198,30 @@ function buildTemplates() {
       files,
       defaultActiveFile: meta.defaultActiveFile,
       suggestions: meta.suggestions,
-    });
+    })
   }
 
-  return templates;
+  return templates
 }
 
 function ensureDirFor(filePath) {
-  const dir = path.dirname(filePath);
-  fs.mkdirSync(dir, { recursive: true });
+  const dir = path.dirname(filePath)
+  fs.mkdirSync(dir, { recursive: true })
 }
 
 // Main execution
 try {
-  console.log('Building templates...');
-  const templates = buildTemplates();
-  ensureDirFor(OUTPUT_FILE);
-  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(templates, null, 2));
-  console.log(`✓ Generated ${path.relative(ROOT, OUTPUT_FILE)} with ${templates.length} templates`);
+  console.log('Building templates...')
+  const templates = buildTemplates()
+  ensureDirFor(OUTPUT_FILE)
+  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(templates, null, 2))
+  console.log(
+    `✓ Generated ${path.relative(ROOT, OUTPUT_FILE)} with ${
+      templates.length
+    } templates`
+  )
 } catch (err) {
-  console.error('Failed to build templates-data.json');
-  console.error(err && err.stack ? err.stack : err);
-  process.exitCode = 1;
+  console.error('Failed to build templates-data.json')
+  console.error(err && err.stack ? err.stack : err)
+  process.exitCode = 1
 }
-
