@@ -44,7 +44,7 @@ with open(os.path.join(os.path.dirname(__file__), "_prompt.md"), "r") as f:
 load_dotenv()
 
 
-def create_ide_agent(model: str | None = None) -> Agent:
+def create_ide_agent(model: str | None = None, oidc_token: str | None = None) -> Agent:
     """Factory to construct the IDE Agent with an optional model override.
 
     If model is provided, attempt to set it on the Agent. If the underlying
@@ -71,7 +71,9 @@ def create_ide_agent(model: str | None = None) -> Agent:
             sandbox_show_preview,
         ],
     }
-    os.environ["VERCEL_AI_GATEWAY_API_KEY"] = os.getenv("VERCEL_AI_GATEWAY_API_KEY") or os.getenv("AI_GATEWAY_API_KEY")
+    os.environ["VERCEL_AI_GATEWAY_API_KEY"] = os.getenv("VERCEL_AI_GATEWAY_API_KEY") or os.getenv("AI_GATEWAY_API_KEY", "")
+    os.environ["VERCEL_OIDC_TOKEN"] = oidc_token or os.getenv("VERCEL_OIDC_TOKEN", "")
+
     if model:
         try:
             formatted_model = f"litellm/vercel_ai_gateway/{model}"
@@ -81,12 +83,8 @@ def create_ide_agent(model: str | None = None) -> Agent:
     return Agent(**base_kwargs)
 
 
-# Default agent used when no model is specified
-ide_agent = create_ide_agent()
-
-
 async def run_agent_flow(
-    payload: dict[str, Any], task_id: str
+    payload: dict[str, Any], task_id: str, oidc_token: str | None = None
 ) -> AsyncGenerator[str, None]:
     """Run the agent and stream tool progress as SSE chunks."""
     try:
@@ -142,7 +140,7 @@ async def run_agent_flow(
         pass
 
     selected_model = payload.get("model")
-    agent_instance = create_ide_agent(selected_model) if selected_model else ide_agent
+    agent_instance = create_ide_agent(selected_model, oidc_token)
 
     run_task = asyncio.create_task(
         Runner.run(
@@ -225,7 +223,7 @@ async def run_agent_flow(
 
 
 async def resume_agent_flow(
-    base: dict[str, Any], task_id: str, exec_result: str
+    base: dict[str, Any], task_id: str, exec_result: str, oidc_token: str | None = None
 ) -> AsyncGenerator[str, None]:
     """Resume the agent run after code execution and stream SSE chunks.
 
@@ -283,7 +281,7 @@ async def resume_agent_flow(
     )
 
     selected_model = base.get("model")
-    agent_instance = create_ide_agent(selected_model) if selected_model else ide_agent
+    agent_instance = create_ide_agent(selected_model, oidc_token)
 
     try:
         run_result = await Runner.run(

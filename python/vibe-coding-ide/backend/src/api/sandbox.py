@@ -1,20 +1,12 @@
-import asyncio
+from typing import Any
 import os
-from typing import Any, AsyncGenerator
-
+import httpx
 from pydantic import BaseModel
 from fastapi import APIRouter, HTTPException
-from fastapi.responses import StreamingResponse
-
+from vercel.oidc.aio import get_vercel_oidc_token
 from vercel.sandbox import AsyncSandbox as Sandbox
 
-from src.auth import make_stream_token, read_stream_token
 from src.agent.utils import make_ignore_predicate
-from src.sse import (
-    SSE_HEADERS,
-    sse_format,
-    emit_event,
-)
 from src.run_store import get_user_project_sandboxes
 
 
@@ -41,8 +33,6 @@ async def probe_url(url: str) -> dict[str, Any]:
     Some servers do not support HEAD; in that case, fall back to a
     streamed GET to obtain only the status code.
     """
-    import httpx
-
     status_code: int | None = None
     try:
         async with httpx.AsyncClient(follow_redirects=True, timeout=8.0) as client:
@@ -68,6 +58,9 @@ async def sync_existing_sandbox(request: SyncRequest) -> dict[str, Any]:
 
     This enables a project-level "Sync sandbox" action to refresh multiple live sandboxes at once.
     """
+    oidc_token = await get_vercel_oidc_token()
+    os.environ["VERCEL_OIDC_TOKEN"] = oidc_token
+
     mappings = {}
     mappings = await get_user_project_sandboxes(request.user_id, request.project_id)
     if not mappings:

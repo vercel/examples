@@ -2,6 +2,7 @@ import os
 from typing import Any
 import httpx
 from fastapi import APIRouter
+from vercel.oidc.aio import get_vercel_oidc_token
 
 
 router = APIRouter(prefix="/api", tags=["models"])
@@ -23,9 +24,10 @@ ALLOWED_MODELS: list[str] = [
 
 @router.get("/models")
 async def list_models() -> dict[str, Any]:
+    oidc_token = await get_vercel_oidc_token()
     result = list(ALLOWED_MODELS)
 
-    api_key = os.getenv("AI_GATEWAY_API_KEY") or os.getenv("VERCEL_OIDC_TOKEN")
+    api_key = os.getenv("VERCEL_AI_GATEWAY_API_KEY", oidc_token)
     gateway_base = (
         os.getenv("AI_GATEWAY_BASE_URL")
         or os.getenv("OPENAI_BASE_URL")

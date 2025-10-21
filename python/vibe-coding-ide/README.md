@@ -5,8 +5,11 @@ First, run the backend development server:
 ```bash
 cd backend
 
-cat .env.template > .env
-# Set your env variables
+vercel link
+vercel env pull
+
+# or manually set env vars
+# cat .env.example > .env
 
 python -m venv .venv
 source .venv/bin/activate

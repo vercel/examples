@@ -7,6 +7,7 @@ from typing import Any, AsyncGenerator
 from pydantic import BaseModel
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
+from vercel.oidc.aio import get_vercel_oidc_token
 
 from src.agent.agent import run_agent_flow, resume_agent_flow
 from src.auth import make_stream_token, read_stream_token
@@ -72,6 +73,7 @@ async def create_run(request: RunRequest) -> dict[str, Any]:
 
 @router.get("/{run_id}/events")
 async def run_events(run_id: str, token: str):
+    oidc_token = await get_vercel_oidc_token()
     token_payload = read_stream_token(token)
     if token_payload.get("run_id") != run_id:
         raise HTTPException(status_code=400, detail="Token does not match run id")
@@ -87,10 +89,11 @@ async def run_events(run_id: str, token: str):
 
     async def event_generator() -> AsyncGenerator[str, None]:
         try:
-            async for chunk in run_agent_flow(payload, run_id):
+            async for chunk in run_agent_flow(payload, run_id, oidc_token=oidc_token):
                 yield chunk
         except Exception as e:
             logger.error("run_events[%s] error: %s", run_id, str(e))
+            logger.error(traceback.format_exc(limit=10))
             tb = traceback.format_exc(limit=10)
             yield sse_format(
                 emit_event(run_id, "run_log", data=f"stream exception: {str(e)}\n{tb}")
@@ -102,6 +105,7 @@ async def run_events(run_id: str, token: str):
 
 @router.get("/{run_id}/resume")
 async def resume_run(run_id: str, token: str, result: str):
+    oidc_token = await get_vercel_oidc_token()
     token_payload = read_stream_token(token)
     if token_payload.get("run_id") != run_id:
         raise HTTPException(status_code=400, detail="Token does not match run id")
@@ -117,7 +121,7 @@ async def resume_run(run_id: str, token: str, result: str):
 
     async def event_generator() -> AsyncGenerator[str, None]:
         try:
-            async for chunk in resume_agent_flow(base, run_id, result):
+            async for chunk in resume_agent_flow(base, run_id, result, oidc_token=oidc_token):
                 yield chunk
         except Exception as e:
             yield sse_format(emit_event(run_id, "run_failed", error=str(e)))
