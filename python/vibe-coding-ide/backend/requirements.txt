@@ -1,0 +1,9 @@
+python-dotenv==1.0.0
+pydantic
+httpx==0.27.2
+httpx-sse==0.4.0
+fastapi==0.115.12
+uvicorn[standard]==0.34.2
+openai-agents[litellm]
+PyJWT==2.9.0
+vercel>=0.3.2
