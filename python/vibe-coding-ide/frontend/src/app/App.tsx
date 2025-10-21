@@ -380,7 +380,7 @@ function App() {
                   projects.find((p) => p.id === activeProjectId)?.name ||
                   'project'
                 ).replace(/\s+/g, '_')
-                const folder = zip.folder(rootName)
+                const folder = zip.folder(rootName) ?? zip
                 // Include all current project files; proposals are suggestions only
                 Object.entries(project).forEach(([path, content]) => {
                   const normalized = (path || '').replace(/^\//, '')
