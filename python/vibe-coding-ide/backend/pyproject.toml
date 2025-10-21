@@ -14,7 +14,7 @@ dependencies = [
   "uvicorn",
   "openai-agents[litellm]",
   "PyJWT==2.9.0",
-  "vercel==0.3.2",
+  "vercel>=0.3.2",
   "httpx",
   "httpx-sse",
   "ruff>=0.14.0",

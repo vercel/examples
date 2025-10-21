@@ -6,5 +6,4 @@ fastapi==0.115.12
 uvicorn[standard]==0.34.2
 openai-agents[litellm]
 PyJWT==2.9.0
-vercel-sandbox==0.0.2
-vercel-sdk==0.0.7
+vercel>=0.3.2
