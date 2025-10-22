@@ -1,6 +1,8 @@
 declare const process: { env: Record<string, string | undefined> }
 const env = process.env
 
+// Normalize API base: supports env with or without '/api' suffix.
+// If absolute and path empty -> '<origin>/api'; otherwise preserve path; trims trailing slashes.
 export const API_BASE = (() => {
   const raw = (
     env.NEXT_PUBLIC_API_URL ||
