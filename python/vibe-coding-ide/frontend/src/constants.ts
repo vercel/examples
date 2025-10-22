@@ -1,8 +1,25 @@
 declare const process: { env: Record<string, string | undefined> }
 const env = process.env
 
-export const API_BASE =
-  env.NEXT_PUBLIC_API_URL || env.NEXT_PUBLIC_API_BASE_URL || '/api'
+export const API_BASE = (() => {
+  const raw = (
+    env.NEXT_PUBLIC_API_URL ||
+    env.NEXT_PUBLIC_API_BASE_URL ||
+    ''
+  ).trim()
+  if (!raw) return '/api'
+  try {
+    const u = new URL(raw)
+    const pathname = u.pathname.replace(/\/+$/, '')
+    if (pathname === '' || pathname === '/') return `${u.origin}/api`
+    return `${u.origin}${pathname}`
+  } catch {
+    const trimmed = raw.replace(/\/+$/, '')
+    if (trimmed === '' || trimmed === '/') return '/api'
+    if (/^\/api(\/|$)/.test(trimmed)) return trimmed
+    return trimmed
+  }
+})()
 
 // Prefer a direct SSE origin to avoid proxy buffering (e.g., Next rewrites can buffer SSE)
 // If NEXT_PUBLIC_SSE_ORIGIN is not set, try to infer it from API_BASE when absolute;
