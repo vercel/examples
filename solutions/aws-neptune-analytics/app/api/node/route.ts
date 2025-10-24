@@ -104,7 +104,7 @@ export async function PUT(request: Request) {
     if (error) return error
 
     const result = await executeQuery(
-      'MATCH(n) WHERE id(n) SET n = $PROPERTIES RETURN n',
+      'MATCH(n {`~id`: $NODE_ID}) SET n = $PROPERTIES RETURN n',
       { PROPERTIES: body, NODE_ID: body.id }
     )
 
