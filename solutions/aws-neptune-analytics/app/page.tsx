@@ -4,7 +4,6 @@ import { useState } from 'react'
 
 export default function Home() {
   const [getNodeId, setGetNodeId] = useState('')
-  const [createNodeId, setCreateNodeId] = useState('')
   const [createNodeName, setCreateNodeName] = useState('')
   const [createNodeType, setCreateNodeType] = useState('')
   const [updateNodeId, setUpdateNodeId] = useState('')
@@ -40,7 +39,7 @@ export default function Home() {
       const response = await fetch('/api/node', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: createNodeId, name: createNodeName, type: createNodeType })
+        body: JSON.stringify({ name: createNodeName, type: createNodeType })
       })
       const data = await response.json()
       setNodeResult(JSON.stringify(data, null, 2))
@@ -145,13 +144,6 @@ export default function Home() {
 
       <form onSubmit={createNode} style={{ marginBottom: '30px' }}>
         <h2>Create Node</h2>
-        <input
-          type="text"
-          value={createNodeId}
-          onChange={(e) => setCreateNodeId(e.target.value)}
-          placeholder="Node ID"
-          required
-        />
         <input
           type="text"
           value={createNodeName}

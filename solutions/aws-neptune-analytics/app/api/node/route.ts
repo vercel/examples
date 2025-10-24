@@ -85,12 +85,9 @@ export async function POST(request: Request) {
   try {
     const body = await request.json()
 
-    const error = validateBody(body)
-    if (error) return error
-
     const result = await executeQuery(
-      'CREATE (n {`~id`: $NODE_ID}) SET n += $PROPERTIES RETURN n',
-      { PROPERTIES: body, NODE_ID: body.id }
+      'CREATE (n) SET n += $PROPERTIES RETURN n',
+      { PROPERTIES: body }
     )
 
     return NextResponse.json(result, { status: 201 })
@@ -107,7 +104,7 @@ export async function PUT(request: Request) {
     if (error) return error
 
     const result = await executeQuery(
-      'MATCH(n {`~id`: $NODE_ID}) SET n = $PROPERTIES RETURN n',
+      'MATCH(n) WHERE id(n) SET n = $PROPERTIES RETURN n',
       { PROPERTIES: body, NODE_ID: body.id }
     )
 
