@@ -85,3 +85,13 @@ Now that your Vercel application is configured with Gitlab CI/CD, you can try ou
 - When the merge request is merged, a Production build is created and deployed
 
 Every merge request will now automatically have a Preview Deployment attached. If the merge request needs to be rolled back, you can revert and merge the MR and Vercel will start a new Production build back to the old git state.
+
+## Purpose and Usage
+
+The `ci-cd/gitlab-cicd` directory contains configuration files and scripts for setting up and using Gitlab CI/CD as your CI/CD provider with Vercel. These files help you automate the process of building, testing, and deploying your Vercel applications using Gitlab CI/CD.
+
+## Files
+
+- `.gitignore`: Specifies files and directories that should be ignored by Git.
+- `.gitlab-ci.yml`: The main configuration file for Gitlab CI/CD. It defines the pipeline steps, triggers, and scripts to build and deploy your Vercel application.
+- `index.html`: A sample HTML file to demonstrate the usage of Gitlab CI/CD with Vercel.
