@@ -1,13 +1,332 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Cinematography Studio OS — Local Dashboard</title>
+<meta name="theme-color" content="#0b0b0d"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0d; --bg-soft:#141418; --card:#16161c;
+    --txt:#f5f5f7; --muted:#b7b7c2; --gold:#d4af37; --ring:rgba(212,175,55,.35);
+    --good:#21c25e; --warn:#f59e0b; --bad:#ef4444; --border:#26262c;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; color:var(--txt);
+    background: radial-gradient(1200px 800px at 80% -10%, rgba(212,175,55,.06), transparent 60%),
+                radial-gradient(1000px 700px at -10% 110%, rgba(212,175,55,.06), transparent 60%),
+                var(--bg);
+  }
+  .wrap{max-width:1200px; margin:0 auto; padding:24px}
+  .header{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:20px}
+  .brand{display:flex; align-items:center; gap:12px}
+  .brand .logo{width:40px; height:40px; border-radius:10px; background:linear-gradient(135deg,#1f1f24,#2a2a30);
+    box-shadow: inset 0 0 0 1px var(--border), 0 0 0 8px rgba(212,175,55,.05);}
+  .brand h1{font-size:18px; margin:0; letter-spacing:0.2px}
+  .sub{color:var(--muted); font-size:12px; margin-top:-6px; margin-bottom:10px}
+  .grid{display:grid; gap:16px}
+  @media(min-width:980px){ .grid{grid-template-columns: 1.15fr .85fr} }
+  .card{background:linear-gradient(180deg, rgba(255,255,255,.03), transparent 60%), var(--card);
+    border:1px solid var(--border); border-radius:16px; padding:16px; box-shadow: 0 8px 24px rgba(0,0,0,.25);}
+  .card h2{margin:0 0 12px; font-size:16px; letter-spacing:.2px}
+  .modules{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
+  @media(min-width:700px){ .modules{grid-template-columns:repeat(4,minmax(0,1fr));} }
+  .module{
+    border:1px solid var(--border); border-radius:14px; padding:12px; background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%);
+    display:flex; flex-direction:column; gap:8px; position:relative; overflow:hidden;
+  }
+  .module .title{font-weight:600; font-size:13px; line-height:1.25}
+  .progress{height:8px; background:#1f1f25; border-radius:8px; overflow:hidden; border:1px solid var(--border)}
+  .bar{height:100%; background:linear-gradient(90deg, var(--gold), #f0d264); width:0%}
+  .chip{font-size:11px; color:var(--muted)}
+  .row{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .btn{
+    background:linear-gradient(180deg, #1c1c22, #15151a); border:1px solid var(--border); color:var(--txt);
+    padding:10px 12px; border-radius:12px; cursor:pointer; font-weight:600;
+  }
+  .btn.gold{border-color:var(--ring); color:var(--gold)}
+  input, select, textarea{
+    background:#111116; border:1px solid var(--border); color:var(--txt); border-radius:12px; padding:10px 12px; width:100%;
+  }
+  .table{width:100%; border-collapse:collapse; font-size:13px}
+  .table th,.table td{padding:10px; border-bottom:1px solid var(--border); text-align:left}
+  .kpi{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
+  @media(min-width:700px){ .kpi{grid-template-columns:repeat(4,minmax(0,1fr));} }
+  .stat{border:1px solid var(--border); border-radius:14px; padding:12px; background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%)}
+  .stat .label{color:var(--muted); font-size:11px}
+  .stat .value{font-size:18px; font-weight:800}
+  .pill{padding:3px 8px; border-radius:999px; font-size:11px; border:1px solid var(--border); color:var(--muted)}
+  .ok{color:var(--good); border-color:rgba(33,194,94,.3)}
+  .warn{color:var(--warn); border-color:rgba(245,158,11,.3)}
+  .bad{color:var(--bad); border-color:rgba(239,68,68,.25)}
+  .footer{margin-top:18px; font-size:12px; color:var(--muted)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>Cinematography Studio OS — <span style="color:var(--gold)">Local</span></h1>
+          <div class="sub">Dark Cinematic • v1.1 • Offline (localStorage)</div>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn" id="exportBtn">Export JSON</button>
+        <label class="btn gold" for="importFile">Import JSON</label>
+        <input id="importFile" type="file" accept="application/json" style="display:none"/>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="col">
+        <div class="card">
+          <h2>Modules 1–8</h2>
+          <div class="sub">Mark deliverables to progress each module</div>
+          <div class="modules" id="modulesGrid"></div>
+        </div>
+
+        <div class="card" id="missionsCard">
+          <h2>Training Missions</h2>
+          <div class="sub">Add missions, link to a module, track hours and status</div>
+          <div class="row" style="gap:10px; margin-bottom:10px">
+            <input id="missionName" placeholder="Mission title (e.g., Storyboard 12 frames)"/>
+            <select id="missionModule"></select>
+            <input id="missionHours" type="number" min="0" step="0.25" placeholder="Hours"/>
+          </div>
+          <div class="row" style="gap:10px; margin-bottom:14px">
+            <select id="missionStatus">
+              <option>🔜 Planned</option>
+              <option>⏳ In Progress</option>
+              <option>✅ Done</option>
+            </select>
+            <input id="missionNotes" placeholder="Notes / link"/>
+            <button class="btn gold" id="addMissionBtn">Add Mission</button>
+          </div>
+
+          <table class="table" id="missionsTable">
+            <thead><tr>
+              <th>Status</th><th>Mission</th><th>Module</th><th>Hours</th><th>ΔTime%</th><th>Actions</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card">
+          <h2>KPI Dashboard</h2>
+          <div class="kpi">
+            <div class="stat"><div class="label">Global Completion</div><div class="value" id="kpiCompletion">0%</div><div class="pill" id="badgeLevel">L1 Target</div></div>
+            <div class="stat"><div class="label">Avg ΔTime (vs 8h baseline)</div><div class="value" id="kpiDeltaTime">—</div><div class="pill" id="kpiDeltaBadge">—</div></div>
+            <div class="stat"><div class="label">Missions Done</div><div class="value" id="kpiDone">0</div><div class="pill">of <span id="kpiTotal">0</span></div></div>
+            <div class="stat"><div class="label">Revision Rate (manual)</div><div class="value" id="kpiRev">—</div><div class="pill">Target ≤ 1.5</div></div>
+          </div>
+          <div class="footer">ΔTime% uses an 8h baseline. Export to back up your data.</div>
+        </div>
+
+        <div class="card">
+          <h2>Quick Notes</h2>
+          <textarea id="notes" rows="8" placeholder="Write learnings, links, and decisions here..."></textarea>
+          <div class="footer">Saved to your browser’s localStorage.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">© 2025 Cinematography Intelligence Stack — Studio OS v1.1</div>
+  </div>
+
+<script>
+(function(){
+  const key = "cis_dashboard_v1_local";
+  const $ = (sel) => document.querySelector(sel);
+  const modules = [
+    {id:1, title:"Concept & Brand Insight"},
+    {id:2, title:"Script & Narrative"},
+    {id:3, title:"Storyboard & Pre-Viz"},
+    {id:4, title:"Technical & Shoot"},
+    {id:5, title:"AI Editorial & Post"},
+    {id:6, title:"Color, Finish & Master"},
+    {id:7, title:"Delivery & Archive"},
+    {id:8, title:"Review & Analytics"},
+  ];
+
+  let state = load() || {
+    modules: modules.map(m => ({...m, tasks:[
+      {name:"Core deliverable", done:false},
+      {name:"KPI row entered", done:false},
+      {name:"Audit passed", done:false},
+    ]})),
+    missions: [],
+    notes: ""
+  };
+
+  // Render modules grid
+  const grid = document.getElementById("modulesGrid");
+  const missionModule = document.getElementById("missionModule");
+  function renderModules(){
+    grid.innerHTML = "";
+    missionModule.innerHTML = "";
+    state.modules.forEach(m => {
+      const total = m.tasks.length;
+      const done = m.tasks.filter(t=>t.done).length;
+      const pct = Math.round((done/total)*100);
+
+      const opt = document.createElement("option");
+      opt.value = m.id; opt.textContent = `Module ${m.id}`;
+      missionModule.appendChild(opt);
+
+      const el = document.createElement("div");
+      el.className = "module";
+      el.innerHTML = `
+        <div class="chip">Module ${m.id}</div>
+        <div class="title">${m.title}</div>
+        <div class="progress"><div class="bar" style="width:${pct}%"></div></div>
+        <div class="row" style="gap:6px; flex-direction:column;">
+          ${m.tasks.map((t,idx)=>`
+            <label style="display:flex; gap:8px; align-items:center; width:100%">
+              <input type="checkbox" data-mid="${m.id}" data-t="${idx}" ${t.done?'checked':''}/>
+              <span style="font-size:12px; color:var(--muted)">${t.name}</span>
+            </label>
+          `).join("")}
+        </div>
+      `;
+      grid.appendChild(el);
+    });
+  }
+
+  grid.addEventListener("change", (e)=>{
+    const cb = e.target;
+    if(cb.matches('input[type="checkbox"]')){
+      const mid = +cb.dataset.mid;
+      const ti = +cb.dataset.t;
+      const mod = state.modules.find(m=>m.id===mid);
+      mod.tasks[ti].done = cb.checked;
+      save(); refreshKPI();
+      renderModules();
+    }
+  });
+
+  // Missions
+  const tbody = document.getElementById("missionsTable").querySelector("tbody");
+  function deltaFromHours(h){ if(h===null || isNaN(h)) return null; const dt = ((8 - h)/8)*100; return Math.round(dt); }
+  function renderMissions(){
+    tbody.innerHTML = "";
+    state.missions.forEach((m, idx)=>{
+      const dt = deltaFromHours(m.hours);
+      const badge = (dt==null) ? "—" : (dt>=40 ? "pill ok" : dt>=25 ? "pill warn" : "pill bad");
+      const dtTxt = (dt==null) ? "—" : `${dt}%`;
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${m.status}</td>
+        <td style="max-width:260px">${m.name}</td>
+        <td>Module ${m.module}</td>
+        <td>${(m.hours ?? "")}</td>
+        <td><span class="${badge}">${dtTxt}</span></td>
+        <td class="row">
+          <button class="btn" data-edit="${idx}">Edit</button>
+          <button class="btn" data-del="${idx}">Delete</button>
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+  }
+
+  document.getElementById("addMissionBtn").addEventListener("click", ()=>{
+    const name = document.getElementById("missionName").value.trim();
+    const module = +document.getElementById("missionModule").value;
+    const hours = parseFloat(document.getElementById("missionHours").value);
+    const status = document.getElementById("missionStatus").value;
+    const notes = document.getElementById("missionNotes").value.trim();
+
+    if(!name || !module){ alert("Add mission title and module."); return; }
+    state.missions.push({name, module, hours:isNaN(hours)?null:hours, status, notes});
+    document.getElementById("missionName").value="";
+    document.getElementById("missionHours").value="";
+    document.getElementById("missionNotes").value="";
+    save(); renderMissions(); refreshKPI();
+  });
+
+  tbody.addEventListener("click",(e)=>{
+    const b = e.target;
+    if(b.dataset.del){
+      const i = +b.dataset.del;
+      state.missions.splice(i,1); save(); renderMissions(); refreshKPI();
+    }
+    if(b.dataset.edit){
+      const i = +b.dataset.edit;
+      const m = state.missions[i];
+      const name = prompt("Edit mission title:", m.name) ?? m.name;
+      const hours = parseFloat(prompt("Edit hours (number):", m.hours ?? "")); 
+      const status = prompt("Edit status (🔜 Planned | ⏳ In Progress | ✅ Done):", m.status) ?? m.status;
+      state.missions[i] = {...m, name, hours: isNaN(hours)?m.hours:hours, status};
+      save(); renderMissions(); refreshKPI();
+    }
+  });
+
+  // KPI
+  function refreshKPI(){
+    const doneCount = state.missions.filter(m=>m.status.includes("✅")).length;
+    const total = state.missions.length;
+
+    const modulePct = state.modules.map(m=>Math.round((m.tasks.filter(t=>t.done).length/m.tasks.length)*100));
+    const avgCompletion = modulePct.length ? Math.round(modulePct.reduce((a,b)=>a+b,0)/modulePct.length) : 0;
+
+    const deltas = state.missions.map(m => deltaFromHours(m.hours)).filter(v => v!==null && !isNaN(v));
+    const avgDelta = deltas.length ? Math.round(deltas.reduce((a,b)=>a+b,0)/deltas.length) : null;
+
+    document.getElementById("kpiCompletion").textContent = `${avgCompletion}%`;
+    document.getElementById("kpiDone").textContent = `${doneCount}`;
+    document.getElementById("kpiTotal").textContent = `${total}`;
+    document.getElementById("kpiDeltaTime").textContent = (avgDelta===null? "—" : `${avgDelta}%`);
+    const badge = document.getElementById("kpiDeltaBadge");
+    if(avgDelta===null){ badge.textContent="—"; badge.className="pill"; }
+    else if(avgDelta>=40){ badge.textContent="On target"; badge.className="pill ok";}
+    else if(avgDelta>=25){ badge.textContent="Needs work"; badge.className="pill warn";}
+    else { badge.textContent="Off target"; badge.className="pill bad";}
+
+    const level = document.getElementById("badgeLevel");
+    level.textContent = (avgCompletion>=100?"L3 Ready": avgCompletion>=50?"L2 Path":"L1 Target");
+  }
+
+  // Notes
+  const notes = document.getElementById("notes");
+  notes.value = state.notes||"";
+  notes.addEventListener("input", ()=>{ state.notes = notes.value; save(); });
+
+  // Export / Import
+  document.getElementById("exportBtn").addEventListener("click", ()=>{
+    const blob = new Blob([JSON.stringify(state,null,2)], {type:"application/json"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "cis_dashboard_backup.json";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+  document.getElementById("importFile").addEventListener("change", (e)=>{
+    const file = e.target.files[0]; if(!file) return;
+    const fr = new FileReader();
+    fr.onload = () => {
+      try{
+        const data = JSON.parse(fr.result);
+        if(!data.modules || !data.missions){ alert("Invalid file."); return; }
+        state = data; save(); renderModules(); renderMissions(); refreshKPI(); notes.value = state.notes||"";
+      }catch(err){ alert("Import failed."); }
+    };
+    fr.readAsText(file);
+  });
+
+  function save(){ localStorage.setItem(key, JSON.stringify(state)); }
+  function load(){ try{ return JSON.parse(localStorage.getItem(key)); }catch(e){ return null; } }
+
+  // Init
+  renderModules(); renderMissions(); refreshKPI();
+})();
+</script>
+</body>
 </html>
