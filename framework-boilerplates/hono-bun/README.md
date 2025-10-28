@@ -1,7 +1,7 @@
 To develop locally:
 
 ```
-npm install
+bun install
 vc dev
 ```
 
