@@ -4,14 +4,14 @@ import { identify } from './lib/identify'
 
 export const showSummerBannerFlag = flag<boolean>({
   key: 'summer_sale',
-  adapter: flagsmithAdapter.booleanValue(),
+  adapter: flagsmithAdapter.getValue({ coerce: 'boolean' }),
   defaultValue: false,
   identify,
 })
 
 export const showFreeDeliveryBannerFlag = flag<boolean>({
   key: 'free_delivery',
-  adapter: flagsmithAdapter.booleanValue(),
+  adapter: flagsmithAdapter.getValue({ coerce: 'boolean' }),
   defaultValue: false,
   identify,
 })
