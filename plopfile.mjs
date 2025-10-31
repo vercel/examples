@@ -20,6 +20,7 @@ export default function (plop) {
           { name: 'App directory', value: 'app-directory' },
           { name: 'Edge Functions', value: 'edge-functions' },
           { name: 'Edge Middleware', value: 'edge-middleware' },
+          { name: 'Guides', value: 'guides' },
           { name: 'Solutions', value: 'solutions' },
           { name: 'Starter', value: 'starter' },
         ],
