@@ -1,0 +1,49 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "markdown",
+    "mdx",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.workingDirectories": [
+    { "pattern": "apps/*/*" },
+    { "pattern": "packages/*" }
+  ],
+  "files.associations": {
+    "turbo.json": "jsonc",
+    "tsconfig.*.json": "jsonc"
+  },
+  "json.schemas": [
+    {
+      "fileMatch": ["microfrontends.json"],
+      "url": "https://openapi.vercel.sh/microfrontends.json"
+    },
+    {
+      "fileMatch": ["tsconfig.*.json"],
+      "url": "https://json.schemastore.org/tsconfig"
+    },
+    { "fileMatch": ["turbo.json"], "url": "https://turbo.build/schema.json" },
+    {
+      "fileMatch": ["vercel.json"],
+      "url": "https://openapi.vercel.sh/vercel.json"
+    }
+  ],
+  "git.branchProtection": ["main"],
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/.output": true,
+    "**/.turbo": true,
+    "**/.vercel": true,
+    "**/dist": true
+  },
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsserver.nodePath": "node",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
