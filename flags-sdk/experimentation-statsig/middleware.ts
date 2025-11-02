@@ -1,8 +1,11 @@
-import { type NextRequest, NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 import { precompute } from 'flags/next'
 import { productFlags } from '@/flags'
 import { getStableId } from './lib/get-stable-id'
 import { getCartId } from './lib/get-cart-id'
+import { statsigAdapter } from '@flags-sdk/statsig'
+import { identify } from './lib/identify'
+import { embedBootstrapData } from 'flags/next'
 
 export const config = {
   matcher: ['/', '/cart'],
@@ -19,19 +22,41 @@ export async function middleware(request: NextRequest) {
     request.url
   )
 
-  // Add a header to the request to indicate that the stable id is generated,
-  // as it will not be present on the cookie request header on the first-ever request.
+  // Create new headers with the original request headers
+  const headers = new Headers(request.headers)
+
+  // Add new headers if needed
   if (cartId.isFresh) {
-    request.headers.set('x-generated-cart-id', cartId.value)
+    headers.set('x-generated-cart-id', cartId.value)
   }
 
   if (stableId.isFresh) {
-    request.headers.set('x-generated-stable-id', stableId.value)
+    headers.set('x-generated-stable-id', stableId.value)
   }
 
-  // response headers
-  const headers = new Headers()
-  headers.append('set-cookie', `stable-id=${stableId.value}`)
-  headers.append('set-cookie', `cart-id=${cartId.value}`)
-  return NextResponse.rewrite(nextUrl, { request, headers })
+  // Create a new request with the modified headers
+  const modifiedRequest = new Request(nextUrl, { ...request, headers })
+
+  const [statsig, statsigUser, response] = await Promise.all([
+    statsigAdapter.initialize(),
+    identify(),
+    fetch(modifiedRequest),
+  ])
+
+  const clientInitializeResponse = statsig.getClientInitializeResponse(
+    statsigUser,
+    { hash: 'djb2' }
+  )
+
+  const modifiedResponse = embedBootstrapData(response, {
+    clientInitializeResponse,
+    statsigUser,
+  })
+  const h = new Headers(modifiedResponse.headers)
+  h.append('set-cookie', `stable-id=${stableId.value}`)
+  h.append('set-cookie', `cart-id=${cartId.value}`)
+  return new Response(modifiedResponse.body, {
+    ...modifiedResponse,
+    headers: h,
+  })
 }
