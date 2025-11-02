@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "skipLibCheck": true,
+    "types": ["bun"]
+  },
+  "exclude": ["node_modules"]
+}

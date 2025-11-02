@@ -1,0 +1,26 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "globalPassThroughEnv": ["MFE_DEBUG"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^build"]
+    },
+    "start": {
+      "cache": false,
+      "dependsOn": ["^build"],
+      "persistent": true
+    },
+    "typecheck": {
+      "dependsOn": ["^build"]
+    }
+  }
+}

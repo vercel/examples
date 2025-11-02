@@ -3,6 +3,7 @@
   "license": "MIT",
   "private": true,
   "engines": {
+    "node": "22.x",
     "pnpm": "9.13.0"
   },
   "scripts": {

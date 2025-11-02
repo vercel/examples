@@ -1,0 +1,18 @@
+{
+  "extends": "./node_modules/@vercel/style-guide/typescript/tsconfig.node20.json",
+  "compilerOptions": {
+    "incremental": true,
+    "lib": ["ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "allowArbitraryExtensions": true,
+    "strict": true,
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

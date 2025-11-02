@@ -1,0 +1,10 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "cache": false,
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": ["VERCEL_ENV"]
+    }
+  }
+}

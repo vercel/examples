@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nfactorial-code-agent-backend"
+version = "0.1.0"
+description = "Backend for the nfactorial code agent (FastAPI)"
+requires-python = ">=3.10"
+dependencies = [
+  "python-dotenv==1.0.0",
+  "pydantic",
+  "fastapi~=0.117.0",
+  "uvicorn",
+  "openai-agents[litellm]",
+  "PyJWT==2.9.0",
+  "vercel>=0.3.2",
+  "httpx",
+  "httpx-sse",
+  "ruff>=0.14.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.5.0",
+    "mypy",
+]
+
+[project.urls]
+homepage = "https://example.com"
+repository = "https://example.com/repo"
+
+
+[tool.hatch.build.targets.wheel]
+# Include the src package so Hatch can build the wheel after refactor
+only-include = [
+  "src",
+]
+
+

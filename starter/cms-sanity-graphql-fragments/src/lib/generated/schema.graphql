@@ -1,0 +1,1223 @@
+schema {
+  query: RootQuery
+}
+
+"""Field is a "raw" JSON alias for a different field"""
+directive @jsonAlias(
+  """Source field name"""
+  for: String!
+) on FIELD_DEFINITION
+
+"""Field references one or more documents"""
+directive @reference on FIELD_DEFINITION
+
+"""Field references one or more document in another dataset"""
+directive @crossDatasetReference(
+  """Dataset name"""
+  dataset: String!
+
+  """Strings of the target types names enabled for this reference"""
+  typeNames: [String!]!
+) on OBJECT | FIELD_DEFINITION
+
+type RootQuery {
+  SanityImageAsset(
+    """SanityImageAsset document ID"""
+    id: ID!
+  ): SanityImageAsset
+  SanityFileAsset(
+    """SanityFileAsset document ID"""
+    id: ID!
+  ): SanityFileAsset
+  Author(
+    """Author document ID"""
+    id: ID!
+  ): Author
+  Post(
+    """Post document ID"""
+    id: ID!
+  ): Post
+  Page(
+    """Page document ID"""
+    id: ID!
+  ): Page
+  Navigation(
+    """Navigation document ID"""
+    id: ID!
+  ): Navigation
+  Footer(
+    """Footer document ID"""
+    id: ID!
+  ): Footer
+  Document(
+    """Document document ID"""
+    id: ID!
+  ): Document
+  allSanityImageAsset(
+    where: SanityImageAssetFilter
+    sort: [SanityImageAssetSorting!]
+
+    """Max documents to return"""
+    limit: Int
+
+    """Offset at which to start returning documents from"""
+    offset: Int
+  ): [SanityImageAsset!]!
+  allSanityFileAsset(
+    where: SanityFileAssetFilter
+    sort: [SanityFileAssetSorting!]
+
+    """Max documents to return"""
+    limit: Int
+
+    """Offset at which to start returning documents from"""
+    offset: Int
+  ): [SanityFileAsset!]!
+  allAuthor(
+    where: AuthorFilter
+    sort: [AuthorSorting!]
+
+    """Max documents to return"""
+    limit: Int
+
+    """Offset at which to start returning documents from"""
+    offset: Int
+  ): [Author!]!
+  allPost(
+    where: PostFilter
+    sort: [PostSorting!]
+
+    """Max documents to return"""
+    limit: Int
+
+    """Offset at which to start returning documents from"""
+    offset: Int
+  ): [Post!]!
+  allPage(
+    where: PageFilter
+    sort: [PageSorting!]
+
+    """Max documents to return"""
+    limit: Int
+
+    """Offset at which to start returning documents from"""
+    offset: Int
+  ): [Page!]!
+  allNavigation(
+    where: NavigationFilter
+    sort: [NavigationSorting!]
+
+    """Max documents to return"""
+    limit: Int
+
+    """Offset at which to start returning documents from"""
+    offset: Int
+  ): [Navigation!]!
+  allFooter(
+    where: FooterFilter
+    sort: [FooterSorting!]
+
+    """Max documents to return"""
+    limit: Int
+
+    """Offset at which to start returning documents from"""
+    offset: Int
+  ): [Footer!]!
+  allDocument(
+    where: DocumentFilter
+    sort: [DocumentSorting!]
+
+    """Max documents to return"""
+    limit: Int
+
+    """Offset at which to start returning documents from"""
+    offset: Int
+  ): [Document!]!
+}
+
+type SanityImageAsset implements Document {
+  """Document ID"""
+  _id: ID
+
+  """Document type"""
+  _type: String
+
+  """Date the document was created"""
+  _createdAt: DateTime
+
+  """Date the document was last modified"""
+  _updatedAt: DateTime
+
+  """Current document revision"""
+  _rev: String
+  _key: String
+  originalFilename: String
+  label: String
+  title: String
+  description: String
+  altText: String
+  sha1hash: String
+  extension: String
+  mimeType: String
+  size: Float
+  assetId: String
+  uploadId: String
+  path: String
+  url: String
+  metadata: SanityImageMetadata
+  source: SanityAssetSourceData
+}
+
+"""A Sanity document"""
+interface Document {
+  """Document ID"""
+  _id: ID
+
+  """Document type"""
+  _type: String
+
+  """Date the document was created"""
+  _createdAt: DateTime
+
+  """Date the document was last modified"""
+  _updatedAt: DateTime
+
+  """Current document revision"""
+  _rev: String
+}
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+type SanityImageMetadata {
+  _key: String
+  _type: String
+  location: Geopoint
+  dimensions: SanityImageDimensions
+  palette: SanityImagePalette
+  lqip: String
+  blurHash: String
+  hasAlpha: Boolean
+  isOpaque: Boolean
+}
+
+type Geopoint {
+  _key: String
+  _type: String
+  lat: Float
+  lng: Float
+  alt: Float
+}
+
+type SanityImageDimensions {
+  _key: String
+  _type: String
+  height: Float
+  width: Float
+  aspectRatio: Float
+}
+
+type SanityImagePalette {
+  _key: String
+  _type: String
+  darkMuted: SanityImagePaletteSwatch
+  lightVibrant: SanityImagePaletteSwatch
+  darkVibrant: SanityImagePaletteSwatch
+  vibrant: SanityImagePaletteSwatch
+  dominant: SanityImagePaletteSwatch
+  lightMuted: SanityImagePaletteSwatch
+  muted: SanityImagePaletteSwatch
+}
+
+type SanityImagePaletteSwatch {
+  _key: String
+  _type: String
+  background: String
+  foreground: String
+  population: Float
+  title: String
+}
+
+type SanityAssetSourceData {
+  _key: String
+  _type: String
+
+  """A canonical name for the source this asset is originating from"""
+  name: String
+
+  """
+  The unique ID for the asset within the originating source so you can programatically find back to it
+  """
+  id: String
+
+  """
+  A URL to find more information about this asset in the originating source
+  """
+  url: String
+}
+
+type SanityFileAsset implements Document {
+  """Document ID"""
+  _id: ID
+
+  """Document type"""
+  _type: String
+
+  """Date the document was created"""
+  _createdAt: DateTime
+
+  """Date the document was last modified"""
+  _updatedAt: DateTime
+
+  """Current document revision"""
+  _rev: String
+  _key: String
+  originalFilename: String
+  label: String
+  title: String
+  description: String
+  altText: String
+  sha1hash: String
+  extension: String
+  mimeType: String
+  size: Float
+  assetId: String
+  uploadId: String
+  path: String
+  url: String
+  source: SanityAssetSourceData
+}
+
+type Author implements Document {
+  """Document ID"""
+  _id: ID
+
+  """Document type"""
+  _type: String
+
+  """Date the document was created"""
+  _createdAt: DateTime
+
+  """Date the document was last modified"""
+  _updatedAt: DateTime
+
+  """Current document revision"""
+  _rev: String
+  _key: String
+  name: String
+  slug: Slug
+
+  """Short biography of the author"""
+  bio: String
+  image: Image
+}
+
+type Slug {
+  _key: String
+  _type: String
+  current: String
+  source: String
+}
+
+type Image {
+  _key: String
+  _type: String
+  asset: SanityImageAsset
+  media: GlobalDocumentReference
+  hotspot: SanityImageHotspot
+  crop: SanityImageCrop
+}
+
+type GlobalDocumentReference {
+  _key: String
+  _type: String
+  _ref: String
+  _weak: Boolean
+}
+
+type SanityImageHotspot {
+  _key: String
+  _type: String
+  x: Float
+  y: Float
+  height: Float
+  width: Float
+}
+
+type SanityImageCrop {
+  _key: String
+  _type: String
+  top: Float
+  bottom: Float
+  left: Float
+  right: Float
+}
+
+type Post implements Document {
+  """Document ID"""
+  _id: ID
+
+  """Document type"""
+  _type: String
+
+  """Date the document was created"""
+  _createdAt: DateTime
+
+  """Date the document was last modified"""
+  _updatedAt: DateTime
+
+  """Current document revision"""
+  _rev: String
+  _key: String
+  title: String
+  slug: Slug
+  author: Author
+  excerpt: String
+  contentRaw: JSON
+  publishedAt: DateTime
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type Page implements Document {
+  """Document ID"""
+  _id: ID
+
+  """Document type"""
+  _type: String
+
+  """Date the document was created"""
+  _createdAt: DateTime
+
+  """Date the document was last modified"""
+  _updatedAt: DateTime
+
+  """Current document revision"""
+  _rev: String
+  _key: String
+  title: String
+  slug: Slug
+
+  """Brief description for SEO and previews"""
+  excerpt: String
+  contentRaw: JSON
+  seo: Seo
+
+  """Uncheck to hide this page from the website"""
+  isPublished: Boolean
+  publishedAt: DateTime
+}
+
+type Seo {
+  _key: String
+  _type: String
+
+  """Override the page title for SEO (optional)"""
+  metaTitle: String
+
+  """Description for search engines"""
+  metaDescription: String
+}
+
+type Navigation implements Document {
+  """Document ID"""
+  _id: ID
+
+  """Document type"""
+  _type: String
+
+  """Date the document was created"""
+  _createdAt: DateTime
+
+  """Date the document was last modified"""
+  _updatedAt: DateTime
+
+  """Current document revision"""
+  _rev: String
+  _key: String
+
+  """The main title/brand name displayed in the navigation"""
+  title: String
+  items: [NavigationItem]
+}
+
+type NavigationItem {
+  _key: String
+  _type: String
+  label: String
+  href: String
+  isExternal: Boolean
+}
+
+type Footer implements Document {
+  """Document ID"""
+  _id: ID
+
+  """Document type"""
+  _type: String
+
+  """Date the document was created"""
+  _createdAt: DateTime
+
+  """Date the document was last modified"""
+  _updatedAt: DateTime
+
+  """Current document revision"""
+  _rev: String
+  _key: String
+
+  """Main heading in the footer"""
+  title: String
+
+  """Brief description or tagline for the footer"""
+  description: String
+  links: [FooterLink]
+  socialLinks: [SocialLink]
+
+  """Copyright notice (year will be automatically added)"""
+  copyright: String
+}
+
+type FooterLink {
+  _key: String
+  _type: String
+  label: String
+  href: String
+  isExternal: Boolean
+}
+
+type SocialLink {
+  _key: String
+  _type: String
+  platform: String
+  url: String
+}
+
+input SanityImageAssetFilter {
+  """Apply filters on document level"""
+  _: Sanity_DocumentFilter
+  _id: IDFilter
+  _type: StringFilter
+  _createdAt: DatetimeFilter
+  _updatedAt: DatetimeFilter
+  _rev: StringFilter
+  _key: StringFilter
+  originalFilename: StringFilter
+  label: StringFilter
+  title: StringFilter
+  description: StringFilter
+  altText: StringFilter
+  sha1hash: StringFilter
+  extension: StringFilter
+  mimeType: StringFilter
+  size: FloatFilter
+  assetId: StringFilter
+  uploadId: StringFilter
+  path: StringFilter
+  url: StringFilter
+  metadata: SanityImageMetadataFilter
+  source: SanityAssetSourceDataFilter
+}
+
+input Sanity_DocumentFilter {
+  """All documents referencing the given document ID."""
+  references: ID
+
+  """All documents that are drafts."""
+  is_draft: Boolean
+}
+
+input IDFilter {
+  """Checks if the value is equal to the given input."""
+  eq: ID
+
+  """Checks if the value is not equal to the given input."""
+  neq: ID
+
+  """Checks if the value matches the given word/words."""
+  matches: ID
+  in: [ID!]
+  nin: [ID!]
+}
+
+input StringFilter {
+  """Checks if the value is equal to the given input."""
+  eq: String
+
+  """Checks if the value is not equal to the given input."""
+  neq: String
+
+  """Checks if the value matches the given word/words."""
+  matches: String
+  in: [String!]
+  nin: [String!]
+
+  """Checks if the value is defined."""
+  is_defined: Boolean
+}
+
+input DatetimeFilter {
+  """Checks if the value is equal to the given input."""
+  eq: DateTime
+
+  """Checks if the value is not equal to the given input."""
+  neq: DateTime
+
+  """Checks if the value is greater than the given input."""
+  gt: DateTime
+
+  """Checks if the value is greater than or equal to the given input."""
+  gte: DateTime
+
+  """Checks if the value is lesser than the given input."""
+  lt: DateTime
+
+  """Checks if the value is lesser than or equal to the given input."""
+  lte: DateTime
+
+  """Checks if the value is defined."""
+  is_defined: Boolean
+}
+
+input FloatFilter {
+  """Checks if the value is equal to the given input."""
+  eq: Float
+
+  """Checks if the value is not equal to the given input."""
+  neq: Float
+
+  """Checks if the value is greater than the given input."""
+  gt: Float
+
+  """Checks if the value is greater than or equal to the given input."""
+  gte: Float
+
+  """Checks if the value is lesser than the given input."""
+  lt: Float
+
+  """Checks if the value is lesser than or equal to the given input."""
+  lte: Float
+
+  """Checks if the value is defined."""
+  is_defined: Boolean
+}
+
+input SanityImageMetadataFilter {
+  _key: StringFilter
+  _type: StringFilter
+  location: GeopointFilter
+  dimensions: SanityImageDimensionsFilter
+  palette: SanityImagePaletteFilter
+  lqip: StringFilter
+  blurHash: StringFilter
+  hasAlpha: BooleanFilter
+  isOpaque: BooleanFilter
+}
+
+input GeopointFilter {
+  _key: StringFilter
+  _type: StringFilter
+  lat: FloatFilter
+  lng: FloatFilter
+  alt: FloatFilter
+}
+
+input SanityImageDimensionsFilter {
+  _key: StringFilter
+  _type: StringFilter
+  height: FloatFilter
+  width: FloatFilter
+  aspectRatio: FloatFilter
+}
+
+input SanityImagePaletteFilter {
+  _key: StringFilter
+  _type: StringFilter
+  darkMuted: SanityImagePaletteSwatchFilter
+  lightVibrant: SanityImagePaletteSwatchFilter
+  darkVibrant: SanityImagePaletteSwatchFilter
+  vibrant: SanityImagePaletteSwatchFilter
+  dominant: SanityImagePaletteSwatchFilter
+  lightMuted: SanityImagePaletteSwatchFilter
+  muted: SanityImagePaletteSwatchFilter
+}
+
+input SanityImagePaletteSwatchFilter {
+  _key: StringFilter
+  _type: StringFilter
+  background: StringFilter
+  foreground: StringFilter
+  population: FloatFilter
+  title: StringFilter
+}
+
+input BooleanFilter {
+  """Checks if the value is equal to the given input."""
+  eq: Boolean
+
+  """Checks if the value is not equal to the given input."""
+  neq: Boolean
+
+  """Checks if the value is defined."""
+  is_defined: Boolean
+}
+
+input SanityAssetSourceDataFilter {
+  _key: StringFilter
+  _type: StringFilter
+  name: StringFilter
+  id: StringFilter
+  url: StringFilter
+}
+
+input SanityImageAssetSorting {
+  _id: SortOrder
+  _type: SortOrder
+  _createdAt: SortOrder
+  _updatedAt: SortOrder
+  _rev: SortOrder
+  _key: SortOrder
+  originalFilename: SortOrder
+  label: SortOrder
+  title: SortOrder
+  description: SortOrder
+  altText: SortOrder
+  sha1hash: SortOrder
+  extension: SortOrder
+  mimeType: SortOrder
+  size: SortOrder
+  assetId: SortOrder
+  uploadId: SortOrder
+  path: SortOrder
+  url: SortOrder
+  metadata: SanityImageMetadataSorting
+  source: SanityAssetSourceDataSorting
+}
+
+enum SortOrder {
+  """Sorts on the value in ascending order."""
+  ASC
+
+  """Sorts on the value in descending order."""
+  DESC
+}
+
+input SanityImageMetadataSorting {
+  _key: SortOrder
+  _type: SortOrder
+  location: GeopointSorting
+  dimensions: SanityImageDimensionsSorting
+  palette: SanityImagePaletteSorting
+  lqip: SortOrder
+  blurHash: SortOrder
+  hasAlpha: SortOrder
+  isOpaque: SortOrder
+}
+
+input GeopointSorting {
+  _key: SortOrder
+  _type: SortOrder
+  lat: SortOrder
+  lng: SortOrder
+  alt: SortOrder
+}
+
+input SanityImageDimensionsSorting {
+  _key: SortOrder
+  _type: SortOrder
+  height: SortOrder
+  width: SortOrder
+  aspectRatio: SortOrder
+}
+
+input SanityImagePaletteSorting {
+  _key: SortOrder
+  _type: SortOrder
+  darkMuted: SanityImagePaletteSwatchSorting
+  lightVibrant: SanityImagePaletteSwatchSorting
+  darkVibrant: SanityImagePaletteSwatchSorting
+  vibrant: SanityImagePaletteSwatchSorting
+  dominant: SanityImagePaletteSwatchSorting
+  lightMuted: SanityImagePaletteSwatchSorting
+  muted: SanityImagePaletteSwatchSorting
+}
+
+input SanityImagePaletteSwatchSorting {
+  _key: SortOrder
+  _type: SortOrder
+  background: SortOrder
+  foreground: SortOrder
+  population: SortOrder
+  title: SortOrder
+}
+
+input SanityAssetSourceDataSorting {
+  _key: SortOrder
+  _type: SortOrder
+  name: SortOrder
+  id: SortOrder
+  url: SortOrder
+}
+
+input SanityFileAssetFilter {
+  """Apply filters on document level"""
+  _: Sanity_DocumentFilter
+  _id: IDFilter
+  _type: StringFilter
+  _createdAt: DatetimeFilter
+  _updatedAt: DatetimeFilter
+  _rev: StringFilter
+  _key: StringFilter
+  originalFilename: StringFilter
+  label: StringFilter
+  title: StringFilter
+  description: StringFilter
+  altText: StringFilter
+  sha1hash: StringFilter
+  extension: StringFilter
+  mimeType: StringFilter
+  size: FloatFilter
+  assetId: StringFilter
+  uploadId: StringFilter
+  path: StringFilter
+  url: StringFilter
+  source: SanityAssetSourceDataFilter
+}
+
+input SanityFileAssetSorting {
+  _id: SortOrder
+  _type: SortOrder
+  _createdAt: SortOrder
+  _updatedAt: SortOrder
+  _rev: SortOrder
+  _key: SortOrder
+  originalFilename: SortOrder
+  label: SortOrder
+  title: SortOrder
+  description: SortOrder
+  altText: SortOrder
+  sha1hash: SortOrder
+  extension: SortOrder
+  mimeType: SortOrder
+  size: SortOrder
+  assetId: SortOrder
+  uploadId: SortOrder
+  path: SortOrder
+  url: SortOrder
+  source: SanityAssetSourceDataSorting
+}
+
+input AuthorFilter {
+  """Apply filters on document level"""
+  _: Sanity_DocumentFilter
+  _id: IDFilter
+  _type: StringFilter
+  _createdAt: DatetimeFilter
+  _updatedAt: DatetimeFilter
+  _rev: StringFilter
+  _key: StringFilter
+  name: StringFilter
+  slug: SlugFilter
+  bio: StringFilter
+  image: ImageFilter
+}
+
+input SlugFilter {
+  _key: StringFilter
+  _type: StringFilter
+  current: StringFilter
+  source: StringFilter
+}
+
+input ImageFilter {
+  _key: StringFilter
+  _type: StringFilter
+  asset: SanityImageAssetFilter
+  media: GlobalDocumentReferenceFilter
+  hotspot: SanityImageHotspotFilter
+  crop: SanityImageCropFilter
+}
+
+input GlobalDocumentReferenceFilter {
+  _key: StringFilter
+  _type: StringFilter
+  _ref: StringFilter
+  _weak: BooleanFilter
+}
+
+input SanityImageHotspotFilter {
+  _key: StringFilter
+  _type: StringFilter
+  x: FloatFilter
+  y: FloatFilter
+  height: FloatFilter
+  width: FloatFilter
+}
+
+input SanityImageCropFilter {
+  _key: StringFilter
+  _type: StringFilter
+  top: FloatFilter
+  bottom: FloatFilter
+  left: FloatFilter
+  right: FloatFilter
+}
+
+input AuthorSorting {
+  _id: SortOrder
+  _type: SortOrder
+  _createdAt: SortOrder
+  _updatedAt: SortOrder
+  _rev: SortOrder
+  _key: SortOrder
+  name: SortOrder
+  slug: SlugSorting
+  bio: SortOrder
+  image: ImageSorting
+}
+
+input SlugSorting {
+  _key: SortOrder
+  _type: SortOrder
+  current: SortOrder
+  source: SortOrder
+}
+
+input ImageSorting {
+  _key: SortOrder
+  _type: SortOrder
+  media: GlobalDocumentReferenceSorting
+  hotspot: SanityImageHotspotSorting
+  crop: SanityImageCropSorting
+}
+
+input GlobalDocumentReferenceSorting {
+  _key: SortOrder
+  _type: SortOrder
+  _ref: SortOrder
+  _weak: SortOrder
+}
+
+input SanityImageHotspotSorting {
+  _key: SortOrder
+  _type: SortOrder
+  x: SortOrder
+  y: SortOrder
+  height: SortOrder
+  width: SortOrder
+}
+
+input SanityImageCropSorting {
+  _key: SortOrder
+  _type: SortOrder
+  top: SortOrder
+  bottom: SortOrder
+  left: SortOrder
+  right: SortOrder
+}
+
+input PostFilter {
+  """Apply filters on document level"""
+  _: Sanity_DocumentFilter
+  _id: IDFilter
+  _type: StringFilter
+  _createdAt: DatetimeFilter
+  _updatedAt: DatetimeFilter
+  _rev: StringFilter
+  _key: StringFilter
+  title: StringFilter
+  slug: SlugFilter
+  author: AuthorFilter
+  excerpt: StringFilter
+  publishedAt: DatetimeFilter
+}
+
+input PostSorting {
+  _id: SortOrder
+  _type: SortOrder
+  _createdAt: SortOrder
+  _updatedAt: SortOrder
+  _rev: SortOrder
+  _key: SortOrder
+  title: SortOrder
+  slug: SlugSorting
+  excerpt: SortOrder
+  publishedAt: SortOrder
+}
+
+input PageFilter {
+  """Apply filters on document level"""
+  _: Sanity_DocumentFilter
+  _id: IDFilter
+  _type: StringFilter
+  _createdAt: DatetimeFilter
+  _updatedAt: DatetimeFilter
+  _rev: StringFilter
+  _key: StringFilter
+  title: StringFilter
+  slug: SlugFilter
+  excerpt: StringFilter
+  seo: SeoFilter
+  isPublished: BooleanFilter
+  publishedAt: DatetimeFilter
+}
+
+input SeoFilter {
+  _key: StringFilter
+  _type: StringFilter
+  metaTitle: StringFilter
+  metaDescription: StringFilter
+}
+
+input PageSorting {
+  _id: SortOrder
+  _type: SortOrder
+  _createdAt: SortOrder
+  _updatedAt: SortOrder
+  _rev: SortOrder
+  _key: SortOrder
+  title: SortOrder
+  slug: SlugSorting
+  excerpt: SortOrder
+  seo: SeoSorting
+  isPublished: SortOrder
+  publishedAt: SortOrder
+}
+
+input SeoSorting {
+  _key: SortOrder
+  _type: SortOrder
+  metaTitle: SortOrder
+  metaDescription: SortOrder
+}
+
+input NavigationFilter {
+  """Apply filters on document level"""
+  _: Sanity_DocumentFilter
+  _id: IDFilter
+  _type: StringFilter
+  _createdAt: DatetimeFilter
+  _updatedAt: DatetimeFilter
+  _rev: StringFilter
+  _key: StringFilter
+  title: StringFilter
+}
+
+input NavigationSorting {
+  _id: SortOrder
+  _type: SortOrder
+  _createdAt: SortOrder
+  _updatedAt: SortOrder
+  _rev: SortOrder
+  _key: SortOrder
+  title: SortOrder
+}
+
+input FooterFilter {
+  """Apply filters on document level"""
+  _: Sanity_DocumentFilter
+  _id: IDFilter
+  _type: StringFilter
+  _createdAt: DatetimeFilter
+  _updatedAt: DatetimeFilter
+  _rev: StringFilter
+  _key: StringFilter
+  title: StringFilter
+  description: StringFilter
+  copyright: StringFilter
+}
+
+input FooterSorting {
+  _id: SortOrder
+  _type: SortOrder
+  _createdAt: SortOrder
+  _updatedAt: SortOrder
+  _rev: SortOrder
+  _key: SortOrder
+  title: SortOrder
+  description: SortOrder
+  copyright: SortOrder
+}
+
+input DocumentFilter {
+  """Apply filters on document level"""
+  _: Sanity_DocumentFilter
+  _id: IDFilter
+  _type: StringFilter
+  _createdAt: DatetimeFilter
+  _updatedAt: DatetimeFilter
+  _rev: StringFilter
+}
+
+input DocumentSorting {
+  _id: SortOrder
+  _type: SortOrder
+  _createdAt: SortOrder
+  _updatedAt: SortOrder
+  _rev: SortOrder
+}
+
+type Block {
+  _key: String
+  _type: String
+  children: [Span]
+  style: String
+  listItem: String
+  level: Float
+}
+
+type Span {
+  _key: String
+  _type: String
+  marks: [String]
+  text: String
+}
+
+type CrossDatasetReference {
+  _key: String
+  _type: String
+  _ref: String
+  _weak: Boolean
+  _dataset: String
+  _projectId: String
+}
+
+type File {
+  _key: String
+  _type: String
+  asset: SanityFileAsset
+  media: GlobalDocumentReference
+}
+
+input IntFilter {
+  """Checks if the value is equal to the given input."""
+  eq: Int
+
+  """Checks if the value is not equal to the given input."""
+  neq: Int
+
+  """Checks if the value is greater than the given input."""
+  gt: Int
+
+  """Checks if the value is greater than or equal to the given input."""
+  gte: Int
+
+  """Checks if the value is lesser than the given input."""
+  lt: Int
+
+  """Checks if the value is lesser than or equal to the given input."""
+  lte: Int
+
+  """Checks if the value is defined."""
+  is_defined: Boolean
+}
+
+input DateFilter {
+  """Checks if the value is equal to the given input."""
+  eq: Date
+
+  """Checks if the value is not equal to the given input."""
+  neq: Date
+
+  """Checks if the value is greater than the given input."""
+  gt: Date
+
+  """Checks if the value is greater than or equal to the given input."""
+  gte: Date
+
+  """Checks if the value is lesser than the given input."""
+  lt: Date
+
+  """Checks if the value is lesser than or equal to the given input."""
+  lte: Date
+
+  """Checks if the value is defined."""
+  is_defined: Boolean
+}
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+input CrossDatasetReferenceFilter {
+  _key: StringFilter
+  _type: StringFilter
+  _ref: StringFilter
+  _weak: BooleanFilter
+  _dataset: StringFilter
+  _projectId: StringFilter
+}
+
+input FileFilter {
+  _key: StringFilter
+  _type: StringFilter
+  asset: SanityFileAssetFilter
+  media: GlobalDocumentReferenceFilter
+}
+
+input NavigationItemFilter {
+  _key: StringFilter
+  _type: StringFilter
+  label: StringFilter
+  href: StringFilter
+  isExternal: BooleanFilter
+}
+
+input FooterLinkFilter {
+  _key: StringFilter
+  _type: StringFilter
+  label: StringFilter
+  href: StringFilter
+  isExternal: BooleanFilter
+}
+
+input SocialLinkFilter {
+  _key: StringFilter
+  _type: StringFilter
+  platform: StringFilter
+  url: StringFilter
+}
+
+input CrossDatasetReferenceSorting {
+  _key: SortOrder
+  _type: SortOrder
+  _ref: SortOrder
+  _weak: SortOrder
+  _dataset: SortOrder
+  _projectId: SortOrder
+}
+
+input FileSorting {
+  _key: SortOrder
+  _type: SortOrder
+  media: GlobalDocumentReferenceSorting
+}
+
+input NavigationItemSorting {
+  _key: SortOrder
+  _type: SortOrder
+  label: SortOrder
+  href: SortOrder
+  isExternal: SortOrder
+}
+
+input FooterLinkSorting {
+  _key: SortOrder
+  _type: SortOrder
+  label: SortOrder
+  href: SortOrder
+  isExternal: SortOrder
+}
+
+input SocialLinkSorting {
+  _key: SortOrder
+  _type: SortOrder
+  platform: SortOrder
+  url: SortOrder
+}

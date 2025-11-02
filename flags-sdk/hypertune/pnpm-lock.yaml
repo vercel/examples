@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@flags-sdk/hypertune':
-        specifier: ^0.2.0
-        version: 0.2.0(@opentelemetry/api@1.9.0)
+        specifier: ^0.3.0
+        version: 0.3.0(@opentelemetry/api@1.9.0)
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -154,8 +154,8 @@ packages:
     resolution: {integrity: sha512-ZAoA40rNMPwSm+AeHpCq8STiNAwzWLJuP8Xv4CHIc9wv/PSuExjMrmjfYNj682vW0OOiZ1HKxzvjQr9XZIisQA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@flags-sdk/hypertune@0.2.0':
-    resolution: {integrity: sha512-AB9gZBlznSdH2/J2Ut/e2k/3z1TWrc6x+x3a7g0V1shibENyCz71xM6l7MbljS1xvBH1Q4E5rUBXsJuCBoyOCw==}
+  '@flags-sdk/hypertune@0.3.0':
+    resolution: {integrity: sha512-rQlNtCvFKIMUYL/j7F/uw5JRRFv0dPbINI+V2Or47qIr/VSTC99ALKTY8FHKsbuGAt88qoNt35rb3dKO+asXIg==}
 
   '@floating-ui/core@1.6.9':
     resolution: {integrity: sha512-uMXCuQ3BItDUbAMhIXw7UPXRfAlOAvZzdK9BWpE60MCn+Svt3aLn9jsPTi/WNGlRUu2uI0v5S7JiIUsbsvh3fw==}
@@ -1497,6 +1497,10 @@ packages:
     resolution: {integrity: sha512-U+RIyPNbNAuF/RGcCkSI4iUj98LYrk3Vozv8wElMV4lEJFeLRbYTHb8+mwj4i7+tSnhU6wg+itoxdeFVa5oNEQ==}
     hasBin: true
 
+  hypertune@2.8.3:
+    resolution: {integrity: sha512-Lbd/wjXFMfFzeuUjiMi1N+zKvHlzMybZV2cuMm7XmpS+w8wxs3EnYHcZmvueTZY+rnOr9aVxLtpLIHt2EO7qiw==}
+    hasBin: true
+
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
@@ -2419,10 +2423,10 @@ snapshots:
       '@eslint/core': 0.13.0
       levn: 0.4.1
 
-  '@flags-sdk/hypertune@0.2.0(@opentelemetry/api@1.9.0)':
+  '@flags-sdk/hypertune@0.3.0(@opentelemetry/api@1.9.0)':
     dependencies:
       '@vercel/edge-config': 1.4.0(@opentelemetry/api@1.9.0)
-      hypertune: 2.7.2
+      hypertune: 2.8.3
     transitivePeerDependencies:
       - '@opentelemetry/api'
       - encoding
@@ -3843,6 +3847,21 @@ snapshots:
   human-signals@2.1.0: {}
 
   hypertune@2.7.2:
+    dependencies:
+      cac: 6.7.14
+      core-js: 3.42.0
+      cross-fetch: 4.1.0
+      dotenv: 16.5.0
+      joycon: 3.1.1
+      json-stable-stringify: 1.3.0
+      jsonito: 0.2.3
+      nanoid: 3.3.11
+      p-retry: 4.6.2
+      regenerator-runtime: 0.14.1
+    transitivePeerDependencies:
+      - encoding
+
+  hypertune@2.8.3:
     dependencies:
       cac: 6.7.14
       core-js: 3.42.0

@@ -1,0 +1,29 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-background: white;
+  --color-foreground: #0f172a;
+  --color-primary: #0f766e;
+  --color-primary-foreground: #f8fafc;
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #64748b;
+  --border: hsl(0% 0% 89.8%);
+}
+
+@utility container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem;
+
+  @variants 2xl {
+    max-width: 1400px;
+  }
+}
+
+.backdrop-blur {
+  backdrop-filter: blur(8px);
+}
+
+.shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}

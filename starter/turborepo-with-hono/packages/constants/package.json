@@ -1,0 +1,12 @@
+{
+  "name": "@repo/constants",
+  "exports": {
+    ".": "./dist/constants.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*"
+  }
+}

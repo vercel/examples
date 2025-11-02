@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.base",
+  "compilerOptions": {
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "plugins": [{ "name": "next" }]
+  }
+}

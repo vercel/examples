@@ -1,0 +1,36 @@
+# dependencies
+node_modules
+**/node_modules
+.pnp
+.pnp.js
+.swc
+
+# misc
+.env*
+.DS_Store
+*.pem
+-*.log
+-dist
+dist/
+tsconfig.tsbuildinfo
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Vercel
+.vercel
+
+# Next.js
+.next
+
+# turbo
+.turbo
+
+# Vite
+vite.config.ts.timestamp-*
+
+# Module Federation
+.__mf__temp
