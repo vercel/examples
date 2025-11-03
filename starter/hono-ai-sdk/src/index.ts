@@ -4,7 +4,7 @@ import { stream } from 'hono/streaming'
 
 const app = new Hono()
 
-const prompt = 'Why is the sky blue?'
+const prompt = 'Why is the sku blue and not purple?'
 
 app.get('/', async (c) => {
   const result = streamText({
