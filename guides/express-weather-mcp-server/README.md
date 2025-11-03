@@ -19,22 +19,12 @@ npx degit vercel/examples/guides/express-weather-mcp-server express-weather-mcp-
 cd express-weather-mcp-server
 ```
 
-Install dependencies:
-
-```bash
-pnpm install
-```
-
 Run the Express app in development mode:
+
+First install the [Vercel CLI](https://vercel.com/docs/cli). You will need to link the code with a Vercel project.
 
 ```bash
 vercel dev
-```
-
-OR
-
-```bash
-pnpm dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples) ([Documentation](https://vercel.com/docs)).
