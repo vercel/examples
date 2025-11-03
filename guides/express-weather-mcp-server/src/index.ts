@@ -338,11 +338,4 @@ app.get('/', (_req, res) => {
   })
 })
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`)
-  console.log(`📡 Weather API: http://localhost:${PORT}/api/weather/:city`)
-  console.log(`🔧 MCP Server: http://localhost:${PORT}/api/mcp`)
-})
-
 export default app
