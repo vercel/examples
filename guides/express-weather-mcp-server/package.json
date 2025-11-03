@@ -5,8 +5,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "vc dev",
-    "build": "tsc"
+    "dev": "vc dev"
   },
   "dependencies": {
     "express": "^5.1.0",
