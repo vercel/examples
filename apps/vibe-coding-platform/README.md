@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+This project integrates [Workflow DevKit](https://useworkflow.dev/) to support a durable and reliable AI agent with automatic retries and state management.
+
 ## Getting Started
 
 First, run the development server:
