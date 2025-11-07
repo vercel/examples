@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@flags-sdk/growthbook": "0.1.0",
+    "@flags-sdk/growthbook": "0.2.0",
     "@growthbook/growthbook": "1.5.1",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "2.2.0",
