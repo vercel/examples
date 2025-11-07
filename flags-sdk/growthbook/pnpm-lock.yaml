@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@flags-sdk/growthbook':
-        specifier: 0.1.0
-        version: 0.1.0
+        specifier: 0.2.0
+        version: 0.2.0(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@growthbook/growthbook':
         specifier: 1.5.1
         version: 1.5.1
@@ -141,8 +141,8 @@ packages:
     resolution: {integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@flags-sdk/growthbook@0.1.0':
-    resolution: {integrity: sha512-ZN6gMVD1z1uxsDdlA5gkrchF17rTnSm8vkVXKoqQ4PkSL/a3VWJBiUckU/8Jzf2cbF7OLsbyn4dMJFXL/5YnCw==}
+  '@flags-sdk/growthbook@0.2.0':
+    resolution: {integrity: sha512-E8GEsUXyVOezz0QU7CYltXGorfA8MVZd+JfCF+Cg2IDA2Us2IIzt1t+eS0CJkwIHkoWiqlbVav7ARxdWAvJslw==}
 
   '@floating-ui/core@1.6.9':
     resolution: {integrity: sha512-uMXCuQ3BItDUbAMhIXw7UPXRfAlOAvZzdK9BWpE60MCn+Svt3aLn9jsPTi/WNGlRUu2uI0v5S7JiIUsbsvh3fw==}
@@ -693,6 +693,18 @@ packages:
       '@opentelemetry/api': ^1.7.0
     peerDependenciesMeta:
       '@opentelemetry/api':
+        optional: true
+
+  '@vercel/edge-config@1.4.3':
+    resolution: {integrity: sha512-8vTDATodRrH49wMzKEjZ8/5H2qs1aPkD0uRK585f/Fx4YN2wfHfY/3td9OFrh+gdnCq07z8A5f0hoY6xhBcPkg==}
+    engines: {node: '>=14.6'}
+    peerDependencies:
+      '@opentelemetry/api': ^1.7.0
+      next: '>=1'
+    peerDependenciesMeta:
+      '@opentelemetry/api':
+        optional: true
+      next:
         optional: true
 
   '@vercel/edge@1.2.1':
@@ -2227,14 +2239,15 @@ snapshots:
       '@eslint/core': 0.12.0
       levn: 0.4.1
 
-  '@flags-sdk/growthbook@0.1.0':
+  '@flags-sdk/growthbook@0.2.0(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
     dependencies:
       '@growthbook/growthbook': 1.5.1
-      '@vercel/edge-config': 1.4.0
+      '@vercel/edge-config': 1.4.3(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@vercel/functions': 1.6.0
     transitivePeerDependencies:
       - '@aws-sdk/credential-provider-web-identity'
       - '@opentelemetry/api'
+      - next
 
   '@floating-ui/core@1.6.9':
     dependencies:
@@ -2726,6 +2739,12 @@ snapshots:
   '@vercel/edge-config@1.4.0':
     dependencies:
       '@vercel/edge-config-fs': 0.1.0
+
+  '@vercel/edge-config@1.4.3(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
+    dependencies:
+      '@vercel/edge-config-fs': 0.1.0
+    optionalDependencies:
+      next: 15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
 
   '@vercel/edge@1.2.1': {}
 
