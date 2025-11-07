@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@flags-sdk/flagsmith": "link:../../../flags/packages/adapter-flagsmith",
+    "@flags-sdk/flagsmith": "1.0.1",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "2.2.0",
     "@tailwindcss/aspect-ratio": "0.4.2",
