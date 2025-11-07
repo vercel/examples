@@ -1,19 +1,30 @@
-# Elysia with Bun runtime
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/framework-boilerplates/elysia-bun&template=elysia)
 
-## Getting Started
+Prerequisites:
 
-To get started with this template, simply paste this command into your terminal:
+- [Vercel CLI](https://vercel.com/docs/cli) installed globally
 
-```bash
-bun create elysia ./elysia-example
+To develop locally:
+
+```
+bun install
+vc dev
 ```
 
-## Development
-
-To start the development server run:
-
-```bash
-bun run dev
+```
+open http://localhost:3000
 ```
 
-Open http://localhost:3000/ with your browser to see the result.
+To build locally:
+
+```
+bun install
+vc build
+```
+
+To deploy:
+
+```
+bun install
+vc deploy
+```
