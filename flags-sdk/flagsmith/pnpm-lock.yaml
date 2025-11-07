@@ -8,12 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@flags-sdk/growthbook':
-        specifier: 0.2.0
-        version: 0.2.0(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
-      '@growthbook/growthbook':
-        specifier: 1.5.1
-        version: 1.5.1
+      '@flags-sdk/flagsmith':
+        specifier: 1.0.1
+        version: 1.0.1
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -45,8 +42,11 @@ importers:
         specifier: 2.1.1
         version: 2.1.1
       flags:
-        specifier: ^4.0.0
-        version: 4.0.0(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^4.0.1
+        version: 4.0.1(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      flagsmith:
+        specifier: ^9.3.2
+        version: 9.3.2
       motion:
         specifier: 12.17.0
         version: 12.17.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -91,7 +91,7 @@ importers:
         specifier: ^4.0.9
         version: 4.0.9
       typescript:
-        specifier: ^5.7.3
+        specifier: 5.7.3
         version: 5.7.3
 
 packages:
@@ -141,8 +141,8 @@ packages:
     resolution: {integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@flags-sdk/growthbook@0.2.0':
-    resolution: {integrity: sha512-E8GEsUXyVOezz0QU7CYltXGorfA8MVZd+JfCF+Cg2IDA2Us2IIzt1t+eS0CJkwIHkoWiqlbVav7ARxdWAvJslw==}
+  '@flags-sdk/flagsmith@1.0.1':
+    resolution: {integrity: sha512-CbV5CHPO+NoXDrSlBFesY7zyC8/NN4+azlk3QqCQU00FLMdHUXNZNV5dc3OzEDzovOoFjuf3VZouTtiOVcPhQg==}
 
   '@floating-ui/core@1.6.9':
     resolution: {integrity: sha512-uMXCuQ3BItDUbAMhIXw7UPXRfAlOAvZzdK9BWpE60MCn+Svt3aLn9jsPTi/WNGlRUu2uI0v5S7JiIUsbsvh3fw==}
@@ -164,10 +164,6 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
-
-  '@growthbook/growthbook@1.5.1':
-    resolution: {integrity: sha512-t0cj+3i2YtZ4Y/v1xl2fThogLMvjjUy3fx7ywGoLPgKZdhYy2HSXUGY1lLM/I0FMTEd2L2lkJHEzeUKpW6Ew3g==}
-    engines: {node: '>=10'}
 
   '@headlessui/react@2.2.0':
     resolution: {integrity: sha512-RzCEg+LXsuI7mHiSomsu/gBJSjpupm6A1qIZ5sWjd7JhARNlMiSA4kKfJpCKwU9tE+zMRterhhrP74PvfJrpXQ==}
@@ -695,29 +691,8 @@ packages:
       '@opentelemetry/api':
         optional: true
 
-  '@vercel/edge-config@1.4.3':
-    resolution: {integrity: sha512-8vTDATodRrH49wMzKEjZ8/5H2qs1aPkD0uRK585f/Fx4YN2wfHfY/3td9OFrh+gdnCq07z8A5f0hoY6xhBcPkg==}
-    engines: {node: '>=14.6'}
-    peerDependencies:
-      '@opentelemetry/api': ^1.7.0
-      next: '>=1'
-    peerDependenciesMeta:
-      '@opentelemetry/api':
-        optional: true
-      next:
-        optional: true
-
   '@vercel/edge@1.2.1':
     resolution: {integrity: sha512-1++yncEyIAi68D3UEOlytYb1IUcIulMWdoSzX2h9LuSeeyR7JtaIgR8DcTQ6+DmYOQn+5MCh6LY+UmK6QBByNA==}
-
-  '@vercel/functions@1.6.0':
-    resolution: {integrity: sha512-R6FKQrYT5MZs5IE1SqeCJWxMuBdHawFcCZboKKw8p7s+6/mcd55Gx6tWmyKnQTyrSEA04NH73Tc9CbqpEle8RA==}
-    engines: {node: '>= 16'}
-    peerDependencies:
-      '@aws-sdk/credential-provider-web-identity': '*'
-    peerDependenciesMeta:
-      '@aws-sdk/credential-provider-web-identity':
-        optional: true
 
   '@vercel/microfrontends@1.0.0':
     resolution: {integrity: sha512-83ikhvV/k9F48zu/J7KtIi6ly1hZ5vSAosBBdkb9hmFgz8iL7iifjEpNp9cREjYa/8hajpbuVhqzsL23Cc+70Q==}
@@ -988,10 +963,6 @@ packages:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
     engines: {node: '>=0.10.0'}
 
-  dom-mutator@0.6.0:
-    resolution: {integrity: sha512-iCt9o0aYfXMUkz/43ZOAUFQYotjGB+GNbYJiJdz4TgXkyToXbbRy5S6FbTp72lRBtfpUMwEc1KmpFEU4CZeoNg==}
-    engines: {node: '>=10'}
-
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
@@ -1224,8 +1195,8 @@ packages:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
 
-  flags@4.0.0:
-    resolution: {integrity: sha512-CpONOK/nflKfaTT36r+Y4SP5rb9mv3AdqY/2Ws+TScrEGlT4PK+PZNiKJgIH87HooTXDblz31807q7lZ3LpuYQ==}
+  flags@4.0.1:
+    resolution: {integrity: sha512-nJNY97LoI+BDNCSnGIEvBAxYkRYeRuMZ3KtdjCj60quGH3cnyjnSQfw9vB/kvb3+wAtdn2sm5t+jO6dy5tpi1w==}
     peerDependencies:
       '@opentelemetry/api': ^1.7.0
       '@sveltejs/kit': '*'
@@ -1243,6 +1214,9 @@ packages:
         optional: true
       react-dom:
         optional: true
+
+  flagsmith@9.3.2:
+    resolution: {integrity: sha512-dpU1U8fjLBf6uzuJuOHRGS2forpiHING0amCFtF9ych+Yeth4cYMy3ZT0cx0lhE7S4o2v9itU0fge+toP3Td6A==}
 
   flat-cache@4.0.1:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
@@ -2239,15 +2213,9 @@ snapshots:
       '@eslint/core': 0.12.0
       levn: 0.4.1
 
-  '@flags-sdk/growthbook@0.2.0(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
+  '@flags-sdk/flagsmith@1.0.1':
     dependencies:
-      '@growthbook/growthbook': 1.5.1
-      '@vercel/edge-config': 1.4.3(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
-      '@vercel/functions': 1.6.0
-    transitivePeerDependencies:
-      - '@aws-sdk/credential-provider-web-identity'
-      - '@opentelemetry/api'
-      - next
+      flagsmith: 9.3.2
 
   '@floating-ui/core@1.6.9':
     dependencies:
@@ -2273,10 +2241,6 @@ snapshots:
       tabbable: 6.2.0
 
   '@floating-ui/utils@0.2.9': {}
-
-  '@growthbook/growthbook@1.5.1':
-    dependencies:
-      dom-mutator: 0.6.0
 
   '@headlessui/react@2.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
@@ -2740,15 +2704,7 @@ snapshots:
     dependencies:
       '@vercel/edge-config-fs': 0.1.0
 
-  '@vercel/edge-config@1.4.3(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
-    dependencies:
-      '@vercel/edge-config-fs': 0.1.0
-    optionalDependencies:
-      next: 15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-
   '@vercel/edge@1.2.1': {}
-
-  '@vercel/functions@1.6.0': {}
 
   '@vercel/microfrontends@1.0.0(@vercel/analytics@1.5.0(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0))(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
@@ -3043,8 +2999,6 @@ snapshots:
   doctrine@2.1.0:
     dependencies:
       esutils: 2.0.3
-
-  dom-mutator@0.6.0: {}
 
   dunder-proto@1.0.1:
     dependencies:
@@ -3426,7 +3380,7 @@ snapshots:
       locate-path: 6.0.0
       path-exists: 4.0.0
 
-  flags@4.0.0(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  flags@4.0.1(next@15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@edge-runtime/cookies': 5.0.2
       jose: 5.10.0
@@ -3434,6 +3388,8 @@ snapshots:
       next: 15.4.0-canary.79(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
+
+  flagsmith@9.3.2: {}
 
   flat-cache@4.0.1:
     dependencies:
