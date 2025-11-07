@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+:root {
+  /* Typography */
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Vercel-inspired dark palette */
+  --vscode-bg: #0a0a0a; /* app background (near-black) */
+  --vscode-sidebar: #0d0d0d; /* side panels */
+  --vscode-panel: #0f0f0f; /* panel/header */
+  --vscode-panel-border: #1a1a1a; /* borders/separators */
+  --vscode-surface: #111111; /* tertiary surfaces */
+  --vscode-hover: #161616; /* hover */
+  --vscode-contrast: #0c0c0c; /* inputs */
+  --vscode-text: #e6e6e6; /* primary text */
+  --vscode-muted: #a1a1a1; /* muted text */
+  --vscode-subtle: #8a8a8a; /* subtler text */
+  --vscode-accent: #0070f3; /* brand accent */
+  --vscode-selection: #0b2a6b; /* selection bg */
+  --vscode-success: #10b981; /* emerald-500 */
+  --vscode-danger: #ef4444; /* red-500 */
+  /* Unified app header height */
+  --header-height: 3rem;
+  /* Status bar height */
+  --statusbar-height: 26px;
+
+  color-scheme: dark;
+  color: var(--vscode-text);
+  background-color: var(--vscode-bg);
+}
+
+/* Light mode fallback (optional) */
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    color: #1f2328;
+    background-color: #ffffff;
+  }
+}
+
+/* App chrome */
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: var(--vscode-bg);
+  color: var(--vscode-text);
+}
+
+/* Smooth outlines consistent with VS Code */
+button,
+input,
+textarea,
+select {
+  outline-color: var(--vscode-accent);
+}
+
+/* Scrollbar similar to VS Code */
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #262626;
+  border: 3px solid transparent;
+  border-radius: 10px;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #2f2f2f;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Ensure Monaco editor fills its flex container and resizes smoothly */
+.monaco-editor,
+.monaco-editor .overflow-guard {
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Subtle blue shimmer for FastAPI entrypoint Run button */
+@keyframes shimmer {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 112, 243, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(0, 112, 243, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 112, 243, 0);
+  }
+}
+
+.shimmer {
+  animation: shimmer 1.8s ease-out infinite;
+}
