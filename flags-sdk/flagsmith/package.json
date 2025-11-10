@@ -1,5 +1,5 @@
 {
-  "name": "flags-sdk-growthbook",
+  "name": "flagsmith",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -9,8 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@flags-sdk/growthbook": "0.2.0",
-    "@growthbook/growthbook": "1.5.1",
+    "@flags-sdk/flagsmith": "1.0.1",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "2.2.0",
     "@tailwindcss/aspect-ratio": "0.4.2",
@@ -20,9 +19,10 @@
     "@vercel/edge": "1.2.1",
     "@vercel/edge-config": "1.4.0",
     "@vercel/toolbar": "0.1.33",
-    "motion": "12.17.0",
     "clsx": "2.1.1",
-    "flags": "^4.0.0",
+    "flags": "^4.0.1",
+    "flagsmith": "^9.3.2",
+    "motion": "12.17.0",
     "nanoid": "5.1.2",
     "next": "15.4.0-canary.79",
     "react": "^19.0.0",
@@ -38,6 +38,6 @@
     "eslint-config-next": "^15.2.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.0.9",
-    "typescript": "^5.7.3"
+    "typescript": "5.7.3"
   }
 }

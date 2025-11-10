@@ -5,6 +5,8 @@ import { API_BASE } from '../constants'
 import { useProjects } from '../context/ProjectsContext'
 import { computeProjectHashes } from '../lib/hash'
 
+declare const process: { env: Record<string, string | undefined> }
+
 interface UseChatProps {
   userId: string
   input: string
@@ -44,6 +46,22 @@ export const useChat = ({
     useProjects()
   const sendPrompt = useCallback(async () => {
     if (!input.trim()) return
+    // In production, require NEXT_PUBLIC_API_URL to be set; otherwise show a user-facing error
+    const isProd = (process.env.NODE_ENV || '').trim() === 'production'
+    const hasApiUrl = Boolean((process.env.NEXT_PUBLIC_API_URL || '').trim())
+    if (isProd && !hasApiUrl) {
+      const errorRunId = `config_error_${Date.now()}`
+      createRun(errorRunId, input, projectId, threadId)
+      addAction(errorRunId, {
+        id: `notice_${Date.now()}`,
+        kind: 'system_notice',
+        status: 'done',
+        message:
+          'Missing environment variable: NEXT_PUBLIC_API_URL is not set. Set it to your backend URL and reload.',
+        timestamp: new Date().toISOString(),
+      } as Action)
+      return
+    }
     setLoading(true)
     setInput('')
 
