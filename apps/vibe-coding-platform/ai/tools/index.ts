@@ -1,8 +1,9 @@
-import type { InferUITools } from 'ai'
+import type { InferUITools, UIMessage, UIMessageStreamWriter } from 'ai'
 import { createSandbox } from './create-sandbox'
 import { generateFiles } from './generate-files'
 import { getSandboxURL } from './get-sandbox-url'
 import { runCommand } from './run-command'
+import type { DataPart } from '../messages/data-parts'
 
 interface Params {
   modelId: string

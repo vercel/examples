@@ -5,14 +5,9 @@ import { getContents, type File } from './generate-files/get-contents'
 import { getRichError } from './get-rich-error'
 import { getWriteFiles } from './generate-files/get-write-files'
 import { tool } from 'ai'
-import description from './generate-files.description'
+import description from './generate-files.prompt'
 import z from 'zod/v3'
-import {
-  FatalError,
-  getStepMetadata,
-  getWritable,
-  RetryableError,
-} from 'workflow'
+import { getWritable } from 'workflow'
 
 const inputSchema = z.object({
   sandboxId: z.string(),
@@ -26,7 +21,7 @@ interface Params {
 async function generateFilesStep(
   { sandboxId, paths }: z.infer<typeof inputSchema>,
   { toolCallId, messages }: { toolCallId: string; messages: any },
-  modelId: string,
+  modelId: string
 ) {
   'use step'
 
