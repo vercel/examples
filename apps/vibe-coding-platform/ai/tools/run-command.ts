@@ -192,9 +192,11 @@ const executeRunCommand =
     }
   }
 
-export const runCommand = (
+export const runCommand = ({
+  writer,
+}: {
   writer: UIMessageStreamWriter<UIMessage<never, DataPart>>
-) =>
+}) =>
   tool({
     description,
     inputSchema,

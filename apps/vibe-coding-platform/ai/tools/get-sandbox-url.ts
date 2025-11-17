@@ -42,9 +42,11 @@ const executeGetSandboxUrl =
     return { url }
   }
 
-export const getSandboxURL = (
+export const getSandboxURL = ({
+  writer,
+}: {
   writer: UIMessageStreamWriter<UIMessage<never, DataPart>>
-) =>
+}) =>
   tool({
     description,
     inputSchema,

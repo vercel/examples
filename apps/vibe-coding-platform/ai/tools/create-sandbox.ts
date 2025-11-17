@@ -72,9 +72,11 @@ const createSandboxStep =
     }
   }
 
-export const createSandbox = (
+export const createSandbox = ({
+  writer,
+}: {
   writer: UIMessageStreamWriter<UIMessage<never, DataPart>>
-) =>
+}) =>
   tool({
     description,
     inputSchema,

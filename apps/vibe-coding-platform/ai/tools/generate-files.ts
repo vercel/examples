@@ -110,10 +110,13 @@ const generateFilesStep =
       .join('\n')}`
   }
 
-export const generateFiles = (
-  writer: UIMessageStreamWriter<UIMessage<never, DataPart>>,
-  { modelId }: Params
-) =>
+export const generateFiles = ({
+  writer,
+  modelId,
+}: {
+  writer: UIMessageStreamWriter<UIMessage<never, DataPart>>
+  modelId: string
+}) =>
   tool({
     description,
     inputSchema,

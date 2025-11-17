@@ -12,10 +12,10 @@ interface Params {
 
 export function tools({ modelId, writer }: Params) {
   return {
-    createSandbox: createSandbox(writer),
-    generateFiles: generateFiles(writer, { modelId }),
-    getSandboxURL: getSandboxURL(writer),
-    runCommand: runCommand(writer),
+    createSandbox: createSandbox({ writer }),
+    generateFiles: generateFiles({ writer, modelId }),
+    getSandboxURL: getSandboxURL({ writer }),
+    runCommand: runCommand({ writer }),
   }
 }
 
