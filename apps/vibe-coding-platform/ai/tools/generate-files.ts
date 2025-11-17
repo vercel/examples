@@ -1,4 +1,4 @@
-import type { UIMessage, UIMessageChunk, UIMessageStreamWriter } from 'ai'
+import type { ModelMessage, UIMessage, UIMessageStreamWriter } from 'ai'
 import type { DataPart } from '../messages/data-parts'
 import { Sandbox } from '@vercel/sandbox'
 import { getContents, type File } from './generate-files/get-contents'
@@ -24,7 +24,7 @@ const generateFilesStep =
   ) =>
   async (
     { sandboxId, paths }: z.infer<typeof inputSchema>,
-    { toolCallId, messages }: { toolCallId: string; messages: any }
+    { toolCallId, messages }: { toolCallId: string; messages: ModelMessage[] }
   ) => {
     writer.write({
       id: toolCallId,

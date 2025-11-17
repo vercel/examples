@@ -1,4 +1,4 @@
-import type { UIMessage, UIMessageChunk, UIMessageStreamWriter } from 'ai'
+import type { UIMessage, UIMessageStreamWriter } from 'ai'
 import type { DataPart } from '../messages/data-parts'
 import { Sandbox } from '@vercel/sandbox'
 import { getRichError } from './get-rich-error'

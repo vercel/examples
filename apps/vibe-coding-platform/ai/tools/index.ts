@@ -3,7 +3,7 @@ import { createSandbox } from './create-sandbox'
 import { generateFiles } from './generate-files'
 import { getSandboxURL } from './get-sandbox-url'
 import { runCommand } from './run-command'
-import { DataPart } from '../messages/data-parts'
+import type { DataPart } from '../messages/data-parts'
 
 interface Params {
   modelId: string
