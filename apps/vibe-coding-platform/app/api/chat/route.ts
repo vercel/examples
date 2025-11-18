@@ -40,5 +40,8 @@ export async function POST(req: Request) {
 
   return createUIMessageStreamResponse({
     stream: run.readable,
+    headers: {
+      'x-workflow-run-id': run.runId,
+    },
   })
 }
