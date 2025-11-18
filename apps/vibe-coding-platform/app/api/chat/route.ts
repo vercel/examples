@@ -1,24 +1,21 @@
-import { DEFAULT_MODEL } from '@/ai/constants'
-import { getAvailableModels, getModelOptions } from '@/ai/gateway'
-import { tools } from '@/ai/tools'
-import type { ChatUIMessage } from '@/components/chat/types'
-import { DurableAgent } from '@workflow/ai/agent'
+import { type ChatUIMessage } from '@/components/chat/types'
 import {
   convertToModelMessages,
+  createUIMessageStream,
   createUIMessageStreamResponse,
   stepCountIs,
-  type UIMessageChunk,
+  streamText,
 } from 'ai'
-import { checkBotId } from 'botid/server'
+import { DEFAULT_MODEL } from '@/ai/constants'
 import { NextResponse } from 'next/server'
-import { getWritable } from 'workflow'
-import { start } from 'workflow/api'
-import prompt from './chat.prompt'
+import { getAvailableModels } from '@/ai/gateway'
+import { checkBotId } from 'botid/server'
+import { tools } from '@/ai/tools'
+import prompt from './prompt.md'
 
 interface BodyData {
   messages: ChatUIMessage[]
   modelId?: string
-  reasoningEffort?: 'low' | 'medium'
 }
 
 export async function POST(req: Request) {
@@ -27,8 +24,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: `Bot detected` }, { status: 403 })
   }
 
-  const [models, { messages, modelId = DEFAULT_MODEL, reasoningEffort }] =
-    await Promise.all([getAvailableModels(), req.json() as Promise<BodyData>])
+  const [models, { messages, modelId = DEFAULT_MODEL }] = await Promise.all([
+    getAvailableModels(),
+    req.json() as Promise<BodyData>,
+  ])
+
   const model = models.find((model) => model.id === modelId)
   if (!model) {
     return NextResponse.json(
@@ -37,85 +37,52 @@ export async function POST(req: Request) {
     )
   }
 
-  const run = await start(codingWorkflow, [
-    {
-      modelId: model.id,
-      reasoningEffort,
-      prompt,
-      messages,
-    },
-  ])
-
   return createUIMessageStreamResponse({
-    stream: run.readable,
-    //     stream: createUIMessageStream({
-    //       originalMessages: messages,
-    //       execute: ({ writer }) => {
-    //         const result = streamText({
-    //         })
-    //         result.consumeStream()
-    //         writer.merge(
-    //           result.toUIMessageStream({
-    //             sendReasoning: true,
-    //             sendStart: false,
-    //             messageMetadata: () => ({
-    //               model: model.name,
-    //             }),
-    //           }),
-    //         )
-    //       },
-    //     }),
-  })
-}
-
-async function codingWorkflow({
-  prompt,
-  modelId,
-  messages,
-  reasoningEffort,
-}: {
-  prompt: string
-  modelId: string
-  messages: ChatUIMessage[]
-  reasoningEffort?: 'minimal' | 'low' | 'medium'
-}) {
-  'use workflow'
-
-  const writable = getWritable<UIMessageChunk>()
-
-  const agent = new DurableAgent({
-    model: async () => {
-      'use step'
-
-      return getModelOptions(modelId, { reasoningEffort }).model
-    },
-    system: prompt,
-    tools: tools({ modelId }),
-  })
-
-  await agent.stream({
-    messages: convertToModelMessages(
-      messages.map((message) => {
-        message.parts = message.parts.map((part) => {
-          if (part.type === 'data-report-errors') {
-            return {
-              type: 'text',
-              text:
-                `There are errors in the generated code. This is the summary of the errors we have:\n` +
-                `\`\`\`${part.data.summary}\`\`\`\n` +
-                (part.data.paths?.length
-                  ? `The following files may contain errors:\n` +
-                    `\`\`\`${part.data.paths?.join('\n')}\`\`\`\n`
-                  : '') +
-                `Fix the errors reported.`,
-            }
-          }
-          return part
+    stream: createUIMessageStream({
+      originalMessages: messages,
+      execute: ({ writer }) => {
+        const result = streamText({
+          model: modelId,
+          system: prompt,
+          messages: convertToModelMessages(
+            messages.map((message) => {
+              message.parts = message.parts.map((part) => {
+                if (part.type === 'data-report-errors') {
+                  return {
+                    type: 'text',
+                    text:
+                      `There are errors in the generated code. This is the summary of the errors we have:\n` +
+                      `\`\`\`${part.data.summary}\`\`\`\n` +
+                      (part.data.paths?.length
+                        ? `The following files may contain errors:\n` +
+                          `\`\`\`${part.data.paths?.join('\n')}\`\`\`\n`
+                        : '') +
+                      `Fix the errors reported.`,
+                  }
+                }
+                return part
+              })
+              return message
+            })
+          ),
+          stopWhen: stepCountIs(20),
+          tools: tools({ modelId, writer }),
+          onError: (error) => {
+            console.error('Error communicating with AI')
+            console.error(JSON.stringify(error, null, 2))
+          },
         })
-        return message
-      })
-    ),
-    writable,
-    stopWhen: stepCountIs(20),
+        result.consumeStream()
+        writer.merge(
+          result.toUIMessageStream({
+            sendReasoning: true,
+            sendStart: false,
+            messageMetadata: () => ({
+              model: model.name,
+            }),
+          })
+        )
+      },
+    }),
   })
 }

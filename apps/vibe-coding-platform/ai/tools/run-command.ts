@@ -6,6 +6,7 @@ import { tool } from 'ai'
 import description from './run-command.prompt'
 import z from 'zod/v3'
 import { getWritable } from 'workflow'
+import { UIStreamWriter } from './types'
 
 const inputSchema = z.object({
   sandboxId: z
@@ -32,13 +33,8 @@ const inputSchema = z.object({
 
 async function executeRunCommand(
   { sandboxId, command, sudo, wait, args = [] }: z.infer<typeof inputSchema>,
-  { toolCallId }: { toolCallId: string }
+  { toolCallId, writer }: { toolCallId: string; writer: UIStreamWriter }
 ) {
-  'use step'
-
-  const writable = getWritable<UIMessageChunk<never, DataPart>>()
-  const writer = writable.getWriter()
-
   writer.write({
     id: toolCallId,
     type: 'data-run-command',
@@ -196,9 +192,9 @@ async function executeRunCommand(
   }
 }
 
-export const runCommand = () =>
+export const runCommand = ({ writer }: { writer: UIStreamWriter }) =>
   tool({
     description,
     inputSchema,
-    execute: executeRunCommand,
+    execute: (args, options) => executeRunCommand(args, { ...options, writer }),
   })

@@ -1,13 +1,12 @@
-import type { DataPart } from '../../messages/data-parts'
 import type { File } from './get-contents'
 import type { Sandbox } from '@vercel/sandbox'
-import type { UIMessageChunk } from 'ai'
 import { getRichError } from '../get-rich-error'
+import { UIStreamWriter } from '../types'
 
 interface Params {
   sandbox: Sandbox
   toolCallId: string
-  writer: WritableStreamDefaultWriter<UIMessageChunk<never, DataPart>>
+  writer: UIStreamWriter
 }
 
 export function getWriteFiles({ sandbox, toolCallId, writer }: Params) {

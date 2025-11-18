@@ -1,11 +1,9 @@
-import type { UIMessageChunk } from 'ai'
-import type { DataPart } from '../messages/data-parts'
 import { Sandbox } from '@vercel/sandbox'
 import { getRichError } from './get-rich-error'
 import { tool } from 'ai'
 import description from './create-sandbox.prompt'
 import z from 'zod/v3'
-import { getWritable } from 'workflow'
+import { UIStreamWriter } from './types'
 
 const inputSchema = z.object({
   timeout: z
@@ -27,18 +25,8 @@ const inputSchema = z.object({
 
 async function executeCreateSandbox(
   { timeout, ports }: z.infer<typeof inputSchema>,
-  { toolCallId }: { toolCallId: string }
+  { toolCallId, writer }: { toolCallId: string; writer: UIStreamWriter }
 ) {
-  'use step'
-
-  const writeable = getWritable<UIMessageChunk<never, DataPart>>()
-  const writer = writeable.getWriter()
-  writer.write({
-    id: toolCallId,
-    type: 'data-create-sandbox',
-    data: { status: 'loading' },
-  })
-
   try {
     const sandbox = await Sandbox.create({
       timeout: timeout ?? 600000,
@@ -75,9 +63,10 @@ async function executeCreateSandbox(
   }
 }
 
-export const createSandbox = () =>
+export const createSandbox = ({ writer }: { writer: UIStreamWriter }) =>
   tool({
     description,
     inputSchema,
-    execute: executeCreateSandbox,
+    execute: (args, options) =>
+      executeCreateSandbox(args, { ...options, writer }),
   })

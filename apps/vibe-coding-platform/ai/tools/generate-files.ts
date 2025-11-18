@@ -1,5 +1,3 @@
-import type { UIMessageChunk } from 'ai'
-import type { DataPart } from '../messages/data-parts'
 import { Sandbox } from '@vercel/sandbox'
 import { getContents, type File } from './generate-files/get-contents'
 import { getRichError } from './get-rich-error'
@@ -7,11 +5,7 @@ import { getWriteFiles } from './generate-files/get-write-files'
 import { tool } from 'ai'
 import description from './generate-files.prompt'
 import z from 'zod/v3'
-import { getWritable } from 'workflow'
-
-interface Params {
-  modelId: string
-}
+import { UIStreamWriter } from './types'
 
 const inputSchema = z.object({
   sandboxId: z.string(),
@@ -20,14 +14,13 @@ const inputSchema = z.object({
 
 async function executeGenerateFiles(
   { sandboxId, paths }: z.infer<typeof inputSchema>,
-  { toolCallId, messages }: { toolCallId: string; messages: any },
+  {
+    toolCallId,
+    messages,
+    writer,
+  }: { toolCallId: string; messages: any; writer: UIStreamWriter },
   modelId: string
 ) {
-  'use step'
-
-  const writable = getWritable<UIMessageChunk<never, DataPart>>()
-  const writer = writable.getWriter()
-
   writer.write({
     id: toolCallId,
     type: 'data-generating-files',
@@ -112,9 +105,16 @@ async function executeGenerateFiles(
       .join('\n')}`
 }
 
-export const generateFiles = ({ modelId }: Params) =>
+export const generateFiles = ({
+  modelId,
+  writer,
+}: {
+  modelId: string
+  writer: UIStreamWriter
+}) =>
   tool({
     description,
     inputSchema,
-    execute: (args, context) => executeGenerateFiles(args, context, modelId),
+    execute: (args, options) =>
+      executeGenerateFiles(args, { ...options, writer }, modelId),
   })

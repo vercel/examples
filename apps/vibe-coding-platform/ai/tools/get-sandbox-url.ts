@@ -1,10 +1,8 @@
-import type { UIMessageChunk } from 'ai'
-import type { DataPart } from '../messages/data-parts'
 import { Sandbox } from '@vercel/sandbox'
 import { tool } from 'ai'
 import description from './get-sandbox-url.prompt'
 import z from 'zod/v3'
-import { getWritable } from 'workflow'
+import { UIStreamWriter } from './types'
 
 const inputSchema = z.object({
   sandboxId: z
@@ -21,13 +19,8 @@ const inputSchema = z.object({
 
 async function executeGetSandboxURL(
   { sandboxId, port }: z.infer<typeof inputSchema>,
-  { toolCallId }: { toolCallId: string }
+  { toolCallId, writer }: { toolCallId: string; writer: UIStreamWriter }
 ) {
-  'use step'
-
-  const writeable = getWritable<UIMessageChunk<never, DataPart>>()
-  const writer = writeable.getWriter()
-
   writer.write({
     id: toolCallId,
     type: 'data-get-sandbox-url',
@@ -46,9 +39,10 @@ async function executeGetSandboxURL(
   return { url }
 }
 
-export const getSandboxURL = () =>
+export const getSandboxURL = ({ writer }: { writer: UIStreamWriter }) =>
   tool({
     description,
     inputSchema,
-    execute: executeGetSandboxURL,
+    execute: (args, options) =>
+      executeGetSandboxURL(args, { ...options, writer }),
   })
