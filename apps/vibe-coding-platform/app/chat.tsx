@@ -16,10 +16,13 @@ import { Panel, PanelHeader } from '@/components/panels/panels'
 import { Settings } from '@/components/settings/settings'
 import { useChat } from '@ai-sdk/react'
 import { useLocalStorageValue } from '@/lib/use-local-storage-value'
-import { useCallback, useEffect } from 'react'
-import { useSharedChatContext } from '@/lib/chat-context'
+import { useCallback, useEffect, useRef } from 'react'
 import { useSettings } from '@/components/settings/use-settings'
-import { useSandboxStore } from './state'
+import { useDataStateMapper, useSandboxStore } from './state'
+import { toast } from 'sonner'
+import { mutate } from 'swr'
+import { DataUIPart } from 'ai'
+import { DataPart } from '@/ai/messages/data-parts'
 
 interface Props {
   className: string
@@ -28,9 +31,20 @@ interface Props {
 
 export function Chat({ className }: Props) {
   const [input, setInput] = useLocalStorageValue('prompt-input')
-  const { chat } = useSharedChatContext()
   const { modelId, reasoningEffort } = useSettings()
-  const { messages, sendMessage, status } = useChat<ChatUIMessage>({ chat })
+
+  const mapDataToState = useDataStateMapper()
+  const mapDataToStateRef = useRef(mapDataToState)
+  mapDataToStateRef.current = mapDataToState
+
+  const { messages, sendMessage, status } = useChat<ChatUIMessage>({
+    onToolCall: () => mutate('/api/auth/info'),
+    onData: (data: DataUIPart<DataPart>) => mapDataToStateRef.current(data),
+    onError: (error) => {
+      toast.error(`Communication error with the AI: ${error.message}`)
+      console.error('Error sending message:', error)
+    },
+  })
   const { setChatStatus } = useSandboxStore()
 
   const validateAndSubmitMessage = useCallback(
@@ -65,11 +79,16 @@ export function Chat({ className }: Props) {
               Click and try one of these prompts:
             </p>
             <ul className="p-4 space-y-1 text-center">
-              {TEST_PROMPTS.map((prompt, idx) => (
+              {TEST_PROMPTS.map((prompt) => (
                 <li
-                  key={idx}
+                  key={prompt}
                   className="px-4 py-2 rounded-sm border border-dashed shadow-sm cursor-pointer border-border hover:bg-secondary/50 hover:text-primary"
                   onClick={() => validateAndSubmitMessage(prompt)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      validateAndSubmitMessage(prompt)
+                    }
+                  }}
                 >
                   {prompt}
                 </li>
@@ -105,7 +124,7 @@ export function Chat({ className }: Props) {
           value={input}
         />
         <Button type="submit" disabled={status !== 'ready' || !input.trim()}>
-        <SendIcon className="w-4 h-4" />
+          <SendIcon className="w-4 h-4" />
         </Button>
       </form>
     </Panel>
