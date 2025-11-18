@@ -16,13 +16,13 @@ import { Panel, PanelHeader } from '@/components/panels/panels'
 import { Settings } from '@/components/settings/settings'
 import { useChat } from '@ai-sdk/react'
 import { useLocalStorageValue } from '@/lib/use-local-storage-value'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useSettings } from '@/components/settings/use-settings'
 import { useDataStateMapper, useSandboxStore } from './state'
 import { toast } from 'sonner'
 import { mutate } from 'swr'
-import { DataUIPart } from 'ai'
-import { DataPart } from '@/ai/messages/data-parts'
+import type { DataUIPart } from 'ai'
+import type { DataPart } from '@/ai/messages/data-parts'
 import { WorkflowChatTransport } from '@workflow/ai'
 
 interface Props {
@@ -40,53 +40,61 @@ export function Chat({ className }: Props) {
 
   const storedWorkflowRunId = localStorage.getItem('active-workflow-run-id')
 
-  const { messages, sendMessage, status } = useChat<ChatUIMessage>({
-    resume: Boolean(storedWorkflowRunId),
-    onToolCall: () => mutate('/api/auth/info'),
-    onData: (data: DataUIPart<DataPart>) => mapDataToStateRef.current(data),
-    onError: (error) => {
-      toast.error(`Communication error with the AI: ${error.message}`)
-      console.error('Error sending message:', error)
-    },
-    transport: new WorkflowChatTransport({
-      api: `/api/chat`,
-      onChatSendMessage: (response, options) => {
-        console.log('onChatSendMessage', response, options)
-        // Update the chat history in `localStorage` to include the latest user message
-        localStorage.setItem('chat-history', JSON.stringify(options.messages))
-        // We'll store the workflow run ID in `localStorage` to allow the client
-        // to resume the chat session after a page refresh or network interruption
-        const workflowRunId = response.headers.get('x-workflow-run-id')
-        if (!workflowRunId) {
-          throw new Error(
-            'Workflow run ID not found in "x-workflow-run-id" response header'
-          )
-        }
-        localStorage.setItem('active-workflow-run-id', workflowRunId)
+  const { messages, setMessages, sendMessage, status } = useChat<ChatUIMessage>(
+    {
+      resume: Boolean(storedWorkflowRunId),
+      onToolCall: () => mutate('/api/auth/info'),
+      onData: (data: DataUIPart<DataPart>) => mapDataToStateRef.current(data),
+      onError: (error) => {
+        toast.error(`Communication error with the AI: ${error.message}`)
+        console.error('Error sending message:', error)
       },
-      onChatEnd: ({ chatId, chunkIndex }) => {
-        console.log('onChatEnd', chatId, chunkIndex)
-        // Once the chat stream ends, we can remove the workflow run ID from `localStorage`
-        localStorage.removeItem('active-workflow-run-id')
-      },
-      // Configure reconnection to use the stored workflow run ID
-      prepareReconnectToStreamRequest: ({ id, api, ...rest }) => {
-        console.log('prepareReconnectToStreamRequest', id)
-        const workflowRunId = localStorage.getItem('active-workflow-run-id')
-        if (!workflowRunId) {
-          throw new Error('No active workflow run ID found')
-        }
-        // Use the workflow run ID instead of the chat ID for reconnection
-        return {
-          ...rest,
-          api: `/api/chat/${encodeURIComponent(workflowRunId)}/stream`,
-        }
-      },
-      // Optional: Configure error handling for reconnection attempts
-      maxConsecutiveErrors: 5,
-    }),
-  })
+      transport: new WorkflowChatTransport({
+        api: `/api/chat`,
+        onChatSendMessage: (response, options) => {
+          console.log('onChatSendMessage', response, options)
+          // Update the chat history in `localStorage` to include the latest user message
+          localStorage.setItem('chat-history', JSON.stringify(options.messages))
+          // We'll store the workflow run ID in `localStorage` to allow the client
+          // to resume the chat session after a page refresh or network interruption
+          const workflowRunId = response.headers.get('x-workflow-run-id')
+          if (!workflowRunId) {
+            throw new Error(
+              'Workflow run ID not found in "x-workflow-run-id" response header'
+            )
+          }
+          localStorage.setItem('active-workflow-run-id', workflowRunId)
+        },
+        onChatEnd: ({ chatId, chunkIndex }) => {
+          console.log('onChatEnd', chatId, chunkIndex)
+          // Once the chat stream ends, we can remove the workflow run ID from `localStorage`
+          localStorage.removeItem('active-workflow-run-id')
+        },
+        // Configure reconnection to use the stored workflow run ID
+        prepareReconnectToStreamRequest: ({ id, api, ...rest }) => {
+          console.log('prepareReconnectToStreamRequest', id)
+          const workflowRunId = localStorage.getItem('active-workflow-run-id')
+          if (!workflowRunId) {
+            throw new Error('No active workflow run ID found')
+          }
+          // Use the workflow run ID instead of the chat ID for reconnection
+          return {
+            ...rest,
+            api: `/api/chat/${encodeURIComponent(workflowRunId)}/stream`,
+          }
+        },
+        // Optional: Configure error handling for reconnection attempts
+        maxConsecutiveErrors: 5,
+      }),
+    }
+  )
   const { setChatStatus } = useSandboxStore()
+
+  useEffect(() => {
+    const chatHistory = localStorage.getItem('chat-history')
+    if (!chatHistory) return
+    setMessages(JSON.parse(chatHistory) as ChatUIMessage[])
+  }, [setMessages])
 
   const validateAndSubmitMessage = useCallback(
     (text: string) => {
