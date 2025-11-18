@@ -11,7 +11,7 @@ export enum Models {
   XaiGrok3Fast = 'xai/grok-3-fast',
 }
 
-export const DEFAULT_MODEL = Models.AnthropicClaude45Sonnet
+export const DEFAULT_MODEL = Models.AnthropicClaude45Haiku
 
 export const SUPPORTED_MODELS: GatewayModelId[] = [
   Models.AmazonNovaPro,
@@ -25,6 +25,6 @@ export const SUPPORTED_MODELS: GatewayModelId[] = [
 ]
 
 export const TEST_PROMPTS = [
-  'Generate a Next.js app that allows to list and search Pokemons',
+  'Create a react app that allows a user to measure their heart rate by clicking a button in sync with their heartbeat',
   'Create a `golang` server that responds with "Hello World" to any request',
 ]
