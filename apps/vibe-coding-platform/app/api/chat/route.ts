@@ -13,7 +13,7 @@ import { checkBotId } from 'botid/server'
 import { NextResponse } from 'next/server'
 import { getWritable } from 'workflow'
 import { start } from 'workflow/api'
-import prompt from './prompt.md'
+import prompt from './chat.prompt'
 
 interface BodyData {
   messages: ChatUIMessage[]
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
   })
 }
 
-export async function codingWorkflow({
+async function codingWorkflow({
   prompt,
   modelId,
   messages,
