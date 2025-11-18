@@ -11,7 +11,7 @@ import { NextResponse } from 'next/server'
 import { getAvailableModels } from '@/ai/gateway'
 import { checkBotId } from 'botid/server'
 import { tools } from '@/ai/tools'
-import prompt from './prompt.md'
+import prompt from './chat.prompt'
 
 interface BodyData {
   messages: ChatUIMessage[]
