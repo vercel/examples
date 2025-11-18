@@ -3,7 +3,7 @@ import type { DataPart } from '../messages/data-parts'
 import { Sandbox } from '@vercel/sandbox'
 import { getRichError } from './get-rich-error'
 import { tool } from 'ai'
-import description from './create-sandbox.md'
+import description from './create-sandbox.prompt'
 import z from 'zod/v3'
 import { getWritable } from 'workflow'
 

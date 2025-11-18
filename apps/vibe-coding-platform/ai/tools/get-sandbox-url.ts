@@ -1,8 +1,8 @@
-import type { UIMessageStreamWriter, UIMessage, UIMessageChunk } from 'ai'
+import type { UIMessageChunk } from 'ai'
 import type { DataPart } from '../messages/data-parts'
 import { Sandbox } from '@vercel/sandbox'
 import { tool } from 'ai'
-import description from './get-sandbox-url.md'
+import description from './get-sandbox-url.prompt'
 import z from 'zod/v3'
 import { getWritable } from 'workflow'
 
