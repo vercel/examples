@@ -3,6 +3,7 @@ import { MessagePart } from './message-part'
 import { BotIcon, UserIcon } from 'lucide-react'
 import { memo, createContext, useContext, useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
+import { useModelId } from '../settings/use-settings'
 
 interface Props {
   message: ChatUIMessage
@@ -21,6 +22,7 @@ export const useReasoningContext = () => {
 }
 
 export const Message = memo(function Message({ message }: Props) {
+  const [modelId] = useModelId()
   const [expandedReasoningIndex, setExpandedReasoningIndex] = useState<
     number | null
   >(null)
@@ -57,7 +59,7 @@ export const Message = memo(function Message({ message }: Props) {
           ) : (
             <>
               <BotIcon className="w-4" />
-              <span>Assistant ({message.metadata?.model})</span>
+              <span>Assistant ({modelId})</span>
             </>
           )}
         </div>
