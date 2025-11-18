@@ -7,15 +7,14 @@ import type { DataPart } from '../messages/data-parts'
 
 interface Params {
   modelId: string
-  writer: UIMessageStreamWriter<UIMessage<never, DataPart>>
 }
 
-export function tools({ modelId, writer }: Params) {
+export function tools({ modelId }: Params) {
   return {
-    createSandbox: createSandbox({ writer }),
-    generateFiles: generateFiles({ writer, modelId }),
-    getSandboxURL: getSandboxURL({ writer }),
-    runCommand: runCommand({ writer }),
+    createSandbox: createSandbox(),
+    generateFiles: generateFiles({ modelId }),
+    getSandboxURL: getSandboxURL(),
+    runCommand: runCommand(),
   }
 }
 

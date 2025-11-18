@@ -9,6 +9,7 @@ deployUrl: https://vercel.com/new/git/external?repository-url=https://github.com
 demoUrl: https://cms-graphql-fragments.vercel.app/
 ignoreE2E: true
 ---
+
 # CMS GraphQL Fragments example
 
 This example shows a Next.js blog powered by Sanity CMS and GraphQL with Incremental Static Regeneration (ISR), featuring GraphQL fragment colocation and type-safe queries.
@@ -22,6 +23,7 @@ https://cms-graphql-fragments.vercel.app/
 You can choose from one of the following two methods to use this repository:
 
 ### One-Click Deploy
+
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/starter/starter/cms-sanity-graphql-fragments&project-name=cms-sanity-graphql-fragments&repository-name=cms-sanity-graphql-fragments)
@@ -41,7 +43,6 @@ pnpm dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
-
 
 ## Features
 
@@ -99,6 +100,7 @@ npm run schema:generate
 2. Create content using the available schemas:
 
 **Posts** (for blog content):
+
 - Title (required)
 - Slug (required)
 - Excerpt (optional)
@@ -106,6 +108,7 @@ npm run schema:generate
 - Published At (required)
 
 **Pages** (for static pages like About):
+
 - Title (required)
 - Slug (required)
 - Excerpt (optional)
@@ -114,10 +117,12 @@ npm run schema:generate
 - Published status (required)
 
 **Navigation Settings** (site navigation):
+
 - Site Title (required)
 - Navigation Items (required)
 
 **Footer Settings** (site footer):
+
 - Footer Title (required)
 - Description (optional)
 - Footer Links (optional)
@@ -144,6 +149,7 @@ npm run dev
 This project uses a fragment colocation pattern to keep GraphQL fragments close to the components that use them:
 
 **For Server Components:**
+
 ```typescript
 // In your server component file
 const MyComponentFragment = graphql(`
@@ -151,10 +157,11 @@ const MyComponentFragment = graphql(`
     title
     slug
   }
-`);
+`)
 ```
 
 **For Client Components:**
+
 ```typescript
 // my-component-fragment.ts
 export const myComponentFragment = graphql(`
@@ -162,15 +169,15 @@ export const myComponentFragment = graphql(`
     title
     slug
   }
-`);
+`)
 
 // my-component.tsx
-"use client";
-import { type FragmentOf } from "@/lib/graphql";
-import type { myComponentFragment } from "./my-component-fragment";
+;('use client')
+import { type FragmentOf } from '@/lib/graphql'
+import type { myComponentFragment } from './my-component-fragment'
 
 interface Props {
-  data: FragmentOf<typeof myComponentFragment>;
+  data: FragmentOf<typeof myComponentFragment>
 }
 ```
 

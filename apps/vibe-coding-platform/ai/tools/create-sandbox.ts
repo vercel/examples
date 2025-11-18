@@ -1,10 +1,11 @@
-import type { UIMessage, UIMessageStreamWriter } from 'ai'
+import type { UIMessageChunk } from 'ai'
 import type { DataPart } from '../messages/data-parts'
 import { Sandbox } from '@vercel/sandbox'
 import { getRichError } from './get-rich-error'
 import { tool } from 'ai'
 import description from './create-sandbox.prompt'
 import z from 'zod/v3'
+import { getWritable } from 'workflow'
 
 const inputSchema = z.object({
   timeout: z
@@ -24,61 +25,60 @@ const inputSchema = z.object({
     ),
 })
 
-const createSandboxStep =
-  (writer: UIMessageStreamWriter<UIMessage<never, DataPart>>) =>
-  async (
-    { timeout, ports }: z.infer<typeof inputSchema>,
-    { toolCallId }: { toolCallId: string }
-  ) => {
+async function createSandboxStep(
+  { timeout, ports }: z.infer<typeof inputSchema>,
+  { toolCallId }: { toolCallId: string }
+) {
+  'use step'
+
+  const writable = getWritable<UIMessageChunk<never, DataPart>>()
+  const writer = writable.getWriter()
+
+  writer.write({
+    id: toolCallId,
+    type: 'data-create-sandbox',
+    data: { status: 'loading' },
+  })
+
+  try {
+    const sandbox = await Sandbox.create({
+      timeout: timeout ?? 600000,
+      ports,
+    })
+
     writer.write({
       id: toolCallId,
       type: 'data-create-sandbox',
-      data: { status: 'loading' },
+      data: { sandboxId: sandbox.sandboxId, status: 'done' },
     })
 
-    try {
-      const sandbox = await Sandbox.create({
-        timeout: timeout ?? 600000,
-        ports,
-      })
+    return (
+      `Sandbox created with ID: ${sandbox.sandboxId}.` +
+      `\nYou can now upload files, run commands, and access services on the exposed ports.`
+    )
+  } catch (error) {
+    const richError = getRichError({
+      action: 'Creating Sandbox',
+      error,
+    })
 
-      writer.write({
-        id: toolCallId,
-        type: 'data-create-sandbox',
-        data: { sandboxId: sandbox.sandboxId, status: 'done' },
-      })
+    writer.write({
+      id: toolCallId,
+      type: 'data-create-sandbox',
+      data: {
+        error: { message: richError.error.message },
+        status: 'error',
+      },
+    })
 
-      return (
-        `Sandbox created with ID: ${sandbox.sandboxId}.` +
-        `\nYou can now upload files, run commands, and access services on the exposed ports.`
-      )
-    } catch (error) {
-      const richError = getRichError({
-        action: 'Creating Sandbox',
-        error,
-      })
-
-      writer.write({
-        id: toolCallId,
-        type: 'data-create-sandbox',
-        data: {
-          error: { message: richError.error.message },
-          status: 'error',
-        },
-      })
-
-      console.log('Error creating Sandbox:', richError.error)
-      return richError.message
-    }
+    console.log('Error creating Sandbox:', richError.error)
+    return richError.message
   }
+}
 
-export const createSandbox = ({
-  writer,
-}: {
-  writer: UIMessageStreamWriter<UIMessage<never, DataPart>>
-}) =>
+export const createSandbox = () =>
   tool({
     description,
     inputSchema,
-    execute: createSandboxStep(writer),
+    execute: createSandboxStep,
   })

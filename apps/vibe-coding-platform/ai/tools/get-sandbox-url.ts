@@ -1,9 +1,9 @@
-import type { UIMessage, UIMessageStreamWriter } from 'ai'
 import type { DataPart } from '../messages/data-parts'
 import { Sandbox } from '@vercel/sandbox'
-import { tool } from 'ai'
+import { tool, UIMessageChunk } from 'ai'
 import description from './get-sandbox-url.prompt'
 import z from 'zod/v3'
+import { getWritable } from 'workflow'
 
 const inputSchema = z.object({
   sandboxId: z
@@ -18,37 +18,36 @@ const inputSchema = z.object({
     ),
 })
 
-const executeGetSandboxUrl =
-  (writer: UIMessageStreamWriter<UIMessage<never, DataPart>>) =>
-  async (
-    { sandboxId, port }: z.infer<typeof inputSchema>,
-    { toolCallId }: { toolCallId: string }
-  ) => {
-    writer.write({
-      id: toolCallId,
-      type: 'data-get-sandbox-url',
-      data: { status: 'loading' },
-    })
+async function getSandboxURLStep(
+  { sandboxId, port }: z.infer<typeof inputSchema>,
+  { toolCallId }: { toolCallId: string }
+) {
+  'use step'
 
-    const sandbox = await Sandbox.get({ sandboxId })
-    const url = sandbox.domain(port)
+  const writable = getWritable<UIMessageChunk<never, DataPart>>()
+  const writer = writable.getWriter()
 
-    writer.write({
-      id: toolCallId,
-      type: 'data-get-sandbox-url',
-      data: { url, status: 'done' },
-    })
+  writer.write({
+    id: toolCallId,
+    type: 'data-get-sandbox-url',
+    data: { status: 'loading' },
+  })
 
-    return { url }
-  }
+  const sandbox = await Sandbox.get({ sandboxId })
+  const url = sandbox.domain(port)
 
-export const getSandboxURL = ({
-  writer,
-}: {
-  writer: UIMessageStreamWriter<UIMessage<never, DataPart>>
-}) =>
+  writer.write({
+    id: toolCallId,
+    type: 'data-get-sandbox-url',
+    data: { url, status: 'done' },
+  })
+
+  return { url }
+}
+
+export const getSandboxURL = () =>
   tool({
     description,
     inputSchema,
-    execute: executeGetSandboxUrl(writer),
+    execute: getSandboxURLStep,
   })
