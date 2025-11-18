@@ -14,7 +14,6 @@ import { NextResponse } from 'next/server'
 import { getWritable } from 'workflow'
 import { start } from 'workflow/api'
 import prompt from './prompt.md'
-import { LanguageModelV2 } from '@ai-sdk/provider'
 
 interface BodyData {
   messages: ChatUIMessage[]
@@ -49,27 +48,24 @@ export async function POST(req: Request) {
 
   return createUIMessageStreamResponse({
     stream: run.readable,
+    //     stream: createUIMessageStream({
+    //       originalMessages: messages,
+    //       execute: ({ writer }) => {
+    //         const result = streamText({
+    //         })
+    //         result.consumeStream()
+    //         writer.merge(
+    //           result.toUIMessageStream({
+    //             sendReasoning: true,
+    //             sendStart: false,
+    //             messageMetadata: () => ({
+    //               model: model.name,
+    //             }),
+    //           }),
+    //         )
+    //       },
+    //     }),
   })
-
-  //   return createUIMessageStreamResponse({
-  //     stream: createUIMessageStream({
-  //       originalMessages: messages,
-  //       execute: ({ writer }) => {
-  //         const result = streamText({
-  //         })
-  //         result.consumeStream()
-  //         writer.merge(
-  //           result.toUIMessageStream({
-  //             sendReasoning: true,
-  //             sendStart: false,
-  //             messageMetadata: () => ({
-  //               model: model.name,
-  //             }),
-  //           }),
-  //         )
-  //       },
-  //     }),
-  //   })
 }
 
 export async function codingWorkflow({
