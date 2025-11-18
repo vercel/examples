@@ -3,7 +3,8 @@ import { getRichError } from './get-rich-error'
 import { tool } from 'ai'
 import description from './create-sandbox.prompt'
 import z from 'zod/v3'
-import { UIStreamWriter } from './types'
+import { UIStreamChunk, UIStreamWriter } from './types'
+import { getWritable } from 'workflow'
 
 const inputSchema = z.object({
   timeout: z
@@ -25,8 +26,13 @@ const inputSchema = z.object({
 
 async function executeCreateSandbox(
   { timeout, ports }: z.infer<typeof inputSchema>,
-  { toolCallId, writer }: { toolCallId: string; writer: UIStreamWriter }
+  { toolCallId }: { toolCallId: string }
 ) {
+  'use step'
+
+  const writable = getWritable<UIStreamChunk>()
+  const writer = writable.getWriter()
+
   try {
     const sandbox = await Sandbox.create({
       timeout: timeout ?? 600000,
@@ -63,10 +69,9 @@ async function executeCreateSandbox(
   }
 }
 
-export const createSandbox = ({ writer }: { writer: UIStreamWriter }) =>
+export const createSandbox = () =>
   tool({
     description,
     inputSchema,
-    execute: (args, options) =>
-      executeCreateSandbox(args, { ...options, writer }),
+    execute: (args, options) => executeCreateSandbox(args, options),
   })

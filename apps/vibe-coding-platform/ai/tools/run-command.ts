@@ -1,12 +1,10 @@
-import type { UIMessageChunk } from 'ai'
-import type { DataPart } from '../messages/data-parts'
 import { Command, Sandbox } from '@vercel/sandbox'
 import { getRichError } from './get-rich-error'
 import { tool } from 'ai'
 import description from './run-command.prompt'
 import z from 'zod/v3'
 import { getWritable } from 'workflow'
-import { UIStreamWriter } from './types'
+import { UIStreamChunk } from './types'
 
 const inputSchema = z.object({
   sandboxId: z
@@ -33,8 +31,13 @@ const inputSchema = z.object({
 
 async function executeRunCommand(
   { sandboxId, command, sudo, wait, args = [] }: z.infer<typeof inputSchema>,
-  { toolCallId, writer }: { toolCallId: string; writer: UIStreamWriter }
+  { toolCallId }: { toolCallId: string }
 ) {
+  'use step'
+
+  const writable = getWritable<UIStreamChunk>()
+  const writer = writable.getWriter()
+
   writer.write({
     id: toolCallId,
     type: 'data-run-command',
@@ -192,9 +195,9 @@ async function executeRunCommand(
   }
 }
 
-export const runCommand = ({ writer }: { writer: UIStreamWriter }) =>
+export const runCommand = () =>
   tool({
     description,
     inputSchema,
-    execute: (args, options) => executeRunCommand(args, { ...options, writer }),
+    execute: (args, options) => executeRunCommand(args, options),
   })

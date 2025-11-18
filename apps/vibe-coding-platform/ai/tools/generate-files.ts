@@ -5,7 +5,8 @@ import { getWriteFiles } from './generate-files/get-write-files'
 import { tool } from 'ai'
 import description from './generate-files.prompt'
 import z from 'zod/v3'
-import { UIStreamWriter } from './types'
+import { UIStreamChunk, UIStreamWriter } from './types'
+import { getWritable } from 'workflow'
 
 const inputSchema = z.object({
   sandboxId: z.string(),
@@ -14,13 +15,14 @@ const inputSchema = z.object({
 
 async function executeGenerateFiles(
   { sandboxId, paths }: z.infer<typeof inputSchema>,
-  {
-    toolCallId,
-    messages,
-    writer,
-  }: { toolCallId: string; messages: any; writer: UIStreamWriter },
+  { toolCallId, messages }: { toolCallId: string; messages: any },
   modelId: string
 ) {
+  'use step'
+
+  const writable = getWritable<UIStreamChunk>()
+  const writer = writable.getWriter()
+
   writer.write({
     id: toolCallId,
     type: 'data-generating-files',
@@ -105,16 +107,9 @@ async function executeGenerateFiles(
       .join('\n')}`
 }
 
-export const generateFiles = ({
-  modelId,
-  writer,
-}: {
-  modelId: string
-  writer: UIStreamWriter
-}) =>
+export const generateFiles = ({ modelId }: { modelId: string }) =>
   tool({
     description,
     inputSchema,
-    execute: (args, options) =>
-      executeGenerateFiles(args, { ...options, writer }, modelId),
+    execute: (args, options) => executeGenerateFiles(args, options, modelId),
   })

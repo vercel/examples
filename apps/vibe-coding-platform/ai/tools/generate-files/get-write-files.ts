@@ -1,12 +1,12 @@
 import type { File } from './get-contents'
 import type { Sandbox } from '@vercel/sandbox'
 import { getRichError } from '../get-rich-error'
-import { UIStreamWriter } from '../types'
+import { UIStreamChunk } from '../types'
 
 interface Params {
   sandbox: Sandbox
   toolCallId: string
-  writer: UIStreamWriter
+  writer: WritableStreamDefaultWriter<UIStreamChunk>
 }
 
 export function getWriteFiles({ sandbox, toolCallId, writer }: Params) {
