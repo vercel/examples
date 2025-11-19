@@ -2,7 +2,7 @@
 
 import type { ChatUIMessage } from '@/components/chat/types'
 import { TEST_PROMPTS } from '@/ai/constants'
-import { MessageCircleIcon, SendIcon } from 'lucide-react'
+import { MessageCircleIcon, SendIcon, StopCircleIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Conversation,
@@ -37,7 +37,7 @@ export function Chat({ className }: Props) {
   const mapDataToStateRef = useRef(mapDataToState)
   mapDataToStateRef.current = mapDataToState
 
-  const { messages, sendMessage, status } = useChat<ChatUIMessage>({
+  const { messages, sendMessage, status, stop } = useChat<ChatUIMessage>({
     onToolCall: () => mutate('/api/auth/info'),
     onData: (data: DataUIPart<DataPart>) => mapDataToStateRef.current(data),
     onError: (error) => {
@@ -123,9 +123,15 @@ export function Chat({ className }: Props) {
           placeholder="Type your message..."
           value={input}
         />
-        <Button type="submit" disabled={status !== 'ready' || !input.trim()}>
-          <SendIcon className="w-4 h-4" />
-        </Button>
+        {status !== 'ready' ? (
+          <Button type="submit" disabled={!input.trim()}>
+            <SendIcon className="w-4 h-4" />
+          </Button>
+        ) : (
+          <Button onClick={stop}>
+            <StopCircleIcon className="w-4 h-4" />
+          </Button>
+        )}
       </form>
     </Panel>
   )
