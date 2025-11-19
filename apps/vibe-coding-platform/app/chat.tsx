@@ -69,7 +69,7 @@ export function Chat({ className }: Props) {
         onChatEnd: ({ chatId, chunkIndex }) => {
           console.log('onChatEnd', chatId, chunkIndex)
           // Once the chat stream ends, we can remove the workflow run ID from `localStorage`
-          setCurrentRunId('')
+          // setCurrentRunId('')
         },
         // Configure reconnection to use the stored workflow run ID
         prepareReconnectToStreamRequest: ({ id, api, ...rest }) => {
