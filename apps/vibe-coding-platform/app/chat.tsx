@@ -2,7 +2,7 @@
 
 import type { ChatUIMessage } from '@/components/chat/types'
 import { TEST_PROMPTS } from '@/ai/constants'
-import { MessageCircleIcon, SendIcon } from 'lucide-react'
+import { MessageCircleIcon, SendIcon, StopCircleIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Conversation,
@@ -175,7 +175,9 @@ export function Chat({ className }: Props) {
             <SendIcon className="w-4 h-4" />
           </Button>
         ) : (
-          <Button></Button>
+          <Button onClick={stop}>
+            <StopCircleIcon className="w-4 h-4" />
+          </Button>
         )}
       </form>
     </Panel>
