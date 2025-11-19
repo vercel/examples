@@ -2,10 +2,10 @@ import { Sandbox } from '@vercel/sandbox'
 import { getContents, type File } from './generate-files/get-contents'
 import { getRichError } from './get-rich-error'
 import { getWriteFiles } from './generate-files/get-write-files'
-import { ModelMessage, tool } from 'ai'
+import { type ModelMessage, tool } from 'ai'
 import description from './generate-files.prompt'
 import z from 'zod/v3'
-import { UIStreamChunk } from './types'
+import type { UIStreamChunk } from './types'
 import { getWritable } from 'workflow'
 
 const inputSchema = z.object({
