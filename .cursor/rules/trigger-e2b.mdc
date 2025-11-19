@@ -1,0 +1,16 @@
+---
+description: Task-specific guidance for implementing Trigger.dev workflows and e2b adapter. Activate when working on files under packages/backend or any 'execution' folder.
+globs:
+  - "packages/backend/**"
+  - "packages/**/execution/**"
+alwaysApply: false
+---
+
+# Trigger.dev + e2b integration guidance
+
+1. When asked to implement a new execution path, prefer adding an `ISandboxRunner` interface first. The interface must include `startRun(req)`, `attachLogs(runId, handler)`, `cancelRun(runId)`, and `getStatus(runId)`.  
+2. Implement `E2BSandboxRunner` that calls e2b SDK or REST API. Keep methods asynchronous and stream-friendly. Use an event emitter or async iterator to forward logs.  
+3. Implement a lightweight Trigger.dev workflow wrapper in `workflows/trigger/` that accepts an ExecutionRequest, calls `E2BSandboxRunner`, streams logs to a webhook, and persists final artifacts to storage.  
+4. For streaming to the frontend, provide a webhook sink that writes log chunks into a short-lived pub/sub or in-memory map, and expose an SSE/WS `/runs/:id/events` endpoint for clients to subscribe. Ensure run ID authorization.  
+5. For local dev, provide a `mocks/e2b` implementation that simulates sandbox lifecycle and produces deterministic logs. Use this in `pnpm dev`.  
+6. Documentation. Each adapter and workflow must include a small README explaining env variables needed, expected inputs, outputs, and example payloads.  

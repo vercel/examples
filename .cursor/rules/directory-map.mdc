@@ -1,0 +1,59 @@
+description: Quick-reference for what each major directory in the repo is responsible
+  for; helps agents pick the right surface before editing.
+globs:
+  - "**/*"
+alwaysApply: true
+---
+
+# Directory purpose map
+
+Use this when you need to figure out where a change belongs. It groups the busiest
+top-level folders and notes what lives inside.
+
+## Product surfaces
+
+- `apps/vibe-coding-platform` (sometimes referenced as `apps/wipecodingplatform`
+  in planning docs): The primary Next.js app that powers the AI coding
+  experience. Contains the chat UI, AI tool wiring (`ai/*`), server actions, and
+  sandbox viewer flows. Treat this as the source of truth for frontend behavior
+  and user interaction logic.
+- `app-directory/`, `framework-boilerplates/`, `starter/`, `solutions/`, `microfrontends/`,
+  `vercel-tutor/`: Reference apps and learning sandboxes that mirror various
+  Vercel example repos. When in doubt, treat them as read-only templates unless a
+  change request explicitly targets them.
+- `edge-middleware/`, `flags-sdk/`, `storage/`, `toolbar/`: Vertical-specific
+  showcases for middleware, feature flag helpers, storage adapters, and the
+  floating toolbar UI respectively. These are mostly self-contained Next or Edge
+  projects that share little code with the main app.
+
+## Backends and runtimes
+
+- `python/`: Collection of backend templates. The important one for active work
+  is `python/vibe-coding-ide/backend` (often shortened to `python/backend` in
+  docs). It hosts the Python agent service: `src/agent` defines the task-running
+  agent, `src/api` exposes REST endpoints, `src/sandbox` contains command/runtimes,
+  and `server.py` boots the FastAPI-style server. Other subfolders (`fastapi/`,
+  `flask*/`, `hello-world/`, `nextjs-flask/`) are deployable samples.
+- `internal/`: Shared TypeScript utilities plus any cross-cutting adapters that
+  multiple apps import (telemetry, shared hooks, schemas, etc.).
+- `build-output-api/`: Markdown specs that document how each example emits the
+  Vercel Build Output API artifacts. Useful when adjusting deployment behavior.
+
+## Tooling and ops
+
+- `ci-cd/`: GitHub Actions plus other automation recipes. Edit here when the
+  request is about deployment workflows or release automation.
+- `guides/`: Short HOWTOs and guardrails for maintainers—useful context before
+  modifying complex systems.
+- `plop-templates/` & `plopfile.mjs`: Scaffolding scripts/templates used to spin
+  up new example apps. Update when adding a fresh template that should be
+  generated via Plop.
+
+## Notes when routing work
+
+1. Frontend product changes almost always touch `apps/vibe-coding-platform` (app
+   directory routes + shared `components/`).
+2. Backend agent or sandbox execution changes belong in
+   `python/vibe-coding-ide/backend`.
+3. Most other directories are reference material—avoid edits unless a task calls
+   for a documentation or template update.

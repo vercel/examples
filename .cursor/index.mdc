@@ -1,0 +1,15 @@
+---
+description: Project-wide Cursor rules for the Vibe Code fork. These rules always apply to guide AI edits and code generation across the repo.
+globs:
+  - "**/*"
+alwaysApply: true
+---
+
+# Vibe Code .cursor rules
+
+1. Project purpose. This repository replaces Vercel sandbox with Trigger.dev workflows and e2b sandboxes. Keep user experience identical where possible, and prefer minimal frontend changes.  
+2. Architecture constraints. Use a modular TypeScript backend. Separate concerns into `execution` (ISandboxRunner), `adapters` (e2bAdapter), `workflows` (Trigger.dev), `realtime` (SSE/WS), and `storage` (S3-compatible).  
+3. Security rules. Never commit API keys or secrets. Use environment variables and Trigger.dev secrets. Sanitize logs before persisting or exposing. Limit sandbox network by default.  
+4. Testing. Add unit tests for adapters and a lightweight integration test that runs a simple "console.log('hello')" sandbox. Mock e2b in local CI.  
+5. Code style. Follow existing repo linting and TypeScript strict settings. Prefer small, single-responsibility functions and explicit types.  
+6. Commits. For large changes, create focused commits and keep PRs scoped to one logical change at a time.  
