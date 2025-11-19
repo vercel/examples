@@ -1,5 +1,6 @@
 import type { NextConfig } from 'next'
 import { withBotId } from 'botid/next/config'
+import { withWorkflow } from 'workflow/next'
 
 const nextConfig: NextConfig = {
   webpack(config) {
@@ -31,3 +32,5 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 }
+
+export default withWorkflow(withBotId(nextConfig))
