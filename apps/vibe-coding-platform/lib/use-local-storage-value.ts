@@ -1,22 +1,22 @@
+'use client'
 import { useEffect, useState } from 'react'
 
 export function useLocalStorageValue(key: string) {
-  const [value, setValue] = useState<string>('')
-  const [isInitialized, setIsInitialized] = useState(false)
+  const storage = window?.localStorage
+  const [value, setValue] = useState<string>(() => storage?.getItem(key) ?? '')
 
   useEffect(() => {
-    const storedValue = localStorage.getItem(key)
+    if (!storage) return
+    const storedValue = storage.getItem(key)
     if (storedValue !== null) {
       setValue(storedValue)
     }
-    setIsInitialized(true)
-  }, [key])
+  }, [key, storage])
 
   useEffect(() => {
-    if (isInitialized) {
-      localStorage.setItem(key, value)
-    }
-  }, [key, value, isInitialized])
+    if (!storage) return
+    storage.setItem(key, value)
+  }, [key, value, storage])
 
   return [value, setValue] as const
 }
