@@ -41,8 +41,8 @@ export function Chat({ className }: Props) {
   const mapDataToState = useDataStateMapper()
   const mapDataToStateRef = useRef(mapDataToState)
 
-  const { messages, setMessages, sendMessage, status } = useChat<ChatUIMessage>(
-    {
+  const { messages, setMessages, sendMessage, status, stop } =
+    useChat<ChatUIMessage>({
       resume: Boolean(currentRunId),
       onToolCall: () => mutate('/api/auth/info'),
       onData: (data: DataUIPart<DataPart>) => mapDataToStateRef.current(data),
@@ -86,8 +86,7 @@ export function Chat({ className }: Props) {
         // Optional: Configure error handling for reconnection attempts
         maxConsecutiveErrors: 5,
       }),
-    }
-  )
+    })
   const { setChatStatus } = useSandboxStore()
 
   useEffect(() => {
@@ -171,9 +170,13 @@ export function Chat({ className }: Props) {
           placeholder="Type your message..."
           value={input}
         />
-        <Button type="submit" disabled={status !== 'ready' || !input.trim()}>
-          <SendIcon className="w-4 h-4" />
-        </Button>
+        {status !== 'ready' ? (
+          <Button type="submit" disabled={!input.trim()}>
+            <SendIcon className="w-4 h-4" />
+          </Button>
+        ) : (
+          <Button></Button>
+        )}
       </form>
     </Panel>
   )
