@@ -56,7 +56,13 @@ export function getModelOptions(
 }
 
 function gatewayInstance() {
+  // Check for API key first, then OIDC token
+  const apiKey =
+    process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_AI_GATEWAY_API_KEY
+  const oidcToken = process.env.VERCEL_OIDC_TOKEN
+
   return createGatewayProvider({
     baseURL: process.env.AI_GATEWAY_BASE_URL,
+    apiKey: apiKey || oidcToken,
   })
 }
