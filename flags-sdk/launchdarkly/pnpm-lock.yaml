@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@flags-sdk/launchdarkly':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.3.2
+        version: 0.3.2
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -141,8 +141,8 @@ packages:
     resolution: {integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@flags-sdk/launchdarkly@0.3.0':
-    resolution: {integrity: sha512-sT7ZDEmJzCjdvpKt5jzjArwod1+cy/7GBQ/CsB3ux3Zgar9bN6rHWFDgyk6iIiZrQn5kkN3Y7/rOxTf0MxAyRw==}
+  '@flags-sdk/launchdarkly@0.3.2':
+    resolution: {integrity: sha512-hmH9NOP9l4rTXbckCDC5zED0AZ5XQj35pJ2RBSotJTvOrQd87kPTYBpc0fjveIRsbp6FA2iFtmeWQQLKwDO3Rg==}
 
   '@floating-ui/core@1.6.9':
     resolution: {integrity: sha512-uMXCuQ3BItDUbAMhIXw7UPXRfAlOAvZzdK9BWpE60MCn+Svt3aLn9jsPTi/WNGlRUu2uI0v5S7JiIUsbsvh3fw==}
@@ -313,17 +313,17 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@launchdarkly/js-sdk-common@2.14.0':
-    resolution: {integrity: sha512-nCnhJclokmCDBhyHXalUycv453OLhpBOU6/Ay9z1FUHKS+jAhmTuu3qTtM/Q+WrLksUl8y1vvrBlr4nNMd5BRA==}
+  '@launchdarkly/js-sdk-common@2.19.0':
+    resolution: {integrity: sha512-p4MU3VxFSxj1T5yGm3OeJAS034nAiISGUF9Av3r9tClRCElcIdj159hADBYCE4VpiH6q+6KJ3cbvXF8v1200+g==}
 
-  '@launchdarkly/js-server-sdk-common-edge@2.6.2':
-    resolution: {integrity: sha512-ibmSMbJPjTx3P9RmI2xiwJeDnRvmVJnzCkRidzg+SXFM1PfhZSwlnJgqzgTocGGZQWSArEO7xc5JWi2WEjuliw==}
+  '@launchdarkly/js-server-sdk-common-edge@2.6.9':
+    resolution: {integrity: sha512-z8rUtlnz527WJRa6IBAJ6SZjJUdbAFz+Fqdc4zZpFgxyYctEcNrrCua96P9IQlM7K+yZp9zggb7oBChPjixZ6g==}
 
-  '@launchdarkly/js-server-sdk-common@2.13.0':
-    resolution: {integrity: sha512-3lk52Qc5/5uunaMEEeP5dSduvy6MRihwFDFx60FDj7b5eRixKjx83f/zM3qIJujjghZwLYnMVi8dbp7g2taUyw==}
+  '@launchdarkly/js-server-sdk-common@2.16.2':
+    resolution: {integrity: sha512-xjJP1YHdSABgn4whBccaIFK5Mr0e3WVdu47NJoSzbkVEDrr2LaOaya+92vYkuByulObvuGAkhI+ceJhz3G0l2g==}
 
-  '@launchdarkly/vercel-server-sdk@1.3.26':
-    resolution: {integrity: sha512-CW22MZ8172Ha+4fT252XTxxQ8utepoDKdLS2kz4YOcLmKzdeOJgaW8zfitjEHrIIuvTCqsIhUyXJ37AqgFfCqg==}
+  '@launchdarkly/vercel-server-sdk@1.3.34':
+    resolution: {integrity: sha512-uZjn6gH2wfct0HwiH+BH9EPJmLIsS5XmzMitFSWJjgosaVHG07qUWhZsQBbWpAIOz2Xc761lob5B4kpH9wJQdQ==}
 
   '@next/env@15.4.0-canary.79':
     resolution: {integrity: sha512-CIFI3SshHwbHvEaQDyHmONmLMTt8CftGbKwg8Vz0b8v20VA3VNZAOCiSU+08uXj33Ofxgywzmh5Ls9HkdX9Ssw==}
@@ -2265,9 +2265,9 @@ snapshots:
       '@eslint/core': 0.12.0
       levn: 0.4.1
 
-  '@flags-sdk/launchdarkly@0.3.0':
+  '@flags-sdk/launchdarkly@0.3.2':
     dependencies:
-      '@launchdarkly/vercel-server-sdk': 1.3.26
+      '@launchdarkly/vercel-server-sdk': 1.3.34
       '@vercel/edge-config': 1.4.0
     transitivePeerDependencies:
       - '@opentelemetry/api'
@@ -2404,21 +2404,21 @@ snapshots:
   '@img/sharp-win32-x64@0.34.2':
     optional: true
 
-  '@launchdarkly/js-sdk-common@2.14.0': {}
+  '@launchdarkly/js-sdk-common@2.19.0': {}
 
-  '@launchdarkly/js-server-sdk-common-edge@2.6.2':
+  '@launchdarkly/js-server-sdk-common-edge@2.6.9':
     dependencies:
-      '@launchdarkly/js-server-sdk-common': 2.13.0
+      '@launchdarkly/js-server-sdk-common': 2.16.2
       crypto-js: 4.2.0
 
-  '@launchdarkly/js-server-sdk-common@2.13.0':
+  '@launchdarkly/js-server-sdk-common@2.16.2':
     dependencies:
-      '@launchdarkly/js-sdk-common': 2.14.0
+      '@launchdarkly/js-sdk-common': 2.19.0
       semver: 7.5.4
 
-  '@launchdarkly/vercel-server-sdk@1.3.26':
+  '@launchdarkly/vercel-server-sdk@1.3.34':
     dependencies:
-      '@launchdarkly/js-server-sdk-common-edge': 2.6.2
+      '@launchdarkly/js-server-sdk-common-edge': 2.6.9
       '@vercel/edge-config': 1.4.0
       crypto-js: 4.2.0
     transitivePeerDependencies:

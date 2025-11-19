@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "An xmcp demo server with tool syntax",
   "engines": {
-    "node": ">=20.0.0"
+    "node": "22.x"
   },
   "scripts": {
     "build": "xmcp build",

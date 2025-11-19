@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/@vercel/microfrontends/schema/schema.json",
+  "applications": {
+    "saas-microservices-dashboard": {
+      "development": {
+        "fallback": "dashboard-acme.vercel.app"
+      },
+      "packageName": "dashboard"
+    },
+    "saas-microservices-api": {
+      "routing": [
+        {
+          "paths": ["/api/:path*"]
+        }
+      ],
+      "packageName": "api",
+      "development": {
+        "local": 3001
+      }
+    }
+  }
+}

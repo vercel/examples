@@ -4,7 +4,6 @@ import { createSandbox } from './create-sandbox'
 import { generateFiles } from './generate-files'
 import { getSandboxURL } from './get-sandbox-url'
 import { runCommand } from './run-command'
-import { waitCommand } from './wait-command'
 
 interface Params {
   modelId: string
@@ -17,7 +16,6 @@ export function tools({ modelId, writer }: Params) {
     generateFiles: generateFiles({ writer, modelId }),
     getSandboxURL: getSandboxURL({ writer }),
     runCommand: runCommand({ writer }),
-    waitCommand: waitCommand({ writer }),
   }
 }
 

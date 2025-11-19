@@ -1,30 +1,33 @@
 import type { DataPart } from '@/ai/messages/data-parts'
-import { LinkIcon } from 'lucide-react'
-import { MessageSpinner } from '../message-spinner'
+import { CheckIcon, LinkIcon } from 'lucide-react'
+import { Spinner } from './spinner'
 import { ToolHeader } from '../tool-header'
 import { ToolMessage } from '../tool-message'
-import { cn } from '@/lib/utils'
 
-export function GetSandboxURL(props: {
-  className?: string
+export function GetSandboxURL({
+  message,
+}: {
   message: DataPart['get-sandbox-url']
 }) {
   return (
-    <ToolMessage className={cn(props.className)}>
+    <ToolMessage>
       <ToolHeader>
         <LinkIcon className="w-3.5 h-3.5" />
-        {!props.message.url ? (
-          <span>Getting Sandbox URL</span>
-        ) : (
-          <span>Got Sandbox URL</span>
-        )}
+        <span>Get Sandbox URL</span>
       </ToolHeader>
-      <div>
-        {!props.message.url && <MessageSpinner />}
-        {props.message.url && (
-          <a href={props.message.url} target="_blank">
-            {props.message.url}
+      <div className="relative pl-6 min-h-5">
+        <Spinner
+          className="absolute left-0 top-0"
+          loading={message.status === 'loading'}
+        >
+          <CheckIcon className="w-4 h-4" />
+        </Spinner>
+        {message.url ? (
+          <a href={message.url} target="_blank">
+            {message.url}
           </a>
+        ) : (
+          <span>Getting Sandbox URL</span>
         )}
       </div>
     </ToolMessage>

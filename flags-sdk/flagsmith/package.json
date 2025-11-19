@@ -1,0 +1,43 @@
+{
+  "name": "flagsmith",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@flags-sdk/flagsmith": "1.0.1",
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "2.2.0",
+    "@tailwindcss/aspect-ratio": "0.4.2",
+    "@tailwindcss/forms": "0.5.10",
+    "@tailwindcss/postcss": "^4.0.8",
+    "@tailwindcss/typography": "0.5.16",
+    "@vercel/edge": "1.2.1",
+    "@vercel/edge-config": "1.4.0",
+    "@vercel/toolbar": "0.1.33",
+    "clsx": "2.1.1",
+    "flags": "^4.0.1",
+    "flagsmith": "^9.3.2",
+    "motion": "12.17.0",
+    "nanoid": "5.1.2",
+    "next": "15.4.0-canary.79",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sonner": "2.0.1",
+    "swr": "^2.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "eslint": "^9.21.0",
+    "eslint-config-next": "^15.2.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.9",
+    "typescript": "5.7.3"
+  }
+}

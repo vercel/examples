@@ -1,0 +1,21 @@
+{
+  "name": "express-weather-mcp-server",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vc dev"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mcp-handler": "^1.0.3",
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.0.0"
+  }
+}
