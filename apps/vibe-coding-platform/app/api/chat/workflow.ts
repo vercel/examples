@@ -17,34 +17,36 @@ export async function codeWorkflow({
 
   const writable = getWritable<UIStreamChunk>()
 
+  const modelMessages = convertToModelMessages(
+    messages.map((message) => {
+      message.parts = message.parts.map((part) => {
+        if (part.type === 'data-report-errors') {
+          return {
+            type: 'text',
+            text:
+              `There are errors in the generated code. This is the summary of the errors we have:\n` +
+              `\`\`\`${part.data.summary}\`\`\`\n` +
+              (part.data.paths?.length
+                ? `The following files may contain errors:\n` +
+                  `\`\`\`${part.data.paths?.join('\n')}\`\`\`\n`
+                : '') +
+              `Fix the errors reported.`,
+          }
+        }
+        return part
+      })
+      return message
+    })
+  )
+
   const agent = new DurableAgent({
     model: modelId,
     system: prompt,
-    tools: tools({ modelId }),
+    tools: tools({ modelId, messages: modelMessages }),
   })
 
   await agent.stream({
-    messages: convertToModelMessages(
-      messages.map((message) => {
-        message.parts = message.parts.map((part) => {
-          if (part.type === 'data-report-errors') {
-            return {
-              type: 'text',
-              text:
-                `There are errors in the generated code. This is the summary of the errors we have:\n` +
-                `\`\`\`${part.data.summary}\`\`\`\n` +
-                (part.data.paths?.length
-                  ? `The following files may contain errors:\n` +
-                    `\`\`\`${part.data.paths?.join('\n')}\`\`\`\n`
-                  : '') +
-                `Fix the errors reported.`,
-            }
-          }
-          return part
-        })
-        return message
-      })
-    ),
+    messages: modelMessages,
     writable,
     stopWhen: stepCountIs(20),
   })

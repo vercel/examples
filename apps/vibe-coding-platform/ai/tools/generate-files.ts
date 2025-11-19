@@ -2,10 +2,10 @@ import { Sandbox } from '@vercel/sandbox'
 import { getContents, type File } from './generate-files/get-contents'
 import { getRichError } from './get-rich-error'
 import { getWriteFiles } from './generate-files/get-write-files'
-import { tool } from 'ai'
+import { ModelMessage, tool } from 'ai'
 import description from './generate-files.prompt'
 import z from 'zod/v3'
-import { UIStreamChunk, UIStreamWriter } from './types'
+import { UIStreamChunk } from './types'
 import { getWritable } from 'workflow'
 
 const inputSchema = z.object({
@@ -15,8 +15,9 @@ const inputSchema = z.object({
 
 async function executeGenerateFiles(
   { sandboxId, paths }: z.infer<typeof inputSchema>,
-  { toolCallId, messages }: { toolCallId: string; messages: any },
-  modelId: string
+  { toolCallId }: { toolCallId: string },
+  modelId: string,
+  messages: ModelMessage[]
 ) {
   'use step'
 
@@ -107,9 +108,16 @@ async function executeGenerateFiles(
       .join('\n')}`
 }
 
-export const generateFiles = ({ modelId }: { modelId: string }) =>
+export const generateFiles = ({
+  modelId,
+  messages,
+}: {
+  modelId: string
+  messages: ModelMessage[]
+}) =>
   tool({
     description,
     inputSchema,
-    execute: (args, options) => executeGenerateFiles(args, options, modelId),
+    execute: (args, options) =>
+      executeGenerateFiles(args, options, modelId, messages),
   })
