@@ -1,16 +1,16 @@
 import type { DataPart } from '../../messages/data-parts'
 import type { File } from './get-contents'
-import type { Sandbox } from '@vercel/sandbox'
 import type { UIMessageStreamWriter, UIMessage } from 'ai'
+import { uploadFiles } from '@/lib/trigger-wrapper'
 import { getRichError } from '../get-rich-error'
 
 interface Params {
-  sandbox: Sandbox
+  sandboxId: string
   toolCallId: string
   writer: UIMessageStreamWriter<UIMessage<never, DataPart>>
 }
 
-export function getWriteFiles({ sandbox, toolCallId, writer }: Params) {
+export function getWriteFiles({ sandboxId, toolCallId, writer }: Params) {
   return async function writeFiles(params: {
     written: string[]
     files: File[]
@@ -24,12 +24,17 @@ export function getWriteFiles({ sandbox, toolCallId, writer }: Params) {
     })
 
     try {
-      await sandbox.writeFiles(
+      const result = await uploadFiles(
+        sandboxId,
         params.files.map((file) => ({
-          content: Buffer.from(file.content, 'utf8'),
+          content: file.content,
           path: file.path,
         }))
       )
+
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to upload files')
+      }
     } catch (error) {
       const richError = getRichError({
         action: 'write files to sandbox',

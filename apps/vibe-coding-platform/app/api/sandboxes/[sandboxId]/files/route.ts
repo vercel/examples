@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import { Sandbox } from '@vercel/sandbox'
+import { readFile } from '@/lib/trigger-wrapper'
 import z from 'zod/v3'
 
 const FileParamsSchema = z.object({
@@ -24,21 +24,21 @@ export async function GET(
     )
   }
 
-  const sandbox = await Sandbox.get(fileParams.data)
-  const stream = await sandbox.readFile(fileParams.data)
-  if (!stream) {
+  const result = await readFile(fileParams.data.sandboxId, fileParams.data.path)
+
+  if (!result.success || !result.content) {
     return NextResponse.json(
-      { error: 'File not found in the Sandbox' },
+      { error: result.error || 'File not found in the Sandbox' },
       { status: 404 }
     )
   }
 
+  // Return the content as a stream
+  const encoder = new TextEncoder()
   return new NextResponse(
     new ReadableStream({
-      async pull(controller) {
-        for await (const chunk of stream) {
-          controller.enqueue(chunk)
-        }
+      start(controller) {
+        controller.enqueue(encoder.encode(result.content!))
         controller.close()
       },
     })

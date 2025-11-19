@@ -1,6 +1,6 @@
 import type { UIMessageStreamWriter, UIMessage } from 'ai'
 import type { DataPart } from '../messages/data-parts'
-import { Sandbox } from '@vercel/sandbox'
+import { getPreviewURL } from '@/lib/trigger-wrapper'
 import { tool } from 'ai'
 import description from './get-sandbox-url.md'
 import z from 'zod/v3'
@@ -31,15 +31,18 @@ export const getSandboxURL = ({ writer }: Params) =>
         data: { status: 'loading' },
       })
 
-      const sandbox = await Sandbox.get({ sandboxId })
-      const url = sandbox.domain(port)
+      const result = await getPreviewURL(sandboxId, port)
+
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to get preview URL')
+      }
 
       writer.write({
         id: toolCallId,
         type: 'data-get-sandbox-url',
-        data: { url, status: 'done' },
+        data: { url: result.url, status: 'done' },
       })
 
-      return { url }
+      return { url: result.url }
     },
   })

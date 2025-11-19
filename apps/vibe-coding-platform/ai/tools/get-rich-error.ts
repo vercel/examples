@@ -1,9 +1,13 @@
-import { APIError } from '@vercel/sandbox/dist/api-client/api-error'
-
 interface Params {
   args?: Record<string, unknown>
   action: string
   error: unknown
+}
+
+interface APIErrorLike {
+  message: string
+  json?: unknown
+  text?: string
 }
 
 /**
@@ -22,17 +26,18 @@ export function getRichError({ action, args, error }: Params) {
   }
 }
 
-function getErrorFields(error: unknown) {
+function getErrorFields(error: unknown): APIErrorLike {
   if (!(error instanceof Error)) {
     return {
       message: String(error),
       json: error,
     }
-  } else if (error instanceof APIError) {
+  } else if ('json' in error && 'text' in error) {
+    // Handle API errors (e2b or Vercel SDK style)
     return {
       message: error.message,
-      json: error.json,
-      text: error.text,
+      json: (error as any).json,
+      text: (error as any).text,
     }
   } else {
     return {

@@ -1,10 +1,8 @@
-import { APIError } from '@vercel/sandbox/dist/api-client/api-error'
 import { NextRequest, NextResponse } from 'next/server'
-import { Sandbox } from '@vercel/sandbox'
+import { runCommand } from '@/lib/trigger-wrapper'
 
 /**
- * We must change the SDK to add data to the instance and then
- * use it to retrieve the status of the Sandbox.
+ * Check the status of an e2b sandbox by running a simple echo command
  */
 export async function GET(
   _request: NextRequest,
@@ -12,20 +10,19 @@ export async function GET(
 ) {
   const { sandboxId } = await params
   try {
-    const sandbox = await Sandbox.get({ sandboxId })
-    await sandbox.runCommand({
-      cmd: 'echo',
+    const result = await runCommand(sandboxId, {
+      command: 'echo',
       args: ['Sandbox status check'],
+      wait: true,
     })
-    return NextResponse.json({ status: 'running' })
-  } catch (error) {
-    if (
-      error instanceof APIError &&
-      error.json.error.code === 'sandbox_stopped'
-    ) {
-      return NextResponse.json({ status: 'stopped' })
+
+    if (result.status === 'completed') {
+      return NextResponse.json({ status: 'running' })
     } else {
-      throw error
+      return NextResponse.json({ status: 'stopped' })
     }
+  } catch (error) {
+    // If we can't connect to the sandbox, it's likely stopped
+    return NextResponse.json({ status: 'stopped' })
   }
 }

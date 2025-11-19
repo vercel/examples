@@ -1,6 +1,6 @@
 import type { UIMessageStreamWriter, UIMessage } from 'ai'
 import type { DataPart } from '../messages/data-parts'
-import { Sandbox } from '@vercel/sandbox'
+import { createSandbox as createE2BSandbox } from '@/lib/trigger-wrapper'
 import { getRichError } from './get-rich-error'
 import { tool } from 'ai'
 import description from './create-sandbox.md'
@@ -38,10 +38,14 @@ export const createSandbox = ({ writer }: Params) =>
       })
 
       try {
-        const sandbox = await Sandbox.create({
+        const sandbox = await createE2BSandbox({
           timeout: timeout ?? 600000,
-          ports,
+          ports: ports || [],
         })
+
+        if (sandbox.status === 'error') {
+          throw new Error(sandbox.error || 'Failed to create sandbox')
+        }
 
         writer.write({
           id: toolCallId,
