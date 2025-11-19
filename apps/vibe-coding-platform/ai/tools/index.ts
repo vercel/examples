@@ -1,4 +1,4 @@
-import type { InferUITools } from 'ai'
+import type { InferUITools, ModelMessage } from 'ai'
 import { createSandbox } from './create-sandbox'
 import { generateFiles } from './generate-files'
 import { getSandboxURL } from './get-sandbox-url'
@@ -8,12 +8,13 @@ import { UIStreamWriter } from './types'
 interface Params {
   modelId: string
   writer: UIStreamWriter
+  messages: ModelMessage[]
 }
 
-export function tools({ modelId, writer }: Params) {
+export function tools({ modelId, writer, messages }: Params) {
   return {
     createSandbox: createSandbox({ writer }),
-    generateFiles: generateFiles({ modelId, writer }),
+    generateFiles: generateFiles({ modelId, writer, messages }),
     getSandboxURL: getSandboxURL({ writer }),
     runCommand: runCommand({ writer }),
   }
