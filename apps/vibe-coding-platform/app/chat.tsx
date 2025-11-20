@@ -2,7 +2,13 @@
 
 import type { ChatUIMessage } from '@/components/chat/types'
 import { TEST_PROMPTS } from '@/ai/constants'
-import { MessageCircleIcon, SendIcon, StopCircleIcon } from 'lucide-react'
+import {
+  DeleteIcon,
+  MessageCircleIcon,
+  SendIcon,
+  StopCircleIcon,
+  TrashIcon,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Conversation,
@@ -179,6 +185,17 @@ export function Chat({ className }: Props) {
             <StopCircleIcon className="w-4 h-4" />
           </Button>
         )}
+        <Button
+          type="button"
+          onClick={() => {
+            setMessages([])
+            setInput('')
+            localStorage.clear()
+            stop()
+          }}
+        >
+          <TrashIcon className="w-4 h-4" />
+        </Button>
       </form>
     </Panel>
   )
