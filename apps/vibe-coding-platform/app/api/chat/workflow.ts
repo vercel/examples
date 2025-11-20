@@ -26,5 +26,6 @@ export async function codeWorkflow({
     messages,
     writable,
     stopWhen: stepCountIs(20),
+    sendStart: false,
   })
 }
