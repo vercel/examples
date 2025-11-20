@@ -1,5 +1,4 @@
-import { type ChatUIMessage } from '@/components/chat/types'
-import { convertToModelMessages, stepCountIs } from 'ai'
+import { ModelMessage, stepCountIs } from 'ai'
 import { tools } from '@/ai/tools'
 import prompt from './chat.prompt'
 import { UIStreamChunk } from '@/ai/tools/types'
@@ -10,59 +9,22 @@ export async function codeWorkflow({
   messages,
   modelId,
 }: {
-  messages: ChatUIMessage[]
+  messages: ModelMessage[]
   modelId: string
 }) {
   'use workflow'
 
   const writable = getWritable<UIStreamChunk>()
 
-  const modelMessages = convertToModelMessages(
-    messages.map((message) => {
-      message.parts = message.parts.map((part) => {
-        if (part.type === 'data-report-errors') {
-          return {
-            type: 'text',
-            text:
-              `There are errors in the generated code. This is the summary of the errors we have:\n` +
-              `\`\`\`${part.data.summary}\`\`\`\n` +
-              (part.data.paths?.length
-                ? `The following files may contain errors:\n` +
-                  `\`\`\`${part.data.paths?.join('\n')}\`\`\`\n`
-                : '') +
-              `Fix the errors reported.`,
-          }
-        }
-        return part
-      })
-      return message
-    })
-  )
-
   const agent = new DurableAgent({
     model: modelId,
     system: prompt,
-    tools: tools({ modelId, messages: modelMessages }),
+    tools: tools({ modelId, messages }),
   })
 
   await agent.stream({
-    messages: modelMessages,
+    messages,
     writable,
     stopWhen: stepCountIs(20),
   })
-
-  // createUIMessageStream({
-  //   originalMessages: messages,
-  //     result.consumeStream(),
-  //     writer.merge(
-  //       result.toUIMessageStream({
-  //         sendReasoning: true,
-  //         sendStart: false,
-  //         messageMetadata: () => ({
-  //           model: model.name,
-  //         }),
-  //       })
-  //     )
-  //   },
-  // })
 }
