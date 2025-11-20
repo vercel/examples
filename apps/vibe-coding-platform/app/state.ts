@@ -134,6 +134,8 @@ export function useDataStateMapper() {
           addGeneratedFiles(data.data.paths)
         }
         break
+      case 'data-sleep':
+        break
       case 'data-run-command':
         if (
           data.data.commandId &&
