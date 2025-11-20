@@ -26,5 +26,5 @@ export const SUPPORTED_MODELS: GatewayModelId[] = [
 
 export const TEST_PROMPTS = [
   'Create a react app that allows a user to measure their heart rate by clicking a button in sync with their heartbeat',
-  'Create a `golang` server that responds with "Hello World" to any request',
+  'Sleep for 30 seconds and then return a random sentence. Do not code anything.',
 ]
