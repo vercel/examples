@@ -32,6 +32,9 @@ export const dataPartSchema = z.object({
     summary: z.string(),
     paths: z.array(z.string()).optional(),
   }),
+  wait: z.object({
+    text: z.string(),
+  }),
 })
 
 export type DataPart = z.infer<typeof dataPartSchema>

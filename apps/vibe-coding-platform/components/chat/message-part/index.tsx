@@ -10,6 +10,7 @@ import { ReportErrors } from './report-errors'
 import { Reasoning } from './reasoning'
 import { Text } from './text'
 import { memo } from 'react'
+import { Sleep } from './sleep'
 
 interface Props {
   part: UIMessage<Metadata, DataPart, ToolSet>['parts'][number]
@@ -30,6 +31,8 @@ export const MessagePart = memo(function MessagePart({
     return <RunCommand message={part.data} />
   } else if (part.type === 'reasoning') {
     return <Reasoning part={part} partIndex={partIndex} />
+  } else if (part.type === 'data-wait') {
+    return <Sleep message={part.data} />
   } else if (part.type === 'data-report-errors') {
     return <ReportErrors message={part.data} />
   } else if (part.type === 'text') {
