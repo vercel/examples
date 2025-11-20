@@ -25,18 +25,12 @@ const inputSchema = z.object({
 
 async function executeCreateSandbox(
   { timeout, ports }: z.infer<typeof inputSchema>,
-  { toolCallId, writer }: { toolCallId: string; writer: UIStreamWriter }
+  { toolCallId }: { toolCallId: string }
 ) {
   try {
     const sandbox = await Sandbox.create({
       timeout: timeout ?? 600000,
       ports,
-    })
-
-    writer.write({
-      id: toolCallId,
-      type: 'data-create-sandbox',
-      data: { sandboxId: sandbox.sandboxId, status: 'done' },
     })
 
     return (
@@ -49,24 +43,14 @@ async function executeCreateSandbox(
       error,
     })
 
-    writer.write({
-      id: toolCallId,
-      type: 'data-create-sandbox',
-      data: {
-        error: { message: richError.error.message },
-        status: 'error',
-      },
-    })
-
     console.log('Error creating Sandbox:', richError.error)
     return richError.message
   }
 }
 
-export const createSandbox = ({ writer }: { writer: UIStreamWriter }) =>
+export const createSandbox = () =>
   tool({
     description,
     inputSchema,
-    execute: (args, options) =>
-      executeCreateSandbox(args, { ...options, writer }),
+    execute: (args, options) => executeCreateSandbox(args, { ...options }),
   })

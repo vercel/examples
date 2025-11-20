@@ -2,7 +2,6 @@ import { Sandbox } from '@vercel/sandbox'
 import { tool } from 'ai'
 import description from './get-sandbox-url.prompt'
 import z from 'zod/v3'
-import { UIStreamWriter } from './types'
 
 const inputSchema = z.object({
   sandboxId: z
@@ -19,30 +18,17 @@ const inputSchema = z.object({
 
 async function executeGetSandboxURL(
   { sandboxId, port }: z.infer<typeof inputSchema>,
-  { toolCallId, writer }: { toolCallId: string; writer: UIStreamWriter }
+  { toolCallId: _toolCallId }: { toolCallId: string }
 ) {
-  writer.write({
-    id: toolCallId,
-    type: 'data-get-sandbox-url',
-    data: { status: 'loading' },
-  })
-
   const sandbox = await Sandbox.get({ sandboxId })
   const url = sandbox.domain(port)
-
-  writer.write({
-    id: toolCallId,
-    type: 'data-get-sandbox-url',
-    data: { url, status: 'done' },
-  })
 
   return { url }
 }
 
-export const getSandboxURL = ({ writer }: { writer: UIStreamWriter }) =>
+export const getSandboxURL = () =>
   tool({
     description,
     inputSchema,
-    execute: (args, options) =>
-      executeGetSandboxURL(args, { ...options, writer }),
+    execute: (args, options) => executeGetSandboxURL(args, options),
   })
