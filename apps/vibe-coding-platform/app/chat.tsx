@@ -97,12 +97,6 @@ export function Chat({ className }: Props) {
     })
   const { setChatStatus } = useSandboxStore()
 
-  useEffect(() => {
-    if (chatHistory) {
-      setMessages(JSON.parse(chatHistory) as ChatUIMessage[])
-    }
-  }, [setMessages, chatHistory])
-
   const validateAndSubmitMessage = useCallback(
     (text: string) => {
       if (text.trim()) {
