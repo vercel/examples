@@ -1,22 +1,13 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 
-export function useLocalStorageValue(key: string) {
-  const storage = window?.localStorage
-  const [value, setValue] = useState<string>(() => storage?.getItem(key) ?? '')
-
-  useEffect(() => {
-    if (!storage) return
-    const storedValue = storage.getItem(key)
-    if (storedValue !== null) {
-      setValue(storedValue)
-    }
-  }, [key, storage])
-
-  useEffect(() => {
-    if (!storage) return
-    storage.setItem(key, value)
-  }, [key, value, storage])
-
-  return [value, setValue] as const
+export function useLocalStorageValue(
+  key: string
+): [string, (value: string) => void] {
+  return useMemo(() => {
+    return [
+      localStorage.getItem(key) as string,
+      (value: string) => localStorage.setItem(key, value),
+    ]
+  }, [key])
 }

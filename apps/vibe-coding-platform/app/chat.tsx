@@ -22,7 +22,7 @@ import { Panel, PanelHeader } from '@/components/panels/panels'
 import { Settings } from '@/components/settings/settings'
 import { useChat } from '@ai-sdk/react'
 import { useLocalStorageValue } from '@/lib/use-local-storage-value'
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useSettings } from '@/components/settings/use-settings'
 import { useDataStateMapper, useSandboxStore } from './state'
 import { toast } from 'sonner'
@@ -36,14 +36,15 @@ interface Props {
 }
 
 export function Chat({ className }: Props) {
-  const [input, setInput] = useLocalStorageValue('prompt-input')
+  const [input, setInput] = useState('')
+  const [chatHistory, setChatHistory] = useLocalStorageValue('chatHistory')
   const { modelId, reasoningEffort } = useSettings()
 
   const mapDataToState = useDataStateMapper()
   const mapDataToStateRef = useRef(mapDataToState)
   mapDataToStateRef.current = mapDataToState
 
-  const { messages, sendMessage, status, stop, setMessages } =
+  const { messages, setMessages, sendMessage, status, stop } =
     useChat<ChatUIMessage>({
       onToolCall: () => mutate('/api/auth/info'),
       onData: (data: DataUIPart<DataPart>) => mapDataToStateRef.current(data),
@@ -51,9 +52,11 @@ export function Chat({ className }: Props) {
         toast.error(`Communication error with the AI: ${error.message}`)
         console.error('Error sending message:', error)
       },
+      onFinish: (message) => {
+        setChatHistory(JSON.stringify(message.messages))
+      },
     })
   const { setChatStatus } = useSandboxStore()
-
   const validateAndSubmitMessage = useCallback(
     (text: string) => {
       if (text.trim()) {
@@ -61,8 +64,14 @@ export function Chat({ className }: Props) {
         setInput('')
       }
     },
-    [sendMessage, modelId, setInput, reasoningEffort]
+    [sendMessage, modelId, reasoningEffort]
   )
+
+  useEffect(() => {
+    if (chatHistory) {
+      setMessages(JSON.parse(chatHistory) as ChatUIMessage[])
+    }
+  }, [chatHistory, setMessages])
 
   useEffect(() => {
     setChatStatus(status)
