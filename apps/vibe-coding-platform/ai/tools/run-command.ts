@@ -1,8 +1,12 @@
+import type { UIMessageChunk } from 'ai'
+import type { DataPart } from '../messages/data-parts'
 import { Command, Sandbox } from '@vercel/sandbox'
 import { getRichError } from './get-rich-error'
 import { tool } from 'ai'
 import description from './run-command.prompt'
 import z from 'zod/v3'
+import { getWritable } from 'workflow'
+import { UIStreamWriter } from './types'
 
 const inputSchema = z.object({
   sandboxId: z
@@ -29,8 +33,14 @@ const inputSchema = z.object({
 
 async function executeRunCommand(
   { sandboxId, command, sudo, wait, args = [] }: z.infer<typeof inputSchema>,
-  { toolCallId: _toolCallId }: { toolCallId: string }
+  { toolCallId, writer }: { toolCallId: string; writer: UIStreamWriter }
 ) {
+  writer.write({
+    id: toolCallId,
+    type: 'data-run-command',
+    data: { sandboxId, command, args, status: 'executing' },
+  })
+
   let sandbox: Sandbox | null = null
 
   try {
@@ -40,6 +50,18 @@ async function executeRunCommand(
       action: 'get sandbox by id',
       args: { sandboxId },
       error,
+    })
+
+    writer.write({
+      id: toolCallId,
+      type: 'data-run-command',
+      data: {
+        sandboxId,
+        command,
+        args,
+        error: richError.error,
+        status: 'error',
+      },
     })
 
     return richError.message
@@ -61,10 +83,46 @@ async function executeRunCommand(
       error,
     })
 
+    writer.write({
+      id: toolCallId,
+      type: 'data-run-command',
+      data: {
+        sandboxId,
+        command,
+        args,
+        error: richError.error,
+        status: 'error',
+      },
+    })
+
     return richError.message
   }
 
+  writer.write({
+    id: toolCallId,
+    type: 'data-run-command',
+    data: {
+      sandboxId,
+      commandId: cmd.cmdId,
+      command,
+      args,
+      status: 'executing',
+    },
+  })
+
   if (!wait) {
+    writer.write({
+      id: toolCallId,
+      type: 'data-run-command',
+      data: {
+        sandboxId,
+        commandId: cmd.cmdId,
+        command,
+        args,
+        status: 'running',
+      },
+    })
+
     return `The command \`${command} ${args.join(
       ' '
     )}\` has been started in the background in the sandbox with ID \`${sandboxId}\` with the commandId ${
@@ -72,9 +130,34 @@ async function executeRunCommand(
     }.`
   }
 
+  writer.write({
+    id: toolCallId,
+    type: 'data-run-command',
+    data: {
+      sandboxId,
+      commandId: cmd.cmdId,
+      command,
+      args,
+      status: 'waiting',
+    },
+  })
+
   const done = await cmd.wait()
   try {
     const [stdout, stderr] = await Promise.all([done.stdout(), done.stderr()])
+
+    writer.write({
+      id: toolCallId,
+      type: 'data-run-command',
+      data: {
+        sandboxId,
+        commandId: cmd.cmdId,
+        command,
+        args,
+        exitCode: done.exitCode,
+        status: 'done',
+      },
+    })
 
     return (
       `The command \`${command} ${args.join(
@@ -91,13 +174,27 @@ async function executeRunCommand(
       args: { sandboxId, commandId: cmd.cmdId },
       error,
     })
+
+    writer.write({
+      id: toolCallId,
+      type: 'data-run-command',
+      data: {
+        sandboxId,
+        commandId: cmd.cmdId,
+        command,
+        args,
+        error: richError.error,
+        status: 'error',
+      },
+    })
+
     return richError.message
   }
 }
 
-export const runCommand = () =>
+export const runCommand = ({ writer }: { writer: UIStreamWriter }) =>
   tool({
     description,
     inputSchema,
-    execute: (args, options) => executeRunCommand(args, { ...options }),
+    execute: (args, options) => executeRunCommand(args, { ...options, writer }),
   })

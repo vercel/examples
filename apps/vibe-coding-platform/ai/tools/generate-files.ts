@@ -5,6 +5,7 @@ import { getWriteFiles } from './generate-files/get-write-files'
 import { type ModelMessage, tool } from 'ai'
 import description from './generate-files.prompt'
 import z from 'zod/v3'
+import type { UIStreamWriter } from './types'
 
 const inputSchema = z.object({
   sandboxId: z.string(),
@@ -13,10 +14,20 @@ const inputSchema = z.object({
 
 async function executeGenerateFiles(
   { sandboxId, paths }: z.infer<typeof inputSchema>,
-  { toolCallId }: { toolCallId: string },
+  {
+    toolCallId,
+    writer,
+    messages,
+  }: { toolCallId: string; writer: UIStreamWriter },
   modelId: string,
-  messages: ModelMessage[]
+  _messages?: ModelMessage[]
 ) {
+  writer.write({
+    id: toolCallId,
+    type: 'data-generating-files',
+    data: { paths: [], status: 'generating' },
+  })
+
   let sandbox: Sandbox | null = null
 
   try {
@@ -28,10 +39,16 @@ async function executeGenerateFiles(
       error,
     })
 
+    writer.write({
+      id: toolCallId,
+      type: 'data-generating-files',
+      data: { error: richError.error, paths: [], status: 'error' },
+    })
+
     return richError.message
   }
 
-  const writeFiles = getWriteFiles({ sandbox, toolCallId })
+  const writeFiles = getWriteFiles({ sandbox, toolCallId, writer })
   const iterator = getContents({ messages, modelId, paths })
   const uploaded: File[] = []
 
@@ -45,7 +62,14 @@ async function executeGenerateFiles(
           uploaded.push(...chunk.files)
         }
       } else {
-        // no files to write
+        writer.write({
+          id: toolCallId,
+          type: 'data-generating-files',
+          data: {
+            status: 'generating',
+            paths: chunk.paths,
+          },
+        })
       }
     }
   } catch (error) {
@@ -55,8 +79,24 @@ async function executeGenerateFiles(
       error,
     })
 
+    writer.write({
+      id: toolCallId,
+      type: 'data-generating-files',
+      data: {
+        error: richError.error,
+        status: 'error',
+        paths,
+      },
+    })
+
     return richError.message
   }
+
+  writer.write({
+    id: toolCallId,
+    type: 'data-generating-files',
+    data: { paths: uploaded.map((file) => file.path), status: 'done' },
+  })
 
   return `Successfully generated and uploaded ${
     uploaded.length
@@ -68,14 +108,16 @@ async function executeGenerateFiles(
 
 export const generateFiles = ({
   modelId,
+  writer,
   messages,
 }: {
   modelId: string
+  writer: UIStreamWriter
   messages: ModelMessage[]
 }) =>
   tool({
     description,
     inputSchema,
     execute: (args, options) =>
-      executeGenerateFiles(args, { ...options }, modelId, messages),
+      executeGenerateFiles(args, { ...options, writer }, modelId, messages),
   })
