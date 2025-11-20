@@ -35,8 +35,6 @@ export const MessagePart = memo(function MessagePart({
     return <Sleep message={part.data} />
   } else if (part.type === 'data-report-errors') {
     return <ReportErrors message={part.data} />
-  } else if (part.type === 'data-wait') {
-    return <Sleep message={part.data} />
   } else if (part.type === 'text') {
     return <Text part={part} />
   }
