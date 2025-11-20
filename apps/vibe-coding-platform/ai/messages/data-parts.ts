@@ -32,8 +32,8 @@ export const dataPartSchema = z.object({
     summary: z.string(),
     paths: z.array(z.string()).optional(),
   }),
-  sleep: z.object({
-    sleepForMs: z.number(),
+  wait: z.object({
+    text: z.string(),
   }),
 })
 

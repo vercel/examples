@@ -16,10 +16,12 @@ async function reportSleep(
   const writable = getWritable<UIStreamChunk>()
   const writer = writable.getWriter()
 
+  const sleepSeconds = Math.ceil(sleepForMs / 1000)
+
   writer.write({
     id: toolCallId,
-    type: 'data-sleep',
-    data: { sleepForMs },
+    type: 'data-wait',
+    data: { text: `Sleeping for ${sleepSeconds} seconds` },
   })
 }
 
