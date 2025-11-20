@@ -1,5 +1,10 @@
 import { type ChatUIMessage } from '@/components/chat/types'
-import { createUIMessageStreamResponse } from 'ai'
+import {
+  convertToModelMessages,
+  createUIMessageStreamResponse,
+  Experimental_Agent as Agent,
+  stepCountIs,
+} from 'ai'
 import { DEFAULT_MODEL } from '@/ai/constants'
 import { NextResponse } from 'next/server'
 import { getAvailableModels } from '@/ai/gateway'
@@ -31,9 +36,11 @@ export async function POST(req: Request) {
     )
   }
 
+  const modelMessages = convertToModelMessages(messages)
+
   const run = await start(codeWorkflow, [
     {
-      messages,
+      messages: modelMessages,
       modelId,
     },
   ])
