@@ -47,8 +47,6 @@ export function Chat({ className }: Props) {
   const mapDataToState = useDataStateMapper()
   const mapDataToStateRef = useRef(mapDataToState)
 
-  console.log('resume', Boolean(currentRunId))
-
   const { messages, setMessages, sendMessage, status, stop } =
     useChat<ChatUIMessage>({
       resume: Boolean(currentRunId),
@@ -114,6 +112,12 @@ export function Chat({ className }: Props) {
     },
     [sendMessage, modelId, reasoningEffort]
   )
+
+  useEffect(() => {
+    if (chatHistory) {
+      setMessages(JSON.parse(chatHistory) as ChatUIMessage[])
+    }
+  }, [chatHistory, setMessages])
 
   useEffect(() => {
     setChatStatus(status)
