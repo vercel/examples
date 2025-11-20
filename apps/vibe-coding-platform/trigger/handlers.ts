@@ -267,7 +267,8 @@ export async function getPreviewURLHandler(payload: {
       activeSandboxes.set(payload.sandboxId, sandbox)
     }
 
-    const url = sandbox.getHost(payload.port)
+    const host = sandbox.getHost(payload.port)
+    const url = `https://${host}`
 
     return {
       success: true,
