@@ -14,9 +14,13 @@ const inputSchema = z.object({
 
 async function executeGenerateFiles(
   { sandboxId, paths }: z.infer<typeof inputSchema>,
-  { toolCallId, writer }: { toolCallId: string; writer: UIStreamWriter },
+  {
+    toolCallId,
+    writer,
+    messages,
+  }: { toolCallId: string; writer: UIStreamWriter },
   modelId: string,
-  messages: ModelMessage[]
+  _messages?: ModelMessage[]
 ) {
   writer.write({
     id: toolCallId,
@@ -105,6 +109,7 @@ async function executeGenerateFiles(
 export const generateFiles = ({
   modelId,
   writer,
+  messages,
 }: {
   modelId: string
   writer: UIStreamWriter
