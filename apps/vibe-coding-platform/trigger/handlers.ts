@@ -154,14 +154,31 @@ export async function runCommandHandler(payload: {
         (arg) => arg === 'dev' || arg === 'start' || arg.includes('dev')
       )
 
+    // Detect if this is an install command that may take longer
+    const isInstallCommand =
+      (payload.command.command === 'pnpm' ||
+        payload.command.command === 'npm' ||
+        payload.command.command === 'yarn') &&
+      payload.command.args?.some(
+        (arg) => arg === 'install' || arg === 'i' || arg === 'add'
+      )
+
     if (isDevServer) {
       console.log(
         `[runCommandHandler] Detected dev server command, running in background mode`
       )
     }
 
+    if (isInstallCommand) {
+      console.log(
+        `[runCommandHandler] Detected install command, using extended timeout`
+      )
+    }
+
     // Run command with streaming callbacks
-    // Use longer timeout for dev servers (5 min) or background mode
+    // Determine timeout: 5 min for dev servers, 3 min for installs, 1 min for others
+    const timeoutMs = isDevServer ? 300000 : isInstallCommand ? 180000 : 60000
+
     const result = await sandbox.commands.run(cmd, {
       onStdout: (data) => {
         console.log(
@@ -179,7 +196,7 @@ export async function runCommandHandler(payload: {
         )
         appendLog(commandId, 'stderr', data)
       },
-      timeoutMs: isDevServer ? 300000 : 60000, // 5 min for dev servers, 1 min for others
+      timeoutMs,
       background: isDevServer && !payload.command.wait, // Run in background if dev server and not explicitly waiting
     })
 
@@ -259,25 +276,43 @@ export async function getPreviewURLHandler(payload: {
   sandboxId: string
   port: number
 }) {
+  console.log(`[getPreviewURLHandler] Getting preview URL:`, {
+    sandboxId: payload.sandboxId,
+    port: payload.port,
+  })
+
   try {
     let sandbox = activeSandboxes.get(payload.sandboxId)
 
     if (!sandbox) {
+      console.log(
+        `[getPreviewURLHandler] Connecting to sandbox: ${payload.sandboxId}`
+      )
       sandbox = await Sandbox.connect(payload.sandboxId)
       activeSandboxes.set(payload.sandboxId, sandbox)
+      console.log(`[getPreviewURLHandler] Connected to sandbox successfully`)
     }
 
     const host = sandbox.getHost(payload.port)
     const url = `https://${host}`
+
+    console.log(`[getPreviewURLHandler] Generated URL: ${url}`)
 
     return {
       success: true,
       url,
     }
   } catch (error) {
+    const errorMsg = error instanceof Error ? error.message : String(error)
+    console.error(`[getPreviewURLHandler] Failed to get preview URL:`, {
+      sandboxId: payload.sandboxId,
+      port: payload.port,
+      error: errorMsg,
+      stack: error instanceof Error ? error.stack : undefined,
+    })
     return {
       success: false,
-      error: error instanceof Error ? error.message : String(error),
+      error: errorMsg,
     }
   }
 }

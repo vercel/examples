@@ -23,6 +23,20 @@ CRITICAL Next.js Requirements:
 - Use the App Router structure: app/layout.tsx, app/page.tsx, etc.
 - Import global styles in app/layout.tsx as './globals.css'
 
+CRITICAL Vite Requirements (when using Vite-based frameworks like vanilla Vite, React+Vite, Vue+Vite):
+
+- The vite.config.js/ts MUST include server configuration to allow external hosts:
+  ```js
+  export default defineConfig({
+    server: {
+      host: true,
+      allowedHosts: 'all',
+    },
+    // ... other config
+  })
+  ```
+- This is required because the sandbox runs on e2b.app domains that need to be accessible
+
 Files that should NEVER be manually generated:
 
 - pnpm-lock.yaml, package-lock.json, yarn.lock (created by package managers)
