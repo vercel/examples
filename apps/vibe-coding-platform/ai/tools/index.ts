@@ -3,6 +3,7 @@ import { createSandbox } from './create-sandbox'
 import { generateFiles } from './generate-files'
 import { getSandboxURL } from './get-sandbox-url'
 import { runCommand } from './run-command'
+import { sleepTool } from './sleep'
 
 interface Params {
   modelId: string
@@ -15,6 +16,7 @@ export function tools({ modelId, messages }: Params) {
     generateFiles: generateFiles({ modelId, messages }),
     getSandboxURL: getSandboxURL(),
     runCommand: runCommand(),
+    sleep: sleepTool(),
   }
 }
 
