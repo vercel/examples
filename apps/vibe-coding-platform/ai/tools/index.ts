@@ -4,6 +4,7 @@ import { generateFiles } from './generate-files'
 import { getSandboxURL } from './get-sandbox-url'
 import { runCommand } from './run-command'
 import { sleepTool } from './sleep'
+import { humanApprovalTool } from './human-approval'
 
 interface Params {
   modelId: string
@@ -17,6 +18,7 @@ export function tools({ modelId, messages }: Params) {
     getSandboxURL: getSandboxURL(),
     runCommand: runCommand(),
     sleep: sleepTool(),
+    humanApproval: humanApprovalTool(),
   }
 }
 
