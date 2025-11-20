@@ -24,6 +24,7 @@ export interface CommandConfig {
   wait?: boolean
   cwd?: string
   env?: Record<string, string>
+  commandId?: string // Pre-generated command ID for log streaming
 }
 
 export interface CommandResult {

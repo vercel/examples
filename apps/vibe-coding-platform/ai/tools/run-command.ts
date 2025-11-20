@@ -42,10 +42,15 @@ export const runCommand = ({ writer }: Params) =>
       { sandboxId, command, sudo, wait, args = [] },
       { toolCallId }
     ) => {
+      // Generate commandId upfront for immediate log streaming
+      const commandId = `cmd_${Date.now()}_${Math.random()
+        .toString(36)
+        .substr(2, 9)}`
+
       writer.write({
         id: toolCallId,
         type: 'data-run-command',
-        data: { sandboxId, command, args, status: 'executing' },
+        data: { sandboxId, commandId, command, args, status: 'executing' },
       })
 
       try {
@@ -54,6 +59,7 @@ export const runCommand = ({ writer }: Params) =>
           args,
           sudo,
           wait,
+          commandId, // Pass the pre-generated ID
         })
 
         if (result.status === 'failed') {

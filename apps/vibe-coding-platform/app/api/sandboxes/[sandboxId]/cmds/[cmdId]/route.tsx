@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
+import { getCommandLogs, getLogCount } from '@/lib/log-store'
 
 interface Params {
   sandboxId: string
@@ -6,27 +7,37 @@ interface Params {
 }
 
 /**
- * Get command status (simplified for e2b)
+ * Get command status and summary
  *
- * Note: e2b doesn't have the same command tracking as Vercel SDK.
- * Commands are executed synchronously or async, but we don't track
- * individual command IDs after execution.
- *
- * For now, this returns a simplified response. In production, you'd
- * want to implement proper command tracking using a database or Redis.
+ * Returns the current status of a command including log count and exit code.
  */
 export async function GET(
   _request: NextRequest,
   { params }: { params: Promise<Params> }
 ) {
-  const cmdParams = await params
+  const { sandboxId, cmdId } = await params
 
-  // Return a placeholder response since e2b doesn't track commands the same way
+  const logData = getCommandLogs(cmdId)
+
+  if (!logData) {
+    return NextResponse.json(
+      {
+        sandboxId,
+        cmdId,
+        status: 'not_found',
+        error: 'Command not found or expired',
+      },
+      { status: 404 }
+    )
+  }
+
   return NextResponse.json({
-    sandboxId: cmdParams.sandboxId,
-    cmdId: cmdParams.cmdId,
-    startedAt: new Date().toISOString(),
-    exitCode: 0,
-    note: 'e2b command tracking not implemented - commands are executed synchronously via Trigger.dev',
+    sandboxId,
+    cmdId,
+    status: logData.status,
+    logCount: getLogCount(cmdId),
+    exitCode: logData.exitCode,
+    error: logData.error,
+    logsUrl: `/api/sandboxes/${sandboxId}/cmds/${cmdId}/logs`,
   })
 }

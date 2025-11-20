@@ -55,10 +55,21 @@ export const useSandboxStore = create<SandboxStore>()((set) => ({
         console.warn(`Command with ID ${data.cmdId} not found.`)
         return state
       }
+
+      // Check for duplicate logs (same timestamp and data)
+      const existingLogs = state.commands[idx].logs ?? []
+      const isDuplicate = existingLogs.some(
+        (log) =>
+          log.timestamp === data.log.timestamp && log.data === data.log.data
+      )
+      if (isDuplicate) {
+        return state
+      }
+
       const updatedCmds = [...state.commands]
       updatedCmds[idx] = {
         ...updatedCmds[idx],
-        logs: [...(updatedCmds[idx].logs ?? []), data.log],
+        logs: [...existingLogs, data.log],
       }
       return { commands: updatedCmds }
     })
