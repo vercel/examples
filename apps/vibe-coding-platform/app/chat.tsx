@@ -123,12 +123,12 @@ export function Chat({ className }: Props) {
           placeholder="Type your message..."
           value={input}
         />
-        {status !== 'ready' ? (
+        {status === 'ready' ? (
           <Button type="submit" disabled={!input.trim()}>
             <SendIcon className="w-4 h-4" />
           </Button>
         ) : (
-          <Button onClick={stop}>
+          <Button type="button" onClick={stop}>
             <StopCircleIcon className="w-4 h-4" />
           </Button>
         )}
