@@ -39,7 +39,7 @@ interface Props {
 export function Chat({ className }: Props) {
   const [input, setInput] = useState('')
   const [currentRunId, setCurrentRunId] = useLocalStorageValue(
-    'storedWorkflowRunId'
+    'storedWorkflowRunId',
   )
   const [chatHistory, setChatHistory] = useLocalStorageValue('chatHistory')
   const { modelId, reasoningEffort } = useSettings()
@@ -66,7 +66,7 @@ export function Chat({ className }: Props) {
           const workflowRunId = response.headers.get('x-workflow-run-id')
           if (!workflowRunId) {
             throw new Error(
-              'Workflow run ID not found in "x-workflow-run-id" response header'
+              'Workflow run ID not found in "x-workflow-run-id" response header',
             )
           }
 
@@ -75,7 +75,7 @@ export function Chat({ className }: Props) {
         onChatEnd: ({ chatId, chunkIndex }) => {
           console.log('onChatEnd', chatId, chunkIndex)
           // Once the chat stream ends, we can remove the workflow run ID from `localStorage`
-          // setCurrentRunId('')
+          setCurrentRunId('')
         },
         // Configure reconnection to use the stored workflow run ID
         prepareReconnectToStreamRequest: ({ id, api, ...rest }) => {
@@ -86,9 +86,7 @@ export function Chat({ className }: Props) {
           // Use the workflow run ID instead of the chat ID for reconnection
           return {
             ...rest,
-            api: `/api/chat/${encodeURIComponent(
-              currentRunId as string
-            )}/stream`,
+            api: `/api/chat/${encodeURIComponent(currentRunId)}/stream`,
           }
         },
         // Optional: Configure error handling for reconnection attempts
@@ -104,7 +102,7 @@ export function Chat({ className }: Props) {
         setInput('')
       }
     },
-    [sendMessage, modelId, reasoningEffort]
+    [sendMessage, modelId, reasoningEffort],
   )
 
   useEffect(() => {
