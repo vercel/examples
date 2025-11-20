@@ -22,7 +22,7 @@ import { Panel, PanelHeader } from '@/components/panels/panels'
 import { Settings } from '@/components/settings/settings'
 import { useChat } from '@ai-sdk/react'
 import { useLocalStorageValue } from '@/lib/use-local-storage-value'
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useSettings } from '@/components/settings/use-settings'
 import { useDataStateMapper, useSandboxStore } from './state'
 import { toast } from 'sonner'
@@ -37,7 +37,7 @@ interface Props {
 }
 
 export function Chat({ className }: Props) {
-  const [input, setInput] = useLocalStorageValue('prompt-input')
+  const [input, setInput] = useState('')
   const [currentRunId, setCurrentRunId] = useLocalStorageValue(
     'storedWorkflowRunId'
   )
@@ -46,6 +46,8 @@ export function Chat({ className }: Props) {
 
   const mapDataToState = useDataStateMapper()
   const mapDataToStateRef = useRef(mapDataToState)
+
+  console.log('resume', Boolean(currentRunId))
 
   const { messages, setMessages, sendMessage, status, stop } =
     useChat<ChatUIMessage>({
@@ -86,7 +88,9 @@ export function Chat({ className }: Props) {
           // Use the workflow run ID instead of the chat ID for reconnection
           return {
             ...rest,
-            api: `/api/chat/${encodeURIComponent(currentRunId)}/stream`,
+            api: `/api/chat/${encodeURIComponent(
+              currentRunId as string
+            )}/stream`,
           }
         },
         // Optional: Configure error handling for reconnection attempts
@@ -96,8 +100,9 @@ export function Chat({ className }: Props) {
   const { setChatStatus } = useSandboxStore()
 
   useEffect(() => {
-    if (!chatHistory) return
-    setMessages(JSON.parse(chatHistory) as ChatUIMessage[])
+    if (chatHistory) {
+      setMessages(JSON.parse(chatHistory) as ChatUIMessage[])
+    }
   }, [setMessages, chatHistory])
 
   const validateAndSubmitMessage = useCallback(
@@ -107,7 +112,7 @@ export function Chat({ className }: Props) {
         setInput('')
       }
     },
-    [sendMessage, modelId, setInput, reasoningEffort]
+    [sendMessage, modelId, reasoningEffort]
   )
 
   useEffect(() => {
