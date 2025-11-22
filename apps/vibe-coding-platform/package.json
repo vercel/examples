@@ -23,7 +23,7 @@
     "@radix-ui/react-select": "2.2.5",
     "@radix-ui/react-slot": "1.2.3",
     "@vercel/sandbox": "0.0.17",
-    "@workflow/ai": "4.0.1-beta.18",
+    "@workflow/ai": "4.0.1-beta.19",
     "ai": "5.0.59",
     "arctic": "3.7.0",
     "botid": "1.4.5",
@@ -49,7 +49,7 @@
     "swr": "2.3.4",
     "tailwind-merge": "3.3.1",
     "use-stick-to-bottom": "1.1.1",
-    "workflow": "4.0.1-beta.18",
+    "workflow": "4.0.1-beta.19",
     "zod": "3.25.76",
     "zustand": "5.0.6"
   },
