@@ -8,5 +8,8 @@
     "skipLibCheck": true,
     "rootDir": "./src"
   },
-  "include": ["xmcp-env.d.ts", "src/**/*.ts"]
+  "include": [
+    "xmcp-env.d.ts",
+    "src/**/*.ts"
+  ]
 }
