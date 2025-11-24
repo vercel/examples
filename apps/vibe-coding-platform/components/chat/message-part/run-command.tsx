@@ -3,7 +3,7 @@ import { CheckIcon, SquareChevronRightIcon, XIcon } from 'lucide-react'
 import { Spinner } from './spinner'
 import { ToolHeader } from '../tool-header'
 import { ToolMessage } from '../tool-message'
-import Markdown from 'react-markdown'
+import { Streamdown } from 'streamdown'
 
 export function RunCommand({ message }: { message: DataPart['run-command'] }) {
   return (
@@ -29,9 +29,9 @@ export function RunCommand({ message }: { message: DataPart['run-command'] }) {
             <CheckIcon className="w-4 h-4" />
           )}
         </Spinner>
-        <Markdown>{`\`${message.command} ${message.args.join(
+        <Streamdown>{`\`${message.command} ${message.args.join(
           ' '
-        )}\``}</Markdown>
+        )}\``}</Streamdown>
       </div>
     </ToolMessage>
   )
