@@ -127,18 +127,11 @@ export async function POST(request: Request) {
     /**
      * Append entry (field, value pairs) to the specified stream: {@link https://valkey.io/commands/xadd/}
      */
-    const streamMessageId = await client.customCommand([
-      'XADD',
-      STREAM_NAME,
-      '*',
-      'name',
-      name,
-      'email',
-      email,
-      'message',
-      message,
-      'timestamp',
-      timestamp,
+    const streamMessageId = await client.xadd(STREAM_NAME, [
+      ['name', name],
+      ['email', email],
+      ['message', message],
+      ['timestamp', timestamp],
     ])
 
     return NextResponse.json(
@@ -173,34 +166,27 @@ export async function GET() {
      * been consumed for more than this time.
      * See more {@link https://valkey.io/commands/xautoclaim/}
      */
-    const claimResponse = await client.customCommand([
-      'XAUTOCLAIM',
+    const claimResponse = await client.xautoclaim(
       STREAM_NAME,
       CONSUMER_GROUP,
       consumerName,
-      '60000',
+      60000,
       '0-0',
-      'COUNT',
-      '1',
-    ])
+      { count: 1 }
+    )
 
     // XAUTOCLAIM returns: [next_id, [messages], deleted_ids]
     // valkey-glide wraps messages as objects with 'key' and 'value' properties
+    const [_next_id, claimMessages, _deleted_ids] = claimResponse
+    const messageIds = Object.keys(claimMessages)
+    if (messageIds.length > 0) {
+      const streamMessageId = messageIds[0]
+      const fieldsArray = claimMessages[streamMessageId]
 
-    const [_, claimMessages, _] = claimResponse
-    if (claimMessages && claimMessages.length > 0) {
-      const messageObj = claimMessages[0] as {
-        key: string
-        value: Array<[string, string]>
-      }
-
-      const streamMessageId = messageObj.key
-      const fieldsArray = messageObj.value
-
-      // Convert array of pairs to Record
       const messageData: Record<string, string> = {}
+
       for (const [field, value] of fieldsArray) {
-        messageData[field] = value
+        messageData[String(field)] = String(value)
       }
 
       return NextResponse.json(
@@ -224,43 +210,38 @@ export async function GET() {
      * See also {@link https://valkey.io/commands/xreadgroup/}
      * and {@link https://valkey.io/commands/xread/}
      */
-    const response = await client.customCommand([
-      'XREADGROUP',
-      'GROUP',
+    const response = await client.xreadgroup(
       CONSUMER_GROUP,
       consumerName,
-      'COUNT',
-      '1',
-      'STREAMS',
-      STREAM_NAME,
-      '>',
-    ])
+      { [STREAM_NAME]: '>' },
+      { count: 1 }
+    )
 
-    // Response format: [[stream_name, [[message_id, [field1, value1, field2, value2, ...]]]]]
-    if (!response || !Array.isArray(response) || response.length === 0) {
+    // Response format from xreadgroup: array of {key: stream_name, value: Record<message_id, fields>}
+    if (!response || response.length === 0) {
       return NextResponse.json({ message: null }, { status: 200 })
     }
 
     // getting the head, since XREADGROUP supports reading from multiple streams at the same time
-    const streamData = response[0] as { key: string; value: any[] }
+    const streamData = response[0]
     const messages = streamData.value
 
-    if (!messages || messages.length === 0) {
+    if (!messages || Object.keys(messages).length === 0) {
       return NextResponse.json({ message: null }, { status: 200 })
     }
 
-    const messageObj = messages[0] as {
-      key: string
-      value: Array<[string, string]>
-    }
+    // Get the first message ID and its fields
+    const streamMessageId = Object.keys(messages)[0]
+    const fieldsArray = messages[streamMessageId]
 
-    const streamMessageId = messageObj.key
-    const fieldsArray = messageObj.value
+    if (!fieldsArray) {
+      return NextResponse.json({ message: null }, { status: 200 })
+    }
 
     // Convert array of pairs to Record
     const messageData: Record<string, string> = {}
     for (const [field, value] of fieldsArray) {
-      messageData[field] = value
+      messageData[String(field)] = String(value)
     }
 
     return NextResponse.json(
@@ -302,7 +283,7 @@ export async function DELETE(request: Request) {
      * XACK removes one or more messages from the pending list of a stream
      * See also {@link https://valkey.io/commands/xack/ message_id}
      */
-    await client.customCommand(['XACK', STREAM_NAME, CONSUMER_GROUP, messageId])
+    await client.xack(STREAM_NAME, CONSUMER_GROUP, [messageId])
 
     return NextResponse.json({ success: true }, { status: 200 })
   } catch (error) {
