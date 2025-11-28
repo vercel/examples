@@ -186,13 +186,10 @@ export async function GET() {
 
     // XAUTOCLAIM returns: [next_id, [messages], deleted_ids]
     // valkey-glide wraps messages as objects with 'key' and 'value' properties
-    if (
-      Array.isArray(claimResponse) &&
-      claimResponse.length >= 2 &&
-      Array.isArray(claimResponse[1]) &&
-      claimResponse[1].length > 0
-    ) {
-      const messageObj = claimResponse[1][0] as {
+
+    const [_, claimMessages, _] = claimResponse
+    if (claimMessages && claimMessages.length > 0) {
+      const messageObj = claimMessages[0] as {
         key: string
         value: Array<[string, string]>
       }
