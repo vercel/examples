@@ -1,14 +1,14 @@
 ---
 name: Message Queue with AWS ElastiCache and Next.js
 slug: message-queue-elasticache
-description: Learn to use AWS ElastiCache (Valkey) with Next.js API Routes for reliable message queue processing using streams.
+description: Learn to use AWS ElastiCache with Next.js API Routes for reliable message queue processing using streams.
 framework: Next.js
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/message-queue-elasticache&project-name=message-queue-elasticache&repository-name=message-queue-elasticache&env=VALKEY_ENDPOINT&envDescription=Valkey%20endpoint%20URL
 ---
 
 # Next.js + AWS ElastiCache Message Queue
 
-This is an example of a Next.js application using AWS ElastiCache (Valkey) for implementing a reliable message queue with streams. The template demonstrates a contact form processor where messages are queued, consumed, and acknowledged using Valkey's streaming capabilities.
+This is an example of a Next.js application using AWS ElastiCache for implementing a reliable message queue with streams. The template demonstrates a contact form processor where messages are queued, consumed, and acknowledged using Valkey's streaming capabilities.
 
 ## How to Use
 
@@ -27,10 +27,10 @@ pnpm create next-app --example https://github.com/vercel/examples/tree/main/solu
 Using Docker:
 
 ```bash
-docker run -d -p 6379:6379 valkey/valkey-bundle:latest
+docker run -d -p 6379:6379 valkey/valkey:latest
 ```
 
-Or install Valkey directly following the [official installation guide](https://valkey.io/download/).
+Or install Valkey directly following the [official installation guide](https://valkey.io/topics/installation/).
 
 **Configure environment:**
 
@@ -71,9 +71,9 @@ AWS ElastiCache clusters run within a VPC (private network), which requires netw
 2. Coordinate with Vercel to receive your dedicated CIDR block
 3. Add the ElastiCache endpoint to your project environment variables:
 
-   ```bash
-   VALKEY_ENDPOINT=your-cluster.cache.amazonaws.com:6379
-   ```
+```bash
+VALKEY_ENDPOINT=your-cluster.cache.amazonaws.com:6379
+```
 
 4. Deploy your application
 
