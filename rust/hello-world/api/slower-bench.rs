@@ -8,7 +8,7 @@ fn calculate_primes(limit: u32) -> Vec<u32> {
         return Vec::new();
     }
 
-    // Sieve of Eratosthenes - much faster, same output
+    // Sieve of Eratosthenes
     let mut sieve = vec![true; (limit + 1) as usize];
     sieve[0] = false;
     sieve[1] = false;
@@ -87,10 +87,10 @@ struct Section {
 }
 
 fn generate_slower_complex_data() -> Vec<Section> {
-    // Calculate way more primes (5x more) - using same algorithm as JS
+    // Calculate way more primes
     let primes = black_box(calculate_primes(500000));
 
-    // Calculate more fibonacci numbers - same as JS but optimized
+    // Calculate more fibonacci numbers
     let fibs = generate_fibonacci_sequence(200);
 
     let timestamp = std::time::SystemTime::now()

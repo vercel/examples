@@ -8,16 +8,16 @@ async fn handler(_: Request, _: AppState) -> Result<Response<ResponseBody>, Erro
         chrono::Utc::now().timestamp_millis()
     );
 
-    // CPU-bound integer and string operations benchmark - identical to JS
+    // CPU-bound integer and string operations benchmark
     let mut result = 0u64;
 
-    // Integer arithmetic and bitwise operations - identical to JS
+    // Integer arithmetic and bitwise operations
     for i in 0..10_000_000u64 {
         result = result.wrapping_add(((i.wrapping_mul(31)) ^ (i << 3)) & 0xFFFFFFFF);
         result = (result.wrapping_mul(1103515245).wrapping_add(12345)) & 0x7FFFFFFF; // LCG
     }
 
-    // Array sorting and manipulation - identical to JS but highly optimized
+    // Array sorting and manipulation
     let mut arrays = Vec::with_capacity(100);
     for _i in 0..100 {
         let mut arr = Vec::with_capacity(10000);
@@ -35,7 +35,7 @@ async fn handler(_: Request, _: AppState) -> Result<Response<ResponseBody>, Erro
         arrays.push(sum);
     }
 
-    // String operations and hashing - identical to JS algorithm with optimization
+    // String operations and hashing
     let mut string_hash = 0i32;
     let base_str = "benchmark-test-string-";
     let base_bytes = base_str.as_bytes();
