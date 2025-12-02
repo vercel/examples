@@ -18,8 +18,8 @@ chrono = { version = "0.4", features = ["serde"] }
 # Each handler has to be specified as [[bin]]
 # Note that you need to provide unique names for each binary:
 [[bin]]
-name = "simple"
-path = "api/simple.rs"
+name = "hello"
+path = "api/hello.rs"
 
 [[bin]]
 name = "streaming"
