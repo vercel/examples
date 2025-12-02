@@ -1,0 +1,5 @@
+# Ignore everything in the target directory except for release binaries
+target/**
+!target/release
+!target/x86_64-unknown-linux-gnu/release/**
+!target/aarch64-unknown-linux-gnu/release/**
