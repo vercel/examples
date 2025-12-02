@@ -48,37 +48,39 @@ async fn home() -> impl IntoResponse {
         }
         
         button {
-            background-color: #ffffff;
-            color: #000000;
-            border: none;
-            padding: 6px 12px;
+            background-color: #171717;
+            color: #ffffff;
+            border: 1px solid #333333;
+            padding: 8px 16px;
             font-size: 0.875rem;
             font-weight: 500;
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.15s ease;
+            transition: all 0.15s ease;
             margin-bottom: 1.5rem;
             font-family: inherit;
         }
         
         button:hover {
-            background-color: #f5f5f5;
+            background-color: #262626;
+            border-color: #404040;
         }
         
         button:disabled {
-            background-color: #333333;
-            color: #888888;
+            background-color: #0a0a0a;
+            color: #666666;
+            border-color: #262626;
             cursor: not-allowed;
         }
         
         #stream-container {
             background-color: #0a0a0a;
             border: 1px solid #262626;
-            border-radius: 8px;
+            border-radius: 4px;
             padding: 1rem;
             margin-top: 1rem;
             min-height: 200px;
-            display: none;
+            display: block;
         }
         
         #stream-content {
@@ -116,7 +118,6 @@ async fn home() -> impl IntoResponse {
             isStreaming = true;
             streamBtn.textContent = 'Streaming...';
             streamBtn.disabled = true;
-            streamContainer.style.display = 'block';
             streamContent.innerHTML = '';
             streamContent.className = 'loading';
             streamContent.textContent = 'Starting stream...';
