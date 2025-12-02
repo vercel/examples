@@ -1,5 +1,5 @@
 use axum::http::Uri;
-use axum::response::{IntoResponse, Html};
+use axum::response::{Html, IntoResponse};
 use axum::{Router, routing::get};
 use hyper::body::Bytes;
 use tokio::time::Duration;
@@ -14,7 +14,7 @@ async fn home() -> impl IntoResponse {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axum on Vercel</title>
+    <title>Vercel Axum</title>
     <style>
         * {
             margin: 0;
@@ -99,7 +99,7 @@ async fn home() -> impl IntoResponse {
 </head>
 <body>
     <div class="container">
-        <h1>Hello to Axum on Vercel</h1>
+        <h1>Vercel Axum <a href="https://github.com/vercel/examples/tree/main/rust/axum" style="color: #60a5fa; text-decoration: none; font-size: 0.875rem; margin-left: 1rem;">View on GitHub</a></h1>
         <button id="stream-btn">Start streaming</button>
         <div id="stream-container">
             <div id="stream-content"></div>
