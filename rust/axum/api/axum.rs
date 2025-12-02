@@ -127,16 +127,22 @@ async fn home() -> impl IntoResponse {
                 const reader = response.body.getReader();
                 const decoder = new TextDecoder();
                 
-                streamContent.className = '';
-                streamContent.textContent = '';
+            let firstChunk = true;
 
-                while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) break;
-                    
-                    const chunk = decoder.decode(value);
-                    streamContent.textContent += chunk;
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                
+                const chunk = decoder.decode(value);
+                
+                if (firstChunk) {
+                    streamContent.className = '';
+                    streamContent.textContent = '';
+                    firstChunk = false;
                 }
+                
+                streamContent.textContent += chunk;
+            }
             } catch (error) {
                 streamContent.textContent = 'Error: ' + error.message;
             } finally {
