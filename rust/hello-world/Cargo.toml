@@ -1,0 +1,39 @@
+[package]
+name = "vercel-rust-hello-world"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+vercel_runtime = { version = "2" }
+tokio = { version = "1", features = ["full"] }
+hyper = { version = "1", features = ["full"] }
+http-body-util = "0.1"
+tokio-stream = "0.1"
+chrono = { version = "0.4", features = ["serde"] }
+
+# You can specify a library for shared logic here (optional)
+# [lib]
+# path = "src/lib.rs"
+
+# Each handler has to be specified as [[bin]]
+# Note that you need to provide unique names for each binary:
+[[bin]]
+name = "hello"
+path = "api/hello.rs"
+
+[[bin]]
+name = "streaming"
+path = "api/streaming.rs"
+
+[[bin]]
+name = "realistic-math-bench"
+path = "api/realistic-math-bench.rs"
+
+[[bin]]
+name = "slower-bench"
+path = "api/slower-bench.rs"
+
+[profile.release]
+codegen-units = 1
+lto = "fat"
+opt-level = 3
