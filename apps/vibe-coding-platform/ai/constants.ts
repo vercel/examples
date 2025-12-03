@@ -3,6 +3,7 @@ import { type GatewayModelId } from '@ai-sdk/gateway'
 export enum Models {
   AmazonNovaPro = 'amazon/nova-pro',
   AnthropicClaude4Sonnet = 'anthropic/claude-4-sonnet',
+  AnthropicClaude45Haiku = 'anthropic/claude-haiku-4.5',
   AnthropicClaude45Sonnet = 'anthropic/claude-sonnet-4.5',
   GoogleGeminiFlash = 'google/gemini-2.5-flash',
   MoonshotKimiK2 = 'moonshotai/kimi-k2',
@@ -15,6 +16,7 @@ export const DEFAULT_MODEL = Models.AnthropicClaude45Sonnet
 export const SUPPORTED_MODELS: GatewayModelId[] = [
   Models.AmazonNovaPro,
   Models.AnthropicClaude4Sonnet,
+  Models.AnthropicClaude45Haiku,
   Models.AnthropicClaude45Sonnet,
   Models.GoogleGeminiFlash,
   Models.MoonshotKimiK2,
