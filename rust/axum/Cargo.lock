@@ -763,6 +763,8 @@ dependencies = [
  "axum",
  "axum-streams",
  "hyper",
+ "serde",
+ "serde_json",
  "tokio",
  "tower",
  "vercel_runtime",

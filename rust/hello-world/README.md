@@ -59,14 +59,14 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 ## Available Endpoints
 
-- `/api/hello` - Simple hello world response
+- `/api/hello` - Simple json response
 - `/api/streaming` - Demonstrates streaming response
 - `/api/realistic-math-bench` - Mathematical computation benchmark
 - `/api/slower-bench` - Performance benchmark
 
 ## Project Structure
 
-- `api/hello.rs` - Basic hello world handler
+- `api/hello.rs` - Basic handler
 - `api/streaming.rs` - Streaming response example
 - `api/realistic-math-bench.rs` - Mathematical benchmark
 - `api/slower-bench.rs` - Performance benchmark

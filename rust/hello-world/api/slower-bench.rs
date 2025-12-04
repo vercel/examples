@@ -148,9 +148,16 @@ fn generate_slower_complex_data() -> Vec<Section> {
 }
 
 fn render_complex_component(data: &[Section]) -> String {
-    let total_primes: usize = data.iter().map(|section| section.primes.len()).fold(0usize, |acc, len| acc.saturating_add(len));
+    let total_primes: usize = data
+        .iter()
+        .map(|section| section.primes.len())
+        .fold(0usize, |acc, len| acc.saturating_add(len));
     let average_fib = if !data.is_empty() && !data[0].fibonacci.is_empty() {
-        data[0].fibonacci.iter().fold(0u64, |acc, &val| acc.saturating_add(val)) as f64 / data[0].fibonacci.len() as f64
+        data[0]
+            .fibonacci
+            .iter()
+            .fold(0u64, |acc, &val| acc.saturating_add(val)) as f64
+            / data[0].fibonacci.len() as f64
     } else {
         0.0
     };
