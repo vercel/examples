@@ -18,10 +18,9 @@ https://rust-axum.vercel.app
 
 ## Features
 
-- Axum web framework for handling HTTP requests
 - Streaming response example
-- Optimized for serverless deployment on Vercel
-- Built-in HTML interface with streaming demo
+- Post request example
+- Streaming demo on root page
 
 ## How to Use
 
@@ -64,6 +63,7 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 The application includes:
 
-- A home route (`/`) with an interactive HTML interface
-- A streaming endpoint (`/stream`) that demonstrates real-time data streaming
+- A home route (`/`) with an interactive HTML interface for streaming
+- A streaming endpoint (`/stream`)
+- A post request endpoint (`/users`)
 - A fallback handler for unmatched routes
