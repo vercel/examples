@@ -3,8 +3,6 @@ import { getProviderData as getFlagSmithProviderData } from '@flags-sdk/flagsmit
 import { mergeProviderData } from 'flags'
 import * as flags from '../../../../flags'
 
-export const dynamic = 'force-dynamic' // defaults to auto
-
 export const GET = createFlagsDiscoveryEndpoint(
   async () => {
     return mergeProviderData([
