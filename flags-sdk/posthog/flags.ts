@@ -16,7 +16,16 @@ export const showFreeDeliveryBannerFlag = flag<boolean, PostHogEntities>({
   identify,
 })
 
+export const proceedToCheckoutColorFlag = flag<string, PostHogEntities>({
+  key: 'proceed_to_checkout_color',
+  adapter: postHogAdapter.featureFlagValue(),
+  defaultValue: 'blue',
+  options: ['blue', 'green', 'red'],
+  identify,
+})
+
 export const productFlags = [
   showFreeDeliveryBannerFlag,
   showSummerBannerFlag,
+  proceedToCheckoutColorFlag,
 ] as const

@@ -42,4 +42,5 @@ export const delayFlag = flag({
 export const productFlags = [
   showFreeDeliveryBannerFlag,
   showSummerBannerFlag,
+  proceedToCheckoutColorFlag,
 ] as const
