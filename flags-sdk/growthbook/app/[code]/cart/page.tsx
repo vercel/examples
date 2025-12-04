@@ -8,7 +8,6 @@ import {
   showSummerBannerFlag,
   proceedToCheckoutColorFlag,
 } from '@/flags'
-import { FlagValues } from 'flags/react'
 
 export default async function CartPage({
   params,
