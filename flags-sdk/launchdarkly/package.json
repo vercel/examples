@@ -24,7 +24,7 @@
     "motion": "12.17.0",
     "launchdarkly-react-client-sdk": "^3.6.1",
     "nanoid": "5.1.2",
-    "next": "15.4.0-canary.79",
+    "next": "16.0.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sonner": "2.0.1",
