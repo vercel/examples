@@ -8,7 +8,7 @@ export const config = {
   matcher: ['/', '/cart'],
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const stableId = await getStableId()
   const cartId = await getCartId()
 

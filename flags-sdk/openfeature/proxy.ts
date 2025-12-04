@@ -6,13 +6,11 @@ import { getCartId } from './lib/get-cart-id'
 
 export const config = {
   matcher: ['/', '/cart'],
-  runtime: 'nodejs',
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const stableId = await getStableId()
   const cartId = await getCartId()
-
   const code = await precompute(productFlags)
 
   // rewrites the request to the variant for this flag combination

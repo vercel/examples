@@ -1,14 +1,17 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { precompute } from 'flags/next'
 import { productFlags } from '@/flags'
+import { getStableId } from './lib/get-stable-id'
 import { getCartId } from './lib/get-cart-id'
 
 export const config = {
   matcher: ['/', '/cart'],
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
+  const stableId = await getStableId()
   const cartId = await getCartId()
+
   const code = await precompute(productFlags)
 
   // rewrites the request to the variant for this flag combination
@@ -23,8 +26,13 @@ export async function middleware(request: NextRequest) {
     request.headers.set('x-generated-cart-id', cartId.value)
   }
 
+  if (stableId.isFresh) {
+    request.headers.set('x-generated-stable-id', stableId.value)
+  }
+
   // response headers
   const headers = new Headers()
+  headers.append('set-cookie', `stable-id=${stableId.value}`)
   headers.append('set-cookie', `cart-id=${cartId.value}`)
   return NextResponse.rewrite(nextUrl, { request, headers })
 }
