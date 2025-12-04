@@ -18,7 +18,7 @@
     "@tailwindcss/postcss": "^4.0.8",
     "@tailwindcss/typography": "0.5.16",
     "@vercel/edge": "1.2.1",
-    "@vercel/edge-config": "1.4.0",
+    "@vercel/edge-config": "1.4.3",
     "@vercel/toolbar": "0.1.33",
     "motion": "12.17.0",
     "clsx": "2.1.1",

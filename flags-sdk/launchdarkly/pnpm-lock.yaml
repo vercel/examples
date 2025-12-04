@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@flags-sdk/launchdarkly':
         specifier: ^0.3.2
-        version: 0.3.2
+        version: 0.3.2(next@16.0.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -33,8 +33,8 @@ importers:
         specifier: 1.2.1
         version: 1.2.1
       '@vercel/edge-config':
-        specifier: 1.4.0
-        version: 1.4.0
+        specifier: 1.4.3
+        version: 1.4.3(next@16.0.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@vercel/toolbar':
         specifier: 0.1.33
         version: 0.1.33(@vercel/analytics@1.5.0(next@16.0.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0))(next@16.0.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -715,13 +715,16 @@ packages:
   '@vercel/edge-config-fs@0.1.0':
     resolution: {integrity: sha512-NRIBwfcS0bUoUbRWlNGetqjvLSwgYH/BqKqDN7vK1g32p7dN96k0712COgaz6VFizAm9b0g6IG6hR6+hc0KCPg==}
 
-  '@vercel/edge-config@1.4.0':
-    resolution: {integrity: sha512-69Wg5gw9DzwnyUmnjToSeLRm1nm8mCPgN0kflX8EHRHyqvzH80wPem5A8rI2LXPb2Y9tJNoqN3vXPcQhS2Wh5g==}
+  '@vercel/edge-config@1.4.3':
+    resolution: {integrity: sha512-8vTDATodRrH49wMzKEjZ8/5H2qs1aPkD0uRK585f/Fx4YN2wfHfY/3td9OFrh+gdnCq07z8A5f0hoY6xhBcPkg==}
     engines: {node: '>=14.6'}
     peerDependencies:
       '@opentelemetry/api': ^1.7.0
+      next: '>=1'
     peerDependenciesMeta:
       '@opentelemetry/api':
+        optional: true
+      next:
         optional: true
 
   '@vercel/edge@1.2.1':
@@ -2273,12 +2276,13 @@ snapshots:
       '@eslint/core': 0.12.0
       levn: 0.4.1
 
-  '@flags-sdk/launchdarkly@0.3.2':
+  '@flags-sdk/launchdarkly@0.3.2(next@16.0.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
     dependencies:
-      '@launchdarkly/vercel-server-sdk': 1.3.34
-      '@vercel/edge-config': 1.4.0
+      '@launchdarkly/vercel-server-sdk': 1.3.34(next@16.0.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+      '@vercel/edge-config': 1.4.3(next@16.0.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
     transitivePeerDependencies:
       - '@opentelemetry/api'
+      - next
 
   '@floating-ui/core@1.6.9':
     dependencies:
@@ -2440,13 +2444,14 @@ snapshots:
       '@launchdarkly/js-sdk-common': 2.19.0
       semver: 7.5.4
 
-  '@launchdarkly/vercel-server-sdk@1.3.34':
+  '@launchdarkly/vercel-server-sdk@1.3.34(next@16.0.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
     dependencies:
       '@launchdarkly/js-server-sdk-common-edge': 2.6.9
-      '@vercel/edge-config': 1.4.0
+      '@vercel/edge-config': 1.4.3(next@16.0.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       crypto-js: 4.2.0
     transitivePeerDependencies:
       - '@opentelemetry/api'
+      - next
 
   '@next/env@16.0.7': {}
 
@@ -2799,9 +2804,11 @@ snapshots:
 
   '@vercel/edge-config-fs@0.1.0': {}
 
-  '@vercel/edge-config@1.4.0':
+  '@vercel/edge-config@1.4.3(next@16.0.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
     dependencies:
       '@vercel/edge-config-fs': 0.1.0
+    optionalDependencies:
+      next: 16.0.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
 
   '@vercel/edge@1.2.1': {}
 
