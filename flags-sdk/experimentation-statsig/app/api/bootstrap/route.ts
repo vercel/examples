@@ -1,12 +1,10 @@
-import { getStableId } from "@/utils/get-stable-id";
-import { statsigAdapter, Statsig, type StatsigUser } from "@flags-sdk/statsig";
-import { NextResponse } from "next/server";
-
-export const runtime = "edge";
+import { getStableId } from '@/utils/get-stable-id'
+import { statsigAdapter, Statsig, type StatsigUser } from '@flags-sdk/statsig'
+import { NextResponse } from 'next/server'
 
 export async function GET(request: Request): Promise<NextResponse> {
-  await statsigAdapter.initialize();
-  const stableId = await getStableId();
+  await statsigAdapter.initialize()
+  const stableId = await getStableId()
 
   const user: StatsigUser = {
     customIDs: {
@@ -14,16 +12,16 @@ export async function GET(request: Request): Promise<NextResponse> {
       // otherwise, you can define a userID at the root of the user object
       stableID: stableId.value,
     },
-  };
+  }
 
   const values = await Statsig.getClientInitializeResponse(user, {
-    hash: "djb2",
-  });
+    hash: 'djb2',
+  })
 
   return NextResponse.json(values, {
     headers: {
-      "Cache-Control": "private, max-age=60",
-      Vary: "Cookie",
+      'Cache-Control': 'private, max-age=60',
+      Vary: 'Cookie',
     },
-  });
+  })
 }

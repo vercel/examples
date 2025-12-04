@@ -16,7 +16,16 @@ export const showFreeDeliveryBannerFlag = flag<boolean>({
   identify,
 })
 
+export const proceedToCheckoutColorFlag = flag<string>({
+  key: 'proceed_to_checkout_color',
+  adapter: flagsmithAdapter.getValue({ coerce: 'string' }),
+  defaultValue: 'blue',
+  options: ['blue', 'green', 'red'],
+  identify,
+})
+
 export const productFlags = [
   showFreeDeliveryBannerFlag,
   showSummerBannerFlag,
+  proceedToCheckoutColorFlag,
 ] as const

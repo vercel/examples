@@ -1,6 +1,6 @@
-import blue from '@/public/images/product/shirt-blue.avif'
-import black from '@/public/images/product/shirt-black.avif'
-import white from '@/public/images/product/shirt-white.avif'
+import blue from '@/public/images/product/shirt-blue.png'
+import black from '@/public/images/product/shirt-black.png'
+import white from '@/public/images/product/shirt-white.png'
 import type { StaticImageData } from 'next/image'
 
 export const images = [black, white, blue]

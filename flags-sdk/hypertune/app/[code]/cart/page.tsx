@@ -1,14 +1,14 @@
-import { OrderSummary } from '@/components/shopping-cart/order-summary'
 import { Main } from '@/components/main'
 import { ShoppingCart } from '@/components/shopping-cart/shopping-cart'
+import { ProceedToCheckoutButton } from '@/components/shopping-cart/proceed-to-checkout-button'
+import { OrderSummarySection } from '@/components/shopping-cart/order-summary-section'
 import {
   productFlags,
   showFreeDeliveryBannerFlag,
   showSummerBannerFlag,
+  proceedToCheckoutColorFlag,
 } from '@/flags'
 import { Suspense } from 'react'
-
-export const experimental_ppr = true
 
 export default async function CartPage({
   params,
@@ -21,15 +21,22 @@ export default async function CartPage({
     code,
     productFlags
   )
+  const proceedToCheckoutColor = await proceedToCheckoutColorFlag(
+    code,
+    productFlags
+  )
 
   return (
     <Main>
       <div className="lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
         <ShoppingCart />
         <Suspense>
-          <OrderSummary
+          <OrderSummarySection
             showSummerBanner={showSummerBanner}
             freeDelivery={freeDeliveryBanner}
+            proceedToCheckout={
+              <ProceedToCheckoutButton color={proceedToCheckoutColor} />
+            }
           />
         </Suspense>
       </div>
