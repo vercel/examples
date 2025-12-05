@@ -21,17 +21,19 @@ jobs:
         working-directory: internal
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - name: Set up pnpm
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v4
         with:
-          version: 8.2.0
+          version: 9.13.0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          node-version: 18.16
+          node-version: 24
           cache: pnpm
 
       - name: Install pnpm Dependencies
