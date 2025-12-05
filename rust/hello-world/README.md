@@ -59,8 +59,8 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 ## Project Structure
 
-- `api/hello.rs` - Basic handler with json response
-- `api/streaming.rs` - Streaming response example
-- `api/realistic-math-bench.rs` - Mathematical benchmark
-- `api/slower-bench.rs` - Performance benchmark
+- `api/hello` - Basic handler with json response
+- `api/streaming` - Streaming response example
+- `api/realistic-math-bench` - Mathematical benchmark
+- `api/slower-bench` - Performance benchmark
 - `Cargo.toml` - Rust dependencies and multiple binary configurations
