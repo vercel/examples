@@ -32,13 +32,7 @@ https://rust-hello-world.vercel.app
 - `api/slower-bench` - Performance benchmark
 - `Cargo.toml` - Rust dependencies and multiple binary configurations
 
-## Deploy
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/rust/hello-world&project-name=rust-hello-world&repository-name=rust-hello-world)
-
-### Development
+## Development
 
 Clone the repository:
 
