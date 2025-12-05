@@ -20,10 +20,6 @@ relatedTemplates:
 
 This example shows how to deploy a Rust web application using the Axum framework on Vercel with streaming capabilities.
 
-## Demo
-
-https://rust-axum.vercel.app
-
 ## Project Structure
 
 - `api/axum.rs` - Main Axum application

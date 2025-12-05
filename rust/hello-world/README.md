@@ -20,10 +20,6 @@ relatedTemplates:
 
 This example demonstrates how to create Rust serverless functions on Vercel with multiple endpoints showcasing different capabilities.
 
-## Demo
-
-https://rust-hello-world.vercel.app
-
 ## Project Structure
 
 - `api/hello` - Basic handler with json response
