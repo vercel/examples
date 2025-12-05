@@ -17,7 +17,7 @@
     "jszip": "^3.10.1",
     "lucide-react": "^0.514.0",
     "monaco-editor": "^0.52.0",
-    "next": "16.0.0-beta.0",
+    "next": "16.0.7",
     "postcss": "^8.5.5",
     "react": "19.2.0",
     "react-dom": "19.2.0",
