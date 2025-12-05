@@ -20,6 +20,9 @@ export default async function updateChangedTemplates(changedFiles: string[]) {
     return
   }
 
+  log(`Changed files (${changedFiles.length}):`)
+  changedFiles.forEach((file) => log(`  - ${file}`))
+
   const examplePaths = changedFiles.reduce<string[]>((acc, fileName) => {
     if (fileName.startsWith('./')) {
       throw new Error(
