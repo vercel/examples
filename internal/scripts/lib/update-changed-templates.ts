@@ -5,6 +5,7 @@ import updateTemplate from './contentful/update-template'
 const DIRS = [
   'edge-functions',
   'edge-middleware',
+  'rust',
   'solutions',
   'starter',
   'storage',

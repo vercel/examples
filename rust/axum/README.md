@@ -57,13 +57,9 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 ## Project Structure
 
-- `api/axum.rs` - Main Axum application with streaming endpoint
+- `api/axum.rs` - Main Axum application
+  - `/` - Entrypoint with an interactive HTML interface for streaming
+  - `/stream` - Streaming endpoint
+  - `/users` - Post request endpoint
 - `Cargo.toml` - Rust dependencies and binary configuration
 - `vercel.json` - Vercel deployment configuration
-
-The application includes:
-
-- A home route (`/`) with an interactive HTML interface for streaming
-- A streaming endpoint (`/stream`)
-- A post request endpoint (`/users`)
-- A fallback handler for unmatched routes
