@@ -33,12 +33,6 @@ https://rust-axum.vercel.app
 - `Cargo.toml` - Rust dependencies and binary configuration
 - `vercel.json` - Vercel deployment configuration
 
-## Deploy
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/rust/axum&project-name=rust-axum&repository-name=rust-axum)
-
 ## Development
 
 Clone the repository:
