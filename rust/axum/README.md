@@ -1,5 +1,5 @@
 ---
-name: Rust Axum Web Framework
+name: Rust Axum
 slug: rust-axum
 description: A Rust web application using the Axum framework with streaming capabilities on Vercel.
 framework:
