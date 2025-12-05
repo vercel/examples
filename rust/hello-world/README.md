@@ -16,25 +16,21 @@ This example demonstrates how to create Rust serverless functions on Vercel with
 
 https://rust-hello-world.vercel.app
 
-## Features
+## Project Structure
 
-- Basic HTTP request handling with Rust
-- Multiple serverless function endpoints
-- Streaming response example
-- Performance benchmark demonstrations
-- Optimized for serverless deployment on Vercel
+- `api/hello` - Basic handler with json response
+- `api/streaming` - Streaming response example
+- `api/realistic-math-bench` - Mathematical benchmark
+- `api/slower-bench` - Performance benchmark
+- `Cargo.toml` - Rust dependencies and multiple binary configurations
 
-## How to Use
-
-You can choose from one of the following two methods to use this repository:
-
-### One-Click Deploy
+## Deploy
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/rust/hello-world&project-name=rust-hello-world&repository-name=rust-hello-world)
 
-### Clone and Deploy
+### Development
 
 Clone the repository:
 
@@ -54,13 +50,3 @@ Test locally (requires Rust toolchain):
 ```bash
 vc dev
 ```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=rust-examples) ([Documentation](https://vercel.com/docs/functions/serverless-functions/runtimes/rust)).
-
-## Project Structure
-
-- `api/hello` - Basic handler with json response
-- `api/streaming` - Streaming response example
-- `api/realistic-math-bench` - Mathematical benchmark
-- `api/slower-bench` - Performance benchmark
-- `Cargo.toml` - Rust dependencies and multiple binary configurations
