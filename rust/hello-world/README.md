@@ -57,16 +57,9 @@ vc dev
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=rust-examples) ([Documentation](https://vercel.com/docs/functions/serverless-functions/runtimes/rust)).
 
-## Available Endpoints
-
-- `/api/hello` - Simple json response
-- `/api/streaming` - Demonstrates streaming response
-- `/api/realistic-math-bench` - Mathematical computation benchmark
-- `/api/slower-bench` - Performance benchmark
-
 ## Project Structure
 
-- `api/hello.rs` - Basic handler
+- `api/hello.rs` - Basic handler with json response
 - `api/streaming.rs` - Streaming response example
 - `api/realistic-math-bench.rs` - Mathematical benchmark
 - `api/slower-bench.rs` - Performance benchmark
