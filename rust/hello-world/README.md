@@ -9,7 +9,7 @@ type:
 css:
   - None
 githubUrl: https://github.com/vercel/examples/tree/main/rust/hello-world
-demoUrl: https://rust-hello-world.vercel.app
+demoUrl: https://rust-hello-world.vercel.dev
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/rust/hello-world&project-name=rust-hello-world&repository-name=rust-hello-world
 publisher: Vercel
 relatedTemplates:

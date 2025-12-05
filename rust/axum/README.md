@@ -9,7 +9,7 @@ type:
 css:
   - None
 githubUrl: https://github.com/vercel/examples/tree/main/rust/axum
-demoUrl: https://rust-axum.vercel.app
+demoUrl: https://rust-axum.vercel.dev
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/rust/axum&project-name=rust-axum&repository-name=rust-axum
 publisher: Vercel
 relatedTemplates:
