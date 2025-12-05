@@ -10,7 +10,7 @@ importers:
     dependencies:
       single-spa-react:
         specifier: ^6.0.2
-        version: 6.0.2(@types/react-dom@19.1.5(@types/react@19.1.4))(@types/react@19.1.4)(react@19.1.0)
+        version: 6.0.2(@types/react-dom@19.1.5(@types/react@19.1.4))(@types/react@19.1.4)(react@19.2.1)
     devDependencies:
       '@vercel/style-guide':
         specifier: ^6.0.0
@@ -38,16 +38,16 @@ importers:
     dependencies:
       '@vercel/microfrontends':
         specifier: 1.2.4
-        version: 1.2.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
+        version: 1.2.4(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(vite@6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
       react:
-        specifier: ^19.1.0
-        version: 19.1.0
+        specifier: ^19.2.1
+        version: 19.2.1
       react-dom:
-        specifier: ^19.1.0
-        version: 19.1.0(react@19.1.0)
+        specifier: ^19.2.1
+        version: 19.2.1(react@19.2.1)
       single-spa-react:
         specifier: ^6.0.2
-        version: 6.0.2(@types/react-dom@19.1.5(@types/react@19.1.4))(@types/react@19.1.4)(react@19.1.0)
+        version: 6.0.2(@types/react-dom@19.1.5(@types/react@19.1.4))(@types/react@19.1.4)(react@19.2.1)
     devDependencies:
       '@module-federation/vite':
         specifier: ^1.2.7
@@ -90,16 +90,16 @@ importers:
     dependencies:
       '@vercel/microfrontends':
         specifier: 1.2.4
-        version: 1.2.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
+        version: 1.2.4(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(vite@6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
       '@vercel/toolbar':
         specifier: 0.1.36
-        version: 0.1.36(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
+        version: 0.1.36(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(vite@6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
       react:
-        specifier: ^19.1.0
-        version: 19.1.0
+        specifier: ^19.2.1
+        version: 19.2.1
       react-dom:
-        specifier: ^19.1.0
-        version: 19.1.0(react@19.1.0)
+        specifier: ^19.2.1
+        version: 19.2.1(react@19.2.1)
       single-spa:
         specifier: ^6.0.3
         version: 6.0.3
@@ -2550,10 +2550,10 @@ packages:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
     engines: {node: '>= 0.6'}
 
-  react-dom@19.1.0:
-    resolution: {integrity: sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==}
+  react-dom@19.2.1:
+    resolution: {integrity: sha512-ibrK8llX2a4eOskq1mXKu/TGZj9qzomO+sNfO98M6d9zIPOEhlBkMkBUBLd1vgS0gQsLDBzA+8jJBVXDnfHmJg==}
     peerDependencies:
-      react: ^19.1.0
+      react: ^19.2.1
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -2562,8 +2562,8 @@ packages:
     resolution: {integrity: sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==}
     engines: {node: '>=0.10.0'}
 
-  react@19.1.0:
-    resolution: {integrity: sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==}
+  react@19.2.1:
+    resolution: {integrity: sha512-DGrYcCWK7tvYMnWh79yrPHt+vdx9tY+1gPZa7nJQtO/p8bLTDaHp4dzwEhQB7pZ4Xe3ok4XKuEPrVuc+wlpkmw==}
     engines: {node: '>=0.10.0'}
 
   read-pkg-up@7.0.1:
@@ -2660,8 +2660,8 @@ packages:
     resolution: {integrity: sha512-x/+Cz4YrimQxQccJf5mKEbIa1NzeCRNI5Ecl/ekmlYaampdNLPalVyIcCZNNH3MvmqBugV5TMYZXv0ljslUlaw==}
     engines: {node: '>= 0.4'}
 
-  scheduler@0.26.0:
-    resolution: {integrity: sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==}
+  scheduler@0.27.0:
+    resolution: {integrity: sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==}
 
   semver@5.7.2:
     resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
@@ -3897,7 +3897,7 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.7.2':
     optional: true
 
-  '@vercel/microfrontends@1.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))':
+  '@vercel/microfrontends@1.1.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(vite@6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))':
     dependencies:
       ajv: 8.17.1
       commander: 12.1.0
@@ -3908,13 +3908,13 @@ snapshots:
       nanoid: 3.3.11
       path-to-regexp: 6.2.1
     optionalDependencies:
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
+      react: 19.2.1
+      react-dom: 19.2.1(react@19.2.1)
       vite: 6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)
     transitivePeerDependencies:
       - debug
 
-  '@vercel/microfrontends@1.2.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))':
+  '@vercel/microfrontends@1.2.4(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(vite@6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))':
     dependencies:
       '@next/env': 15.1.6
       ajv: 8.17.1
@@ -3926,8 +3926,8 @@ snapshots:
       nanoid: 3.3.11
       path-to-regexp: 6.2.1
     optionalDependencies:
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
+      react: 19.2.1
+      react-dom: 19.2.1(react@19.2.1)
       vite: 6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)
     transitivePeerDependencies:
       - debug
@@ -3966,10 +3966,10 @@ snapshots:
       - supports-color
       - vitest
 
-  '@vercel/toolbar@0.1.36(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))':
+  '@vercel/toolbar@0.1.36(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(vite@6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))':
     dependencies:
       '@tinyhttp/app': 1.3.0
-      '@vercel/microfrontends': 1.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vite@6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
+      '@vercel/microfrontends': 1.1.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(vite@6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
       chokidar: 3.6.0
       execa: 5.1.1
       fast-glob: 3.3.3
@@ -3978,7 +3978,7 @@ snapshots:
       jsonc-parser: 3.3.1
       strip-ansi: 6.0.1
     optionalDependencies:
-      react: 19.1.0
+      react: 19.2.1
       vite: 6.3.5(@types/node@20.17.50)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)
     transitivePeerDependencies:
       - '@sveltejs/kit'
@@ -5526,16 +5526,16 @@ snapshots:
 
   range-parser@1.2.1: {}
 
-  react-dom@19.1.0(react@19.1.0):
+  react-dom@19.2.1(react@19.2.1):
     dependencies:
-      react: 19.1.0
-      scheduler: 0.26.0
+      react: 19.2.1
+      scheduler: 0.27.0
 
   react-is@16.13.1: {}
 
   react-refresh@0.17.0: {}
 
-  react@19.1.0: {}
+  react@19.2.1: {}
 
   read-pkg-up@7.0.1:
     dependencies:
@@ -5669,7 +5669,7 @@ snapshots:
       es-errors: 1.3.0
       is-regex: 1.2.1
 
-  scheduler@0.26.0: {}
+  scheduler@0.27.0: {}
 
   semver@5.7.2: {}
 
@@ -5737,10 +5737,10 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
-  single-spa-react@6.0.2(@types/react-dom@19.1.5(@types/react@19.1.4))(@types/react@19.1.4)(react@19.1.0):
+  single-spa-react@6.0.2(@types/react-dom@19.1.5(@types/react@19.1.4))(@types/react@19.1.4)(react@19.2.1):
     dependencies:
       browserslist-config-single-spa: 1.0.1
-      react: 19.1.0
+      react: 19.2.1
     optionalDependencies:
       '@types/react': 19.1.4
       '@types/react-dom': 19.1.5(@types/react@19.1.4)

@@ -11,8 +11,8 @@
   "dependencies": {
     "@vercel/microfrontends": "1.2.4",
     "@vercel/toolbar": "0.1.36",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "single-spa": "^6.0.3"
   },
   "devDependencies": {
