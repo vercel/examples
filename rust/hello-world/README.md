@@ -2,8 +2,16 @@
 name: Rust Hello World
 slug: rust-hello-world
 description: Simple Rust serverless functions demonstrating basic HTTP handling and performance benchmarks.
-framework: Other
+framework:
+  - Other
+type:
+  - Starter
+css:
+  - None
+githubUrl: https://github.com/vercel/examples/tree/main/rust/hello-world
+demoUrl: https://rust-hello-world.vercel.app
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/rust/hello-world&project-name=rust-hello-world&repository-name=rust-hello-world
+publisher: Vercel
 relatedTemplates:
   - rust-axum
 ---

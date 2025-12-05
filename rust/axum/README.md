@@ -2,8 +2,16 @@
 name: Rust Axum Web Framework
 slug: rust-axum
 description: A Rust web application using the Axum framework with streaming capabilities on Vercel.
-framework: Axum
+framework:
+  - Other
+type:
+  - Starter
+css:
+  - None
+githubUrl: https://github.com/vercel/examples/tree/main/rust/axum
+demoUrl: https://rust-axum.vercel.app
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/rust/axum&project-name=rust-axum&repository-name=rust-axum
+publisher: Vercel
 relatedTemplates:
   - rust-hello-world
 ---
