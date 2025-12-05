@@ -39,7 +39,9 @@ jobs:
 
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v18.7
+        run: |
+          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | tr '\n' ' ')
+          echo "all_changed_files=${changed_files}" >> $GITHUB_OUTPUT
 
       - name: Publish template
         run: pnpm update-templates "${{ steps.changed-files.outputs.all_changed_files }}"
