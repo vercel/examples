@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "devDependencies": {
-    "@next/eslint-plugin-next": "15.1.6",
+    "@next/eslint-plugin-next": "15.1.9",
     "@typescript-eslint/parser": "^8.22.0",
     "@vercel/style-guide": "^6.0.0",
     "eslint": "^8.57.0",
