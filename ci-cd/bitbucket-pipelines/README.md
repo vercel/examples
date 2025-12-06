@@ -67,3 +67,12 @@ Now that your Vercel application is configured with Bitbucket Pipelines, you can
 - When the pull request is merged, a Production build is created and deployed
 
 Every pull request will now automatically have a Preview Deployment attached. If the pull request needs to be rolled back, you can revert and merge the PR and Vercel will start a new Production build back to the old git state.
+
+## Purpose and Usage
+
+The `ci-cd/bitbucket-pipelines` directory contains configuration files and scripts for setting up and using Bitbucket Pipelines as your CI/CD provider with Vercel. These files help you automate the process of building, testing, and deploying your Vercel applications using Bitbucket Pipelines.
+
+## Files
+
+- `bitbucket-pipelines.yml`: The main configuration file for Bitbucket Pipelines. It defines the pipeline steps, triggers, and scripts to build and deploy your Vercel application.
+- `index.html`: A sample HTML file to demonstrate the usage of Bitbucket Pipelines with Vercel.

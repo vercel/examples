@@ -90,3 +90,12 @@ Now that your Vercel application is configured with GitHub Actions, you can try 
 - When the pull request is merged, a Production build is created and deployed
 
 Every pull request will now automatically have a Preview Deployment attached. If the pull request needs to be rolled back, you can revert and merge the PR and Vercel will start a new Production build back to the old git state.
+
+## Purpose and Usage
+
+The `ci-cd/github-actions` directory contains configuration files and scripts for setting up and using GitHub Actions as your CI/CD provider with Vercel. These files help you automate the process of building, testing, and deploying your Vercel applications using GitHub Actions.
+
+## Files
+
+- `.gitignore`: Specifies files and directories that should be ignored by Git.
+- `index.html`: A sample HTML file to demonstrate the usage of GitHub Actions with Vercel.
