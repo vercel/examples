@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-type Metadata = {
+export type Metadata = {
   title: string
   publishedAt: string
   summary: string
@@ -12,7 +12,6 @@ function parseFrontmatter(fileContent: string) {
   let frontmatterRegex = /---\s*([\s\S]*?)\s*---/
   let match = frontmatterRegex.exec(fileContent)
   let frontMatterBlock = match![1]
-  let content = fileContent.replace(frontmatterRegex, '').trim()
   let frontMatterLines = frontMatterBlock.trim().split('\n')
   let metadata: Partial<Metadata> = {}
 
@@ -23,22 +22,22 @@ function parseFrontmatter(fileContent: string) {
     metadata[key.trim() as keyof Metadata] = value
   })
 
-  return { metadata: metadata as Metadata, content }
+  return { metadata: metadata as Metadata, content: fileContent }
 }
 
-function getMDXFiles(dir) {
+function getMDXFiles(dir: fs.PathLike) {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
 }
 
-function readMDXFile(filePath) {
+function readMDXFile(filePath: fs.PathOrFileDescriptor) {
   let rawContent = fs.readFileSync(filePath, 'utf-8')
   return parseFrontmatter(rawContent)
 }
 
-function getMDXData(dir) {
+function getMDXData(dir: fs.PathLike) {
   let mdxFiles = getMDXFiles(dir)
   return mdxFiles.map((file) => {
-    let { metadata, content } = readMDXFile(path.join(dir, file))
+    let { metadata, content } = readMDXFile(path.join(dir.toString(), file))
     let slug = path.basename(file, path.extname(file))
 
     return {
@@ -50,7 +49,7 @@ function getMDXData(dir) {
 }
 
 export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts'))
+  return getMDXData(path.join(process.cwd(), 'src', 'app', 'blog', 'posts'))
 }
 
 export function formatDate(date: string, includeRelative = false) {

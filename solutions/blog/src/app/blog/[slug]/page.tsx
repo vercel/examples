@@ -1,7 +1,9 @@
+import { PropsWithChildren } from 'react'
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { CustomMDX } from 'app/components/mdx'
-import { formatDate, getBlogPosts } from 'app/blog/utils'
-import { baseUrl } from 'app/sitemap'
+import { CustomMDX } from '@/components'
+import { formatDate, getBlogPosts } from '@/lib/utils'
+import { baseUrl } from '@/app/sitemap'
 
 export async function generateStaticParams() {
   let posts = getBlogPosts()
@@ -11,10 +13,16 @@ export async function generateStaticParams() {
   }))
 }
 
-export function generateMetadata({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+type Props = {
+  params: { id: string, slug: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+
+  let post = getBlogPosts().find((post) => post.slug === slug)
   if (!post) {
-    return
+    return {}
   }
 
   let {
@@ -51,12 +59,14 @@ export function generateMetadata({ params }) {
   }
 }
 
-export default function Blog({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+export default async function Blog({ params }: PropsWithChildren<Props>) {
+  const { slug } = await params
+  let post = getBlogPosts().find((post) => post.slug === slug)
 
   if (!post) {
     notFound()
   }
+
 
   return (
     <section>

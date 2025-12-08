@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { formatDate, getBlogPosts } from 'app/blog/utils'
+import { formatDate, getBlogPosts } from '@/lib/utils'
 
-export function BlogPosts() {
+export default function BlogPosts() {
   let allBlogs = getBlogPosts()
 
   return (
