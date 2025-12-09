@@ -1,0 +1,29 @@
+[
+  {
+    "source": "/catalog/fall",
+    "destination": "/catalog/fall-2025",
+    "statusCode": 302
+  },
+  {
+    "source": "/catalog/winter",
+    "destination": "/catalog/winter-2025",
+    "permanent": true
+  },
+  {
+    "source": "/catalog/latest",
+    "destination": "/catalog/spring-2026",
+    "permanent": true
+  },
+  {
+    "source": "/products/daybreak-pack",
+    "destination": "/catalog/limited-edition",
+    "statusCode": 302,
+    "query": true
+  },
+  {
+    "source": "/catalog/outlet",
+    "destination": "/catalog/archive",
+    "statusCode": 308,
+    "caseSensitive": false
+  }
+]

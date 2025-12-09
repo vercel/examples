@@ -1,0 +1,16 @@
+body {
+  background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.08), transparent 28%),
+    radial-gradient(circle at 80% 0%, rgba(16, 185, 129, 0.08), transparent 28%),
+    #f8fafc;
+}
+
+.surface {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.pill {
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
