@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@vercel/edge-config": "0.1.0-canary.15",
-    "next": "canary",
+    "next": "15.5.7",
     "react": "latest",
     "react-dom": "latest"
   },

@@ -14,7 +14,7 @@
     "@vercel/examples-ui": "^1.0.5",
     "@vercel/kv": "^0.2.1",
     "ms": "^2.1.3",
-    "next": "canary",
+    "next": "15.5.7",
     "react": "latest",
     "react-dom": "latest",
     "swr": "^2.1.0"
