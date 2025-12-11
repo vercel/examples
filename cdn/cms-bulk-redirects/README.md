@@ -1,3 +1,14 @@
+---
+name: Contentful CMS bulk redirects (vercel.ts)
+slug: cms-bulk-redirects
+description: Sync redirect entries from Contentful into Vercel bulk redirects using vercel.ts.
+framework: Next.js
+useCase: Redirects
+css: Tailwind
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/cms-bulk-redirects&project-name=cms-bulk-redirects&repository-name=cms-bulk-redirects&env=CONTENTFUL_SPACE_ID,CONTENTFUL_ACCESS_TOKEN
+demoUrl: https://cms-bulk-redirects.vercel.app
+---
+
 # Contentful CMS bulk redirects (vercel.ts) example
 
 This example shows how to pull redirect entries from Contentful at build time, write them to a bulk redirects file, and publish them with the new `vercel.ts` config. The demo uses an e-commerce catalog so marketing can rotate seasonal URLs without shipping code.
@@ -44,17 +55,3 @@ The example ships a small `generated-redirects.json` for local runs. When the en
 3. The UI shows an e-commerce catalog with collections that map to redirect targets like `/catalog/fall-2025` or `/catalog/limited-edition`. Legacy vanity paths such as `/catalog/fall` or `/products/daybreak-pack` are captured by bulk redirects.
 
 You can extend this pattern to any CMS: swap the fetch logic, keep the same `bulkRedirectsPath`.
----
-name: Contentful CMS bulk redirects (vercel.ts)
-slug: cms-bulk-redirects
-description: Sync redirect entries from Contentful into Vercel bulk redirects using vercel.ts.
-framework: Next.js
-useCase: Redirects
-css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/cms-bulk-redirects&project-name=cms-bulk-redirects&repository-name=cms-bulk-redirects&env=CONTENTFUL_SPACE_ID,CONTENTFUL_ACCESS_TOKEN
-demoUrl: https://cms-bulk-redirects.vercel.app
----
-
-# Contentful CMS bulk redirects (vercel.ts) example
-
-This example shows how to pull redirect entries from Contentful at build time, write them to a bulk redirects file, and publish them with the new `vercel.ts` config. The demo uses an e-commerce catalog so marketing can rotate seasonal URLs without shipping code.
