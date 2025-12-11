@@ -1,19 +1,21 @@
+import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
-import '@vercel/examples-ui/globals.css'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
+import Navbar from '../components/Navbar'
 import './globals.css'
 
-export const metadata = {
-  title: 'Contentful CMS Bulk Redirects (vercel.ts)',
-  description: 'Sync Contentful redirect entries into Vercel bulk redirects with vercel.ts.',
+export const metadata: Metadata = {
+  title: 'Essential Carry - Bulk Redirects Demo',
+  description: 'A catalog site showcasing Vercel bulk redirects with vercel.ts',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body className="text-slate-900 antialiased">
-        <div className="min-h-screen bg-white">
-          <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">{children}</main>
-        </div>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className="antialiased bg-white dark:bg-black text-gray-900 dark:text-gray-100">
+        <Navbar />
+        {children}
       </body>
     </html>
   )

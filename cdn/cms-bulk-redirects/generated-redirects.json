@@ -1,13 +1,15 @@
 [
   {
-    "source": "/catalog/fall",
-    "destination": "/catalog/fall-2025",
-    "statusCode": 302
+    "source": "/products/aurora-duffel",
+    "destination": "/catalog/limited-edition",
+    "statusCode": 302,
+    "query": true
   },
   {
-    "source": "/catalog/winter",
-    "destination": "/catalog/winter-2025",
-    "permanent": true
+    "source": "/catalog/outlet",
+    "destination": "/catalog/archive",
+    "statusCode": 308,
+    "caseSensitive": false
   },
   {
     "source": "/catalog/latest",
@@ -21,9 +23,12 @@
     "query": true
   },
   {
-    "source": "/catalog/outlet",
-    "destination": "/catalog/archive",
-    "statusCode": 308,
-    "caseSensitive": false
+    "source": "/catalog/winter",
+    "destination": "/catalog/winter-2025",
+    "permanent": true
+  },
+  {
+    "source": "/catalog/fall",
+    "destination": "/catalog/fall-2025"
   }
 ]

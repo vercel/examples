@@ -1,5 +1,6 @@
 import type { VercelConfig } from '@vercel/config/v1'
 import { writeFileSync } from 'fs'
+import { join } from 'path'
 
 type VercelRedirect = {
   source: string
@@ -81,8 +82,9 @@ const redirectsToWrite =
       ? redirectsFromContentful
       : fallbackRedirects
 
-writeFileSync(new URL('./generated-redirects.json', import.meta.url), JSON.stringify(redirectsToWrite, null, 2))
-console.log(`✓ Bulk redirects ready (${redirectsToWrite.length} rules)`)
+const redirectsPath = join(process.cwd(), 'generated-redirects.json')
+writeFileSync(redirectsPath, JSON.stringify(redirectsToWrite, null, 2))
+console.log(`✓ Bulk redirects ready (${redirectsToWrite.length} rules) -> ${redirectsPath}`)
 
 export const config: VercelConfig = {
   framework: 'nextjs',
