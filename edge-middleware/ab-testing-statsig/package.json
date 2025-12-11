@@ -12,7 +12,7 @@
     "@vercel/edge-config": "^0.3.0",
     "@vercel/examples-ui": "^1.0.4",
     "js-cookie": "^3.0.1",
-    "next": "canary",
+    "next": "15.5.8",
     "react": "latest",
     "react-dom": "latest",
     "statsig-node-lite": "0.2.2",
