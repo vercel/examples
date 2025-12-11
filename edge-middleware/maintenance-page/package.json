@@ -12,7 +12,7 @@
   "dependencies": {
     "@vercel/edge-config": "0.1.0-canary.15",
     "@vercel/examples-ui": "^1.0.5",
-    "next": "canary",
+    "next": "15.5.8",
     "react": "latest",
     "react-dom": "latest"
   },
