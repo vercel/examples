@@ -18,7 +18,7 @@
     "encoding": "^0.1.13",
     "eslint": "8.53.0",
     "eslint-config-next": "14.0.2",
-    "next": "^14.0.2",
+    "next": "14.2.34",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.2.2",

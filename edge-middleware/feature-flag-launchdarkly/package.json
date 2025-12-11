@@ -13,7 +13,7 @@
     "@launchdarkly/vercel-server-sdk": "^1.3.3",
     "@vercel/edge-config": "^1.1.0",
     "@vercel/examples-ui": "^2.0.3",
-    "next": "^13.4.19",
+    "next": "14.2.34",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
