@@ -17,10 +17,6 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: internal
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,10 +32,14 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile --ignore-scripts
+        working-directory: internal
 
       - name: Create Release PR or Publish Packages
-        uses: changesets/action@v1
+        # Last known version working with cwd
+        # https://github.com/changesets/action/issues/501
+        uses: changesets/action@v1.4.9
         with:
+          cwd: internal
           # Builds the package and executes `changeset publish`
           publish: pnpm release
           # Alias to `changeset version` script in package.json
