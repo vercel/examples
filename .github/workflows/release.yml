@@ -40,7 +40,6 @@ jobs:
       - name: Create Release PR or Publish Packages
         uses: changesets/action@v1
         with:
-          cwd: internal
           # Builds the package and executes `changeset publish`
           publish: pnpm release
           # Alias to `changeset version` script in package.json
