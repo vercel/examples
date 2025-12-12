@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit'
 import { put } from '@vercel/blob'
-import { BLOB_READ_WRITE_TOKEN } from '$env/static/private'
+import { env } from '$env/dynamic/private'
 
 export const actions = {
   upload: async ({ request }) => {
@@ -14,7 +14,7 @@ export const actions = {
     const { url } = await put(file.name, file, {
       access: 'public',
       addRandomSuffix: true,
-      token: BLOB_READ_WRITE_TOKEN,
+      token: env.BLOB_READ_WRITE_TOKEN,
     })
     return { uploaded: url }
   },
