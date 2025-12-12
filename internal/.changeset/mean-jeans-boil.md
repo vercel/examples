@@ -2,4 +2,4 @@
 '@vercel/examples-ui': patch
 ---
 
-Export layout, react 19
+Export layout, allow react 19
