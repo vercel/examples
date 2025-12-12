@@ -27,6 +27,9 @@
       "index": [
         "src/index"
       ],
+      "layout": [
+        "src/layout"
+      ],
       "tailwind": [
         "dist/tailwind.d.cts"
       ]
@@ -38,6 +41,9 @@
         "index": [
           "dist/index.d.ts"
         ],
+        "layout": [
+          "dist/layout.d.ts"
+        ],
         "tailwind": [
           "dist/tailwind.d.cts"
         ]
@@ -46,8 +52,8 @@
   },
   "peerDependencies": {
     "next": "*",
-    "react": "^17.0.2 || ^18.0.0-0",
-    "react-dom": "^17.0.2 || ^18.0.0-0"
+    "react": "^17.0.2 || ^18.0.0-0 || ^19.0.0-0",
+    "react-dom": "^17.0.2 || ^18.0.0-0 || ^19.0.0-0"
   },
   "dependencies": {
     "@swc/helpers": "^0.5.1",
