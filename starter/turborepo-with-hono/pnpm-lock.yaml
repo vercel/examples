@@ -71,8 +71,8 @@ importers:
         specifier: ^9.31.0
         version: 9.31.0
       typescript:
-        specifier: 5.8.2
-        version: 5.8.2
+        specifier: ^5
+        version: 5.8.3
 
   packages/constants:
     devDependencies:

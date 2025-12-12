@@ -35,6 +35,6 @@
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
     "ts-config": "workspace:*",
-    "typescript": "5.7.3"
+    "typescript": "^5"
   }
 }

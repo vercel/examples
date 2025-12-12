@@ -52,7 +52,7 @@ importers:
         specifier: ^1.10.12
         version: 1.10.12
       typescript:
-        specifier: ^5.1.6
+        specifier: ^5
         version: 5.1.6
 
 packages:

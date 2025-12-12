@@ -14,7 +14,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "paths": {
       "@lib/*": ["lib/*"],
       "@components": ["components/index"],

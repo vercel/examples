@@ -51,7 +51,7 @@ importers:
         specifier: 4.0.0-alpha.13
         version: 4.0.0-alpha.13
       typescript:
-        specifier: 5.3.3
+        specifier: ^5
         version: 5.3.3
 
 packages:

@@ -20,6 +20,6 @@
     "react-dom": "^19.2.1",
     "sugar-high": "^0.6.0",
     "tailwindcss": "4.0.0-alpha.13",
-    "typescript": "5.3.3"
+    "typescript": "^5"
   }
 }

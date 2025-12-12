@@ -67,7 +67,7 @@ importers:
         specifier: ^4
         version: 4.1.18
       typescript:
-        specifier: 5.9.2
+        specifier: ^5
         version: 5.9.2
 
 packages:

@@ -39,7 +39,7 @@ importers:
         specifier: 3.3.3
         version: 3.3.3
       typescript:
-        specifier: 5.2.2
+        specifier: ^5
         version: 5.2.2
 
 packages:

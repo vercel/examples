@@ -33,7 +33,7 @@
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "3.4.3",
     "ts-node": "^10.9.2",
-    "typescript": "5.4.5",
+    "typescript": "^5",
     "use-debounce": "^10.0.0"
   },
   "devDependencies": {

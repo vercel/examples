@@ -32,7 +32,7 @@
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.14",
     "turbo": "^2.3.0",
-    "typescript": "^5.6.3"
+    "typescript": "^5"
   },
   "packageManager": "pnpm@9.13.0"
 }

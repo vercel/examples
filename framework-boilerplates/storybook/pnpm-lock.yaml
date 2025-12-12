@@ -27,7 +27,7 @@ importers:
         specifier: ^19.2.1
         version: 19.2.3(react@19.2.3)
       typescript:
-        specifier: 5.1.3
+        specifier: ^5
         version: 5.1.3
     devDependencies:
       '@storybook/addon-essentials':

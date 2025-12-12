@@ -68,6 +68,6 @@
     "chokidar": "^3.5.3",
     "eslint": "^8.38.0",
     "eslint-config-acme": "workspace:*",
-    "typescript": "5.0.4"
+    "typescript": "^5"
   }
 }
