@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - ecklf/release-packages-ui-5
 
 env:
   FORCE_COLOR: 3
