@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 import type { LayoutProps } from '@vercel/examples-ui/layout'
-import { getLayout } from '@vercel/examples-ui'
+import { getLayout, Head } from '@vercel/examples-ui'
 import '@vercel/examples-ui/globals.css'
 
 import Cookies from 'js-cookie'
@@ -22,12 +22,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="AB testing with PostHog"
       path="edge-middleware/feature-flag-posthog"
       deployButton={{
         env: ['NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY'],
       }}
     >
+      <Head title="AB testing with PostHog" />
       <Component {...pageProps} />
     </Layout>
   )

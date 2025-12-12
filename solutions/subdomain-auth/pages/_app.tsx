@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app'
 import type { LayoutProps } from '@vercel/examples-ui/layout'
 
 import { SessionProvider } from 'next-auth/react'
-import { getLayout } from '@vercel/examples-ui'
+import { getLayout, Head } from '@vercel/examples-ui'
 
 import '@vercel/examples-ui/globals.css'
 
@@ -10,11 +10,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout
-      title="Securing routes with next-auth"
-      path="solutions/subdomain-auth"
-      description="How to secure subdomains using next-auth"
-    >
+    <Layout path="solutions/subdomain-auth">
+      <Head
+        title="Securing routes with next-auth"
+        description="How to secure subdomains using next-auth"
+      />
       <SessionProvider>
         <Component {...pageProps} />
       </SessionProvider>
