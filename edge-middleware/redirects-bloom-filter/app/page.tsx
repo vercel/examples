@@ -1,3 +1,5 @@
+'use client'
+
 import { List, Link, Text } from '@vercel/examples-ui'
 
 const redirectingLinks = [
