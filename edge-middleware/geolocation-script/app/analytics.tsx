@@ -2,8 +2,8 @@ import { headers } from 'next/headers'
 import { EU_COUNTRY_CODES } from './constants'
 import Script from 'next/script'
 
-export default function Analytics() {
-  const countryCode = headers().get('x-vercel-ip-country') || 'US'
+export default async function Analytics() {
+  const countryCode = (await headers()).get('x-vercel-ip-country') || 'US'
 
   if (EU_COUNTRY_CODES.includes(countryCode)) {
     return (
