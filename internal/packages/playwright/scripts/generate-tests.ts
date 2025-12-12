@@ -19,7 +19,6 @@ async function generateTests() {
   const getFiles = (folder: string): Promise<[string, string[]]> =>
     fs.readdir(path.join(rootDir, folder)).then((paths) => [folder, paths])
   const examplesBySection = await Promise.all([
-    getFiles('edge-functions'),
     getFiles('edge-middleware'),
     getFiles('solutions'),
     getFiles('starter'),
