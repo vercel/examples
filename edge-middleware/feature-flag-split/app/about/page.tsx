@@ -8,7 +8,8 @@ export const dynamic = 'force-dynamic'
 export const runtime = 'edge'
 
 export default async function About() {
-  const userKey = cookies().get('split-userkey')?.value ?? 'anonymous'
+  const cookieStore = await cookies()
+  const userKey = cookieStore.get('split-userkey')?.value ?? 'anonymous'
   const client = await createSplitClient(userKey)
   const treatment = await client.getTreatment('New_About_Page')
 

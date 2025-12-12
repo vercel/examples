@@ -6,13 +6,17 @@ interface Params {
   slug: string[]
 }
 
-export function GET(_: Request, { params }: { params: Params }): Response {
-  const sourceFromSlug = params.slug.join('/')
+export async function GET(
+  _: Request,
+  { params }: { params: Promise<Params> }
+): Promise<Response> {
+  const resolvedParams = await params
+  const sourceFromSlug = resolvedParams.slug.join('/')
   const redirectInfo = simpleRedirects.find(
     (r) => normalizeSource(r.source) === sourceFromSlug
   )
   if (!redirectInfo) {
-    throw new Error(`Unexpected redirect ${String(params.slug)}`)
+    throw new Error(`Unexpected redirect ${String(resolvedParams.slug)}`)
   }
   const status = redirectInfo.statusCode ?? (redirectInfo.permanent ? 308 : 307)
   // Response.redirect does not support relative URLs but the `Location` header

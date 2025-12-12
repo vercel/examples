@@ -14,7 +14,8 @@ import optimizely from '@optimizely/optimizely-sdk'
  * A function which respects overrides set by the Toolbar, and returns feature flags.
  */
 async function getFlags() {
-  const overridesCookieValue = cookies().get('vercel-flag-overrides')?.value
+  const cookieStore = await cookies()
+  const overridesCookieValue = cookieStore.get('vercel-flag-overrides')?.value
   const overrides = overridesCookieValue
     ? await decrypt<FlagOverridesType>(overridesCookieValue)
     : null
