@@ -12,15 +12,15 @@
   "dependencies": {
     "@vercel/examples-ui": "^1.0.5",
     "js-cookie": "^3.0.1",
-    "next": "canary",
+    "next": "^16.0.10",
     "posthog-js": "^1.51.4",
-    "react": "latest",
-    "react-dom": "latest"
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.3",
-    "@types/node": "^18.15.5",
-    "@types/react": "latest",
+    "@types/node": "^20",
+    "@types/react": "^19",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.36.0",
     "eslint-config-next": "canary",

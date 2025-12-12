@@ -37,7 +37,7 @@
     "clsx": "^1.2.1"
   },
   "devDependencies": {
-    "@types/react": "^18.3.10",
+    "@types/react": "^19",
     "eslint": "^8.38.0",
     "eslint-config-acme": "workspace:*",
     "typescript": "^5.0.4"

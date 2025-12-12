@@ -10,13 +10,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "canary",
-    "react": "latest",
-    "react-dom": "latest"
+    "next": "^16.0.10",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
   },
   "devDependencies": {
-    "@types/node": "^17.0.45",
-    "@types/react": "latest",
+    "@types/node": "^20",
+    "@types/react": "^19",
     "eslint": "^8.36.0",
     "eslint-config-next": "canary",
     "turbo": "^1.8.5",

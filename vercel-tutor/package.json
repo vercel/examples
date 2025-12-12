@@ -8,9 +8,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.2.6"
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "next": "^16.0.10"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

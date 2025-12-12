@@ -16,13 +16,13 @@
     "@acme/design-system": "workspace:*",
     "@acme/utils": "workspace:*",
     "@vercel/examples-ui": "^1.0.4",
-    "next": "^14.2.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "next": "^16.0.10",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
   },
   "devDependencies": {
-    "@types/react": "^18.3.10",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "autoprefixer": "^10.4.12",
     "eslint": "^8.11.0",
     "eslint-config-acme": "workspace:*",

@@ -12,14 +12,14 @@
     "@optimizely/optimizely-sdk": "^5.1.0",
     "@vercel/flags": "2.2.1",
     "@vercel/toolbar": "^0.1.10",
-    "next": "latest",
-    "react": "^18",
-    "react-dom": "^18"
+    "next": "^16.0.10",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
