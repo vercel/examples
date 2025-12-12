@@ -1,8 +1,5 @@
-import NextLinkComp, { LinkProps as NextLinkProps } from 'next/link.js'
+import NextLink, { LinkProps as NextLinkProps } from 'next/link'
 import clsx from 'clsx'
-
-const NextLink: typeof NextLinkComp =
-  (NextLinkComp as any).default || NextLinkComp
 
 type LinkProps = Omit<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
