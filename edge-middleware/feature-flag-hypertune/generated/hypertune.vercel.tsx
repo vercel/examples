@@ -8,7 +8,8 @@ import * as hypertuneTypes from './hypertune'
 import getHypertune from '../lib/getHypertune'
 
 export async function getVercelOverride(): Promise<hypertuneTypes.Source | null> {
-  const overridesCookieValue = cookies().get('vercel-flag-overrides')?.value
+  const cookieStore = await cookies()
+  const overridesCookieValue = cookieStore.get('vercel-flag-overrides')?.value
 
   if (!overridesCookieValue) {
     return null

@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@vercel/edge-config": "^1.1.1",
-    "@vercel/examples-ui": "^2.0.3",
+    "@vercel/examples-ui": "^2.0.4",
     "@vercel/flags": "2.5.1",
     "@vercel/toolbar": "^0.1.15",
     "hypertune": "2.4.0",
@@ -33,6 +33,7 @@
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.3",
-    "turbo": "1.13.4"
+    "turbo": "1.13.4",
+    "typescript": "^5"
   }
 }
