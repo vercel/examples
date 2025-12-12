@@ -36,7 +36,9 @@ jobs:
         working-directory: internal
 
       - name: Create Release PR or Publish Packages
-        uses: changesets/action@v1
+        # Last known version working with cwd
+        # https://github.com/changesets/action/issues/501
+        uses: changesets/action@v1.4.9
         with:
           cwd: internal
           # Builds the package and executes `changeset publish`
