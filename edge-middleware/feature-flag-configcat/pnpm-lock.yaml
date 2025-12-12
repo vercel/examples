@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@vercel/examples-ui':
-        specifier: ^1.0.5
-        version: 1.0.5(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^2.0.4
+        version: 2.0.4(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       configcat-js:
         specifier: ^6.0.1
         version: 6.0.1
@@ -316,9 +316,6 @@ packages:
     resolution: {integrity: sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==}
     engines: {node: '>=6'}
 
-  '@swc/helpers@0.4.14':
-    resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
-
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
 
@@ -375,12 +372,12 @@ packages:
     resolution: {integrity: sha512-1mFdED7u5bZpX6Xxf5N9U2c18sb+8EvU3tyOIj6LQZ5OOvnmj8BVeNNP603OFPm5KkS1a7IvCIcwrdHXaEMG/Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  '@vercel/examples-ui@1.0.5':
-    resolution: {integrity: sha512-6pj8V9MPLgrPajIUbqEkbmupEMnK6xBk5zkwsilwhA9mYQdxttqgVyDqlFMQhEVqb3tk0PshA+XxnZoDfLCpoQ==}
+  '@vercel/examples-ui@2.0.4':
+    resolution: {integrity: sha512-wiauqJ3SDSNq7Oz7Y/N1aKemtCaIUhBSVECVMbBfx2IYrH3xqVQ7937abvsyd6UcP1Pdsxdb6zDHajQOQV3MNg==}
     peerDependencies:
       next: '*'
-      react: ^17.0.2 || ^18.0.0-0
-      react-dom: ^17.0.2 || ^18.0.0-0
+      react: ^17.0.2 || ^18.0.0-0 || ^19.0.0-0
+      react-dom: ^17.0.2 || ^18.0.0-0 || ^19.0.0-0
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -1508,9 +1505,6 @@ packages:
       babel-plugin-macros:
         optional: true
 
-  sugar-high@0.4.6:
-    resolution: {integrity: sha512-V/5BlmDTQ0YCD6o+xumBpOBP8CWDqVDA8Pt7W/i8QzkwFnYwBxX9T4a8XRmay7ulnnCj/5rX3f845tbkXU1lIw==}
-
   supports-color@7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
@@ -1877,10 +1871,6 @@ snapshots:
 
   '@sindresorhus/is@0.14.0': {}
 
-  '@swc/helpers@0.4.14':
-    dependencies:
-      tslib: 2.5.0
-
   '@swc/helpers@0.5.15':
     dependencies:
       tslib: 2.8.1
@@ -1947,14 +1937,13 @@ snapshots:
       '@typescript-eslint/types': 5.56.0
       eslint-visitor-keys: 3.3.0
 
-  '@vercel/examples-ui@1.0.5(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@vercel/examples-ui@2.0.4(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
-      '@swc/helpers': 0.4.14
+      '@swc/helpers': 0.5.15
       clsx: 1.2.1
       next: 16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-      sugar-high: 0.4.6
 
   acorn-jsx@5.3.2(acorn@8.8.2):
     dependencies:
@@ -3241,8 +3230,6 @@ snapshots:
     dependencies:
       client-only: 0.0.1
       react: 19.2.3
-
-  sugar-high@0.4.6: {}
 
   supports-color@7.2.0:
     dependencies:

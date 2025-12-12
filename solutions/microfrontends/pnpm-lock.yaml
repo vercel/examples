@@ -33,8 +33,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/acme-utils
       '@vercel/examples-ui':
-        specifier: ^1.0.4
-        version: 1.0.5(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^2.0.4
+        version: 2.0.4(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       next:
         specifier: ^16.0.10
         version: 16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -82,8 +82,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/acme-utils
       '@vercel/examples-ui':
-        specifier: ^1.0.4
-        version: 1.0.5(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^2.0.4
+        version: 2.0.4(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       next:
         specifier: ^16.0.10
         version: 16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -128,8 +128,8 @@ importers:
         specifier: workspace:*
         version: link:../acme-utils
       '@vercel/examples-ui':
-        specifier: ^1.0.5
-        version: 1.0.5(next@14.2.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^2.0.4
+        version: 2.0.4(next@14.2.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       clsx:
         specifier: ^1.2.1
         version: 1.2.1
@@ -205,8 +205,8 @@ importers:
         specifier: workspace:*
         version: link:../acme-design-system
       '@vercel/examples-ui':
-        specifier: ^1.0.5
-        version: 1.0.5(next@16.0.10(@babel/core@7.21.4)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: ^2.0.4
+        version: 2.0.4(next@16.0.10(@babel/core@7.21.4)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1899,9 +1899,6 @@ packages:
   '@swc/counter@0.1.3':
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
 
-  '@swc/helpers@0.4.14':
-    resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
-
   '@swc/helpers@0.5.1':
     resolution: {integrity: sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==}
 
@@ -2146,12 +2143,12 @@ packages:
     resolution: {integrity: sha512-bT7s0td97KMaLwpEBckbzj/YohnvXtqbe2XgqNvTl6RJVakY5mvENOTPvw5u66nljfZxthESpDozs86U+oLY8Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  '@vercel/examples-ui@1.0.5':
-    resolution: {integrity: sha512-6pj8V9MPLgrPajIUbqEkbmupEMnK6xBk5zkwsilwhA9mYQdxttqgVyDqlFMQhEVqb3tk0PshA+XxnZoDfLCpoQ==}
+  '@vercel/examples-ui@2.0.4':
+    resolution: {integrity: sha512-wiauqJ3SDSNq7Oz7Y/N1aKemtCaIUhBSVECVMbBfx2IYrH3xqVQ7937abvsyd6UcP1Pdsxdb6zDHajQOQV3MNg==}
     peerDependencies:
       next: '*'
-      react: ^17.0.2 || ^18.0.0-0
-      react-dom: ^17.0.2 || ^18.0.0-0
+      react: ^17.0.2 || ^18.0.0-0 || ^19.0.0-0
+      react-dom: ^17.0.2 || ^18.0.0-0 || ^19.0.0-0
 
   '@vitejs/plugin-react@3.1.0':
     resolution: {integrity: sha512-AfgcRL8ZBhAlc3BFdigClmTUMISmmzHn7sB2h9U1odvc5U/MjWXsAaz18b/WoppUTDBzxOJwo2VdClfUcItu9g==}
@@ -5490,9 +5487,6 @@ packages:
     engines: {node: '>=8'}
     hasBin: true
 
-  sugar-high@0.4.6:
-    resolution: {integrity: sha512-V/5BlmDTQ0YCD6o+xumBpOBP8CWDqVDA8Pt7W/i8QzkwFnYwBxX9T4a8XRmay7ulnnCj/5rX3f845tbkXU1lIw==}
-
   supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
     engines: {node: '>=4'}
@@ -8242,10 +8236,6 @@ snapshots:
 
   '@swc/counter@0.1.3': {}
 
-  '@swc/helpers@0.4.14':
-    dependencies:
-      tslib: 2.5.0
-
   '@swc/helpers@0.5.1':
     dependencies:
       tslib: 2.5.0
@@ -8524,32 +8514,29 @@ snapshots:
       '@typescript-eslint/types': 5.59.9
       eslint-visitor-keys: 3.4.1
 
-  '@vercel/examples-ui@1.0.5(next@14.2.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@vercel/examples-ui@2.0.4(next@14.2.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@swc/helpers': 0.4.14
+      '@swc/helpers': 0.5.15
       clsx: 1.2.1
       next: 14.2.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      sugar-high: 0.4.6
 
-  '@vercel/examples-ui@1.0.5(next@16.0.10(@babel/core@7.21.4)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@vercel/examples-ui@2.0.4(next@16.0.10(@babel/core@7.21.4)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@swc/helpers': 0.4.14
+      '@swc/helpers': 0.5.15
       clsx: 1.2.1
       next: 16.0.10(@babel/core@7.21.4)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      sugar-high: 0.4.6
 
-  '@vercel/examples-ui@1.0.5(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@vercel/examples-ui@2.0.4(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
-      '@swc/helpers': 0.4.14
+      '@swc/helpers': 0.5.15
       clsx: 1.2.1
       next: 16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-      sugar-high: 0.4.6
 
   '@vitejs/plugin-react@3.1.0(vite@4.3.1(@types/node@20.11.30)(terser@5.34.0))':
     dependencies:
@@ -12223,8 +12210,6 @@ snapshots:
       mz: 2.7.0
       pirates: 4.0.5
       ts-interface-checker: 0.1.13
-
-  sugar-high@0.4.6: {}
 
   supports-color@5.5.0:
     dependencies:
