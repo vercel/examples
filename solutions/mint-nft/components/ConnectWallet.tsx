@@ -1,7 +1,7 @@
 import { useMoralis } from 'react-moralis'
 import { Button, Text, LoadingDots } from '@vercel/examples-ui'
 
-export const ConnectWallet: React.VFC = () => {
+export const ConnectWallet: React.FC = () => {
   const { authenticate, isAuthenticating } = useMoralis()
 
   const handleConnect = () => {

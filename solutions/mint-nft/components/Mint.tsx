@@ -17,7 +17,7 @@ enum MintState {
   Loading,
 }
 
-export const Mint: React.VFC = () => {
+export const Mint: React.FC = () => {
   const router = useRouter()
   const [state, setState] = useState<MintState>(MintState.Connect)
 

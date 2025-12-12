@@ -34,7 +34,7 @@ const ImageWithFallback = ({
   )
 }
 
-const Snippet: React.VFC<{ children: React.ReactChild }> = ({ children }) => {
+const Snippet: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <pre className="border-accents-2 border rounded-md bg-white overflow-x-auto p-6 transition-all">
       {children}
