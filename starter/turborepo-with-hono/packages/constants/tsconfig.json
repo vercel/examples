@@ -1,7 +1,9 @@
 {
   "extends": ["@repo/typescript-config/base.json"],
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
