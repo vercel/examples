@@ -9,7 +9,7 @@ type Props = {
   onDone: (asset: Moralis.File) => void
 }
 
-export const UploadNft: React.VFC<Props> = ({ onDone }) => {
+export const UploadNft: React.FC<Props> = ({ onDone }) => {
   const [loading, setLoading] = useState(false)
   const [imageWarning, setImageWarning] = useState('')
   const [disabled, setDisabled] = useState(true)

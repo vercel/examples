@@ -10,18 +10,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
+    "next": "^16.0.10",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "replicate": "^0.9.0"
   },
   "devDependencies": {
-    "@types/node": "18.11.10",
-    "@types/react": "latest",
-    "@types/react-dom": "18.0.9",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
     "turbo": "^1.8.3",
-    "typescript": "4.9.3"
+    "typescript": "^5"
   }
 }

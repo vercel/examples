@@ -13,7 +13,7 @@ _Live Example: https://vuepress-starter-template.vercel.app_
 Install the dependencies:
 
 ```bash
-$ yarn install
+$ pnpm install
 ```
 
 ### Development
@@ -21,7 +21,7 @@ $ yarn install
 Start the development server
 
 ```bash
-$ yarn dev
+$ pnpm dev
 ```
 
 ### Build the project
@@ -29,7 +29,7 @@ $ yarn dev
 Build for production
 
 ```bash
-$ yarn build
+$ pnpm build
 ```
 
 ### Deploy

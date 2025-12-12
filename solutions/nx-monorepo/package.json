@@ -9,9 +9,9 @@
   "private": true,
   "dependencies": {
     "@nrwl/next": "14.6.3",
-    "next": "12.2.5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "next": "^16.0.10",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
   },
   "devDependencies": {
     "@nrwl/cli": "14.6.3",
@@ -24,9 +24,9 @@
     "@nrwl/workspace": "14.6.3",
     "@testing-library/react": "13.3.0",
     "@types/jest": "28.1.1",
-    "@types/node": "16.11.7",
-    "@types/react": "18.0.18",
-    "@types/react-dom": "18.0.6",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "@typescript-eslint/eslint-plugin": "~5.33.1",
     "@typescript-eslint/parser": "~5.33.1",
     "babel-jest": "28.1.1",
@@ -44,6 +44,6 @@
     "react-test-renderer": "18.2.0",
     "ts-jest": "28.0.5",
     "ts-node": "10.9.1",
-    "typescript": "~4.7.2"
+    "typescript": "^5"
   }
 }

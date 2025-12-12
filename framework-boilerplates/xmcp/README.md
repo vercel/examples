@@ -29,26 +29,26 @@ This project uses the structured approach where tools, prompts, and resources ar
 Each tool is defined in its own file with the following structure:
 
 ```typescript
-import { z } from "zod";
-import { type InferSchema, type ToolMetadata } from "xmcp";
+import { z } from 'zod'
+import { type InferSchema, type ToolMetadata } from 'xmcp'
 
 export const schema = {
-  name: z.string().describe("The name of the user to greet"),
-};
+  name: z.string().describe('The name of the user to greet'),
+}
 
 export const metadata: ToolMetadata = {
-  name: "greet",
-  description: "Greet the user",
+  name: 'greet',
+  description: 'Greet the user',
   annotations: {
-    title: "Greet the user",
+    title: 'Greet the user',
     readOnlyHint: true,
     destructiveHint: false,
     idempotentHint: true,
   },
-};
+}
 
 export default function greet({ name }: InferSchema<typeof schema>) {
-  return `Hello, ${name}!`;
+  return `Hello, ${name}!`
 }
 ```
 
@@ -57,22 +57,22 @@ export default function greet({ name }: InferSchema<typeof schema>) {
 Prompts are template definitions for AI interactions:
 
 ```typescript
-import { z } from "zod";
-import { type InferSchema, type PromptMetadata } from "xmcp";
+import { z } from 'zod'
+import { type InferSchema, type PromptMetadata } from 'xmcp'
 
 export const schema = {
-  code: z.string().describe("The code to review"),
-};
+  code: z.string().describe('The code to review'),
+}
 
 export const metadata: PromptMetadata = {
-  name: "review-code",
-  title: "Review Code",
-  description: "Review code for best practices and potential issues",
-  role: "user",
-};
+  name: 'review-code',
+  title: 'Review Code',
+  description: 'Review code for best practices and potential issues',
+  role: 'user',
+}
 
 export default function reviewCode({ code }: InferSchema<typeof schema>) {
-  return `Please review this code: ${code}`;
+  return `Please review this code: ${code}`
 }
 ```
 
@@ -81,21 +81,21 @@ export default function reviewCode({ code }: InferSchema<typeof schema>) {
 Resources provide data or content with URI-based access:
 
 ```typescript
-import { z } from "zod";
-import { type ResourceMetadata, type InferSchema } from "xmcp";
+import { z } from 'zod'
+import { type ResourceMetadata, type InferSchema } from 'xmcp'
 
 export const schema = {
-  userId: z.string().describe("The ID of the user"),
-};
+  userId: z.string().describe('The ID of the user'),
+}
 
 export const metadata: ResourceMetadata = {
-  name: "user-profile",
-  title: "User Profile",
-  description: "User profile information",
-};
+  name: 'user-profile',
+  title: 'User Profile',
+  description: 'User profile information',
+}
 
 export default function handler({ userId }: InferSchema<typeof schema>) {
-  return `Profile data for user ${userId}`;
+  return `Profile data for user ${userId}`
 }
 ```
 
@@ -134,10 +134,6 @@ To add a new resource:
 To build your project for production:
 
 ```bash
-npm run build
-# or
-yarn build
-# or
 pnpm build
 ```
 
@@ -155,20 +151,12 @@ Given the selected transport method, you will have a custom start script added t
 For HTTP:
 
 ```bash
-npm run start-http
-# or
-yarn start-http
-# or
 pnpm start-http
 ```
 
 For STDIO:
 
 ```bash
-npm run start-stdio
-# or
-yarn start-stdio
-# or
 pnpm start-stdio
 ```
 

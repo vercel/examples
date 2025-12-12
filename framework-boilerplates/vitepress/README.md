@@ -7,7 +7,7 @@ This directory is a brief example of a [VitePress](https://vitepress.vuejs.org/)
 Install the dependencies
 
 ```bash
-$ yarn install
+$ pnpm install
 ```
 
 ## Deploy Your Own
@@ -21,7 +21,7 @@ _Live Example: https://vitepress-starter-template.vercel.app_
 Install the dependencies:
 
 ```bash
-$ yarn install
+$ pnpm install
 ```
 
 ### Development
@@ -29,7 +29,7 @@ $ yarn install
 Start the development server
 
 ```bash
-$ yarn dev
+$ pnpm dev
 ```
 
 ### Build the project
@@ -37,7 +37,7 @@ $ yarn dev
 Build for production
 
 ```bash
-$ yarn build
+$ pnpm build
 ```
 
 ### Deploy

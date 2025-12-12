@@ -4,7 +4,7 @@ import { NETWORK_ID } from '../helpers/constant.helpers'
 import { Button, Text, LoadingDots } from '@vercel/examples-ui'
 import { useChain } from 'react-moralis'
 
-export const SwitchNetwork: React.VFC = () => {
+export const SwitchNetwork: React.FC = () => {
   const [loading, setLoading] = useState(false)
 
   const { switchNetwork, chainId } = useChain()

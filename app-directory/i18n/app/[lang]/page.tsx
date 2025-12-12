@@ -4,17 +4,20 @@ import Counter from './components/counter'
 import Welcome from './components/welcome'
 
 interface Props {
-  params: {
+  params: Promise<{
     lang: 'es' | 'en' | 'de'
-  }
+  }>
 }
 
 export async function generateStaticParams() {
   return [{ lang: 'es' }, { lang: 'en' }, { lang: 'de' }]
 }
 
-export default function Home({ params }: Props) {
-  const { counter, home } = use(import(`./dictionaries/${params.lang}.json`))
+export default async function Home({ params }: Props) {
+  const resolvedParams = await params
+  const { counter, home } = await import(
+    `./dictionaries/${resolvedParams.lang}.json`
+  )
 
   return (
     <Page className="flex flex-col gap-12">
