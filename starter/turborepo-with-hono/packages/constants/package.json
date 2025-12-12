@@ -1,5 +1,6 @@
 {
   "name": "@repo/constants",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/constants.d.ts",

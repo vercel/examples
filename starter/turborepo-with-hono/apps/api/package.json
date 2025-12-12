@@ -2,6 +2,7 @@
   "name": "api",
   "type": "module",
   "scripts": {
+    "build": "tsc",
     "dev": "srvx"
   },
   "dependencies": {
