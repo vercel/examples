@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "analyze": "BUNDLE_ANALYZE=both yarn build",
+    "analyze": "BUNDLE_ANALYZE=both pnpm build",
     "find:unused": "next-unused"
   },
   "next-unused": {
