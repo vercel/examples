@@ -6,13 +6,14 @@ import { useModelId, useReasoningEffort } from './use-settings'
 export function ReasoningEffort() {
   const [modelId] = useModelId()
   const [effort, setEffort] = useReasoningEffort()
-  if (modelId !== Models.OpenAIGPT5) {
+  if (modelId !== Models.OpenAIGPT52) {
     return null
   }
 
   return (
-    <div
-      className="flex items-center justify-between cursor-pointer hover:bg-accent/50 rounded p-2 -m-2"
+    <button
+      type="button"
+      className="flex items-center justify-between w-full text-left cursor-pointer hover:bg-accent/50 rounded p-2 -m-2"
       onClick={() => setEffort(effort === 'medium' ? 'low' : 'medium')}
     >
       <div className="space-y-1 flex-1 pointer-events-none">
@@ -20,7 +21,7 @@ export function ReasoningEffort() {
           Higher Effort Level
         </Label>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          With GPT-5, you can request higher reasoning effort level.
+          With GPT-5.2, you can request higher reasoning effort level.
         </p>
       </div>
       <Checkbox
@@ -31,6 +32,6 @@ export function ReasoningEffort() {
           setEffort(checked === true ? 'medium' : 'low')
         }
       />
-    </div>
+    </button>
   )
 }

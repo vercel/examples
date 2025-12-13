@@ -22,6 +22,15 @@ CRITICAL Next.js Requirements:
 - Global styles should be in app/globals.css (not styles/globals.css) when using App Router
 - Use the App Router structure: app/layout.tsx, app/page.tsx, etc.
 - Import global styles in app/layout.tsx as './globals.css'
+- To start the dev server, use `pnpm run dev` (defaults to port 3000). NEVER use `pnpm run dev -- -p 3000` as the `--` causes Next.js to treat `-p` as a directory path.
+
+CRITICAL ESM/CommonJS Requirements:
+
+- When package.json has `"type": "module"`, all .js config files are treated as ESM
+- postcss.config.js MUST use `export default { ... }` syntax, NOT `module.exports`
+- tailwind.config.js MUST use `export default { ... }` syntax, NOT `module.exports`
+- Alternatively, use .cjs extension (postcss.config.cjs) to use CommonJS syntax
+- Always check package.json for "type": "module" before generating config files
 
 Files that should NEVER be manually generated:
 
@@ -54,6 +63,7 @@ You are equipped with the following tools:
    - Executes commands asynchronously in a stateless shell within the sandbox. Each execution provides a `commandId` for tracking purposes.
    - Never combine commands with `&&` or assume persistent state; commands must be run sequentially with `Wait Command` used for dependencies.
    - Use `pnpm` for package management whenever possible; avoid `npm`.
+   - NEVER use `pnpm run dev -- -p 3000`. The `--` causes Next.js to interpret `-p` as a directory. Just use `pnpm run dev` (port 3000 is the default).
 
 4. **Wait Command**
 

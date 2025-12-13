@@ -6,19 +6,19 @@ export enum Models {
   AnthropicClaude45Sonnet = 'anthropic/claude-sonnet-4.5',
   GoogleGeminiFlash = 'google/gemini-2.5-flash',
   MoonshotKimiK2 = 'moonshotai/kimi-k2',
-  OpenAIGPT5 = 'gpt-5',
+  OpenAIGPT52 = 'openai/gpt-5.2',
   XaiGrok3Fast = 'xai/grok-3-fast',
 }
 
-export const DEFAULT_MODEL = Models.AnthropicClaude45Sonnet
+export const DEFAULT_MODEL = Models.OpenAIGPT52
 
 export const SUPPORTED_MODELS: GatewayModelId[] = [
+  Models.OpenAIGPT52,
   Models.AmazonNovaPro,
   Models.AnthropicClaude4Sonnet,
   Models.AnthropicClaude45Sonnet,
   Models.GoogleGeminiFlash,
   Models.MoonshotKimiK2,
-  Models.OpenAIGPT5,
   Models.XaiGrok3Fast,
 ]
 
