@@ -46,6 +46,7 @@ Use Run Command when:
 ## Other Rules
 
 - When running `pnpm dev` in a Next.js or Vite project, HMR can handle updates so generally you don't need to kill the server process and start it again after changing files.
+- NEVER use `pnpm run dev -- -p 3000` for Next.js. The `--` causes Next.js to interpret `-p` as a directory path, resulting in an error. Just use `pnpm run dev` (port 3000 is the default).
 
 ## Examples
 

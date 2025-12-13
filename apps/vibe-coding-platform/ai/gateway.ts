@@ -18,10 +18,10 @@ export interface ModelOptions {
 
 export function getModelOptions(
   modelId: string,
-  options?: { reasoningEffort?: 'minimal' | 'low' | 'medium' }
+  options?: { reasoningEffort?: 'low' | 'medium' | 'high' }
 ): ModelOptions {
   const gateway = gatewayInstance()
-  if (modelId === Models.OpenAIGPT5) {
+  if (modelId === Models.OpenAIGPT52) {
     return {
       model: gateway(modelId),
       providerOptions: {

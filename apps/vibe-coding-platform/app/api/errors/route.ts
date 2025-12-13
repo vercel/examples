@@ -19,11 +19,11 @@ export async function POST(req: Request) {
 
   const result = await generateObject({
     system: prompt,
-    model: Models.OpenAIGPT5,
+    model: Models.OpenAIGPT52,
     providerOptions: {
       openai: {
         include: ['reasoning.encrypted_content'],
-        reasoningEffort: 'minimal',
+        reasoningEffort: 'low',
         reasoningSummary: 'auto',
         serviceTier: 'priority',
       },
