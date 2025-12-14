@@ -14,9 +14,12 @@
   },
   "pre-commit": "lint-staged",
   "lint-staged": {
-    "!(**/.vercel/**/*)**/*.{ts,tsx}": [
+    "!((**/.vercel/**/*)|(**/*tanstack-start/**/*))*.{ts,tsx}": [
       "prettier --write",
       "eslint -c .eslintrc.json --no-eslintrc --no-ignore --max-warnings=0 --fix"
+    ],
+    "**/*tanstack-start/**/*.{ts,tsx}": [
+      "prettier --write"
     ],
     "**/*.{json,md,mdx,css,html,yml,yaml,scss}": [
       "prettier --write"
