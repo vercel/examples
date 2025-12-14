@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app'
 import { StatsigProvider } from 'statsig-react'
 import Cookies from 'js-cookie'
 import type { LayoutProps } from '@vercel/examples-ui/layout'
-import { getLayout } from '@vercel/examples-ui'
+import { getLayout, Head } from '@vercel/examples-ui'
 import '@vercel/examples-ui/globals.css'
 import { UID_COOKIE } from '../lib/constants'
 
@@ -17,11 +17,11 @@ function App({ Component, pageProps }: AppProps) {
       waitForInitialization={false}
       user={{ userID }}
     >
-      <Layout
-        title="Experimentation with Statsig"
-        description="How to do experimentation with Statsig"
-        path="edge-middleware/ab-testing-statsig"
-      >
+      <Layout path="edge-middleware/ab-testing-statsig">
+        <Head
+          title="Experimentation with Statsig"
+          description="How to do experimentation with Statsig"
+        />
         <Component {...pageProps} />
       </Layout>
     </StatsigProvider>

@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/examples-ui": "^1.0.5",
+    "@vercel/examples-ui": "^2.0.4",
     "jose": "^4.13.1",
     "nanoid": "^3.3.4",
     "next": "^16.0.10",

@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 import type { LayoutProps } from '@vercel/examples-ui/layout'
-import { getLayout } from '@vercel/examples-ui'
+import { getLayout, Head } from '@vercel/examples-ui'
 import '@vercel/examples-ui/globals.css'
 /**
  * Load a custom fallback font that we use in the example, you don't need to add
@@ -23,11 +23,11 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout
-      title="Loading web fonts"
-      path="solutions/loading-web-fonts"
-      description="How to correctly load web fonts"
-    >
+    <Layout path="solutions/loading-web-fonts">
+      <Head
+        title="Loading web fonts"
+        description="How to correctly load web fonts"
+      />
       <Component {...pageProps} />
     </Layout>
   )
