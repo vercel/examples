@@ -1,50 +1,18 @@
 import type { VercelConfig } from '@vercel/config/v1'
 
-const MINTLIFY_DOCS_URL = process.env.MINTLIFY_DOCS_URL || 'https://vercel-fcadfe60.mintlify.app'
+const MINTLIFY_DOCS_URL = process.env.MINTLIFY_DOCS_URL || 'https://vercel-fcadfe60.mintlify.dev'
 
 export const config: VercelConfig = {
   framework: 'nextjs',
   outputDirectory: '.next',
   rewrites: [
     {
-      source: '/_mintlify/:path*',
-      destination: `${MINTLIFY_DOCS_URL}/_mintlify/:path*`,
-    },
-    {
-      source: '/api/request',
-      destination: `${MINTLIFY_DOCS_URL}/_mintlify/api/request`,
-    },
-    {
       source: '/docs',
       destination: `${MINTLIFY_DOCS_URL}/docs`,
     },
     {
-      source: '/docs/llms.txt',
-      destination: `${MINTLIFY_DOCS_URL}/llms.txt`,
-    },
-    {
-      source: '/docs/llms-full.txt',
-      destination: `${MINTLIFY_DOCS_URL}/llms-full.txt`,
-    },
-    {
-      source: '/docs/sitemap.xml',
-      destination: `${MINTLIFY_DOCS_URL}/sitemap.xml`,
-    },
-    {
-      source: '/docs/robots.txt',
-      destination: `${MINTLIFY_DOCS_URL}/robots.txt`,
-    },
-    {
-      source: '/docs/mcp',
-      destination: `${MINTLIFY_DOCS_URL}/mcp`,
-    },
-    {
-      source: '/docs/:path*',
-      destination: `${MINTLIFY_DOCS_URL}/docs/:path*`,
-    },
-    {
-      source: '/mintlify-assets/:path+',
-      destination: `${MINTLIFY_DOCS_URL}/mintlify-assets/:path+`,
+      source: '/docs/:match*',
+      destination: `${MINTLIFY_DOCS_URL}/docs/:match*`,
     },
   ],
   headers: [
