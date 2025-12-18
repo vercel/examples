@@ -6,8 +6,8 @@ import Navbar from '../components/Navbar'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Mintlify Docs Rewrite Demo',
-  description: 'Rewrite /docs to Mintlify-hosted documentation using vercel.ts',
+  title: 'Flux - Real-time event infrastructure',
+  description: 'Send, receive, and react to events across your entire stack with a simple API.',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {

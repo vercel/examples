@@ -5,30 +5,25 @@ export default function Home() {
     <main className="min-h-screen">
       <section className="py-24 px-4 border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-sm font-medium mb-6">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            Powered by vercel.ts rewrites
-          </div>
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-black dark:text-white mb-6">
-            Mintlify Docs Rewrite
+            Flux
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
-            Host your Mintlify documentation at <code className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-lg font-mono">/docs</code> on 
-            your main domain using Vercel rewrites.
+            Real-time event infrastructure for modern applications. Send, receive, and react to events across your entire stack with a simple API.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/docs"
               className="inline-flex items-center justify-center bg-black dark:bg-white text-white dark:text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
             >
-              View Documentation →
+              Read Documentation →
             </Link>
-            <Link
-              href="/about"
+            <a
+              href="https://github.com"
               className="inline-flex items-center justify-center border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 px-8 py-3 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
             >
-              How it works
-            </Link>
+              View on GitHub
+            </a>
           </div>
         </div>
       </section>
@@ -37,41 +32,39 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-black dark:text-white mb-4">
-              How it works
+              Why Flux
             </h2>
             <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-              Use Vercel&apos;s rewrite rules to serve Mintlify docs from your own domain.
+              Purpose-built for event-driven applications at any scale.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="border border-gray-200 dark:border-gray-800 rounded-xl p-8">
-              <div className="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-4">
-                <span className="text-2xl">1</span>
-              </div>
-              <h3 className="text-xl font-semibold text-black dark:text-white mb-3">Configure vercel.ts</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Set your Mintlify docs URL in the <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">MINTLIFY_DOCS_URL</code> environment variable.
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="border border-gray-200 dark:border-gray-800 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-black dark:text-white mb-2">Simple Integration</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
+                Drop-in SDKs for Node.js, Python, Go, and more. Start sending events in minutes.
               </p>
             </div>
 
-            <div className="border border-gray-200 dark:border-gray-800 rounded-xl p-8">
-              <div className="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-4">
-                <span className="text-2xl">2</span>
-              </div>
-              <h3 className="text-xl font-semibold text-black dark:text-white mb-3">Deploy to Vercel</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Vercel reads the rewrite rules from <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">vercel.ts</code> and applies them at the edge.
+            <div className="border border-gray-200 dark:border-gray-800 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-black dark:text-white mb-2">Guaranteed Delivery</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
+                Events are persisted and retried automatically. Never lose critical data.
               </p>
             </div>
 
-            <div className="border border-gray-200 dark:border-gray-800 rounded-xl p-8">
-              <div className="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-4">
-                <span className="text-2xl">3</span>
-              </div>
-              <h3 className="text-xl font-semibold text-black dark:text-white mb-3">Seamless docs</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Visitors access <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">yourdomain.com/docs</code> and see your Mintlify docs, fully branded.
+            <div className="border border-gray-200 dark:border-gray-800 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-black dark:text-white mb-2">Real-time Webhooks</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
+                Receive events instantly via webhooks with automatic signature verification.
+              </p>
+            </div>
+
+            <div className="border border-gray-200 dark:border-gray-800 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-black dark:text-white mb-2">Full Observability</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
+                Debug issues fast with event logs, traces, and delivery analytics.
               </p>
             </div>
           </div>
@@ -81,28 +74,25 @@ export default function Home() {
       <section className="py-16 px-4 border-t border-gray-200 dark:border-gray-800">
         <div className="max-w-4xl mx-auto">
           <h3 className="text-2xl font-bold text-black dark:text-white mb-6 text-center">
-            Example configuration
+            Quick example
           </h3>
+          <p className="text-gray-600 dark:text-gray-400 mb-4 text-center">
+            Send your first event in minutes
+          </p>
           <div className="bg-gray-950 rounded-xl p-6 overflow-x-auto">
             <pre className="text-sm text-gray-300 font-mono">
-{`import type { VercelConfig } from '@vercel/config/v1'
+{`import Flux from '@flux/node';
 
-const MINTLIFY_DOCS_URL = process.env.MINTLIFY_DOCS_URL || 'https://your-docs.mintlify.app'
+const flux = new Flux('sk_live_...');
 
-export const config: VercelConfig = {
-  framework: 'nextjs',
-  outputDirectory: '.next',
-  rewrites: [
-    {
-      source: '/docs',
-      destination: MINTLIFY_DOCS_URL,
-    },
-    {
-      source: '/docs/:path*',
-      destination: \`\${MINTLIFY_DOCS_URL}/:path*\`,
-    },
-  ],
-}`}
+await flux.events.send({
+  type: 'user.signup',
+  data: {
+    userId: 'usr_123',
+    email: 'jane@example.com',
+    plan: 'pro'
+  }
+});`}
             </pre>
           </div>
         </div>

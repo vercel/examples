@@ -9,7 +9,7 @@ export default function Navbar() {
             <svg className="w-5 h-5" viewBox="0 0 76 65" fill="currentColor">
               <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" />
             </svg>
-            <span>Docs Rewrite</span>
+            <span>Flux</span>
           </Link>
 
           <div className="flex items-center gap-6">
@@ -23,10 +23,10 @@ export default function Navbar() {
               href="/about"
               className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
             >
-              How it works
+              About
             </Link>
             <a
-              href="https://github.com/vercel/examples/tree/main/cdn/mintlify-docs-rewrite"
+              href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
