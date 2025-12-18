@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@vercel/config": "^0.0.22",
+    "@vercel/sdk": "^1.18.5",
     "geist": "^1.5.1",
     "next": "^16.0.7",
     "react": "^19.2.1",
