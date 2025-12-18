@@ -1,21 +1,25 @@
 ---
 name: Mintlify docs rewrite (vercel.ts)
 slug: mintlify-docs-rewrite
-description: Rewrite /docs paths to a Mintlify-hosted documentation site using vercel.ts rewrites.
+description: Serve Mintlify-hosted docs from your main domain using vercel.ts rewrites. Build a product site with seamlessly integrated documentation.
 framework: Next.js
 useCase: Rewrites
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/mintlify-docs-rewrite&project-name=mintlify-docs-rewrite&repository-name=mintlify-docs-rewrite&env=MINTLIFY_DOCS_URL
-demoUrl: https://mintlify-docs-rewrite.vercel.app
+demoUrl: https://docsrewrite.vercel.app
 ---
 
 # Mintlify docs rewrite (vercel.ts) example
 
-This example shows how to use Vercel's `vercel.ts` configuration to rewrite `/docs` paths to a Mintlify-hosted documentation site. This lets you serve your Mintlify docs from your main domain (e.g., `yourdomain.com/docs`) for better SEO and a seamless user experience.
+This template demonstrates how to serve Mintlify-hosted documentation from your main domain using Vercel's `vercel.ts` configuration. Instead of linking to `docs.yourdomain.com` or an external URL, your docs are seamlessly integrated at `/docs` on your product site.
+
+The demo shows a fictional product site ("Flux") with docs hosted on Mintlify but served from the main domain for a unified user experience.
 
 ## Demo
 
-https://mintlify-docs-rewrite.vercel.app
+https://docsrewrite.vercel.app
+
+Visit the docs at `/docs` to see the Mintlify-hosted site served through the main domain.
 
 ## How to Use
 
@@ -43,17 +47,22 @@ pnpm dev
 
 ## Environment variables
 
-- `MINTLIFY_DOCS_URL` – Your Mintlify docs URL (e.g., `https://your-docs.mintlify.app`)
+- `MINTLIFY_DOCS_URL` – Your Mintlify custom domain URL (e.g., `https://your-subdomain.mintlify.dev`)
+
+Set this in your Vercel project settings or in a `.env.local` file.
 
 ## How it works
 
-1. `vercel.ts` exports a config with rewrite rules that map `/docs` and `/docs/*` to your Mintlify docs URL.
-2. Vercel applies these rewrites at the edge, proxying requests to Mintlify while keeping the URL unchanged.
-3. Users visit `yourdomain.com/docs` and see your Mintlify documentation, fully integrated with your domain.
+1. You configure a custom domain in Mintlify (e.g., `your-subdomain.mintlify.dev`)
+2. `vercel.ts` exports a config with rewrite rules that map `/docs` and `/docs/:match*` to your Mintlify URL
+3. Vercel applies these rewrites at the edge, transparently proxying requests to Mintlify while preserving the original URL in the browser
+4. Users visit `yourdomain.com/docs` and see your Mintlify documentation as if it's part of your main site
 
-The rewrite approach means:
-- Better SEO since docs are on your main domain
-- No CORS issues
-- Seamless user experience with consistent branding
-- Mintlify handles all the docs infrastructure
+## Key benefits
+
+- **Better SEO**: Docs are on your main domain, not a separate subdomain
+- **No CORS issues**: Content is served from your domain
+- **Seamless branding**: Consistent experience across product and docs
+- **Simple setup**: Just add environment variable and deploy
+- **Mintlify handles infrastructure**: Focus on content while Mintlify manages hosting, CDN, and updates
 
