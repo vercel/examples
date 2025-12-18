@@ -18,3 +18,5 @@ build-output-api @tootallnate @lfades @lpalmes
 vercel-tutor @chibicode
 
 microfrontends @kitfoster @lazarv @mknichel
+
+cdn @vercel/edge-ingress @vercel/edge-content @vercel/edge-security @pranavkarthik10
