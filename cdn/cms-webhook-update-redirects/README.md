@@ -1,5 +1,5 @@
 ---
-name: Contentful CMS bulk redirects (vercel.ts)
+name: Redirects updated on CMS webhook
 slug: cms-webhook-update-redirects
 description: Updates project-level redirects from CMS using webhook + Vercel SDK
 framework: Next.js

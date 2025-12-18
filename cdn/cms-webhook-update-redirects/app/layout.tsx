@@ -7,7 +7,8 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Essential Carry - Bulk Redirects Demo',
-  description: 'A catalog site showcasing Vercel bulk redirects with vercel.ts',
+  description:
+    'A e-commerce site showcasing managing redirects dynamically with webhooks',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
