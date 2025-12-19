@@ -1,7 +1,7 @@
 ---
 name: PostHog analytics reverse proxy (vercel.ts)
 slug: posthog-analytics-proxy
-description: Proxy PostHog analytics requests through Vercel to bypass ad blockers using vercel.ts.
+description: Proxy PostHog analytics through your domain as first-party traffic using vercel.ts.
 framework: Next.js
 useCase: Analytics
 css: Tailwind
@@ -11,7 +11,7 @@ demoUrl: https://posthog-analytics-proxy.vercel.app
 
 # PostHog analytics reverse proxy (vercel.ts) example
 
-This example shows how to proxy PostHog analytics requests through Vercel's routing layer to bypass ad blockers. By proxying requests through your own domain instead of sending them directly to PostHog, ad blockers that filter requests to analytics domains won't catch them.
+This example shows how to proxy PostHog analytics requests through Vercel's routing layer as first-party traffic. The demo is a developer tool landing page with analytics tracking integrated throughout.
 
 ## Demo
 
@@ -29,7 +29,7 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 ### Clone and Deploy
 
-Execute [`create-next-app`](https://github.com/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
 pnpm create next-app --example https://github.com/vercel/examples/tree/main/cdn/posthog-analytics-proxy
@@ -47,42 +47,11 @@ pnpm dev
 
 ## How it works
 
-1. `vercel.ts` runs at deployment and configures two proxy routes:
+1. `vercel.ts` configures two proxy routes:
    - `/ph/static/(.*)` → `https://us-assets.i.posthog.com/static/$1` (static assets)
    - `/ph/(.*)` → `https://us.i.posthog.com/$1` (API requests)
-2. The `host` header is rewritten to the PostHog domain so their servers correctly route the requests.
-3. Initialize PostHog with `api_host: '/ph'` to point all requests through your proxy.
-4. Requests now appear to come from your domain, so domain-based ad blockers don't filter them out.
+2. The `host` header is rewritten so PostHog servers correctly route the proxied requests.
+3. PostHog is initialized with `api_host: '/ph'` to send all requests through your proxy.
+4. Analytics requests now go through your domain as first-party traffic.
 
-## Benefits
-
-- **Bypass ad blockers**: Analytics requests aren't filtered by domain-based blockers
-- **No configuration needed**: Just set your API key and deploy
-- **Works everywhere**: Works with Next.js, Vue, Astro, or any framework
-- **No edge function costs**: Uses Vercel's reverse proxy layer
-- **Transparent**: PostHog receives the data normally, your app works as expected
-
-## PostHog initialization
-
-In your Next.js app, initialize PostHog with the proxy path:
-
-```jsx
-// app/layout.tsx or pages/_app.tsx
-import PostHog from 'posthog-js'
-
-if (typeof window !== 'undefined') {
-  PostHog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
-    api_host: '/ph',
-    ui_host: 'https://us.posthog.com',
-  })
-}
-```
-
-Now all analytics calls go through your `/ph` proxy endpoint instead of directly to PostHog's domain.
-
-## Learn More
-
-- [PostHog Reverse Proxy Documentation](https://posthog.com/docs/advanced/proxy)
-- [Vercel Reverse Proxy Documentation](https://vercel.com/kb/guide/vercel-reverse-proxy-rewrites-external)
-- [Vercel Config Documentation](https://vercel.com/docs/project-configuration)
-
+You can extend this pattern to any analytics provider by configuring the appropriate rewrite rules.
