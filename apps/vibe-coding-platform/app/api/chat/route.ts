@@ -39,11 +39,11 @@ export async function POST(req: Request) {
   return createUIMessageStreamResponse({
     stream: createUIMessageStream({
       originalMessages: messages,
-      execute: ({ writer }) => {
+      execute: async ({ writer }) => {
         const result = streamText({
           ...getModelOptions(modelId, { reasoningEffort }),
           system: prompt,
-          messages: convertToModelMessages(
+          messages: await convertToModelMessages(
             messages.map((message) => {
               message.parts = message.parts.map((part) => {
                 if (part.type === 'data-report-errors') {
@@ -83,5 +83,5 @@ export async function POST(req: Request) {
         )
       },
     }),
-  })
+  });
 }
