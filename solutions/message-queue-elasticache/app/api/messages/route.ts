@@ -9,7 +9,7 @@ export const runtime = 'nodejs'
 const STREAM_NAME = 'contact-messages'
 const CONSUMER_GROUP = 'contact-processors'
 
-let client: GlideClient | null = null
+let client: GlideClient | undefined
 
 /**
  * Get or initialize Valkey client
