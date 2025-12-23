@@ -4,7 +4,7 @@ import { SessionProvider } from 'next-auth/react'
 
 import type { LayoutProps } from '@vercel/examples-ui/layout'
 
-import { getLayout } from '@vercel/examples-ui'
+import { getLayout, Head } from '@vercel/examples-ui'
 
 import '@vercel/examples-ui/globals.css'
 
@@ -14,11 +14,11 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <WagmiProvider autoConnect>
       <SessionProvider session={pageProps.session} refetchInterval={0}>
-        <Layout
-          title="Web3 Authentication"
-          path="solutions/web3-authentication"
-          description="Learn how to do authentication for Web3 apps"
-        >
+        <Layout path="solutions/web3-authentication">
+          <Head
+            title="Web3 Authentication"
+            description="Learn how to do authentication for Web3 apps"
+          />
           <Component {...pageProps} />
         </Layout>
       </SessionProvider>

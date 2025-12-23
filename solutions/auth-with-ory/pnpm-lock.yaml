@@ -15,8 +15,8 @@ importers:
         specifier: ^0.8.2-alpha.1
         version: 0.8.2-alpha.1
       '@vercel/examples-ui':
-        specifier: ^1.0.4
-        version: 1.0.5(next@16.0.10(@babel/core@7.28.5)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^2.0.4
+        version: 2.0.4(next@16.0.10(@babel/core@7.28.5)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       axios:
         specifier: ^1.13.2
         version: 1.13.2
@@ -473,12 +473,6 @@ packages:
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
 
-  '@swc/helpers@0.4.14':
-    resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
-
-  '@swc/helpers@0.4.37':
-    resolution: {integrity: sha512-O4U8DmGtYvuWDrqmkAqhmA+sV8D3eJzvKSUgg5L5eaCCPdywZBLc97UgJT/fQaCkQ5onJzJWNojgErJk1bThaw==}
-
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
 
@@ -671,12 +665,12 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@vercel/examples-ui@1.0.5':
-    resolution: {integrity: sha512-6pj8V9MPLgrPajIUbqEkbmupEMnK6xBk5zkwsilwhA9mYQdxttqgVyDqlFMQhEVqb3tk0PshA+XxnZoDfLCpoQ==}
+  '@vercel/examples-ui@2.0.4':
+    resolution: {integrity: sha512-wiauqJ3SDSNq7Oz7Y/N1aKemtCaIUhBSVECVMbBfx2IYrH3xqVQ7937abvsyd6UcP1Pdsxdb6zDHajQOQV3MNg==}
     peerDependencies:
       next: '*'
-      react: ^17.0.2 || ^18.0.0-0
-      react-dom: ^17.0.2 || ^18.0.0-0
+      react: ^17.0.2 || ^18.0.0-0 || ^19.0.0-0
+      react-dom: ^17.0.2 || ^18.0.0-0 || ^19.0.0-0
 
   '@vue/compiler-core@3.5.25':
     resolution: {integrity: sha512-vay5/oQJdsNHmliWoZfHPoVZZRmnSWhug0BYT34njkYTPqClh3DNWLkZNJBVSjsNMrg0CCrBfoKkjZQPM/QVUw==}
@@ -2397,9 +2391,6 @@ packages:
     engines: {node: '>=16 || 14 >=14.17'}
     hasBin: true
 
-  sugar-high@0.4.7:
-    resolution: {integrity: sha512-vCg55qNhUBbBylR1DNWAYvqlwSVPebBJPh+fNzknN70b9CIyS1xoCRa0CnRzrAw4RYiqprteDfZg8ZeToZqqug==}
-
   supports-color@7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
@@ -3092,15 +3083,6 @@ snapshots:
 
   '@rtsao/scc@1.1.0': {}
 
-  '@swc/helpers@0.4.14':
-    dependencies:
-      tslib: 2.8.1
-
-  '@swc/helpers@0.4.37':
-    dependencies:
-      '@swc/legacy-helpers': '@swc/helpers@0.4.14'
-      tslib: 2.8.1
-
   '@swc/helpers@0.5.15':
     dependencies:
       tslib: 2.8.1
@@ -3299,14 +3281,13 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
 
-  '@vercel/examples-ui@1.0.5(next@16.0.10(@babel/core@7.28.5)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@vercel/examples-ui@2.0.4(next@16.0.10(@babel/core@7.28.5)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
-      '@swc/helpers': 0.4.37
+      '@swc/helpers': 0.5.15
       clsx: 1.2.1
       next: 16.0.10(@babel/core@7.28.5)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-      sugar-high: 0.4.7
 
   '@vue/compiler-core@3.5.25':
     dependencies:
@@ -5310,8 +5291,6 @@ snapshots:
       pirates: 4.0.7
       tinyglobby: 0.2.15
       ts-interface-checker: 0.1.13
-
-  sugar-high@0.4.7: {}
 
   supports-color@7.2.0:
     dependencies:

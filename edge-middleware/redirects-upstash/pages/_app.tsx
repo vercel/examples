@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 import type { LayoutProps } from '@vercel/examples-ui/layout'
-import { getLayout } from '@vercel/examples-ui'
+import { getLayout, Head } from '@vercel/examples-ui'
 import '@vercel/examples-ui/globals.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -8,12 +8,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="Edge Redirects"
       path="edge-middleware/redirects-upstash"
       deployButton={{
         env: ['UPSTASH_REST_API_DOMAIN', 'UPSTASH_REST_API_TOKEN'],
       }}
     >
+      <Head title="Edge Redirects" />
       <Component {...pageProps} />
     </Layout>
   )

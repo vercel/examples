@@ -18,8 +18,8 @@ importers:
         specifier: ^0.2.1
         version: 0.2.1
       '@vercel/examples-ui':
-        specifier: ^2.0.1
-        version: 2.0.1(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^2.0.4
+        version: 2.0.4(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
@@ -360,9 +360,6 @@ packages:
     peerDependencies:
       '@vercel/edge-config': '>=0.1.0 <1.0.0'
 
-  '@swc/helpers@0.5.1':
-    resolution: {integrity: sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==}
-
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
 
@@ -419,12 +416,12 @@ packages:
     resolution: {integrity: sha512-847kYqJEbga4PGgNrctQ9XsD+2Kw/S+UjzZnIFpebQ9VbdtB0MX4anq33WetcYZYPfhZd2L0uXVnY/BcjI5dOw==}
     engines: {node: '>=14.6'}
 
-  '@vercel/examples-ui@2.0.1':
-    resolution: {integrity: sha512-BQZ6QKpgH8wcO4MkGD/FN8AYG+xQJnNXHfGmg9geVPB0A/0oOgDFTaRhJ0v/OXIqytwmKMXtJjZeRT4AK+QvuQ==}
+  '@vercel/examples-ui@2.0.4':
+    resolution: {integrity: sha512-wiauqJ3SDSNq7Oz7Y/N1aKemtCaIUhBSVECVMbBfx2IYrH3xqVQ7937abvsyd6UcP1Pdsxdb6zDHajQOQV3MNg==}
     peerDependencies:
       next: '*'
-      react: ^17.0.2 || ^18.0.0-0
-      react-dom: ^17.0.2 || ^18.0.0-0
+      react: ^17.0.2 || ^18.0.0-0 || ^19.0.0-0
+      react-dom: ^17.0.2 || ^18.0.0-0 || ^19.0.0-0
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -1957,10 +1954,6 @@ snapshots:
     dependencies:
       '@vercel/edge-config': 0.2.1
 
-  '@swc/helpers@0.5.1':
-    dependencies:
-      tslib: 2.6.0
-
   '@swc/helpers@0.5.15':
     dependencies:
       tslib: 2.8.1
@@ -2021,9 +2014,9 @@ snapshots:
     dependencies:
       '@vercel/edge-config-fs': 0.1.0
 
-  '@vercel/examples-ui@2.0.1(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@vercel/examples-ui@2.0.4(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
-      '@swc/helpers': 0.5.1
+      '@swc/helpers': 0.5.15
       clsx: 1.2.1
       next: 16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react: 19.2.3
