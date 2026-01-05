@@ -1,6 +1,5 @@
 import React from 'react'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
+import { Streamdown } from 'streamdown'
 import { MessageSquare, Loader, Box, Settings } from 'lucide-react'
 import type { Action, ExecResultAction } from '../../../types/run'
 import { PreviewCard } from './PreviewCard'
@@ -89,9 +88,7 @@ export const ChatTimeline: React.FC<ChatTimelineProps> = ({
                           wordBreak: 'break-word',
                         }}
                       >
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                          {action.message || ''}
-                        </ReactMarkdown>
+                        <Streamdown>{action.message || ''}</Streamdown>
                       </div>
                     </div>
                   </div>
@@ -464,9 +461,7 @@ export const ChatTimeline: React.FC<ChatTimelineProps> = ({
                           wordBreak: 'break-word',
                         }}
                       >
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                          {content}
-                        </ReactMarkdown>
+                        <Streamdown>{content}</Streamdown>
                       </div>
                     </div>
                   </div>

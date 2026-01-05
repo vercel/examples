@@ -12,18 +12,18 @@
   },
   "dependencies": {
     "@vercel/edge-config": "^1.1.1",
-    "@vercel/examples-ui": "^2.0.3",
+    "@vercel/examples-ui": "^2.0.4",
     "@vercel/flags": "2.5.1",
     "@vercel/toolbar": "^0.1.15",
     "hypertune": "2.4.0",
-    "next": "^14.1.4",
-    "react": "latest",
-    "react-dom": "latest",
+    "next": "^16.0.10",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "server-only": "^0.0.1"
   },
   "devDependencies": {
-    "@types/node": "^20.12.12",
-    "@types/react": "latest",
+    "@types/node": "^20",
+    "@types/react": "^19",
     "autoprefixer": "^10.4.19",
     "encoding": "^0.1.13",
     "eslint": "^8.57.0",
@@ -33,6 +33,7 @@
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.3",
-    "turbo": "1.13.4"
+    "turbo": "1.13.4",
+    "typescript": "^5"
   }
 }

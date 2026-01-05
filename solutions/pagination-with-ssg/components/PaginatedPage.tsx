@@ -26,7 +26,7 @@ const PaginationPage = ({
   totalProducts,
   perPage,
   products,
-}: PageProps): JSX.Element => {
+}: PageProps): React.ReactElement => {
   return (
     <div>
       <Text variant="h1">Page {currentPage}</Text>

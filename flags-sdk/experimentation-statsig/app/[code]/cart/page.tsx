@@ -1,7 +1,9 @@
-import { OrderSummary } from '@/app/[code]/cart/order-summary'
+import { OrderSummarySection } from '@/components/shopping-cart/order-summary-section'
+import { ProceedToCheckout } from './proceed-to-checkout'
 import { Main } from '@/components/main'
 import { ShoppingCart } from '@/components/shopping-cart/shopping-cart'
 import {
+  proceedToCheckoutColorFlag,
   productFlags,
   showFreeDeliveryBannerFlag,
   showSummerBannerFlag,
@@ -18,14 +20,24 @@ export default async function CartPage({
     code,
     productFlags
   )
+  const proceedToCheckoutColor = await proceedToCheckoutColorFlag(
+    code,
+    productFlags
+  )
 
   return (
     <Main>
       <div className="lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
         <ShoppingCart />
-        <OrderSummary
+        <OrderSummarySection
           showSummerBanner={showSummerBanner}
           freeDelivery={freeDeliveryBanner}
+          proceedToCheckout={
+            <ProceedToCheckout
+              color={proceedToCheckoutColor}
+              experiment="proceed_to_checkout"
+            />
+          }
         />
       </div>
     </Main>

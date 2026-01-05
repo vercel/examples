@@ -17,26 +17,26 @@
     "@tailwindcss/postcss": "^4.0.8",
     "@tailwindcss/typography": "0.5.16",
     "@vercel/edge": "1.2.1",
-    "@vercel/edge-config": "1.4.0",
+    "@vercel/edge-config": "1.4.3",
     "@vercel/toolbar": "0.1.33",
     "clsx": "2.1.1",
     "flags": "^4.0.1",
     "motion": "12.17.0",
     "nanoid": "5.1.2",
-    "next": "15.4.0-canary.79",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "next": "^16.0.10",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "sonner": "2.0.1",
     "swr": "^2.3.2"
   },
   "devDependencies": {
-    "@types/node": "^22.13.5",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "eslint": "^9.21.0",
     "eslint-config-next": "^15.2.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.0.9",
-    "typescript": "^5.7.3"
+    "typescript": "^5"
   }
 }

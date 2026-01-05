@@ -11,6 +11,9 @@
 # deps
 node_modules/
 
+# build
+dist/
+
 # env
 .env
 .env.production

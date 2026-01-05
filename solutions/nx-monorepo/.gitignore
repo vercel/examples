@@ -54,3 +54,5 @@ yarn-error.log*
 # Turborepo
 .turbo
 
+# NX
+.nx

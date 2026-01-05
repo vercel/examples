@@ -1,4 +1,5 @@
-import { OrderSummary } from '@/app/[code]/cart/order-summary'
+import { ProceedToCheckout } from './proceed-to-checkout'
+import { OrderSummarySection } from '@/components/shopping-cart/order-summary-section'
 import { Main } from '@/components/main'
 import { ShoppingCart } from '@/components/shopping-cart/shopping-cart'
 import {
@@ -13,28 +14,30 @@ export default async function CartPage({
 }: {
   params: Promise<{ code: string }>
 }) {
-  const { code } = await params;
-  const showSummerBanner = await showSummerBannerFlag(
-    code,
-    productFlags,
-  );
+  const { code } = await params
+  const showSummerBanner = await showSummerBannerFlag(code, productFlags)
   const freeDeliveryBanner = await showFreeDeliveryBannerFlag(
     code,
-    productFlags,
-  );
+    productFlags
+  )
   const proceedToCheckoutColor = await proceedToCheckoutColorFlag(
     code,
-    productFlags,
-  );
+    productFlags
+  )
 
   return (
     <Main>
       <div className="lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
         <ShoppingCart />
-        <OrderSummary
+        <OrderSummarySection
           showSummerBanner={showSummerBanner}
           freeDelivery={freeDeliveryBanner}
-          proceedToCheckoutColor={proceedToCheckoutColor}
+          proceedToCheckout={
+            <ProceedToCheckout
+              color={proceedToCheckoutColor}
+              flagKey={proceedToCheckoutColorFlag.key}
+            />
+          }
         />
       </div>
     </Main>

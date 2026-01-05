@@ -17,30 +17,27 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: internal
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up pnpm
-        uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 8.2.0
+        uses: pnpm/action-setup@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 16.14
+          node-version: 20
           cache: pnpm
 
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile --ignore-scripts
+        working-directory: internal
 
       - name: Create Release PR or Publish Packages
-        uses: changesets/action@v1
+        # Last known version working with cwd
+        # https://github.com/changesets/action/issues/501
+        uses: changesets/action@v1.4.9
         with:
           cwd: internal
           # Builds the package and executes `changeset publish`

@@ -1,0 +1,29 @@
+[package]
+name = "vercel-rust-axum"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+vercel_runtime = { version = "2", features = ["axum"] }
+tokio = { version = "1", features = ["full"] }
+hyper = { version = "1", features = ["full"] }
+axum = { version = "0.8" }
+axum-streams = { version = "0.24", features = ["json", "text"] }
+tower = { version = "0.5" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# You can specify a library for shared logic here (optional)
+# [lib]
+# path = "src/lib.rs"
+
+# Each handler has to be specified as [[bin]]
+# Note that you need to provide unique names for each binary:
+[[bin]]
+name = "axum"
+path = "api/axum.rs"
+
+[profile.release]
+codegen-units = 1
+lto = "fat"
+opt-level = 3

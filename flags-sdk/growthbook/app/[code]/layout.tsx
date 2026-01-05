@@ -7,6 +7,7 @@ import { DevTools } from '@/components/dev-tools'
 import { productFlags, showFreeDeliveryBannerFlag } from '@/flags'
 import { deserialize, generatePermutations } from 'flags/next'
 import { GrowthbookTracking } from '@/components/growthbook/client-side-tracking/growthbook-tracking'
+import { Suspense } from 'react'
 
 export async function generateStaticParams() {
   const codes = await generatePermutations(productFlags)
@@ -41,7 +42,9 @@ export default async function Layout(props: {
         <FlagValues values={values} />
 
         {/* If using client-side tracking, include this component whenever a feature with experiment is evaluated */}
-        <GrowthbookTracking featureIds={featureIds} />
+        <Suspense fallback={null}>
+          <GrowthbookTracking featureIds={featureIds} />
+        </Suspense>
 
         <Footer />
         <DevTools />

@@ -19,7 +19,7 @@ interface Props {
   date: string
 }
 
-const ProductCard: React.VFC<{ product: Product }> = ({ product }) => {
+const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <div
       className={`flex flex-col shadow-lg overflow-hidden relative ${

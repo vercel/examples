@@ -41,7 +41,7 @@ export function Footer() {
 
         <div className="border-t border-gray-200 py-6 text-center">
           <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} ACME, Inc. All rights reserved.
+            &copy; ACME, Inc. All rights reserved.
           </p>
         </div>
       </div>

@@ -11,7 +11,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
     "lint-ts": "tsc --noEmit",
     "test": "WATCH=true vitest",
-    "test:ci": "yarn build -t node && vitest run"
+    "test:ci": "pnpm build -t node && vitest run"
   },
   "devDependencies": {
     "@shopify/cli": "3.0.27",

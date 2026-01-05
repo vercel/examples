@@ -12,7 +12,7 @@ interface DataProps {
 }
 
 export default function Post({ interval }: { interval: string }) {
-  const { data } = useSWR<DataProps>(`/api/data/${interval}`, (url) =>
+  const { data } = useSWR<DataProps>(`/api/data/${interval}`, (url: string) =>
     fetch(url).then((res) => res.json())
   )
 

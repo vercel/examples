@@ -1,4 +1,4 @@
-import { streamObject, type ModelMessage } from 'ai'
+import { streamText, Output, type ModelMessage } from 'ai'
 import { getModelOptions } from '@/ai/gateway'
 import { Deferred } from '@/lib/deferred'
 import z from 'zod/v3'
@@ -35,8 +35,8 @@ export async function* getContents(
 ): AsyncGenerator<FileContentChunk> {
   const generated: z.infer<typeof fileSchema>[] = []
   const deferred = new Deferred<void>()
-  const result = streamObject({
-    ...getModelOptions(params.modelId, { reasoningEffort: 'minimal' }),
+  const result = streamText({
+    ...getModelOptions(params.modelId, { reasoningEffort: 'low' }),
     maxOutputTokens: 64000,
     system:
       'You are a file content generator. You must generate files based on the conversation history and the provided paths. NEVER generate lock files (pnpm-lock.yaml, package-lock.json, yarn.lock) - these are automatically created by package managers.',
@@ -49,7 +49,7 @@ export async function* getContents(
         )}`,
       },
     ],
-    schema: z.object({ files: z.array(fileSchema) }),
+    output: Output.object({ schema: z.object({ files: z.array(fileSchema) }) }),
     onError: (error) => {
       deferred.reject(error)
       console.error('Error communicating with AI')
@@ -57,7 +57,7 @@ export async function* getContents(
     },
   })
 
-  for await (const items of result.partialObjectStream) {
+  for await (const items of result.partialOutputStream) {
     if (!Array.isArray(items?.files)) {
       continue
     }
@@ -81,7 +81,7 @@ export async function* getContents(
     }
   }
 
-  const raceResult = await Promise.race([result.object, deferred.promise])
+  const raceResult = await Promise.race([result.output, deferred.promise])
   if (!raceResult) {
     throw new Error('Unexpected Error: Deferred was resolved before the result')
   }

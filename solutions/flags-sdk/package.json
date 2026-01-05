@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "flags": "^4.0.0",
-    "next": "15.1.7",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "next": "^16.0.10",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "@vercel/toolbar": "^0.1.31"
   },
   "devDependencies": {

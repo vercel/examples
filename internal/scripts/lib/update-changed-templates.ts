@@ -2,13 +2,7 @@ import path from 'path'
 import log from './log'
 import updateTemplate from './contentful/update-template'
 
-const DIRS = [
-  'edge-functions',
-  'edge-middleware',
-  'solutions',
-  'starter',
-  'storage',
-]
+const DIRS = ['edge-middleware', 'rust', 'solutions', 'starter', 'storage']
 const IS_README = /readme\.md$/i
 
 export default async function updateChangedTemplates(changedFiles: string[]) {
@@ -18,6 +12,9 @@ export default async function updateChangedTemplates(changedFiles: string[]) {
     log('No changed files.')
     return
   }
+
+  log(`Changed files (${changedFiles.length}):`)
+  changedFiles.forEach((file) => log(`  - ${file}`))
 
   const examplePaths = changedFiles.reduce<string[]>((acc, fileName) => {
     if (fileName.startsWith('./')) {

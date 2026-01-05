@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vercel Rust Hello World</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #000000;
+        color: #ffffff;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+          'Inter', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 800px;
+      }
+
+      h1 {
+        font-size: 2.25rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+        text-align: left;
+        letter-spacing: -0.025em;
+      }
+
+      .api-list {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .api-item {
+        background-color: #0a0a0a;
+        border: 1px solid #262626;
+        border-radius: 8px;
+        padding: 1.5rem;
+        transition: all 0.15s ease;
+      }
+
+      .api-item:hover {
+        background-color: #171717;
+        border-color: #404040;
+      }
+
+      .api-item h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #ffffff;
+      }
+
+      .api-item p {
+        font-size: 0.875rem;
+        color: #a3a3a3;
+        line-height: 1.5;
+        margin-bottom: 0.75rem;
+      }
+
+      .api-item a {
+        color: #60a5fa;
+        text-decoration: none;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+        font-size: 0.875rem;
+      }
+
+      .api-item a:hover {
+        color: #93c5fd;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>
+        Vercel Rust Hello World
+        <a
+          href="https://github.com/vercel/examples/tree/main/rust/hello-world"
+          style="
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin-left: 1rem;
+          "
+          >View on GitHub</a
+        >
+      </h1>
+
+      <div class="api-list">
+        <div class="api-item">
+          <h2>Simple</h2>
+          <p>Basic endpoint that returns a json response</p>
+          <a href="/api/simple">/api/simple</a>
+        </div>
+        <div class="api-item">
+          <h2>Streaming</h2>
+          <p>
+            Server-sent events streaming endpoint that demonstrates real-time
+            data streaming.
+          </p>
+          <a href="/api/streaming">/api/streaming</a>
+        </div>
+        <div class="api-item">
+          <h2>Realistic Math Bench</h2>
+          <p>
+            CPU-bound benchmark performing integer arithmetic, array sorting,
+            string hashing, and prime counting operations to test computational
+            performance.
+          </p>
+          <a href="/api/realistic-math-bench">/api/realistic-math-bench</a>
+        </div>
+        <div class="api-item">
+          <h2>Slower Bench</h2>
+          <p>
+            Complex server-side rendering benchmark that generates large
+            datasets with prime numbers, fibonacci sequences, and nested data
+            structures for performance testing.
+          </p>
+          <a href="/api/slower-bench">/api/slower-bench</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

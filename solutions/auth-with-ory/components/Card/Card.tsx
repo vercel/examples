@@ -6,16 +6,16 @@ import styles from './Card.module.css'
 
 interface Props {
   title: string
-  children: React.ReactElement
+  children: React.ReactElement<{ className?: string }>
 }
 
-const Card: React.VFC<Props> = ({ title, children }: Props) => {
+const Card: React.FC<Props> = ({ title, children }: Props) => {
   return (
     <article className={styles.card}>
       <div className={styles.imageContainer}>
         {React.cloneElement(children, {
           className: styles.thumbnail,
-        })}
+        } as any)}
         <div className={styles.imageFooter}>
           <Image
             width={32}

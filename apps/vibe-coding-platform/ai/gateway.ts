@@ -2,7 +2,7 @@ import { createGatewayProvider } from '@ai-sdk/gateway'
 import { Models } from './constants'
 import type { JSONValue } from 'ai'
 import type { OpenAIResponsesProviderOptions } from '@ai-sdk/openai'
-import type { LanguageModelV2 } from '@ai-sdk/provider'
+import type { LanguageModelV3 } from '@ai-sdk/provider'
 
 export async function getAvailableModels() {
   const gateway = gatewayInstance()
@@ -11,17 +11,17 @@ export async function getAvailableModels() {
 }
 
 export interface ModelOptions {
-  model: LanguageModelV2
+  model: LanguageModelV3
   providerOptions?: Record<string, Record<string, JSONValue>>
   headers?: Record<string, string>
 }
 
 export function getModelOptions(
   modelId: string,
-  options?: { reasoningEffort?: 'minimal' | 'low' | 'medium' }
+  options?: { reasoningEffort?: 'low' | 'medium' | 'high' }
 ): ModelOptions {
   const gateway = gatewayInstance()
-  if (modelId === Models.OpenAIGPT5) {
+  if (modelId === Models.OpenAIGPT52) {
     return {
       model: gateway(modelId),
       providerOptions: {

@@ -1,7 +1,7 @@
 import { Models } from '@/ai/constants'
 import { NextResponse } from 'next/server'
 import { checkBotId } from 'botid/server'
-import { generateObject } from 'ai'
+import { generateText, Output } from 'ai'
 import { linesSchema, resultSchema } from '@/components/error-monitor/schemas'
 import prompt from './prompt.md'
 
@@ -17,22 +17,22 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: `Invalid request` }, { status: 400 })
   }
 
-  const result = await generateObject({
+  const result = await generateText({
     system: prompt,
-    model: Models.OpenAIGPT5,
+    model: Models.OpenAIGPT52,
     providerOptions: {
       openai: {
         include: ['reasoning.encrypted_content'],
-        reasoningEffort: 'minimal',
+        reasoningEffort: 'low',
         reasoningSummary: 'auto',
         serviceTier: 'priority',
       },
     },
     messages: [{ role: 'user', content: JSON.stringify(parsedBody.data) }],
-    schema: resultSchema,
+    output: Output.object({ schema: resultSchema }),
   })
 
-  return NextResponse.json(result.object, {
+  return NextResponse.json(result.output, {
     status: 200,
   })
 }

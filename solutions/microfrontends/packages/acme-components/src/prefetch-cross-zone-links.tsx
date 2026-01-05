@@ -1,3 +1,4 @@
+import React from 'react'
 import Script from 'next/script'
 
 /**
@@ -13,7 +14,7 @@ export function PrefetchCrossZoneLinks({
   hrefs,
 }: {
   hrefs: string[]
-}): JSX.Element | null {
+}): React.ReactElement | null {
   // Prefetch links when the user hovers over them and prerender the link
   // when the pointerdown event is received.
   const speculationRules = {

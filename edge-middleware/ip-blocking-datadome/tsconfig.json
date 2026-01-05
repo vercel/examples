@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "incremental": true,
     "downlevelIteration": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "paths": {
       "@lib/*": ["lib/*"],
       "@components/*": ["components/*"]
