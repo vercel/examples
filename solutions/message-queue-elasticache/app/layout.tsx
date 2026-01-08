@@ -1,11 +1,8 @@
-import type { ReactNode } from 'react'
-import { Layout, getMetadata } from '@vercel/examples-ui'
-import '@vercel/examples-ui/globals.css'
+'use client'
 
-export const metadata = getMetadata({
-  title: 'message-queue-elasticache',
-  description: 'message-queue-elasticache',
-})
+import type { ReactNode } from 'react'
+import { Layout } from '@vercel/examples-ui'
+import '@vercel/examples-ui/globals.css'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
