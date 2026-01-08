@@ -9,9 +9,7 @@
  */
 const nextConfig = {
   reactStrictMode: false,
-  experimental: {
-    serverComponentsExternalPackages: ['@valkey/valkey-glide'],
-  },
+  serverExternalPackages: ['@valkey/valkey-glide'],
 }
 
 module.exports = nextConfig
