@@ -3,6 +3,8 @@ name: AWS Neptune Analytics with Next.js API Routes
 slug: aws-neptune-analytics-nextjs-api-routes
 description: Learn to use AWS Neptune Analytics with Next.js API Routes for graph database operations.
 framework: Next.js
+css: Tailwind
+Type: Mixed
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-neptune-analytics&project-name=aws-neptune-analytics&repository-name=aws-neptune-analytics&env=GRAPH_ID&envDescription=AWS%20Neptune%20Analytics%20Graph%20ID
 ---
 
