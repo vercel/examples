@@ -22,7 +22,7 @@ async function main() {
           'https://images.ctfassets.net/e5382hct74si/4BtM41PDNrx4z1ml643tdc/7aa88bdde8b5b7809174ea5b764c80fa/adWRdqQ6_400x400.jpg',
       },
     }),
-    await prisma.users.upsert({
+    prisma.users.upsert({
       where: { email: 'stey@vercel.com' },
       update: {},
       create: {
