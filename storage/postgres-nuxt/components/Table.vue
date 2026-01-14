@@ -38,30 +38,22 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import ms from 'ms'
 
-export default {
-  props: {
-    users: {
-      type: Array,
-      required: true,
-    },
-    duration: {
-      type: Number,
-      required: true,
-    },
-  },
-  methods: {
-    timeAgo(timestamp, timeOnly) {
-      if (!timestamp) return 'never'
-      return `${ms(Date.now() - new Date(timestamp).getTime())}${
-        timeOnly ? '' : ' ago'
-      }`
-    },
-    refreshPage() {
-      location.reload()
-    },
-  },
+defineProps({
+  users: { type: Array, required: true },
+  duration: { type: Number, required: true }
+})
+
+function timeAgo(timestamp, timeOnly) {
+  if (!timestamp) return 'never'
+  return `${ms(Date.now() - new Date(timestamp).getTime())}${
+    timeOnly ? '' : ' ago'
+  }`
+}
+
+function refreshPage() {
+  location.reload()
 }
 </script>
