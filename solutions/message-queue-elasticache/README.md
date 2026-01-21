@@ -3,7 +3,10 @@ name: Message Queue with AWS ElastiCache and Next.js
 slug: message-queue-elasticache
 description: Learn to use AWS ElastiCache with Next.js API Routes for reliable message queue processing using streams.
 framework: Next.js
+css: Tailwind
+type: Mixed
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/message-queue-elasticache&project-name=message-queue-elasticache&repository-name=message-queue-elasticache&env=VALKEY_ENDPOINT&envDescription=Valkey%20endpoint%20URL
+demoUrl: https://message-queue-elasticache.vercel.app
 ---
 
 # Next.js + AWS ElastiCache Message Queue
