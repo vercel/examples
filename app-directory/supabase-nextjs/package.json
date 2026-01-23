@@ -10,10 +10,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.8.0",
     "@vercel/examples-ui": "^2.0.1",
     "next": "^16.0.10",
     "react": "^19.2.1",
-    "react-dom": "^19.2.1"
+    "react-dom": "^19.2.1",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",
