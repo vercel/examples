@@ -60,6 +60,7 @@ export default function CreateNotes({ createNote }: CreateNotesProps) {
               <input
                 name="username"
                 type="text"
+                required
                 className="h-8 rounded-md border border-zinc-800 bg-zinc-950 px-2 text-xs text-zinc-100 shadow-inner outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
               />
             </label>
@@ -70,6 +71,7 @@ export default function CreateNotes({ createNote }: CreateNotesProps) {
               <input
                 name="title"
                 type="text"
+                required
                 className="h-8 rounded-md border border-zinc-800 bg-zinc-950 px-2 text-xs text-zinc-100 shadow-inner outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
               />
             </label>
@@ -79,6 +81,7 @@ export default function CreateNotes({ createNote }: CreateNotesProps) {
               </span>
               <textarea
                 name="description"
+                required
                 className="min-h-[80px] rounded-md border border-zinc-800 bg-zinc-950 px-2 py-1 text-xs text-zinc-100 shadow-inner outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
               />
             </label>
