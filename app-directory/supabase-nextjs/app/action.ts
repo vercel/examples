@@ -4,9 +4,9 @@ import { createSupabaseServer } from '../lib/supabase/server'
 
 export async function createNote(formData: FormData) {
   try {
-    const username = formData.get('username')
-    const title = formData.get('title')
-    const description = formData.get('description')
+    const username = formData.get('username').trim()
+    const title = formData.get('title').trim()
+    const description = formData.get('description').trim()
 
     if (
       typeof username !== 'string' ||

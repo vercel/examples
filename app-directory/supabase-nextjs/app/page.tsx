@@ -1,4 +1,4 @@
-import { Page, Text, Code, Link } from '@vercel/examples-ui'
+import { Page, Text } from '@vercel/examples-ui'
 import { fetchNotes } from './queries'
 import NotesCard from '../components/NotesCard'
 import CreateNotes from '../components/CreateNotes'

@@ -37,6 +37,30 @@ pnpm dev
 http://localhost:3000
 ```
 
+## Database schema
+
+This example expects a `notes` table in your Supabase Postgres database. The table stores each note created from the UI:
+
+| Column        | Type          | Description                         |
+| ------------- | ------------- | ----------------------------------- |
+| `id`          | `uuid`        | Primary key for the note            |
+| `username`    | `text`        | Name/handle of the note author      |
+| `title`       | `text`        | Short title for the note            |
+| `description` | `text`        | Main content/body of the note       |
+| `created_at`  | `timestamptz` | Timestamp when the note was created |
+
+A possible SQL definition for this table is:
+
+```sql
+create table if not exists notes (
+  id uuid primary key default gen_random_uuid(),
+  username text not null,
+  title text not null,
+  description text,
+  created_at timestamptz not null default now()
+);
+```
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:
