@@ -1,6 +1,19 @@
 # supabase-nextjs example
 
-This example shows how -------------------------
+This example shows how to insert and retrieve data from a Supabase (Postgres) database using Next.js. It uses the App Router and SSR patterns:
+
+- Mutation logic lives in `app/action.ts` using Next.js Server Actions.
+- Query logic lives in `app/queries.ts` and is called from server components.
+- Supabase client configuration is under `lib/supabase/`.
+
+To run this example locally you need a `.env.local` file with your Supabase project keys:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
+
+Add your Supabase API keys there and then start the dev server.
 
 ## Demo
 

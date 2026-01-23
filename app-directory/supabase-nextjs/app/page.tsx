@@ -12,10 +12,10 @@ export default async function Home() {
       <section className="flex flex-col gap-6">
         <Text variant="h1">supabase-nextjs usage example</Text>
         <Text>
-          This example shows how to Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Voluptas eligendi aliquam officiis aliquid neque
-          consequuntur ipsam iste, id, minima sit nulla quidem numquam, vitae
-          hic quae sapiente nostrum vel ut.
+          This project demonstrates how to use Supabase with Next.js App Router
+          to build a simple notes web app. It uses server-side rendering for
+          reading data and Next.js Server Actions for inserting new notes into a
+          Supabase (Postgres) database.
         </Text>
       </section>
 

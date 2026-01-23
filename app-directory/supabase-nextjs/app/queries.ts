@@ -10,6 +10,7 @@ export async function fetchNotes() {
 
     return data
   } catch (err: any) {
-    console.log(err)
+    console.log(err.message)
+    throw err
   }
 }

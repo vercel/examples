@@ -14,7 +14,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="mt-2 self-start border border-black bg-slate-200 px-3 py-[2px] text-xs font-bold uppercase tracking-widest shadow-[2px_2px_0_0_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_0_#000] disabled:opacity-60"
+      className="mt-4 inline-flex items-center justify-center rounded-md bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-50 shadow-sm ring-1 ring-zinc-700 hover:bg-zinc-800 hover:ring-zinc-600 disabled:opacity-60 disabled:hover:bg-zinc-900 disabled:hover:ring-zinc-700"
     >
       {pending ? 'Saving…' : 'Submit'}
     </button>
@@ -25,49 +25,55 @@ export default function CreateNotes({ createNote }: CreateNotesProps) {
   const [open, setOpen] = useState(false)
 
   return (
-    <div>
+    <div className="relative">
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="border border-black bg-slate-200 px-4 py-1 text-sm shadow-[2px_2px_0_0_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_0_#000]"
+        className="inline-flex items-center rounded-md border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-xs font-medium text-zinc-50 shadow-sm hover:border-zinc-700 hover:bg-zinc-900"
       >
         Create Note
       </button>
 
       {open && (
-        <div className="mt-4 inline-block border-2 border-black bg-[#f5f5f5] p-4 shadow-[4px_4px_0_0_#000]">
-          <div className="-m-4 mb-3 flex items-center justify-between border-b-2 border-black bg-[#0000aa] px-2 py-1 text-xs font-bold uppercase tracking-widest text-white">
-            <span>New Note</span>
+        <div className="mt-3 w-full max-w-md rounded-xl border border-zinc-800 bg-zinc-950/95 p-4 shadow-xl ring-1 ring-white/10">
+          <div className="mb-3 flex items-center justify-between">
+            <h3 className="text-sm font-medium text-zinc-50">New Note</h3>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="ml-2 h-5 w-5 border border-white text-[10px] leading-none"
+              className="rounded-md p-1 text-xs text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100"
             >
-              X
+              Close
             </button>
           </div>
-          <form action={createNote} className="flex flex-col gap-2 text-xs">
+          <form action={createNote} className="flex flex-col gap-3 text-xs">
             <label className="flex flex-col gap-1">
-              <span className="font-bold">Username</span>
+              <span className="text-[11px] font-medium text-zinc-300">
+                Username
+              </span>
               <input
                 name="username"
                 type="text"
-                className="border border-black bg-white px-1 py-[2px] text-xs focus:outline-none"
+                className="h-8 rounded-md border border-zinc-800 bg-zinc-950 px-2 text-xs text-zinc-100 shadow-inner outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="font-bold">Title</span>
+              <span className="text-[11px] font-medium text-zinc-300">
+                Title
+              </span>
               <input
                 name="title"
                 type="text"
-                className="border border-black bg-white px-1 py-[2px] text-xs focus:outline-none"
+                className="h-8 rounded-md border border-zinc-800 bg-zinc-950 px-2 text-xs text-zinc-100 shadow-inner outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="font-bold">Description</span>
+              <span className="text-[11px] font-medium text-zinc-300">
+                Description
+              </span>
               <textarea
                 name="description"
-                className="h-20 border border-black bg-white px-1 py-[2px] text-xs focus:outline-none"
+                className="min-h-[80px] rounded-md border border-zinc-800 bg-zinc-950 px-2 py-1 text-xs text-zinc-100 shadow-inner outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
               />
             </label>
             <SubmitButton />
