@@ -1,10 +1,12 @@
 import { Page, Text, Code, Link } from '@vercel/examples-ui'
 import { fetchNotes } from './queries'
+import NotesCard from '../components/NotesCard'
+import CreateNotes from '../components/CreateNotes'
+import { createNote } from './action'
 
 export default async function Home() {
   const notes = await fetchNotes()
 
-  console.log(notes)
   return (
     <Page className="flex flex-col gap-12">
       <section className="flex flex-col gap-6">
@@ -18,13 +20,12 @@ export default async function Home() {
       </section>
 
       <section className="flex flex-col gap-3">
-        <Text variant="h2">Header</Text>
-        <Text>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error quasi{' '}
-          <code>dolorum natus</code>, quaerat voluptatum laboriosam minima quis
-          consectetur quam architecto veniam! Ex atque rem, unde tempora eaque
-          quasi mollitia tenetur.
-        </Text>
+        <div className="flex items-center justify-between">
+          <Text variant="h2">Notes</Text>
+          <CreateNotes createNote={createNote} />
+        </div>
+        {Array.isArray(notes) &&
+          notes.map((note) => <NotesCard key={note.id} note={note} />)}
       </section>
     </Page>
   )
