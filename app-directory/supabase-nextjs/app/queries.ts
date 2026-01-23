@@ -13,7 +13,7 @@ export async function fetchNotes() {
 
     return data
   } catch (err: any) {
-    console.log(err.message)
+    console.error('Error fetching notes:', err?.message ?? err)
     throw err
   }
 }

@@ -15,9 +15,27 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
 
 Add your Supabase API keys there and then start the dev server.
 
-## Demo
+## Running this project locally
 
-https://supabase-nextjs.vercel.app
+1. Install dependencies:
+
+```bash
+pnpm install
+```
+
+2. Create a `.env.local` file in the project root and add your Supabase keys (see above).
+
+3. Start the development server:
+
+```bash
+pnpm dev
+```
+
+4. Open the app in your browser:
+
+```text
+http://localhost:3000
+```
 
 ## How to Use
 
