@@ -35,7 +35,7 @@ export default function CreateNotes({ createNote }: CreateNotesProps) {
       </button>
 
       {open && (
-        <div className="mt-3 w-full max-w-md rounded-xl border border-zinc-800 bg-zinc-950/95 p-4 shadow-xl ring-1 ring-white/10">
+        <div className="absolute right-0 top-full z-10 mt-3 w-80 sm:w-96 md:w-[28rem] rounded-xl border border-zinc-800 bg-zinc-950/95 p-4 shadow-xl ring-1 ring-white/10">
           <div className="mb-3 flex items-center justify-between">
             <h3 className="text-sm font-medium text-zinc-50">New Note</h3>
             <button
