@@ -9,7 +9,7 @@ export async function fetchNotes() {
       .select('*')
       .order('created_at', { ascending: false }) // ascending: false, to show latest notes on top
 
-    if (error) throw new Error('Error while finding notes')
+    if (error) throw new Error(error.message)
 
     return data
   } catch (err: any) {
