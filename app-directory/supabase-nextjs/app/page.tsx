@@ -1,6 +1,10 @@
 import { Page, Text, Code, Link } from '@vercel/examples-ui'
+import { fetchNotes } from './queries'
 
-export default function Home() {
+export default async function Home() {
+  const notes = await fetchNotes()
+
+  console.log(notes)
   return (
     <Page className="flex flex-col gap-12">
       <section className="flex flex-col gap-6">
