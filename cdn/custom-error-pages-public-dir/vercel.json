@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "app/slow-page/page.tsx": {
+      "maxDuration": 3
+    }
+  }
+}
