@@ -1,0 +1,614 @@
+openapi: 3.1.0
+info:
+  title: Vibe Coding Platform API
+  description: API for AI-powered code generation and project management
+  version: 1.0.0
+  contact:
+    name: Vibe Support
+    url: https://github.com/your-repo/vibe-coding-platform
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:3000/api
+    description: Development server
+  - url: https://vibe.example.com/api
+    description: Production server
+
+tags:
+  - name: Authentication
+    description: User authentication endpoints
+  - name: Projects
+    description: Project management endpoints
+  - name: Conversations
+    description: Chat conversation endpoints
+  - name: Templates
+    description: Project template endpoints
+  - name: Sandboxes
+    description: Code execution sandbox endpoints
+
+paths:
+  /auth/register:
+    post:
+      tags: [Authentication]
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password, name]
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  minLength: 8
+                name:
+                  type: string
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid input
+        '409':
+          description: Email already exists
+
+  /projects:
+    get:
+      tags: [Projects]
+      summary: List user's projects
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 10
+        - in: query
+          name: search
+          schema:
+            type: string
+        - in: query
+          name: tags
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projects:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Project'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          description: Unauthorized
+
+    post:
+      tags: [Projects]
+      summary: Create a new project
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                template:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          description: Unauthorized
+
+  /projects/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+
+    get:
+      tags: [Projects]
+      summary: Get project details
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDetails'
+        '404':
+          description: Project not found
+
+    patch:
+      tags: [Projects]
+      summary: Update a project
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+                isFavorite:
+                  type: boolean
+                isPublic:
+                  type: boolean
+      responses:
+        '200':
+          description: Project updated
+        '404':
+          description: Project not found
+
+    delete:
+      tags: [Projects]
+      summary: Delete a project
+      security:
+        - bearerAuth: []
+      responses:
+        '204':
+          description: Project deleted
+        '404':
+          description: Project not found
+
+  /projects/{id}/duplicate:
+    post:
+      tags: [Projects]
+      summary: Duplicate a project
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Project duplicated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '404':
+          description: Project not found
+
+  /projects/{id}/export:
+    get:
+      tags: [Projects]
+      summary: Export project as JSON
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project export file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectExport'
+
+  /projects/import:
+    post:
+      tags: [Projects]
+      summary: Import a project from JSON
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectExport'
+      responses:
+        '201':
+          description: Project imported
+        '400':
+          description: Invalid import format
+
+  /projects/{id}/conversations:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+
+    get:
+      tags: [Conversations]
+      summary: List project conversations
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of conversations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conversations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Conversation'
+
+    post:
+      tags: [Conversations]
+      summary: Create a new conversation
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+      responses:
+        '201':
+          description: Conversation created
+
+  /conversations/{id}/messages:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+
+    get:
+      tags: [Conversations]
+      summary: List conversation messages
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of messages
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Message'
+
+    post:
+      tags: [Conversations]
+      summary: Add a message to conversation
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [role, content]
+              properties:
+                role:
+                  type: string
+                  enum: [user, assistant, system]
+                content:
+                  type: string
+                metadata:
+                  type: object
+      responses:
+        '201':
+          description: Message added
+
+  /templates:
+    get:
+      tags: [Templates]
+      summary: List available templates
+      parameters:
+        - in: query
+          name: category
+          schema:
+            type: string
+        - in: query
+          name: framework
+          schema:
+            type: string
+        - in: query
+          name: search
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of templates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  templates:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Template'
+
+  /chat:
+    post:
+      tags: [Chat]
+      summary: Send a chat message for AI code generation
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [messages]
+              properties:
+                messages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      role:
+                        type: string
+                      content:
+                        type: string
+                model:
+                  type: string
+                sandboxId:
+                  type: string
+      responses:
+        '200':
+          description: AI response stream
+          content:
+            text/event-stream:
+              schema:
+                type: string
+
+  /models:
+    get:
+      tags: [Models]
+      summary: List available AI models
+      responses:
+        '200':
+          description: List of models
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  models:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        provider:
+                          type: string
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        image:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        sandboxId:
+          type: string
+        sandboxUrl:
+          type: string
+        template:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        isPublic:
+          type: boolean
+        isFavorite:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    ProjectDetails:
+      allOf:
+        - $ref: '#/components/schemas/Project'
+        - type: object
+          properties:
+            files:
+              type: array
+              items:
+                $ref: '#/components/schemas/GeneratedFile'
+            conversations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Conversation'
+
+    ProjectExport:
+      type: object
+      properties:
+        version:
+          type: string
+        exportedAt:
+          type: string
+          format: date-time
+        project:
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            template:
+              type: string
+            tags:
+              type: array
+              items:
+                type: string
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneratedFile'
+        conversations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Conversation'
+
+    GeneratedFile:
+      type: object
+      properties:
+        id:
+          type: string
+        path:
+          type: string
+        content:
+          type: string
+        language:
+          type: string
+
+    Conversation:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        createdAt:
+          type: string
+          format: date-time
+
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+        role:
+          type: string
+          enum: [user, assistant, system]
+        content:
+          type: string
+        metadata:
+          type: object
+        createdAt:
+          type: string
+          format: date-time
+
+    Template:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        framework:
+          type: string
+        prompt:
+          type: string
+        thumbnail:
+          type: string
+        usageCount:
+          type: integer
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
