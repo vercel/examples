@@ -1,0 +1,161 @@
+// Prisma Schema for Vibe Coding Platform
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ==================== AUTH MODELS ====================
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  projects      Project[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ==================== PROJECT MODELS ====================
+
+model Project {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  sandboxId   String?
+  sandboxUrl  String?
+  template    String?
+  isPublic    Boolean  @default(false)
+  isFavorite  Boolean  @default(false)
+  tags        String?  // JSON array stored as string
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId        String
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conversations Conversation[]
+  files         GeneratedFile[]
+
+  @@index([userId])
+}
+
+model Conversation {
+  id        String   @id @default(cuid())
+  title     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  projectId String
+  project   Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  messages  Message[]
+
+  @@index([projectId])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  role      String   // 'user' | 'assistant' | 'system'
+  content   String
+  metadata  String?  // JSON stored as string (model, tokens, etc.)
+  createdAt DateTime @default(now())
+
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId])
+}
+
+model GeneratedFile {
+  id        String   @id @default(cuid())
+  path      String
+  content   String
+  language  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@unique([projectId, path])
+}
+
+// ==================== TEMPLATE MODELS ====================
+
+model Template {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  category    String   // 'framework' | 'use-case' | 'community'
+  framework   String?  // 'nextjs' | 'react' | 'vue' | 'python' | etc.
+  prompt      String   // The prompt to generate this template
+  thumbnail   String?
+  isPublic    Boolean  @default(true)
+  usageCount  Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  createdById String?
+
+  @@index([category])
+  @@index([framework])
+}
+
+// ==================== ANALYTICS ====================
+
+model UsageLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  action    String   // 'create_project' | 'generate_code' | 'run_command' | etc.
+  metadata  String?  // JSON
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+}

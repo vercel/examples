@@ -1,36 +1,210 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vibe Coding Platform
+
+An AI-powered coding platform that enables real-time code generation and execution in isolated Vercel Sandboxes.
+
+## Features
+
+- **AI-Powered Code Generation**: Generate complete applications using natural language prompts
+- **Multi-Model Support**: Choose from 8+ LLM providers (OpenAI GPT-5, Claude 4, Gemini, etc.)
+- **Live Code Execution**: Run code in isolated Vercel Sandboxes
+- **Real-time Preview**: See your application running instantly
+- **Project Management**: Save, organize, and manage your projects
+- **Template Library**: Start from pre-built templates for common use cases
+- **User Authentication**: Secure login with GitHub, Google, or email/password
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Database**: Prisma with SQLite (configurable)
+- **Authentication**: NextAuth.js v5
+- **AI SDK**: Vercel AI SDK
+- **State Management**: Zustand
+- **UI Components**: Radix UI + Shadcn/ui
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+
+- npm, yarn, or pnpm
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-repo/vibe-coding-platform.git
+cd vibe-coding-platform
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+```bash
+cp .env.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Configure your `.env.local` file with the required values (see [Environment Variables](#environment-variables))
 
-## Learn More
+5. Initialize the database:
+```bash
+npx prisma migrate dev
+npx prisma db seed
+```
 
-To learn more about Next.js, take a look at the following resources:
+6. Start the development server:
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+7. Open [http://localhost:3000](http://localhost:3000)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment Variables
 
-## Deploy on Vercel
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `DATABASE_URL` | Yes | Database connection string |
+| `NEXTAUTH_SECRET` | Yes | Secret for NextAuth.js sessions |
+| `NEXTAUTH_URL` | Yes | Your application URL |
+| `GITHUB_CLIENT_ID` | No | GitHub OAuth client ID |
+| `GITHUB_CLIENT_SECRET` | No | GitHub OAuth client secret |
+| `GOOGLE_CLIENT_ID` | No | Google OAuth client ID |
+| `GOOGLE_CLIENT_SECRET` | No | Google OAuth client secret |
+| `AI_GATEWAY_BASE_URL` | Yes | AI Gateway URL for LLM access |
+| `VERCEL_TOKEN` | Yes | Vercel API token for sandboxes |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+├── app/
+│   ├── (auth)/           # Authentication pages (login, register)
+│   ├── api/              # API routes
+│   │   ├── auth/         # NextAuth.js routes
+│   │   ├── projects/     # Project CRUD
+│   │   ├── conversations/# Conversation management
+│   │   ├── templates/    # Template listing
+│   │   └── sandboxes/    # Sandbox management
+│   ├── dashboard/        # User dashboard
+│   └── projects/         # Project pages
+├── components/
+│   ├── auth/             # Authentication components
+│   ├── chat/             # Chat interface
+│   ├── dashboard/        # Dashboard components
+│   ├── templates/        # Template picker
+│   └── ui/               # Shadcn UI components
+├── lib/
+│   ├── auth.ts           # NextAuth.js configuration
+│   ├── db.ts             # Prisma client
+│   └── utils.ts          # Utility functions
+├── prisma/
+│   ├── schema.prisma     # Database schema
+│   └── seed.ts           # Database seeding
+└── types/
+    └── next-auth.d.ts    # NextAuth.js type extensions
+```
+
+## API Routes
+
+### Authentication
+- `POST /api/auth/register` - Register new user
+- `GET/POST /api/auth/[...nextauth]` - NextAuth.js handlers
+
+### Projects
+- `GET /api/projects` - List user's projects
+- `POST /api/projects` - Create new project
+- `GET /api/projects/[id]` - Get project details
+- `PATCH /api/projects/[id]` - Update project
+- `DELETE /api/projects/[id]` - Delete project
+
+### Conversations
+- `GET /api/projects/[id]/conversations` - List conversations
+- `POST /api/projects/[id]/conversations` - Create conversation
+- `GET /api/conversations/[id]/messages` - Get messages
+- `POST /api/conversations/[id]/messages` - Add message
+
+### Templates
+- `GET /api/templates` - List all templates
+
+## Database Schema
+
+### Models
+
+- **User**: User accounts with OAuth and credentials
+- **Project**: User projects with sandbox information
+- **Conversation**: Chat conversations within projects
+- **Message**: Individual messages in conversations
+- **GeneratedFile**: Files generated by AI
+- **Template**: Pre-built project templates
+
+## Development
+
+### Running Tests
+```bash
+npm test
+```
+
+### Linting
+```bash
+npm run lint
+```
+
+### Building for Production
+```bash
+npm run build
+```
+
+### Database Commands
+```bash
+# Generate Prisma client
+npx prisma generate
+
+# Run migrations
+npx prisma migrate dev
+
+# Open Prisma Studio
+npx prisma studio
+
+# Seed database
+npx prisma db seed
+```
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Import the project in Vercel
+3. Configure environment variables
+4. Deploy
+
+### Self-Hosted
+
+1. Build the application:
+```bash
+npm run build
+```
+
+2. Start the production server:
+```bash
+npm start
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/my-feature`
+3. Commit your changes: `git commit -m 'Add my feature'`
+4. Push to the branch: `git push origin feature/my-feature`
+5. Open a Pull Request
+
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.
+
+## Support
+
+For support, please open an issue on GitHub or contact the maintainers.
