@@ -19,7 +19,7 @@ You can clone just this directory using:
 
 ```bash
 npx degit vercel/examples/guides/sandbox-voice-agent sandbox-voice-agent
-cd express-weather-mcp-server
+cd sandbox-voice-agent
 ```
 
 ## How the application works
