@@ -10,20 +10,7 @@ export type SandboxCreationStatus =
   | 'ready'
   | 'error';
 
-interface UseSandboxCreationResult {
-  status: SandboxCreationStatus;
-  sandbox: SandboxInfo | null;
-  error: string | null;
-  progress: number;
-  progressMessage: string | null;
-  quote: string;
-  createSandbox: () => Promise<SandboxInfo | null>;
-  reset: () => void;
-  cleanup: () => Promise<void>;
-  isCheckingExisting: boolean;
-}
-
-const STATUS_PROGRESS_MAP: Record<SandboxCreationStatus, number> = {
+const STATUS_PROGRESS: Record<SandboxCreationStatus, number> = {
   idle: 0,
   creating: 20,
   installing: 50,
@@ -39,9 +26,12 @@ const VOICE_QUOTES = [
   'In the beginning was the Word, and the Word was with AI.',
   'Your voice is your power. Let it be heard.',
   'The voice is a second face.',
-  'Words mean more than what is set down on paper. It takes the human voice to infuse them with meaning.',
-  'A voice is a human gift; it should be cherished and used, to utter fully human speech.',
-  'The most important things are the hardest to say, because words diminish them.',
+  'Words mean more than what is set down on paper. ' +
+    'It takes the human voice to infuse them with meaning.',
+  'A voice is a human gift; it should be cherished and used, ' +
+    'to utter fully human speech.',
+  'The most important things are the hardest to say, ' +
+    'because words diminish them.',
 ];
 
 const STATUS_MESSAGES: Record<SandboxCreationStatus, string> = {
@@ -54,9 +44,9 @@ const STATUS_MESSAGES: Record<SandboxCreationStatus, string> = {
   error: 'Failed to create sandbox',
 };
 
-const SANDBOX_STORAGE_KEY = 'vercel_sandbox_session';
+const STORAGE_KEY = 'vercel_sandbox_session';
 
-export function useSandboxCreation(): UseSandboxCreationResult {
+export function useSandboxCreation() {
   const [status, setStatus] = useState<SandboxCreationStatus>('idle');
   const [sandbox, setSandbox] = useState<SandboxInfo | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -66,96 +56,73 @@ export function useSandboxCreation(): UseSandboxCreationResult {
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const [isCheckingExisting, setIsCheckingExisting] = useState(true);
 
-  // Check for existing sandbox on mount
   useEffect(() => {
-    const checkExistingSandbox = async () => {
+    const checkExisting = async () => {
       try {
-        const stored = localStorage.getItem(SANDBOX_STORAGE_KEY);
+        const stored = localStorage.getItem(STORAGE_KEY);
         if (!stored) {
           setIsCheckingExisting(false);
           return;
         }
 
         const { sandboxId, timestamp } = JSON.parse(stored);
-        const age = Date.now() - timestamp;
-
-        // If sandbox session is older than 10 minutes, ignore it
-        if (age > 600000) {
-          localStorage.removeItem(SANDBOX_STORAGE_KEY);
+        if (Date.now() - timestamp > 600000) {
+          localStorage.removeItem(STORAGE_KEY);
           setIsCheckingExisting(false);
           return;
         }
 
-        // Check if sandbox still exists and is ready
-        const statusResponse = await fetch(`/api/sandbox/status?sandboxId=${sandboxId}`);
-        if (!statusResponse.ok) {
-          localStorage.removeItem(SANDBOX_STORAGE_KEY);
+        const res = await fetch(`/api/sandbox/status?sandboxId=${sandboxId}`);
+        if (!res.ok) {
+          localStorage.removeItem(STORAGE_KEY);
           setIsCheckingExisting(false);
           return;
         }
 
-        const statusData = await statusResponse.json();
-        if (statusData.success && statusData.sandbox) {
-          const existingSandbox = statusData.sandbox;
-
-          // Only resume if sandbox is ready or running
-          if (
-            existingSandbox.status === 'ready' ||
-            existingSandbox.status === 'running'
-          ) {
-            console.log('[useSandboxCreation] Resuming existing sandbox:', sandboxId);
-            setSandbox(existingSandbox);
-            setStatus('ready');
-          } else {
-            // Sandbox exists but not ready, remove from storage
-            localStorage.removeItem(SANDBOX_STORAGE_KEY);
-          }
+        const data = await res.json();
+        if (data.sandbox?.status === 'ready' || data.sandbox?.status === 'running') {
+          console.log('[useSandboxCreation] Resuming sandbox:', sandboxId);
+          setSandbox(data.sandbox);
+          setStatus('ready');
         } else {
-          localStorage.removeItem(SANDBOX_STORAGE_KEY);
+          localStorage.removeItem(STORAGE_KEY);
         }
-      } catch (error) {
-        console.error('[useSandboxCreation] Error checking existing sandbox:', error);
-        localStorage.removeItem(SANDBOX_STORAGE_KEY);
+      } catch (err) {
+        console.error('[useSandboxCreation] Error checking existing:', err);
+        localStorage.removeItem(STORAGE_KEY);
       } finally {
         setIsCheckingExisting(false);
       }
     };
 
-    checkExistingSandbox();
+    checkExisting();
   }, []);
 
-  // Smooth progress animation
   useEffect(() => {
-    const targetProgress = STATUS_PROGRESS_MAP[status];
+    const target = STATUS_PROGRESS[status];
 
-    // Clear any existing interval
     if (progressIntervalRef.current) {
       clearInterval(progressIntervalRef.current);
     }
 
-    // Animate progress towards target
     progressIntervalRef.current = setInterval(() => {
       setProgress((current) => {
-        if (current < targetProgress) {
-          const diff = targetProgress - current;
-          const increment = Math.max(0.3, diff / 30); // Slower, smoother animation
-          return Math.min(current + increment, targetProgress);
+        if (current < target) {
+          const diff = target - current;
+          const increment = Math.max(0.3, diff / 30);
+          return Math.min(current + increment, target);
         }
         return current;
       });
     }, 50);
 
     return () => {
-      if (progressIntervalRef.current) {
-        clearInterval(progressIntervalRef.current);
-      }
+      if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
     };
   }, [status]);
 
-  // Rotate quotes every 8 seconds
   useEffect(() => {
     if (status !== 'idle' && status !== 'ready' && status !== 'error') {
-      // Set initial quote
       setQuote(VOICE_QUOTES[Math.floor(Math.random() * VOICE_QUOTES.length)]);
 
       const interval = setInterval(() => {
@@ -167,9 +134,8 @@ export function useSandboxCreation(): UseSandboxCreationResult {
   }, [status]);
 
   const createSandbox = useCallback(async () => {
-    // Prevent multiple simultaneous creation attempts
     if (status !== 'idle') {
-      console.warn('[useSandboxCreation] Already creating/created, ignoring duplicate request');
+      console.warn('[useSandboxCreation] Already creating, ignoring');
       return sandbox;
     }
 
@@ -177,67 +143,51 @@ export function useSandboxCreation(): UseSandboxCreationResult {
     setError(null);
 
     try {
-      // Create sandbox
-      const createResponse = await fetch('/api/sandbox/create', {
+      const createRes = await fetch('/api/sandbox/create', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          config: {
-            // Use defaults from environment variables
-          },
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ config: {} }),
       });
 
-      if (!createResponse.ok) {
-        throw new Error(`Failed to create sandbox: ${createResponse.statusText}`);
+      if (!createRes.ok) {
+        throw new Error(`Failed to create sandbox: ${createRes.statusText}`);
       }
 
-      const createData = await createResponse.json();
-
+      const createData = await createRes.json();
       if (!createData.success) {
         throw new Error(createData.error || 'Failed to create sandbox');
       }
 
-      // Poll for sandbox status
       const sandboxId = createData.sandbox.id;
       let attempts = 0;
-      const maxAttempts = 60; // 60 seconds max
-      const pollInterval = 1000; // 1 second
       let currentStatus: SandboxCreationStatus = 'creating';
 
-      while (attempts < maxAttempts) {
-        const statusResponse = await fetch(`/api/sandbox/status?sandboxId=${sandboxId}`);
+      while (attempts < 60) {
+        const statusRes = await fetch(
+          `/api/sandbox/status?sandboxId=${sandboxId}`
+        );
 
-        if (!statusResponse.ok) {
-          throw new Error(`Failed to check sandbox status: ${statusResponse.statusText}`);
+        if (!statusRes.ok) {
+          throw new Error(`Failed to check status: ${statusRes.statusText}`);
         }
 
-        const statusData = await statusResponse.json();
-        const currentSandbox = statusData.sandbox;
+        const statusData = await statusRes.json();
+        const current = statusData.sandbox;
 
-        // Update progress message from backend
-        if (currentSandbox.progressMessage) {
-          setProgressMessage(currentSandbox.progressMessage);
+        if (current.progressMessage) {
+          setProgressMessage(current.progressMessage);
         }
 
-        // Update status based on sandbox state with more granular steps
         let newStatus: SandboxCreationStatus = currentStatus;
 
-        switch (currentSandbox.status) {
+        switch (current.status) {
           case 'creating':
             newStatus = 'creating';
             break;
           case 'installing':
-            // Use progress message to determine sub-stage within installing
-            if (currentSandbox.progressMessage?.includes('Cloning repository')) {
+            if (current.progressMessage?.includes('Cloning')) {
               newStatus = 'creating';
-            } else if (currentSandbox.progressMessage?.includes('Installing')) {
-              newStatus = 'installing';
-            } else if (currentSandbox.progressMessage?.includes('SSL certificates')) {
-              newStatus = 'installing';
-            } else if (currentSandbox.progressMessage?.includes('Downloading')) {
+            } else if (current.progressMessage?.includes('Downloading')) {
               newStatus = 'downloading';
             } else {
               newStatus = 'installing';
@@ -248,34 +198,29 @@ export function useSandboxCreation(): UseSandboxCreationResult {
             break;
           case 'ready':
             setStatus('ready');
-            setSandbox(currentSandbox);
-            // Store sandbox ID in localStorage for page reload recovery
-            localStorage.setItem(
-              SANDBOX_STORAGE_KEY,
-              JSON.stringify({
-                sandboxId: currentSandbox.id,
-                timestamp: Date.now(),
-              })
-            );
-            return currentSandbox;
+            setSandbox(current);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({
+              sandboxId: current.id,
+              timestamp: Date.now(),
+            }));
+            return current;
           case 'failed':
-            throw new Error(currentSandbox.error || 'Sandbox creation failed');
+            throw new Error(current.error || 'Sandbox creation failed');
         }
 
-        // Update status if it changed
         if (newStatus !== currentStatus) {
           currentStatus = newStatus;
           setStatus(newStatus);
         }
 
         attempts++;
-        await new Promise((resolve) => setTimeout(resolve, pollInterval));
+        await new Promise((r) => setTimeout(r, 1000));
       }
 
       throw new Error('Sandbox creation timed out');
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
-      setError(errorMessage);
+      const msg = err instanceof Error ? err.message : 'Unknown error';
+      setError(msg);
       setStatus('error');
       return null;
     }
@@ -287,31 +232,23 @@ export function useSandboxCreation(): UseSandboxCreationResult {
       return;
     }
 
-    console.log('[useSandboxCreation] Cleaning up sandbox:', sandbox.id);
+    console.log('[useSandboxCreation] Cleaning up:', sandbox.id);
 
     try {
-      // Call stop API endpoint
-      const response = await fetch('/api/sandbox/stop', {
+      const res = await fetch('/api/sandbox/stop', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          sandboxId: sandbox.id,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sandboxId: sandbox.id }),
       });
 
-      if (!response.ok) {
-        console.error('[useSandboxCreation] Failed to stop sandbox:', response.statusText);
-      } else {
-        console.log('[useSandboxCreation] Sandbox stopped successfully');
+      if (!res.ok) {
+        console.error('[useSandboxCreation] Failed to stop:', res.statusText);
       }
-    } catch (error) {
-      console.error('[useSandboxCreation] Error stopping sandbox:', error);
+    } catch (err) {
+      console.error('[useSandboxCreation] Error stopping:', err);
     }
 
-    // Clear local state and storage regardless of API result
-    localStorage.removeItem(SANDBOX_STORAGE_KEY);
+    localStorage.removeItem(STORAGE_KEY);
     setStatus('idle');
     setSandbox(null);
     setError(null);
@@ -327,8 +264,7 @@ export function useSandboxCreation(): UseSandboxCreationResult {
     setProgressMessage(null);
     setProgress(0);
     setQuote('');
-    // Clear stored sandbox session
-    localStorage.removeItem(SANDBOX_STORAGE_KEY);
+    localStorage.removeItem(STORAGE_KEY);
   }, []);
 
   return {
