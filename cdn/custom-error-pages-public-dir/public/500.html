@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>500 - Internal Server Error</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      min-height: 100vh;
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+      background-color: #f9fafb;
+    }
+    .container {
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin: 0;
+      color: #111827;
+    }
+    .description {
+      margin-top: 1rem;
+      font-size: 1.125rem;
+      color: #4b5563;
+    }
+    .hint {
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+    a {
+      display: inline-block;
+      margin-top: 1.5rem;
+      color: #2563eb;
+      text-decoration: none;
+      border-radius: 0.25rem;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    a:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px #fff, 0 0 0 4px #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>500</h1>
+    <p class="description">Internal Server Error</p>
+    <p class="hint">Something went wrong on our end. Please try again later.</p>
+    <p class="hint">Request ID: ::vercel:REQUEST_ID::</p>
+    <p class="hint">Error: ::vercel:ERROR_CODE::</p>
+    <a href="/">Go back home</a>
+  </div>
+</body>
+</html>

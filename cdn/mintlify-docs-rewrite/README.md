@@ -17,7 +17,7 @@ The demo shows a fictional product site ("Flux") with docs hosted on Mintlify bu
 
 ## Demo
 
-https://docsrewrite.vercel.app
+https://mintlify-docs-rewrite.vercel.app/
 
 Visit the docs at `/docs` to see the Mintlify-hosted site served through the main domain.
 
@@ -65,4 +65,3 @@ Set this in your Vercel project settings or in a `.env.local` file.
 - **Seamless branding**: Consistent experience across product and docs
 - **Simple setup**: Just add environment variable and deploy
 - **Mintlify handles infrastructure**: Focus on content while Mintlify manages hosting, CDN, and updates
-
