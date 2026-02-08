@@ -1,33 +1,31 @@
-# -- PLOP TITLE HERE -- example
+Example: Basic Next.js App
 
-This example shows how -------------------------
+This example demonstrates a minimal Next.js application structure suitable for learning, testing, and quick prototyping with Vercel.
 
-## Demo
+Getting Started
 
-https://-- PLOP EXAMPLE NAME HERE --.vercel.app
+You can use this example in one of the following ways.
 
-## How to Use
+One-Click Deploy
 
-You can choose from one of the following two methods to use this repository:
+Deploy the example instantly using Vercel:
 
-### One-Click Deploy
+Deploy with Vercel
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+Clone and Run Locally
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/-- PLOP PATH HERE --&project-name=-- PLOP EXAMPLE NAME HERE --&repository-name=-- PLOP EXAMPLE NAME HERE --)
+Create a new project using create-next-app:
 
-### Clone and Deploy
+pnpm create next-app
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Then start the development server:
 
-```bash
-pnpm create next-app --example https://github.com/vercel/examples/tree/main/-- PLOP PATH HERE --
-```
-
-Next, run Next.js in development mode:
-
-```bash
 pnpm dev
-```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
+Open http://localhost:3000 in your browser to see the result.
+
+Deployment
+
+Deploy the project to the cloud using Vercel:
+
+https://vercel.com/docs
