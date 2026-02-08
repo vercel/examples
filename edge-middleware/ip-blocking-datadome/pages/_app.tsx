@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app'
 import Script from 'next/script'
 import { SWRConfig } from 'swr'
 import type { LayoutProps } from '@vercel/examples-ui/layout'
-import { getLayout } from '@vercel/examples-ui'
+import { getLayout, Head } from '@vercel/examples-ui'
 import { DATADOME_JS, DATADOME_TAGS } from '@lib/constants'
 import '@vercel/examples-ui/globals.css'
 
@@ -19,7 +19,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       }}
     >
       <Layout
-        title="IP Blocking with Datadome"
         path="edge-middleware/ip-blocking-datadome"
         deployButton={{
           env: [
@@ -29,6 +28,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           ],
         }}
       >
+        <Head title="IP Blocking with Datadome" />
         <Component {...pageProps} />
 
         <Script strategy="lazyOnload" id="load-datadome">{`
