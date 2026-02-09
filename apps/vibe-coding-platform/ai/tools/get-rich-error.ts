@@ -1,9 +1,13 @@
-import { APIError } from '@vercel/sandbox/dist/api-client/api-error'
-
 interface Params {
   args?: Record<string, unknown>
   action: string
   error: unknown
+}
+
+interface ErrorFields {
+  message: string
+  json?: unknown
+  text?: string
 }
 
 /**
@@ -22,22 +26,28 @@ export function getRichError({ action, args, error }: Params) {
   }
 }
 
-function getErrorFields(error: unknown) {
+function getErrorFields(error: unknown): ErrorFields {
   if (!(error instanceof Error)) {
     return {
       message: String(error),
       json: error,
     }
-  } else if (error instanceof APIError) {
+  }
+
+  // Handle E2B errors - they typically have a message and may include additional data
+  const e2bError = error as Error & {
+    response?: { data?: unknown }
+    status?: number
+  }
+  if (e2bError.response?.data) {
     return {
-      message: error.message,
-      json: error.json,
-      text: error.text,
+      message: e2bError.message,
+      json: e2bError.response.data,
     }
-  } else {
-    return {
-      message: error.message,
-      json: error,
-    }
+  }
+
+  return {
+    message: error.message,
+    json: error,
   }
 }

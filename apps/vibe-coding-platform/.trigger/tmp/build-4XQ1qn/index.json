@@ -1,0 +1,27 @@
+{
+  "configPath": "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-4XQ1qn/Documents/GitHub/examples/apps/vibe-coding-platform/trigger.config.mjs",
+  "customConditions": [
+  ],
+  "queues": [
+  ],
+  "runtime": "node",
+  "runtimeVersion": "24.7.0",
+  "tasks": [
+    {
+      "entryPoint": "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-4XQ1qn/Documents/GitHub/examples/apps/vibe-coding-platform/trigger/run-command.mjs",
+      "filePath": "trigger/run-command.ts",
+      "id": "run-command",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 10000,
+        "minTimeoutInMs": 1000
+      }
+    }
+  ],
+  "timings": {
+    "trigger/run-command.ts": 7.107292000000001
+  },
+  "workerEntryPoint": "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-4XQ1qn/.npm/_npx/f51a09bd0abf5f10/node_modules/trigger.dev/dist/esm/entryPoints/dev-run-worker.mjs"
+}

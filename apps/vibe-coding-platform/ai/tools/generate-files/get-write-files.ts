@@ -1,16 +1,15 @@
 import type { DataPart } from '../../messages/data-parts'
 import type { File } from './get-contents'
-import type { Sandbox } from '@vercel/sandbox'
 import type { UIMessageStreamWriter, UIMessage } from 'ai'
-import { getRichError } from '../get-rich-error'
+import { Sandbox } from '@e2b/sdk'
 
 interface Params {
-  sandbox: Sandbox
+  sandboxId: string
   toolCallId: string
   writer: UIMessageStreamWriter<UIMessage<never, DataPart>>
 }
 
-export function getWriteFiles({ sandbox, toolCallId, writer }: Params) {
+export function getWriteFiles({ sandboxId, toolCallId, writer }: Params) {
   return async function writeFiles(params: {
     written: string[]
     files: File[]
@@ -24,30 +23,22 @@ export function getWriteFiles({ sandbox, toolCallId, writer }: Params) {
     })
 
     try {
-      await sandbox.writeFiles(
-        params.files.map((file) => ({
-          content: Buffer.from(file.content, 'utf8'),
-          path: file.path,
-        }))
-      )
-    } catch (error) {
-      const richError = getRichError({
-        action: 'write files to sandbox',
-        args: params,
-        error,
-      })
-
+      const sandbox = await Sandbox.reconnect(sandboxId)
+      for (const file of params.files) {
+        await sandbox.filesystem.write(file.path, file.content)
+      }
+    } catch (error: any) {
       writer.write({
         id: toolCallId,
         type: 'data-generating-files',
         data: {
-          error: richError.error,
+          error: { message: error.message },
           status: 'error',
           paths: params.paths,
         },
       })
 
-      return richError.message
+      return `Failed to write files to E2B: ${error.message}`
     }
 
     writer.write({

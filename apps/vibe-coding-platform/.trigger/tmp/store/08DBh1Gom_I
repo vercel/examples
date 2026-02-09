@@ -1,0 +1,52 @@
+import {
+  task
+} from "../../../../../../chunk-UVB5KPWO.mjs";
+import "../../../../../../chunk-HCD45DYG.mjs";
+import {
+  __name,
+  init_esm
+} from "../../../../../../chunk-3R76H35D.mjs";
+
+// trigger/run-command.ts
+init_esm();
+import { exec } from "child_process";
+import { promisify } from "util";
+import fs from "fs/promises";
+import path from "path";
+var execAsync = promisify(exec);
+var runCommandTask = task({
+  id: "run-command",
+  run: /* @__PURE__ */ __name(async (payload) => {
+    const workDir = path.join("/tmp", `vibe-run-${Date.now()}`);
+    await fs.mkdir(workDir, { recursive: true });
+    try {
+      for (const [filePath, content] of Object.entries(payload.files)) {
+        const fullPath = path.join(workDir, filePath);
+        await fs.mkdir(path.dirname(fullPath), { recursive: true });
+        await fs.writeFile(fullPath, content, "utf8");
+      }
+      const fullCommand = `${payload.command} ${payload.args.join(" ")}`;
+      console.log(`Executing: ${fullCommand} in ${workDir}`);
+      const { stdout, stderr } = await execAsync(fullCommand, {
+        cwd: workDir,
+        env: { ...process.env, PROJECT_ROOT: workDir }
+      });
+      return {
+        stdout,
+        stderr,
+        exitCode: 0
+      };
+    } catch (error) {
+      console.error("Execution failed:", error);
+      return {
+        stdout: error.stdout || "",
+        stderr: error.stderr || error.message,
+        exitCode: error.code || 1
+      };
+    }
+  }, "run")
+});
+export {
+  runCommandTask
+};
+//# sourceMappingURL=run-command.mjs.map

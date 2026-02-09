@@ -18,7 +18,7 @@ export interface ModelOptions {
 
 export function getModelOptions(
   modelId: string,
-  options?: { reasoningEffort?: 'low' | 'medium' | 'high' }
+  options?: { reasoningEffort?: 'low' | 'medium' | 'high' },
 ): ModelOptions {
   const gateway = gatewayInstance()
   if (modelId === Models.OpenAIGPT52) {
@@ -58,5 +58,6 @@ export function getModelOptions(
 function gatewayInstance() {
   return createGatewayProvider({
     baseURL: process.env.AI_GATEWAY_BASE_URL,
+    apiKey: process.env.AI_GATEWAY_API_KEY,
   })
 }

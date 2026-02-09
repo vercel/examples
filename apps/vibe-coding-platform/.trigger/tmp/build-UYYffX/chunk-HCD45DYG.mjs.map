@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../node_modules/uncrypto/dist/crypto.node.mjs"],
+  "sourcesContent": ["import nodeCrypto from 'node:crypto';\n\nconst subtle = nodeCrypto.webcrypto?.subtle || {};\nconst randomUUID = () => {\n  return nodeCrypto.randomUUID();\n};\nconst getRandomValues = (array) => {\n  return nodeCrypto.webcrypto.getRandomValues(array);\n};\nconst _crypto = {\n  randomUUID,\n  getRandomValues,\n  subtle\n};\n\nexport { _crypto as default, getRandomValues, randomUUID, subtle };\n"],
+  "mappings": ";;;;;;AAAA;AAAA,OAAO,gBAAgB;AAEvB,IAAM,SAAS,WAAW,WAAW,UAAU,CAAC;AAChD,IAAM,aAAa,6BAAM;AACvB,SAAO,WAAW,WAAW;AAC/B,GAFmB;AAGnB,IAAM,kBAAkB,wBAAC,UAAU;AACjC,SAAO,WAAW,UAAU,gBAAgB,KAAK;AACnD,GAFwB;AAGxB,IAAM,UAAU;AAAA,EACd;AAAA,EACA;AAAA,EACA;AACF;",
+  "names": []
+}

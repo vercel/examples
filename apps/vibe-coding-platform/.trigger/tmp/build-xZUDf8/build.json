@@ -1,0 +1,112 @@
+{
+  "build": {
+  },
+  "cliPackageVersion": "4.3.3",
+  "config": {
+    "dirs": [
+      "trigger"
+    ],
+    "project": "proj_vqdgnlcpxaencyahoewg"
+  },
+  "configPath": "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-xZUDf8/Documents/GitHub/examples/apps/vibe-coding-platform/trigger.config.mjs",
+  "contentHash": "d2551f99d0889cd69baeabe95002d4f8",
+  "customConditions": [
+  ],
+  "deploy": {
+    "env": {
+    }
+  },
+  "environment": "dev",
+  "externals": [
+    {
+      "name": "utf-8-validate",
+      "version": "6.0.6"
+    },
+    {
+      "name": "bufferutil",
+      "version": "4.1.0"
+    },
+    {
+      "name": "import-in-the-middle",
+      "version": "1.11.0"
+    }
+  ],
+  "files": [
+    {
+      "entry": "trigger/run-command.ts",
+      "out": "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-xZUDf8/Documents/GitHub/examples/apps/vibe-coding-platform/trigger/run-command.mjs"
+    }
+  ],
+  "indexWorkerEntryPoint": "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-xZUDf8/.npm/_npx/f51a09bd0abf5f10/node_modules/trigger.dev/dist/esm/entryPoints/dev-index-worker.mjs",
+  "otelImportHook": {
+    "include": [
+    ]
+  },
+  "outputHashes": {
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/.npm/_npx/f51a09bd0abf5f10/node_modules/trigger.dev/dist/esm/entryPoints/dev-index-worker.mjs": "0bNmgjsltpg",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/.npm/_npx/f51a09bd0abf5f10/node_modules/trigger.dev/dist/esm/entryPoints/dev-index-worker.mjs.map": "hZq15i9PG+k",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/.npm/_npx/f51a09bd0abf5f10/node_modules/trigger.dev/dist/esm/entryPoints/dev-run-worker.mjs": "R2YUlkvuWgU",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/.npm/_npx/f51a09bd0abf5f10/node_modules/trigger.dev/dist/esm/entryPoints/dev-run-worker.mjs.map": "7yC6k+kttJY",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/Documents/GitHub/examples/apps/vibe-coding-platform/trigger.config.mjs": "UszvZSCm/8g",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/Documents/GitHub/examples/apps/vibe-coding-platform/trigger.config.mjs.map": "D7jJGSXgmdE",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/Documents/GitHub/examples/apps/vibe-coding-platform/trigger/run-command.mjs": "ASPjtwAJcSY",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/Documents/GitHub/examples/apps/vibe-coding-platform/trigger/run-command.mjs.map": "RV8cn/Qj0/k",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/chunk-3R76H35D.mjs": "S/6uJLLKkkQ",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/chunk-3R76H35D.mjs.map": "k5818EUzvm8",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/chunk-4DSI7GE4.mjs": "XzFM3lt9MU8",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/chunk-4DSI7GE4.mjs.map": "YIbUTEtvqww",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/chunk-HCD45DYG.mjs": "wQ86Y2fRjyk",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/chunk-HCD45DYG.mjs.map": "LMPzUuAiOIM",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/chunk-MTT3NS7Y.mjs": "WHkKnrYda5o",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/chunk-MTT3NS7Y.mjs.map": "hOvtP1HZPd0",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/chunk-NNIGOCOK.mjs": "NILqdRhE1+8",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/chunk-NNIGOCOK.mjs.map": "lXhwESZgrxE",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/chunk-UVB5KPWO.mjs": "KwQCDQrreug",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/chunk-UVB5KPWO.mjs.map": "e3PMs+R0hCg",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/chunk-ZOPV4KI4.mjs": "zealA0xrOVI",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/chunk-ZOPV4KI4.mjs.map": "0NuDfoe8iq0",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/crypto.node-G622JBD2.mjs": "+rjdZb30HfE",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/crypto.node-G622JBD2.mjs.map": "0b4tlwmkM3g",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/crypto.node-H3IPURNY.mjs": "ByIj5ZzrUOc",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/crypto.node-H3IPURNY.mjs.map": "OQLCR3+y4Vc",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/esm-C5GKTPRE.mjs": "yxzD3wS+biY",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/esm-C5GKTPRE.mjs.map": "pujiKUMlthg",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/esm-XY6OLC6Z.mjs": "+Ok3fUamTOE",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/esm-XY6OLC6Z.mjs.map": "5qDxXDZfjB8",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/getMachineId-bsd-XVX7JOKE.mjs": "vMbe9MMdQoc",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/getMachineId-bsd-XVX7JOKE.mjs.map": "9bcLsJXMFD0",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/getMachineId-darwin-QR7KRYUK.mjs": "8c319grfQBo",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/getMachineId-darwin-QR7KRYUK.mjs.map": "upy5Tyen0xE",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/getMachineId-linux-QUFW3BNA.mjs": "k+BlxVntiQM",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/getMachineId-linux-QUFW3BNA.mjs.map": "kycx3L3pGIw",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/getMachineId-unsupported-FSVNI5YK.mjs": "8QNVWf9Rbok",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/getMachineId-unsupported-FSVNI5YK.mjs.map": "1d1OVWOE7CE",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/getMachineId-win-PRWSX2YN.mjs": "iwnEJoYTzkk",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/getMachineId-win-PRWSX2YN.mjs.map": "s3YcrcKczns",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/s2s-JFEOHMO4.mjs": "r/CE2dzwdRk",
+    "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-UYYffX/s2s-JFEOHMO4.mjs.map": "yLVz12MI7rE"
+  },
+  "outputPath": "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-xZUDf8",
+  "packageVersion": "4.3.3",
+  "runWorkerEntryPoint": "/Users/ibrahim/Documents/GitHub/examples/apps/vibe-coding-platform/.trigger/tmp/build-xZUDf8/.npm/_npx/f51a09bd0abf5f10/node_modules/trigger.dev/dist/esm/entryPoints/dev-run-worker.mjs",
+  "runtime": "node",
+  "sources": {
+    "package.json": {
+      "contentHash": "5cc790c96760aba4c339ffc1edaec7a2",
+      "contents": "eJx9Vcty4yAQvOcrXD4vWA8/Nnvaw+5vpAqJKZkYgRaQbCeVf98RSCA7ccqVcqCbYaZ7GL8/rVZrxVpY/1qtB1EBqTUXqiGsAeXWP0Z4AGOFViMjoznNwm5nxMDceM6ZHvyWrY3onMWtd1ziBodhPKXg4lb4/4oQ15tKd6w++SBIqXoheSSF1QRZx4yLUFhNkBQqIX4xAe7aYQlHwAsQdrbGO5X+2wq3RsKHT5NDB4qDqgUscv3NBLH8tGmwqDO7jscLmtGMVOAYfS7nG2aexiBMjLQy0fK8uOd1Rg+Cg7ljlp+IBljt7uMdPtHQjRrkXXr7LNKgqDbIGwkvaFdBdxEyjIsL6UW4KshU6ctIzWlJy0dELpjUTaDhZ/uIJ1k1Z5bTwyNWpzs9BD2+D4ftpKUkDFeBXNDnh1yQENQr6DclW6ndHCuV64xoGjAUW3QzdtSr9eqhInTh55IVvfqONLuwvdE2+LexTPFJe3QRjZ4Joaf2ix7Yx6qZqZ2oQ48caPS80k7wUNY21V5LZi0ZmBFM1UBY747aCHcNVx5onoj2MruWNrU+CT8VXvDJ01jhq7YwJ5jqln2NPU6iLBndFT9Tgq2d40cdRp1DdB8pW+4Td4QW7NTCW7qPYP9virRNkZIX+TPamt/sE67bh5gBK95YJYF0TIG08+Pb3tJsJ5TCGTgNwIXwE35Vjl3IUTRHiX9u6u0d3acLrR5D+EzGZxsrsg5jtFyf1ST1/gYTHWHK+o44xNE7QmcTdChTso4JeRaKkxZMA6GWMmXQWyAWu+dEnCbYMS4Iky9Nf9M8nCt29BDzeOtx9iqP7Hzui0k6/Pl6mM7J1NZuOm0dfoe3kF4KTmq7SZ2R3SFK89B+xT2yNPwraOH5l/BDv3Y0T13FzkRqNg3u7fIJLGq7rcmd0S3R4g8ImbBxrEYdfQ7+J9If2yUdQTVCLfWbiy8KevG0p4+n/3qCAUg="
+    },
+    "trigger.config.ts": {
+      "contentHash": "b86a467c255f360ea0571088537c8977",
+      "contents": "eJxlkEFLxDAQhe/9FXOLQrHV4qUnxb0s6M2biMRmGqPNTE0ndWXpfzeNu4p4ScL33pt5xPmRg8AeDPaO8IapdxYW6AN7UFcSnLUYzgzO1WTeqrlRRYG7nEkJHQf5kzzZFwBj4FfspAW1vp7md2Np6MadRuo+9Qvjh1Vl8oVI4jwmH7HBjAa2tzjjkJijnjPzereJQYtjaqGp6xKqCi7BO4qC0zoHU02cWliXAyDp5wHNljY4tyAhYpn5oe/Rlgdfi6AfJWWb8kgd3adWHGVLd0k4r9PK38Q/7UfsdSccWrj4Bst65cO4kLwP6vCZ6rEsltPiCwhNdEY="
+    },
+    "trigger/run-command.ts": {
+      "contentHash": "fdcf6e859b7c51bdb849eccf2f16d2b2",
+      "contents": "eJyFUs9PgzAUvvNXvINJIUEW541EY1x28Kw3Y0IHHdZBu7RlQpb+7z66lrFp4gne+3687z3g7V4qA0cwVO/AwlbJFsiTUbyumcoqdljoarc43JOIB+orFdVG9mc2W25GFoki1jtOKYU2oDqxkm2L7LfR/MHNiI8RAK9yIAjfliecpNjEOgeqB1FCvKdDIymyRjaAp+WgMZioXY+qWofG+4dr6VOwlznRJvDw6G2MGvwb+IhegdnoN+UmrJYphrhgpQlJssk7iS4ctl3T+C3Rpbg5BoHPbOHcGiNnX5KLmABJbDEzkg3LGlnHxbpnZWcwO6yXzzmKZwNscTVcMd01ZkrvM4bROsOTxjP9pFbMdEpMt8DLmUp2JveG2alM5zBTag5jeYZZz81KVmwihEagWPe0UFJTfkKMYoluVAzJxfcYj+CwmODy4E8hBWwpb1iVkxQcnPy3BiG/sztl1jKtac3+yn53lXb8edLIJtEPYev52g=="
+    },
+    "tsconfig.json": {
+      "contentHash": "2c0bcfee62e0664b285864bd1bac1cd4",
+      "contents": "eJxlUctOwzAQvOcrIh+jNgEuSJyQUA9UVEhwrCLkxKvW1C/ZmxBU9d+xHaeQcFrtzD5mds9ZnpNWS8MF2FeDXCtHHvKzhz2B1B4AfU4273c3t/dkNeKCNx7cE6YlWeUhlBzB0kZAyMEpGJDUqZoKob+2YSzaDhLoTty88ObpCO1pwaDlLc4xpTeSLzBwO806Ac/Kr9ZmTspIBeVJzAx/A6dFF8yGiqZTzLufSmwge9g6rXbTlD+TuWcpAhu5hatPN4SJFmiL65BMTaq1IEEhFfMGI7oDjyffRyBPpx9dUxktRAMJvsQ4ndZQPP7+ywOPVRE/U/pYZ1PDJZQHEaJjcN0V565B9SUr0U1Si6Iq/qdXJ2VoqvDbgKsWpSPFoF/QWdJLYLgK8B9l8CHTDevskv0AIqux4A=="
+    }
+  },
+  "target": "dev"
+}

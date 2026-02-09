@@ -6,12 +6,23 @@ import {
   stepCountIs,
   streamText,
 } from 'ai'
-import { DEFAULT_MODEL } from '@/ai/constants'
+import { DEFAULT_MODEL, SUPPORTED_MODELS, Models } from '@/ai/constants'
 import { NextResponse } from 'next/server'
-import { getAvailableModels, getModelOptions } from '@/ai/gateway'
+import { getModelOptions } from '@/ai/gateway'
 import { checkBotId } from 'botid/server'
 import { tools } from '@/ai/tools'
 import prompt from './prompt.md'
+
+// Model display names mapping
+const MODEL_NAMES: Record<string, string> = {
+  [Models.OpenAIGPT52]: 'GPT-5.2',
+  [Models.AmazonNovaPro]: 'Amazon Nova Pro',
+  [Models.AnthropicClaude4Sonnet]: 'Claude 4 Sonnet',
+  [Models.AnthropicClaude45Sonnet]: 'Claude 4.5 Sonnet',
+  [Models.GoogleGeminiFlash]: 'Gemini 2.5 Flash',
+  [Models.MoonshotKimiK2]: 'Kimi K2',
+  [Models.XaiGrok3Fast]: 'Grok 3 Fast',
+}
 
 interface BodyData {
   messages: ChatUIMessage[]
@@ -25,14 +36,23 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: `Bot detected` }, { status: 403 })
   }
 
-  const [models, { messages, modelId = DEFAULT_MODEL, reasoningEffort }] =
-    await Promise.all([getAvailableModels(), req.json() as Promise<BodyData>])
+  const {
+    messages,
+    modelId = DEFAULT_MODEL,
+    reasoningEffort,
+  } = await (req.json() as Promise<BodyData>)
 
-  const model = models.find((model) => model.id === modelId)
+  // Use local models instead of gateway API
+  const models = SUPPORTED_MODELS.map((id) => ({
+    id,
+    name: MODEL_NAMES[id] || id,
+  }))
+
+  const model = models.find((m) => m.id === modelId)
   if (!model) {
     return NextResponse.json(
       { error: `Model ${modelId} not found.` },
-      { status: 400 }
+      { status: 400 },
     )
   }
 
@@ -62,7 +82,7 @@ export async function POST(req: Request) {
                 return part
               })
               return message
-            })
+            }),
           ),
           stopWhen: stepCountIs(20),
           tools: tools({ modelId, writer }),
@@ -79,9 +99,9 @@ export async function POST(req: Request) {
             messageMetadata: () => ({
               model: model.name,
             }),
-          })
+          }),
         )
       },
     }),
-  });
+  })
 }

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../../../../.npm/_npx/f51a09bd0abf5f10/node_modules/trigger.dev/src/shims/esm.ts"],
+  "sourcesContent": [null],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA,SAAS,qBAAqB;AAC9B,OAAO,UAAU;AACjB,OAAO,SAAS;AAFhB;;AAKA,eAAW,UAAU,cAAc,YAAY,GAAG;AAElD,eAAW,aAAa,IAAI,cAAc,YAAY,GAAG;AACzD,eAAW,YAAY,KAAK,QAAQ,UAAU;;;",
+  "names": []
+}

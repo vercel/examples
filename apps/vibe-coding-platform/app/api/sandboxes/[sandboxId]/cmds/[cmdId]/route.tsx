@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import { Sandbox } from '@vercel/sandbox'
+import { Sandbox } from '@e2b/sdk'
 
 interface Params {
   sandboxId: string
@@ -8,21 +8,17 @@ interface Params {
 
 export async function GET(
   _request: NextRequest,
-  { params }: { params: Promise<Params> }
+  { params }: { params: Promise<Params> },
 ) {
   const cmdParams = await params
-  const sandbox = await Sandbox.get(cmdParams)
-  const command = await sandbox.getCommand(cmdParams.cmdId)
+  const sandbox = await Sandbox.reconnect(cmdParams.sandboxId)
 
-  /**
-   * The wait can get to fail when the Sandbox is stopped but the command
-   * was still running. In such case we return empty for finish data.
-   */
-  const done = await command.wait().catch(() => null)
+  // E2B doesn't have a getCommand method like Vercel Sandbox
+  // The command execution is typically handled through Trigger.dev tasks
+  // This endpoint may not be needed with E2B's architecture
   return NextResponse.json({
-    sandboxId: sandbox.sandboxId,
-    cmdId: command.cmdId,
-    startedAt: command.startedAt,
-    exitCode: done?.exitCode,
+    sandboxId: sandbox.id,
+    cmdId: cmdParams.cmdId,
+    message: 'Command status tracking is handled via Trigger.dev tasks',
   })
 }

@@ -1,4 +1,4 @@
-Use this tool to run a command inside an existing Vercel Sandbox. You can choose whether the command should block until completion or run in the background by setting the `wait` parameter:
+Use this tool to run a command inside an existing E2B Sandbox. You can choose whether the command should block until completion or run in the background by setting the `wait` parameter:
 
 - `wait: true` → Command runs and **must complete** before the response is returned.
 - `wait: false` → Command starts in the background, and the response returns immediately with its `commandId`.
@@ -65,4 +65,4 @@ Run Command: `{ command: "vite", args: ["build"], wait: true }`
 
 ## Summary
 
-Use Run Command to start shell commands in the sandbox, controlling execution flow with the `wait` flag. Commands are stateless and isolated — use relative paths, and only run long-lived processes with `wait: false`.
+Use Run Command to start shell commands in the E2B sandbox, controlling execution flow with the `wait` flag. Commands are stateless and isolated — use relative paths, and only run long-lived processes with `wait: false`.
