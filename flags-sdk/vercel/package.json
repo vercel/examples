@@ -1,35 +1,42 @@
 {
-  "name": "flags-sdk-vercel",
-  "repository": "https://github.com/vercel/examples.git",
-  "license": "MIT",
-  "version": "0.1.0",
+  "name": "vercel-flags",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start"
   },
   "dependencies": {
-    "@flags-sdk/vercel": "1.0.0",
-    "@vercel/examples-ui": "^2.0.3",
-    "@vercel/flags-core": "1.0.0",
-    "@vercel/toolbar": "^0.1.15",
-    "flags": "4.0.3",
-    "next": "^14.2.3",
-    "react": "latest",
-    "react-dom": "latest",
-    "server-only": "^0.0.1"
+    "@flags-sdk/vercel": "0.1.0",
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "2.2.0",
+    "@tailwindcss/aspect-ratio": "0.4.2",
+    "@tailwindcss/forms": "0.5.10",
+    "@tailwindcss/postcss": "^4.0.8",
+    "@tailwindcss/typography": "0.5.16",
+    "@vercel/edge": "1.2.1",
+    "@vercel/edge-config": "1.4.3",
+    "@vercel/toolbar": "0.1.33",
+    "clsx": "2.1.1",
+    "flags": "^4.0.2",
+    "motion": "12.17.0",
+    "nanoid": "5.1.2",
+    "next": "^16.0.10",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "sonner": "2.0.1",
+    "swr": "^2.3.2"
   },
   "devDependencies": {
-    "@types/node": "^20.12.12",
-    "@types/react": "latest",
-    "autoprefixer": "^10.4.19",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.3",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.3",
-    "turbo": "1.13.4",
-    "typescript": "^5.4.5"
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9.21.0",
+    "eslint-config-next": "^15.2.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.9",
+    "typescript": "^5"
   }
 }

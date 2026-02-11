@@ -1,23 +1,27 @@
-import type { ReactNode } from 'react'
-import { Layout, getMetadata } from '@vercel/examples-ui'
 import { VercelToolbar } from '@vercel/toolbar/next'
-import '@vercel/examples-ui/globals.css'
+import type { Metadata } from 'next'
+import { Toaster } from 'sonner'
 
-export const metadata = getMetadata({
-  title: 'Flags SDK with Vercel',
-  description: 'An example showing how to use the Flags SDK with Vercel Flags.',
-})
+import './globals.css'
+import { ExamplesBanner } from '@/components/banners/examples-banner'
+
+export const metadata: Metadata = {
+  title: 'Vercel Flags - Flags SDK Example',
+  description: 'A Flags SDK ecommerce example using Vercel Flags',
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: ReactNode }>) {
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
     <html lang="en">
-      <body>
-        <Layout path="flags-sdk/vercel">
-          {children}
-          <VercelToolbar />
-        </Layout>
+      <body className="antialiased">
+        <ExamplesBanner />
+        {children}
+        <Toaster />
+        <VercelToolbar />
       </body>
     </html>
   )

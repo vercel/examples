@@ -1,77 +1,74 @@
----
-name: Flags SDK with Vercel
-slug: flags-sdk-vercel
-description: Learn to use the Flags SDK with the Vercel adapter for feature flags in Next.js applications.
-framework: Next.js
-useCase: Edge Middleware
-css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Fvercel&env=FLAGS_SECRET&envDescription=Secret%20for%20Flags%20SDK&envLink=https%3A%2F%2Fflags-sdk.dev%2Fdocs%2Fapi-reference%2Fnext%2Fflags-discovery-endpoint&project-name=flags-sdk-vercel&repository-name=flags-sdk-vercel
-demoUrl: https://flags-sdk-vercel.vercel.app
-relatedTemplates:
-  - feature-flag-hypertune
-  - feature-flag-split
----
+# Vercel Flags SDK Example
 
-# Flags SDK with Vercel
+This example uses [Vercel Flags](https://vercel.com/docs/flags/vercel-flags) for feature flags with the [Flags SDK](https://flags-sdk.dev) along with the `@flags-sdk/vercel` adapter and the [Flags Explorer](https://vercel.com/docs/flags/flags-explorer).
 
-This example demonstrates how to use the [Flags SDK](https://flags-sdk.dev) with the Vercel adapter (`@flags-sdk/vercel`) to implement feature flags in a Next.js application.
+## Demo
 
-The Flags SDK provides a type-safe, framework-agnostic way to work with feature flags. Combined with the Vercel adapter, you get seamless integration with the Vercel Toolbar for local development and flag overrides.
-
-## Features
-
-- Type-safe feature flag definitions
-- Server-side flag evaluation
-- Vercel Toolbar integration for flag overrides
-- Edge-compatible flag evaluation
+[https://flags-sdk-vercel.vercel.app/](https://flags-sdk-vercel.vercel.app/)
 
 ## How it works
 
-1. **Flag Definitions**: Flags are defined in `lib/flags.ts` using the `flag` function from the Flags SDK
-2. **Vercel Adapter**: The `@flags-sdk/vercel` adapter enables integration with Vercel's infrastructure
-3. **Toolbar Integration**: The `.well-known/vercel/flags` route exposes flag metadata for the Vercel Toolbar
+This demo uses feature flags in Vercel Flags to control the visibility of banners on the page and the color of the checkout button. Flag configurations are managed directly in the Vercel Dashboard.
 
-## Deploy with Vercel
+If you deploy your own and configure the feature flags in the Vercel Dashboard, you can also use the [Flags Explorer](https://vercel.com/docs/flags/flags-explorer) to enable/disable the features locally.
 
-Deploy this example with Vercel in one click:
+## Deploy this template
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Fvercel&env=FLAGS_SECRET&envDescription=Secret%20for%20Flags%20SDK&envLink=https%3A%2F%2Fflags-sdk.dev%2Fdocs%2Fapi-reference%2Fnext%2Fflags-discovery-endpoint&project-name=flags-sdk-vercel&repository-name=flags-sdk-vercel)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Fvercel&env=FLAGS_SECRET&envDescription=The+FLAGS_SECRET+will+be+used+by+the+Flags+Explorer+to+securely+overwrite+feature+flags.+Must+be+32+random+bytes%2C+base64-encoded.+Use+the+generated+value+or+set+your+own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fflags%2Fflags-explorer%2Fgetting-started%23flags_secret-environment-variable&project-name=vercel-flags-sdk-example&repository-name=vercel-flags-sdk-example)
 
-## Environment Variables
+Clicking the button above will:
 
-You will need to set the following environment variable:
+1. Clone this repository to your GitHub account
+2. Create a new Vercel project
+3. Prompt you to generate a `FLAGS_SECRET` for the Flags Explorer
 
-- `FLAGS_SECRET`: A secret used to secure the flags endpoint. Generate one with:
-  ```bash
-  node -e "console.log(crypto.randomBytes(32).toString('base64url'))"
-  ```
+### Step 1: Link the project
 
-## Develop locally
+In order to use the Flags Explorer, you need to link the project on your local machine.
 
-1. Clone this repository and `cd` into the project directory
-2. Run `vercel link` to link to your Vercel project
-3. Run `vercel env pull .env.development.local` to pull environment variables
-4. Run `pnpm i` to install dependencies
-5. Run `pnpm dev` to start the development server
-
-## Adding new flags
-
-To add a new flag, update the `lib/flags.ts` file:
-
-```typescript
-export const myNewFlag = flag<boolean>({
-  key: 'my-new-flag',
-  decide: () => false,
-})
+```bash
+vercel link
 ```
 
-Then use it in your components:
+Select the project from the list you just deployed.
 
-```typescript
-import { myNewFlag } from '@/lib/flags'
+### Step 2: Create Feature Flags in the Vercel Dashboard
 
-export default async function Page() {
-  const showFeature = await myNewFlag()
-  return showFeature ? <NewFeature /> : <OldFeature />
-}
+Navigate to the **Flags** tab in your Vercel project dashboard and create the following flags:
+
+Feature Flags:
+
+- `summer-sale` - Boolean flag to show/hide the summer sale banner
+- `free-delivery` - Boolean flag to show/hide the free delivery banner
+- `proceed-to-checkout-color` - String flag with values: `blue`, `green`, `red`
+
+You can also find the feature flag keys in the `flags.ts` file.
+
+### Step 3: Pull all environment variables
+
+This pulls the `FLAGS` environment variable that contains your SDK keys:
+
+```bash
+vercel env pull
 ```
+
+### Step 4: Run the development server
+
+```bash
+pnpm install
+pnpm dev
+```
+
+## Local Development
+
+For local development, make sure you have:
+
+1. Linked your project with `vercel link`
+2. Pulled environment variables with `vercel env pull`
+3. A `FLAGS_SECRET` set in your `.env.local` file for Flags Explorer overrides
+
+## Learn More
+
+- [Vercel Flags Documentation](https://vercel.com/docs/flags/vercel-flags)
+- [Flags SDK Documentation](https://flags-sdk.dev)
+- [Flags Explorer Documentation](https://vercel.com/docs/flags/flags-explorer)
