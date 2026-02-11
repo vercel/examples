@@ -5,7 +5,7 @@ description: Learn to use the Flags SDK with the Vercel adapter for feature flag
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fflags-sdk-vercel&env=FLAGS_SECRET&envDescription=Secret%20for%20Flags%20SDK&envLink=https%3A%2F%2Fflags-sdk.dev%2Fdocs%2Fapi-reference%2Fnext%2Fflags-discovery-endpoint&project-name=flags-sdk-vercel&repository-name=flags-sdk-vercel
+deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Fvercel&env=FLAGS_SECRET&envDescription=Secret%20for%20Flags%20SDK&envLink=https%3A%2F%2Fflags-sdk.dev%2Fdocs%2Fapi-reference%2Fnext%2Fflags-discovery-endpoint&project-name=flags-sdk-vercel&repository-name=flags-sdk-vercel
 demoUrl: https://flags-sdk-vercel.vercel.app
 relatedTemplates:
   - feature-flag-hypertune
@@ -35,7 +35,7 @@ The Flags SDK provides a type-safe, framework-agnostic way to work with feature 
 
 Deploy this example with Vercel in one click:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fflags-sdk-vercel&env=FLAGS_SECRET&envDescription=Secret%20for%20Flags%20SDK&envLink=https%3A%2F%2Fflags-sdk.dev%2Fdocs%2Fapi-reference%2Fnext%2Fflags-discovery-endpoint&project-name=flags-sdk-vercel&repository-name=flags-sdk-vercel)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Fvercel&env=FLAGS_SECRET&envDescription=Secret%20for%20Flags%20SDK&envLink=https%3A%2F%2Fflags-sdk.dev%2Fdocs%2Fapi-reference%2Fnext%2Fflags-discovery-endpoint&project-name=flags-sdk-vercel&repository-name=flags-sdk-vercel)
 
 ## Environment Variables
 

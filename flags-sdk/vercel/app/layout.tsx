@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Layout path="solutions/flags-sdk-vercel">
+        <Layout path="flags-sdk/vercel">
           {children}
           <VercelToolbar />
         </Layout>
