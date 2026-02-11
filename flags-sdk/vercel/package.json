@@ -9,15 +9,14 @@
     "start": "next start"
   },
   "dependencies": {
-    "@flags-sdk/vercel": "0.1.0",
+    "@flags-sdk/vercel": "1.0.0",
+    "@vercel/flags-core": "1.0.0",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "2.2.0",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/forms": "0.5.10",
     "@tailwindcss/postcss": "^4.0.8",
     "@tailwindcss/typography": "0.5.16",
-    "@vercel/edge": "1.2.1",
-    "@vercel/edge-config": "1.4.3",
     "@vercel/toolbar": "0.1.33",
     "clsx": "2.1.1",
     "flags": "^4.0.2",
