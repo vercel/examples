@@ -1,6 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { precompute } from 'flags/next'
-import { productFlags } from '@/flags'
 import { getStableId } from './lib/get-stable-id'
 import { getCartId } from './lib/get-cart-id'
 
@@ -9,6 +8,16 @@ export const config = {
 }
 
 export async function proxy(request: NextRequest) {
+  const hasFlags = Boolean(process.env.FLAGS)
+  const hasFlagsSecret = Boolean(process.env.FLAGS_SECRET)
+  if (!hasFlags || !hasFlagsSecret) {
+    return NextResponse.rewrite(new URL('/setup', request.url))
+  }
+
+  // Demo-only: lazily import flags after env validation to avoid loading
+  // the provider setup before users complete /setup.
+  const { productFlags } = await import('@/flags')
+
   const stableId = await getStableId()
   const cartId = await getCartId()
 

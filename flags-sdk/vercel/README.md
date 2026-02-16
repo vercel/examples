@@ -14,13 +14,13 @@ If you deploy your own and configure the feature flags in the Vercel Dashboard, 
 
 ## Deploy this template
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Fvercel&env=FLAGS_SECRET&envDescription=The+FLAGS_SECRET+will+be+used+by+the+Flags+Explorer+to+securely+overwrite+feature+flags.+Must+be+32+random+bytes%2C+base64-encoded.+Use+the+generated+value+or+set+your+own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fflags%2Fflags-explorer%2Fgetting-started%23flags_secret-environment-variable&project-name=vercel-flags-sdk-example&repository-name=vercel-flags-sdk-example)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Fvercel&project-name=vercel-flags-sdk-example&repository-name=vercel-flags-sdk-example)
 
 Clicking the button above will:
 
 1. Clone this repository to your GitHub account
 2. Create a new Vercel project
-3. Prompt you to generate a `FLAGS_SECRET` for the Flags Explorer
+3. Deploy immediately (even if you have not configured flags yet)
 
 ### Step 1: Link the project
 
@@ -59,13 +59,19 @@ pnpm install
 pnpm dev
 ```
 
+## Deploy without configuration
+
+If `FLAGS` or `FLAGS_SECRET` are missing, requests are rewritten to `/setup`
+until configuration is complete. The setup page includes a checklist and the
+required flag keys.
+
 ## Local Development
 
 For local development, make sure you have:
 
 1. Linked your project with `vercel link`
 2. Pulled environment variables with `vercel env pull`
-3. A `FLAGS_SECRET` set in your `.env.local` file for Flags Explorer overrides
+3. Set `FLAGS_SECRET` in `.env.local` for precompute and secure Flags Explorer overrides
 
 ## Learn More
 
