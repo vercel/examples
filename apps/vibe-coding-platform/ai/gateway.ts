@@ -36,8 +36,8 @@ export function getModelOptions(
   }
 
   if (
-    modelId === Models.AnthropicClaude4Sonnet ||
-    modelId === Models.AnthropicClaude45Sonnet
+    modelId === Models.AnthropicClaudeSonnet46 ||
+    modelId === Models.AnthropicClaudeOpus46
   ) {
     return {
       model: gateway(modelId),

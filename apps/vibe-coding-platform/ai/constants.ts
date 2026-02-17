@@ -1,25 +1,25 @@
 import { type GatewayModelId } from '@ai-sdk/gateway'
 
 export enum Models {
-  AmazonNovaPro = 'amazon/nova-pro',
-  AnthropicClaude4Sonnet = 'anthropic/claude-4-sonnet',
-  AnthropicClaude45Sonnet = 'anthropic/claude-sonnet-4.5',
-  GoogleGeminiFlash = 'google/gemini-2.5-flash',
-  MoonshotKimiK2 = 'moonshotai/kimi-k2',
+  AmazonNova2Pro = 'amazon/nova-2-pro',
+  AnthropicClaudeSonnet46 = 'anthropic/claude-sonnet-4.6',
+  AnthropicClaudeOpus46 = 'anthropic/claude-opus-4.6',
+  GoogleGemini3Flash = 'google/gemini-3-flash',
+  MoonshotKimiK25 = 'moonshotai/kimi-k2.5',
   OpenAIGPT52 = 'openai/gpt-5.2',
-  XaiGrok3Fast = 'xai/grok-3-fast',
+  XaiGrok41Fast = 'xai/grok-4.1-fast-non-reasoning',
 }
 
 export const DEFAULT_MODEL = Models.OpenAIGPT52
 
 export const SUPPORTED_MODELS: GatewayModelId[] = [
   Models.OpenAIGPT52,
-  Models.AmazonNovaPro,
-  Models.AnthropicClaude4Sonnet,
-  Models.AnthropicClaude45Sonnet,
-  Models.GoogleGeminiFlash,
-  Models.MoonshotKimiK2,
-  Models.XaiGrok3Fast,
+  Models.AmazonNova2Pro,
+  Models.AnthropicClaudeSonnet46,
+  Models.AnthropicClaudeOpus46,
+  Models.GoogleGemini3Flash,
+  Models.MoonshotKimiK25,
+  Models.XaiGrok41Fast,
 ]
 
 export const TEST_PROMPTS = [
