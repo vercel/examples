@@ -8,7 +8,7 @@ useCase:
   - Edge Middleware
   - Documentation
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Fab-testing-statsig&project-name=ab-testing-statsig&repository-name=ab-testing-statsig&integration-ids=oac_NAO87zzp3ADxj2ZUh3vikLip&env=STATSIG_SERVER_API_KEY,NEXT_PUBLIC_STATSIG_CLIENT_KEY,STATSIG_CONSOLE_API_KEY,EDGE_CONFIG,EDGE_CONFIG_ITEM_KEY&envDescription=Statsig%20API%20keys%20and%20Edge%20Config%20settings&envLink=https%3A%2F%2Fdocs.statsig.com%2Fguides%2Ffirst-feature
+deployUrl: https://vercel.com/new/clone?demo-description=Reduce+CLS+and+improve+performance+from+client-loaded+experiments+at+the+edge+with+Statsig&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F3iWLIPxEQc7e5plRHDW5Nd%2Fdf781629a2e72f6ae5d05879787c4c79%2Fvercel_statsig.png&demo-title=Experimentation+with+Statsig&demo-url=https%3A%2F%2Fedge-ab-testing-statsig.vercel.app&envLink=https%3A%2F%2Fdocs.statsig.com%2Fguides%2Ffirst-feature&project-name=ab-testing-statsig&repository-name=ab-testing-statsig&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Fab-testing-statsig&products=%5B%7B%22integrationSlug%22%3A%22statsig%22%2C%22productSlug%22%3A%22statsig%22%2C%22type%22%3A%22integration%22%2C%22protocol%22%3A%22experimentation%22%7D%5D
 demoUrl: https://edge-ab-testing-statsig.vercel.app
 relatedTemplates:
   - ab-testing-google-optimize
@@ -31,7 +31,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Fab-testing-statsig&project-name=ab-testing-statsig&repository-name=ab-testing-statsig&integration-ids=oac_NAO87zzp3ADxj2ZUh3vikLip&env=STATSIG_SERVER_API_KEY,NEXT_PUBLIC_STATSIG_CLIENT_KEY,STATSIG_CONSOLE_API_KEY,EDGE_CONFIG,EDGE_CONFIG_ITEM_KEY&envDescription=Statsig%20API%20keys%20and%20Edge%20Config%20settings&envLink=https%3A%2F%2Fdocs.statsig.com%2Fguides%2Ffirst-feature)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-description=Reduce+CLS+and+improve+performance+from+client-loaded+experiments+at+the+edge+with+Statsig&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F3iWLIPxEQc7e5plRHDW5Nd%2Fdf781629a2e72f6ae5d05879787c4c79%2Fvercel_statsig.png&demo-title=Experimentation+with+Statsig&demo-url=https%3A%2F%2Fedge-ab-testing-statsig.vercel.app&envLink=https%3A%2F%2Fdocs.statsig.com%2Fguides%2Ffirst-feature&project-name=ab-testing-statsig&repository-name=ab-testing-statsig&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Fab-testing-statsig&products=%5B%7B%22integrationSlug%22%3A%22statsig%22%2C%22productSlug%22%3A%22statsig%22%2C%22type%22%3A%22integration%22%2C%22protocol%22%3A%22experimentation%22%7D%5D)
 
 ### Clone and Deploy
 
