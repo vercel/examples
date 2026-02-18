@@ -1,0 +1,35 @@
+{
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mintbase-js/auth": "0.1.0-alpha.73",
+    "@mintbase-js/data": "0.1.0-alpha.73",
+    "@mintbase-js/react": "0.1.0-alpha.73",
+    "@mintbase-js/sdk": "0.1.0-alpha.73",
+    "@mintbase-js/storage": "0.1.0-alpha.73",
+    "@near-wallet-selector/modal-ui": "^7.5.0",
+    "@vercel/examples-ui": "latest",
+    "near-api-js": "^0.44.2",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-query": "^3.39.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17",
+    "@types/react": "latest",
+    "autoprefixer": "^10.4.7",
+    "eslint": "latest",
+    "eslint-config-next": "canary",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.0.24",
+    "typescript": "^4.7.3"
+  }
+}
