@@ -11,7 +11,6 @@ css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fedge-middleware%2Fab-testing-statsig&project-name=ab-testing-statsig&repository-name=ab-testing-statsig&integration-ids=oac_NAO87zzp3ADxj2ZUh3vikLip&env=STATSIG_SERVER_API_KEY,NEXT_PUBLIC_STATSIG_CLIENT_KEY,STATSIG_CONSOLE_API_KEY,EDGE_CONFIG,EDGE_CONFIG_ITEM_KEY&envDescription=Statsig%20API%20keys%20and%20Edge%20Config%20settings&envLink=https%3A%2F%2Fdocs.statsig.com%2Fguides%2Ffirst-feature
 demoUrl: https://edge-ab-testing-statsig.vercel.app
 relatedTemplates:
-  - ab-testing-google-optimize
   - ab-testing-simple
 ---
 
