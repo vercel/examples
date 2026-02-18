@@ -63,7 +63,7 @@ def index(request):
     return HttpResponse(html)
 ```
 
-This view is exposed a URL through `example/urls.py`:
+This view is exposed through a URL `example/urls.py`:
 
 ```python
 # example/urls.py
