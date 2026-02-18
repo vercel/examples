@@ -35,13 +35,13 @@ export const Tabs = () => {
 
       <TabPanels>
         <TabPanel>
-          <p>one!</p>
+          <p>Tab one</p>
         </TabPanel>
         <TabPanel>
-          <p>two!</p>
+          <p>Tab two</p>
         </TabPanel>
         <TabPanel>
-          <p>three!</p>
+          <p>Tab three</p>
         </TabPanel>
       </TabPanels>
     </ChakraTabs>
