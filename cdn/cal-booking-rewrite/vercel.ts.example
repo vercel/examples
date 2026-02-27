@@ -1,0 +1,39 @@
+/**
+ * vercel.ts — Code-based alternative to project routes
+ *
+ * If you prefer to manage the rewrite in code rather than through the
+ * Vercel Dashboard or CLI, rename this file to `vercel.ts` and redeploy.
+ *
+ * Set the CAL_URL environment variable in your Vercel project settings
+ * to point to your Cal.com (or Calendly, Savvycal, etc.) booking page.
+ *
+ * Note: Changes to this file require a new deployment. If you need
+ * instant updates without redeploying, use project routes instead:
+ * https://vercel.com/docs/cdn
+ */
+import type { VercelConfig } from '@vercel/config/v1'
+
+const CAL_URL = process.env.CAL_URL || 'https://cal.com/beacon-demo'
+
+export const config: VercelConfig = {
+  routes: [
+    // Rewrite /book to the Cal.com booking page
+    {
+      src: '/book',
+      dest: `${CAL_URL}`,
+      headers: {
+        'CDN-Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
+        'Vercel-Cache-Tag': 'booking',
+      },
+    },
+    // Rewrite /book/* subpaths (e.g. /book/30min) to Cal.com event pages
+    {
+      src: '/book/(.*)',
+      dest: `${CAL_URL}/$1`,
+      headers: {
+        'CDN-Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
+        'Vercel-Cache-Tag': 'booking',
+      },
+    },
+  ],
+}
