@@ -136,22 +136,29 @@ You can also use `vercel.json` to achieve the same result:
 
 ```json
 {
-  "routes": [
+  "rewrites": [
     {
-      "src": "/book",
-      "dest": "https://cal.com/your-booking-page",
-      "headers": {
-        "CDN-Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
-        "Vercel-Cache-Tag": "booking"
-      }
+      "source": "/book",
+      "destination": "https://cal.com/your-booking-page"
     },
     {
-      "src": "/book/(.*)",
-      "dest": "https://cal.com/your-booking-page/$1",
-      "headers": {
-        "CDN-Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
-        "Vercel-Cache-Tag": "booking"
-      }
+      "source": "/book/:match*",
+      "destination": "https://cal.com/your-booking-page/:match*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/book/:match*",
+      "headers": [
+        {
+          "key": "CDN-Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        },
+        {
+          "key": "Vercel-Cache-Tag",
+          "value": "booking"
+        }
+      ]
     }
   ]
 }
