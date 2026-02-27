@@ -73,19 +73,27 @@ export default function BookPage() {
           </ol>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex flex-col gap-3">
           <a
-            href="https://vercel.com/docs/routing/project-routing-rules"
-            className="flex-1 inline-flex items-center justify-center bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors text-sm"
+            href="https://vercel.com/d?to=%2F%5Bteam%5D%2F%5Bproject%5D%2Fcdn%2Frouting%2Fnew%3Froute%3D%257B%2522name%2522%253A%2522Booking%2520Page%2522%252C%2522description%2522%253A%2522Proxy%2520%252Fbook%2520to%2520Cal.com%2520scheduling%2520page%2520with%2520CDN%2520caching%2522%252C%2522path%2522%253A%2522%252Fbook%252F%253Apath*%2522%252C%2522syntax%2522%253A%2522path-to-regexp%2522%252C%2522actions%2522%253A%255B%257B%2522type%2522%253A%2522rewrite%2522%252C%2522dest%2522%253A%2522https%253A%252F%252Fcal.com%252Fyour-booking-page%252F%253Apath*%2522%257D%252C%257B%2522type%2522%253A%2522modify%2522%252C%2522subType%2522%253A%2522response-headers%2522%252C%2522headers%2522%253A%255B%257B%2522op%2522%253A%2522set%2522%252C%2522key%2522%253A%2522CDN-Cache-Control%2522%252C%2522value%2522%253A%2522public%252C%2520max-age%253D3600%252C%2520stale-while-revalidate%253D86400%2522%257D%252C%257B%2522op%2522%253A%2522set%2522%252C%2522key%2522%253A%2522Vercel-Cache-Tag%2522%252C%2522value%2522%253A%2522booking%2522%257D%255D%257D%255D%257D&title=Add%20Booking%20Page%20Route"
+            className="inline-flex items-center justify-center bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors text-sm"
           >
-            View Docs
+            Add Route in Dashboard
           </a>
-          <a
-            href="https://github.com/vercel/examples/tree/main/cdn/cal-booking-rewrite#in-code-alternative-approach"
-            className="flex-1 inline-flex items-center justify-center border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors text-sm"
-          >
-            Use vercel.ts instead
-          </a>
+          <div className="flex gap-3">
+            <a
+              href="https://vercel.com/docs/routing/project-routing-rules"
+              className="flex-1 inline-flex items-center justify-center border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors text-sm"
+            >
+              View Docs
+            </a>
+            <a
+              href="https://github.com/vercel/examples/tree/main/cdn/cal-booking-rewrite#in-code-alternative-approach"
+              className="flex-1 inline-flex items-center justify-center border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors text-sm"
+            >
+              Use vercel.ts instead
+            </a>
+          </div>
         </div>
 
         <p className="text-xs text-gray-400 dark:text-gray-600 mt-6 text-center leading-relaxed">

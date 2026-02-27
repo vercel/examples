@@ -9,7 +9,7 @@
  *
  * Note: Changes to this file require a new deployment. If you need
  * instant updates without redeploying, use project routes instead:
- * https://vercel.com/docs/cdn
+ * https://vercel.com/docs/routing/project-routing-rules
  */
 import type { VercelConfig } from '@vercel/config/v1'
 

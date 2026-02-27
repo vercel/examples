@@ -11,7 +11,7 @@ demoUrl: https://cal-booking-rewrite.vercel.app
 
 # Cal.com booking page rewrite
 
-This template demonstrates how to serve an external scheduling page from your main domain using [Vercel project routes](https://vercel.com/docs/cdn). Instead of linking users to `cal.com/your-username`, your booking page lives at `yourdomain.com/book` for a seamless brand experience.
+This template demonstrates how to serve an external scheduling page from your main domain using [Vercel project routes](https://vercel.com/docs/routing/project-routing-rules). Instead of linking users to `cal.com/your-username`, your booking page lives at `yourdomain.com/book` for a seamless brand experience.
 
 The demo shows a fictional product site ("Beacon") where the `/book` path proxies to a Cal.com scheduling page with CDN caching and cache tags.
 
@@ -46,6 +46,12 @@ The template deploys as a Next.js app with a placeholder page at `/book`. To con
 
 ### Option A: Dashboard
 
+Use the pre-filled link below to open the route creation form with the rewrite and caching headers already configured. Select your team and project, then update the destination URL with your Cal.com username.
+
+[**Add Route**](https://vercel.com/d?to=%2F%5Bteam%5D%2F%5Bproject%5D%2Fcdn%2Frouting%2Fnew%3Froute%3D%257B%2522name%2522%253A%2522Booking%2520Page%2522%252C%2522description%2522%253A%2522Proxy%2520%252Fbook%2520to%2520Cal.com%2520scheduling%2520page%2520with%2520CDN%2520caching%2522%252C%2522path%2522%253A%2522%252Fbook%252F%253Apath*%2522%252C%2522syntax%2522%253A%2522path-to-regexp%2522%252C%2522actions%2522%253A%255B%257B%2522type%2522%253A%2522rewrite%2522%252C%2522dest%2522%253A%2522https%253A%252F%252Fcal.com%252Fyour-booking-page%252F%253Apath*%2522%257D%252C%257B%2522type%2522%253A%2522modify%2522%252C%2522subType%2522%253A%2522response-headers%2522%252C%2522headers%2522%253A%255B%257B%2522op%2522%253A%2522set%2522%252C%2522key%2522%253A%2522CDN-Cache-Control%2522%252C%2522value%2522%253A%2522public%252C%2520max-age%253D3600%252C%2520stale-while-revalidate%253D86400%2522%257D%252C%257B%2522op%2522%253A%2522set%2522%252C%2522key%2522%253A%2522Vercel-Cache-Tag%2522%252C%2522value%2522%253A%2522booking%2522%257D%255D%257D%255D%257D&title=Add%20Booking%20Page%20Route)
+
+Or set it up manually:
+
 1. Open your project in the [Vercel Dashboard](https://vercel.com/dashboard)
 2. Navigate to **CDN** > **Routing**
 3. Click **Create Route**
@@ -54,7 +60,7 @@ The template deploys as a Next.js app with a placeholder page at `/book`. To con
    - **Path**: `/book/:path*`
    - **Syntax**: path-to-regexp
    - **Action**: Rewrite
-   - **Destination**: `https://cal.com/your-username/:path*`
+   - **Destination**: `https://cal.com/your-booking-page/:path*`
    - **Response headers** (optional, for CDN caching):
      - `CDN-Cache-Control`: `public, max-age=3600, stale-while-revalidate=86400`
      - `Vercel-Cache-Tag`: `booking`
@@ -69,7 +75,7 @@ Visit `/book` on your domain. You should see your Cal.com booking page.
 vercel routes add "Booking Page" \
   --src "/book/:path*" \
   --src-syntax path-to-regexp \
-  --dest "https://cal.com/your-username/:path*" \
+  --dest "https://cal.com/your-booking-page/:path*" \
   --set-response-header "CDN-Cache-Control=public, max-age=3600, stale-while-revalidate=86400" \
   --set-response-header "Vercel-Cache-Tag=booking" \
   --yes
@@ -77,7 +83,7 @@ vercel routes add "Booking Page" \
 vercel routes publish --yes
 ```
 
-Replace `your-username` with your Cal.com username.
+Replace `your-booking-page` with your Cal.com username.
 
 ## How it works
 
@@ -122,7 +128,7 @@ If you prefer to manage routes in code rather than the Dashboard or CLI, rename 
 mv vercel.ts.example vercel.ts
 ```
 
-Set the `CAL_URL` environment variable in your Vercel project settings to point to your Cal.com page (e.g., `https://cal.com/your-username`). If not set, it falls back to the demo URL.
+Set the `CAL_URL` environment variable in your Vercel project settings to point to your Cal.com page (e.g., `https://cal.com/your-booking-page`). If not set, it falls back to the demo URL.
 
 The `vercel.ts` file configures the same rewrite and caching headers as the project route approach. The difference is that code-based routes require a new deployment to update, while project routes take effect instantly.
 
@@ -133,7 +139,7 @@ You can also use `vercel.json` to achieve the same result:
   "routes": [
     {
       "src": "/book",
-      "dest": "https://cal.com/your-username",
+      "dest": "https://cal.com/your-booking-page",
       "headers": {
         "CDN-Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
         "Vercel-Cache-Tag": "booking"
@@ -141,7 +147,7 @@ You can also use `vercel.json` to achieve the same result:
     },
     {
       "src": "/book/(.*)",
-      "dest": "https://cal.com/your-username/$1",
+      "dest": "https://cal.com/your-booking-page/$1",
       "headers": {
         "CDN-Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
         "Vercel-Cache-Tag": "booking"
