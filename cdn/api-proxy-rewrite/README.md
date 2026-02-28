@@ -91,8 +91,6 @@ vercel routes publish --yes
 5. The CDN caches the response based on the `CDN-Cache-Control` header and tags it with `Vercel-Cache-Tag`
 6. The blog page renders the data
 
-Your frontend code fetches from `/api/external/posts` as if it were a local API. The CDN rewrite is transparent — no CORS issues, no exposing backend URLs to the client.
-
 ### CDN caching
 
 `CDN-Cache-Control` controls caching at the Vercel CDN only. Unlike `Cache-Control`, which affects both the browser and CDN, `CDN-Cache-Control` is stripped before reaching the browser. API consumers always fetch fresh data from the CDN, while the CDN caches responses to reduce load on your backend.
