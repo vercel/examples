@@ -1,5 +1,5 @@
 {
-  "name": "cal-booking-rewrite",
+  "name": "api-proxy-rewrite",
   "version": "1.0.0",
   "private": true,
   "repository": "https://github.com/vercel/examples.git",
