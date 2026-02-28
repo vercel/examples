@@ -3,21 +3,21 @@ name: API proxy rewrite
 slug: api-proxy-rewrite
 description: Proxy an external API through your domain using Vercel project routes with CDN caching and cache tags.
 framework: Next.js
-useCase: Rewrites
+useCase: CDN
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite
-demoUrl: https://api-proxy-rewrite.vercel.app
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples
+demoUrl: https://api-proxy-rewrite-project-routing.vercel.app
 ---
 
 # API proxy rewrite
 
-This template demonstrates how to proxy an external API through your domain using [Vercel project routes](https://vercel.com/docs/routing/project-routing-rules) with CDN caching and cache tags. No code changes or redeployment needed.
+Proxy an external API through your domain using [Vercel project routes](https://vercel.com/docs/routing/project-routing-rules) with CDN caching and cache tags.
 
-The demo shows a fictional product site ("Beacon") where the `/blog` page fetches posts from `/api/external/posts`, which is proxied to an external API ([JSONPlaceholder](https://jsonplaceholder.typicode.com)) via a project route. Before the route is configured, the blog page shows an onboarding guide. After the route is active, posts appear automatically.
+Deploy the demo app, then set up a project route through the Dashboard or CLI to proxy `/api/external/posts` to an external API without any code changes or redeployment.
 
 ## Demo
 
-https://api-proxy-rewrite.vercel.app/
+https://api-proxy-rewrite-project-routing.vercel.app/
 
 Visit `/blog` to see blog posts fetched from an external API through the CDN proxy.
 
@@ -25,9 +25,9 @@ Visit `/blog` to see blog posts fetched from an external API through the CDN pro
 
 ### One-Click Deploy
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+Deploy the template using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples)
 
 ### Clone and Deploy
 
@@ -42,7 +42,7 @@ After deploying, visit `/blog` to see the onboarding page with setup instruction
 
 ## Set up the route
 
-The template deploys as a Next.js app. The `/blog` page fetches from `/api/external/posts`, but this path returns a 404 until you create a project route to proxy it to your API. Project routes take effect instantly with no redeployment needed.
+The `/blog` page fetches from `/api/external/posts`, but this path returns a 404 until you create a project route to proxy it to your API. Project routes take effect instantly — no redeployment needed.
 
 ### Option A: Dashboard
 
@@ -58,7 +58,6 @@ Or set it up manually:
 4. Configure the route:
    - **Name**: Blog API Proxy
    - **Path**: `/api/external/:path*`
-   - **Syntax**: path-to-regexp
    - **Action**: Rewrite
    - **Destination**: `https://jsonplaceholder.typicode.com/$1`
    - **Response headers** (optional, for CDN caching):
@@ -67,7 +66,7 @@ Or set it up manually:
 5. Click **Save**, then test with the staging preview
 6. Click **Publish** to apply the route to production
 
-Visit `/blog` on your domain. You should see blog posts appear.
+The source path uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp) syntax where `:path*` is a named wildcard. The destination uses `$1` to reference the first captured group from the source pattern.
 
 ### Option B: CLI
 
@@ -85,67 +84,58 @@ vercel routes publish --yes
 
 ## How it works
 
-When a user visits `/blog`:
-
 1. The Next.js app renders the blog page and fetches `/api/external/posts`
 2. The request reaches Vercel's CDN
-3. The project route matches `/api/external/:path*` and rewrites the request to `https://jsonplaceholder.typicode.com/posts`
-4. JSONPlaceholder responds with JSON data
-5. The CDN caches the response based on the `CDN-Cache-Control` header
-6. The blog page renders the post data
+3. The project route matches `/api/external/:path*` and rewrites the request to your configured API endpoint (e.g., `https://jsonplaceholder.typicode.com/posts`)
+4. The external API responds with JSON data
+5. The CDN caches the response based on the `CDN-Cache-Control` header and tags it with `Vercel-Cache-Tag`
+6. The blog page renders the data
 
-The CDN rewrite happens transparently. Your frontend code fetches from `/api/external/posts` as if it were a local API — no CORS issues, no exposing backend URLs to the client.
-
-### Why `/api/external`?
-
-We use `/api/external` instead of `/api` to avoid conflicting with [Next.js API routes](https://nextjs.org/docs/app/building-your-application/routing/route-handlers) at `/api/`. You can change this to any path that doesn't conflict with your existing routes.
+Your frontend code fetches from `/api/external/posts` as if it were a local API. The CDN rewrite is transparent — no CORS issues, no exposing backend URLs to the client.
 
 ### CDN caching
 
-The response header `CDN-Cache-Control: public, max-age=60, stale-while-revalidate=3600` controls caching at the Vercel CDN only. It's stripped before reaching the browser.
+`CDN-Cache-Control` controls caching at the Vercel CDN only. Unlike `Cache-Control`, which affects both the browser and CDN, `CDN-Cache-Control` is stripped before reaching the browser. API consumers always fetch fresh data from the CDN, while the CDN caches responses to reduce load on your backend.
 
-- **`max-age=60`**: The CDN considers the response fresh for 1 minute. During this time, requests are served from the cache without hitting the external API.
-- **`stale-while-revalidate=3600`**: After the 1-minute window, the CDN serves the stale cached response immediately while fetching a fresh copy in the background. This "stale window" lasts 1 hour.
+- **`max-age=60`**: The CDN serves cached responses for 1 minute without hitting the external API.
+- **`stale-while-revalidate=3600`**: After the 1-minute window, the CDN serves stale content immediately while fetching a fresh copy in the background. This stale window lasts 1 hour.
+
+If your API experiences downtime, the CDN continues serving cached responses during the stale-while-revalidate window.
 
 ### Cache tags
 
-The `Vercel-Cache-Tag: api` header labels cached responses with an arbitrary tag. You can purge all responses tagged `api` at once without flushing the entire project cache.
+`Vercel-Cache-Tag: api` labels cached responses with a tag. You can purge all responses tagged `api` without flushing the entire project cache.
 
 **Purge via Dashboard**: Navigate to **CDN** > **Caches**, select **Cache Tag**, enter `api`, choose **Invalidate content**, and click **Purge**.
 
 **Purge via API**:
 
 ```bash
-curl -X POST "https://api.vercel.com/v1/projects/{projectId}/cache/purge" \
+curl -X POST "https://api.vercel.com/v1/edge-cache/invalidate-by-tags?projectIdOrName=your-project-id" \
   -H "Authorization: Bearer $VERCEL_TOKEN" \
+  -H "Content-Type: application/json" \
   -d '{"tags": ["api"]}'
 ```
 
 ## In code (alternative approach)
 
-If you prefer to manage routes in code rather than the Dashboard or CLI, rename `vercel.ts.example` to `vercel.ts` and redeploy:
+If you prefer to manage routes in code rather than the Dashboard or CLI, rename `vercel.ts.example` to `vercel.ts` and redeploy. Set the `API_URL` environment variable in your project settings to point to your API (e.g., `https://jsonplaceholder.typicode.com`). If not set, it falls back to the demo URL.
 
-```bash
-mv vercel.ts.example vercel.ts
-```
+Code-based routes require a new deployment to update, while project routes take effect instantly.
 
-Set the `API_URL` environment variable in your Vercel project settings to point to your API (e.g., `https://jsonplaceholder.typicode.com`). If not set, it falls back to the demo URL.
-
-The `vercel.ts` file configures the same rewrite and caching headers as the project route approach. The difference is that code-based routes require a new deployment to update, while project routes take effect instantly.
-
-You can also use `vercel.json` to achieve the same result:
+You can also use `vercel.json`:
 
 ```json
 {
   "rewrites": [
     {
-      "source": "/api/external/:match*",
-      "destination": "https://jsonplaceholder.typicode.com/:match*"
+      "source": "/api/external/:path*",
+      "destination": "https://jsonplaceholder.typicode.com/:path*"
     }
   ],
   "headers": [
     {
-      "source": "/api/external/:match*",
+      "source": "/api/external/:path*",
       "headers": [
         {
           "key": "CDN-Cache-Control",
@@ -161,45 +151,11 @@ You can also use `vercel.json` to achieve the same result:
 }
 ```
 
-## When to use each approach
-
-| Approach | Best for | Updates require |
-| --- | --- | --- |
-| Dashboard | Non-technical users, one-off setup, instant changes | Click "Publish" |
-| CLI | CI/CD pipelines, scripting, automation | Run command |
-| `vercel.ts` | Version-controlled config with env vars, TypeScript projects | New deployment |
-| `vercel.json` | Version-controlled config, no extra dependencies | New deployment |
-
-## Customization
-
-### Different API
-
-Swap `jsonplaceholder.typicode.com` for your own backend, CMS API, or any external API. Common examples:
-
-- Your own backend: `https://api.yourcompany.com/:path*`
-- Headless CMS: `https://cdn.contentful.com/spaces/your-space/:path*`
-- Third-party service: `https://api.stripe.com/:path*`
-
-### Different path
-
-Change `/api/external` to `/backend`, `/data`, `/proxy`, or any path that doesn't conflict with your existing routes.
-
-### Cache duration
-
-Adjust `max-age` and `stale-while-revalidate` based on how often your API data changes:
-
-- **Rarely changes**: `max-age=3600, stale-while-revalidate=86400` (1 hour fresh, 1 day stale)
-- **Changes frequently**: `max-age=10, stale-while-revalidate=60` (10 sec fresh, 1 min stale)
-- **No caching**: Remove the `CDN-Cache-Control` and `Vercel-Cache-Tag` headers
-
-### Request headers
-
-Use transforms to add authentication headers to proxied requests (e.g., `Authorization: Bearer $API_TOKEN`). This keeps API keys on the server and out of your client-side code.
-
 ## Key benefits
 
 - **No CORS issues**: API is served from your domain
-- **CDN caching**: Reduce load on your backend and improve response times
-- **Instant updates**: Project routes let you change the destination API or caching without redeploying
-- **Unified domain**: No exposing backend URLs to the client
-- **Cache tags**: Purge specific cached API responses without flushing everything
+- **CDN caching**: Responses are cached at Vercel's edge network, reducing load on your backend
+- **Instant updates**: Change the destination API or caching without redeploying
+- **Unified domain**: Backend URLs are never exposed to the client
+- **Cache tags**: Purge specific cached responses without flushing everything
+- **Resilience**: The CDN serves cached responses even if your backend is temporarily unavailable
