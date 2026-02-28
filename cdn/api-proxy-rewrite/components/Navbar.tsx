@@ -21,10 +21,10 @@ export default function Navbar() {
 
           <div className="flex items-center gap-1">
             <Link
-              href="/book"
+              href="/blog"
               className="text-sm px-3 py-1.5 rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-all"
             >
-              Book a Demo
+              Blog
             </Link>
             <Link
               href="/pricing"
@@ -33,7 +33,7 @@ export default function Navbar() {
               Pricing
             </Link>
             <a
-              href="https://github.com/vercel/examples/tree/main/cdn/cal-booking-rewrite"
+              href="https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm px-3 py-1.5 rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-all"

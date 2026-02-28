@@ -27,13 +27,13 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/book"
+              href="/blog"
               className="inline-flex items-center justify-center bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-2.5 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors text-sm"
             >
-              Book a Demo
+              Read the Blog
             </Link>
             <a
-              href="https://github.com/vercel/examples/tree/main/cdn/cal-booking-rewrite"
+              href="https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite"
               className="inline-flex items-center justify-center border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 px-6 py-2.5 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors text-sm"
             >
               View Source
@@ -69,7 +69,6 @@ export default function Home() {
                   Track every user interaction as it happens. Sub-second ingestion
                   with zero sampling across every plan.
                 </p>
-                {/* Mini visualization */}
                 <div className="mt-6 flex items-end gap-1 h-16">
                   {[40, 65, 45, 80, 55, 90, 70, 95, 60, 85, 75, 50, 88, 72, 92, 68, 78, 82, 58, 95].map((h, i) => (
                     <div
@@ -176,17 +175,17 @@ beacon.track('subscription_started', {
       <section className="py-20 px-4">
         <div className="max-w-2xl mx-auto text-center">
           <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            See Beacon in action
+            Explore the blog
           </h3>
           <p className="text-gray-600 dark:text-gray-400 mb-8 text-lg">
-            Book a 30-minute demo with our team and see how Beacon
-            can help you make data-driven decisions.
+            Read the latest posts from the Beacon team, served through
+            an external API proxied via Vercel project routes.
           </p>
           <Link
-            href="/book"
+            href="/blog"
             className="inline-flex items-center justify-center bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-3 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
           >
-            Book a Demo
+            Read the Blog
           </Link>
         </div>
       </section>
