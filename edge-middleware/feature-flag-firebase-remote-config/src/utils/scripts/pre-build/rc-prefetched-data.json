@@ -1,0 +1,26 @@
+[
+  {
+    "name": "about_variant",
+    "parameters": {
+      "defaultValue": { "value": "A" },
+      "conditionalValues": { "20%": { "value": "B" }, "30%": { "value": "C" } },
+      "valueType": "STRING"
+    }
+  },
+  {
+    "name": "testing2",
+    "parameters": {
+      "defaultValue": { "value": "{\"testingJson\":true}" },
+      "conditionalValues": { "50%": { "value": "{\"testingJson\":false}" } },
+      "valueType": "JSON"
+    }
+  },
+  {
+    "name": "testing",
+    "parameters": {
+      "defaultValue": { "value": "true" },
+      "conditionalValues": { "50%": { "value": "false" } },
+      "valueType": "BOOLEAN"
+    }
+  }
+]
