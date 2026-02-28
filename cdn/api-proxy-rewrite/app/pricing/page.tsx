@@ -50,7 +50,7 @@ export default function PricingPage() {
               </li>
             </ul>
             <Link
-              href="/book"
+              href="/"
               className="w-full inline-flex items-center justify-center border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 px-6 py-2.5 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors text-sm"
             >
               Get started
@@ -90,10 +90,10 @@ export default function PricingPage() {
               </li>
             </ul>
             <Link
-              href="/book"
+              href="/"
               className="w-full inline-flex items-center justify-center bg-indigo-500 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-indigo-600 transition-colors text-sm"
             >
-              Book a demo
+              Get started
             </Link>
           </div>
 
@@ -124,7 +124,7 @@ export default function PricingPage() {
               </li>
             </ul>
             <Link
-              href="/book"
+              href="/"
               className="w-full inline-flex items-center justify-center border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 px-6 py-2.5 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors text-sm"
             >
               Contact sales
