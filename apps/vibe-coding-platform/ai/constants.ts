@@ -1,26 +1,27 @@
 import { type GatewayModelId } from '@ai-sdk/gateway'
 
 export enum Models {
-  AmazonNova2Pro = 'amazon/nova-2-pro',
-  AnthropicClaudeSonnet46 = 'anthropic/claude-sonnet-4.6',
   AnthropicClaudeOpus46 = 'anthropic/claude-opus-4.6',
-  GoogleGemini3Flash = 'google/gemini-3-flash',
-  MoonshotKimiK25 = 'moonshotai/kimi-k2.5',
-  OpenAIGPT52 = 'openai/gpt-5.2',
-  XaiGrok41Fast = 'xai/grok-4.1-fast-non-reasoning',
+  AnthropicClaudeSonnet46 = 'anthropic/claude-sonnet-4.6',
+  OpenAIGPT53Codex = 'openai/gpt-5.3-codex',
+  XaiGrok41Reasoning = 'xai/grok-4.1-fast-reasoning',
 }
 
-export const DEFAULT_MODEL = Models.OpenAIGPT52
+export const DEFAULT_MODEL = Models.AnthropicClaudeOpus46
 
 export const SUPPORTED_MODELS: GatewayModelId[] = [
-  Models.OpenAIGPT52,
-  Models.AmazonNova2Pro,
-  Models.AnthropicClaudeSonnet46,
   Models.AnthropicClaudeOpus46,
-  Models.GoogleGemini3Flash,
-  Models.MoonshotKimiK25,
-  Models.XaiGrok41Fast,
+  Models.AnthropicClaudeSonnet46,
+  Models.OpenAIGPT53Codex,
+  Models.XaiGrok41Reasoning,
 ]
+
+export const MODEL_NAMES: Record<string, string> = {
+  [Models.AnthropicClaudeOpus46]: 'Claude Opus 4.6',
+  [Models.AnthropicClaudeSonnet46]: 'Claude Sonnet 4.6',
+  [Models.OpenAIGPT53Codex]: 'GPT-5.3 Codex',
+  [Models.XaiGrok41Reasoning]: 'Grok 4.1 Reasoning',
+}
 
 export const TEST_PROMPTS = [
   'Generate a Next.js app that allows to list and search Pokemons',

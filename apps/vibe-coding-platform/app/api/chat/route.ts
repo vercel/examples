@@ -6,9 +6,9 @@ import {
   stepCountIs,
   streamText,
 } from 'ai'
-import { DEFAULT_MODEL } from '@/ai/constants'
+import { DEFAULT_MODEL, MODEL_NAMES, SUPPORTED_MODELS } from '@/ai/constants'
 import { NextResponse } from 'next/server'
-import { getAvailableModels, getModelOptions } from '@/ai/gateway'
+import { getModelOptions } from '@/ai/gateway'
 import { checkBotId } from 'botid/server'
 import { tools } from '@/ai/tools'
 import prompt from './prompt.md'
@@ -20,16 +20,14 @@ interface BodyData {
 }
 
 export async function POST(req: Request) {
-  const checkResult = await checkBotId()
+  const [checkResult, { messages, modelId = DEFAULT_MODEL, reasoningEffort }] =
+    await Promise.all([checkBotId(), req.json() as Promise<BodyData>])
+
   if (checkResult.isBot) {
     return NextResponse.json({ error: `Bot detected` }, { status: 403 })
   }
 
-  const [models, { messages, modelId = DEFAULT_MODEL, reasoningEffort }] =
-    await Promise.all([getAvailableModels(), req.json() as Promise<BodyData>])
-
-  const model = models.find((model) => model.id === modelId)
-  if (!model) {
+  if (!SUPPORTED_MODELS.includes(modelId)) {
     return NextResponse.json(
       { error: `Model ${modelId} not found.` },
       { status: 400 }
@@ -77,7 +75,7 @@ export async function POST(req: Request) {
             sendReasoning: true,
             sendStart: false,
             messageMetadata: () => ({
-              model: model.name,
+              model: MODEL_NAMES[modelId] ?? modelId,
             }),
           })
         )

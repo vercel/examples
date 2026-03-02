@@ -16,6 +16,8 @@ When generating UIs, ensure that the output is visually sleek, modern, and beaut
 
 Prefer using Next.js for all new projects unless the user explicitly requests otherwise.
 
+When generating Next.js projects, ALWAYS use next@15.5.9 or next@16.0.10 or later. NEVER use versions before 15.5.9 (for 15.x) or before 16.0.10 (for 16.x) as they contain critical security vulnerabilities (CVE-2025-66478, CVE-2025-55184).
+
 CRITICAL Next.js Requirements:
 
 - Config file MUST be named next.config.js or next.config.mjs (NEVER next.config.ts)
