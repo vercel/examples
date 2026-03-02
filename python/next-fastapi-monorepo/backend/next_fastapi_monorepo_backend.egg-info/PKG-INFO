@@ -1,6 +1,0 @@
-Metadata-Version: 2.4
-Name: next-fastapi-monorepo-backend
-Version: 0.1.0
-Requires-Python: >=3.12
-Requires-Dist: fastapi>=0.124.2
-Requires-Dist: uvicorn>=0.38.0

@@ -23,6 +23,7 @@ yarn-error.log*
 # python
 *.pyc
 __pycache__
+*.egg-info
 .venv
 venv
 env/
