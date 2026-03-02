@@ -6,7 +6,7 @@ const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "/svc/api";
 
 export default function Home() {
   const [response, setResponse] = useState(null);
-  const [loading, setLoading] = useState({ proxy: false, backend: false });
+  const [loading, setLoading] = useState({ frontend: false, backend: false });
 
   async function call(key, url) {
     setLoading((prev) => ({ ...prev, [key]: true }));
@@ -61,14 +61,14 @@ export default function Home() {
           <div className="card">
             <h3>Next.js API Route</h3>
             <p>
-              Calls <code>/api/proxy</code>, a Next.js route handler that
-              fetches data from the FastAPI backend.
+              Calls <code>/api/hello</code>, a route handler running on the
+              Next.js frontend service.
             </p>
             <button
-              onClick={() => call("proxy", "/api/proxy")}
-              disabled={loading.proxy}
+              onClick={() => call("frontend", "/api/hello")}
+              disabled={loading.frontend}
             >
-              {loading.proxy ? "Loading..." : "Call /api/proxy →"}
+              {loading.frontend ? "Loading..." : "Call /api/hello →"}
             </button>
           </div>
 

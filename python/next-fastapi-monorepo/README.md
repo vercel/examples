@@ -7,7 +7,7 @@ Minimal example showing Vercel Services with:
 
 It demonstrates:
 
-1. A **Next.js API route** at `/api/proxy`
+1. A **Next.js API route** at `/api/hello`
 2. A **FastAPI backend route** at `/svc/api/status`
 3. **Backend mounting via service routePrefix** in `vercel.json`
 
@@ -20,7 +20,7 @@ next-fastapi-monorepo/
 │   └── pyproject.toml
 ├── frontend/
 │   ├── app/
-│   │   ├── api/proxy/route.js
+│   │   ├── api/hello/route.js
 │   │   ├── globals.css
 │   │   ├── layout.js
 │   │   └── page.js
@@ -53,6 +53,6 @@ vercel dev -L
 
 Open `http://localhost:3000` and try:
 
-- `/api/proxy` (Next.js route handler that fetches FastAPI)
+- `/api/hello` (Next.js API route)
 - `/svc/api/status` (FastAPI route)
 - `/svc/api/docs` (FastAPI Swagger UI)
