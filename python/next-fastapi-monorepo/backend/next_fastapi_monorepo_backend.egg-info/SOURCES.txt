@@ -1,0 +1,7 @@
+main.py
+pyproject.toml
+next_fastapi_monorepo_backend.egg-info/PKG-INFO
+next_fastapi_monorepo_backend.egg-info/SOURCES.txt
+next_fastapi_monorepo_backend.egg-info/dependency_links.txt
+next_fastapi_monorepo_backend.egg-info/requires.txt
+next_fastapi_monorepo_backend.egg-info/top_level.txt

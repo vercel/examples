@@ -1,0 +1,8 @@
+[project]
+name = "next-fastapi-monorepo-backend"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.124.2",
+  "uvicorn>=0.38.0",
+]
