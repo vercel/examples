@@ -1,10 +1,14 @@
-import { SUPPORTED_MODELS } from '@/ai/constants'
-import { getAvailableModels } from '@/ai/gateway'
+import { MODEL_NAMES, SUPPORTED_MODELS } from '@/ai/constants'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  const allModels = await getAvailableModels()
-  return NextResponse.json({
-    models: allModels.filter((model) => SUPPORTED_MODELS.includes(model.id)),
-  })
+  return NextResponse.json(
+    {
+      models: SUPPORTED_MODELS.map((id) => ({
+        id,
+        name: MODEL_NAMES[id] ?? id,
+      })),
+    },
+    { headers: { 'Cache-Control': 'public, max-age=300' } }
+  )
 }
