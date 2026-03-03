@@ -19,8 +19,7 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 
-	registerRoutes(router, "")
-	registerRoutes(router, "/svc/api")
+	registerRoutes(router)
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -30,8 +29,8 @@ func main() {
 	_ = router.Run(":" + port)
 }
 
-func registerRoutes(router *gin.Engine, prefix string) {
-	router.GET(prefix+"/", func(c *gin.Context) {
+func registerRoutes(router *gin.Engine) {
+	router.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"service":   "backend",
 			"framework": "go-gin",
@@ -40,7 +39,7 @@ func registerRoutes(router *gin.Engine, prefix string) {
 		})
 	})
 
-	router.GET(prefix+"/status", func(c *gin.Context) {
+	router.GET("/status", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"service":   "backend",
 			"framework": "go-gin",
@@ -49,7 +48,7 @@ func registerRoutes(router *gin.Engine, prefix string) {
 		})
 	})
 
-	router.GET(prefix+"/items", func(c *gin.Context) {
+	router.GET("/items", func(c *gin.Context) {
 		items := []Item{
 			{ID: 1, Name: "Sample Item 1", Value: 100},
 			{ID: 2, Name: "Sample Item 2", Value: 200},
@@ -63,7 +62,7 @@ func registerRoutes(router *gin.Engine, prefix string) {
 		})
 	})
 
-	router.GET(prefix+"/items/:id", func(c *gin.Context) {
+	router.GET("/items/:id", func(c *gin.Context) {
 		id, err := strconv.Atoi(c.Param("id"))
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "invalid item id"})

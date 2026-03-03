@@ -6,8 +6,7 @@ from fastapi import FastAPI, HTTPException
 app = FastAPI(
     title="Next.js + FastAPI Services Demo",
     description="Minimal backend service mounted under /svc/api on Vercel Services",
-    version="1.0.0",
-    root_path="/svc/api",
+    version="1.0.0"
 )
 
 SAMPLE_ITEMS = [
