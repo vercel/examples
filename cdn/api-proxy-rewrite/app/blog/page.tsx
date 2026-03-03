@@ -88,14 +88,9 @@ function Onboarding() {
           <a href={DEEP_LINK} className="inline-flex items-center justify-center bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors text-sm">
             Add Route in Dashboard
           </a>
-          <div className="flex gap-3">
-            <a href="https://vercel.com/docs/routing/project-routing-rules" className="flex-1 inline-flex items-center justify-center border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors text-sm">
-              View Docs
-            </a>
-            <a href="https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite#in-code-alternative-approach" className="flex-1 inline-flex items-center justify-center border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors text-sm">
-              Use vercel.ts instead
-            </a>
-          </div>
+          <a href="https://vercel.com/docs/routing/project-routing-rules" className="inline-flex items-center justify-center border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors text-sm">
+            View Docs
+          </a>
         </div>
 
         <div className="mt-8 rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 px-5 py-4">
