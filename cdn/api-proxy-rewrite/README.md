@@ -11,8 +11,6 @@ demoUrl: https://api-proxy-rewrite-project-routing.vercel.app
 
 # API proxy rewrite
 
-Proxy an external API through your domain using [Vercel project routes](https://vercel.com/docs/routing/project-routing-rules) with CDN caching and cache tags.
-
 Deploy the demo app, then set up a project route through the Dashboard or CLI to proxy `/api/external/posts` to an external API without any code changes or redeployment.
 
 ## Demo
@@ -25,9 +23,7 @@ Visit `/blog` to see blog posts fetched from an external API through the CDN pro
 
 ### One-Click Deploy
 
-Deploy the template using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples)
+Deploy the template on [Vercel](https://vercel.com/?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples) using [this link](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples).
 
 ### Clone and Deploy
 
@@ -42,20 +38,21 @@ After deploying, visit `/blog` to see the onboarding page with setup instruction
 
 ## Set up the route
 
-The `/blog` page fetches from `/api/external/posts`, but this path returns a 404 until you create a project route to proxy it to your API. Project routes take effect instantly — no redeployment needed.
+The `/blog` page fetches from `/api/external/posts`, but this path returns a 404 until you create a project route to proxy it to your API. Project routes take effect instantly with no redeployment required.
+
+You can set the route through the dashboard or the Vercel CLI.
 
 ### Option A: Dashboard
 
-Use the pre-filled link below to open the route creation form with the rewrite and caching headers already configured. Select your team and project, then update the destination URL if you want to use a different API.
+Go to the dashboard directly with this [pre-filled link](https://vercel.com/d?to=%2F%5Bteam%5D%2F%5Bproject%5D%2Fcdn%2Frouting%2Fnew%3Froute%3D%257B%2522name%2522%253A%2522Blog%2520API%2520Proxy%2522%252C%2522description%2522%253A%2522Proxy%2520%252Fapi%252Fexternal%2520to%2520blog%2520API%2520with%2520CDN%2520caching%2522%252C%2522path%2522%253A%2522%252Fapi%252Fexternal%252F%253Apath*%2522%252C%2522syntax%2522%253A%2522path-to-regexp%2522%252C%2522actions%2522%253A%255B%257B%2522type%2522%253A%2522rewrite%2522%252C%2522dest%2522%253A%2522https%253A%252F%252Fjsonplaceholder.typicode.com%252F%25241%2522%257D%252C%257B%2522type%2522%253A%2522modify%2522%252C%2522subType%2522%253A%2522response-headers%2522%252C%2522headers%2522%253A%255B%257B%2522op%2522%253A%2522set%2522%252C%2522key%2522%253A%2522CDN-Cache-Control%2522%252C%2522value%2522%253A%2522public%252C%2520max-age%253D60%252C%2520stale-while-revalidate%253D3600%2522%257D%252C%257B%2522op%2522%253A%2522set%2522%252C%2522key%2522%253A%2522Vercel-Cache-Tag%2522%252C%2522value%2522%253A%2522api%2522%257D%255D%257D%255D%257D&title=Add%20Blog%20API%20Proxy%20Route) that will open the route creation form with the rewrite and caching headers already configured.
 
-[**Add Route**](https://vercel.com/d?to=%2F%5Bteam%5D%2F%5Bproject%5D%2Fcdn%2Frouting%2Fnew%3Froute%3D%257B%2522name%2522%253A%2522Blog%2520API%2520Proxy%2522%252C%2522description%2522%253A%2522Proxy%2520%252Fapi%252Fexternal%2520to%2520blog%2520API%2520with%2520CDN%2520caching%2522%252C%2522path%2522%253A%2522%252Fapi%252Fexternal%252F%253Apath*%2522%252C%2522syntax%2522%253A%2522path-to-regexp%2522%252C%2522actions%2522%253A%255B%257B%2522type%2522%253A%2522rewrite%2522%252C%2522dest%2522%253A%2522https%253A%252F%252Fjsonplaceholder.typicode.com%252F%25241%2522%257D%252C%257B%2522type%2522%253A%2522modify%2522%252C%2522subType%2522%253A%2522response-headers%2522%252C%2522headers%2522%253A%255B%257B%2522op%2522%253A%2522set%2522%252C%2522key%2522%253A%2522CDN-Cache-Control%2522%252C%2522value%2522%253A%2522public%252C%2520max-age%253D60%252C%2520stale-while-revalidate%253D3600%2522%257D%252C%257B%2522op%2522%253A%2522set%2522%252C%2522key%2522%253A%2522Vercel-Cache-Tag%2522%252C%2522value%2522%253A%2522api%2522%257D%255D%257D%255D%257D&title=Add%20Blog%20API%20Proxy%20Route)
+- Select your team and project, then update the destination URL if you want to use a different API.
 
-Or set it up manually:
+You can also set it up manually by following these instructions:
 
-1. Open your project in the [Vercel Dashboard](https://vercel.com/dashboard)
-2. Navigate to **CDN** > **Routing**
-3. Click **Create Route**
-4. Configure the route:
+1. Go to the [CDN Routing Rules page](https://vercel.com/d?to=%2F%5Bteam%5D%2F%5Bproject%5D%2Fcdn%2Frouting&title=Go+to+the+CDN+Project+Routing+Rules) for your project
+2. Click **Create Route**
+3. Configure the route:
    - **Name**: Blog API Proxy
    - **Path**: `/api/external/:path*`
    - **Action**: Rewrite
@@ -63,12 +60,14 @@ Or set it up manually:
    - **Response headers** (optional, for CDN caching):
      - `CDN-Cache-Control`: `public, max-age=60, stale-while-revalidate=3600`
      - `Vercel-Cache-Tag`: `api`
-5. Click **Save**, then test with the staging preview
-6. Click **Publish** to apply the route to production
+4. Click **Save**, then test with the staging preview
+5. Click **Publish** to apply the route to production
 
 The source path uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp) syntax where `:path*` is a named wildcard. The destination uses `$1` to reference the first captured group from the source pattern.
 
 ### Option B: CLI
+
+Run the following command in your terminal using the [Vercel CLI](https://vercel.com/docs/cli):
 
 ```bash
 vercel routes add "Blog API Proxy" \
@@ -104,49 +103,17 @@ If your API experiences downtime, the CDN continues serving cached responses dur
 
 `Vercel-Cache-Tag: api` labels cached responses with a tag. You can purge all responses tagged `api` without flushing the entire project cache.
 
-**Purge via Dashboard**: Navigate to **CDN** > **Caches**, select **Cache Tag**, enter `api`, choose **Invalidate content**, and click **Purge**.
-
-**Purge via API**:
+- Purge via Dashboard: Navigate to [**CDN** > **Caches**](https://vercel.com/d?to=%2F%5Bteam%5D%2F%5Bproject%5D%2Fcdn%2Fcaches&title=Go+to+the+CDN+Caches)
+  - Select **Cache Tag** and enter `api`
+  - Choose **Invalidate content**, and click **Purge**
+- **Purge via API**:
+  - Use the [Vercel API](https://vercel.com/docs/rest-api) with the following endpoint
 
 ```bash
 curl -X POST "https://api.vercel.com/v1/edge-cache/invalidate-by-tags?projectIdOrName=your-project-id" \
   -H "Authorization: Bearer $VERCEL_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"tags": ["api"]}'
-```
-
-## In code (alternative approach)
-
-If you prefer to manage routes in code rather than the Dashboard or CLI, rename `vercel.ts.example` to `vercel.ts` and redeploy. Set the `API_URL` environment variable in your project settings to point to your API (e.g., `https://jsonplaceholder.typicode.com`). If not set, it falls back to the demo URL.
-
-Code-based routes require a new deployment to update, while project routes take effect instantly.
-
-You can also use `vercel.json`:
-
-```json
-{
-  "rewrites": [
-    {
-      "source": "/api/external/:path*",
-      "destination": "https://jsonplaceholder.typicode.com/:path*"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/api/external/:path*",
-      "headers": [
-        {
-          "key": "CDN-Cache-Control",
-          "value": "public, max-age=60, stale-while-revalidate=3600"
-        },
-        {
-          "key": "Vercel-Cache-Tag",
-          "value": "api"
-        }
-      ]
-    }
-  ]
-}
 ```
 
 ## Key benefits
