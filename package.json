@@ -23,6 +23,7 @@
     ]
   },
   "devDependencies": {
+    "lucide-react": "^0.462.0"
     "eslint": "latest",
     "eslint-config-next": "canary",
     "husky": "^8.0.1",
