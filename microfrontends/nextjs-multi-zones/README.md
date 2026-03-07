@@ -79,8 +79,8 @@ This example implements a **multi-zones architecture** where:
 
 ```mermaid
 flowchart TD
-    block_marketing["**🏠 Marketing Application Shell**\nRoutes: /, /about, /pricing, etc.\nHosted: Main deployment\nTech: Next.js + Tailwind CSS"]
-    block_docs["**📚 Documentation Zone**\nRoutes: /docs, /docs/*\nHosted: Separate deployment\nTech: Next.js + Tailwind CSS"]
+    block_marketing["🏠 Marketing Application Shell\nRoutes: /, /about, /pricing, etc.\nHosted: Main deployment\nTech: Next.js + Tailwind CSS"]
+    block_docs["📚 Documentation Zone\nRoutes: /docs, /docs/*\nHosted: Separate deployment\nTech: Next.js + Tailwind CSS"]
 
     block_marketing --> block_docs
 
