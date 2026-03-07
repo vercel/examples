@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import Script from 'next/script'
 import type { LayoutProps } from '@vercel/examples-ui/layout'
-import { getLayout } from '@vercel/examples-ui'
+import { getLayout, Head } from '@vercel/examples-ui'
 import { DATADOME_JS, DATADOME_TAGS } from '@lib/constants'
 import '@vercel/examples-ui/globals.css'
 
@@ -10,12 +10,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Layout
-      title="Bot Protection with DataDome"
       path="edge-middleware/bot-protection-datadome"
       deployButton={{
-        env: ['NEXT_PUBLIC_DATADOME_CLIENT_SIDE_KEY', 'DATADOME_SERVER_SIDE_KEY'],
+        env: [
+          'NEXT_PUBLIC_DATADOME_CLIENT_SIDE_KEY',
+          'DATADOME_SERVER_SIDE_KEY',
+        ],
       }}
     >
+      <Head title="Bot Protection with DataDome" />
       <Component {...pageProps} />
 
       {/* datadome bot protection */}
