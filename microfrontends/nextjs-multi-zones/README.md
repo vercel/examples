@@ -78,33 +78,14 @@ Multi-Zones, or splitting a single domain into multiple applications, allows you
 This example implements a **multi-zones architecture** where:
 
 ```mermaid
-block-beta
-  columns 1
+flowchart TD
+    block_marketing["🏠 Marketing Application Shell\nRoutes: /, /about, /pricing, etc.\nHosted: Main deployment\nTech: Next.js + Tailwind CSS"]
+    block_docs["📚 Documentation Zone\nRoutes: /docs, /docs/*\nHosted: Separate deployment\nTech: Next.js + Tailwind CSS"]
 
-  block:marketing:1
-    columns 1
-    marketingTitle["🏠 Marketing Application (Shell)"]
-    marketingRoutes["Routes: /, /about, /pricing, etc."]
-    marketingHost["Hosted: Main deployment"]
-    marketingTech["Tech: Next.js + Tailwind CSS"]
-  end
+    block_marketing --> block_docs
 
-  space:1
-
-  block:docs:1
-    columns 1
-    docsTitle["📚 Documentation Zone"]
-    docsRoutes["Routes: /docs, /docs/*"]
-    docsHost["Hosted: Separate deployment"]
-    docsTech["Tech: Next.js + Tailwind CSS"]
-  end
-
-  marketing --> docs
-
-  style marketing fill:#0070f3,color:#fff,stroke:#333
-  style docs fill:#7c3aed,color:#fff,stroke:#333
-  style marketingTitle fill:#0070f3,color:#fff,stroke:none
-  style docsTitle fill:#7c3aed,color:#fff,stroke:none
+    style block_marketing fill:#0070f3,color:#fff,stroke:#333
+    style block_docs fill:#7c3aed,color:#fff,stroke:#333
 ```
 
 ### Key Components
