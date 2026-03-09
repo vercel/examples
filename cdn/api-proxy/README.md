@@ -14,7 +14,7 @@ A project routing rule template that rewrites requests under `/api` to an extern
 
 Project level routing rules let you manage routing at the CDN layer without deploying new code. Rules take effect instantly after publishing and can be configured through the Vercel Dashboard, CLI, API, or SDK.
 
-This template creates a rewrite rule that proxies all requests matching `/api/:path*` to an external backend. This is useful when your API is hosted separately (for example, on AWS or another provider) and you want to serve it through your Vercel domain to avoid CORS issues and keep backend URLs hidden from clients.
+This template creates a rewrite rule that proxies all requests matching `/api/:path*` to an external backend. This is useful when your API is hosted separately and you want to serve it through your Vercel domain to avoid CORS issues and keep backend URLs hidden from clients.
 
 ## To use
 
