@@ -1,6 +1,6 @@
 ---
 name: API proxy rewrite
-slug: api-proxy-rewrite
+slug: proxy-requests-to-external-origins
 description: Proxy an external API through your domain using vercel.ts with CDN caching and cache tags.
 framework: Next.js
 useCase: CDN
