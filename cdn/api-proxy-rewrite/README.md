@@ -5,7 +5,7 @@ description: Proxy an external API through your domain using vercel.ts with CDN 
 framework: Next.js
 useCase: CDN
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&env=EXTERNAL_API_URL&envDescription=Optional.+The+base+URL+of+the+external+API+to+proxy.+Leave+blank+to+use+the+demo+API+(jsonplaceholder.typicode.com)&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples
 demoUrl: https://api-proxy-rewrite-project-routing.vercel.app
 ---
 
@@ -23,9 +23,9 @@ Visit `/blog` to see blog posts fetched from an external API through the CDN pro
 
 ### One-Click Deploy
 
-Deploy the template on [Vercel](https://vercel.com/?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples) using [this link](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&env=EXTERNAL_API_URL&envDescription=Optional.+The+base+URL+of+the+external+API+to+proxy.+Leave+blank+to+use+the+demo+API+(jsonplaceholder.typicode.com)&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples).
+Deploy the template on [Vercel](https://vercel.com/?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples) using [this link](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples).
 
-During deploy, you'll be asked for `EXTERNAL_API_URL`. This is optional — leave it blank to use the demo API (`jsonplaceholder.typicode.com`), or enter your own API base URL (e.g., `https://api.example.com`).
+To proxy your own API instead of the demo, set the `EXTERNAL_API_URL` [environment variable](https://vercel.com/docs/environment-variables) in your project settings or update the default value in [`vercel.ts`](./vercel.ts), then redeploy. By default, the template uses `jsonplaceholder.typicode.com` as the external API.
 
 ### Clone and Deploy
 
@@ -41,7 +41,7 @@ pnpm dev
 The rewrite and caching configuration lives in [`vercel.ts`](./vercel.ts):
 
 ```ts
-import type { VercelConfig } from '@vercel/config/v1'
+import { routes, type VercelConfig } from '@vercel/config/v1'
 
 const EXTERNAL_API_URL =
   process.env.EXTERNAL_API_URL || 'https://jsonplaceholder.typicode.com'
@@ -50,19 +50,13 @@ export const config: VercelConfig = {
   framework: 'nextjs',
   outputDirectory: '.next',
   rewrites: [
-    {
-      source: '/api/external/:path*',
-      destination: `${EXTERNAL_API_URL}/:path*`,
-    },
+    routes.rewrite('/api/external/:path*', `${EXTERNAL_API_URL}/:path*`),
   ],
   headers: [
-    {
-      source: '/api/external/:path*',
-      headers: [
-        { key: 'CDN-Cache-Control', value: 'public, max-age=60, stale-while-revalidate=3600' },
-        { key: 'Vercel-Cache-Tag', value: 'api' },
-      ],
-    },
+    routes.header('/api/external/:path*', [
+      { key: 'CDN-Cache-Control', value: 'public, max-age=60, stale-while-revalidate=3600' },
+      { key: 'Vercel-Cache-Tag', value: 'api' },
+    ]),
   ],
 }
 ```
