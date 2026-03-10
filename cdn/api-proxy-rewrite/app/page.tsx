@@ -62,6 +62,10 @@ export default function Home() {
                   {' '}page fetches posts from <code className="text-xs bg-indigo-100 dark:bg-indigo-500/20 px-1.5 py-0.5 rounded font-mono">/api/external/posts</code>, which is rewritten to an external API via{' '}
                   <a href="https://github.com/vercel/examples/blob/main/cdn/api-proxy-rewrite/vercel.ts" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2 hover:text-indigo-700 dark:hover:text-indigo-300">vercel.ts</a>.
                   Responses are cached at the CDN edge and tagged for targeted purging.
+                  {' '}Learn more about{' '}
+                  <a href="https://vercel.com/docs/project-configuration/vercel-ts" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2 hover:text-indigo-700 dark:hover:text-indigo-300">vercel.ts</a>
+                  {' '}and{' '}
+                  <a href="https://vercel.com/docs/routing/rewrites" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2 hover:text-indigo-700 dark:hover:text-indigo-300">rewrites</a>.
                 </p>
               </div>
             </div>
