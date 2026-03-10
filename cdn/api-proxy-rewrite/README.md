@@ -5,7 +5,7 @@ description: Proxy an external API through your domain using vercel.ts with CDN 
 framework: Next.js
 useCase: CDN
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&env=EXTERNAL_API_URL&envDescription=The+base+URL+of+the+external+API+to+proxy+requests+to&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples
 demoUrl: https://api-proxy-rewrite-project-routing.vercel.app
 ---
 
@@ -23,9 +23,9 @@ Visit `/blog` to see blog posts fetched from an external API through the CDN pro
 
 ### One-Click Deploy
 
-Deploy the template on [Vercel](https://vercel.com/?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples) using [this link](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&env=EXTERNAL_API_URL&envDescription=The+base+URL+of+the+external+API+to+proxy+requests+to&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples).
+Deploy the template on [Vercel](https://vercel.com/?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples) using [this link](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples).
 
-You'll be prompted to enter the `EXTERNAL_API_URL` environment variable. This is the base URL of the API you want to proxy (e.g., `https://api.example.com`). If you skip it, the template defaults to `https://jsonplaceholder.typicode.com`.
+To point the rewrite at your own API, set the `EXTERNAL_API_URL` environment variable in `vercel.ts` and redeploy.
 
 ### Clone and Deploy
 
@@ -95,7 +95,7 @@ curl -X POST "https://api.vercel.com/v1/edge-cache/invalidate-by-tags?projectIdO
 
 ## No-code alternative
 
-If you prefer to configure routing without code or redeployment, you can use [project level routing rules](https://vercel.com/docs/routing/project-routing-rules) through the Vercel Dashboard, CLI, API, or SDK. See the [External API Rewrite Routing Rule](https://github.com/vercel/examples/tree/main/cdn/add-api-rewrite-routing-rule) template for a no-code approach.
+If you prefer to configure routing without code or redeployment, you can use [project level routing rules](https://vercel.com/docs/routing/project-routing-rules) through the Vercel Dashboard, CLI, API, or SDK. See the [External API Rewrite Routing Rule](https://vercel.com/templates/template/add-api-external-rewrite-routing-rule) template for a no-code approach.
 
 ## Key benefits
 
