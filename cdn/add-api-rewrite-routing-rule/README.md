@@ -31,3 +31,7 @@ The generated routing rule provides a basic rewrite structure. Consider customiz
 - **Path pattern**: Adjust `/api/:path*` to match your specific API paths.
 - **Response headers**: Add a `CDN-Cache-Control` header to cache responses at the edge.
 - **Cache tags**: Add a `Vercel-Cache-Tag` header to enable targeted cache purging.
+
+## Code-based approach
+
+Routing rules can also be defined in your code for version control. See the [API proxy rewrite](https://vercel.com/templates/template/api-proxy-rewrite) template for a code-based approach using `vercel.ts`.
