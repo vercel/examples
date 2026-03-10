@@ -2,9 +2,6 @@
 
 import { useEffect, useState } from 'react'
 
-const DEEP_LINK =
-  'https://vercel.com/d?to=%2F%5Bteam%5D%2F%5Bproject%5D%2Fcdn%2Frouting%2Fnew%3Froute%3D%257B%2522name%2522%253A%2522Blog%2520API%2520Proxy%2522%252C%2522description%2522%253A%2522Proxy%2520%252Fapi%252Fexternal%2520to%2520blog%2520API%2520with%2520CDN%2520caching%2522%252C%2522path%2522%253A%2522%252Fapi%252Fexternal%252F%253Apath*%2522%252C%2522syntax%2522%253A%2522path-to-regexp%2522%252C%2522actions%2522%253A%255B%257B%2522type%2522%253A%2522rewrite%2522%252C%2522dest%2522%253A%2522https%253A%252F%252Fjsonplaceholder.typicode.com%252F%25241%2522%257D%252C%257B%2522type%2522%253A%2522modify%2522%252C%2522subType%2522%253A%2522response-headers%2522%252C%2522headers%2522%253A%255B%257B%2522op%2522%253A%2522set%2522%252C%2522key%2522%253A%2522CDN-Cache-Control%2522%252C%2522value%2522%253A%2522public%252C%2520max-age%253D60%252C%2520stale-while-revalidate%253D3600%2522%257D%252C%257B%2522op%2522%253A%2522set%2522%252C%2522key%2522%253A%2522Vercel-Cache-Tag%2522%252C%2522value%2522%253A%2522api%2522%257D%255D%257D%255D%257D&title=Add%20Blog%20API%20Proxy%20Route'
-
 type Post = {
   id: number
   title: string
@@ -34,60 +31,57 @@ function Onboarding() {
             </svg>
           </div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-            Connect your blog API
+            Configure your API URL
           </h1>
           <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
             This page fetches posts from{' '}
             <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono">/api/external/posts</code>
-            , which is proxied to your backend via a{' '}
-            <a
-              href="https://vercel.com/docs/routing/project-routing-rules"
-              className="text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 underline underline-offset-2"
-            >
-              Vercel project route
-            </a>
-            . Once configured, posts will appear here automatically.
+            , which is proxied to your backend via a rewrite defined in{' '}
+            <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono">vercel.ts</code>
+            . Set the{' '}
+            <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono">EXTERNAL_API_URL</code>
+            {' '}environment variable to point to your API and redeploy. Defaults to{' '}
+            <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono">jsonplaceholder.typicode.com</code>.
           </p>
         </div>
 
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 p-6 mb-6">
           <h2 className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-5 uppercase tracking-wider">
-            Set up in 2 minutes
+            Setup
           </h2>
           <ol className="space-y-5">
             <li className="flex gap-4">
               <span className="flex-shrink-0 w-7 h-7 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs font-bold flex items-center justify-center mt-0.5">1</span>
               <div>
-                <p className="text-sm text-gray-700 dark:text-gray-300">Open your project in the Vercel Dashboard</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">Set the environment variable</p>
                 <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
-                  Navigate to <strong className="text-gray-700 dark:text-gray-300">CDN</strong> &rarr; <strong className="text-gray-700 dark:text-gray-300">Routing</strong>
+                  <code className="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded font-mono">EXTERNAL_API_URL</code>
+                  {' '}&rarr;{' '}your API base URL
                 </p>
               </div>
             </li>
             <li className="flex gap-4">
               <span className="flex-shrink-0 w-7 h-7 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs font-bold flex items-center justify-center mt-0.5">2</span>
               <div>
-                <p className="text-sm text-gray-700 dark:text-gray-300">Create a rewrite route</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">Redeploy</p>
                 <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
-                  <code className="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded font-mono">/api/external/:path*</code>
-                  {' '}&rarr;{' '}your API URL
+                  The rewrite in{' '}
+                  <code className="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded font-mono">vercel.ts</code>
+                  {' '}reads the variable at build time
                 </p>
               </div>
             </li>
             <li className="flex gap-4">
               <span className="flex-shrink-0 w-7 h-7 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs font-bold flex items-center justify-center mt-0.5">3</span>
               <div>
-                <p className="text-sm text-gray-700 dark:text-gray-300">Test and publish</p>
-                <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">Preview with the staging alias, then publish to production</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">Visit /blog</p>
+                <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">Posts from your API will appear here automatically</p>
               </div>
             </li>
           </ol>
         </div>
 
         <div className="flex flex-col gap-3">
-          <a href={DEEP_LINK} className="inline-flex items-center justify-center bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors text-sm">
-            Add Route in Dashboard
-          </a>
           <a href="https://vercel.com/docs/routing/project-routing-rules" className="inline-flex items-center justify-center border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors text-sm">
             View Docs
           </a>
@@ -96,9 +90,9 @@ function Onboarding() {
         <div className="mt-8 rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 px-5 py-4">
           <p className="text-xs text-gray-500 dark:text-gray-500 leading-relaxed">
             <strong className="text-gray-600 dark:text-gray-400">Running locally?</strong>{' '}
-            Project routes only work on Vercel&apos;s CDN. In local development,
-            you&apos;ll always see this page. Deploy to Vercel and add the route
-            to see it in action.
+            Rewrites defined in <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded font-mono">vercel.ts</code> only
+            take effect on Vercel. In local development, you&apos;ll always see
+            this page. Deploy to Vercel to see it in action.
           </p>
         </div>
       </div>
@@ -164,10 +158,8 @@ export default function BlogPage() {
             <p className="text-sm text-gray-500 dark:text-gray-400">
               Fetched from{' '}
               <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono">/api/external/posts</code>
-              {' '}&rarr;{' '}proxied to your API via a{' '}
-              <a href="https://vercel.com/docs/routing/project-routing-rules" className="text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 underline underline-offset-2">
-                project route
-              </a>
+              {' '}&rarr;{' '}proxied to your API via a rewrite in{' '}
+              <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono">vercel.ts</code>
             </p>
           </div>
         )}
