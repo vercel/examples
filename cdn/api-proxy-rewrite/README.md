@@ -6,7 +6,7 @@ framework: Next.js
 useCase: CDN
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples
-demoUrl: https://api-proxy-rewrite-project-routing.vercel.app
+demoUrl: https://proxy-requests-to-external-origins.vercel.app
 ---
 
 # API proxy rewrite
@@ -15,7 +15,7 @@ Proxy an external API through your domain using `vercel.ts`. Requests to `/api/e
 
 ## Demo
 
-https://api-proxy-rewrite-project-routing.vercel.app/
+https://proxy-requests-to-external-origins.vercel.app/
 
 Visit `/blog` to see blog posts fetched from an external API through the CDN proxy.
 
