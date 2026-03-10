@@ -34,4 +34,4 @@ The generated routing rule provides a basic rewrite structure. Consider customiz
 
 ## Code-based approach
 
-Routing rules can also be defined in your code for version control. See the [API proxy rewrite](https://vercel.com/templates/template/api-proxy-rewrite) template for a code-based approach using `vercel.ts`.
+Routing rules can also be defined in your code for version control. See the [Proxy requests to external origins](https://vercel.com/templates/template/proxy-requests-to-external-origins) template for a code-based approach using `vercel.ts`.
