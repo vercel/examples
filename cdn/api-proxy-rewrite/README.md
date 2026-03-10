@@ -5,7 +5,7 @@ description: Proxy an external API through your domain using vercel.ts with CDN 
 framework: Next.js
 useCase: CDN
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&env=EXTERNAL_API_URL&envDescription=Optional.+The+base+URL+of+the+external+API+to+proxy.+Leave+blank+to+use+the+demo+API+(jsonplaceholder.typicode.com)&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples
 demoUrl: https://api-proxy-rewrite-project-routing.vercel.app
 ---
 
@@ -23,9 +23,9 @@ Visit `/blog` to see blog posts fetched from an external API through the CDN pro
 
 ### One-Click Deploy
 
-Deploy the template on [Vercel](https://vercel.com/?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples) using [this link](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples).
+Deploy the template on [Vercel](https://vercel.com/?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples) using [this link](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&env=EXTERNAL_API_URL&envDescription=Optional.+The+base+URL+of+the+external+API+to+proxy.+Leave+blank+to+use+the+demo+API+(jsonplaceholder.typicode.com)&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples).
 
-To point the rewrite at your own API, set the `EXTERNAL_API_URL` environment variable in `vercel.ts` and redeploy.
+During deploy, you'll be asked for `EXTERNAL_API_URL`. This is optional — leave it blank to use the demo API (`jsonplaceholder.typicode.com`), or enter your own API base URL (e.g., `https://api.example.com`).
 
 ### Clone and Deploy
 
