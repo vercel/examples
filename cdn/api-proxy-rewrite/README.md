@@ -25,7 +25,7 @@ Visit `/blog` to see blog posts fetched from an external API through the CDN pro
 
 Deploy the template on [Vercel](https://vercel.com/?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples) using [this link](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/api-proxy-rewrite&project-name=api-proxy-rewrite&repository-name=api-proxy-rewrite&utm_source=github&utm_medium=readme&utm_campaign=vercel-examples).
 
-To proxy your own API instead of the demo, set the `EXTERNAL_API_URL` environment variable in your project settings and redeploy. Defaults to `jsonplaceholder.typicode.com`.
+To proxy your own API instead of the demo, set the `EXTERNAL_API_URL` environment variable in your project settings and redeploy. By default, the template uses `jsonplaceholder.typicode.com` as the external API.
 
 ### Clone and Deploy
 
