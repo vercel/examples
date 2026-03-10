@@ -40,13 +40,14 @@ function Onboarding() {
             <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono">vercel.ts</code>
             . Set the{' '}
             <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono">EXTERNAL_API_URL</code>
-            {' '}environment variable to point to your API and redeploy.
+            {' '}environment variable to point to your API and redeploy. Defaults to{' '}
+            <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono">jsonplaceholder.typicode.com</code>.
           </p>
         </div>
 
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 p-6 mb-6">
           <h2 className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-5 uppercase tracking-wider">
-            Set up in 2 minutes
+            Setup
           </h2>
           <ol className="space-y-5">
             <li className="flex gap-4">
