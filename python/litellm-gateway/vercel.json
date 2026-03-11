@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "experimentalServices": {
+    "frontend": {
+      "entrypoint": "frontend",
+      "routePrefix": "/",
+      "framework": "nextjs"
+    },
+    "gateway": {
+      "entrypoint": "gateway/app.py",
+      "routePrefix": "/gateway",
+      "maxDuration": 120
+    }
+  }
+}
