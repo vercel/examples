@@ -91,11 +91,4 @@ curl -X POST "https://api.vercel.com/v1/edge-cache/invalidate-by-tags?projectIdO
 
 If you prefer to configure routing without code or redeployment, you can use [project level routing rules](https://vercel.com/docs/routing/project-routing-rules) through the Vercel Dashboard, CLI, API, or SDK. See the [Add API External Rewrite Routing Rule](https://vercel.com/templates/template/add-api-external-rewrite-routing-rule) template for a no-code approach.
 
-## Key benefits
-
-- **No CORS issues**: API is served from your domain
-- **CDN caching**: Responses are cached at Vercel's edge network, reducing load on your backend
-- **Version-controlled routing**: Rewrite configuration lives in code alongside your app
-- **Unified domain**: Backend URLs are never exposed to the client
-- **Cache tags**: Purge specific cached responses without flushing everything
-- **Resilience**: The CDN serves cached responses even if your backend is temporarily unavailable
+To learn about Vercel CDN differentiation and benefits, [read more](https://vercel.com/docs/cdn).

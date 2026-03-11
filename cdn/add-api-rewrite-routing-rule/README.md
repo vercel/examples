@@ -1,7 +1,7 @@
 ---
 name: Add API External Rewrite Routing Rule
 slug: add-api-external-rewrite-routing-rule
-description: Add a project level routing rule to the Vercel CDN that proxies your API to an external origin.
+description: Using project-level routing rules for a rewrite.
 useCase: CDN
 deployUrl: https://vercel.com/[team]/[project]/cdn/routing/new?name=API+Proxy&path=%2Fapi%2F%3Apath*&syntax=pattern&action=rewrite&dest=https%3A%2F%2Fapi.example.com%2F%241
 ---
