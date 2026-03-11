@@ -45,27 +45,27 @@ export default function Home() {
       {/* Rewrite Demo Explanation */}
       <section className="px-4 -mt-4 pb-8">
         <div className="max-w-3xl mx-auto">
-          <div className="rounded-2xl border border-indigo-200 dark:border-indigo-500/20 bg-indigo-50/50 dark:bg-indigo-500/5 p-6">
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-500/10 flex items-center justify-center">
-                <svg className="w-5 h-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <div className="rounded-2xl border border-indigo-200 dark:border-indigo-500/20 bg-indigo-50/50 dark:bg-indigo-500/5 p-8">
+            <div className="flex gap-5">
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-500/10 flex items-center justify-center">
+                <svg className="w-6 h-6 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
-                  This site demonstrates a <code className="text-xs bg-indigo-100 dark:bg-indigo-500/20 px-1.5 py-0.5 rounded font-mono">vercel.ts</code> rewrite
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
+                  This site demonstrates a <code className="text-sm bg-indigo-100 dark:bg-indigo-500/20 px-1.5 py-0.5 rounded font-mono">vercel.ts</code> rewrite
                 </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                   The{' '}
                   <Link href="/blog" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2 hover:text-indigo-700 dark:hover:text-indigo-300">/blog</Link>
-                  {' '}page fetches posts from <code className="text-xs bg-indigo-100 dark:bg-indigo-500/20 px-1.5 py-0.5 rounded font-mono">/api/external/posts</code>, which is rewritten to an external API via{' '}
-                  <a href="https://github.com/vercel/examples/blob/main/cdn/api-proxy-rewrite/vercel.ts" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2 hover:text-indigo-700 dark:hover:text-indigo-300">vercel.ts</a>.
-                  Responses are cached at the CDN edge and tagged for targeted purging.
-                  {' '}Learn more about{' '}
-                  <a href="https://vercel.com/docs/project-configuration/vercel-ts" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2 hover:text-indigo-700 dark:hover:text-indigo-300">vercel.ts</a>
+                  {' '}page fetches posts from <code className="text-xs bg-indigo-100 dark:bg-indigo-500/20 px-1.5 py-0.5 rounded font-mono">/api/external/posts</code>, which is rewritten to an external API via a rewrite defined in{' '}
+                  <a href="https://github.com/vercel/examples/blob/main/cdn/api-proxy-rewrite/vercel.ts" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2 hover:text-indigo-700 dark:hover:text-indigo-300">this project&apos;s vercel.ts</a>.
+                  Responses are cached at the CDN edge using <code className="text-xs bg-indigo-100 dark:bg-indigo-500/20 px-1.5 py-0.5 rounded font-mono">CDN-Cache-Control</code> headers.
+                  {' '}Learn more in the{' '}
+                  <a href="https://vercel.com/docs/routing/rewrites" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2 hover:text-indigo-700 dark:hover:text-indigo-300">rewrites</a>
                   {' '}and{' '}
-                  <a href="https://vercel.com/docs/routing/rewrites" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2 hover:text-indigo-700 dark:hover:text-indigo-300">rewrites</a>.
+                  <a href="https://vercel.com/docs/project-configuration/vercel-ts" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2 hover:text-indigo-700 dark:hover:text-indigo-300">vercel.ts</a> docs.
                 </p>
               </div>
             </div>
