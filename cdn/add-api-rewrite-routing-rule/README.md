@@ -32,6 +32,23 @@ The generated routing rule provides a basic rewrite structure. Consider customiz
 - **Response headers**: Add a `CDN-Cache-Control` header to cache responses at the edge.
 - **Cache tags**: Add a `Vercel-Cache-Tag` header to enable targeted cache purging.
 
+## Configure via CLI, API, or SDK
+
+### Vercel CLI
+
+```bash
+vercel routes add "API Proxy" \
+  --src "/api/:path*" \
+  --src-syntax path-to-regexp \
+  --action rewrite \
+  --dest "https://api.example.com/:path*" \
+  --yes
+
+vercel routes publish --yes
+```
+
+Routing rules can also be configured using the [Vercel REST API](https://vercel.com/docs/rest-api/project-routes/add-a-routing-rule) or the [Vercel SDK](https://vercel.com/docs/rest-api/sdk/project-routes/add-a-routing-rule).
+
 ## Code-based approach
 
 Routing rules can also be defined in your code for version control. See the [Proxy requests to external origins](https://vercel.com/templates/template/proxy-requests-to-external-origins) template for a code-based approach using `vercel.ts`.
