@@ -1,0 +1,15 @@
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe("YOUR_STRIPE_PUBLIC_KEY");
+
+const handlePayment = async (amount) => {
+  const res = await fetch("http://localhost:5000/api/create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ amount }),
+  });
+
+  const session = await res.json();
+  const stripe = await stripePromise;
+  await stripe.redirectToCheckout({ sessionId: session.id });
+};
