@@ -1,0 +1,32 @@
+{% extends "notes/base.html" %}
+
+{% block title %}{{ action }} Note{% endblock %}
+
+{% block content %}
+<h1>{{ action }} Note</h1>
+
+<form method="post" style="margin-top: 1.5rem">
+  {% csrf_token %}
+
+  {% if form.title.errors %}
+    <ul class="errorlist">{% for e in form.title.errors %}<li>{{ e }}</li>{% endfor %}</ul>
+  {% endif %}
+  <label for="{{ form.title.id_for_label }}">Title</label>
+  {{ form.title }}
+
+  {% if form.body.errors %}
+    <ul class="errorlist">{% for e in form.body.errors %}<li>{{ e }}</li>{% endfor %}</ul>
+  {% endif %}
+  <label for="{{ form.body.id_for_label }}">Body</label>
+  {{ form.body }}
+
+  <div class="actions" style="margin-top: 0.5rem">
+    <button type="submit" class="btn btn-primary">{{ action }}</button>
+    {% if note %}
+    <a href="{% url 'note_detail' note.pk %}" class="btn">Cancel</a>
+    {% else %}
+    <a href="{% url 'note_list' %}" class="btn">Cancel</a>
+    {% endif %}
+  </div>
+</form>
+{% endblock %}
