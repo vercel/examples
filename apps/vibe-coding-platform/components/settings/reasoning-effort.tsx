@@ -6,7 +6,7 @@ import { useModelId, useReasoningEffort } from "./use-settings";
 export function ReasoningEffort() {
   const [modelId] = useModelId();
   const [effort, setEffort] = useReasoningEffort();
-  if (modelId !== Models.OpenAIGPT52) {
+  if (modelId !== Models.OpenAIGPT53Codex) {
     return null;
   }
 
@@ -20,7 +20,7 @@ export function ReasoningEffort() {
           Higher Effort Level
         </Label>
         <p className="text-sm leading-relaxed text-muted-foreground">
-          With GPT-5.2, you can request higher reasoning effort level.
+          With GPT-5.3 Codex, you can request higher reasoning effort level.
         </p>
       </div>
       <Checkbox

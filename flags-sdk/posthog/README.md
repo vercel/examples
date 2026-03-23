@@ -15,7 +15,14 @@ If you deploy your own and configure the feature flags in PostHog, you can also 
 
 ## Deploy this template
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk/posthog&env=FLAGS_SECRET&envDescription=The+FLAGS_SECRET+will+be+used+by+the+Flags+Explorer+to+securely+overwrite+feature+flags.+Must+be+32+random+bytes%2C+base64-encoded.+Use+the+generated+value+or+set+your+own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fworkflow-collaboration%2Ffeature-flags%2Fsupporting-feature-flags%23flags_secret-environment-variable&project-name=posthog-flags-sdk-example&repository-name=posthog-flags-sdk-example)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Fposthog&env=FLAGS_SECRET&envDescription=The+FLAGS_SECRET+will+be+used+by+the+Flags+Explorer+to+securely+overwrite+feature+flags.+Must+be+32+random+bytes%2C+base64-encoded.+Use+the+generated+value+or+set+your+own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fworkflow-collaboration%2Ffeature-flags%2Fsupporting-feature-flags%23flags_secret-environment-variable&project-name=posthog-flags-sdk-example&repository-name=posthog-flags-sdk-example&products=%5B%7B%22type%22%3A%22integration%22%2C%22integrationSlug%22%3A%22posthog%22%2C%22productSlug%22%3A%22posthog%22%2C%22protocol%22%3A%22experimentation%22%7D%5D)
+
+Clicking the button above will:
+
+1. Clone this repository to your GitHub account
+2. Create a new Vercel project
+3. Install the PostHog integration from the Vercel Marketplace (automatically configures `POSTHOG_PROJECT_API_KEY` and `POSTHOG_HOST`)
+4. Prompt you to generate a `FLAGS_SECRET` for the Flags Explorer
 
 ### Step 1: Link the project
 
@@ -37,7 +44,7 @@ vercel env pull
 
 ### Step 3: Create Feature Flags
 
-Head over to [PostHog](posthog.com) and create the feature flags required by this template.
+Head over to [PostHog](https://posthog.com) and create the feature flags required by this template.
 
 Feature Flags:
 
@@ -47,3 +54,16 @@ Feature Flags:
 You can also find the feature flag keys in the `flags.ts` file.
 
 Set both feature flags to rollout to 50% of users.
+
+## Manual Setup (without Marketplace integration)
+
+If you prefer not to use the Vercel Marketplace integration, you can manually configure the environment variables:
+
+1. Set `NEXT_PUBLIC_POSTHOG_KEY` to your PostHog project API key
+2. Set `NEXT_PUBLIC_POSTHOG_HOST` to your PostHog host (e.g., `https://us.i.posthog.com`)
+3. Set `FLAGS_SECRET` to a base64-encoded 32-byte random value
+
+For the Flags Explorer feature, also set:
+
+- `POSTHOG_PERSONAL_API_KEY` - Your PostHog personal API key
+- `POSTHOG_PROJECT_ID` - Your PostHog project ID

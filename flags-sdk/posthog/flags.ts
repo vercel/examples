@@ -1,6 +1,7 @@
-import { postHogAdapter, type PostHogEntities } from '@flags-sdk/posthog'
+import { type PostHogEntities } from '@flags-sdk/posthog'
 import { flag } from 'flags/next'
 import { identify } from './lib/identify'
+import { postHogAdapter } from './lib/posthog-adapter'
 import type { Adapter } from 'flags'
 
 export const showSummerBannerFlag = flag<boolean, PostHogEntities>({

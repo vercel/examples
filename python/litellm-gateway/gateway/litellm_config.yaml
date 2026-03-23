@@ -1,0 +1,10 @@
+model_list:
+  - model_name: gpt-4o-mini
+    litellm_params:
+      model: vercel_ai_gateway/openai/gpt-4o-mini
+      api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+
+  - model_name: claude-3-5-haiku
+    litellm_params:
+      model: vercel_ai_gateway/anthropic/claude-3-5-haiku-20241022
+      api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY

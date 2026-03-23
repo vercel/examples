@@ -1,0 +1,19 @@
+# frontend
+frontend/.next
+frontend/node_modules
+frontend/*.log
+
+# go
+backend/.gocache/
+backend/.gomodcache/
+backend/*.exe
+backend/*.test
+backend/*.out
+backend/main
+backend/next-go-monorepo-backend
+backend/.env
+backend/.env*.local
+
+# common
+.vercel
+.DS_Store

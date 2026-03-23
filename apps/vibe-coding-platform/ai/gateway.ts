@@ -4,11 +4,9 @@ import type { JSONValue } from 'ai'
 import type { OpenAIResponsesProviderOptions } from '@ai-sdk/openai'
 import type { LanguageModelV3 } from '@ai-sdk/provider'
 
-export async function getAvailableModels() {
-  const gateway = gatewayInstance()
-  const response = await gateway.getAvailableModels()
-  return response.models.map((model) => ({ id: model.id, name: model.name }))
-}
+const gateway = createGatewayProvider({
+  baseURL: process.env.AI_GATEWAY_BASE_URL,
+})
 
 export interface ModelOptions {
   model: LanguageModelV3
@@ -20,8 +18,7 @@ export function getModelOptions(
   modelId: string,
   options?: { reasoningEffort?: 'low' | 'medium' | 'high' }
 ): ModelOptions {
-  const gateway = gatewayInstance()
-  if (modelId === Models.OpenAIGPT52) {
+  if (modelId === Models.OpenAIGPT53Codex) {
     return {
       model: gateway(modelId),
       providerOptions: {
@@ -36,8 +33,8 @@ export function getModelOptions(
   }
 
   if (
-    modelId === Models.AnthropicClaude4Sonnet ||
-    modelId === Models.AnthropicClaude45Sonnet
+    modelId === Models.AnthropicClaudeSonnet46 ||
+    modelId === Models.AnthropicClaudeOpus46
   ) {
     return {
       model: gateway(modelId),
@@ -53,10 +50,4 @@ export function getModelOptions(
   return {
     model: gateway(modelId),
   }
-}
-
-function gatewayInstance() {
-  return createGatewayProvider({
-    baseURL: process.env.AI_GATEWAY_BASE_URL,
-  })
 }
