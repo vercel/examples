@@ -13,6 +13,8 @@ demoUrl: https://proxy-requests-to-external-origins.vercel.app
 
 Proxy an external API through your domain using `vercel.ts`. Requests to `/api/external/:path*` are rewritten to your backend, cached at the CDN, and tagged for targeted purging.
 
+Proxying puts the [Vercel CDN](https://vercel.com/docs/cdn) in front of your backend, improving performance through Vercel's global edge network and reducing cost with [built-in caching](https://vercel.com/docs/caching). It also adds a layer of security with the [Vercel Firewall](https://vercel.com/docs/vercel-firewall).
+
 ## Demo
 
 https://proxy-requests-to-external-origins.vercel.app/
@@ -78,13 +80,10 @@ export const config: VercelConfig = {
 `Vercel-Cache-Tag: api` labels cached responses with a tag. You can purge all responses tagged `api` without flushing the entire project cache:
 
 - **Dashboard**: Navigate to **CDN** > **Caches**, select **Cache Tag**, enter `api`, and click **Purge**
-- **API**:
+- **CLI**:
 
 ```bash
-curl -X POST "https://api.vercel.com/v1/edge-cache/invalidate-by-tags?projectIdOrName=your-project-id" \
-  -H "Authorization: Bearer $VERCEL_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"tags": ["api"]}'
+vercel cache invalidate --tag api
 ```
 
 ## No-code alternative
