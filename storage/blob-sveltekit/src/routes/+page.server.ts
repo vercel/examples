@@ -11,11 +11,13 @@ export const actions = {
       error(400, { message: 'No file to upload.' })
     }
 
-    const { url } = await put(file.name, file, {
-      access: 'public',
+    const { pathname } = await put(file.name, file, {
+      access: 'private',
       addRandomSuffix: true,
       token: env.BLOB_READ_WRITE_TOKEN,
     })
-    return { uploaded: url }
+    // Private blob URLs are not directly accessible in the browser.
+    // Return a delivery route URL that streams the content.
+    return { uploaded: `/api/blob?pathname=${encodeURIComponent(pathname)}` }
   },
 }
