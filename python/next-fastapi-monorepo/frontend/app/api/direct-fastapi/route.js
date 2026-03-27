@@ -10,11 +10,19 @@ export async function GET() {
     );
   }
 
-  const res = await fetch(`${FASTAPI_DIRECT_URL}/status`, {
-    cache: "no-store",
-  });
+  let res;
+  try {
+    res = await fetch(`${FASTAPI_DIRECT_URL}/status`, { cache: "no-store" });
+  } catch (err) {
+    console.error("[direct-fastapi] fetch failed", { url: FASTAPI_DIRECT_URL, error: err.message });
+    return NextResponse.json({ error: err.message }, { status: 502 });
+  }
 
   const body = await res.text();
+
+  if (!res.ok) {
+    console.error("[direct-fastapi] upstream error", { status: res.status, url: FASTAPI_DIRECT_URL });
+  }
 
   return new NextResponse(body, {
     status: res.status,
