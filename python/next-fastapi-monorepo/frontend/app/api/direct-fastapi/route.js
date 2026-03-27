@@ -87,13 +87,15 @@ export async function GET(request) {
     return NextResponse.json({ error: err.message }, { status: 502 })
   }
 
+  const xVercelId = res.headers['x-vercel-id']
   if (res.status >= 200 && res.status < 300) {
-    console.log('[direct-fastapi] success', { status: res.status, targetUrl })
+    console.log('[direct-fastapi] success', { status: res.status, targetUrl, xVercelId })
   } else {
     console.error('[direct-fastapi] upstream error', {
       status: res.status,
       statusMessage: res.statusMessage,
       targetUrl,
+      xVercelId,
       body: res.body,
     })
   }
