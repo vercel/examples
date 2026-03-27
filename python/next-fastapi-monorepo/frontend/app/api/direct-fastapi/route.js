@@ -54,12 +54,16 @@ export async function GET(request) {
 
   const targetUrl = `${BACKEND_URL}/status`
   const oidcToken = request.headers.get('x-vercel-oidc-token')
+  const incomingVercelId = request.headers.get('x-vercel-id')
+  const isStaging = incomingVercelId?.includes('staging')
   const parsed = new URL(targetUrl)
 
   console.log('[direct-fastapi] config', {
     targetUrl,
     hostname: parsed.hostname,
-    stagingProxyIp: STAGING_PROXY_IP,
+    incomingVercelId,
+    isStaging,
+    stagingProxyIp: isStaging ? STAGING_PROXY_IP : null,
     hasOidcToken: oidcToken !== null,
     oidcTokenPrefix: oidcToken ? `${oidcToken.slice(0, 8)}...` : null,
   })
@@ -68,16 +72,30 @@ export async function GET(request) {
     ? { 'x-vercel-trusted-oidc-idp-token': oidcToken }
     : {}
 
-  console.log('[direct-fastapi] fetching via proxy', {
-    proxyIp: STAGING_PROXY_IP,
-    sni: parsed.hostname,
-    path: parsed.pathname,
-    outboundHeaders: Object.keys(outboundHeaders),
-  })
-
   let res
   try {
-    res = await fetchViaProxy(targetUrl, parsed.hostname, outboundHeaders)
+    if (isStaging) {
+      console.log('[direct-fastapi] fetching via staging proxy', {
+        proxyIp: STAGING_PROXY_IP,
+        sni: parsed.hostname,
+        path: parsed.pathname,
+        outboundHeaders: Object.keys(outboundHeaders),
+      })
+      res = await fetchViaProxy(targetUrl, parsed.hostname, outboundHeaders)
+    } else {
+      console.log('[direct-fastapi] fetching directly', {
+        targetUrl,
+        outboundHeaders: Object.keys(outboundHeaders),
+      })
+      const fetchRes = await fetch(targetUrl, { cache: 'no-store', headers: outboundHeaders })
+      const body = await fetchRes.text()
+      res = {
+        status: fetchRes.status,
+        statusMessage: fetchRes.statusText,
+        headers: Object.fromEntries(fetchRes.headers),
+        body,
+      }
+    }
   } catch (err) {
     console.error('[direct-fastapi] fetch failed', {
       targetUrl,
