@@ -3,37 +3,60 @@ import { NextResponse } from 'next/server'
 const BACKEND_URL = process.env.BACKEND_URL
 
 export async function GET(request) {
+  console.log('[direct-fastapi] request received', {
+    url: request.url,
+    referer: request.headers.get('referer'),
+    origin: request.headers.get('origin'),
+  })
+
   if (!BACKEND_URL) {
+    console.error('[direct-fastapi] BACKEND_URL is not set')
     return NextResponse.json(
       { error: 'BACKEND_URL is not set' },
       { status: 500 }
     )
   }
 
+  const targetUrl = `${BACKEND_URL}/status`
   const oidcToken = request.headers.get('x-vercel-oidc-token')
+
+  console.log('[direct-fastapi] config', {
+    targetUrl,
+    hasOidcToken: oidcToken !== null,
+    oidcTokenPrefix: oidcToken ? `${oidcToken.slice(0, 8)}...` : null,
+  })
+
+  const outboundHeaders = oidcToken
+    ? { 'x-vercel-trusted-oidc-idp-token': oidcToken }
+    : {}
+
+  console.log('[direct-fastapi] fetching', {
+    targetUrl,
+    outboundHeaders: Object.keys(outboundHeaders),
+  })
 
   let res
   try {
-    res = await fetch(`${BACKEND_URL}/status`, {
-      cache: 'no-store',
-      headers: oidcToken
-        ? { 'x-vercel-trusted-oidc-idp-token': oidcToken }
-        : {},
-    })
+    res = await fetch(targetUrl, { cache: 'no-store', headers: outboundHeaders })
   } catch (err) {
     console.error('[direct-fastapi] fetch failed', {
-      url: BACKEND_URL,
+      targetUrl,
       error: err.message,
+      stack: err.stack,
     })
     return NextResponse.json({ error: err.message }, { status: 502 })
   }
 
   const body = await res.text()
 
-  if (!res.ok) {
+  if (res.ok) {
+    console.log('[direct-fastapi] success', { status: res.status, targetUrl })
+  } else {
     console.error('[direct-fastapi] upstream error', {
       status: res.status,
-      url: BACKEND_URL,
+      statusText: res.statusText,
+      targetUrl,
+      body,
     })
   }
 
