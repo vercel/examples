@@ -77,6 +77,6 @@ export async function GET(request) {
 
   return new NextResponse(body, {
     status: res.status,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': res.headers.get('content-type') || 'application/json' },
   })
 }

@@ -19,10 +19,14 @@ export default function Home() {
     setError(null);
     try {
       const res = await fetch(url, { cache: "no-store" });
+      const contentType = res.headers.get('content-type') || '';
+      const isJson = contentType.includes('application/json');
+      const body = isJson ? await res.json() : await res.text();
+
       if (!res.ok) {
-        setError({ status: res.status, statusText: res.statusText, url });
+        setError({ status: res.status, statusText: res.statusText, url, body });
       } else {
-        setResponse(await res.json());
+        setResponse(body);
       }
     } catch (err) {
       setError({ message: err.message, url });
