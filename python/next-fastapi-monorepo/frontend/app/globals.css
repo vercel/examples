@@ -195,6 +195,27 @@ button:disabled {
   cursor: wait;
 }
 
+/* ── Warning card ────────────────────────────────── */
+
+.card--warning {
+  border-color: #7a4a00;
+}
+
+.card--warning:hover {
+  border-color: #b36a00;
+}
+
+.button--warning {
+  color: #f0a030;
+  border-color: #7a4a00;
+  background: #1a1000;
+}
+
+.button--warning:hover:not(:disabled) {
+  background: #261800;
+  border-color: #b36a00;
+}
+
 /* ── Response block ──────────────────────────────── */
 
 .response {
@@ -213,6 +234,12 @@ button:disabled {
   font-size: 0.8rem;
   line-height: 1.45;
   text-align: left;
+}
+
+.response--error pre {
+  border-color: #7a1a1a;
+  background: #0f0505;
+  color: #f08080;
 }
 
 /* ── Responsive ──────────────────────────────────── */

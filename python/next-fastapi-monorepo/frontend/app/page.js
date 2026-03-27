@@ -6,13 +6,26 @@ const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "/svc/api";
 
 export default function Home() {
   const [response, setResponse] = useState(null);
-  const [loading, setLoading] = useState({ frontend: false, backend: false });
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState({
+    frontend: false,
+    backend: false,
+    direct: false,
+  });
 
   async function call(key, url) {
     setLoading((prev) => ({ ...prev, [key]: true }));
+    setResponse(null);
+    setError(null);
     try {
       const res = await fetch(url, { cache: "no-store" });
-      setResponse(await res.json());
+      if (!res.ok) {
+        setError({ status: res.status, statusText: res.statusText, url });
+      } else {
+        setResponse(await res.json());
+      }
+    } catch (err) {
+      setError({ message: err.message, url });
     } finally {
       setLoading((prev) => ({ ...prev, [key]: false }));
     }
@@ -96,11 +109,34 @@ export default function Home() {
               Open Swagger UI →
             </a>
           </div>
+
+          <div className="card card--warning">
+            <h3>Next.js → FastAPI Direct</h3>
+            <p>
+              Calls <code>/api/direct-fastapi</code>, a Next.js route that
+              fetches <code>/status</code> directly from the FastAPI service
+              URL. Fails with <code>401 Unauthorized</code> when deployment
+              protection is enabled.
+            </p>
+            <button
+              onClick={() => call("direct", "/api/direct-fastapi")}
+              disabled={loading.direct}
+              className="button--warning"
+            >
+              {loading.direct ? "Loading..." : "Call via Next.js route →"}
+            </button>
+          </div>
         </div>
 
         {response && (
           <div className="response">
             <pre>{JSON.stringify(response, null, 2)}</pre>
+          </div>
+        )}
+
+        {error && (
+          <div className="response response--error">
+            <pre>{JSON.stringify(error, null, 2)}</pre>
           </div>
         )}
       </main>
