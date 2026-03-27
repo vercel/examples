@@ -1,31 +1,37 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server'
 
-const FASTAPI_DIRECT_URL = process.env.FASTAPI_DIRECT_URL;
+const BACKEND_URL = process.env.BACKEND_URL
 
 export async function GET() {
-  if (!FASTAPI_DIRECT_URL) {
+  if (!BACKEND_URL) {
     return NextResponse.json(
-      { error: "FASTAPI_DIRECT_URL is not set" },
+      { error: 'BACKEND_URL is not set' },
       { status: 500 }
-    );
+    )
   }
 
-  let res;
+  let res
   try {
-    res = await fetch(`${FASTAPI_DIRECT_URL}/status`, { cache: "no-store" });
+    res = await fetch(`${BACKEND_URL}/status`, { cache: 'no-store' })
   } catch (err) {
-    console.error("[direct-fastapi] fetch failed", { url: FASTAPI_DIRECT_URL, error: err.message });
-    return NextResponse.json({ error: err.message }, { status: 502 });
+    console.error('[direct-fastapi] fetch failed', {
+      url: BACKEND_URL,
+      error: err.message,
+    })
+    return NextResponse.json({ error: err.message }, { status: 502 })
   }
 
-  const body = await res.text();
+  const body = await res.text()
 
   if (!res.ok) {
-    console.error("[direct-fastapi] upstream error", { status: res.status, url: FASTAPI_DIRECT_URL });
+    console.error('[direct-fastapi] upstream error', {
+      status: res.status,
+      url: BACKEND_URL,
+    })
   }
 
   return new NextResponse(body, {
     status: res.status,
-    headers: { "Content-Type": "application/json" },
-  });
+    headers: { 'Content-Type': 'application/json' },
+  })
 }
