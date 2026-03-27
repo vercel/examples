@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 
 const BACKEND_URL = process.env.BACKEND_URL
 
-export async function GET() {
+export async function GET(request) {
   if (!BACKEND_URL) {
     return NextResponse.json(
       { error: 'BACKEND_URL is not set' },
@@ -10,9 +10,16 @@ export async function GET() {
     )
   }
 
+  const oidcToken = request.headers.get('x-vercel-oidc-token')
+
   let res
   try {
-    res = await fetch(`${BACKEND_URL}/status`, { cache: 'no-store' })
+    res = await fetch(`${BACKEND_URL}/status`, {
+      cache: 'no-store',
+      headers: oidcToken
+        ? { 'x-vercel-trusted-oidc-idp-token': oidcToken }
+        : {},
+    })
   } catch (err) {
     console.error('[direct-fastapi] fetch failed', {
       url: BACKEND_URL,
