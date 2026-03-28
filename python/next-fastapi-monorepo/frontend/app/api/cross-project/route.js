@@ -23,7 +23,11 @@ export async function GET(request) {
 
   const xVercelId = res.headers['x-vercel-id']
   if (res.status >= 200 && res.status < 300) {
-    console.log('[cross-project] success', { status: res.status, xVercelId, isStaging })
+    console.log('[cross-project] success', {
+      status: res.status,
+      xVercelId,
+      isStaging,
+    })
   } else {
     console.error('[cross-project] upstream error', {
       status: res.status,
@@ -35,6 +39,8 @@ export async function GET(request) {
 
   return new NextResponse(res.body, {
     status: res.status,
-    headers: { 'Content-Type': res.headers['content-type'] || 'application/json' },
+    headers: {
+      'Content-Type': res.headers['content-type'] || 'application/json',
+    },
   })
 }

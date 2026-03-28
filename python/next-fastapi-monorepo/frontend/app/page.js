@@ -76,20 +76,6 @@ export default function Home() {
         </div>
 
         <div className="cards">
-          <div className="card">
-            <h3>Next.js API Route</h3>
-            <p>
-              Calls <code>/api/hello</code>, a route handler running on the
-              Next.js frontend service.
-            </p>
-            <button
-              onClick={() => call('frontend', '/api/hello')}
-              disabled={loading.frontend}
-            >
-              {loading.frontend ? 'Loading...' : 'Call /api/hello →'}
-            </button>
-          </div>
-
           <div className="card card--warning">
             <h3>Next.js → External Project</h3>
             <p>
