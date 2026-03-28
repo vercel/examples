@@ -53,28 +53,6 @@ export default function Home() {
       <main>
         <h1>Next.js + FastAPI</h1>
 
-        <div className="hero-code">
-          <pre>
-            <code
-              dangerouslySetInnerHTML={{
-                __html: `<span class="comment">// vercel.json</span>
-{
-  <span class="key">"experimentalServices"</span>: {
-    <span class="key">"frontend"</span>: {
-      <span class="key">"entrypoint"</span>: <span class="string">"frontend"</span>,
-      <span class="key">"routePrefix"</span>: <span class="string">"/"</span>
-    },
-    <span class="key">"backend"</span>: {
-      <span class="key">"entrypoint"</span>: <span class="string">"backend/main.py"</span>,
-      <span class="key">"routePrefix"</span>: <span class="string">"/svc/api"</span>
-    }
-  }
-}`,
-              }}
-            />
-          </pre>
-        </div>
-
         <div className="cards">
           <div className="card card--warning">
             <h3>Next.js → FastAPI Direct</h3>
