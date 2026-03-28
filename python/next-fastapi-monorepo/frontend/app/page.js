@@ -77,23 +77,6 @@ export default function Home() {
 
         <div className="cards">
           <div className="card card--warning">
-            <h3>Next.js → External Project</h3>
-            <p>
-              Calls <code>/api/cross-project</code>, a Next.js route that
-              fetches an endpoint on a separate Vercel project. Fails with{' '}
-              <code>401 Unauthorized</code> when deployment protection is
-              enabled.
-            </p>
-            <button
-              onClick={() => call('crossProject', '/api/cross-project')}
-              disabled={loading.crossProject}
-              className="button--warning"
-            >
-              {loading.crossProject ? 'Loading...' : 'Call external project →'}
-            </button>
-          </div>
-
-          <div className="card card--warning">
             <h3>Next.js → FastAPI Direct</h3>
             <p>
               Calls <code>/api/direct-fastapi</code>, a Next.js route that
@@ -107,6 +90,23 @@ export default function Home() {
               className="button--warning"
             >
               {loading.direct ? 'Loading...' : 'Call via Next.js route →'}
+            </button>
+          </div>
+
+          <div className="card card--warning">
+            <h3>Next.js → External Project</h3>
+            <p>
+              Calls <code>/api/cross-project</code>, a Next.js route that
+              fetches an endpoint on a separate Vercel project. Fails with{' '}
+              <code>401 Unauthorized</code> when deployment protection is
+              enabled.
+            </p>
+            <button
+              onClick={() => call('crossProject', '/api/cross-project')}
+              disabled={loading.crossProject}
+              className="button--warning"
+            >
+              {loading.crossProject ? 'Loading...' : 'Call external project →'}
             </button>
           </div>
         </div>
