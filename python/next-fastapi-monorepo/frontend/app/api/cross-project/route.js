@@ -3,43 +3,30 @@ import { fetchWithOidc } from '../_lib/proxy-fetch.js'
 
 export const dynamic = 'force-dynamic'
 
-const BACKEND_URL = process.env.BACKEND_URL
+const TARGET_URL =
+  'https://fastapi-python-boilerplate-git-kitf-e699b4-kit-fosters-projects.vercel.app/api/data'
 
 export async function GET(request) {
-  console.log('[direct-fastapi] request received', {
+  console.log('[cross-project] request received', {
     url: request.url,
-    referer: request.headers.get('referer'),
-    origin: request.headers.get('origin'),
-  })
-
-  if (!BACKEND_URL) {
-    console.error('[direct-fastapi] BACKEND_URL is not set')
-    return NextResponse.json({ error: 'BACKEND_URL is not set' }, { status: 500 })
-  }
-
-  const targetUrl = `${BACKEND_URL}/status`
-
-  console.log('[direct-fastapi] config', {
-    targetUrl,
     incomingVercelId: request.headers.get('x-vercel-id'),
     hasOidcToken: request.headers.get('x-vercel-oidc-token') !== null,
   })
 
   let res, isStaging
   try {
-    ;({ res, isStaging } = await fetchWithOidc(targetUrl, request))
+    ;({ res, isStaging } = await fetchWithOidc(TARGET_URL, request))
   } catch (err) {
-    console.error('[direct-fastapi] fetch failed', { targetUrl, error: err.message })
+    console.error('[cross-project] fetch failed', { error: err.message })
     return NextResponse.json({ error: err.message }, { status: 502 })
   }
 
   const xVercelId = res.headers['x-vercel-id']
   if (res.status >= 200 && res.status < 300) {
-    console.log('[direct-fastapi] success', { status: res.status, targetUrl, xVercelId, isStaging })
+    console.log('[cross-project] success', { status: res.status, xVercelId, isStaging })
   } else {
-    console.error('[direct-fastapi] upstream error', {
+    console.error('[cross-project] upstream error', {
       status: res.status,
-      targetUrl,
       xVercelId,
       isStaging,
       body: res.body,

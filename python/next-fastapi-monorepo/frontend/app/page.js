@@ -11,6 +11,7 @@ export default function Home() {
     frontend: false,
     backend: false,
     direct: false,
+    crossProject: false,
   });
 
   async function call(key, url) {
@@ -112,6 +113,23 @@ export default function Home() {
             <a href={`${BACKEND}/docs`} className="card-link">
               Open Swagger UI →
             </a>
+          </div>
+
+          <div className="card card--warning">
+            <h3>Next.js → External Project</h3>
+            <p>
+              Calls <code>/api/cross-project</code>, a Next.js route that
+              fetches an endpoint on a separate Vercel project. Fails with{" "}
+              <code>401 Unauthorized</code> when deployment protection is
+              enabled.
+            </p>
+            <button
+              onClick={() => call("crossProject", "/api/cross-project")}
+              disabled={loading.crossProject}
+              className="button--warning"
+            >
+              {loading.crossProject ? "Loading..." : "Call external project →"}
+            </button>
           </div>
 
           <div className="card card--warning">
