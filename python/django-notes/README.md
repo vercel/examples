@@ -2,7 +2,7 @@
 
 # Django Notes
 
-A simple note-taking app built with Django 6, demonstrating server-side rendering, URL routing, forms, and ORM with SQLite locally and Postgres on Vercel.
+A simple note-taking app built with Django, demonstrating server-side rendering, URL routing, forms, and ORM with SQLite locally and Postgres on Vercel.
 
 ## Demo
 
@@ -35,6 +35,13 @@ The app is exposed to Vercel via WSGI in `config/wsgi.py`:
 application = get_wsgi_application()
 ```
 
+Database migrations run automatically on each deploy via a build script in `pyproject.toml`:
+
+```toml
+[tool.vercel.scripts]
+build = 'if [ -n "$DATABASE_URL" ]; then python manage.py migrate --noinput; fi'
+```
+
 Setting the environment variable `READ_ONLY=true` disables all write operations and hides the create, edit, and delete UI.
 
 ## Running Locally
@@ -62,14 +69,9 @@ vercel link
 
 From the [Vercel dashboard](https://vercel.com/dashboard), go to your project's **Storage** tab and create a Postgres database. Vercel will automatically add `DATABASE_URL` to your project's environment variables.
 
-**3. Pull environment variables and run migrations**
+**3. Deploy**
 
-```bash
-vercel env pull
-uv run python manage.py migrate
-```
-
-**4. Deploy**
+Migrations run automatically during the build (see `[tool.vercel.scripts]` in `pyproject.toml`).
 
 ```bash
 vercel --prod
