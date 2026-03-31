@@ -18,7 +18,7 @@ def current_time(request):
     return Response({"time": datetime.now(timezone.utc).isoformat()})
 ```
 
-This view is exposed at `/api/time/` and the app is served via WSGI in `app/wsgi.py`:
+This view is exposed at `/api/time/` and the app is served via WSGI in `config/wsgi.py`:
 
 ```python
 application = get_wsgi_application()

@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Django</title>
+  <link rel="stylesheet" href="{% static 'example/style.css' %}">
+</head>
+<body>
+  <div class="container">
+    <img src="{% static 'example/django-logo.svg' %}" alt="Django" class="logo">
+    <p class="time">The current time is {{ now }}.</p>
+  </div>
+</body>
+</html>

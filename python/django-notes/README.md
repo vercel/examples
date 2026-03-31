@@ -27,7 +27,7 @@ else:
 
 CSS is served as a static file from `notes/static/notes/style.css` via Django's `staticfiles` app and referenced in the base template with `{% static %}`.
 
-The app is exposed to Vercel via WSGI in `app/wsgi.py`:
+The app is exposed to Vercel via WSGI in `config/wsgi.py`:
 
 ```python
 application = get_wsgi_application()
@@ -77,7 +77,7 @@ vercel --prod
 
 ```
 django-notes/
-├── app/                  # Django project config (settings, urls, wsgi)
+├── config/               # Django project config (settings, urls, wsgi)
 └── notes/                # Notes app
     ├── models.py         # Note model (title, body)
     ├── forms.py          # NoteForm

@@ -10,10 +10,10 @@ https://django-template.vercel.app/
 
 ## How it Works
 
-Our Django application, `example` is configured as an installed application in `app/settings.py`:
+Our Django application, `example` is configured as an installed application in `config/settings.py`:
 
 ```python
-# app/settings.py
+# config/settings.py
 INSTALLED_APPS = [
     # ...
     "example",
@@ -23,7 +23,7 @@ INSTALLED_APPS = [
 We allow `*.vercel.app` subdomains in `ALLOWED_HOSTS`, in addition to `127.0.0.1` and `localhost`:
 
 ```python
-# app/settings.py
+# config/settings.py
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".vercel.app"]
 ```
 
@@ -63,10 +63,10 @@ urlpatterns = [
 ]
 ```
 
-Finally, it's made accessible to the Django server inside `app/urls.py`:
+Finally, it's made accessible to the Django server inside `config/urls.py`:
 
 ```python
-# app/urls.py
+# config/urls.py
 from django.urls import path, include
 
 
