@@ -50,4 +50,4 @@ def note_delete(request, pk):
     if request.method == "POST":
         note.delete()
         return redirect("note_list")
-    return render(request, "notes/confirm_delete.html", {"note": note})
+    return redirect("note_detail", pk=note.pk)
