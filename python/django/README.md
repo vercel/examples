@@ -23,7 +23,7 @@ https://django-template.vercel.app/
 
 ## How it Works
 
-This example uses the Web Server Gateway Interface (WSGI) with Django to handle requests on Vercel with Serverless Functions.
+Vercel detects Django's `manage.py` and uses that to find the WSGI entrypoint and the configuration for static files.
 
 ## Running Locally
 
