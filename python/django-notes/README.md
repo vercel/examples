@@ -2,7 +2,7 @@
 name: Django Notes
 slug: django-notes
 description: A simple note-taking app built with Django, using SQLite locally and Postgres on Vercel.
-framework: Django
+framework: Python
 useCase: Starter
 database: Postgres
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fdjango-notes&project-name=django-notes&repository-name=django-notes&demo-title=Django%20Notes&demo-description=A%20simple%20note-taking%20app%20built%20with%20Django.&demo-url=https%3A%2F%2Fdjango-notes-example.vercel.app%2F&products=%5B%7B%22type%22%3A%22integration%22%2C%22group%22%3A%22postgres%22%7D%5D
