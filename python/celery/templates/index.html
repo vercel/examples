@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Celery Job Queue</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg: #000;
+        --card: #0a0a0a;
+        --border: #1f1f1f;
+        --border-hover: #333;
+        --fg: #ededed;
+        --fg-secondary: #a1a1a1;
+        --fg-muted: #666;
+        --blue: #0070f3;
+        --blue-light: #3291ff;
+        --teal: #50e3c2;
+        --red: #ee0000;
+        --amber: #f5a623;
+        --hover: #111;
+        --radius: 8px;
+        --radius-sm: 6px;
+        --mono: 'Geist Mono', 'SFMono-Regular', 'Consolas', 'Liberation Mono',
+          'Menlo', monospace;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          'Roboto', sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .nav {
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: saturate(180%) blur(20px);
+        z-index: 100;
+      }
+
+      .nav-inner {
+        max-width: 1080px;
+        margin: 0 auto;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+      }
+
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav-title {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--fg);
+      }
+
+      .nav-separator {
+        color: var(--fg-muted);
+        font-size: 20px;
+        font-weight: 300;
+        user-select: none;
+      }
+
+      .nav-subtitle {
+        color: var(--fg-secondary);
+        font-size: 13px;
+        font-weight: 400;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn {
+        height: 32px;
+        padding: 0 12px;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--fg-secondary);
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 500;
+        font-family: inherit;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.15s ease;
+        white-space: nowrap;
+      }
+
+      .btn:hover {
+        background: var(--hover);
+        border-color: var(--border-hover);
+        color: var(--fg);
+      }
+
+      .btn-live {
+        color: var(--teal);
+        border-color: rgba(80, 227, 194, 0.25);
+      }
+
+      .btn-live .live-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--teal);
+        border-radius: 50%;
+        animation: pulse 2s ease infinite;
+      }
+
+      .btn-paused {
+        color: var(--fg-muted);
+      }
+
+      .btn-danger {
+        color: var(--red);
+        border-color: rgba(238, 0, 0, 0.2);
+      }
+
+      .btn-danger:hover {
+        background: rgba(238, 0, 0, 0.08);
+        border-color: rgba(238, 0, 0, 0.3);
+      }
+
+      .btn-primary {
+        background: var(--fg);
+        color: var(--bg);
+        border-color: var(--fg);
+        font-weight: 500;
+      }
+
+      .btn-primary:hover {
+        background: #ccc;
+        border-color: #ccc;
+      }
+
+      .btn-primary:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      .main {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 32px 24px 80px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .stats-row {
+        display: flex;
+        gap: 16px;
+      }
+
+      .stat-card {
+        flex: 1;
+        padding: 20px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .stat-value {
+        font-size: 32px;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.04em;
+        line-height: 1.1;
+      }
+
+      .stat-value.active {
+        color: var(--blue-light);
+      }
+
+      .stat-value.done {
+        color: var(--teal);
+      }
+
+      .stat-label {
+        font-size: 13px;
+        color: var(--fg-muted);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+
+      .section-title {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--fg);
+      }
+
+      .section-count {
+        color: var(--fg-muted);
+        font-weight: 400;
+      }
+
+      .form-card {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+      }
+
+      .form-body {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .segment-control {
+        display: flex;
+        background: var(--hover);
+        border-radius: var(--radius-sm);
+        padding: 3px;
+        gap: 2px;
+        flex-wrap: wrap;
+      }
+
+      .segment-item {
+        flex: 1;
+        min-width: 120px;
+        padding: 7px 12px;
+        border-radius: 5px;
+        border: none;
+        background: transparent;
+        color: var(--fg-secondary);
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 500;
+        font-family: inherit;
+        transition: all 0.15s ease;
+        text-align: center;
+      }
+
+      .segment-item:hover {
+        color: var(--fg);
+      }
+
+      .segment-item.active {
+        background: var(--card);
+        color: var(--fg);
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04),
+          0 1px 2px rgba(0, 0, 0, 0.6);
+      }
+
+      .task-description {
+        color: var(--fg-muted);
+        font-size: 13px;
+      }
+
+      .fields {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        min-width: 220px;
+        flex: 1;
+      }
+
+      .field-label {
+        color: var(--fg-secondary);
+        font-size: 12px;
+      }
+
+      .field-input,
+      .field-select {
+        height: 40px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        color: var(--fg);
+        padding: 0 12px;
+        font: inherit;
+      }
+
+      .field-select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 36px;
+      }
+
+      .field-input:focus,
+      .field-select:focus {
+        outline: none;
+        border-color: var(--blue);
+      }
+
+      .form-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .form-links {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .form-links a {
+        color: var(--fg-muted);
+        text-decoration: none;
+      }
+
+      .form-links a:hover {
+        color: var(--fg);
+      }
+
+      .jobs-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .empty {
+        border: 1px dashed var(--border);
+        border-radius: 12px;
+        padding: 32px;
+        color: var(--fg-muted);
+      }
+
+      .empty-title {
+        color: var(--fg);
+        margin-bottom: 6px;
+      }
+
+      .job-row {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.01),
+          transparent
+        );
+      }
+
+      .job-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .job-left,
+      .job-right,
+      .job-params {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .job-type {
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .job-id,
+      .job-time,
+      .job-duration,
+      .job-meta-line {
+        color: var(--fg-muted);
+        font-family: var(--mono);
+        font-size: 12px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border-radius: 999px;
+        padding: 4px 10px;
+        font-size: 12px;
+        border: 1px solid var(--border);
+        text-transform: capitalize;
+      }
+
+      .badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      .badge.queued {
+        color: var(--amber);
+        border-color: rgba(245, 166, 35, 0.25);
+      }
+
+      .badge.running {
+        color: var(--blue-light);
+        border-color: rgba(50, 145, 255, 0.25);
+      }
+
+      .badge.completed {
+        color: var(--teal);
+        border-color: rgba(80, 227, 194, 0.25);
+      }
+
+      .badge.failed {
+        color: var(--red);
+        border-color: rgba(238, 0, 0, 0.25);
+      }
+
+      .param-chip {
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        color: var(--fg-secondary);
+        font-size: 12px;
+      }
+
+      .progress-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .progress-track {
+        width: 100%;
+        height: 8px;
+        border-radius: 999px;
+        background: #111;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--blue), var(--teal));
+      }
+
+      .progress-info {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        color: var(--fg-muted);
+        font-size: 12px;
+      }
+
+      .job-result {
+        display: grid;
+        gap: 8px;
+      }
+
+      .result-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 10px 12px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+      }
+
+      .result-key {
+        color: var(--fg-muted);
+        text-transform: lowercase;
+      }
+
+      .result-value {
+        text-align: right;
+        word-break: break-word;
+      }
+
+      @media (max-width: 760px) {
+        .nav-inner,
+        .job-top,
+        .job-right,
+        .form-actions,
+        .progress-info,
+        .result-row {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .stats-row {
+          flex-direction: column;
+        }
+
+        .main {
+          padding: 32px 16px 64px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <div class="nav-brand">
+          <span class="nav-title">Job Queue</span>
+          <span class="nav-separator">/</span>
+          <span class="nav-subtitle">Celery + Redis</span>
+        </div>
+        <div class="nav-right">
+          <button id="poll-toggle" class="btn btn-live" type="button"></button>
+          <button id="clear-jobs" class="btn btn-danger" type="button">
+            Clear
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main">
+      <div class="stats-row" id="stats-row"></div>
+
+      <section>
+        <div class="section-header">
+          <h2 class="section-title">New Job</h2>
+        </div>
+        <div class="form-card">
+          <div class="form-body" id="form-root"></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-header">
+          <h2 class="section-title">Activity</h2>
+          <span class="section-count" id="activity-count"></span>
+        </div>
+        <div id="jobs-root"></div>
+      </section>
+    </main>
+
+    <script>
+      const TASKS = {{ tasks_json | safe }};
+      const TASK_LABELS = Object.fromEntries(TASKS.map(task => [task.name, task.label]));
+
+      const state = {
+        jobs: [],
+        polling: true,
+        submitting: false,
+        selectedTask: 0,
+        values: {},
+      };
+
+      const statsRow = document.getElementById("stats-row");
+      const formRoot = document.getElementById("form-root");
+      const jobsRoot = document.getElementById("jobs-root");
+      const activityCount = document.getElementById("activity-count");
+      const pollToggle = document.getElementById("poll-toggle");
+      const clearJobsButton = document.getElementById("clear-jobs");
+
+      function defaultValues(task) {
+        const values = {};
+        task.fields.forEach(field => {
+          values[field.key] = String(field.default);
+        });
+        return values;
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function formatTime(ts) {
+        if (!ts) return "—";
+        return new Date(Number(ts) * 1000).toLocaleTimeString();
+      }
+
+      function formatDuration(start, end) {
+        if (!start || !end) return "";
+        return `${(Number(end) - Number(start)).toFixed(1)}s`;
+      }
+
+      function getProgress(job) {
+        if (job.progress && typeof job.progress === "object" && job.progress.percent != null) {
+          return Number(job.progress.percent);
+        }
+        return null;
+      }
+
+      function getProgressLabel(job) {
+        if (!job.progress || typeof job.progress !== "object") return "";
+        if (job.progress.step) return String(job.progress.step);
+        if (job.progress.processed != null && job.progress.total != null) {
+          return `${job.progress.processed} / ${job.progress.total}`;
+        }
+        return "";
+      }
+
+      function renderStats() {
+        const active = state.jobs.filter(job => job.status === "running" || job.status === "queued").length;
+        const completed = state.jobs.filter(job => job.status === "completed").length;
+        statsRow.innerHTML = `
+          <div class="stat-card">
+            <span class="stat-value">${state.jobs.length}</span>
+            <span class="stat-label">Total Jobs</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value active">${active}</span>
+            <span class="stat-label">Active</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value done">${completed}</span>
+            <span class="stat-label">Completed</span>
+          </div>
+        `;
+      }
+
+      function renderForm() {
+        const task = TASKS[state.selectedTask];
+        formRoot.innerHTML = `
+          <div class="segment-control">
+            ${TASKS.map((item, index) => `
+              <button class="segment-item ${index === state.selectedTask ? "active" : ""}" type="button" data-task-index="${index}">
+                ${escapeHtml(item.label)}
+              </button>
+            `).join("")}
+          </div>
+
+          <p class="task-description">${escapeHtml(task.description)}</p>
+
+          <div class="fields">
+            ${task.fields.map(field => `
+              <div class="field">
+                <label class="field-label" for="field-${escapeHtml(field.key)}">${escapeHtml(field.label)}</label>
+                ${field.type === "select" ? `
+                  <select class="field-select" id="field-${escapeHtml(field.key)}" data-field-key="${escapeHtml(field.key)}">
+                    ${field.options.map(option => `
+                      <option value="${escapeHtml(option)}" ${String(state.values[field.key]) === String(option) ? "selected" : ""}>
+                        ${escapeHtml(option)}
+                      </option>
+                    `).join("")}
+                  </select>
+                ` : `
+                  <input
+                    class="field-input"
+                    id="field-${escapeHtml(field.key)}"
+                    data-field-key="${escapeHtml(field.key)}"
+                    type="${escapeHtml(field.type)}"
+                    value="${escapeHtml(state.values[field.key])}"
+                  />
+                `}
+              </div>
+            `).join("")}
+          </div>
+
+          <div class="form-actions">
+            <div class="form-links">
+              <a href="/api/jobs">GET /api/jobs</a>
+              <a href="/api/health">GET /api/health</a>
+              <a href="/docs">/docs</a>
+            </div>
+            <button id="submit-job" class="btn btn-primary" type="button" ${state.submitting ? "disabled" : ""}>
+              ${state.submitting ? "Submitting..." : "Submit Job"}
+            </button>
+          </div>
+        `;
+
+        document.querySelectorAll("[data-task-index]").forEach(button => {
+          button.addEventListener("click", () => {
+            state.selectedTask = Number(button.dataset.taskIndex);
+            state.values = defaultValues(TASKS[state.selectedTask]);
+            renderForm();
+          });
+        });
+
+        document.querySelectorAll("[data-field-key]").forEach(input => {
+          input.addEventListener("input", () => {
+            state.values[input.dataset.fieldKey] = input.value;
+          });
+        });
+
+        document.getElementById("submit-job").addEventListener("click", submitJob);
+      }
+
+      function renderJobs() {
+        activityCount.textContent = state.jobs.length > 0 ? String(state.jobs.length) : "";
+
+        if (state.jobs.length === 0) {
+          jobsRoot.innerHTML = `
+            <div class="empty">
+              <div class="empty-title">No jobs yet</div>
+              <div>Submit a job above to get started.</div>
+            </div>
+          `;
+          return;
+        }
+
+        jobsRoot.innerHTML = `
+          <div class="jobs-list">
+            ${state.jobs.map(job => {
+              const percent = getProgress(job);
+              const progressLabel = getProgressLabel(job);
+              const duration = formatDuration(job.started_at, job.completed_at);
+              const params = job.params && typeof job.params === "object" ? Object.entries(job.params) : [];
+              const resultRows = job.result && typeof job.result === "object" ? Object.entries(job.result) : [];
+              const metadata = [job.queue_name ? `queue ${job.queue_name}` : "", job.message_id ? `message ${job.message_id}` : ""]
+                .filter(Boolean)
+                .join(" · ");
+
+              return `
+                <div class="job-row">
+                  <div class="job-top">
+                    <div class="job-left">
+                      <span class="job-type">${escapeHtml(TASK_LABELS[job.task] ?? job.task)}</span>
+                      <span class="job-id">#${escapeHtml(job.id)}</span>
+                    </div>
+                    <div class="job-right">
+                      ${duration ? `<span class="job-duration">${escapeHtml(duration)}</span>` : ""}
+                      <span class="job-time">${escapeHtml(formatTime(job.created_at))}</span>
+                      <span class="badge ${escapeHtml(job.status)}">
+                        <span class="badge-dot"></span>
+                        ${escapeHtml(job.status)}
+                      </span>
+                    </div>
+                  </div>
+
+                  ${params.length ? `
+                    <div class="job-params">
+                      ${params.map(([key, value]) => `
+                        <span class="param-chip">${escapeHtml(key)}: <strong>${escapeHtml(value)}</strong></span>
+                      `).join("")}
+                    </div>
+                  ` : ""}
+
+                  ${metadata ? `<div class="job-meta-line">${escapeHtml(metadata)}</div>` : ""}
+
+                  ${(job.status === "running" || (job.status === "completed" && percent != null)) ? `
+                    <div class="progress-section">
+                      <div class="progress-track">
+                        <div class="progress-fill" style="width: ${percent ?? 0}%"></div>
+                      </div>
+                      <div class="progress-info">
+                        <span>${escapeHtml(progressLabel)}</span>
+                        <span>${escapeHtml(percent ?? 0)}%</span>
+                      </div>
+                    </div>
+                  ` : ""}
+
+                  ${resultRows.length ? `
+                    <div class="job-result">
+                      ${resultRows.map(([key, value]) => `
+                        <div class="result-row">
+                          <span class="result-key">${escapeHtml(key)}</span>
+                          <span class="result-value">${escapeHtml(Array.isArray(value) ? value.join(", ") : value)}</span>
+                        </div>
+                      `).join("")}
+                    </div>
+                  ` : ""}
+                </div>
+              `;
+            }).join("")}
+          </div>
+        `;
+      }
+
+      function renderPollButton() {
+        pollToggle.className = `btn ${state.polling ? "btn-live" : "btn-paused"}`;
+        pollToggle.innerHTML = state.polling
+          ? '<span class="live-dot"></span>Live'
+          : "Paused";
+      }
+
+      function render() {
+        renderPollButton();
+        renderStats();
+        renderForm();
+        renderJobs();
+      }
+
+      async function requestJson(url, options = {}) {
+        const response = await fetch(url, options);
+        const text = await response.text();
+        const data = text ? JSON.parse(text) : null;
+        if (!response.ok) {
+          const message = data && typeof data === "object" ? data.detail || data.error : response.statusText;
+          throw new Error(message || "Request failed");
+        }
+        return data;
+      }
+
+      async function refreshJobs() {
+        try {
+          const jobs = await requestJson("/api/jobs");
+          if (Array.isArray(jobs)) {
+            state.jobs = jobs;
+            renderStats();
+            renderJobs();
+          }
+        } catch {
+          /* offline */
+        }
+      }
+
+      async function submitJob() {
+        const task = TASKS[state.selectedTask];
+        const params = {};
+
+        task.fields.forEach(field => {
+          const value = state.values[field.key];
+          params[field.key] = field.type === "number" ? Number(value) : value;
+        });
+
+        state.submitting = true;
+        renderForm();
+        try {
+          await requestJson("/api/jobs", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ task: task.name, params }),
+          });
+          await refreshJobs();
+        } catch (error) {
+          window.alert(String(error.message || error));
+        } finally {
+          state.submitting = false;
+          renderForm();
+        }
+      }
+
+      pollToggle.addEventListener("click", () => {
+        state.polling = !state.polling;
+        renderPollButton();
+      });
+
+      clearJobsButton.addEventListener("click", async () => {
+        try {
+          await requestJson("/api/jobs", { method: "DELETE" });
+          state.jobs = [];
+          renderStats();
+          renderJobs();
+        } catch (error) {
+          window.alert(String(error.message || error));
+        }
+      });
+
+      state.values = defaultValues(TASKS[0]);
+      render();
+      refreshJobs();
+      setInterval(() => {
+        if (state.polling) {
+          refreshJobs();
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
