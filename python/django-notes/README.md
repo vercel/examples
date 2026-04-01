@@ -1,0 +1,47 @@
+---
+name: Django Notes
+slug: django-notes
+description: A simple note-taking app built with Django, using SQLite locally and Postgres on Vercel.
+framework: Django
+useCase: Starter
+database: Postgres
+deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fdjango-notes&project-name=django-notes&repository-name=django-notes&demo-title=Django%20Notes&demo-description=A%20simple%20note-taking%20app%20built%20with%20Django.&demo-url=https%3A%2F%2Fdjango-notes.vercel.app%2F&products=%5B%7B%22type%22%3A%22integration%22%2C%22group%22%3A%22postgres%22%7D%5D
+demoUrl: https://django-notes.vercel.app/
+relatedTemplates:
+  - django
+  - django-rest-framework
+---
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fdjango-notes&project-name=django-notes&repository-name=django-notes&demo-title=Django%20Notes&demo-description=A%20simple%20note-taking%20app%20built%20with%20Django.&demo-url=https%3A%2F%2Fdjango-notes.vercel.app%2F&products=%5B%7B%22type%22%3A%22integration%22%2C%22group%22%3A%22postgres%22%7D%5D)
+
+# Django Notes
+
+A simple note-taking app built with Django, demonstrating server-side rendering, URL routing, forms, and ORM with SQLite locally and Postgres on Vercel.
+
+## Demo
+
+https://django-notes.vercel.app/
+
+## How it Works
+
+This example uses Django's ORM, templates, and `staticfiles` app, served via WSGI on Vercel. The database defaults to SQLite locally and switches to Postgres when `DATABASE_URL` is set — Vercel automatically provisions this environment variable when you add a Postgres database. You can add a database during project import or later from the Storage tab.
+
+Migrations run automatically on each deploy via `[tool.vercel.scripts]` in `pyproject.toml`. Because of this, you should use a database provider that supports branching (like Neon) so that preview deployments run migrations against an isolated branch rather than your production database.
+
+Setting `READ_ONLY=true` disables all write operations.
+
+## Running Locally
+
+```bash
+uv sync
+uv run python manage.py migrate
+uv run python manage.py runserver
+```
+
+Your app is now available at `http://localhost:8000`.
+
+## One-Click Deploy
+
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fdjango-notes&project-name=django-notes&repository-name=django-notes&demo-title=Django%20Notes&demo-description=A%20simple%20note-taking%20app%20built%20with%20Django.&demo-url=https%3A%2F%2Fdjango-notes.vercel.app%2F&products=%5B%7B%22type%22%3A%22integration%22%2C%22group%22%3A%22postgres%22%7D%5D)

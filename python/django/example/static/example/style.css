@@ -1,0 +1,41 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background-color: #000; color: #fff; line-height: 1.6; min-height: 100vh;
+  display: flex; flex-direction: column;
+}
+
+header { border-bottom: 1px solid #333; }
+nav { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; padding: 1rem 2rem; gap: 2rem; }
+.logo { font-size: 1.25rem; font-weight: 600; color: #fff; text-decoration: none; }
+
+main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+.hero { margin-bottom: 3rem; }
+.hero-logo { height: 3rem; vertical-align: middle; border-radius: 6px; }
+.hero-code { margin-top: 2rem; width: 100%; max-width: 900px; }
+.hero-code pre { background-color: #0a0a0a; border: 1px solid #333; border-radius: 8px; padding: 1.5rem; text-align: left; }
+
+h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; width: 100%; max-width: 900px; }
+.card { background-color: #111; border: 1px solid #333; border-radius: 8px; padding: 1.5rem; text-align: left; }
+.card h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; }
+.card p { color: #888; font-size: 0.875rem; }
+
+pre { background-color: #0a0a0a; border: 1px solid #333; border-radius: 6px; padding: 1rem; overflow-x: auto; margin: 0; }
+code { font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace; font-size: 0.85rem; line-height: 1.5; color: #fff; }
+
+.keyword { color: #ff79c6; }
+.string { color: #f1fa8c; }
+.function { color: #50fa7b; }
+.module { color: #8be9fd; }
+.variable { color: #f8f8f2; }
+
+@media (max-width: 768px) {
+  nav { padding: 1rem; }
+  main { padding: 2rem 1rem; }
+  h1 { font-size: 2rem; }
+  .cards { grid-template-columns: 1fr; }
+}

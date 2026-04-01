@@ -4,6 +4,16 @@
 import os
 import sys
 
+# Load .env.local if present (e.g. after running `vercel env pull`)
+_env_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env.local")
+if os.path.exists(_env_file):
+    with open(_env_file) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                key, _, value = line.partition("=")
+                os.environ.setdefault(key.strip(), value.strip().strip("\"'"))
+
 
 def main():
     """Run administrative tasks."""

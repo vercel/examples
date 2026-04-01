@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vercel + Django</title>
+  <link rel="stylesheet" href="{% static 'example/style.css' %}">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/" class="logo">Vercel + Django</a>
+    </nav>
+  </header>
+  <main>
+    <div class="hero">
+      <h1>Vercel + <img src="{% static 'example/django-logo.svg' %}" alt="Django" class="hero-logo"></h1>
+      <div class="hero-code">
+        <pre><code><span class="keyword">from</span> <span class="module">django.shortcuts</span> <span class="keyword">import</span> <span class="function">render</span>
+
+<span class="keyword">def</span> <span class="function">index</span>(<span class="variable">request</span>):
+    <span class="keyword">return</span> <span class="function">render</span>(<span class="variable">request</span>, <span class="string">"index.html"</span>, {
+        <span class="string">"now"</span>: <span class="module">datetime</span>.<span class="function">now</span>(),
+    })</code></pre>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Current Time</h3>
+        <p>Server-rendered with Django templates. The current time is <strong>{{ now }}</strong>.</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

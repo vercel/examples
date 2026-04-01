@@ -1,0 +1,9 @@
+[project]
+name = "django-rest-framework"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=6.0",
+    "djangorestframework>=3.15",
+    "gunicorn>=25.3.0",
+]
