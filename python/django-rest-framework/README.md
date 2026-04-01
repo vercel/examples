@@ -4,14 +4,14 @@ slug: django-rest-framework
 description: A minimal Django REST Framework API running on Vercel Serverless Functions.
 framework: Django
 useCase: Starter
-deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fdjango-rest-framework&demo-title=Django%20REST%20Framework%20%2B%20Vercel&demo-description=A%20minimal%20Django%20REST%20Framework%20API%20running%20on%20Vercel%20Serverless%20Functions.&demo-url=https%3A%2F%2Fdjango-rest-framework.vercel.app%2F
-demoUrl: https://django-rest-framework.vercel.app/
+deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fdjango-rest-framework&demo-title=Django%20REST%20Framework%20%2B%20Vercel&demo-description=A%20minimal%20Django%20REST%20Framework%20API%20running%20on%20Vercel%20Serverless%20Functions.&demo-url=https%3A%2F%2Fdjango-rest-framework-example.vercel.app%2F
+demoUrl: https://django-rest-framework-example.vercel.app/api/time/
 relatedTemplates:
   - django
   - django-notes
 ---
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fdjango-rest-framework&demo-title=Django%20REST%20Framework%20%2B%20Vercel&demo-description=A%20minimal%20Django%20REST%20Framework%20API%20running%20on%20Vercel%20Serverless%20Functions.&demo-url=https%3A%2F%2Fdjango-rest-framework.vercel.app%2F)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fdjango-rest-framework&demo-title=Django%20REST%20Framework%20%2B%20Vercel&demo-description=A%20minimal%20Django%20REST%20Framework%20API%20running%20on%20Vercel%20Serverless%20Functions.&demo-url=https%3A%2F%2Fdjango-rest-framework-example.vercel.app%2F)
 
 # Django REST Framework + Vercel
 
@@ -19,7 +19,7 @@ A minimal [Django REST Framework](https://www.django-rest-framework.org/) API ru
 
 ## Demo
 
-https://django-rest-framework.vercel.app/
+https://django-rest-framework-example.vercel.app/api/time/
 
 ## How it Works
 
@@ -50,4 +50,4 @@ Your API is now available at `http://localhost:8000/api/time/`.
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fdjango-rest-framework&demo-title=Django%20REST%20Framework%20%2B%20Vercel&demo-description=A%20minimal%20Django%20REST%20Framework%20API%20running%20on%20Vercel%20Serverless%20Functions.&demo-url=https%3A%2F%2Fdjango-rest-framework.vercel.app%2F)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fdjango-rest-framework&demo-title=Django%20REST%20Framework%20%2B%20Vercel&demo-description=A%20minimal%20Django%20REST%20Framework%20API%20running%20on%20Vercel%20Serverless%20Functions.&demo-url=https%3A%2F%2Fdjango-rest-framework-example.vercel.app%2F)
