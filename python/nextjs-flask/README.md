@@ -15,13 +15,13 @@ This is a hybrid Next.js + Python app that uses Next.js as the frontend and Flas
 
 ## How It Works
 
-The Python/Flask server is mapped into to Next.js app under `/api/`.
+This project uses [Vercel Services](https://vercel.com/docs/services) to deploy a Next.js frontend and a Flask backend as part of a single Vercel project. Services are configured in `vercel.json` using the `experimentalServices` key:
 
-This is implemented using [`next.config.js` rewrites](https://github.com/vercel/examples/blob/main/python/nextjs-flask/next.config.js) to map any request to `/api/:path*` to the Flask API, which is hosted in the `/api` folder.
+- **Frontend** — Next.js, mounted at `/`
+- **Backend** — Flask, mounted at `/api/python`
 
-On localhost, the rewrite will be made to the `127.0.0.1:5328` port, which is where the Flask server is running.
-
-In production, the Flask server is hosted as [Python serverless functions](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python) on Vercel.
+Vercel automatically routes requests to the correct service based on the URL path prefix. It also automatically injects environment variables based on the service name to easily route between services.
+To make requests to the Python backend service and keep preview environments in sync without having to hard-code urls, `NEXT_PUBLIC_BACKEND_URL` is automatically set.
 
 ## Demo
 
@@ -53,26 +53,16 @@ yarn
 pnpm install
 ```
 
-Then, run the development server:
+Then, run both services locally:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+vercel dev -L
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-The Flask server will be running on [http://127.0.0.1:5328](http://127.0.0.1:5328) – feel free to change the port in `package.json` (you'll also need to update it in `next.config.js`).
+The `-L` flag runs all services together locally without authenticating with the Vercel Cloud. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
+- [Vercel Services](https://vercel.com/docs/services) - learn how services work on Vercel.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Flask Documentation](https://flask.palletsprojects.com/en/1.1.x/) - learn about Flask features and API.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [Flask Documentation](https://flask.palletsprojects.com/) - learn about Flask features and API.
