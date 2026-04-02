@@ -34,3 +34,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 __pycache__
+*.egg-info/
+build/
+dist/
