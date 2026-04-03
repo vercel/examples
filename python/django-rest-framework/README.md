@@ -18,6 +18,14 @@ A minimal [Django REST Framework](https://www.django-rest-framework.org/) API ru
 
 https://django-rest-framework-example.vercel.app/api/time/
 
+## Setting the Secret Key
+
+Django requires a secret key for cryptographic signing to be set in the `DJANGO_SECRET` environment variable. This can be set in the web interface, or by running:
+
+```bash
+uv run python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())' | vercel env add -y DJANGO_SECRET prod
+```
+
 ## How it Works
 
 A single DRF view in `api/views.py` returns the current UTC time as JSON:
