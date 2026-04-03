@@ -1,6 +1,6 @@
 ---
-name: Django + Vercel
-slug: django
+name: Django Hello World
+slug: django-hello-world
 description: Use Django on Vercel with Serverless Functions using the Python Runtime.
 framework: Python
 useCase: Starter

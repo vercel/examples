@@ -1,5 +1,5 @@
 ---
-name: Django Notes
+name: Django Notes App
 slug: django-notes
 description: A simple note-taking app built with Django, using SQLite locally and Postgres on Vercel.
 framework: Python
