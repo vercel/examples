@@ -18,6 +18,14 @@ This example shows how to use Django on Vercel with Serverless Functions using t
 
 https://django-template.vercel.app/
 
+## Setting the Secret Key
+
+Django requires a secret key for cryptographic signing to be set in the `DJANGO_SECRET` environment variable. This can be set in the web interface, or by running:
+
+```bash
+uv run python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())' | vercel env add -y DJANGO_SECRET prod
+```
+
 ## How it Works
 
 Vercel detects Django's `manage.py` and uses that to find the WSGI entrypoint and the configuration for static files.

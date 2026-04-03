@@ -19,6 +19,14 @@ A simple note-taking app built with Django, demonstrating server-side rendering,
 
 https://django-notes-example.vercel.app/
 
+## Setting the Secret Key
+
+Django requires a secret key for cryptographic signing to be set in the `DJANGO_SECRET` environment variable. This can be set in the web interface, or by running:
+
+```bash
+uv run python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())' | vercel env add -y DJANGO_SECRET prod
+```
+
 ## How it Works
 
 This example uses Django's ORM, templates, and `staticfiles` app, served via WSGI on Vercel. The database defaults to SQLite locally and switches to Postgres when `DATABASE_URL` is set — Vercel automatically provisions this environment variable when you add a Postgres database. You can add a database during project import or later from the Storage tab.
