@@ -15,7 +15,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/blob": "^1.0.0",
+    "@vercel/blob": "^2.3.0",
     "next": "^16.0.10",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
