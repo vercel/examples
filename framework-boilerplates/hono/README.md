@@ -4,7 +4,7 @@ Live Example: https://hono.vercel.dev/
 
 Prerequisites:
 
-- [Vercel CLI](https://vercel.com/docs/cli) installed globally
+- [Vercel CLI >= 44.7.3](https://vercel.com/docs/cli) installed globally (`npm install -g vercel@latest`)
 
 To develop locally:
 
