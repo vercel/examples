@@ -56,7 +56,10 @@ export const config: VercelConfig = {
   ],
   headers: [
     routes.header('/api/external/:path*', [
-      { key: 'CDN-Cache-Control', value: 'public, max-age=60, stale-while-revalidate=3600' },
+      {
+        key: 'CDN-Cache-Control',
+        value: 'public, max-age=60, stale-while-revalidate=3600',
+      },
       { key: 'Vercel-Cache-Tag', value: 'api' },
     ]),
   ],
@@ -88,4 +91,4 @@ vercel cache invalidate --tag api
 
 ## No-code alternative
 
-If you prefer to configure routing without code or redeployment, you can use [project level routing rules](https://vercel.com/docs/routing/project-routing-rules) through the Vercel Dashboard, CLI, API, or SDK. See the [Add API External Rewrite Routing Rule](https://vercel.com/templates/template/add-api-external-rewrite-routing-rule) template for a no-code approach.
+If you prefer to configure routing without code or redeployment, you can use [project level routing rules](https://vercel.com/docs/routing/project-routing-rules) through the Vercel Dashboard, CLI, API, or SDK.
