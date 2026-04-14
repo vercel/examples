@@ -91,4 +91,4 @@ vercel cache invalidate --tag api
 
 ## No-code alternative
 
-If you prefer to configure routing without code or redeployment, you can use [project level routing rules](https://vercel.com/docs/routing/project-routing-rules) through the Vercel Dashboard, CLI, API, or SDK.
+If you prefer to configure routing without code or redeployment, you can use [project level routing rules](https://vercel.com/docs/routing/project-routing-rules) through the Vercel Dashboard, CLI, API, or SDK. See the [Add API External Rewrite Routing Rule](https://vercel.com/templates/template/add-api-external-origin-routing-rule) template for a no-code approach.
