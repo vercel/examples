@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { VercelToolbar } from '@vercel/toolbar/next'
-import { FlagValues } from '@vercel/flags/react'
+import { FlagValues } from 'flags/react'
 import { Suspense } from 'react'
-import { FlagValuesType, encrypt } from '@vercel/flags'
+import { type FlagValuesType, encryptFlagValues } from 'flags'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +17,7 @@ async function ConfidentialFlagValues({
 }: {
   flagValues: FlagValuesType
 }) {
-  const encryptedFlagValues = await encrypt(flagValues)
+  const encryptedFlagValues = await encryptFlagValues(flagValues)
   return <FlagValues values={encryptedFlagValues} />
 }
 
