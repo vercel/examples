@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import { trackDocView, posthogAnalytics } from '@apideck/agent-analytics'
+import { trackVisit, posthogAnalytics } from '@apideck/agent-analytics'
 import {
   markdownServeDecision,
   markdownHeaders,
@@ -34,7 +34,7 @@ export function middleware(req: NextRequest) {
     // Track every Markdown fetch with the source label (ua-rewrite,
     // md-suffix, accept-header). Errors are swallowed — analytics can
     // never break the response.
-    void trackDocView(req, {
+    void trackVisit(req, {
       analytics,
       source: decision.reason,
       properties: { site: 'starter' },
