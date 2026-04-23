@@ -1,96 +1,906 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeBuilder Pro AI - Create Professional Resumes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Auth Modal Styles */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .auth-content {
+            background: #1e1e1e;
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+        }
+        
+        .auth-tab {
+            flex: 1;
+            padding: 15px;
+            background: none;
+            border: none;
+            color: #b0b0b0;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .auth-tab.active {
+            color: #4cc9f0;
+            border-bottom: 3px solid #4cc9f0;
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .google-btn {
+            width: 100%;
+            padding: 15px;
+            background: #db4437;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .divider {
+            margin: 20px 0;
+            color: #666;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #333;
+        }
+        
+        .divider span {
+            background: #1e1e1e;
+            padding: 0 15px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #4cc9f0, #4361ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #b0b0b0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #4361ee, #3a0ca3);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.6);
+        }
+        
+        .btn-free {
+            background: linear-gradient(90deg, #f72585, #b5179e);
+            margin-right: 15px;
+        }
+        
+        section {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #4cc9f0;
+            border-left: 5px solid #4361ee;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin: 25px 0 15px;
+            color: #f72585;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #e0e0e0;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: #252525;
+            padding: 25px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            border: 1px solid #333;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #4361ee;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #4361ee;
+        }
+        
+        .tool-section {
+            display: none;
+            margin-top: 40px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .tab-btn {
+            background: #252525;
+            color: #b0b0b0;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(90deg, #4361ee, #3a0ca3);
+            color: white;
+        }
+        
+        textarea, input, select {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .result {
+            background: #252525;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #4361ee;
+        }
+        
+        /* Pricing Section Styles */
+        .pricing-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .pricing-card {
+            background: #252525;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid #333;
+            position: relative;
+        }
+        
+        .pricing-card.popular {
+            border-color: #4361ee;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.popular::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4361ee;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: #4cc9f0;
+        }
+        
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .plan-name {
+            font-size: 1.5rem;
+            color: #4cc9f0;
+            margin-bottom: 15px;
+        }
+        
+        .price-container {
+            margin: 20px 0;
+        }
+        
+        .price-main {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #f72585;
+        }
+        
+        .price-currency {
+            font-size: 1rem;
+            color: #b0b0b0;
+            margin-left: 5px;
+        }
+        
+        .price-converted {
+            font-size: 1.1rem;
+            color: #4cc9f0;
+            margin-top: 5px;
+        }
+        
+        .billing-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            background: #333;
+            padding: 10px;
+            border-radius: 50px;
+        }
+        
+        .billing-option {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            color: #b0b0b0;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .billing-option.active {
+            background: #4361ee;
+            color: white;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin: 25px 0;
+        }
+        
+        .plan-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+        }
+        
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .payment-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .payment-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .payment-btn:hover {
+            background: #4361ee;
+        }
+        
+        .payment-btn.jazzcash {
+            background: #ff6b00;
+        }
+        
+        .payment-btn.payoneer {
+            background: #ff6b00;
+        }
+        
+        .payment-btn.wise {
+            background: #00a859;
+        }
+        
+        .payment-btn.bank {
+            background: #8b5cf6;
+        }
+        
+        .user-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #4361ee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .free-badge {
+            background: linear-gradient(90deg, #f72585, #b5179e);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            color: #888;
+            border-top: 1px solid #333;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            section {
+                padding: 25px;
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+            
+            .pricing-card.popular:hover {
+                transform: translateY(-10px);
+            }
+            
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Authentication Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-content">
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="showAuthForm('signin')">Sign In</button>
+                <button class="auth-tab" onclick="showAuthForm('signup')">Sign Up</button>
+            </div>
+            
+            <div id="signin-form" class="auth-form active">
+                <button class="google-btn" onclick="signInWithGoogle()">
+                    <span>🚀</span> Continue with Google
+                </button>
+                
+                <div class="divider">
+                    <span>or</span>
+                </div>
+                
+                <input type="email" id="signin-email" placeholder="Email" required>
+                <input type="password" id="signin-password" placeholder="Password" required>
+                <button class="btn" onclick="signIn()" style="width: 100%;">Sign In</button>
+                
+                <p style="margin-top: 15px; font-size: 0.9rem;">
+                    <a href="#" style="color: #4cc9f0;">Forgot password?</a>
+                </p>
+            </div>
+            
+            <div id="signup-form" class="auth-form">
+                <button class="google-btn" onclick="signInWithGoogle()">
+                    <span>🚀</span> Continue with Google
+                </button>
+                
+                <div class="divider">
+                    <span>or</span>
+                </div>
+                
+                <input type="text" id="signup-name" placeholder="Full Name" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+                <button class="btn" onclick="signUp()" style="width: 100%;">Create Account</button>
+                
+                <p style="margin-top: 15px; font-size: 0.9rem;">
+                    By signing up, you agree to our <a href="#" style="color: #4cc9f0;">Terms</a> and <a href="#" style="color: #4cc9f0;">Privacy Policy</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- User Info -->
+        <div class="user-info">
+            <span id="userWelcome" style="display: none;">Welcome, <span id="userName"></span>!</span>
+            <div class="user-avatar" id="userAvatar" onclick="toggleUserMenu()" style="display: none;">
+                <span id="avatarInitial">U</span>
+            </div>
+            <button class="btn" onclick="showAuthModal()" id="authButton">Sign In</button>
+        </div>
+
+        <header>
+            <h1>ResumeBuilder Pro AI</h1>
+            <p class="tagline">AI-Powered Resume Builder - Get Hired Faster with Professional Templates</p>
+            <div>
+                <button class="btn btn-free" onclick="startFreeTrial()">🎁 Start Free Trial</button>
+                <button class="btn" onclick="showTool('pricing')">View Premium Plans</button>
+            </div>
+            <p style="margin-top: 15px; color: #4cc9f0; font-size: 0.9rem;">
+                ⭐ Free trial includes: 1 Resume • 3 Templates • Basic AI Features
+            </p>
+        </header>
+
+        <section id="welcome" class="tool-section active">
+            <h2>Welcome to ResumeBuilder Pro AI</h2>
+            <p>Create professional, ATS-friendly resumes in minutes with our AI-powered platform. Choose from premium templates, get AI suggestions, and download your perfect resume.</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered Writing</h3>
+                    <p>Get AI-generated content suggestions for your resume based on your industry and experience.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>ATS Optimization</h3>
+                    <p>Ensure your resume passes through Applicant Tracking Systems with our smart optimization.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Professional Templates</h3>
+                    <p>Choose from 20+ professionally designed templates for every industry and career level.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>One-Click Applications</h3>
+                    <p>Export to PDF, Word, or apply directly to jobs through our platform.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn btn-free" onclick="startFreeTrial()">🎁 Start Free Trial</button>
+                <button class="btn" onclick="showTool('pricing')">View Premium Plans</button>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="tool-section">
+            <h2>Simple, Affordable Pricing</h2>
+            <p>Choose the perfect plan for your needs. All prices shown in USD and PKR.</p>
+            
+            <div class="billing-toggle">
+                <button class="billing-option active" onclick="setBilling('monthly')">Monthly</button>
+                <button class="billing-option" onclick="setBilling('yearly')">Yearly (Save 20%)</button>
+            </div>
+            
+            <div class="pricing-plans">
+                <div class="pricing-card">
+                    <div class="plan-name">Basic</div>
+                    <div class="price-container">
+                        <div class="price-main" id="basic-price">$5</div>
+                        <div class="price-converted" id="basic-pkr">~ ₨ 1,400</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>2 Professional Resumes</li>
+                        <li>5 Template Choices</li>
+                        <li>Basic AI Suggestions</li>
+                        <li>PDF Export</li>
+                        <li>Email Support</li>
+                    </ul>
+                    <button class="btn" onclick="selectPlan('basic')">Get Started</button>
+                    <div class="payment-options">
+                        <button class="payment-btn jazzcash" onclick="processPayment('basic', 'jazzcash')">JazzCash</button>
+                        <button class="payment-btn payoneer" onclick="processPayment('basic', 'payoneer')">Payoneer</button>
+                        <button class="payment-btn wise" onclick="processPayment('basic', 'wise')">Wise</button>
+                        <button class="payment-btn bank" onclick="processPayment('basic', 'bank')">Bank</button>
+                    </div>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="plan-name">Professional</div>
+                    <div class="price-container">
+                        <div class="price-main" id="pro-price">$10</div>
+                        <div class="price-converted" id="pro-pkr">~ ₨ 2,800</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>5 Professional Resumes</li>
+                        <li>15+ Template Choices</li>
+                        <li>Advanced AI Writing</li>
+                        <li>ATS Optimization</li>
+                        <li>Cover Letter Builder</li>
+                        <li>Priority Support</li>
+                    </ul>
+                    <button class="btn" onclick="selectPlan('professional')">Get Professional</button>
+                    <div class="payment-options">
+                        <button class="payment-btn jazzcash" onclick="processPayment('professional', 'jazzcash')">JazzCash</button>
+                        <button class="payment-btn payoneer" onclick="processPayment('professional', 'payoneer')">Payoneer</button>
+                        <button class="payment-btn wise" onclick="processPayment('professional', 'wise')">Wise</button>
+                        <button class="payment-btn bank" onclick="processPayment('professional', 'bank')">Bank</button>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="plan-name">Unlimited</div>
+                    <div class="price-container">
+                        <div class="price-main" id="unlimited-price">$15</div>
+                        <div class="price-converted" id="unlimited-pkr">~ ₨ 4,200</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>Unlimited Resumes</li>
+                        <li>All 20+ Templates</li>
+                        <li>AI Career Coach</li>
+                        <li>LinkedIn Optimization</li>
+                        <li>Interview Preparation</li>
+                        <li>24/7 Priority Support</li>
+                    </ul>
+                    <button class="btn" onclick="selectPlan('unlimited')">Go Unlimited</button>
+                    <div class="payment-options">
+                        <button class="payment-btn jazzcash" onclick="processPayment('unlimited', 'jazzcash')">JazzCash</button>
+                        <button class="payment-btn payoneer" onclick="processPayment('unlimited', 'payoneer')">Payoneer</button>
+                        <button class="payment-btn wise" onclick="processPayment('unlimited', 'wise')">Wise</button>
+                        <button class="payment-btn bank" onclick="processPayment('unlimited', 'bank')">Bank</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>ResumeBuilder Pro AI &copy; 2023 - AI-Powered Resume Building Platform</p>
+            <p>Accepted Payments: JazzCash, Payoneer, Wise, Bank Transfer | Pakistan's #1 Resume Builder</p>
+        </footer>
+    </div>
+
+    <script>
+        // Pricing configuration
+        const pricing = {
+            monthly: {
+                basic: { usd: 5, pkr: 1400 },
+                professional: { usd: 10, pkr: 2800 },
+                unlimited: { usd: 15, pkr: 4200 }
+            },
+            yearly: {
+                basic: { usd: 48, pkr: 13440 },
+                professional: { usd: 96, pkr: 26880 },
+                unlimited: { usd: 144, pkr: 40320 }
+            }
+        };
+
+        let currentBilling = 'monthly';
+        let currentUser = null;
+        let isLoggedIn = false;
+
+        // Initialize pricing
+        function updatePricing() {
+            const plans = ['basic', 'professional', 'unlimited'];
+            plans.forEach(plan => {
+                document.getElementById(`${plan}-price`).textContent = `$${pricing[currentBilling][plan].usd}`;
+                document.getElementById(`${plan}-pkr`).textContent = `~ ₨ ${pricing[currentBilling][plan].pkr.toLocaleString()}`;
+            });
+        }
+
+        // Set billing period
+        function setBilling(period) {
+            currentBilling = period;
+            document.querySelectorAll('.billing-option').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            updatePricing();
+        }
+
+        // Show auth modal
+        function showAuthModal() {
+            document.getElementById('authModal').style.display = 'flex';
+        }
+
+        // Hide auth modal
+        function hideAuthModal() {
+            document.getElementById('authModal').style.display = 'none';
+        }
+
+        // Show auth form
+        function showAuthForm(formType) {
+            document.querySelectorAll('.auth-form').forEach(form => {
+                form.classList.remove('active');
+            });
+            document.querySelectorAll('.auth-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(formType + '-form').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Sign in with Google
+        function signInWithGoogle() {
+            const user = {
+                name: "Google User",
+                email: "user@gmail.com",
+                avatar: "G"
+            };
+            handleUserLogin(user);
+            hideAuthModal();
+            alert("🎉 Successfully signed in with Google!");
+        }
+
+        // Regular sign in
+        function signIn() {
+            const email = document.getElementById('signin-email').value;
+            const password = document.getElementById('signin-password').value;
+            
+            if (email && password) {
+                const user = {
+                    name: email.split('@')[0],
+                    email: email,
+                    avatar: email[0].toUpperCase()
+                };
+                handleUserLogin(user);
+                hideAuthModal();
+                alert("🎉 Successfully signed in!");
+            } else {
+                alert("Please fill in all fields");
+            }
+        }
+
+        // Sign up
+        function signUp() {
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            
+            if (name && email && password) {
+                const user = {
+                    name: name,
+                    email: email,
+                    avatar: name[0].toUpperCase()
+                };
+                handleUserLogin(user);
+                hideAuthModal();
+                alert("🎉 Account created successfully!");
+            } else {
+                alert("Please fill in all fields");
+            }
+        }
+
+        // Handle user login
+        function handleUserLogin(user) {
+            currentUser = user;
+            isLoggedIn = true;
+            
+            document.getElementById('userWelcome').style.display = 'inline';
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('userAvatar').style.display = 'flex';
+            document.getElementById('avatarInitial').textContent = user.avatar;
+            document.getElementById('authButton').textContent = 'Logout';
+        }
+
+        // Logout
+        function logout() {
+            currentUser = null;
+            isLoggedIn = false;
+            
+            document.getElementById('userWelcome').style.display = 'none';
+            document.getElementById('userAvatar').style.display = 'none';
+            document.getElementById('authButton').textContent = 'Sign In';
+            
+            showTool('welcome');
+        }
+
+        // Toggle user menu
+        function toggleUserMenu() {
+            if (confirm("Do you want to logout?")) {
+                logout();
+            }
+        }
+
+        // Start free trial
+        function startFreeTrial() {
+            if (!isLoggedIn) {
+                showAuthModal();
+                return;
+            }
+            alert("🎉 Free trial started! You can now build your first resume.");
+        }
+
+        // Show/hide main sections
+        function showTool(toolId) {
+            document.querySelectorAll('.tool-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(toolId).classList.add('active');
+        }
+        
+        // Plan selection
+        function selectPlan(plan) {
+            if (!isLoggedIn) {
+                showAuthModal();
+                return;
+            }
+            
+            const planNames = {
+                'basic': 'Basic',
+                'professional': 'Professional', 
+                'unlimited': 'Unlimited'
+            };
+            
+            alert(`You selected the ${planNames[plan]} plan. Please choose your payment method.`);
+            showTool('pricing');
+        }
+        
+        // Payment processing
+        function processPayment(plan, method) {
+            if (!isLoggedIn) {
+                showAuthModal();
+                return;
+            }
+            
+            const paymentMethods = {
+                'jazzcash': 'JazzCash',
+                'payoneer': 'Payoneer',
+                'wise': 'Wise',
+                'bank': 'Bank Transfer'
+            };
+            
+            const amountUSD = pricing[currentBilling][plan].usd;
+            const amountPKR = pricing[currentBilling][plan].pkr;
+            
+            alert(`Processing $${amountUSD} / ₨ ${amountPKR} payment via ${paymentMethods[method]}...\n\nPayment gateway would open here.`);
+            
+            // Simulate successful payment
+            setTimeout(() => {
+                alert(`🎉 Payment successful! You now have full access to ${plan} features.`);
+            }, 1000);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('authModal');
+            if (event.target === modal) {
+                hideAuthModal();
+            }
+        }
+
+        // Initialize
+        updatePricing();
+    </script>
+</body>
 </html>
