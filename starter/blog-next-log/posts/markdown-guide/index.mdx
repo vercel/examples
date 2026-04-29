@@ -1,0 +1,176 @@
+---
+title: "Markdown Guide"
+date: 2024-01-01
+description: "Everything you can do with Markdown in your posts"
+author: "next-log"
+category: "Guide"
+published: true
+---
+
+# Markdown Guide
+
+A complete reference for writing Markdown in your blog posts.
+
+## Headings
+
+Use `##` for main sections and `###` for subsections. The table of contents on the right side of each post is automatically generated from your `##` and `###` headings.
+
+```markdown
+## Section Title
+### Subsection Title
+```
+
+> **Note:** Avoid using `#` (h1) in your post body -- the post title from frontmatter is already rendered as h1.
+
+## Text Formatting
+
+You can format text in several ways:
+
+- **Bold text** with `**double asterisks**`
+- *Italic text* with `*single asterisks*`
+- ~~Strikethrough~~ with `~~double tildes~~`
+- `Inline code` with `` `backticks` ``
+- **_Bold and italic_** with `**_combined_**`
+
+## Lists
+
+### Unordered Lists
+
+- First item
+- Second item
+  - Nested item
+  - Another nested item
+    - Deeply nested
+- Third item
+
+### Ordered Lists
+
+1. First step
+2. Second step
+3. Third step
+   1. Sub-step A
+   2. Sub-step B
+
+### Task Lists
+
+- [x] Set up the project
+- [x] Write the first post
+- [ ] Add more content
+- [ ] Deploy to production
+
+## Blockquotes
+
+> This is a blockquote. Use it for callouts, notes, or highlighting important information.
+
+> You can also have multi-paragraph blockquotes.
+>
+> Just keep using `>` on each line.
+
+## Links
+
+Regular links work as expected:
+
+- [Internal link to Getting Started](/post/getting-started)
+- [External link to Next.js](https://nextjs.org)
+
+External links automatically open in a new tab.
+
+## Images
+
+Place images in the `public/posts/` directory and reference them:
+
+```markdown
+![Alt text](/posts/my-post/image.png)
+```
+
+Or use a full URL for external images:
+
+```markdown
+![Alt text](https://example.com/image.png)
+```
+
+## Tables
+
+| Feature       | Status    | Notes              |
+| ------------- | --------- | ------------------ |
+| Dark mode     | Supported | Automatic toggle   |
+| MDX           | Supported | React components   |
+| RSS           | Supported | Auto-generated     |
+| Search        | Supported | Full-text search   |
+
+Align columns with colons:
+
+```markdown
+| Left   | Center  | Right  |
+| :----- | :-----: | -----: |
+| text   |  text   |   text |
+```
+
+## Horizontal Rules
+
+Separate sections with a horizontal rule:
+
+---
+
+Use three dashes `---` on their own line.
+
+## Code Blocks
+
+Specify a language for syntax highlighting:
+
+### JavaScript
+
+```javascript:greet.js {2}
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+console.log(greet("World"));
+```
+
+### Python
+
+```python:fibonacci.py {3-5}
+def fibonacci(n):
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
+
+for num in fibonacci(10):
+    print(num)
+```
+
+### CSS
+
+```css:theme.css {2-3}
+:root {
+  --primary: #2563eb;
+  --background: #ffffff;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  color: var(--primary);
+  background: var(--background);
+}
+```
+
+### Line Highlighting
+
+Highlight specific lines by adding `{lines}` after the language identifier:
+
+````markdown
+```typescript {3,5-7}
+// line 3 and lines 5-7 will be highlighted
+```
+````
+
+## Footnotes
+
+You can add footnotes for additional context[^1].
+
+They are rendered at the bottom of the post[^2].
+
+[^1]: This is the first footnote with additional detail.
+[^2]: Footnotes are great for citations and side notes.
