@@ -10,7 +10,7 @@ type:
 css: Tailwind
 githubUrl: https://github.com/vercel/examples/tree/main/solutions/trustclaw
 demoUrl: https://trustclaw.vercel.app
-deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Ftrustclaw&project-name=trustclaw&repository-name=trustclaw&env=DATABASE_URL,BETTER_AUTH_SECRET,COMPOSIO_API_KEY,CRON_SECRET&envDescription=DATABASE_URL%20needs%20pgvector%3B%20generate%20BETTER_AUTH_SECRET%20and%20CRON_SECRET%20with%20openssl%20rand%20-base64%2032%3B%20Composio%20key%20at%20composio.dev&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Ftrustclaw%23environment-variables
+deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Ftrustclaw&project-name=trustclaw&repository-name=trustclaw&env=BETTER_AUTH_SECRET,COMPOSIO_API_KEY,CRON_SECRET&envDescription=Generate%20BETTER_AUTH_SECRET%20and%20CRON_SECRET%20with%20openssl%20rand%20-base64%2032%3B%20Composio%20key%20at%20composio.dev&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Ftrustclaw%23environment-variables&products=%5B%7B%22type%22%3A%22integration%22%2C%22integrationSlug%22%3A%22neon%22%2C%22productSlug%22%3A%22neon%22%2C%22protocol%22%3A%22storage%22%7D%2C%7B%22type%22%3A%22integration%22%2C%22integrationSlug%22%3A%22upstash%22%2C%22productSlug%22%3A%22upstash-kv%22%2C%22protocol%22%3A%22storage%22%7D%5D&skippable-integrations=1
 relatedTemplates:
   - slackbot
   - cron
@@ -51,9 +51,14 @@ Handles the entire deploy:
 
 ### Option 2: One-Click Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Ftrustclaw&project-name=trustclaw&repository-name=trustclaw&env=DATABASE_URL,BETTER_AUTH_SECRET,COMPOSIO_API_KEY,CRON_SECRET&envDescription=DATABASE_URL%20needs%20pgvector%3B%20generate%20BETTER_AUTH_SECRET%20and%20CRON_SECRET%20with%20openssl%20rand%20-base64%2032%3B%20Composio%20key%20at%20composio.dev&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Ftrustclaw%23environment-variables)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Ftrustclaw&project-name=trustclaw&repository-name=trustclaw&env=BETTER_AUTH_SECRET,COMPOSIO_API_KEY,CRON_SECRET&envDescription=Generate%20BETTER_AUTH_SECRET%20and%20CRON_SECRET%20with%20openssl%20rand%20-base64%2032%3B%20Composio%20key%20at%20composio.dev&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Ftrustclaw%23environment-variables&products=%5B%7B%22type%22%3A%22integration%22%2C%22integrationSlug%22%3A%22neon%22%2C%22productSlug%22%3A%22neon%22%2C%22protocol%22%3A%22storage%22%7D%2C%7B%22type%22%3A%22integration%22%2C%22integrationSlug%22%3A%22upstash%22%2C%22productSlug%22%3A%22upstash-kv%22%2C%22protocol%22%3A%22storage%22%7D%5D&skippable-integrations=1)
 
-The Vercel deploy flow will prompt for the four required env vars. You'll need to bring your own Postgres database with the [pgvector](https://github.com/pgvector/pgvector) extension. See [Environment variables](#environment-variables) below.
+The Vercel deploy flow will:
+
+1. Prompt you to install **Neon Postgres** (required) and **Upstash Redis** (optional - skippable). Both auto-inject their connection strings (`DATABASE_URL`, `REDIS_URL`) into your project on install.
+2. Prompt you for the three secrets: `BETTER_AUTH_SECRET`, `COMPOSIO_API_KEY`, `CRON_SECRET`.
+
+After the first deploy, you'll need to run the Prisma schema sync once against your new Neon database. The smart CLI in Option 1 handles this automatically; for the deploy button path, see [Environment variables](#environment-variables) and [Option 3](#option-3-clone-and-deploy) for the migration step.
 
 ### Option 3: Clone and Deploy
 
@@ -132,16 +137,16 @@ The design choices:
 
 ## Environment variables
 
-| Variable                               | Purpose                                                 |
-| -------------------------------------- | ------------------------------------------------------- |
-| `DATABASE_URL`                         | Postgres + pgvector connection string                   |
-| `BETTER_AUTH_SECRET`                   | Session signing key (32+ random bytes)                  |
-| `COMPOSIO_API_KEY`                     | Composio tool integrations                              |
-| `CRON_SECRET`                          | Auth for `/api/cron/*` routes (auto-injected on Vercel) |
-| `REDIS_URL` _(optional)_               | Resumable streams + abort flags                         |
-| `TELEGRAM_BOT_TOKEN` _(optional)_      | Telegram bot                                            |
-| `TELEGRAM_BOT_USERNAME` _(optional)_   | Telegram bot                                            |
-| `TELEGRAM_WEBHOOK_SECRET` _(optional)_ | Telegram webhook auth                                   |
+| Variable                               | Purpose                                | How it's set                             |
+| -------------------------------------- | -------------------------------------- | ---------------------------------------- |
+| `DATABASE_URL`                         | Postgres + pgvector connection string  | Auto-injected by the Neon integration    |
+| `REDIS_URL` _(optional)_               | Resumable streams + abort flags        | Auto-injected by the Upstash integration |
+| `BETTER_AUTH_SECRET`                   | Session signing key (32+ random bytes) | You provide during deploy                |
+| `COMPOSIO_API_KEY`                     | Composio tool integrations             | You provide during deploy                |
+| `CRON_SECRET`                          | Auth for `/api/cron/*` routes          | You provide during deploy                |
+| `TELEGRAM_BOT_TOKEN` _(optional)_      | Telegram bot                           | Add later via Vercel project settings    |
+| `TELEGRAM_BOT_USERNAME` _(optional)_   | Telegram bot                           | Add later via Vercel project settings    |
+| `TELEGRAM_WEBHOOK_SECRET` _(optional)_ | Telegram webhook auth                  | Add later via Vercel project settings    |
 
 LLM and embedding calls route through Vercel AI Gateway - **no Anthropic or OpenAI API keys required.**
 
