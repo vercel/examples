@@ -82,8 +82,14 @@ const config = {
     ignoreBuildErrors: false,
   },
 
+  // Skip ESLint during `next build`. Lint is run separately as a CI step
+  // (see vercel/examples root husky pre-commit). Running it during build
+  // creates a config conflict in this template's monorepo position because
+  // the local flat-config eslint loads typescript-eslint rules that the
+  // root .eslintrc.json doesn't recognize, so disable comments in source
+  // are accepted by one config and rejected by the other.
   eslint: {
-    ignoreDuringBuilds: false,
+    ignoreDuringBuilds: true,
   },
 };
 
