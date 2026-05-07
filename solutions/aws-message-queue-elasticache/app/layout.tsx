@@ -8,7 +8,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Layout path="solutions/message-queue-elasticache">{children}</Layout>
+        <Layout path="solutions/aws-message-queue-elasticache">{children}</Layout>
       </body>
     </html>
   )

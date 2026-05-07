@@ -1,12 +1,12 @@
 ---
 name: Message Queue with AWS ElastiCache and Next.js
-slug: message-queue-elasticache
+slug: aws-message-queue-elasticache
 description: Learn to use AWS ElastiCache with Next.js API Routes for reliable message queue processing using streams.
 framework: Next.js
 css: Tailwind
 type: Starter
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/message-queue-elasticache&project-name=message-queue-elasticache&repository-name=message-queue-elasticache&env=VALKEY_ENDPOINT&envDescription=Valkey%20endpoint%20URL
-demoUrl: https://message-queue-elasticache.vercel.app
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-message-queue-elasticache&project-name=aws-message-queue-elasticache&repository-name=aws-message-queue-elasticache&env=VALKEY_ENDPOINT&envDescription=Valkey%20endpoint%20URL
+demoUrl: https://aws-message-queue-elasticache.vercel.app
 ---
 
 # Next.js + AWS ElastiCache Message Queue
@@ -22,7 +22,7 @@ This template demonstrates the code pattern for implementing message queues with
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
 
 ```bash
-pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/message-queue-elasticache
+pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/aws-message-queue-elasticache
 ```
 
 **Run Valkey locally:**
@@ -80,11 +80,13 @@ VALKEY_ENDPOINT=your-cluster.cache.amazonaws.com:6379
 
 4. Deploy your application
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/message-queue-elasticache&project-name=message-queue-elasticache&repository-name=message-queue-elasticache&env=VALKEY_ENDPOINT&envDescription=Valkey%20endpoint%20URL)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-message-queue-elasticache&project-name=aws-message-queue-elasticache&repository-name=aws-message-queue-elasticache&env=VALKEY_ENDPOINT&envDescription=Valkey%20endpoint%20URL)
 
 For detailed networking configuration, refer to the [Vercel Secure Compute documentation](https://vercel.com/docs/connectivity/secure-compute).
 
 ## How It Works
+
+> **⚠️ Note:** This demo does not include authentication. In production, add authentication middleware to protect the API endpoints from unauthorized access.
 
 This template demonstrates a reliable serverless message queue workflow:
 

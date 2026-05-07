@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server'
 import { GlideClient, GlideClientConfiguration } from '@valkey/valkey-glide'
 import { randomUUID } from 'crypto'
-import { stringify } from 'querystring'
+import { validateContactForm, fieldsToRecord } from './helpers'
 
 // Force Node.js runtime for native modules
+// NOTE: This demo has no authentication. In production, add auth middleware
+// to protect these endpoints from unauthorized access.
 export const runtime = 'nodejs'
 
 const STREAM_NAME = 'contact-messages'
@@ -33,6 +35,7 @@ async function getClient(): Promise<GlideClient> {
 
   const config: GlideClientConfiguration = {
     addresses: [{ host, port }],
+    requestTimeout: 5000,
   }
 
   client = await GlideClient.createClient(config)
@@ -64,46 +67,7 @@ async function ensureConsumerGroup(client: GlideClient): Promise<void> {
 
 function handleError(error: unknown, defaultMessage: string) {
   console.error('API Error:', error)
-  const message =
-    error instanceof Error
-      ? `${defaultMessage}. ${error.message}`
-      : defaultMessage
-  return NextResponse.json({ error: message }, { status: 500 })
-}
-
-type ContactDataForm = { name: string; email: string; message: string }
-
-type ValidationSuccess = {
-  valid: true
-  data: ContactDataForm
-}
-
-type ValidationError = {
-  valid: false
-  error: string
-}
-
-type ValidationResult = ValidationSuccess | ValidationError
-
-function validateContactForm(data: any): ValidationResult {
-  if (!data.name || typeof data.name !== 'string') {
-    return { valid: false, error: 'Name is required and must be a string' }
-  }
-  if (!data.email || typeof data.email !== 'string') {
-    return { valid: false, error: 'Email is required and must be a string' }
-  }
-  if (!data.message || typeof data.message !== 'string') {
-    return { valid: false, error: 'Message is required and must be a string' }
-  }
-
-  return {
-    valid: true,
-    data: {
-      name: data.name.trim(),
-      email: data.email.trim(),
-      message: data.message.trim(),
-    },
-  }
+  return NextResponse.json({ error: defaultMessage }, { status: 500 })
 }
 
 /**
@@ -162,7 +126,7 @@ export async function GET() {
     /**
      * XAUTOCLAIM automatically reclaims messages that
      * have not been acknowledged, 60 seconds paramter tells
-     * the backend to reclaim aby messages that have not
+     * the backend to reclaim any messages that have not
      * been consumed for more than this time.
      * See more {@link https://valkey.io/commands/xautoclaim/}
      */
@@ -182,12 +146,7 @@ export async function GET() {
     if (messageIds.length > 0) {
       const streamMessageId = messageIds[0]
       const fieldsArray = claimMessages[streamMessageId]
-
-      const messageData: Record<string, string> = {}
-
-      for (const [field, value] of fieldsArray) {
-        messageData[String(field)] = String(value)
-      }
+      const messageData = fieldsToRecord(fieldsArray)
 
       return NextResponse.json(
         {
@@ -238,11 +197,7 @@ export async function GET() {
       return NextResponse.json({ message: null }, { status: 200 })
     }
 
-    // Convert array of pairs to Record
-    const messageData: Record<string, string> = {}
-    for (const [field, value] of fieldsArray) {
-      messageData[String(field)] = String(value)
-    }
+    const messageData = fieldsToRecord(fieldsArray)
 
     return NextResponse.json(
       {
