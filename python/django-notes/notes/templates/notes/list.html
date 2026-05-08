@@ -1,0 +1,25 @@
+{% extends "notes/base.html" %}
+
+{% block title %}Notes{% endblock %}
+
+{% block content %}
+<div class="actions">
+  <h1>Notes</h1>
+  {% if not read_only %}
+  <a href="{% url 'note_create' %}" class="btn btn-primary" style="margin-left: auto">New Note</a>
+  {% endif %}
+</div>
+
+{% if notes %}
+  <div class="note-grid">
+    {% for note in notes %}
+    <a href="{% url 'note_detail' note.pk %}" class="note-card">
+      <h2>{{ note.title }}</h2>
+      <p>{{ note.body|truncatechars:100 }}</p>
+    </a>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="empty">No notes yet.</p>
+{% endif %}
+{% endblock %}

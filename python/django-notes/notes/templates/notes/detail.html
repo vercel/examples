@@ -1,0 +1,24 @@
+{% extends "notes/base.html" %}
+
+{% block title %}{{ note.title }}{% endblock %}
+
+{% block content %}
+<div class="actions">
+  <h1>{{ note.title }}</h1>
+  {% if not read_only %}
+  <a href="{% url 'note_edit' note.pk %}" class="btn" style="margin-left: auto">Edit</a>
+  {% endif %}
+</div>
+
+<div class="card">
+  <p style="white-space: pre-wrap; line-height: 1.6;">{{ note.body }}</p>
+</div>
+
+{% if not read_only %}
+<form method="post" action="{% url 'note_delete' note.pk %}" style="margin-top: 1.5rem">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger"
+    onclick="return confirm('Delete this note?')">Delete</button>
+</form>
+{% endif %}
+{% endblock %}

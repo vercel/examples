@@ -1,0 +1,13 @@
+{
+  "experimentalServices": {
+    "web": {
+      "entrypoint": "main.py",
+      "routePrefix": "/"
+    },
+    "worker": {
+      "type": "worker",
+      "entrypoint": "worker/run.py",
+      "topics": ["jobs"]
+    }
+  }
+}

@@ -28,12 +28,17 @@ export default function Uploader() {
     if (file) {
       try {
         const blob = await upload(file.name, file, {
-          access: 'public',
+          access: 'private',
           handleUploadUrl: '/api/upload',
           onUploadProgress: (progressEvent) => {
             setProgress(progressEvent.percentage)
           },
         })
+
+        // Private blob URLs are not directly accessible in the browser.
+        // Serve them through a delivery route that streams the content.
+        // See: https://vercel.com/docs/vercel-blob/private-storage
+        const deliveryUrl = `/api/blob?pathname=${encodeURIComponent(blob.pathname)}`
 
         toast(
           (t: { id: string }) => (
@@ -41,14 +46,14 @@ export default function Uploader() {
               <div className="p-2">
                 <p className="font-semibold text-gray-900">File uploaded!</p>
                 <p className="mt-1 text-sm text-gray-500">
-                  Your file has been uploaded to{' '}
+                  Your file has been uploaded.{' '}
                   <a
                     className="font-medium text-gray-900 underline"
-                    href={blob.url}
+                    href={deliveryUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {blob.url}
+                    View file
                   </a>
                 </p>
               </div>

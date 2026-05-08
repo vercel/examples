@@ -1,0 +1,11 @@
+[project]
+name = "celery-vercel"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi",
+    "celery",
+    "jinja2",
+    "redis",
+    "vercel",
+]
