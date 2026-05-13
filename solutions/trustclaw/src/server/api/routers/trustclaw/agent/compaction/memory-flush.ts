@@ -34,6 +34,22 @@ export async function runMemoryFlush(
   const { instanceId, anthropicModel, messages, compactionCount } = params
 
   try {
+    // Atomically claim this flush cycle BEFORE invoking the LLM. Two
+    // concurrent post-response tasks for the same instance can both
+    // observe the same stale `memoryFlushCount` via `shouldFlushMemory`,
+    // but only one can win this UPDATE. The loser sees count === 0 and
+    // exits without spending tokens or duplicating memory_save inserts.
+    const claim = await db.composioClawInstance.updateMany({
+      where: {
+        id: instanceId,
+        memoryFlushCount: { lte: compactionCount },
+      },
+      data: { memoryFlushCount: compactionCount + 1 },
+    })
+    if (claim.count === 0) {
+      return { memoriesSaved: 0 }
+    }
+
     const modelString = anthropicModel.startsWith('anthropic/')
       ? anthropicModel
       : `anthropic/${anthropicModel}`
@@ -65,6 +81,9 @@ export async function runMemoryFlush(
       }
     }
 
+    // Persist the flush turn for transcript history. The counter was
+    // already incremented atomically above, so this transaction only
+    // needs to record the messages.
     await db.$transaction(async (tx) => {
       await tx.message.create({
         data: {
@@ -84,11 +103,6 @@ export async function runMemoryFlush(
           source: 'web',
           messageType: 'memory_flush',
         },
-      })
-
-      await tx.composioClawInstance.update({
-        where: { id: instanceId, memoryFlushCount: { lte: compactionCount } },
-        data: { memoryFlushCount: compactionCount + 1 },
       })
     })
 
