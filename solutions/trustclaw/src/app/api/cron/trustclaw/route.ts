@@ -36,6 +36,15 @@ export async function GET(request: Request) {
   // sends `Authorization: Bearer <CRON_SECRET>` on cron-triggered requests.
   // In dev we allow unauthenticated calls so the local trigger script works.
   if (env.NODE_ENV !== 'development') {
+    // Fail closed before the bearer comparison: if CRON_SECRET is missing
+    // (e.g. env validation was bypassed and the var was never set), the
+    // expected header would interpolate to `Bearer undefined` and accept
+    // anyone sending that literal string. Reject the request outright.
+    if (typeof env.CRON_SECRET !== 'string' || env.CRON_SECRET.length === 0) {
+      return new Response('Server misconfigured: CRON_SECRET missing', {
+        status: 503,
+      })
+    }
     const auth = request.headers.get('authorization') ?? ''
     if (auth !== `Bearer ${env.CRON_SECRET}`) {
       return new Response('Unauthorized', { status: 401 })

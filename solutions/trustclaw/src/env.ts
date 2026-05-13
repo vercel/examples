@@ -60,6 +60,11 @@ export const env = createEnv({
             ? `https://${process.env.VERCEL_URL}`
             : undefined),
   },
-  skipValidation: !!process.env.SKIP_ENV_VALIDATION,
+  // SKIP_ENV_VALIDATION is for local lint/typecheck without a full .env.
+  // Never honour it in production — security-critical secrets like
+  // CRON_SECRET and BETTER_AUTH_SECRET must always be present at runtime.
+  skipValidation:
+    !!process.env.SKIP_ENV_VALIDATION &&
+    process.env.NODE_ENV !== 'production',
   emptyStringAsUndefined: true,
 })
