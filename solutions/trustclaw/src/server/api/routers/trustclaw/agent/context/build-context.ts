@@ -102,19 +102,25 @@ export async function loadContextMessages(
   instanceId: string,
   lastCompactionAt: Date | null
 ) {
-  return db.message.findMany({
+  // Prisma applies `take` at the database query level, so ordering matters
+  // when more than MESSAGE_SAFETY_CAP regular messages exist since the last
+  // compaction point. We want the NEWEST capped messages (recent context is
+  // what matters to the agent), so order descending, take the cap, then
+  // reverse back into chronological order before returning.
+  const rows = await db.message.findMany({
     where: {
       instanceId,
       messageType: 'regular',
       ...(lastCompactionAt ? { createdAt: { gte: lastCompactionAt } } : {}),
     },
-    orderBy: { createdAt: 'asc' },
+    orderBy: { createdAt: 'desc' },
     take: MESSAGE_SAFETY_CAP,
     select: {
       role: true,
       content: true,
     },
   })
+  return rows.reverse()
 }
 
 export function buildContext(
