@@ -1,6 +1,4 @@
 minimumReleaseAge: 2880
-packages:
-  - '.'
 allowBuilds:
   '@tailwindcss/oxide': true
   sharp: true

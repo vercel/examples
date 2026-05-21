@@ -1,5 +1,3 @@
 minimumReleaseAge: 2880
-packages:
-  - '.'
 allowBuilds:
   sharp: true
