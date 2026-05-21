@@ -22,6 +22,8 @@ jobs:
       - run: |
           node --version
           npm --version
+          corepack enable pnpm
+          pnpm --version
 
       - run: |
           npm install -g vercel@latest
@@ -29,7 +31,7 @@ jobs:
 
       - working-directory: ./framework-boilerplates/nextjs
         run: |
-          npm ci
+          pnpm install --frozen-lockfile
         env:
           NPM_CONFIG_LOGLEVEL: http
 

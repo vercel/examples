@@ -1,0 +1,3 @@
+minimumReleaseAge: 2880
+allowBuilds:
+  sharp: true
