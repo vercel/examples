@@ -5,7 +5,8 @@ const mockClient = {
   xautoclaim: vi.fn(),
   xreadgroup: vi.fn(),
   xack: vi.fn(),
-  customCommand: vi.fn().mockResolvedValue('OK'),
+  xgroupCreate: vi.fn().mockResolvedValue('OK'),
+  ping: vi.fn().mockResolvedValue('PONG'),
 }
 
 vi.mock('@valkey/valkey-glide', () => ({
@@ -23,7 +24,8 @@ beforeEach(() => {
   mockClient.xautoclaim.mockReset()
   mockClient.xreadgroup.mockReset()
   mockClient.xack.mockReset()
-  mockClient.customCommand.mockResolvedValue('OK')
+  mockClient.xgroupCreate.mockResolvedValue('OK')
+  mockClient.ping.mockResolvedValue('PONG')
 })
 
 describe('POST /api/messages', () => {

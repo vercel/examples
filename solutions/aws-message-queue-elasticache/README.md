@@ -195,7 +195,7 @@ The home page features a contact form where visitors can submit their name, emai
 
 ![Message Submission Form](./images/message-submission.png)
 
-#### Processing Messages (``)
+#### Processing Messages (`/process`)
 
 The processing view allows reviewers to consume and acknowledge messages from the queue. The page loads the messages on page load and displays:
 

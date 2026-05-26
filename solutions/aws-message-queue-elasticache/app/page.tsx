@@ -2,18 +2,21 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { getErrorMessage } from './api/messages/helpers'
+
+type FormStatus = { status: 'idle' } | { status: 'success'; message: string } | { status: 'error'; message: string }
 
 export default function Home() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
-  const [result, setResult] = useState('')
+  const [result, setResult] = useState<FormStatus>({ status: 'idle' })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setResult('')
+    setResult({ status: 'idle' })
 
     try {
       const response = await fetch('/api/messages', {
@@ -25,18 +28,15 @@ export default function Home() {
       const data = await response.json()
 
       if (response.ok) {
-        setResult(
-          `✓ Message submitted successfully! (ID: ${data.streamMessageId})`
-        )
-        // Clear form
+        setResult({ status: 'success', message: `Message submitted successfully! (ID: ${data.streamMessageId})` })
         setName('')
         setEmail('')
         setMessage('')
       } else {
-        setResult(`✗ Error: ${data.error || 'Failed to submit message'}`)
+        setResult({ status: 'error', message: data.error || 'Failed to submit message' })
       }
-    } catch (error) {
-      setResult(`✗ Error: ${error}`)
+    } catch (error: unknown) {
+      setResult({ status: 'error', message: getErrorMessage(error) })
     } finally {
       setIsSubmitting(false)
     }
@@ -138,19 +138,17 @@ export default function Home() {
         </button>
       </form>
 
-      {result && (
+      {result.status !== 'idle' && (
         <div
           style={{
             padding: '12px',
-            backgroundColor: result.startsWith('✓') ? '#d4edda' : '#f8d7da',
-            border: `1px solid ${
-              result.startsWith('✓') ? '#c3e6cb' : '#f5c6cb'
-            }`,
+            backgroundColor: result.status === 'success' ? '#d4edda' : '#f8d7da',
+            border: `1px solid ${result.status === 'success' ? '#c3e6cb' : '#f5c6cb'}`,
             borderRadius: '4px',
             marginBottom: '20px',
           }}
         >
-          {result}
+          {result.status === 'success' ? '✓' : '✗'} {result.message}
         </div>
       )}
 

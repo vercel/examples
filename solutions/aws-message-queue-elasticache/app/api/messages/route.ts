@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
 import { GlideClient, GlideClientConfiguration } from '@valkey/valkey-glide'
-import { randomUUID } from 'crypto'
-import { validateContactForm, fieldsToRecord } from './helpers'
+import { validateContactForm, buildMessageResponse } from './helpers'
 
 // Force Node.js runtime for native modules
 // NOTE: This demo has no authentication. In production, add auth middleware
@@ -10,15 +9,21 @@ export const runtime = 'nodejs'
 
 const STREAM_NAME = 'contact-messages'
 const CONSUMER_GROUP = 'contact-processors'
+const CONSUMER_NAME = `consumer-${process.env.HOSTNAME || 'default'}`
 
 let client: GlideClient | undefined
 
 /**
- * Get or initialize Valkey client
+ * Get or initialize Valkey client with health check
  */
 async function getClient(): Promise<GlideClient> {
   if (client) {
-    return client
+    try {
+      await client.ping()
+      return client
+    } catch {
+      client = undefined
+    }
   }
 
   const endpoint = process.env.VALKEY_ENDPOINT
@@ -44,22 +49,9 @@ async function getClient(): Promise<GlideClient> {
 
 async function ensureConsumerGroup(client: GlideClient): Promise<void> {
   try {
-    /**
-     * Try to create the consumer group
-     * XGROUP CREATE stream group id [MKSTREAM]
-     * See also {@link https://valkey.io/commands/xgroup-create/}
-     */
-    await client.customCommand([
-      'XGROUP',
-      'CREATE',
-      STREAM_NAME,
-      CONSUMER_GROUP,
-      '0',
-      'MKSTREAM',
-    ])
-  } catch (error: any) {
-    // Ignore if group already exists
-    if (!error?.message?.includes('BUSYGROUP')) {
+    await client.xgroupCreate(STREAM_NAME, CONSUMER_GROUP, '0', { mkStream: true })
+  } catch (error: unknown) {
+    if (!(error instanceof Error && error.message.includes('BUSYGROUP'))) {
       throw error
     }
   }
@@ -90,22 +82,20 @@ export async function POST(request: Request) {
 
     /**
      * Append entry (field, value pairs) to the specified stream: {@link https://valkey.io/commands/xadd/}
+     * MAXLEN with approximate trimming caps stream growth to prevent unbounded memory use.
      */
     const streamMessageId = await client.xadd(STREAM_NAME, [
       ['name', name],
       ['email', email],
       ['message', message],
       ['timestamp', timestamp],
-    ])
+    ], { maxLen: { count: 10000, approximate: true } })
 
     return NextResponse.json(
-      {
-        streamMessageId,
-        timestamp,
-      },
+      { streamMessageId, timestamp },
       { status: 201 }
     )
-  } catch (error) {
+  } catch (error: unknown) {
     return handleError(error, 'Failed to produce message')
   }
 }
@@ -121,44 +111,27 @@ export async function GET() {
     const client = await getClient()
     await ensureConsumerGroup(client)
 
-    const consumerName = `consumer-${randomUUID()}`
-
     /**
-     * XAUTOCLAIM automatically reclaims messages that
-     * have not been acknowledged, 60 seconds paramter tells
-     * the backend to reclaim any messages that have not
-     * been consumed for more than this time.
+     * XAUTOCLAIM returns: [next_start_id, {messageId: [[field, value], ...]}, deleted_ids?]
+     * Automatically reclaims messages idle > 60 seconds.
      * See more {@link https://valkey.io/commands/xautoclaim/}
      */
     const claimResponse = await client.xautoclaim(
       STREAM_NAME,
       CONSUMER_GROUP,
-      consumerName,
+      CONSUMER_NAME,
       60000,
       '0-0',
       { count: 1 }
     )
 
-    // XAUTOCLAIM returns: [next_id, [messages], deleted_ids]
-    // valkey-glide wraps messages as objects with 'key' and 'value' properties
-    const [_next_id, claimMessages, _deleted_ids] = claimResponse
+    const [_next_id, claimMessages] = claimResponse
     const messageIds = Object.keys(claimMessages)
     if (messageIds.length > 0) {
       const streamMessageId = messageIds[0]
       const fieldsArray = claimMessages[streamMessageId]
-      const messageData = fieldsToRecord(fieldsArray)
-
       return NextResponse.json(
-        {
-          message: {
-            streamMessageId,
-            name: messageData.name,
-            email: messageData.email,
-            message: messageData.message,
-            timestamp: messageData.timestamp,
-            claimed: true, // Indicate this was a claimed message
-          },
-        },
+        { message: buildMessageResponse(streamMessageId, fieldsArray, { claimed: true }) },
         { status: 200 }
       )
     }
@@ -167,21 +140,18 @@ export async function GET() {
      * No pending messages to claim:
      * Dequeue latest message from the stream
      * See also {@link https://valkey.io/commands/xreadgroup/}
-     * and {@link https://valkey.io/commands/xread/}
      */
     const response = await client.xreadgroup(
       CONSUMER_GROUP,
-      consumerName,
+      CONSUMER_NAME,
       { [STREAM_NAME]: '>' },
       { count: 1 }
     )
 
-    // Response format from xreadgroup: array of {key: stream_name, value: Record<message_id, fields>}
     if (!response || response.length === 0) {
       return NextResponse.json({ message: null }, { status: 200 })
     }
 
-    // getting the head, since XREADGROUP supports reading from multiple streams at the same time
     const streamData = response[0]
     const messages = streamData.value
 
@@ -189,7 +159,6 @@ export async function GET() {
       return NextResponse.json({ message: null }, { status: 200 })
     }
 
-    // Get the first message ID and its fields
     const streamMessageId = Object.keys(messages)[0]
     const fieldsArray = messages[streamMessageId]
 
@@ -197,21 +166,11 @@ export async function GET() {
       return NextResponse.json({ message: null }, { status: 200 })
     }
 
-    const messageData = fieldsToRecord(fieldsArray)
-
     return NextResponse.json(
-      {
-        message: {
-          streamMessageId,
-          name: messageData.name,
-          email: messageData.email,
-          message: messageData.message,
-          timestamp: messageData.timestamp,
-        },
-      },
+      { message: buildMessageResponse(streamMessageId, fieldsArray) },
       { status: 200 }
     )
-  } catch (error) {
+  } catch (error: unknown) {
     return handleError(error, 'Failed to consume message')
   }
 }
@@ -236,12 +195,12 @@ export async function DELETE(request: Request) {
 
     /**
      * XACK removes one or more messages from the pending list of a stream
-     * See also {@link https://valkey.io/commands/xack/ message_id}
+     * See also {@link https://valkey.io/commands/xack/}
      */
     await client.xack(STREAM_NAME, CONSUMER_GROUP, [messageId])
 
     return NextResponse.json({ success: true }, { status: 200 })
-  } catch (error) {
+  } catch (error: unknown) {
     return handleError(error, 'Failed to acknowledge message')
   }
 }

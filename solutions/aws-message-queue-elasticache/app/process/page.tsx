@@ -2,25 +2,20 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import type { StreamMessage } from '../api/messages/helpers'
+import { getErrorMessage } from '../api/messages/helpers'
 
-interface Message {
-  streamMessageId: string
-  name: string
-  email: string
-  message: string
-  timestamp: string
-  claimed?: boolean
-}
+type ResultStatus = { status: 'idle' } | { status: 'success'; message: string } | { status: 'error'; message: string } | { status: 'info'; message: string }
 
 export default function ProcessPage() {
-  const [currentMessage, setCurrentMessage] = useState<Message | null>(null)
+  const [currentMessage, setCurrentMessage] = useState<StreamMessage | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [showNextButton, setShowNextButton] = useState(false)
-  const [result, setResult] = useState('')
+  const [result, setResult] = useState<ResultStatus>({ status: 'idle' })
 
   const fetchNextMessage = async () => {
     setIsLoading(true)
-    setResult('')
+    setResult({ status: 'idle' })
     setShowNextButton(false)
 
     try {
@@ -32,14 +27,14 @@ export default function ProcessPage() {
           setCurrentMessage(data.message)
         } else {
           setCurrentMessage(null)
-          setResult('No messages in queue')
+          setResult({ status: 'info', message: 'No messages in queue' })
         }
       } else {
-        setResult(`Error: ${data.error || 'Failed to fetch message'}`)
+        setResult({ status: 'error', message: data.error || 'Failed to fetch message' })
         setCurrentMessage(null)
       }
-    } catch (error) {
-      setResult(`Error: ${error}`)
+    } catch (error: unknown) {
+      setResult({ status: 'error', message: getErrorMessage(error) })
       setCurrentMessage(null)
     } finally {
       setIsLoading(false)
@@ -50,33 +45,30 @@ export default function ProcessPage() {
     if (!currentMessage) return
 
     setIsLoading(true)
-    setResult('')
+    setResult({ status: 'idle' })
 
     try {
       const response = await fetch(
-        `/api/messages?messageId=${encodeURIComponent(
-          currentMessage.streamMessageId
-        )}`,
+        `/api/messages?messageId=${encodeURIComponent(currentMessage.streamMessageId)}`,
         { method: 'DELETE' }
       )
 
       const data = await response.json()
 
       if (response.ok && data.success) {
-        setResult('✓ Message acknowledged and removed from queue')
+        setResult({ status: 'success', message: 'Message acknowledged and removed from queue' })
         setCurrentMessage(null)
         setShowNextButton(true)
       } else {
-        setResult(`✗ Error: ${data.error || 'Failed to acknowledge message'}`)
+        setResult({ status: 'error', message: data.error || 'Failed to acknowledge message' })
       }
-    } catch (error) {
-      setResult(`✗ Error: ${error}`)
+    } catch (error: unknown) {
+      setResult({ status: 'error', message: getErrorMessage(error) })
     } finally {
       setIsLoading(false)
     }
   }
 
-  // Auto-fetch on mount
   useEffect(() => {
     fetchNextMessage()
   }, [])
@@ -164,9 +156,7 @@ export default function ProcessPage() {
           )}
 
           <div style={{ marginBottom: '15px' }}>
-            <strong
-              style={{ display: 'block', marginBottom: '5px', color: '#666' }}
-            >
+            <strong style={{ display: 'block', marginBottom: '5px', color: '#666' }}>
               Message ID:
             </strong>
             <code
@@ -182,27 +172,21 @@ export default function ProcessPage() {
           </div>
 
           <div style={{ marginBottom: '15px' }}>
-            <strong
-              style={{ display: 'block', marginBottom: '5px', color: '#666' }}
-            >
+            <strong style={{ display: 'block', marginBottom: '5px', color: '#666' }}>
               Name:
             </strong>
             <div>{currentMessage.name}</div>
           </div>
 
           <div style={{ marginBottom: '15px' }}>
-            <strong
-              style={{ display: 'block', marginBottom: '5px', color: '#666' }}
-            >
+            <strong style={{ display: 'block', marginBottom: '5px', color: '#666' }}>
               Email:
             </strong>
             <div>{currentMessage.email}</div>
           </div>
 
           <div style={{ marginBottom: '15px' }}>
-            <strong
-              style={{ display: 'block', marginBottom: '5px', color: '#666' }}
-            >
+            <strong style={{ display: 'block', marginBottom: '5px', color: '#666' }}>
               Message:
             </strong>
             <div
@@ -218,9 +202,7 @@ export default function ProcessPage() {
           </div>
 
           <div style={{ marginBottom: '20px' }}>
-            <strong
-              style={{ display: 'block', marginBottom: '5px', color: '#666' }}
-            >
+            <strong style={{ display: 'block', marginBottom: '5px', color: '#666' }}>
               Timestamp:
             </strong>
             <div style={{ fontSize: '14px', color: '#666' }}>
@@ -270,19 +252,19 @@ export default function ProcessPage() {
         </div>
       )}
 
-      {result && (
+      {result.status !== 'idle' && (
         <div
           style={{
             padding: '12px',
-            backgroundColor: result.startsWith('✓')
+            backgroundColor: result.status === 'success'
               ? '#d4edda'
-              : result.startsWith('✗')
+              : result.status === 'error'
               ? '#f8d7da'
               : '#f5f5f5',
             border: `1px solid ${
-              result.startsWith('✓')
+              result.status === 'success'
                 ? '#c3e6cb'
-                : result.startsWith('✗')
+                : result.status === 'error'
                 ? '#f5c6cb'
                 : '#ddd'
             }`,
@@ -290,7 +272,7 @@ export default function ProcessPage() {
             marginTop: '20px',
           }}
         >
-          {result}
+          {result.status === 'success' && '✓ '}{result.status === 'error' && '✗ '}{result.message}
         </div>
       )}
     </div>

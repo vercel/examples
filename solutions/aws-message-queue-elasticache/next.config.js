@@ -8,7 +8,7 @@
  * available at runtime from `node_modules`.
  */
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   serverExternalPackages: ['@valkey/valkey-glide'],
 }
 
