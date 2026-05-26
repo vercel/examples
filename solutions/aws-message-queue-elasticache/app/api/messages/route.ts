@@ -47,7 +47,10 @@ async function getClient(): Promise<GlideClient> {
   return client
 }
 
+let groupCreated = false
+
 async function ensureConsumerGroup(client: GlideClient): Promise<void> {
+  if (groupCreated) return
   try {
     await client.xgroupCreate(STREAM_NAME, CONSUMER_GROUP, '0', { mkStream: true })
   } catch (error: unknown) {
@@ -55,6 +58,7 @@ async function ensureConsumerGroup(client: GlideClient): Promise<void> {
       throw error
     }
   }
+  groupCreated = true
 }
 
 function handleError(error: unknown, defaultMessage: string) {
