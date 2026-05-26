@@ -17,7 +17,7 @@ export default function Page() {
     setUploading(true)
 
     const response = await fetch(
-      process.env.NEXT_PUBLIC_BASE_URL + '/api/upload',
+      '/api/upload',
       {
         method: 'POST',
         headers: {
