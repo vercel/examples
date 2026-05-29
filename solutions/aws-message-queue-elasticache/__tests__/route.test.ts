@@ -28,6 +28,19 @@ beforeEach(() => {
   mockClient.ping.mockResolvedValue('PONG')
 })
 
+describe('Valkey client config', () => {
+  it('connects with a named client for observability', async () => {
+    mockClient.xautoclaim.mockResolvedValue(['0-0', {}, []])
+    mockClient.xreadgroup.mockResolvedValue([])
+    await GET()
+
+    const { GlideClient } = await import('@valkey/valkey-glide')
+    expect(GlideClient.createClient).toHaveBeenCalledWith(
+      expect.objectContaining({ clientName: 'vercel_message_queue_client' }),
+    )
+  })
+})
+
 describe('POST /api/messages', () => {
   it('returns 201 with streamMessageId on valid input', async () => {
     mockClient.xadd.mockResolvedValue('1234567890-0')
