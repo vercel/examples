@@ -41,6 +41,7 @@ async function getClient(): Promise<GlideClient> {
   const config: GlideClientConfiguration = {
     addresses: [{ host, port }],
     requestTimeout: 5000,
+    clientName: 'vercel_message_queue_client',
   }
 
   client = await GlideClient.createClient(config)
