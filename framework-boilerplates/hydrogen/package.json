@@ -23,7 +23,7 @@
     "eslint": "^9.26.0",
     "eslint-plugin-hydrogen": "^0.12.5",
     "playwright": "^1.56.0",
-    "postcss": "^8.4.31",
+    "postcss": "^8.5.10",
     "postcss-import": "^14.1.0",
     "postcss-preset-env": "^7.6.0",
     "prettier": "^2.3.2",
