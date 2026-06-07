@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@remix-run/node": "2.17.2",
-    "@remix-run/react": "2.17.3",
-    "@remix-run/server-runtime": "2.17.3",
+    "@remix-run/react": "2.17.5",
+    "@remix-run/server-runtime": "2.17.5",
     "@vercel/analytics": "^1.2.2",
     "@vercel/remix": "2.10.0",
     "isbot": "^4",
@@ -19,7 +19,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "2.17.3",
+    "@remix-run/dev": "2.17.5",
     "@remix-run/eslint-config": "2.10.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
