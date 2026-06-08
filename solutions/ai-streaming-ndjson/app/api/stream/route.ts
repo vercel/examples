@@ -34,7 +34,6 @@ export async function POST(req: NextRequest) {
   const tokens = prompt
     .split(/(\s+)/)
     .filter((t) => t.length > 0)
-    .map((t, i, arr) => (i < arr.length - 1 && !arr[i + 1].match(/^\s/) ? t + ' ' : t))
 
   const encoder = new TextEncoder()
 
