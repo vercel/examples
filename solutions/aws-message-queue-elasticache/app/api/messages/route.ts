@@ -26,10 +26,7 @@ async function getClient(): Promise<GlideClient> {
     }
   }
 
-  const endpoint = process.env.VALKEY_ENDPOINT
-  if (!endpoint) {
-    throw new Error('VALKEY_ENDPOINT environment variable is not set')
-  }
+  const endpoint = process.env.VALKEY_ENDPOINT || 'localhost:6379'
 
   const [host, portStr] = endpoint.split(':')
   const port = parseInt(portStr, 10)
