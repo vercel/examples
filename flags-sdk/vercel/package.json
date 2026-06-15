@@ -9,8 +9,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@flags-sdk/vercel": "1.0.0",
-    "@vercel/flags-core": "1.0.0",
+    "@flags-sdk/vercel": "1.4.0",
+    "@vercel/flags-core": "1.5.0",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "2.2.0",
     "@tailwindcss/aspect-ratio": "0.4.2",
@@ -19,7 +19,7 @@
     "@tailwindcss/typography": "0.5.16",
     "@vercel/toolbar": "0.1.33",
     "clsx": "2.1.1",
-    "flags": "^4.0.2",
+    "flags": "4.1.0",
     "motion": "12.17.0",
     "nanoid": "5.1.2",
     "next": "^16.0.10",
