@@ -2,13 +2,7 @@ import { flag } from 'flags/next'
 import { createVercelAdapter } from '@flags-sdk/vercel'
 import { identify, type Entities } from './lib/identify'
 
-if (!process.env.FLAGS) {
-  throw new Error(
-    'Missing Vercel Flags SDK key. Set FLAGS by linking your project and running `vercel env pull`.'
-  )
-}
-
-const vercelFlagsAdapter = createVercelAdapter(process.env.FLAGS)
+const vercelFlagsAdapter = createVercelAdapter()
 
 export const showSummerBannerFlag = flag<boolean, Entities>({
   key: 'summer-sale',
