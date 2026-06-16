@@ -41,7 +41,6 @@ function StatusPill({ ready }: { ready: boolean }) {
 
 export default function SetupPage() {
   // Demo-only signal check for this template.
-  const hasFlags = Boolean(process.env.FLAGS)
   const hasFlagsSecret = Boolean(process.env.FLAGS_SECRET)
 
   return (
@@ -59,10 +58,6 @@ export default function SetupPage() {
             feature flags and pulling environment variables
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <div className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-2 py-1.5">
-              <code className="text-sm">FLAGS</code>
-              <StatusPill ready={hasFlags} />
-            </div>
             <div className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-2 py-1.5">
               <code className="text-sm">FLAGS_SECRET</code>
               <StatusPill ready={hasFlagsSecret} />
@@ -181,8 +176,8 @@ export default function SetupPage() {
                 className="text-link"
               >
                 Quickstart guide
-              </Link>
-              {' '}for more information.
+              </Link>{' '}
+              for more information.
             </p>
           </div>
         </section>
