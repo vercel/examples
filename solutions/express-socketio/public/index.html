@@ -77,12 +77,8 @@
 
     <ul id="messages"></ul>
 
-    <!-- Socket.IO client is served automatically by the Socket.IO server. -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      // WebSocket-only transport: Vercel has no sticky sessions, so skip
-      // Socket.IO's default HTTP long-polling and connect over WebSocket
-      // directly — a single long-lived connection to one instance.
       const socket = io({ transports: ['websocket'] });
 
       const dot = document.getElementById('dot');
