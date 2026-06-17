@@ -54,3 +54,28 @@ pnpm dev      # run src/server.ts directly with tsx (no build)
 pnpm build    # tsc → dist/
 pnpm start    # node dist/server.js
 ```
+
+## Transport configuration
+
+The client connects with the WebSocket transport forced on:
+
+```js
+const socket = io({ transports: ['websocket'] })
+```
+
+By default Socket.IO doesn't open a WebSocket right away. It first connects over
+**HTTP long-polling** — a series of plain HTTP requests that establish a session
+(`sid`) — and only then upgrades to a WebSocket. That session lives in memory on the
+**specific instance** that handled the first request, so every follow-up polling
+request has to come back to that same instance. Routing requests for a given session
+to one backend is called **sticky sessions**.
+
+Your Vercel function can run on multiple instances, and consecutive requests aren't
+guaranteed to hit the same one. So the polling handshake breaks — the session is
+created on instance A, the next poll lands on instance B, which has never seen that
+`sid`, and the connection errors out.
+
+Forcing `transports: ['websocket']` skips the polling phase entirely. A WebSocket is
+established with a single HTTP `Upgrade` request and then stays as **one long-lived
+connection pinned to one instance** for its lifetime — there are no follow-up requests
+that could be routed elsewhere, so no stickiness is needed.

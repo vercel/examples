@@ -79,6 +79,12 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
+      // Connect over WebSocket only. Socket.IO defaults to HTTP long-polling and
+      // upgrades afterward, but polling needs sticky sessions so every request hits
+      // the same instance. A Vercel function can run on multiple instances with no
+      // guarantee of that, so the polling handshake breaks. A WebSocket is a single
+      // long-lived connection to one instance, so forcing it skips polling entirely.
+      // See the README ("Transport configuration") for the full explanation.
       const socket = io({ transports: ['websocket'] });
 
       const dot = document.getElementById('dot');
