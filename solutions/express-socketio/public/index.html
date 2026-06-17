@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Socket.IO echo</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --border: color-mix(in oklab, currentColor 15%, transparent);
+        --muted: color-mix(in oklab, currentColor 55%, transparent);
+      }
+      body {
+        font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+        max-width: 32rem;
+        margin: 3rem auto;
+        padding: 0 1rem;
+        line-height: 1.5;
+      }
+      h1 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+      .lead { color: var(--muted); margin: 0 0 1.25rem; }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
+      .dot {
+        width: 0.625rem;
+        height: 0.625rem;
+        border-radius: 50%;
+        background: #d4d4d4;
+      }
+      .dot.on { background: #22c55e; }
+      .dot.off { background: #ef4444; }
+      form { display: flex; gap: 0.5rem; margin: 1.5rem 0 1rem; }
+      input {
+        flex: 1;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        font: inherit;
+        background: transparent;
+        color: inherit;
+      }
+      button {
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        font: inherit;
+        cursor: pointer;
+        background: transparent;
+        color: inherit;
+      }
+      button:disabled { opacity: 0.5; cursor: not-allowed; }
+      #log {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.875rem;
+      }
+      .line {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.1875rem 0;
+        word-break: break-word;
+      }
+      .line .arrow { flex: none; width: 1ch; }
+      .line .text { flex: 1; white-space: pre-wrap; }
+      .line .latency { flex: none; color: var(--muted); }
+      .sent { color: var(--muted); }
+      .recv .arrow { color: #22c55e; }
+    </style>
+  </head>
+  <body>
+    <h1>Socket.IO echo</h1>
+    <p class="lead">Type a message and the server echoes it straight back over a WebSocket.</p>
+    <p class="status">
+      <span id="dot" class="dot"></span>
+      <span id="statusText">connecting…</span>
+    </p>
+
+    <form id="form">
+      <input id="input" autocomplete="off" placeholder="Type a message…" />
+      <button id="send" type="submit" disabled>Send</button>
+    </form>
+
+    <div id="log"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      // Connect over WebSocket only. Socket.IO defaults to HTTP long-polling and
+      // upgrades afterward, but polling needs sticky sessions so every request hits
+      // the same instance. A Vercel function can run on multiple instances with no
+      // guarantee of that, so the polling handshake breaks. A WebSocket is a single
+      // long-lived connection to one instance, so forcing it skips polling entirely.
+      // See the README ("Transport configuration") for the full explanation.
+      const socket = io({ transports: ['websocket'] });
+
+      const dot = document.getElementById('dot');
+      const statusText = document.getElementById('statusText');
+      const form = document.getElementById('form');
+      const input = document.getElementById('input');
+      const send = document.getElementById('send');
+      const log = document.getElementById('log');
+
+      // Append one line to the log: an arrow, the text, and (for echoes) the
+      // round-trip latency. `dir` is 'sent' (→, outgoing) or 'recv' (←, the echo).
+      function addLine(dir, text, latency) {
+        const line = document.createElement('div');
+        line.className = `line ${dir}`;
+        line.innerHTML =
+          `<span class="arrow">${dir === 'sent' ? '→' : '←'}</span>` +
+          `<span class="text"></span>` +
+          (latency != null ? `<span class="latency">${latency} ms</span>` : '');
+        line.querySelector('.text').textContent = text;
+        log.appendChild(line);
+        window.scrollTo(0, document.body.scrollHeight);
+      }
+
+      socket.on('connect', () => {
+        dot.className = 'dot on';
+        statusText.textContent = 'connected';
+        send.disabled = false;
+      });
+
+      socket.on('disconnect', () => {
+        dot.className = 'dot off';
+        statusText.textContent = 'disconnected';
+        send.disabled = true;
+      });
+
+      // The echo is a strict 1:1 reply over one ordered connection, so we pair
+      // each reply with the oldest unanswered send to measure the round-trip.
+      const pending = [];
+
+      socket.on('message', ({ text }) => {
+        const sentAt = pending.shift();
+        const latency = sentAt != null ? Date.now() - sentAt : null;
+        addLine('recv', text, latency);
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+        pending.push(Date.now());
+        addLine('sent', text);
+        socket.emit('message', text);
+        input.value = '';
+      });
+    </script>
+  </body>
+</html>
