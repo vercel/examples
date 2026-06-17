@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Socket.IO on Vercel</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --border: color-mix(in oklab, currentColor 15%, transparent);
+        --muted: color-mix(in oklab, currentColor 55%, transparent);
+      }
+      body {
+        font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+        max-width: 32rem;
+        margin: 3rem auto;
+        padding: 0 1rem;
+        line-height: 1.5;
+      }
+      h1 { font-size: 1.25rem; }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
+      .dot {
+        width: 0.625rem;
+        height: 0.625rem;
+        border-radius: 50%;
+        background: #d4d4d4;
+      }
+      .dot.on { background: #22c55e; }
+      .dot.off { background: #ef4444; }
+      form { display: flex; gap: 0.5rem; margin: 1.5rem 0 1rem; }
+      input {
+        flex: 1;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        font: inherit;
+        background: transparent;
+        color: inherit;
+      }
+      button {
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        font: inherit;
+        cursor: pointer;
+        background: transparent;
+        color: inherit;
+      }
+      button:disabled { opacity: 0.5; cursor: not-allowed; }
+      ul { list-style: none; padding: 0; margin: 0; }
+      li {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      li time { color: var(--muted); font-size: 0.75rem; margin-left: 0.5rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Socket.IO</h1>
+    <p class="status">
+      <span id="dot" class="dot"></span>
+      <span id="statusText">connecting…</span>
+    </p>
+
+    <form id="form">
+      <input id="input" autocomplete="off" placeholder="Type a message…" />
+      <button id="send" type="submit" disabled>Send</button>
+    </form>
+
+    <ul id="messages"></ul>
+
+    <!-- Socket.IO client is served automatically by the Socket.IO server. -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      // WebSocket-only transport: Vercel has no sticky sessions, so skip
+      // Socket.IO's default HTTP long-polling and connect over WebSocket
+      // directly — a single long-lived connection to one instance.
+      const socket = io({ transports: ['websocket'] });
+
+      const dot = document.getElementById('dot');
+      const statusText = document.getElementById('statusText');
+      const form = document.getElementById('form');
+      const input = document.getElementById('input');
+      const send = document.getElementById('send');
+      const messages = document.getElementById('messages');
+
+      socket.on('connect', () => {
+        dot.className = 'dot on';
+        statusText.textContent = 'connected';
+        send.disabled = false;
+      });
+
+      socket.on('disconnect', () => {
+        dot.className = 'dot off';
+        statusText.textContent = 'disconnected';
+        send.disabled = true;
+      });
+
+      // Render each echoed message from the server.
+      socket.on('message', ({ text, ts }) => {
+        const li = document.createElement('li');
+        li.textContent = text;
+        const time = document.createElement('time');
+        time.textContent = new Date(ts).toLocaleTimeString();
+        li.appendChild(time);
+        messages.appendChild(li);
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+        socket.emit('message', text);
+        input.value = '';
+      });
+    </script>
+  </body>
+</html>
