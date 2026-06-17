@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Socket.IO on Vercel</title>
+    <title>Socket.IO echo</title>
     <style>
       :root {
         color-scheme: light dark;
@@ -17,7 +17,8 @@
         padding: 0 1rem;
         line-height: 1.5;
       }
-      h1 { font-size: 1.25rem; }
+      h1 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+      .lead { color: var(--muted); margin: 0 0 1.25rem; }
       .status {
         display: inline-flex;
         align-items: center;
@@ -53,18 +54,26 @@
         color: inherit;
       }
       button:disabled { opacity: 0.5; cursor: not-allowed; }
-      ul { list-style: none; padding: 0; margin: 0; }
-      li {
-        padding: 0.5rem 0.75rem;
-        border: 1px solid var(--border);
-        border-radius: 0.5rem;
-        margin-bottom: 0.5rem;
+      #log {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.875rem;
       }
-      li time { color: var(--muted); font-size: 0.75rem; margin-left: 0.5rem; }
+      .line {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.1875rem 0;
+        word-break: break-word;
+      }
+      .line .arrow { flex: none; width: 1ch; }
+      .line .text { flex: 1; white-space: pre-wrap; }
+      .line .latency { flex: none; color: var(--muted); }
+      .sent { color: var(--muted); }
+      .recv .arrow { color: #22c55e; }
     </style>
   </head>
   <body>
-    <h1>Socket.IO</h1>
+    <h1>Socket.IO echo</h1>
+    <p class="lead">Type a message and the server echoes it straight back over a WebSocket.</p>
     <p class="status">
       <span id="dot" class="dot"></span>
       <span id="statusText">connecting…</span>
@@ -75,7 +84,7 @@
       <button id="send" type="submit" disabled>Send</button>
     </form>
 
-    <ul id="messages"></ul>
+    <div id="log"></div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -92,7 +101,21 @@
       const form = document.getElementById('form');
       const input = document.getElementById('input');
       const send = document.getElementById('send');
-      const messages = document.getElementById('messages');
+      const log = document.getElementById('log');
+
+      // Append one line to the log: an arrow, the text, and (for echoes) the
+      // round-trip latency. `dir` is 'sent' (→, outgoing) or 'recv' (←, the echo).
+      function addLine(dir, text, latency) {
+        const line = document.createElement('div');
+        line.className = `line ${dir}`;
+        line.innerHTML =
+          `<span class="arrow">${dir === 'sent' ? '→' : '←'}</span>` +
+          `<span class="text"></span>` +
+          (latency != null ? `<span class="latency">${latency} ms</span>` : '');
+        line.querySelector('.text').textContent = text;
+        log.appendChild(line);
+        window.scrollTo(0, document.body.scrollHeight);
+      }
 
       socket.on('connect', () => {
         dot.className = 'dot on';
@@ -106,20 +129,22 @@
         send.disabled = true;
       });
 
-      // Render each echoed message from the server.
-      socket.on('message', ({ text, ts }) => {
-        const li = document.createElement('li');
-        li.textContent = text;
-        const time = document.createElement('time');
-        time.textContent = new Date(ts).toLocaleTimeString();
-        li.appendChild(time);
-        messages.appendChild(li);
+      // The echo is a strict 1:1 reply over one ordered connection, so we pair
+      // each reply with the oldest unanswered send to measure the round-trip.
+      const pending = [];
+
+      socket.on('message', ({ text }) => {
+        const sentAt = pending.shift();
+        const latency = sentAt != null ? Date.now() - sentAt : null;
+        addLine('recv', text, latency);
       });
 
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         const text = input.value.trim();
         if (!text) return;
+        pending.push(Date.now());
+        addLine('sent', text);
         socket.emit('message', text);
         input.value = '';
       });

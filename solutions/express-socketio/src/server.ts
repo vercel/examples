@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
   })
 })
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.main) {
   const port = process.env.PORT || 3000
   server.listen(port, () => {
     console.log(`listening on http://localhost:${port}`)
