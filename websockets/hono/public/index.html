@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hono WebSocket Echo</title>
+    <style>
+      body {
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        margin: 2rem;
+        max-width: 42rem;
+      }
+
+      form {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      input {
+        flex: 1;
+        padding: 0.5rem;
+      }
+
+      button {
+        padding: 0.5rem 0.75rem;
+      }
+
+      li {
+        margin-block: 0.375rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hono WebSocket Echo</h1>
+    <p id="status">Connecting...</p>
+    <form>
+      <input name="message" autocomplete="off" placeholder="Message" />
+      <button>Send</button>
+    </form>
+    <ul></ul>
+    <script>
+      const status = document.querySelector('#status')
+      const form = document.querySelector('form')
+      const input = document.querySelector('input')
+      const list = document.querySelector('ul')
+      const socket = new WebSocket(`${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/ws`)
+
+      socket.addEventListener('open', () => {
+        status.textContent = 'Connected'
+      })
+
+      socket.addEventListener('close', () => {
+        status.textContent = 'Disconnected'
+      })
+
+      socket.addEventListener('message', (event) => {
+        const item = document.createElement('li')
+        item.textContent = event.data
+        list.prepend(item)
+      })
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault()
+        socket.send(input.value)
+        input.value = ''
+      })
+    </script>
+  </body>
+</html>
