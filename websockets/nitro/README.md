@@ -30,13 +30,13 @@ A Vercel Function can accept a WebSocket upgrade and keep a bidirectional connec
 nitro({ features: { websocket: true } })
 ```
 
-The headline: **one transport, every environment.** The same [`defineWebSocketHandler`](server/api/ws.ts) at `/api/ws` powers local dev _and_ production — locally through Nitro's dev server, on Vercel through the preset's `crossws/adapters/vercel` bridge, which hands the handler the runtime's socket upgrade. There's no Vercel-specific code path and no `experimental_upgradeWebSocket` bridge to maintain.
+The headline: **one transport, every environment.** The same `defineWebSocketHandler` (`server/api/ws.ts`) at `/api/ws` powers local dev _and_ production — locally through Nitro's dev server, on Vercel through the preset's `crossws/adapters/vercel` bridge, which hands the handler the runtime's socket upgrade. There's no Vercel-specific code path and no `experimental_upgradeWebSocket` bridge to maintain.
 
-All room logic lives in the [handler](server/api/ws.ts) itself.
+All room logic lives in the handler (`server/api/ws.ts`) itself.
 
 ### State and pub/sub
 
-Each connection subscribes to a single `room` topic. Cursor moves, reactions, and join/leave events are broadcast with crossws's native [`peer.publish`](server/api/ws.ts) — no external store and no client SDK. The connected roster is held in memory and replayed to each client in the `welcome` frame on connect, so a reconnect rebuilds it from scratch.
+Each connection subscribes to a single `room` topic. Cursor moves, reactions, and join/leave events are broadcast with crossws's native `peer.publish` (`server/api/ws.ts`) — no external store and no client SDK. The connected roster is held in memory and replayed to each client in the `welcome` frame on connect, so a reconnect rebuilds it from scratch.
 
 ## Architecture
 
