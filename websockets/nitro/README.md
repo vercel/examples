@@ -1,4 +1,4 @@
-# Nitro + Vercel WebSockets Starter
+# Nitro + WebSockets Starter
 
 [![Nitro](https://img.shields.io/badge/Nitro-black?logo=nitrojs&logoColor=FECE00)](https://nitro.build)
 

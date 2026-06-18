@@ -1,4 +1,4 @@
-# Nuxt + Vercel WebSockets Starter
+# Nuxt + WebSockets Starter
 
 [![Nuxt](https://img.shields.io/badge/Nuxt-black?logo=nuxt&logoColor=00DC82)](https://nuxt.com)
 
