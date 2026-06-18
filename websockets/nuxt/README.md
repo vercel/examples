@@ -4,9 +4,6 @@
 
 Minimal **realtime** starter built with **[Nuxt](https://nuxt.com)** (Nuxt 5 + Nitro v3), **[Nuxt UI](https://ui.nuxt.com)**, and the [Vercel Functions WebSockets beta](https://vercel.com/docs/functions/websockets). Move your cursor and everyone in the room sees it live — presence, cursors, and emoji reactions over a single WebSocket connection. No auth, no client SDK.
 
-> [!NOTE]
-> WebSockets in Vercel Functions are in [beta](https://vercel.com/docs/release-phases#beta).
-
 ## Deploy
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fwebsockets%2Fnuxt&project-name=nuxt-websockets&repository-name=nuxt-websockets)
@@ -66,14 +63,14 @@ server/
 
 ## Reconnects
 
-WebSocket connections close when a Vercel Function reaches its [maximum duration](https://vercel.com/docs/functions/limitations#max-duration). The client reconnects with exponential backoff and reloads the roster from the `welcome` frame on each new connection — see [`useRealtime.ts`](app/composables/useRealtime.ts).
+WebSocket connections close when a Vercel Function reaches its [maximum duration](https://vercel.com/docs/functions/limitations#max-duration). The client reconnects with exponential backoff and reloads the roster from the `welcome` frame on each new connection — see `useRealtime.ts` (`app/composables/useRealtime.ts`).
 
 A lightweight heartbeat (`ping`/`pong`) runs over the same socket so the client can detect a half-open connection (a missed pong) and force a reconnect. On disconnect, the server's `close`/`error` handlers publish a `leave` frame so the peer drops from everyone's roster.
 
 ## Adapting this starter
 
-- **Identity** — swap the anonymous name/color in [`server/utils/identity.ts`](server/utils/identity.ts) for your authenticated user.
-- **New message types** — add a variant to `ClientMessage` / `ServerMessage` in [`shared/types/realtime.ts`](shared/types/realtime.ts), then handle it in the [handler](server/api/ws.ts). The types are shared, so the client and server stay in sync.
+- **Identity** — swap the anonymous name/color in `server/utils/identity.ts` (`server/utils/identity.ts`) for your authenticated user.
+- **New message types** — add a variant to `ClientMessage` / `ServerMessage` in `shared/types/realtime.ts` (`shared/types/realtime.ts`), then handle it in the handler (`server/api/ws.ts`). The types are shared, so the client and server stay in sync.
 - **Rooms** — key the topic by a room id to isolate multiple rooms. Nitro also derives a pub/sub [namespace](https://nitro.build/docs/websocket#namespaces) from the connection path, so per-room routes work out of the box.
 
 ## Links
