@@ -1,0 +1,33 @@
+{
+  "name": "nuxt-websockets",
+  "private": true,
+  "type": "module",
+  "description": "Minimal Nuxt starter for Vercel WebSockets. Live cursors, presence, and reactions over a single realtime connection.",
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "@iconify-json/lucide": "^1.2.112",
+    "@iconify-json/simple-icons": "^1.2.86",
+    "@nuxt/ui": "^4.8.2",
+    "h3": "2.0.1-rc.22",
+    "nitro": "3.0.260610-beta",
+    "nuxt": "npm:nuxt-nightly@5.0.0-29689124.2f9ee7b5",
+    "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.3.5"
+  }
+}
