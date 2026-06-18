@@ -1,0 +1,26 @@
+# Build outputs
+dist
+.output
+.nitro
+.data
+.cache
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Vercel
+.vercel
+
+# Local env files
+.env
+.env.*
+!.env.example

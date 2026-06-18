@@ -1,0 +1,397 @@
+@import 'tailwindcss';
+
+:root {
+  color-scheme: light dark;
+
+  /* Light theme (default) */
+  --bg: #ffffff;
+  --bg-grad-1: #ffffff;
+  --bg-grad-2: #f6f6f7;
+  --surface: rgba(255, 255, 255, 0.72);
+  --fg: #0a0a0a;
+  --fg-muted: #666666;
+  --fg-subtle: #8f8f8f;
+  --border: #ebebeb;
+  --border-strong: #d6d6d6;
+  --bubble: #f1f2f4;
+  --bubble-fg: #0a0a0a;
+  --accent: #0070f3;
+  --accent-fg: #ffffff;
+  --accent-glow: rgba(0, 112, 243, 0.18);
+  --dot-online: #0aa05f;
+  --dot-offline: #ee0000;
+  --dot-idle: #f5a623;
+  --ring: var(--bg);
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-lift: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+  --radius: 12px;
+  --radius-sm: 9px;
+  --max: 780px;
+  --font: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000000;
+    --bg-grad-1: #0b0b0c;
+    --bg-grad-2: #000000;
+    --surface: rgba(10, 10, 11, 0.62);
+    --fg: #ededed;
+    --fg-muted: #a1a1a1;
+    --fg-subtle: #6f6f6f;
+    --border: #1f1f22;
+    --border-strong: #2e2e32;
+    --bubble: #18181b;
+    --bubble-fg: #ededed;
+    --accent: #0070f3;
+    --accent-fg: #ffffff;
+    --accent-glow: rgba(0, 112, 243, 0.28);
+    --dot-online: #1fd27e;
+    --ring: #0b0b0c;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-lift: 0 10px 40px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Expose the design tokens above as Tailwind theme values, so they're usable as
+   utilities (bg-accent, text-muted, border-border, …). `inline` makes those
+   utilities reference the CSS variables directly, so the dark-mode swap above
+   flows through automatically — no `dark:` variants needed. */
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-surface: var(--surface);
+  --color-muted: var(--fg-muted);
+  --color-subtle: var(--fg-subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-bubble: var(--bubble);
+  --color-bubble-foreground: var(--bubble-fg);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-fg);
+  --color-accent-glow: var(--accent-glow);
+  --color-online: var(--dot-online);
+  --color-offline: var(--dot-offline);
+  --color-idle: var(--dot-idle);
+  --color-ring: var(--ring);
+  --font-sans: var(--font);
+  --font-mono: var(--mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--fg);
+  background: radial-gradient(
+      120% 80% at 50% -10%,
+      var(--accent-glow),
+      transparent 55%
+    ),
+    linear-gradient(180deg, var(--bg-grad-1), var(--bg-grad-2));
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+}
+
+.hidden {
+  display: none !important;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+
+/* =====================  Login  ===================== */
+
+.login-glow {
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(720px, 90vw);
+  height: 480px;
+  background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.logo {
+  display: inline-grid;
+  place-items: center;
+  color: var(--fg);
+}
+.logo svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+}
+.logo-lg {
+  font-size: 44px;
+  margin-bottom: 1.25rem;
+}
+
+/* On larger screens, pad the body so the chat card floats with a gap. This is
+   body padding — not a margin on the card — so it can't collapse through <body>
+   and push the page past 100vh. The card's border/radius/shadow live as
+   min-[800px]: utilities on the .chat <section> in Chat.tsx. */
+@media (min-width: 800px) {
+  body {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Status dot + its "online" pulse — bespoke animation, kept in CSS. The header
+   chrome (sticky bar, brand, status row) is Tailwind utilities in Header.tsx. */
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--dot-idle);
+  transition: background 0.25s;
+  flex: 0 0 auto;
+}
+.dot.on {
+  background: var(--dot-online);
+  box-shadow: 0 0 0 0 var(--dot-online);
+  animation: pulse 2.4s infinite;
+}
+.dot.off {
+  background: var(--dot-offline);
+}
+
+/* online avatar stack */
+.avatar-stack {
+  display: flex;
+  align-items: center;
+}
+.avatar-stack .avatar {
+  margin-left: -8px;
+  border: 2px solid var(--ring);
+  transition: transform 0.15s;
+}
+.avatar-stack .avatar:first-child {
+  margin-left: 0;
+}
+.avatar-stack .avatar:hover {
+  transform: translateY(-2px);
+  z-index: 1;
+}
+.avatar-stack .more {
+  margin-left: -8px;
+  display: grid;
+  place-items: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  border-radius: 999px;
+  border: 2px solid var(--ring);
+  background: var(--bubble);
+  color: var(--fg-muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+/* generic avatar */
+.avatar {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+/* =====================  Messages  ===================== */
+
+.message {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.55rem;
+  animation: rise 0.24s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.message .content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  max-width: 76%;
+  min-width: 0;
+}
+
+.message .meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  font-size: 0.74rem;
+  padding: 0 0.2rem;
+}
+.message .meta .name {
+  font-weight: 600;
+}
+.message .meta .time {
+  color: var(--fg-subtle);
+  font-size: 0.68rem;
+  font-family: var(--mono);
+}
+
+.message .body {
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.5rem 0.78rem;
+  border-radius: 16px;
+  border-bottom-left-radius: 5px;
+  background: var(--bubble);
+  color: var(--bubble-fg);
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  box-shadow: var(--shadow);
+}
+
+/* my own messages: right aligned, accent bubble, no avatar */
+.message.me {
+  flex-direction: row-reverse;
+}
+.message.me .avatar {
+  display: none;
+}
+.message.me .content {
+  align-items: flex-end;
+}
+.message.me .meta {
+  flex-direction: row-reverse;
+}
+.message.me .body {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 5px;
+}
+
+/* grouped (consecutive from same sender) */
+.message.grouped {
+  margin-top: -0.35rem;
+}
+.message.grouped .avatar {
+  visibility: hidden;
+}
+.message.grouped .meta {
+  display: none;
+}
+.message.grouped .body {
+  border-bottom-left-radius: 16px;
+  border-top-left-radius: 5px;
+}
+.message.me.grouped .body {
+  border-bottom-right-radius: 16px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 16px;
+}
+
+/* =====================  Typing indicator  ===================== */
+
+/* Animated typing dots. The staggered keyframes (per-dot animation-delay) don't
+   express cleanly as utilities, so this stays as CSS; TypingRow renders it. */
+.dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0.45rem 0.6rem;
+  background: var(--bubble);
+  border-radius: 14px;
+  border-bottom-left-radius: 4px;
+}
+.dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fg-subtle);
+  animation: blink 1.4s infinite both;
+}
+.dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* =====================  Animations  ===================== */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--dot-online);
+  }
+  70% {
+    box-shadow: 0 0 0 5px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =====================  Small screens  ===================== */
+
+@media (max-width: 800px) {
+  .message .content {
+    max-width: 84%;
+  }
+}
