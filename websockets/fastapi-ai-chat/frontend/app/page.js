@@ -72,6 +72,7 @@ export default function Chat() {
 
       ws.onclose = () => {
         setStatus("disconnected");
+        setIsStreaming(false);
         wsRef.current = null;
         if (cancelled) return;
         const attempt = reconnectAttemptRef.current;
