@@ -12,12 +12,12 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/solutions/express-socketio&project-name=express-socketio&repository-name=express-socketio)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/examples/tree/main/websockets/express-socketio&project-name=express-socketio&repository-name=express-socketio)
 
 ### Clone and Deploy
 
 ```bash
-git clone https://github.com/vercel/examples/tree/main/solutions/express-socketio
+git clone https://github.com/vercel/examples/tree/main/websockets/express-socketio
 ```
 
 Install the dependencies:
