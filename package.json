@@ -18,7 +18,7 @@
       "prettier --write",
       "eslint -c .eslintrc.json --no-eslintrc --no-ignore --max-warnings=0 --fix"
     ],
-    "**/*.{json,md,mdx,css,html,yml,yaml,scss}": [
+    "**/*.{json,md,mdx,css,html,yml,yaml,scss,vue}": [
       "prettier --write"
     ]
   },
