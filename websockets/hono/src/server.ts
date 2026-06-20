@@ -1,14 +1,13 @@
 import { readFile } from 'node:fs/promises'
-import { createServer } from 'node:http'
 import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import { createNodeWebSocket } from '@hono/node-ws'
+import { serve, upgradeWebSocket } from '@hono/node-server'
 import { Hono } from 'hono'
+import { WebSocketServer } from 'ws'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const app = new Hono()
-const { injectWebSocket, upgradeWebSocket } = createNodeWebSocket({ app })
 
 app.get('/', async (c) => {
   const html = await readFile(join(__dirname, '..', 'public', 'index.html'), 'utf8')
@@ -28,31 +27,16 @@ app.get(
   })),
 )
 
-const server = createServer(async (req, res) => {
-  const response = await app.fetch(new Request(`http://${req.headers.host}${req.url}`, {
-    method: req.method,
-    headers: req.headers as HeadersInit,
-    body: req.method === 'GET' || req.method === 'HEAD' ? undefined : req,
-    duplex: 'half',
-  } as RequestInit))
+const wss = new WebSocketServer({ noServer: true })
 
-  res.statusCode = response.status
-  response.headers.forEach((value, key) => res.setHeader(key, value))
-  if (response.body) {
-    for await (const chunk of response.body) {
-      res.write(chunk)
-    }
+const server = serve({
+  fetch: app.fetch,
+  port: Number(process.env.PORT || 3000),
+  websocket: { server: wss },
+}, (info) => {
+  if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+    console.log(`listening on http://localhost:${info.port}`)
   }
-  res.end()
 })
-
-injectWebSocket(server)
-
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const port = process.env.PORT || 3000
-  server.listen(port, () => {
-    console.log(`listening on http://localhost:${port}`)
-  })
-}
 
 export default server
