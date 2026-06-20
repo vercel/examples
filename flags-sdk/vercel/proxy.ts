@@ -8,9 +8,8 @@ export const config = {
 }
 
 export async function proxy(request: NextRequest) {
-  const hasFlags = Boolean(process.env.FLAGS)
   const hasFlagsSecret = Boolean(process.env.FLAGS_SECRET)
-  if (!hasFlags || !hasFlagsSecret) {
+  if (!hasFlagsSecret) {
     return NextResponse.rewrite(new URL('/setup', request.url))
   }
 
