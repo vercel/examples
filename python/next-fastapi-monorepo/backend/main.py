@@ -16,7 +16,7 @@ SAMPLE_ITEMS = [
 ]
 
 
-@app.get("/")
+@app.get("/svc/api")
 def read_root():
     return {
         "message": "FastAPI service is running",
@@ -25,7 +25,7 @@ def read_root():
     }
 
 
-@app.get("/status")
+@app.get("/svc/api/status")
 def get_status():
     return {
         "service": "backend",
@@ -35,7 +35,7 @@ def get_status():
     }
 
 
-@app.get("/items")
+@app.get("/svc/api/items")
 def get_items():
     return {
         "items": SAMPLE_ITEMS,
@@ -43,7 +43,7 @@ def get_items():
     }
 
 
-@app.get("/items/{item_id}")
+@app.get("/svc/api/items/{item_id}")
 def get_item(item_id: int):
     item = next((value for value in SAMPLE_ITEMS if value["id"] == item_id), None)
     if item is None:

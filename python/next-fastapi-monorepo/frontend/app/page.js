@@ -26,8 +26,8 @@ export default function Home() {
             Next.js + FastAPI
           </a>
           <div className="nav-links">
-            <a href={`${BACKEND}/docs`}>API Docs</a>
-            <a href={`${BACKEND}/items`}>API</a>
+            <a href={`${BACKEND}/status`}>Status</a>
+            <a href={`${BACKEND}/items`}>Items</a>
           </div>
         </nav>
       </header>
@@ -87,13 +87,13 @@ export default function Home() {
           </div>
 
           <div className="card">
-            <h3>Interactive API Docs</h3>
+            <h3>FastAPI Sample Data</h3>
             <p>
-              Explore the FastAPI endpoints with the auto-generated Swagger
-              UI.
+              Open the backend sample data endpoint at{" "}
+              <code>/svc/api/items</code>.
             </p>
-            <a href={`${BACKEND}/docs`} className="card-link">
-              Open Swagger UI →
+            <a href={`${BACKEND}/items`} className="card-link">
+              Open /svc/api/items →
             </a>
           </div>
         </div>
