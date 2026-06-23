@@ -41,16 +41,20 @@ export default function Home() {
               dangerouslySetInnerHTML={{
                 __html: `<span class="comment">// vercel.json</span>
 {
-  <span class="key">"experimentalServices"</span>: {
+  <span class="key">"experimentalServicesV2"</span>: {
     <span class="key">"frontend"</span>: {
-      <span class="key">"entrypoint"</span>: <span class="string">"frontend"</span>,
-      <span class="key">"routePrefix"</span>: <span class="string">"/"</span>
+      <span class="key">"root"</span>: <span class="string">"frontend/"</span>,
+      <span class="key">"framework"</span>: <span class="string">"nextjs"</span>
     },
     <span class="key">"backend"</span>: {
-      <span class="key">"entrypoint"</span>: <span class="string">"backend/main.py"</span>,
-      <span class="key">"routePrefix"</span>: <span class="string">"/svc/api"</span>
+      <span class="key">"root"</span>: <span class="string">"backend/"</span>,
+      <span class="key">"entrypoint"</span>: <span class="string">"main:app"</span>
     }
-  }
+  },
+  <span class="key">"rewrites"</span>: [
+    { <span class="key">"source"</span>: <span class="string">"/svc/api/:path*"</span>, <span class="key">"destination"</span>: { <span class="key">"type"</span>: <span class="string">"service"</span>, <span class="key">"service"</span>: <span class="string">"backend"</span> } },
+    { <span class="key">"source"</span>: <span class="string">"/(.*)"</span>, <span class="key">"destination"</span>: { <span class="key">"type"</span>: <span class="string">"service"</span>, <span class="key">"service"</span>: <span class="string">"frontend"</span> } }
+  ]
 }`,
               }}
             />
