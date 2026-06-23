@@ -1,13 +1,12 @@
 # FastAPI AI Chat with WebSocket
 
-A real-time AI chat application using **Next.js** (frontend), **FastAPI** (backend), **WebSocket** for streaming, and the [Python AI SDK](https://github.com/vercel-labs/ai-python) for LLM integration. Deployed on Vercel using [experimental services](https://vercel.com/docs/functions/experimental-services).
+A real-time AI chat application using **Next.js** (frontend), **FastAPI** (backend), **WebSocket** for streaming, and the [Python AI SDK](https://github.com/vercel-labs/ai-python) for LLM integration. Deployed on Vercel using [Services](https://vercel.com/docs/services).
 
 ## How It Works
 
 - The **frontend** is a Next.js single-page app with a chat UI that connects to the backend via WebSocket.
 - The **backend** is a FastAPI server that accepts WebSocket connections, streams LLM responses using the Python AI SDK, and sends text deltas back to the client in real time.
-- On Vercel, the frontend and backend run as separate services routed by path prefix (`/` and `/svc/api`).
-- Python ASGI apps handle WebSocket upgrades natively on Vercel — no `experimental_upgradeWebSocket` workaround needed.
+- On Vercel, the frontend and backend run as separate services routed by path prefix (`/` and `/api`).
 
 ## How to Use
 

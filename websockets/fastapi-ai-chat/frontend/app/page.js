@@ -2,8 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "/svc/api";
-
 export default function Chat() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -25,7 +23,7 @@ export default function Chat() {
       if (cancelled) return;
 
       const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-      const wsUrl = `${protocol}//${window.location.host}${BACKEND}/ws`;
+      const wsUrl = `${protocol}//${window.location.host}/api/ws`;
 
       setStatus("connecting");
       const ws = new WebSocket(wsUrl);
