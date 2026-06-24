@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vercel Rust WebSocket</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #000000;
+        color: #ffffff;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+          'Inter', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 600px;
+      }
+
+      h1 {
+        font-size: 2.25rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+        text-align: left;
+        letter-spacing: -0.025em;
+      }
+
+      h1 a {
+        color: #60a5fa;
+        text-decoration: none;
+        font-size: 0.875rem;
+        margin-left: 1rem;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        color: #a3a3a3;
+        margin-bottom: 1rem;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #666666;
+        transition: background-color 0.2s ease;
+      }
+
+      .dot.open {
+        background-color: #22c55e;
+      }
+
+      .dot.closed {
+        background-color: #ef4444;
+      }
+
+      .controls {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      input[type='text'] {
+        flex: 1;
+        background-color: #0a0a0a;
+        color: #ffffff;
+        border: 1px solid #262626;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-size: 0.875rem;
+        font-family: inherit;
+      }
+
+      input[type='text']:focus {
+        outline: none;
+        border-color: #404040;
+      }
+
+      button {
+        background-color: #171717;
+        color: #ffffff;
+        border: 1px solid #333333;
+        padding: 8px 16px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        font-family: inherit;
+      }
+
+      button:hover {
+        background-color: #262626;
+        border-color: #404040;
+      }
+
+      button:disabled {
+        background-color: #0a0a0a;
+        color: #666666;
+        border-color: #262626;
+        cursor: not-allowed;
+      }
+
+      #log {
+        background-color: #0a0a0a;
+        border: 1px solid #262626;
+        border-radius: 4px;
+        padding: 1rem;
+        margin-top: 1rem;
+        min-height: 240px;
+        max-height: 360px;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+        font-size: 0.8rem;
+        line-height: 1.6;
+        color: #e5e5e5;
+      }
+
+      .line-welcome {
+        color: #60a5fa;
+      }
+      .line-echo {
+        color: #22c55e;
+      }
+      .line-tick {
+        color: #888888;
+      }
+      .line-sent {
+        color: #facc15;
+      }
+      .line-system {
+        color: #a78bfa;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>
+        Vercel Rust WebSocket
+        <a
+          href="https://github.com/vercel/examples/tree/main/rust/websocket"
+          >View on GitHub</a
+        >
+      </h1>
+
+      <div class="status">
+        <span class="dot" id="status-dot"></span>
+        <span id="status-text">disconnected</span>
+      </div>
+
+      <div class="controls">
+        <input
+          type="text"
+          id="message-input"
+          placeholder="Type a message to echo..."
+          autocomplete="off"
+        />
+        <button id="send-btn" disabled>Send</button>
+        <button id="connect-btn">Connect</button>
+      </div>
+
+      <div id="log"></div>
+    </div>
+
+    <script>
+      const statusDot = document.getElementById('status-dot');
+      const statusText = document.getElementById('status-text');
+      const messageInput = document.getElementById('message-input');
+      const sendBtn = document.getElementById('send-btn');
+      const connectBtn = document.getElementById('connect-btn');
+      const log = document.getElementById('log');
+
+      let socket = null;
+
+      function append(text, kind) {
+        const line = document.createElement('div');
+        line.className = 'line-' + kind;
+        const time = new Date().toLocaleTimeString();
+        line.textContent = `[${time}] ${text}`;
+        log.appendChild(line);
+        log.scrollTop = log.scrollHeight;
+      }
+
+      function setStatus(state) {
+        statusText.textContent = state;
+        statusDot.className = 'dot ' + (state === 'connected' ? 'open' : 'closed');
+      }
+
+      function connect() {
+        const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const url = `${protocol}//${location.host}/ws`;
+        append(`Connecting to ${url}`, 'system');
+
+        socket = new WebSocket(url);
+
+        socket.addEventListener('open', () => {
+          setStatus('connected');
+          sendBtn.disabled = false;
+          connectBtn.textContent = 'Disconnect';
+        });
+
+        socket.addEventListener('message', (event) => {
+          let data;
+          try {
+            data = JSON.parse(event.data);
+          } catch {
+            append(event.data, 'system');
+            return;
+          }
+          switch (data.type) {
+            case 'welcome':
+              append(`welcome: ${data.message}`, 'welcome');
+              break;
+            case 'echo':
+              append(`echo: ${data.message}`, 'echo');
+              break;
+            case 'tick':
+              append(`tick #${data.count}`, 'tick');
+              break;
+            default:
+              append(event.data, 'system');
+          }
+        });
+
+        socket.addEventListener('close', () => {
+          setStatus('disconnected');
+          sendBtn.disabled = true;
+          connectBtn.textContent = 'Connect';
+          append('Connection closed', 'system');
+          socket = null;
+        });
+
+        socket.addEventListener('error', () => {
+          append('Connection error', 'system');
+        });
+      }
+
+      function disconnect() {
+        if (socket) socket.close();
+      }
+
+      function sendMessage() {
+        const value = messageInput.value.trim();
+        if (!value || !socket || socket.readyState !== WebSocket.OPEN) return;
+        socket.send(value);
+        append(`sent: ${value}`, 'sent');
+        messageInput.value = '';
+      }
+
+      connectBtn.addEventListener('click', () => {
+        if (socket) {
+          disconnect();
+        } else {
+          connect();
+        }
+      });
+
+      sendBtn.addEventListener('click', sendMessage);
+      messageInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') sendMessage();
+      });
+    </script>
+  </body>
+</html>
