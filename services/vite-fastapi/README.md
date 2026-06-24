@@ -1,4 +1,4 @@
-# Vite + FastAPI Services Monorepo
+# Vite + FastAPI Services
 
 Minimal example showing Vercel Services with:
 
@@ -43,4 +43,3 @@ vercel dev
 Open `http://localhost:3000` and try:
 
 - `/svc/api/status` (FastAPI route)
-- `/svc/api/docs` (FastAPI Swagger UI)

@@ -1,4 +1,4 @@
-# Next.js + FastAPI Services Monorepo
+# Next.js + FastAPI Services
 
 Minimal example showing Vercel Services with:
 
@@ -8,22 +8,24 @@ Minimal example showing Vercel Services with:
 It demonstrates:
 
 1. A **Next.js API route** at `/api/hello`
-2. A **FastAPI backend route** which is not publically accessible
+2. A **FastAPI backend route** which is not publicly accessible
 3. Internal services via **bindings** in `vercel.json`
 
 ## Project structure
 
 ```txt
-next-fastapi-monorepo/
+nextjs-fastapi-bindings/
 ├── backend/
 │   ├── main.py
 │   └── pyproject.toml
 ├── frontend/
 │   ├── app/
+│   │   ├── api/backend/[[...path]]/route.js
 │   │   ├── api/hello/route.js
 │   │   ├── globals.css
 │   │   ├── layout.js
 │   │   └── page.js
+│   ├── next.config.js
 │   └── package.json
 └── vercel.json
 ```

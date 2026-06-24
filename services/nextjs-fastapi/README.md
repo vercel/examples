@@ -1,4 +1,4 @@
-# Next.js + FastAPI Services Monorepo
+# Next.js + FastAPI Services
 
 Minimal example showing Vercel Services with:
 
@@ -14,7 +14,7 @@ It demonstrates:
 ## Project structure
 
 ```txt
-next-fastapi-monorepo/
+nextjs-fastapi/
 ├── backend/
 │   ├── main.py
 │   └── pyproject.toml
@@ -24,6 +24,7 @@ next-fastapi-monorepo/
 │   │   ├── globals.css
 │   │   ├── layout.js
 │   │   └── page.js
+│   ├── next.config.js
 │   └── package.json
 └── vercel.json
 ```
@@ -45,4 +46,3 @@ Open `http://localhost:3000` and try:
 
 - `/api/hello` (Next.js API route)
 - `/svc/api/status` (FastAPI route)
-- `/svc/api/docs` (FastAPI Swagger UI)

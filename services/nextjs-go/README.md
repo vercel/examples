@@ -1,4 +1,4 @@
-# Next.js + Go Services Monorepo
+# Next.js + Go Services
 
 Minimal example showing Vercel Services with:
 
@@ -14,7 +14,7 @@ It demonstrates:
 ## Project structure
 
 ```txt
-next-go-monorepo/
+nextjs-go/
 ├── backend/
 │   ├── cmd/
 │   │   └── api/
@@ -49,4 +49,3 @@ Open `http://localhost:3000` and try:
 
 - `/api/hello` (Next.js API route)
 - `/svc/api/status` (Go route)
-- `/svc/api/items` (Go sample data)
