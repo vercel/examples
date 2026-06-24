@@ -41,7 +41,7 @@ export default function Home() {
               dangerouslySetInnerHTML={{
                 __html: `<span class="comment">// vercel.json</span>
 {
-  <span class="key">"experimentalServicesV2"</span>: {
+  <span class="key">"services"</span>: {
     <span class="key">"frontend"</span>: {
       <span class="key">"root"</span>: <span class="string">"frontend"</span>,
       <span class="key">"framework"</span>: <span class="string">"nextjs"</span>

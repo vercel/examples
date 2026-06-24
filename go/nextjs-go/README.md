@@ -7,9 +7,9 @@ Minimal example showing Vercel Services with:
 
 It demonstrates:
 
-1. A **Next.js API route** at `/api/hello` (independent of backend)
+1. A **Next.js API route** at `/api/hello`
 2. A **Go backend route** at `/svc/api/status`
-3. **Backend mounting via service routePrefix** in `vercel.json`
+3. Public routes via **rewrites** in `vercel.json`
 
 ## Project structure
 
@@ -34,25 +34,15 @@ next-go-monorepo/
 
 ## Services config
 
-`vercel.json` uses `experimentalServices` to mount both services:
+Configuration in `vercel.json`:
 
-- `frontend` at `/`
-- `backend` at `/svc/api`
+- routes `/(.*)` to `frontend`
+- routes `/svc/api` to `backend`
 
 ## Run locally
 
-Install frontend dependencies:
-
 ```bash
-cd frontend
-npm install
-```
-
-Then run all services locally:
-
-```bash
-cd ..
-vercel dev -L
+vercel dev
 ```
 
 Open `http://localhost:3000` and try:

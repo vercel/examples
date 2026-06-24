@@ -8,7 +8,7 @@ Minimal example showing Vercel Services with:
 It demonstrates:
 
 1. A **FastAPI backend route** at `/svc/api/status`
-2. **Backend mounting via service routePrefix** in `vercel.json`
+2. Public routes via **rewrites** in `vercel.json`
 
 ## Project structure
 
@@ -29,25 +29,15 @@ vite-fastapi/
 
 ## Services config
 
-`vercel.json` uses `experimentalServicesV2` to mount both services:
+Configuration in `vercel.json`:
 
-- `frontend` at `/`
-- `backend` at `/svc/api`
+- routes `/(.*)` to `frontend`
+- routes `/svc/api` to `backend`
 
 ## Run locally
 
-Install frontend dependencies:
-
 ```bash
-cd frontend
-npm install
-```
-
-Then run all services via Vercel local runtime:
-
-```bash
-cd ..
-vercel dev -L
+vercel dev
 ```
 
 Open `http://localhost:3000` and try:

@@ -47,3 +47,8 @@ def get_item(item_id: int):
         raise HTTPException(status_code=404, detail="Item not found")
 
     return {"item": item}
+
+@app.get("/{blah:path}")
+def fallback(blah):
+    print(blah)
+    return blah

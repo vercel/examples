@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "experimentalServicesV2": {
+  "services": {
     "frontend": {
       "root": "frontend/",
       "framework": "nextjs"

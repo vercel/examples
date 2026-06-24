@@ -3,13 +3,13 @@
 Minimal example showing Vercel Services with:
 
 - `frontend` (Next.js) mounted at `/`
-- `backend` (FastAPI) mounted at `/svc/api`
+- `backend` (FastAPI) internal only
 
 It demonstrates:
 
 1. A **Next.js API route** at `/api/hello`
-2. A **FastAPI backend route** at `/svc/api/status`
-3. **Backend mounting via service routePrefix** in `vercel.json`
+2. A **FastAPI backend route** which is not publically accessible
+3. Internal services via **bindings** in `vercel.json`
 
 ## Project structure
 
@@ -30,29 +30,18 @@ next-fastapi-monorepo/
 
 ## Services config
 
-`vercel.json` uses `experimentalServices` to mount both services:
+Configuration in `vercel.json`:
 
-- `frontend` at `/`
-- `backend` at `/svc/api`
+- routes `/(.*)` to `frontend`
+- binds `backend` to `frontend` as `BACKEND_URL`
 
 ## Run locally
 
-Install frontend dependencies:
-
 ```bash
-cd frontend
-npm install
-```
-
-Then run all services via Vercel local runtime:
-
-```bash
-cd ..
-vercel dev -L
+vercel dev
 ```
 
 Open `http://localhost:3000` and try:
 
 - `/api/hello` (Next.js API route)
-- `/svc/api/status` (FastAPI route)
-- `/svc/api/docs` (FastAPI Swagger UI)
+- `/api/backend` (FastAPI via Next.js API route)
