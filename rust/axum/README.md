@@ -14,6 +14,7 @@ deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel
 publisher: Vercel
 relatedTemplates:
   - rust-hello-world
+  - rust-websocket
 ---
 
 # Rust Axum Web Framework

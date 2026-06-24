@@ -1,7 +1,7 @@
 ---
 name: Rust WebSocket
 slug: rust-websocket
-description: A Rust WebSocket server using the Axum framework on Vercel, demonstrating real-time bidirectional communication.
+description: A Rust WebSocket server Vercel
 framework:
   - Other
 type:
@@ -9,7 +9,7 @@ type:
 css:
   - None
 githubUrl: https://github.com/vercel/examples/tree/main/rust/websocket
-demoUrl: https://rust-websocket.vercel.dev
+demoUrl: https://rust-websocket.vercel.app
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/rust/websocket&project-name=rust-websocket&repository-name=rust-websocket
 publisher: Vercel
 relatedTemplates:
