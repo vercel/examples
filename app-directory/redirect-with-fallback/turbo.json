@@ -1,5 +1,6 @@
 {
   "$schema": "https://turborepo.com/schema.json",
+  "extends": ["//"],
   "pipeline": {
     "build": {
       "outputs": [".next/**", "!.next/cache/**"]
