@@ -1,0 +1,21 @@
+{
+  "name": "browsecli-vercel-sandbox",
+  "version": "1.0.0",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "private": true,
+  "description": "Run the BrowseCLI inside a Vercel Sandbox to reach any site via a Verified Browserbase browser (residential IP, no datacenter blocking, auto CAPTCHA-solve).",
+  "type": "commonjs",
+  "scripts": {
+    "start": "tsx sandbox.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@vercel/sandbox": "^2.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  }
+}
