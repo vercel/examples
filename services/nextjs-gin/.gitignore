@@ -9,6 +9,7 @@ backend/.gomodcache/
 backend/*.exe
 backend/*.test
 backend/*.out
+backend/api
 backend/main
 backend/next-go-monorepo-backend
 backend/.env
