@@ -15,6 +15,7 @@ publisher: Vercel
 relatedTemplates:
   - rust-axum
   - rust-websocket
+  - rust-wait-until
 ---
 
 # Rust Hello World

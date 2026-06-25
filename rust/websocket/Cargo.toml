@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-vercel_runtime = { version = "2", features = ["axum"] }
+vercel_runtime = { version = "2.4", features = ["axum"] }
 tokio = { version = "1", features = ["full"] }
 hyper = { version = "1", features = ["full"] }
 axum = { version = "0.8", features = ["ws"] }
