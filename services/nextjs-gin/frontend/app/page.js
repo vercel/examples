@@ -23,7 +23,7 @@ export default function Home() {
       <header>
         <nav>
           <a href="/" className="logo">
-            Next.js + Go
+            Next.js + Gin
           </a>
           <div className="nav-links">
             <a href={`${BACKEND}/status`}>Status</a>
@@ -33,7 +33,7 @@ export default function Home() {
       </header>
 
       <main>
-        <h1>Next.js + Go</h1>
+        <h1>Next.js + Gin</h1>
 
         <div className="hero-code">
           <pre>
@@ -77,9 +77,9 @@ export default function Home() {
           </div>
 
           <div className="card">
-            <h3>Go Backend Route</h3>
+            <h3>Gin Backend Route</h3>
             <p>
-              Calls <code>/svc/api/status</code> directly on the Go backend
+              Calls <code>/svc/api/status</code> directly on the Gin backend
               service.
             </p>
             <button
@@ -91,7 +91,7 @@ export default function Home() {
           </div>
 
           <div className="card">
-            <h3>Go Sample Data</h3>
+            <h3>Gin Sample Data</h3>
             <p>
               Open the backend sample data endpoint at{" "}
               <code>/svc/api/items</code>.

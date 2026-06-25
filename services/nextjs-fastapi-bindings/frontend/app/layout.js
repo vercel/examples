@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Next.js + FastAPI Services Demo",
+  title: "Next.js + FastAPI + Bindings",
   description: "Vercel Services example with Next.js frontend and FastAPI backend.",
 };
 

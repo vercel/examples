@@ -46,4 +46,4 @@ vercel dev
 Open `http://localhost:3000` and try:
 
 - `/api/hello` (Next.js API route)
-- `/api/backend` (FastAPI via Next.js API route)
+- `/api/backend` (FastAPI backend via Next.js API route)

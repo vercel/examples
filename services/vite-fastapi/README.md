@@ -42,4 +42,4 @@ vercel dev
 
 Open `http://localhost:3000` and try:
 
-- `/svc/api/status` (FastAPI route)
+- `/svc/api/status` (FastAPI backend route)

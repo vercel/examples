@@ -1,4 +1,4 @@
-# Next.js + Go Services
+# Next.js + Gin Services
 
 Minimal example showing Vercel Services with:
 
@@ -8,7 +8,7 @@ Minimal example showing Vercel Services with:
 It demonstrates:
 
 1. A **Next.js API route** at `/api/hello`
-2. A **Go backend route** at `/svc/api/status`
+2. A **Gin backend route** at `/svc/api/status`
 3. Public routes via **rewrites** in `vercel.json`
 
 ## Project structure
@@ -48,4 +48,4 @@ vercel dev
 Open `http://localhost:3000` and try:
 
 - `/api/hello` (Next.js API route)
-- `/svc/api/status` (Go route)
+- `/svc/api/status` (Gin backend route)

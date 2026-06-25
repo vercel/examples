@@ -21,7 +21,7 @@ export default function Home() {
       <header>
         <nav>
           <a href="/" className="logo">
-            Next.js + FastAPI
+            Next.js + FastAPI + Bindings
           </a>
           <div className="nav-links">
             <a href="/api/backend/status">Status</a>
@@ -31,7 +31,7 @@ export default function Home() {
       </header>
 
       <main>
-        <h1>Next.js + FastAPI</h1>
+        <h1>Next.js + FastAPI + Bindings</h1>
 
         <div className="hero-code">
           <pre>
