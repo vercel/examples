@@ -953,9 +953,9 @@ dependencies = [
 
 [[package]]
 name = "vercel_runtime"
-version = "2.3.0"
+version = "2.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "78d18f891962a5b070f1363d89201fee023654b10d36b1247c573265af8a72f3"
+checksum = "f9040702f825410b853e11779c07d90c826ba17fdf3a3df47902c3c6dd3f724f"
 dependencies = [
  "axum",
  "axum-streams",

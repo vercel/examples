@@ -31,9 +31,13 @@ for, such as flushing analytics, warming a cache, sending a webhook, or writing
 to a database.
 
 Here, every request to `/api/wait-until` records itself — timestamp, method,
-path, and user agent — into [Upstash Redis](https://upstash.com)
-**after the response is sent**. The front-end then reads the last 10 records
-from `/api/recent`.
+user agent, and the visitor's country (with a flag emoji) — into
+[Upstash Redis](https://upstash.com) **after the response is sent**. The
+front-end then reads the last 10 records from `/api/recent`.
+
+The country comes from Vercel's `x-vercel-ip-country` request header (an ISO
+3166-1 alpha-2 code injected at the edge), which is converted to a flag emoji
+in `country_to_flag`. The IP itself is never stored.
 
 ## How it works
 
@@ -49,7 +53,7 @@ from `/api/recent`.
 
 ```rust
 // Capture request details before moving into the background task.
-let record = json!({ "timestamp": ts, "method": method, "path": path, ... });
+let record = json!({ "timestamp": ts, "method": method, "userAgent": ua, "country": country, "flag": flag });
 
 state.wait_until(async move {
     // Runs after the response has been sent. The client never waits for this.
