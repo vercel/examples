@@ -1,0 +1,42 @@
+# dependencies
+node_modules
+/.pnp
+.pnp.js
+
+# vite
+dist/
+.vite/
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# env files
+.env
+.env*.local
+
+# python
+*.pyc
+__pycache__
+*.egg-info
+.venv
+venv
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# misc
+.DS_Store
+*.pem
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+
+# lockfiles (generated per-machine)
+package-lock.json
