@@ -1,8 +1,6 @@
 import os
 
-import fastapi
-
-import ai
+import ai, fastapi
 
 app = fastapi.FastAPI()
 
@@ -15,13 +13,15 @@ BUILDERS = {
     "system": ai.system_message,
 }
 
+api = fastapi.APIRouter(prefix="/api")
 
-@app.get("/")
+
+@api.get("/")
 async def health():
     return {"status": "ok"}
 
 
-@app.websocket("/ws")
+@api.websocket("/ws")
 async def websocket_endpoint(websocket: fastapi.WebSocket):
     await websocket.accept()
     try:
@@ -47,3 +47,5 @@ async def websocket_endpoint(websocket: fastapi.WebSocket):
                     )
     except fastapi.WebSocketDisconnect:
         pass
+
+app.include_router(api)
