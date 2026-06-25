@@ -56,6 +56,10 @@
       }
 
       button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
         background-color: #ffffff;
         color: #000000;
         border: none;
@@ -80,6 +84,33 @@
         background-color: #0a0a0a;
         color: #ffffff;
         border: 1px solid #262626;
+      }
+
+      /* Loading spinner shown inside a button while it is busy. */
+      .spinner {
+        display: none;
+        width: 0.875rem;
+        height: 0.875rem;
+        border: 2px solid currentColor;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+      }
+
+      button.loading .spinner {
+        display: inline-block;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .spinner {
+          animation-duration: 1.5s;
+        }
       }
 
       .status {
@@ -124,10 +155,9 @@
         border-radius: 4px;
       }
 
-      .path {
-        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-        font-size: 0.875rem;
-        color: #ffffff;
+      .flag {
+        font-size: 1.125rem;
+        line-height: 1;
       }
 
       .time {
@@ -171,8 +201,14 @@
       </p>
 
       <div class="controls">
-        <button id="fire">Fire a request</button>
-        <button id="refresh" class="secondary">Refresh list</button>
+        <button id="fire">
+          <span class="spinner" aria-hidden="true"></span>
+          <span class="label">Fire a request</span>
+        </button>
+        <button id="refresh" class="secondary">
+          <span class="spinner" aria-hidden="true"></span>
+          <span class="label">Refresh list</span>
+        </button>
         <span class="status" id="status"></span>
       </div>
 
@@ -190,6 +226,29 @@
 
       function setStatus(msg) {
         statusEl.textContent = msg;
+      }
+
+      // Toggle a button's loading state: show its spinner, disable it, and
+      // optionally swap its label while busy.
+      function setLoading(btn, isLoading, label) {
+        const labelEl = btn.querySelector('.label');
+        if (isLoading) {
+          if (label) {
+            btn.dataset.label = labelEl.textContent;
+            labelEl.textContent = label;
+          }
+          btn.classList.add('loading');
+          btn.disabled = true;
+          btn.setAttribute('aria-busy', 'true');
+        } else {
+          if (btn.dataset.label) {
+            labelEl.textContent = btn.dataset.label;
+            delete btn.dataset.label;
+          }
+          btn.classList.remove('loading');
+          btn.disabled = false;
+          btn.removeAttribute('aria-busy');
+        }
       }
 
       function formatTime(ms) {
@@ -225,7 +284,7 @@
             <div class="item">
               <div class="item-head">
                 <span class="method">${escapeHtml(r.method || 'GET')}</span>
-                <span class="path">${escapeHtml(r.path || '/')}</span>
+                <span class="flag" title="${escapeHtml(r.country || '')}">${escapeHtml(r.flag || '🏳️')}</span>
                 <span class="time">${escapeHtml(formatTime(r.timestamp))}</span>
               </div>
               <div class="meta">
@@ -236,31 +295,40 @@
           .join('');
       }
 
+      async function loadRecent() {
+        const res = await fetch('/api/recent', { cache: 'no-store' });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        render(data.requests);
+        setStatus(`Updated ${new Date().toLocaleTimeString()}`);
+      }
+
       async function refresh() {
+        setLoading(refreshBtn, true, 'Refreshing…');
         try {
-          const res = await fetch('/api/recent', { cache: 'no-store' });
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          const data = await res.json();
-          render(data.requests);
-          setStatus(`Updated ${new Date().toLocaleTimeString()}`);
+          await loadRecent();
         } catch (e) {
           setStatus(`Failed to load: ${e.message}`);
+        } finally {
+          setLoading(refreshBtn, false);
         }
       }
 
       async function fire() {
-        fireBtn.disabled = true;
+        setLoading(fireBtn, true, 'Firing…');
         setStatus('Firing request…');
         try {
           await fetch('/api/wait-until', { cache: 'no-store' });
           // The record is written in the background via waitUntil(), so it may
-          // take a moment to appear. Refresh shortly after.
+          // take a moment to appear. Keep the button in its loading state until
+          // we refresh the list shortly after.
           setStatus('Request sent. Waiting for background write…');
-          setTimeout(refresh, 1200);
+          await new Promise((resolve) => setTimeout(resolve, 1200));
+          await loadRecent();
         } catch (e) {
           setStatus(`Request failed: ${e.message}`);
         } finally {
-          fireBtn.disabled = false;
+          setLoading(fireBtn, false);
         }
       }
 

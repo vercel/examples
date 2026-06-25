@@ -5,8 +5,7 @@ edition = "2024"
 
 [dependencies]
 # `AppState::wait_until` was introduced in vercel_runtime 2.4.0.
-# Referenced via path until 2.4.0 is published to crates.io.
-vercel_runtime = { path = "../../../vercel/crates/vercel_runtime", features = ["axum"] }
+vercel_runtime = { version = "2.4", features = ["axum"] }
 tokio = { version = "1", features = ["full"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"

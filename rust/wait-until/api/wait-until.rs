@@ -14,8 +14,12 @@ async fn handler(req: Request, state: AppState) -> Result<Response<ResponseBody>
     // Capture request details *before* moving into the background task. The
     // `Request` itself is not `'static`, so we extract owned values here.
     let method = req.method().to_string();
-    let path = req.uri().path().to_string();
     let user_agent = header(&req, "user-agent");
+    // Vercel injects the visitor's country (ISO 3166-1 alpha-2, e.g. "US",
+    // "DE") at the edge. We never store the IP itself — just the country code
+    // and its flag emoji.
+    let country = header(&req, "x-vercel-ip-country");
+    let flag = country.as_deref().map(country_to_flag);
 
     let timestamp_ms = SystemTime::now()
         .duration_since(UNIX_EPOCH)
@@ -25,8 +29,9 @@ async fn handler(req: Request, state: AppState) -> Result<Response<ResponseBody>
     let record = json!({
         "timestamp": timestamp_ms,
         "method": method,
-        "path": path,
         "userAgent": user_agent,
+        "country": country,
+        "flag": flag,
     })
     .to_string();
 
@@ -82,6 +87,24 @@ fn header(req: &Request, name: &str) -> Option<String> {
         .get(name)
         .and_then(|v| v.to_str().ok())
         .map(|s| s.to_owned())
+}
+
+/// Convert an ISO 3166-1 alpha-2 country code (e.g. "US") into its flag emoji
+/// (e.g. "🇺🇸") by mapping each ASCII letter to its regional indicator symbol.
+/// Returns `None` for anything that isn't two ASCII letters.
+fn country_to_flag(code: &str) -> Option<String> {
+    let code = code.trim();
+    if code.len() != 2 || !code.bytes().all(|b| b.is_ascii_alphabetic()) {
+        return None;
+    }
+    // Regional indicator symbols start at U+1F1E6 ('A').
+    const BASE: u32 = 0x1F1E6;
+    let flag: String = code
+        .to_ascii_uppercase()
+        .bytes()
+        .filter_map(|b| char::from_u32(BASE + (b - b'A') as u32))
+        .collect();
+    Some(flag)
 }
 
 #[tokio::main]
