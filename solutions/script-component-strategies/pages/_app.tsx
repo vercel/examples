@@ -3,7 +3,7 @@ import type { LayoutProps } from '@vercel/examples-ui/layout'
 
 import Link from 'next/link'
 
-import { getLayout } from '@vercel/examples-ui'
+import { getLayout, Head } from '@vercel/examples-ui'
 
 import '@vercel/examples-ui/globals.css'
 
@@ -12,11 +12,11 @@ function App({ Component, pageProps, router }: AppProps) {
   const pathname = router.pathname
 
   return (
-    <Layout
-      title="script component strategies"
-      path="solutions/script-component-strategies"
-      description="A small guide on how to use next/script strategies"
-    >
+    <Layout path="solutions/script-component-strategies">
+      <Head
+        title="script component strategies"
+        description="A small guide on how to use next/script strategies"
+      />
       <Component {...pageProps} />
       {pathname !== '/' && (
         <>

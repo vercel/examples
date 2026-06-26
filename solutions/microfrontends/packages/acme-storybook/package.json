@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@acme/design-system": "workspace:*",
-    "@vercel/examples-ui": "^1.0.5",
+    "@vercel/examples-ui": "^2.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
