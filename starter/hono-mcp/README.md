@@ -22,17 +22,24 @@ The Model Context Protocol (MCP) is an open protocol that standardizes how appli
 ## Prerequisites
 
 - [Vercel CLI](https://vercel.com/docs/cli) installed globally
+- Node.js 20 or later
 
 ## Development
 
-To develop locally:
+Run commands from this example directory, not from the repository root:
 
-```
+```bash
+cd starter/hono-mcp
 npm install
-vc dev
+vercel dev
 ```
 
-```
+When the Vercel CLI asks for the project root, keep the default current
+directory (`starter/hono-mcp`). Do not point the project root at `src`; `src`
+contains the Hono entrypoint, but the package metadata and lockfile live one
+level above it.
+
+```bash
 open http://localhost:3000
 ```
 
@@ -40,18 +47,18 @@ open http://localhost:3000
 
 To build locally:
 
-```
+```bash
 npm install
-vc build
+vercel build
 ```
 
 ## Deployment
 
 To deploy:
 
-```
+```bash
 npm install
-vc deploy
+vercel deploy
 ```
 
 ## API Endpoints
