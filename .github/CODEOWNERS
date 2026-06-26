@@ -15,10 +15,17 @@ solutions/testing @vercel/turbo-oss @goncy @lfades @lpalmes
 # A member of Solutions and Dev Rel is also added
 build-output-api @tootallnate @lfades @lpalmes
 
+# Backend language and service examples
+/go/ @vercel/team-backends
+/rust/ @vercel/team-backends
+/ruby/ @vercel/team-backends
+/services/ @vercel/team-backends
+/python/ @vercel/team-backends @vercel/team-python
+
 vercel-tutor @chibicode
 
 microfrontends @kitfoster @lazarv @mknichel
 
 cdn @vercel/edge-ingress @vercel/edge-content @vercel/edge-security @pranavkarthik10
 
-websockets @vercel/edge-ingress
+websockets @vercel/edge-ingress @vercel/team-backends @vercel/team-python
