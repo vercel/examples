@@ -1,73 +1,37 @@
-# BrowseCLI in a Vercel Sandbox
+# Browser agent in a Vercel Sandbox
 
-Run the **BrowseCLI** inside a [**Vercel Sandbox**](https://vercel.com/docs/vercel-sandbox) — an ephemeral Firecracker microVM (NOT a serverless function) — to reach **any** website through a **Verified Browserbase browser**: residential IP, no datacenter-IP blocking, and automatic CAPTCHA / challenge solving.
+Run an AI agent inside a [Vercel Sandbox](https://vercel.com/docs/vercel-sandbox) — an ephemeral Firecracker microVM — whose only tool is the [`browse`](https://www.npmjs.com/package/browse) CLI. The agent reasons with the [Vercel AI SDK](https://sdk.vercel.ai), and every action it takes is a `browse` command that drives a real browser running on [Browserbase](https://www.browserbase.com). The browser itself never runs in the microVM.
 
-## What it is
-
-A Vercel Sandbox is great at running an **agent loop**, but a vanilla Firecracker microVM can't browse the real web reliably — it has a datacenter IP (instantly blocked), no anti-bot fingerprint hardening, and no CAPTCHA solving.
-
-So we keep the browser **out** of the sandbox. The sandbox runs the [`browse`](https://github.com/browserbase/stagehand/tree/main/packages/cli) CLI, which connects out over CDP to a **Verified Browserbase browser** that:
-
-- uses a **residential / verified IP** — no datacenter-IP blocking
-- runs in **Verified browser mode** — passes bot-detection fingerprinting
-- **auto-solves CAPTCHAs / challenges** server-side
+## How it works
 
 ```
 ┌─────────────────────────────┐      CDP over wss      ┌────────────────────────────┐
-│  Vercel Sandbox (microVM)   │  ───────────────────▶  │  Browserbase Verified      │
-│  node24 + `browse` CLI      │                        │  browser (residential IP,  │
-│  your agent loop            │ ◀───────────────────── │  stealth, CAPTCHA solve)   │
-└─────────────────────────────┘    page data / refs    └────────────────────────────┘
+│  Vercel Sandbox (microVM)   │  ───────────────────▶  │  Browserbase cloud browser │
+│  node24                     │                        │                            │
+│  AI SDK agent loop          │ ◀───────────────────── │  navigates / reads pages   │
+│  tool = `browse` CLI        │    page data           │                            │
+└─────────────────────────────┘                        └────────────────────────────┘
 ```
 
-The browser lives on Browserbase, so protected sites actually load — instead of running Chrome inside the sandbox, where a datacenter IP and bot walls block real sites.
+- `sandbox.ts` (runs locally) provisions the sandbox, installs the `browse` CLI plus the AI SDK inside it, and starts the agent loop. It streams the agent's output back to your terminal.
+- `agent.mjs` (runs inside the sandbox) is a single `generateText` call from the AI SDK. Its only tool shells out to `browse <args>`. The model navigates the web by emitting `browse` commands.
 
-## Files
+The default task asks the agent to find a discussion on Hacker News and summarize the debate from the top comments. Override it with the `TASK` env var.
 
-| File | Purpose |
-| --- | --- |
-| `sandbox.ts` | **Primary, runnable artifact.** Standalone script: `Sandbox.create({ runtime: 'node24' })` → `npm i -g browse` → upload + run the demo with Browserbase creds, streaming stdout. |
-| `app/api/run/route.ts` | Optional Next.js (App Router) `POST /api/run` variant. |
-| `browsecli-demo.sh` | The load-bearing demo: create a Verified session (`--proxies --verified --solve-captchas`), open a Cloudflare-protected page over CDP, assert real content. |
-| `package.json` / `tsconfig.json` | Deps (`@vercel/sandbox`) + TS config. |
-| `.env.example` | Required env vars. |
+## Setup
 
-> **Note:** Verified browsers/sessions (residential IP + automatic CAPTCHA solving) require a Browserbase **Scale** plan — see https://www.browserbase.com/pricing and https://www.browserbase.com/verified. On lower plans, drop `--verified` (you'll get Basic stealth).
+You need:
 
-## How to run
-
-1. Get a Browserbase API key at [browserbase.com/settings](https://www.browserbase.com/settings).
-2. Get a Vercel token at [vercel.com/account/tokens](https://vercel.com/account/tokens), plus your team + project IDs.
-3. Configure env and run the standalone script:
+- `ANTHROPIC_API_KEY` — drives the agent ([console.anthropic.com](https://console.anthropic.com/settings/keys)).
+- `BROWSERBASE_API_KEY` — the cloud browser ([browserbase.com/settings](https://www.browserbase.com/settings)).
+- Vercel Sandbox credentials — `VERCEL_TOKEN` ([vercel.com/account/tokens](https://vercel.com/account/tokens)), `VERCEL_TEAM_ID`, and `VERCEL_PROJECT_ID` (from your Vercel project settings).
 
 ```bash
-pnpm i
-cp .env.example .env   # fill in Browserbase + Vercel creds
+npm i
+cp .env.example .env   # fill in the keys above
 npx tsx sandbox.ts
 ```
 
-Expected tail:
+A successful run provisions a sandbox, prints each `browse` command the agent issues, and ends with a `===== FINAL ANSWER =====` summary.
 
-```
-[browsecli-demo] page title : nowsecure.nl
-[browsecli-demo] RESULT: ✅ PASS — reached real content through the protected site from inside the sandbox
-✓ Done — BrowseCLI reached real content from inside the Vercel Sandbox.
-```
-
-Override the target with `TARGET_URL=https://… npx tsx sandbox.ts`.
-
-### Next.js variant
-
-Deploy this folder as a Next.js app and call:
-
-```bash
-curl -X POST https://<your-deployment>/api/run \
-  -H 'content-type: application/json' \
-  -d '{"targetUrl":"https://nowsecure.nl"}'
-```
-
-Set `BROWSERBASE_API_KEY` as a Vercel project env var. Vercel Sandbox auth (`VERCEL_TOKEN` / `VERCEL_TEAM_ID` / `VERCEL_PROJECT_ID`) resolves automatically when the route runs on Vercel.
-
-## Why Browserbase
-
-Running Chrome **inside** the sandbox gets a datacenter IP, no stealth fingerprint, and no CAPTCHA solving, so it gets walled on real sites. This example instead runs the browser **on Browserbase** (residential/verified IP, stealth, server-side CAPTCHA solve) and only runs the lightweight `browse` CLI in the microVM. Net result: the sandbox can actually reach protected, bot-defended sites.
+The default uses a plain `--remote` Browserbase session, which works on any plan. Verified browsers (residential IP + automatic CAPTCHA solving) are a Scale-plan upgrade — see [browserbase.com/pricing](https://www.browserbase.com/pricing).

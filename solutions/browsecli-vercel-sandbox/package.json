@@ -4,8 +4,8 @@
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
   "private": true,
-  "description": "Run the BrowseCLI inside a Vercel Sandbox to reach any site via a Verified Browserbase browser (residential IP, no datacenter blocking, auto CAPTCHA-solve).",
-  "type": "commonjs",
+  "description": "Run an AI agent inside a Vercel Sandbox whose only tool is the browse CLI, driving a Browserbase cloud browser.",
+  "type": "module",
   "scripts": {
     "start": "tsx sandbox.ts",
     "typecheck": "tsc --noEmit"
