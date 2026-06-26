@@ -24,29 +24,18 @@ const ANTHROPIC_API_KEY = req('ANTHROPIC_API_KEY');
 const BROWSERBASE_API_KEY = req('BROWSERBASE_API_KEY');
 const TASK =
   process.env.TASK ||
-  'Go to Hacker News and find the most controversial post from today, then read the top 3 comments and summarize the debate.';
+  "For Snowflake, Datadog, and MongoDB, find each company's most recent 10-Q filing on SEC EDGAR (start at https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany). Open the actual primary filing document — not the filing index, cover page, or an exhibit — and extract quarterly revenue, year-over-year revenue growth, remaining performance obligations (RPO), and the single most significant risk factor. Return a comparison table across all three companies and cite each filing's URL.";
 
-const system = `You drive a REAL web browser by running the \`browse\` CLI through the bash tool.
-The browser runs remotely on Browserbase; \`browse\` is already installed and BROWSERBASE_API_KEY is already set in the shell.
-Use a single named session so commands share one browser:
-  browse open <url> --remote --session agent   # navigate (ALWAYS pass --remote for the cloud browser)
-  browse get markdown body --session agent      # read a page as markdown (keeps links/URLs)
-  browse get text body --session agent          # read a page as PLAIN TEXT (cleaner for comment threads)
+const system = `You are an autonomous deep-research agent. You answer questions by investigating the live web with a real browser that runs remotely on Browserbase. You drive it by running the \`browse\` CLI through the bash tool — it is already installed and authenticated (BROWSERBASE_API_KEY is set in the shell).
 
-Plan (be efficient, ~6 bash calls):
-1. browse open https://news.ycombinator.com --remote --session agent, then "browse get markdown body --session agent" ONCE.
-   The front page lists ~30 stories, each with points and an "N comments" link to https://news.ycombinator.com/item?id=NNNN.
-   Use markdown here because it contains the item URLs and comment counts.
-2. Pick the most controversial = highest comment count (and/or a divisive topic). Take its exact item URL from the markdown.
-3. browse open <that item URL> --remote --session agent, then "browse get text body --session agent" to read the post + comments.
-   Use TEXT here — HN comment pages are unreadable as markdown.
-4. Write a concise summary of the debate from the top 3 comments.
+Use one named session so every command shares one browser:
+  browse open <url> --remote --session agent   # navigate to a URL
+  browse get markdown body --session agent     # read the current page as markdown (keeps links)
+  browse get text body --session agent         # read the current page as plain text
+Run \`browse --help\` to discover more commands.
+Since you're typing real shell commands, wrap any URL containing shell metacharacters (e.g. & or ?) in single quotes so the shell doesn't split it, e.g. browse open 'https://example.com/path?a=1&b=2' --remote --session agent.
 
-Rules:
-- If a bash command errors or a page looks empty, DO NOT retry it unchanged — pick a DIFFERENT story.
-- As soon as you've read ONE comment thread successfully, STOP browsing and write the summary.
-- Use exact item URLs from the markdown; never guess ids.
-- When finished, run "browse stop --session agent" to release the browser.`;
+Plan your own research: break the question into sub-questions, find and open relevant sources, follow links, and read pages to gather evidence. Use several independent sources and cross-check key facts. If a page errors or comes back empty, try a different source instead of retrying it unchanged. When you can answer thoroughly, run \`browse stop --session agent\` and return a concise, well-sourced synthesis that cites the URLs you used.`;
 
 console.log('› Creating Vercel Sandbox (Firecracker microVM, node24)…');
 // BROWSERBASE_API_KEY is passed as a default sandbox env var. Vercel stores it
@@ -111,7 +100,7 @@ try {
     model: anthropic('claude-sonnet-4-5'),
     tools,
     instructions: system,
-    stopWhen: stepCountIs(20),
+    stopWhen: stepCountIs(40),
   });
 
   console.log('› Running the agent (loop on host, bash in the sandbox)…\n');

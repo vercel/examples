@@ -16,7 +16,7 @@ A [Vercel AI SDK](https://ai-sdk.dev) agent that uses Vercel's [`bash-tool`](htt
 - The **agent loop runs on the host**. `sandbox.ts` provisions the sandbox, installs the `browse` CLI inside it, builds a `bash` tool with `bash-tool` (`createBashTool({ sandbox })`), and runs a `ToolLoopAgent`.
 - Only the **`bash` tool executes inside the sandbox**. The model navigates the web by emitting `browse` commands, which `bash-tool` runs in the microVM.
 
-The default task asks the agent to find a discussion on Hacker News and summarize the debate from the top comments. Override it with the `TASK` env var.
+The default task is a deep-research example: pull the most recent 10-Q filing for Snowflake, Datadog, and MongoDB from SEC EDGAR and return a comparison of their quarterly revenue, growth, RPO, and top risk factor. The agent plans its own steps — there are no site-specific instructions in the prompt. Override the goal with the `TASK` env var.
 
 ## Setup
 
