@@ -1,5 +1,5 @@
 const STATSIG_URL = 'https://statsigapi.net'
-const STATSIG_CONSOLE_API_KEY = process.env.STATSIG_CONSOLE_API_KEY!
+const STATSIG_CONSOLE_API_KEY = process.env.STATSIG_CONSOLE_API_KEY ?? ''
 
 /**
  * Fetch wrapper for the Statsig API
@@ -44,17 +44,22 @@ async function statsig(
 
 const api = {
   async getBuckets(experiment: string) {
-    // https://docs.statsig.com/console-api/experiments#get-/experiments/-experiment_id-
-    const experimentConfig = await statsig(
-      `/console/v1/experiments/${experiment}`,
-      'GET',
-      { apiKey: STATSIG_CONSOLE_API_KEY }
-    )
+    try {
+      // https://docs.statsig.com/console-api/experiments#get-/experiments/-experiment_id-
+      const experimentConfig = await statsig(
+        `/console/v1/experiments/${experiment}`,
+        'GET',
+        { apiKey: STATSIG_CONSOLE_API_KEY  }
+      )
 
-    return experimentConfig.data.groups.map(
-      (group: { parameterValues: { bucket: string } }) =>
-        group.parameterValues.bucket
-    )
+      return experimentConfig.data.groups.map(
+        (group: { parameterValues: { bucket: string } }) =>
+          group.parameterValues.bucket
+      )
+    } catch (e) {
+      console.error('Failed to fetch buckets from Statsig', e)
+      return []
+    }
   },
 }
 
