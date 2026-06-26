@@ -10,7 +10,7 @@ A real-time AI chat application using **Next.js** (frontend), **Flask** (backend
 
 ### Sync handler, async SDK
 
-Flask is WSGI and `flask-sock` handlers are **synchronous**, but the Python AI SDK is **async**. The backend bridges the two by keeping one asyncio event loop alive for the lifetime of each WebSocket connection and driving the async stream with `loop.run_until_complete(...)` per message. Reusing the loop lets the SDK's HTTP client and its pooled connections to the AI Gateway stay warm across messages in a conversation.
+Flask is WSGI and `flask-sock` handlers are **synchronous**, but the Python AI SDK is **async**. The backend bridges the two by streaming each message inside its own `asyncio.run(...)`. The SDK model and its HTTP client are created, used, and closed within that single event loop, so the client is never shared across loops (an `httpx` client must not outlive the loop it was created on).
 
 ## How to Use
 
