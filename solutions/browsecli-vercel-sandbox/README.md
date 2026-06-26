@@ -1,20 +1,20 @@
-# Browser agent in a Vercel Sandbox
+# Browser agent with bash-tool in a Vercel Sandbox
 
-Run an AI agent inside a [Vercel Sandbox](https://vercel.com/docs/vercel-sandbox) — an ephemeral Firecracker microVM — whose only tool is the [`browse`](https://www.npmjs.com/package/browse) CLI. The agent reasons with the [Vercel AI SDK](https://sdk.vercel.ai), and every action it takes is a `browse` command that drives a real browser running on [Browserbase](https://www.browserbase.com). The browser itself never runs in the microVM.
+A [Vercel AI SDK](https://ai-sdk.dev) agent that uses Vercel's [`bash-tool`](https://github.com/vercel-labs/bash-tool) to run the [`browse`](https://www.npmjs.com/package/browse) CLI inside a [Vercel Sandbox](https://vercel.com/docs/vercel-sandbox) — an ephemeral Firecracker microVM. The `browse` CLI drives a real browser running on [Browserbase](https://www.browserbase.com), so the browser itself never runs in the microVM.
 
 ## How it works
 
 ```
-┌─────────────────────────────┐      CDP over wss      ┌────────────────────────────┐
-│  Vercel Sandbox (microVM)   │  ───────────────────▶  │  Browserbase cloud browser │
-│  node24                     │                        │                            │
-│  AI SDK agent loop          │ ◀───────────────────── │  navigates / reads pages   │
-│  tool = `browse` CLI        │    page data           │                            │
-└─────────────────────────────┘                        └────────────────────────────┘
+┌──────────────────────────────┐        ┌──────────────────────────────┐     CDP/wss   ┌────────────────────────────┐
+│  Host (your machine / CI)    │        │  Vercel Sandbox (microVM)    │  ──────────▶  │  Browserbase cloud browser │
+│                              │        │  node24                      │               │                            │
+│  ToolLoopAgent (AI SDK)      │ ─bash─▶ │  browse CLI runs here        │ ◀──────────── │  navigates / reads pages   │
+│  reasoning + tool loop       │        │  (installed by sandbox.ts)   │   page data   │                            │
+└──────────────────────────────┘        └──────────────────────────────┘               └────────────────────────────┘
 ```
 
-- `sandbox.ts` (runs locally) provisions the sandbox, installs the `browse` CLI plus the AI SDK inside it, and starts the agent loop. It streams the agent's output back to your terminal.
-- `agent.mjs` (runs inside the sandbox) is a single `generateText` call from the AI SDK. Its only tool shells out to `browse <args>`. The model navigates the web by emitting `browse` commands.
+- The **agent loop runs on the host**. `sandbox.ts` provisions the sandbox, installs the `browse` CLI inside it, builds a `bash` tool with `bash-tool` (`createBashTool({ sandbox })`), and runs a `ToolLoopAgent`.
+- Only the **`bash` tool executes inside the sandbox**. The model navigates the web by emitting `browse` commands, which `bash-tool` runs in the microVM.
 
 The default task asks the agent to find a discussion on Hacker News and summarize the debate from the top comments. Override it with the `TASK` env var.
 
@@ -23,7 +23,7 @@ The default task asks the agent to find a discussion on Hacker News and summariz
 You need:
 
 - `ANTHROPIC_API_KEY` — drives the agent ([console.anthropic.com](https://console.anthropic.com/settings/keys)).
-- `BROWSERBASE_API_KEY` — the cloud browser ([browserbase.com/settings](https://www.browserbase.com/settings)).
+- `BROWSERBASE_API_KEY` — the cloud browser ([browserbase.com/settings](https://www.browserbase.com/settings)). It is passed to the sandbox as a default environment variable (stored encrypted by Vercel and injected into the `browse` commands), so it is never written to a file in the sandbox.
 - Vercel Sandbox credentials — `VERCEL_TOKEN` ([vercel.com/account/tokens](https://vercel.com/account/tokens)), `VERCEL_TEAM_ID`, and `VERCEL_PROJECT_ID` (from your Vercel project settings).
 
 ```bash
@@ -32,6 +32,6 @@ cp .env.example .env   # fill in the keys above
 npx tsx sandbox.ts
 ```
 
-A successful run provisions a sandbox, prints each `browse` command the agent issues, and ends with a `===== FINAL ANSWER =====` summary.
+A successful run provisions a sandbox, prints each `browse` command the agent issues through the `bash` tool, and ends with a `===== FINAL ANSWER =====` summary.
 
 The default uses a plain `--remote` Browserbase session, which works on any plan. Verified browsers (residential IP + automatic CAPTCHA solving) are a Scale-plan upgrade — see [browserbase.com/pricing](https://www.browserbase.com/pricing).
