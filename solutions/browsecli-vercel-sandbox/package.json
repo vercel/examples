@@ -1,0 +1,22 @@
+{
+  "name": "browsecli-vercel-sandbox",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A bash-tool agent that runs the browse CLI inside a Vercel Sandbox, driving a Browserbase cloud browser.",
+  "type": "module",
+  "scripts": {
+    "start": "tsx sandbox.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^3.0.0",
+    "@vercel/sandbox": "^2.2.1",
+    "ai": "^6.0.0",
+    "bash-tool": "^1.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  }
+}
