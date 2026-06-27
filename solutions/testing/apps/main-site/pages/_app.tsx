@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import type { LayoutProps } from '@vercel/examples-ui/layout'
 
-import { getLayout } from '@vercel/examples-ui'
+import { getLayout, Head } from '@vercel/examples-ui'
 
 import '@vercel/examples-ui/globals.css'
 
@@ -9,7 +9,8 @@ function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component)
 
   return (
-    <Layout title="testing" path="solutions/testing" description="testing">
+    <Layout path="solutions/testing">
+      <Head title="testing" description="testing" />
       <Component {...pageProps} />
     </Layout>
   )

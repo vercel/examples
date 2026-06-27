@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import { SWRConfig } from 'swr'
 import type { LayoutProps } from '@vercel/examples-ui/layout'
-import { getLayout } from '@vercel/examples-ui'
+import { getLayout, Head } from '@vercel/examples-ui'
 import '@vercel/examples-ui/globals.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -16,13 +16,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       }}
     >
       <Layout
-        title="IP Blocking with Upstash"
         path="edge-middleware/api-rate-limit-and-tokens"
-        description="Learn how to do IP blocking at the edge with Upstash."
         deployButton={{
           env: ['UPSTASH_REST_API_DOMAIN', 'UPSTASH_REST_API_TOKEN'],
         }}
       >
+        <Head
+          title="IP Blocking with Upstash"
+          description="Learn how to do IP blocking at the edge with Upstash."
+        />
         <Component {...pageProps} />
       </Layout>
     </SWRConfig>
