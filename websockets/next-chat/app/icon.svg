@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .ring { fill: #000; }
+    .tri { fill: #fff; }
+    @media (prefers-color-scheme: dark) {
+      .ring { fill: #fff; }
+      .tri { fill: #000; }
+    }
+  </style>
+  <circle class="ring" cx="16" cy="16" r="16" />
+  <path class="tri" d="M16 8 23.5 21H8.5z" />
+</svg>

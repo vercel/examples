@@ -1,0 +1,25 @@
+{
+  "name": "hono-websockets",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/server.js",
+  "description": "Minimal TypeScript Hono WebSocket echo server on Vercel",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "2.0.5",
+    "@types/ws": "8.18.1",
+    "hono": "4.12.26",
+    "ws": "8.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.2",
+    "tsx": "4.22.4",
+    "typescript": "6.0.3"
+  }
+}
