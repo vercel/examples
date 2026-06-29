@@ -2,9 +2,9 @@
 
 Deploy a Go HTTP server to Vercel using a `Dockerfile.vercel`, with zero configuration. Vercel builds the image, stores it, and runs it on [Fluid compute](https://vercel.com/blog/introducing-fluid-compute) — your server only needs to listen on `$PORT`.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-description=Deploy%20a%20Go%20HTTP%20server%20to%20Vercel%20from%20a%20Dockerfile.&demo-title=Go%20Dockerfile%20Starter&demo-url=https%3A%2F%2Fvercel-plus-go-dockerfile.labs.vercel.dev%2F&from=templates&project-name=Go%20Dockerfile%20Starter&repository-name=go-dockerfile-starter&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fgo%2Fdockerfile&skippable-integrations=1)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-description=Deploy%20a%20Go%20HTTP%20server%20to%20Vercel%20from%20a%20Dockerfile.&demo-title=Go%20Dockerfile%20Starter&demo-url=https%3A%2F%2Fgo-dockerfile.vercel.app%2F&from=templates&project-name=Go%20Dockerfile%20Starter&repository-name=go-dockerfile-starter&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fgo%2Fdockerfile&skippable-integrations=1)
 
-_Live Example: https://vercel-plus-go-dockerfile.labs.vercel.dev/_
+_Live Example: https://go-dockerfile.vercel.app/_
 
 ## How it works
 
