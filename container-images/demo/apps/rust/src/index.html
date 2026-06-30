@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/apple-icon.png" />
+    <title>Rust · /rust</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #09090b;
+        --bg-elev: #0c0c0e;
+        --card: #0e0e11;
+        --border: #1f1f23;
+        --fg: #fafafa;
+        --muted: #a1a1aa;
+        --subtle: #71717a;
+        --accent: #ce422b;
+        --radius: 12px;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; min-height: 100vh;
+        display: grid; place-items: center; padding: 2rem 1.5rem;
+        background: var(--bg); color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        background-image:
+          radial-gradient(50rem 50rem at 50% -15rem, rgba(206, 66, 43, 0.08), transparent 70%),
+          radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+        background-size: auto, 22px 22px;
+      }
+      .card {
+        width: min(620px, 100%);
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: var(--radius); padding: 2rem;
+      }
+      .back { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--subtle); text-decoration: none; font-size: 0.8rem; margin-bottom: 1.75rem; }
+      .back:hover { color: var(--fg); }
+      .head { display: flex; align-items: center; gap: 0.85rem; margin: 0.85rem 0 1rem; }
+      .icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-elev); }
+      .icon svg { width: 22px; height: 22px; fill: var(--fg); }
+      .badge { display: inline-flex; align-items: center; justify-content: center; line-height: 1; padding: 0.42rem 0.6rem 0.34rem; border-radius: 999px; background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+      h1 { margin: 0; font-size: 1.4rem; font-weight: 600; letter-spacing: -0.02em; }
+      p { margin: 0 0 1.5rem; color: var(--muted); font-size: 0.92rem; }
+      dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.6rem 1rem; font-size: 0.85rem; }
+      dt { color: var(--subtle); }
+      dd { margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <a class="back" href="/">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All services
+      </a>
+      <div class="head">
+        <span class="icon">
+          <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Rust</title><path d="M23.8346 11.7033l-1.0073-.6236a13.7268 13.7268 0 00-.0283-.2936l.8656-.8069a.3483.3483 0 00-.1154-.5783l-1.1066-.414a8.4948 8.4948 0 00-.087-.2856l.6904-.9587a.3462.3462 0 00-.2257-.5446l-1.1638-.1891a9.3294 9.3294 0 00-.1407-.2622l.49-1.0734a.3437.3437 0 00-.0274-.3361.3486.3486 0 00-.3006-.1524l-1.18.0415a6.6244 6.6244 0 00-.1879-.2241l.2782-1.1481a.3472.3472 0 00-.417-.4172l-1.1481.2783a14.275 14.275 0 00-.2241-.1879l.0415-1.18a.3472.3472 0 00-.4885-.328l-1.0734.49a9.3724 9.3724 0 00-.2622-.1408l-.189-1.1638a.3472.3472 0 00-.5447-.2256l-.9587.6904a8.4948 8.4948 0 00-.2856-.087l-.414-1.1066a.3483.3483 0 00-.5782-.1154l-.807.8656a13.7268 13.7268 0 00-.2936-.0283L12.2967.1654a.3472.3472 0 00-.5934 0l-.6236 1.0073a13.7273 13.7273 0 00-.2936.0283L9.9792.3327a.3483.3483 0 00-.5783.1154l-.4139 1.1066a8.4948 8.4948 0 00-.2856.087L7.7427.94a.3472.3472 0 00-.5446.2256l-.1891 1.1638a9.3724 9.3724 0 00-.2622.1407L5.6734 1.99a.3472.3472 0 00-.4885.328l.0414 1.18a14.275 14.275 0 00-.224.1879l-1.1482-.2783a.3472.3472 0 00-.4171.4172l.2782 1.1481a6.6244 6.6244 0 00-.1879.2241l-1.18-.0415a.3486.3486 0 00-.3006.1524.3437.3437 0 00-.0274.3361l.49 1.0734a9.3294 9.3294 0 00-.1407.2622l-1.1638.189a.3462.3462 0 00-.2257.5447l.6904.9587a8.4948 8.4948 0 00-.087.2856l-1.1066.414a.3483.3483 0 00-.1154.5783l.8656.8069a13.7268 13.7268 0 00-.0283.2936L.1654 11.703a.3472.3472 0 000 .5934l1.0073.6236a13.7273 13.7273 0 00.0283.2936l-.8656.807a.3483.3483 0 00.1154.5782l1.1066.414a8.4948 8.4948 0 00.087.2856l-.6904.9587a.3462.3462 0 00.2257.5446l1.1638.1891a9.3294 9.3294 0 00.1407.2622l-.49 1.0734a.3472.3472 0 00.328.4885l1.18-.0415a6.6244 6.6244 0 00.1879.2241l-.2782 1.1481a.3472.3472 0 00.4171.4172l1.1481-.2783a14.275 14.275 0 00.2241.1879l-.0415 1.18a.3472.3472 0 00.4885.328l1.0734-.49a9.3724 9.3724 0 00.2622.1408l.189 1.1638a.3472.3472 0 00.5447.2256l.9587-.6904a8.4948 8.4948 0 00.2856.087l.414 1.1066a.3483.3483 0 00.5782.1154l.807-.8656a13.7268 13.7268 0 00.2936.0283l.6236 1.0073a.3472.3472 0 00.5934 0l.6236-1.0073a13.7273 13.7273 0 00.2936-.0283l.8069.8656a.3483.3483 0 00.5783-.1154l.4139-1.1066a8.4948 8.4948 0 00.2856-.087l.9587.6904a.3472.3472 0 00.5446-.2256l.1891-1.1638a9.3724 9.3724 0 00.2622-.1407l1.0734.49a.3472.3472 0 00.4885-.328l-.0414-1.18a14.275 14.275 0 00.224-.1879l1.1482.2783a.3472.3472 0 00.4171-.4172l-.2782-1.1481a6.6244 6.6244 0 00.1879-.2241l1.18.0415a.3486.3486 0 00.3006-.1524.3437.3437 0 00.0274-.3361l-.49-1.0734a9.3294 9.3294 0 00.1407-.2622l1.1638-.189a.3462.3462 0 00.2257-.5447l-.6904-.9587a8.4948 8.4948 0 00.087-.2856l1.1066-.414a.3483.3483 0 00.1154-.5783l-.8656-.8069a13.7268 13.7268 0 00.0283-.2936l1.0073-.6236a.3472.3472 0 000-.5934zm-6.7138 8.3216a.7144.7144 0 01.2997-1.3965.7146.7146 0 11-.3002 1.3968zm-.3424-2.3164a.6498.6498 0 00-.7724.5008l-.3582 1.6726c-1.1069.5023-2.3354.7818-3.6296.7818a8.7544 8.7544 0 01-3.7045-.8159l-.3582-1.6727a.6492.6492 0 00-.7723-.5002l-1.4768.3169a8.7416 8.7416 0 01-.7632-.9001h7.1858c.0814 0 .1357-.0148.1357-.0888v-2.5398c0-.0741-.0543-.0889-.1357-.0889h-2.1014v-1.6098h2.2718c.2069 0 1.1075.0592 1.3947 1.2104.0899.3531.2876 1.5034.4227 1.8712.1351.4123.6845 1.2362 1.2707 1.2362h3.5814a.7541.7541 0 00.1305-.0136 8.7905 8.7905 0 01-.8137.9542zM6.8369 20.024a.7146.7146 0 11-.3002-1.3968.7144.7144 0 01.3002 1.3968zM4.1177 8.9971a.7147.7147 0 11-1.3049.5796.7147.7147 0 011.305-.5796zm-.8336 1.9767l1.5388-.6843a.6494.6494 0 00.33-.8579l-.3168-.7163h1.2462v5.6166H3.7244a8.7508 8.7508 0 01-.2826-3.3338zm6.4901-.5238V8.7894h2.9696c.1535 0 1.0835.1775 1.0835.8732 0 .5776-.7138.7848-1.3015.7848zm10.8286 1.5337c0 .2069-.0074.4123-.0222.6162h-.9038c-.0902 0-.1268.0592-.1268.1481v.4147c0 .9764-.5507 1.1888-1.0335 1.2423-.4597.0518-.9692-.1924-1.0322-.4745-.2711-1.5232-.7213-1.8487-1.4337-2.4117.8854-.5616 1.8043-1.391 1.8043-2.5014 0-1.1987-.8225-1.9534-1.3825-2.3237-.7861-.5187-1.6565-.6225-1.8916-.6225H5.4054a8.7497 8.7497 0 014.8989-2.7666l1.0956 1.1489a.6483.6483 0 00.9181.0207l1.2249-1.172a8.7508 8.7508 0 015.9921 4.2675l-.8383 1.8937a.6492.6492 0 00.33.8579l1.6219.7204c.0281.2873.0426.5767.0426.8682zM11.5079 2.679a.7146.7146 0 11.9869 1.0349.7146.7146 0 01-.9869-1.0349zm8.9216 7.1816a.7148.7148 0 111.3047.58.7148.7148 0 01-1.3047-.58z"/></svg>
+        </span>
+        <h1>Hello from Rust</h1>
+      </div>
+      <p>A dynamic HTTP server rendered by axum running on the tokio async runtime.</p>
+      <dl>
+        <dt>Service</dt><dd>rust</dd>
+        <dt>Route</dt><dd>/rust</dd>
+        <dt>Framework</dt><dd>axum + tokio</dd>
+        <dt>Health</dt><dd>/rust/health</dd>
+      </dl>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #09090b;
+  --color-bg-elev: #0c0c0e;
+  --color-card: #0e0e11;
+  --color-card-hover: #131316;
+  --color-border: #1f1f23;
+  --color-border-hover: #2e2e35;
+  --color-fg: #fafafa;
+  --color-muted: #a1a1aa;
+  --color-subtle: #71717a;
+  --color-ring: #3b82f6;
+
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(60rem 60rem at 50% -20rem, rgba(59, 130, 246, 0.08), transparent 70%),
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.035) 1px, transparent 0);
+  background-size: auto, 22px 22px;
+}

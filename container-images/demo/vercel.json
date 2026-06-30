@@ -1,0 +1,110 @@
+{
+  "services": {
+    "rust": {
+      "root": "apps/rust",
+      "entrypoint": "Dockerfile"
+    },
+    "go": {
+      "root": "apps/go",
+      "entrypoint": "Dockerfile"
+    },
+    "wasm": {
+      "root": "apps/wasm",
+      "entrypoint": "Dockerfile"
+    },
+    "browser": {
+      "root": "apps/browser",
+      "entrypoint": "Dockerfile"
+    },
+    "ffmpeg": {
+      "root": "apps/ffmpeg",
+      "entrypoint": "Dockerfile"
+    },
+    "doom": {
+      "root": "apps/doom",
+      "entrypoint": "Dockerfile"
+    },
+    "qr": {
+      "root": "apps/qr",
+      "entrypoint": "Dockerfile"
+    },
+    "php": {
+      "root": "apps/php",
+      "entrypoint": "Dockerfile"
+    },
+    "web": {
+      "root": "apps/web",
+      "framework": "nextjs"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/php/(.*)",
+      "destination": { "service": "php" }
+    },
+    {
+      "source": "/php",
+      "destination": { "service": "php" }
+    },
+    {
+      "source": "/qr/(.*)",
+      "destination": { "service": "qr" }
+    },
+    {
+      "source": "/qr",
+      "destination": { "service": "qr" }
+    },
+    {
+      "source": "/doom/(.*)",
+      "destination": { "service": "doom" }
+    },
+    {
+      "source": "/doom",
+      "destination": { "service": "doom" }
+    },
+    {
+      "source": "/ffmpeg/(.*)",
+      "destination": { "service": "ffmpeg" }
+    },
+    {
+      "source": "/ffmpeg",
+      "destination": { "service": "ffmpeg" }
+    },
+    {
+      "source": "/browser/(.*)",
+      "destination": { "service": "browser" }
+    },
+    {
+      "source": "/browser",
+      "destination": { "service": "browser" }
+    },
+    {
+      "source": "/wasm/(.*)",
+      "destination": { "service": "wasm" }
+    },
+    {
+      "source": "/wasm",
+      "destination": { "service": "wasm" }
+    },
+    {
+      "source": "/rust/(.*)",
+      "destination": { "service": "rust" }
+    },
+    {
+      "source": "/rust",
+      "destination": { "service": "rust" }
+    },
+    {
+      "source": "/go/(.*)",
+      "destination": { "service": "go" }
+    },
+    {
+      "source": "/go",
+      "destination": { "service": "go" }
+    },
+    {
+      "source": "/(.*)",
+      "destination": { "service": "web" }
+    }
+  ]
+}

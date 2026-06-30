@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/apple-icon.png" />
+    <title>Browser · /browser</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #09090b;
+        --bg-elev: #0c0c0e;
+        --card: #0e0e11;
+        --border: #1f1f23;
+        --border-hover: #2e2e35;
+        --fg: #fafafa;
+        --muted: #a1a1aa;
+        --subtle: #71717a;
+        --accent: #3b82f6;
+        --ok: #22c55e;
+        --err: #ef4444;
+        --radius: 12px;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; min-height: 100vh;
+        background: var(--bg); color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        display: flex; justify-content: center; padding: 2.5rem 1.5rem;
+        background-image:
+          radial-gradient(55rem 55rem at 50% -18rem, rgba(59, 130, 246, 0.08), transparent 70%),
+          radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+        background-size: auto, 22px 22px;
+      }
+      main { width: min(1160px, 100%); }
+      .back { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--subtle); text-decoration: none; font-size: 0.8rem; margin-bottom: 1.75rem; }
+      .back:hover { color: var(--fg); }
+      .head { display: flex; align-items: center; gap: 0.85rem; margin: 0.85rem 0; }
+      .icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-elev); }
+      .icon svg { width: 22px; height: 22px; fill: var(--fg); }
+      .badge { display: inline-flex; align-items: center; justify-content: center; line-height: 1; padding: 0.42rem 0.6rem 0.34rem; border-radius: 999px; background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+      h1 { margin: 0; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; }
+      p.sub { margin: 0 0 1.5rem; color: var(--muted); font-size: 0.95rem; }
+      form { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; }
+      input, button {
+        font: inherit; padding: 0.65rem 0.9rem; border-radius: 9px;
+        border: 1px solid var(--border); background: var(--card); color: var(--fg);
+        transition: border-color 0.15s ease;
+      }
+      input { flex: 1; }
+      input:focus { outline: none; border-color: var(--border-hover); }
+      button { background: var(--fg); color: #09090b; border: none; cursor: pointer; font-weight: 600; }
+      button:hover { opacity: 0.9; }
+      button:disabled { opacity: 0.45; cursor: not-allowed; }
+      .grid { display: grid; grid-template-columns: 280px 1fr; gap: 1rem; }
+      @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+      .panel { border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); padding: 1.1rem; }
+      .panel h2 { margin: 0 0 0.85rem; font-size: 0.72rem; color: var(--subtle); text-transform: uppercase; letter-spacing: 0.06em; }
+      #log { list-style: none; margin: 0; padding: 0; font-size: 0.82rem; max-height: 540px; overflow: auto; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+      #log li { padding: 0.35rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 0.55rem; align-items: baseline; color: var(--muted); }
+      #log li:last-child { border-bottom: none; }
+      .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: none; margin-top: 0.45rem; }
+      .dot.ok { background: var(--ok); }
+      .dot.err { background: var(--err); }
+      .shot-wrap { position: relative; min-height: 340px; display: grid; place-items: center; }
+      .shot-wrap img { max-width: 100%; border-radius: 9px; border: 1px solid var(--border); display: block; }
+      .placeholder { color: var(--subtle); text-align: center; font-size: 0.9rem; }
+      .spinner {
+        width: 30px; height: 30px; border-radius: 50%;
+        border: 2.5px solid var(--border); border-top-color: var(--accent);
+        animation: spin 0.8s linear infinite; margin: 0 auto 0.85rem;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back" href="/">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All services
+      </a>
+      <div class="head">
+        <span class="icon">
+          <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Google Chrome</title><path d="M12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A5.454 5.454 0 0 1 12 6.545h10.691A12 12 0 0 0 12 0zM1.931 5.47A11.943 11.943 0 0 0 0 12c0 6.012 4.42 10.991 10.189 11.864l3.953-6.847a5.45 5.45 0 0 1-6.865-2.29zm13.342 2.166a5.446 5.446 0 0 1 1.45 7.09l-5.05 8.74H12A12 12 0 0 0 24 12a11.95 11.95 0 0 0-1.595-5.965zM12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728Z"/></svg>
+        </span>
+        <h1>Headless browser screenshots</h1>
+      </div>
+      <p class="sub">Chromium running in the container. Enter a URL and status streams live over WebSocket.</p>
+
+      <form id="form">
+        <input id="url" type="text" placeholder="example.com" autocomplete="off" />
+        <button id="go" type="submit">Capture</button>
+      </form>
+
+      <div class="grid">
+        <section class="panel">
+          <h2>Status</h2>
+          <ul id="log"></ul>
+        </section>
+        <section class="panel">
+          <h2>Screenshot</h2>
+          <div class="shot-wrap" id="shot">
+            <div class="placeholder">No screenshot yet.</div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const form = document.getElementById("form");
+      const urlInput = document.getElementById("url");
+      const goBtn = document.getElementById("go");
+      const log = document.getElementById("log");
+      const shot = document.getElementById("shot");
+
+      // Build the WebSocket URL relative to the current location (works behind /browser).
+      function wsURL() {
+        const proto = location.protocol === "https:" ? "wss:" : "ws:";
+        const base = location.pathname.replace(/\/$/, "");
+        const path = base.endsWith("/browser") ? base + "/ws" : "/browser/ws";
+        return `${proto}//${location.host}${path}`;
+      }
+
+      let socket = null;
+
+      function addLog(message, kind) {
+        const li = document.createElement("li");
+        const dot = document.createElement("span");
+        dot.className = "dot" + (kind ? " " + kind : "");
+        const txt = document.createElement("span");
+        txt.textContent = message;
+        li.append(dot, txt);
+        log.appendChild(li);
+        log.scrollTop = log.scrollHeight;
+      }
+
+      function showLoading() {
+        shot.innerHTML =
+          '<div class="placeholder"><div class="spinner"></div>Working…</div>';
+      }
+
+      function showScreenshot(dataB64) {
+        shot.innerHTML = "";
+        const img = new Image();
+        img.src = "data:image/png;base64," + dataB64;
+        shot.appendChild(img);
+      }
+
+      function setBusy(busy) {
+        goBtn.disabled = busy;
+        urlInput.disabled = busy;
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const url = urlInput.value.trim();
+        if (!url) return;
+
+        log.innerHTML = "";
+        showLoading();
+        setBusy(true);
+        addLog("Connecting…");
+
+        socket = new WebSocket(wsURL());
+
+        socket.addEventListener("open", () => {
+          addLog("Connected. Requesting capture…");
+          socket.send(JSON.stringify({ url }));
+        });
+
+        socket.addEventListener("message", (ev) => {
+          let msg;
+          try {
+            msg = JSON.parse(ev.data);
+          } catch {
+            return;
+          }
+          switch (msg.type) {
+            case "status":
+              addLog(msg.message || msg.step || "…");
+              break;
+            case "screenshot":
+              showScreenshot(msg.data);
+              addLog("Screenshot received.", "ok");
+              break;
+            case "done":
+              addLog("Done.", "ok");
+              setBusy(false);
+              socket.close();
+              break;
+            case "error":
+              addLog(msg.message || "error", "err");
+              shot.innerHTML =
+                '<div class="placeholder">Failed to capture.</div>';
+              setBusy(false);
+              socket.close();
+              break;
+          }
+        });
+
+        socket.addEventListener("error", () => {
+          addLog("WebSocket error.", "err");
+          setBusy(false);
+        });
+
+        socket.addEventListener("close", () => {
+          setBusy(false);
+        });
+      });
+    </script>
+  </body>
+</html>

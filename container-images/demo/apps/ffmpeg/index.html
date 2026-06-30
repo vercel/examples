@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/apple-icon.png" />
+    <title>FFmpeg · /ffmpeg</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #09090b; --bg-elev: #0c0c0e; --card: #0e0e11;
+        --border: #1f1f23; --border-hover: #2e2e35;
+        --fg: #fafafa; --muted: #a1a1aa; --subtle: #71717a;
+        --accent: #16a34a; --ok: #22c55e; --err: #ef4444; --radius: 12px;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased; display: flex; justify-content: center; padding: 2.5rem 1.5rem;
+        background-image:
+          radial-gradient(55rem 55rem at 50% -18rem, rgba(22, 163, 74, 0.08), transparent 70%),
+          radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+        background-size: auto, 22px 22px;
+      }
+      main { width: min(880px, 100%); }
+      .back { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--subtle); text-decoration: none; font-size: 0.8rem; margin-bottom: 1.75rem; }
+      .back:hover { color: var(--fg); }
+      .head { display: flex; align-items: center; gap: 0.85rem; margin: 0.85rem 0; }
+      .icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-elev); }
+      .icon svg { width: 22px; height: 22px; fill: var(--fg); }
+      .badge { display: inline-flex; align-items: center; justify-content: center; line-height: 1; padding: 0.42rem 0.6rem 0.34rem; border-radius: 999px; background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+      h1 { margin: 0; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; }
+      p.sub { margin: 0 0 1.5rem; color: var(--muted); font-size: 0.95rem; }
+      .panel { border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); padding: 1.25rem; }
+      label.lbl { display: block; font-size: 0.72rem; color: var(--subtle); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+      input, select, button {
+        font: inherit; padding: 0.65rem 0.9rem; border-radius: 9px;
+        border: 1px solid var(--border); background: var(--bg-elev); color: var(--fg); width: 100%;
+      }
+      input:focus, select:focus { outline: none; border-color: var(--border-hover); }
+      .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin: 0.85rem 0 1.1rem; }
+      @media (max-width: 560px) { .grid2 { grid-template-columns: 1fr; } }
+      button.go { background: var(--fg); color: #09090b; border: none; cursor: pointer; font-weight: 600; }
+      button.go:hover { opacity: 0.9; }
+      button.go:disabled { opacity: 0.45; cursor: not-allowed; }
+      .bar { height: 8px; border-radius: 999px; background: var(--bg-elev); border: 1px solid var(--border); overflow: hidden; margin-top: 1.1rem; }
+      .bar > i { display: block; height: 100%; width: 0%; background: var(--accent); transition: width 0.2s ease; }
+      .status { font-size: 0.82rem; color: var(--muted); margin-top: 0.6rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; min-height: 1.1rem; }
+      .result { margin-top: 1.25rem; display: none; }
+      .result img, .result video { max-width: 100%; border-radius: 9px; border: 1px solid var(--border); display: block; }
+      .result audio { width: 100%; }
+      .dl { display: inline-flex; gap: 0.4rem; margin-top: 0.85rem; text-decoration: none; color: var(--fg); border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem 0.85rem; font-size: 0.85rem; }
+      .dl:hover { border-color: var(--border-hover); }
+      .hint { font-size: 0.78rem; color: var(--subtle); margin-top: 0.6rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back" href="/">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All services
+      </a>
+      <div class="head">
+        <span class="icon">
+          <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>FFmpeg</title><path d="M21.72 17.91V6.5l-.53-.49L9.05 18.52l-1.29-.06L24 1.53l-.33-.95-11.93 1-5.75 6.6v-.23l4.7-5.39-1.38-.77-9.11.77v2.85l1.91.46v.01l.19-.01-.56.66v10.6c.609-.126 1.22-.241 1.83-.36L14.12 5.22l.83-.04L0 21.44l9.67.82 1.35-.77 6.82-6.74v2.15l-5.72 5.57 11.26.95.35-.94v-3.16l-3.29-.18c.434-.403.858-.816 1.28-1.23z"/></svg>
+        </span>
+        <h1>Media transformer</h1>
+      </div>
+      <p class="sub">Paste a media URL, pick a transform, and ffmpeg processes it in the container with live progress.</p>
+
+      <div class="panel">
+        <label class="lbl" for="url">Source URL</label>
+        <input id="url" type="text" placeholder="https://example.com/video.mp4" autocomplete="off" />
+        <div class="grid2">
+          <div>
+            <label class="lbl" for="preset">Transform</label>
+            <select id="preset">
+              <option value="gif">Video → GIF</option>
+              <option value="thumbnail">Thumbnail (first frame)</option>
+              <option value="mp4">Transcode → MP4 (H.264)</option>
+              <option value="mp3">Extract audio → MP3</option>
+              <option value="waveform">Audio waveform (PNG)</option>
+            </select>
+          </div>
+          <div style="display:flex; align-items:flex-end;">
+            <button class="go" id="go">Run ffmpeg</button>
+          </div>
+        </div>
+
+        <div class="bar"><i id="bar"></i></div>
+        <div class="status" id="status">Idle.</div>
+        <div class="hint">Tip: try a short sample clip. Output is capped (GIF/MP4 trimmed).</div>
+
+        <div class="result" id="result"></div>
+      </div>
+    </main>
+
+    <script>
+      const urlEl = document.getElementById("url");
+      const presetEl = document.getElementById("preset");
+      const goEl = document.getElementById("go");
+      const barEl = document.getElementById("bar");
+      const statusEl = document.getElementById("status");
+      const resultEl = document.getElementById("result");
+
+      function wsURL() {
+        const proto = location.protocol === "https:" ? "wss:" : "ws:";
+        const base = location.pathname.replace(/\/$/, "");
+        const path = base.endsWith("/ffmpeg") ? base + "/ws" : "/ffmpeg/ws";
+        return `${proto}//${location.host}${path}`;
+      }
+
+      function setBusy(b) { goEl.disabled = b; urlEl.disabled = b; presetEl.disabled = b; }
+      function setProgress(p) { barEl.style.width = Math.max(0, Math.min(100, p)) + "%"; }
+
+      function renderResult(mime, b64, filename, sizeLabel) {
+        const src = `data:${mime};base64,${b64}`;
+        resultEl.innerHTML = "";
+        let media;
+        if (mime.startsWith("image/")) { media = new Image(); media.src = src; }
+        else if (mime.startsWith("video/")) { media = document.createElement("video"); media.controls = true; media.src = src; }
+        else if (mime.startsWith("audio/")) { media = document.createElement("audio"); media.controls = true; media.src = src; }
+        if (media) resultEl.appendChild(media);
+        const a = document.createElement("a");
+        a.className = "dl"; a.href = src; a.download = filename;
+        a.textContent = `Download ${filename}` + (sizeLabel ? ` (${sizeLabel})` : "");
+        resultEl.appendChild(a);
+        resultEl.style.display = "block";
+      }
+
+      goEl.addEventListener("click", () => {
+        const url = urlEl.value.trim();
+        if (!url) { statusEl.textContent = "Enter a source URL."; return; }
+        setBusy(true); setProgress(0);
+        resultEl.style.display = "none"; resultEl.innerHTML = "";
+        statusEl.textContent = "Connecting…";
+
+        const socket = new WebSocket(wsURL());
+        socket.addEventListener("open", () => {
+          statusEl.textContent = "Submitting job…";
+          socket.send(JSON.stringify({ url, preset: presetEl.value }));
+        });
+        socket.addEventListener("message", (ev) => {
+          let m; try { m = JSON.parse(ev.data); } catch { return; }
+          switch (m.type) {
+            case "status": statusEl.textContent = m.message || m.step; break;
+            case "progress": setProgress(m.percent); statusEl.textContent = `Encoding… ${m.percent.toFixed(0)}%`; break;
+            case "result": renderResult(m.mimeType, m.data, m.filename, m.message); break;
+            case "done": statusEl.textContent = "Done."; setBusy(false); socket.close(); break;
+            case "error": statusEl.textContent = "Error: " + (m.message || "failed"); setBusy(false); socket.close(); break;
+          }
+        });
+        socket.addEventListener("error", () => { statusEl.textContent = "WebSocket error."; setBusy(false); });
+      });
+    </script>
+  </body>
+</html>
