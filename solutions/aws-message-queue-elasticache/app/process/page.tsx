@@ -74,138 +74,84 @@ export default function ProcessPage() {
   }, [])
 
   return (
-    <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
-      <div
-        style={{
-          marginBottom: '20px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <h1 style={{ margin: 0 }}>Message Processing Queue</h1>
+    <div className="mx-auto max-w-3xl px-6 py-10">
+      <div className="mb-6 flex items-center justify-between">
+        <h1 className="text-2xl font-bold">Message Processing Queue</h1>
         <Link
           href="/"
-          style={{
-            padding: '8px 16px',
-            backgroundColor: '#f5f5f5',
-            color: '#333',
-            textDecoration: 'none',
-            border: '1px solid #ddd',
-            borderRadius: '4px',
-            fontSize: '14px',
-          }}
+          className="rounded-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100"
         >
           ← Back to Contact Form
         </Link>
       </div>
 
-      <p style={{ marginBottom: '30px', color: '#666' }}>
+      <p className="text-gray-500 mb-8">
         Process messages from the queue one at a time. Click
         &quot;Acknowledge&quot; to mark a message as processed.
       </p>
 
       {isLoading && !currentMessage && !showNextButton && (
-        <div style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
+        <div className="py-10 text-center text-gray-500">
           Loading...
         </div>
       )}
 
       {!isLoading && !currentMessage && !showNextButton && (
-        <div
-          style={{
-            padding: '40px',
-            textAlign: 'center',
-            backgroundColor: '#f5f5f5',
-            borderRadius: '8px',
-            border: '2px dashed #ddd',
-          }}
-        >
-          <p style={{ fontSize: '18px', color: '#666', marginBottom: '10px' }}>
+        <div className="rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 px-6 py-10 text-center">
+          <p className="text-lg text-gray-500 mb-2">
             📭 No messages in queue
           </p>
-          <p style={{ fontSize: '14px', color: '#999' }}>
+          <p className="text-sm text-gray-400">
             Messages submitted via the contact form will appear here
           </p>
         </div>
       )}
 
       {currentMessage && (
-        <div
-          style={{
-            border: '1px solid #ddd',
-            borderRadius: '8px',
-            padding: '20px',
-            backgroundColor: '#fff',
-            marginBottom: '20px',
-          }}
-        >
+        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm mb-5">
           {currentMessage.claimed && (
-            <div
-              style={{
-                padding: '8px 12px',
-                backgroundColor: '#fff3cd',
-                border: '1px solid #ffc107',
-                borderRadius: '4px',
-                marginBottom: '15px',
-                fontSize: '14px',
-              }}
-            >
+            <div className="mb-4 rounded-md border border-yellow-300 bg-yellow-50 px-3 py-2 text-sm text-yellow-800">
               ⚠️ This message was recovered from pending list (idle &gt; 60s)
             </div>
           )}
 
-          <div style={{ marginBottom: '15px' }}>
-            <strong style={{ display: 'block', marginBottom: '5px', color: '#666' }}>
-              Message ID:
-            </strong>
-            <code
-              style={{
-                fontSize: '12px',
-                backgroundColor: '#f5f5f5',
-                padding: '2px 6px',
-                borderRadius: '3px',
-              }}
-            >
+          <div className="mb-4">
+            <span className="block text-xs font-medium uppercase text-gray-400 mb-1">
+              Message ID
+            </span>
+            <code className="rounded bg-gray-100 px-2 py-0.5 text-xs text-gray-600">
               {currentMessage.streamMessageId}
             </code>
           </div>
 
-          <div style={{ marginBottom: '15px' }}>
-            <strong style={{ display: 'block', marginBottom: '5px', color: '#666' }}>
-              Name:
-            </strong>
-            <div>{currentMessage.name}</div>
+          <div className="mb-4">
+            <span className="block text-xs font-medium uppercase text-gray-400 mb-1">
+              Name
+            </span>
+            <div className="text-sm text-gray-900">{currentMessage.name}</div>
           </div>
 
-          <div style={{ marginBottom: '15px' }}>
-            <strong style={{ display: 'block', marginBottom: '5px', color: '#666' }}>
-              Email:
-            </strong>
-            <div>{currentMessage.email}</div>
+          <div className="mb-4">
+            <span className="block text-xs font-medium uppercase text-gray-400 mb-1">
+              Email
+            </span>
+            <div className="text-sm text-gray-900">{currentMessage.email}</div>
           </div>
 
-          <div style={{ marginBottom: '15px' }}>
-            <strong style={{ display: 'block', marginBottom: '5px', color: '#666' }}>
-              Message:
-            </strong>
-            <div
-              style={{
-                whiteSpace: 'pre-wrap',
-                backgroundColor: '#f5f5f5',
-                padding: '12px',
-                borderRadius: '4px',
-              }}
-            >
+          <div className="mb-4">
+            <span className="block text-xs font-medium uppercase text-gray-400 mb-1">
+              Message
+            </span>
+            <div className="whitespace-pre-wrap rounded-md bg-gray-50 p-3 text-sm text-gray-800">
               {currentMessage.message}
             </div>
           </div>
 
-          <div style={{ marginBottom: '20px' }}>
-            <strong style={{ display: 'block', marginBottom: '5px', color: '#666' }}>
-              Timestamp:
-            </strong>
-            <div style={{ fontSize: '14px', color: '#666' }}>
+          <div className="mb-6">
+            <span className="block text-xs font-medium uppercase text-gray-400 mb-1">
+              Timestamp
+            </span>
+            <div className="text-sm text-gray-500">
               {new Date(currentMessage.timestamp).toLocaleString()}
             </div>
           </div>
@@ -213,16 +159,7 @@ export default function ProcessPage() {
           <button
             onClick={handleAcknowledge}
             disabled={isLoading}
-            style={{
-              padding: '12px 24px',
-              backgroundColor: isLoading ? '#ccc' : '#28a745',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: isLoading ? 'not-allowed' : 'pointer',
-              fontSize: '16px',
-              fontWeight: 'bold',
-            }}
+            className="rounded-md bg-green-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-gray-300"
           >
             {isLoading ? 'Processing...' : '✓ Acknowledge'}
           </button>
@@ -230,22 +167,13 @@ export default function ProcessPage() {
       )}
 
       {showNextButton && (
-        <div style={{ textAlign: 'center', padding: '40px' }}>
-          <p style={{ marginBottom: '15px', color: '#666' }}>
+        <div className="py-10 text-center">
+          <p className="text-gray-500 mb-4">
             Message processed successfully!
           </p>
           <button
             onClick={fetchNextMessage}
-            style={{
-              padding: '12px 24px',
-              backgroundColor: '#0070f3',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontSize: '16px',
-              fontWeight: 'bold',
-            }}
+            className="rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             Next Message →
           </button>
@@ -254,23 +182,13 @@ export default function ProcessPage() {
 
       {result.status !== 'idle' && (
         <div
-          style={{
-            padding: '12px',
-            backgroundColor: result.status === 'success'
-              ? '#d4edda'
+          className={`mt-5 rounded-md border p-3 text-sm ${
+            result.status === 'success'
+              ? 'border-green-200 bg-green-50 text-green-800'
               : result.status === 'error'
-              ? '#f8d7da'
-              : '#f5f5f5',
-            border: `1px solid ${
-              result.status === 'success'
-                ? '#c3e6cb'
-                : result.status === 'error'
-                ? '#f5c6cb'
-                : '#ddd'
-            }`,
-            borderRadius: '4px',
-            marginTop: '20px',
-          }}
+              ? 'border-red-200 bg-red-50 text-red-800'
+              : 'border-gray-200 bg-gray-50 text-gray-600'
+          }`}
         >
           {result.status === 'success' && '✓ '}{result.status === 'error' && '✗ '}{result.message}
         </div>

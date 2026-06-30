@@ -43,19 +43,16 @@ export default function Home() {
   }
 
   return (
-    <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
-      <h1 style={{ marginBottom: '10px' }}>Contact Form</h1>
-      <p style={{ marginBottom: '20px', color: '#666' }}>
+    <div className="mx-auto max-w-xl px-6 py-10">
+      <h1 className="text-2xl font-bold mb-2">Contact Form</h1>
+      <p className="text-gray-500 mb-6">
         Submit a message to the queue. Messages are processed in order by
         reviewers.
       </p>
 
-      <form onSubmit={handleSubmit} style={{ marginBottom: '30px' }}>
-        <div style={{ marginBottom: '15px' }}>
-          <label
-            htmlFor="name"
-            style={{ display: 'block', marginBottom: '5px' }}
-          >
+      <form onSubmit={handleSubmit} className="mb-8 space-y-5">
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
             Name *
           </label>
           <input
@@ -65,20 +62,12 @@ export default function Home() {
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your name"
             required
-            style={{
-              width: '100%',
-              padding: '8px',
-              border: '1px solid #ddd',
-              borderRadius: '4px',
-            }}
+            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
           />
         </div>
 
-        <div style={{ marginBottom: '15px' }}>
-          <label
-            htmlFor="email"
-            style={{ display: 'block', marginBottom: '5px' }}
-          >
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
             Email *
           </label>
           <input
@@ -88,20 +77,12 @@ export default function Home() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
             required
-            style={{
-              width: '100%',
-              padding: '8px',
-              border: '1px solid #ddd',
-              borderRadius: '4px',
-            }}
+            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
           />
         </div>
 
-        <div style={{ marginBottom: '15px' }}>
-          <label
-            htmlFor="message"
-            style={{ display: 'block', marginBottom: '5px' }}
-          >
+        <div>
+          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
             Message *
           </label>
           <textarea
@@ -111,28 +92,14 @@ export default function Home() {
             placeholder="Enter your message"
             required
             rows={5}
-            style={{
-              width: '100%',
-              padding: '8px',
-              border: '1px solid #ddd',
-              borderRadius: '4px',
-              resize: 'vertical',
-            }}
+            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 resize-y"
           />
         </div>
 
         <button
           type="submit"
           disabled={isSubmitting}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: isSubmitting ? '#ccc' : '#0070f3',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: isSubmitting ? 'not-allowed' : 'pointer',
-            fontSize: '16px',
-          }}
+          className="rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-gray-300"
         >
           {isSubmitting ? 'Submitting...' : 'Submit Message'}
         </button>
@@ -140,41 +107,25 @@ export default function Home() {
 
       {result.status !== 'idle' && (
         <div
-          style={{
-            padding: '12px',
-            backgroundColor: result.status === 'success' ? '#d4edda' : '#f8d7da',
-            border: `1px solid ${result.status === 'success' ? '#c3e6cb' : '#f5c6cb'}`,
-            borderRadius: '4px',
-            marginBottom: '20px',
-          }}
+          className={`rounded-md border p-3 mb-5 text-sm ${
+            result.status === 'success'
+              ? 'border-green-200 bg-green-50 text-green-800'
+              : 'border-red-200 bg-red-50 text-red-800'
+          }`}
         >
           {result.status === 'success' ? '✓' : '✗'} {result.message}
         </div>
       )}
 
-      <hr
-        style={{
-          margin: '30px 0',
-          border: 'none',
-          borderTop: '1px solid #ddd',
-        }}
-      />
+      <hr className="my-8 border-t border-gray-200" />
 
-      <div style={{ textAlign: 'center' }}>
-        <p style={{ marginBottom: '10px', color: '#666' }}>
+      <div className="text-center">
+        <p className="text-gray-500 mb-3 text-sm">
           Are you a reviewer? Process queued messages:
         </p>
         <Link
           href="/process"
-          style={{
-            display: 'inline-block',
-            padding: '10px 20px',
-            backgroundColor: '#f5f5f5',
-            color: '#333',
-            textDecoration: 'none',
-            border: '1px solid #ddd',
-            borderRadius: '4px',
-          }}
+          className="inline-block rounded-md border border-gray-300 bg-gray-50 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-100"
         >
           → Go to Processing View
         </Link>
