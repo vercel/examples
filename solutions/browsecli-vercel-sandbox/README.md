@@ -17,7 +17,7 @@ A [Vercel AI SDK](https://ai-sdk.dev) agent that uses Vercel's [`bash-tool`](htt
 - The **model is served through [Vercel AI Gateway](https://vercel.com/docs/ai-gateway)**. A bare `provider/model` string (`anthropic/claude-sonnet-5`) resolves through the default Gateway provider in `ai@6`, authenticated by Vercel's OIDC token — so the same Vercel auth that powers the Sandbox also powers the model, and no `ANTHROPIC_API_KEY` is needed.
 - Only the **`bash` tool executes inside the sandbox**. The model navigates the web by emitting `browse` commands, which `bash-tool` runs in the microVM.
 
-The default task is a deep-research example: for Snowflake, Datadog, and MongoDB, find each company's most recent 10-Q on SEC EDGAR (filing date, fiscal period, primary-document URL) plus the date of its most recent 10-K, and return a comparison table. The agent plans its own steps — there are no site-specific instructions in the prompt. Override the goal with the `TASK` env var.
+The default task is a product-research example: on Amazon, search for the current top mechanical keyboards and, for the top 5 results, compare each product's title, price, star rating, and number of ratings — returning a comparison table with each product's URL. It is a genuinely browser-only task: Amazon search renders its results client-side and returns nothing useful to a plain HTTP fetch, so the agent has to drive a real browser. The agent plans its own steps — there are no site-specific instructions in the prompt. Override the goal with the `TASK` env var.
 
 ## Setup
 

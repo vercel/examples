@@ -22,7 +22,7 @@ const req = (name: string): string => {
 const BROWSERBASE_API_KEY = req('BROWSERBASE_API_KEY');
 const TASK =
   process.env.TASK ||
-  "Using SEC EDGAR (start at https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany), research the recent SEC filing activity of Snowflake, Datadog, and MongoDB. For each company find its most recent 10-Q — the filing date, the fiscal period it covers, and the URL of the primary filing document — plus the date of its most recent 10-K. Return a comparison table across all three companies, citing the EDGAR pages you used.";
+  "Using Amazon (https://www.amazon.com), research the current top mechanical keyboards: search the site, then for the top 5 results compare each product's title, price, star rating, and number of ratings. Return a comparison table including each product's URL.";
 
 const system = `You are an autonomous deep-research agent. You have a \`browse\` CLI (Browserbase browser automation) in your bash tool — it is installed, and its auth and a shared browser session are already configured via environment variables. Learn how to use it by running \`browse --help\` (and \`browse <command> --help\` as needed), then complete the task. When you cite a document, link the direct document itself, not a viewer, preview, or index page that wraps it. Return a clear, well-sourced answer.`;
 
