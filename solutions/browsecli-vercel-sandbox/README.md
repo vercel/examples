@@ -36,11 +36,11 @@ You need:
   - **AI Gateway API key:** create one at [vercel.com/dashboard/ai-gateway](https://vercel.com/dashboard/ai-gateway) and set `AI_GATEWAY_API_KEY` in `.env`. Use this if you prefer a long-lived key over OIDC.
 
 ```bash
-npm i
+pnpm install
 cp .env.example .env       # fill in BROWSERBASE_API_KEY + Vercel Sandbox creds
 vercel link                # OIDC path: link the project…
 vercel env pull .env.local # …and pull VERCEL_OIDC_TOKEN (skip if using AI_GATEWAY_API_KEY)
-npx tsx sandbox.ts
+pnpm start
 ```
 
 > AI Gateway requires the Vercel team to have a payment method / billing enabled to service model requests (free credits unlock once a card is on file). This is the only model-side prerequisite — there is no Anthropic account or key.
