@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/apple-icon.png" />
+    <title>Go · /go</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #09090b;
+        --bg-elev: #0c0c0e;
+        --card: #0e0e11;
+        --border: #1f1f23;
+        --fg: #fafafa;
+        --muted: #a1a1aa;
+        --subtle: #71717a;
+        --accent: #00add8;
+        --radius: 12px;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; min-height: 100vh;
+        display: grid; place-items: center; padding: 2rem 1.5rem;
+        background: var(--bg); color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        background-image:
+          radial-gradient(50rem 50rem at 50% -15rem, rgba(0, 173, 216, 0.08), transparent 70%),
+          radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+        background-size: auto, 22px 22px;
+      }
+      .card {
+        width: min(620px, 100%);
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: var(--radius); padding: 2rem;
+      }
+      .back { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--subtle); text-decoration: none; font-size: 0.8rem; margin-bottom: 1.75rem; }
+      .back:hover { color: var(--fg); }
+      .head { display: flex; align-items: center; gap: 0.85rem; margin: 0.85rem 0 1rem; }
+      .icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-elev); }
+      .icon svg { width: 22px; height: 22px; fill: var(--fg); }
+      .badge { display: inline-flex; align-items: center; justify-content: center; line-height: 1; padding: 0.42rem 0.6rem 0.34rem; border-radius: 999px; background: var(--accent); color: #06141a; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+      h1 { margin: 0; font-size: 1.4rem; font-weight: 600; letter-spacing: -0.02em; }
+      p { margin: 0 0 1.5rem; color: var(--muted); font-size: 0.92rem; }
+      dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.6rem 1rem; font-size: 0.85rem; }
+      dt { color: var(--subtle); }
+      dd { margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <a class="back" href="/">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All services
+      </a>
+      <div class="head">
+        <span class="icon">
+          <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Go</title><path d="M1.811 10.231c-.047 0-.058-.023-.035-.059l.246-.315c.023-.035.081-.058.128-.058h4.172c.046 0 .058.035.035.07l-.199.303c-.023.036-.082.07-.117.07zM.047 11.306c-.047 0-.059-.023-.035-.058l.245-.316c.023-.035.082-.058.129-.058h5.328c.047 0 .07.035.058.07l-.093.28c-.012.047-.058.07-.105.07zm2.828 1.075c-.047 0-.058-.035-.035-.07l.163-.292c.023-.035.07-.07.117-.07h2.337c.047 0 .07.035.07.082l-.023.28c0 .047-.047.082-.082.082zm12.129-2.36c-.736.187-1.239.327-1.963.514-.176.046-.187.058-.34-.117-.174-.199-.303-.327-.548-.444-.737-.362-1.45-.257-2.115.175-.795.514-1.204 1.274-1.192 2.22.011.935.654 1.706 1.577 1.835.795.105 1.46-.175 1.987-.77.105-.13.198-.27.315-.434H10.47c-.245 0-.304-.152-.222-.35.152-.362.432-.97.596-1.274a.315.315 0 01.292-.187h4.253c-.023.316-.023.631-.07.947a4.983 4.983 0 01-.958 2.29c-.841 1.11-1.94 1.8-3.33 1.986-1.145.152-2.209-.07-3.143-.77-.865-.654-1.356-1.52-1.484-2.595-.152-1.274.222-2.419.993-3.424.83-1.086 1.928-1.776 3.272-2.02 1.098-.2 2.15-.07 3.096.571.62.41 1.063.97 1.356 1.648.07.105.023.164-.117.2m3.868 6.461c-1.064-.024-2.034-.328-2.852-1.029a3.665 3.665 0 01-1.262-2.255c-.21-1.32.152-2.489.947-3.529.853-1.122 1.881-1.706 3.272-1.95 1.192-.21 2.314-.095 3.33.595.923.63 1.496 1.484 1.648 2.605.198 1.578-.257 2.863-1.344 3.962-.771.783-1.718 1.273-2.805 1.495-.222.046-.444.058-.682.105zm2.781-4.72c-.011-.152-.011-.27-.035-.385-.21-1.157-1.274-1.81-2.384-1.554-1.087.245-1.788.935-2.045 2.033-.21.912.234 1.835 1.075 2.21.643.28 1.285.245 1.905-.07.923-.48 1.426-1.227 1.484-2.244z"/></svg>
+        </span>
+        <h1>Hello from Go</h1>
+      </div>
+      <p>A lightweight server built on the Go standard library <code>net/http</code>, serving an embedded page.</p>
+      <dl>
+        <dt>Service</dt><dd>go</dd>
+        <dt>Route</dt><dd>/go</dd>
+        <dt>Stack</dt><dd>net/http (stdlib)</dd>
+        <dt>Health</dt><dd>/go/health</dd>
+      </dl>
+    </main>
+  </body>
+</html>

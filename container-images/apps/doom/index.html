@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/apple-icon.png" />
+    <title>Doom · /doom</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #09090b; --bg-elev: #0c0c0e; --card: #0e0e11;
+        --border: #1f1f23; --border-hover: #2e2e35;
+        --fg: #fafafa; --muted: #a1a1aa; --subtle: #71717a;
+        --accent: #e11d2b; --radius: 12px;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased; display: flex; justify-content: center; padding: 2.5rem 1.5rem;
+        background-image:
+          radial-gradient(55rem 55rem at 50% -18rem, rgba(225, 29, 43, 0.08), transparent 70%),
+          radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+        background-size: auto, 22px 22px;
+      }
+      main { width: min(920px, 100%); }
+      .back { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--subtle); text-decoration: none; font-size: 0.8rem; margin-bottom: 1.75rem; }
+      .back:hover { color: var(--fg); }
+      .badge {
+        display: inline-flex; align-items: center; justify-content: center; line-height: 1;
+        padding: 0.42rem 0.6rem 0.34rem; border-radius: 999px; background: var(--accent); color: #fff;
+        font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+      }
+      .head { display: flex; align-items: center; gap: 0.85rem; margin: 0.85rem 0; }
+      .icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-elev); }
+      .icon svg { width: 22px; height: 22px; fill: var(--fg); }
+      h1 { margin: 0; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; }
+      p.sub { margin: 0 0 1.5rem; color: var(--muted); font-size: 0.95rem; }
+      .panel { border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); padding: 1rem; }
+      .screen { position: relative; width: 100%; aspect-ratio: 4 / 3; background: #000; border-radius: 9px; overflow: hidden; border: 1px solid var(--border); display: grid; place-items: center; }
+      canvas { width: 100%; height: 100%; image-rendering: pixelated; display: block; }
+      .overlay { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(9,9,11,0.85); text-align: center; padding: 1rem; }
+      .overlay.hidden { display: none; }
+      .play { background: var(--fg); color: #09090b; border: none; cursor: pointer; font-weight: 600; font: inherit; padding: 0.7rem 1.4rem; border-radius: 9px; }
+      .play:hover { opacity: 0.9; }
+      .status { font-size: 0.8rem; color: var(--subtle); margin-top: 0.85rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .options { margin-top: 1.1rem; display: flex; align-items: center; gap: 0.55rem; font-size: 0.82rem; color: var(--muted); }
+      .options input { width: 15px; height: 15px; accent-color: var(--accent); }
+      .options label { cursor: pointer; user-select: none; }
+      .controls { margin-top: 0.85rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.5rem; font-size: 0.8rem; color: var(--muted); }
+      .controls div { border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 0.75rem; background: var(--bg-elev); }
+      .controls .keys { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-bottom: 0.4rem; }
+      .controls .desc { color: var(--subtle); }
+      kbd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--fg); background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 0.1rem 0.4rem; font-size: 0.72rem; line-height: 1.3; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back" href="/">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All services
+      </a>
+      <div class="head">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Doom</title><path d="M4 2c1.8 1 2.7 2.6 3 4.4A8.9 8.9 0 0 1 12 5c1.8 0 3.5.5 5 1.4.3-1.8 1.2-3.4 3-4.4-.5 2-.3 3.7.4 5.3A8.9 8.9 0 0 1 21 12c0 2.7-1.4 5-3.6 6.5l.4 3.5-3.3-1.6c-.8.2-1.6.3-2.5.3s-1.7-.1-2.5-.3L6.2 22l.4-3.5A8 8 0 0 1 3 12c0-1.5.4-2.9 1.1-4.1C4.3 6.2 4.5 4.5 4 2Zm5 9a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-5.2 6 1 1.4c.3.4.8.6 1.2.6s.9-.2 1.2-.6l1-1.4-.8-.5-1.4.9-1.4-.9-.8.5Z"/></svg>
+        </span>
+        <h1>DOOM in a container</h1>
+      </div>
+      <p class="sub">FreeDOOM running headless under Xvfb. Frames stream over WebSocket; your keystrokes are injected into the engine.</p>
+
+      <div class="panel">
+        <div class="screen" id="screen">
+          <canvas id="canvas" width="640" height="480"></canvas>
+          <div class="overlay" id="overlay">
+            <div>
+              <button class="play" id="play">▶ Start game</button>
+              <div class="status" id="status" style="margin-top:0.85rem">Click to connect and capture keyboard.</div>
+            </div>
+          </div>
+        </div>
+        <div class="status" id="hud"></div>
+
+        <div class="options">
+          <input type="checkbox" id="turnOnly" checked />
+          <label for="turnOnly">Mouse only turns (ignore forward/back)</label>
+        </div>
+
+        <div class="controls">
+          <div>
+            <div class="keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div>
+            <div class="desc">or arrows to move</div>
+          </div>
+          <div>
+            <div class="keys"><kbd>Mouse</kbd><kbd>Click</kbd></div>
+            <div class="desc">turn, fire</div>
+          </div>
+          <div>
+            <div class="keys"><kbd>Ctrl</kbd><kbd>Space</kbd></div>
+            <div class="desc">fire, use</div>
+          </div>
+          <div>
+            <div class="keys"><kbd>Shift</kbd><kbd>Enter</kbd></div>
+            <div class="desc">run, select</div>
+          </div>
+          <div>
+            <div class="keys"><kbd>Esc</kbd><kbd>Tab</kbd></div>
+            <div class="desc">menu, map</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      const overlay = document.getElementById("overlay");
+      const playBtn = document.getElementById("play");
+      const statusEl = document.getElementById("status");
+      const hud = document.getElementById("hud");
+      const screen = document.getElementById("screen");
+
+      function wsURL() {
+        const proto = location.protocol === "https:" ? "wss:" : "ws:";
+        const base = location.pathname.replace(/\/$/, "");
+        const path = base.endsWith("/doom") ? base + "/ws" : "/doom/ws";
+        return `${proto}//${location.host}${path}`;
+      }
+
+      let socket = null;
+      let frames = 0;
+      let lastFpsAt = performance.now();
+
+      function start() {
+        statusEl.textContent = "Connecting…";
+        socket = new WebSocket(wsURL());
+        socket.binaryType = "arraybuffer";
+
+        socket.addEventListener("open", () => {
+          overlay.classList.add("hidden");
+          screen.focus();
+          hud.textContent = "Connected. Streaming…";
+        });
+
+        socket.addEventListener("message", (ev) => {
+          if (typeof ev.data === "string") return;
+          const blob = new Blob([ev.data], { type: "image/jpeg" });
+          createImageBitmap(blob).then((bmp) => {
+            ctx.drawImage(bmp, 0, 0, canvas.width, canvas.height);
+            bmp.close();
+            frames++;
+            const now = performance.now();
+            if (now - lastFpsAt >= 1000) {
+              hud.textContent = `Streaming · ${frames} fps`;
+              frames = 0;
+              lastFpsAt = now;
+            }
+          });
+        });
+
+        socket.addEventListener("close", () => {
+          overlay.classList.remove("hidden");
+          statusEl.textContent = "Disconnected. Click to reconnect.";
+        });
+        socket.addEventListener("error", () => {
+          statusEl.textContent = "WebSocket error.";
+        });
+      }
+
+      function sendJSON(obj) {
+        if (!socket || socket.readyState !== WebSocket.OPEN) return;
+        socket.send(JSON.stringify(obj));
+      }
+
+      // Normalize a KeyboardEvent into the names the server expects.
+      function keyName(e) {
+        if (e.code === "ControlLeft" || e.code === "ControlRight") return "Control";
+        if (e.code === "ShiftLeft" || e.code === "ShiftRight") return "Shift";
+        if (e.code === "AltLeft" || e.code === "AltRight") return "Alt";
+        if (e.code === "Space") return "Space";
+        if (e.code === "Enter") return "Enter";
+        if (e.code === "Escape") return "Escape";
+        if (e.code === "Tab") return "Tab";
+        // WASD via physical key codes so layout/shift don't matter.
+        if (e.code === "KeyW") return "w";
+        if (e.code === "KeyA") return "a";
+        if (e.code === "KeyS") return "s";
+        if (e.code === "KeyD") return "d";
+        return e.key;
+      }
+
+      function sendKey(e, down) {
+        if (!socket || socket.readyState !== WebSocket.OPEN) return;
+        const key = keyName(e);
+        e.preventDefault();
+        sendJSON({ type: "key", key, down });
+      }
+
+      window.addEventListener("keydown", (e) => { if (!e.repeat) sendKey(e, true); });
+      window.addEventListener("keyup", (e) => sendKey(e, false));
+
+      // --- Mouse: pointer lock for look/turn + fire on click ---------------
+      canvas.addEventListener("click", () => {
+        if (document.pointerLockElement !== canvas) canvas.requestPointerLock();
+      });
+
+      const turnOnly = document.getElementById("turnOnly");
+
+      document.addEventListener("mousemove", (e) => {
+        if (document.pointerLockElement !== canvas) return;
+        // Classic Doom maps vertical mouse motion to forward/back movement and
+        // has no vertical aim. When "turn only" is enabled we drop the dy axis
+        // so the mouse purely turns, matching modern FPS expectations.
+        const dy = turnOnly.checked ? 0 : e.movementY;
+        sendJSON({ type: "mousemove", dx: e.movementX, dy });
+      });
+
+      canvas.addEventListener("mousedown", (e) => {
+        if (document.pointerLockElement !== canvas) return;
+        e.preventDefault();
+        sendJSON({ type: "mousebutton", button: e.button + 1, down: true });
+      });
+      canvas.addEventListener("mouseup", (e) => {
+        if (document.pointerLockElement !== canvas) return;
+        e.preventDefault();
+        sendJSON({ type: "mousebutton", button: e.button + 1, down: false });
+      });
+      canvas.addEventListener("contextmenu", (e) => e.preventDefault());
+
+      playBtn.addEventListener("click", start);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/apple-icon.png" />
+    <title>WebAssembly · /wasm</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #09090b;
+        --bg-elev: #0c0c0e;
+        --card: #0e0e11;
+        --border: #1f1f23;
+        --border-hover: #2e2e35;
+        --fg: #fafafa;
+        --muted: #a1a1aa;
+        --subtle: #71717a;
+        --accent: #654ff0;
+        --radius: 12px;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; min-height: 100vh;
+        display: grid; place-items: center; padding: 2rem 1.5rem;
+        background: var(--bg); color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        background-image:
+          radial-gradient(50rem 50rem at 50% -15rem, rgba(101, 79, 240, 0.1), transparent 70%),
+          radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+        background-size: auto, 22px 22px;
+      }
+      .card {
+        width: min(680px, 100%);
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: var(--radius); padding: 2rem;
+      }
+      .back { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--subtle); text-decoration: none; font-size: 0.8rem; margin-bottom: 1.75rem; }
+      .back:hover { color: var(--fg); }
+      .head { display: flex; align-items: center; gap: 0.85rem; margin: 0.85rem 0 1rem; }
+      .icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-elev); }
+      .icon svg { width: 22px; height: 22px; fill: var(--fg); }
+      .badge { display: inline-flex; align-items: center; justify-content: center; line-height: 1; padding: 0.42rem 0.6rem 0.34rem; border-radius: 999px; background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+      h1 { margin: 0; font-size: 1.4rem; font-weight: 600; letter-spacing: -0.02em; }
+      p.sub { margin: 0 0 1.5rem; color: var(--muted); font-size: 0.92rem; }
+      .out {
+        background: var(--bg-elev); border: 1px solid var(--border); border-radius: 9px;
+        padding: 0.75rem 1rem; font-size: 0.9rem; color: var(--fg);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+      .label { font-size: 0.72rem; color: var(--subtle); text-transform: uppercase; letter-spacing: 0.05em; margin: 1.25rem 0 0.45rem; }
+      .row { display: flex; gap: 0.5rem; }
+      input, button {
+        font: inherit; padding: 0.6rem 0.85rem; border-radius: 9px;
+        border: 1px solid var(--border); background: var(--bg-elev); color: var(--fg);
+        transition: border-color 0.15s ease;
+      }
+      input { flex: 1; }
+      input:focus { outline: none; border-color: var(--border-hover); }
+      button { background: var(--fg); color: #09090b; border: none; cursor: pointer; font-weight: 600; }
+      button:hover { opacity: 0.9; }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <a class="back" href="/">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All services
+      </a>
+      <div class="head">
+        <span class="icon">
+          <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>WebAssembly</title><path d="M14.745,0c0,0.042,0,0.085,0,0.129c0,1.52-1.232,2.752-2.752,2.752c-1.52,0-2.752-1.232-2.752-2.752 c0-0.045,0-0.087,0-0.129H0v24h24V0H14.745z M11.454,21.431l-1.169-5.783h-0.02l-1.264,5.783H7.39l-1.824-8.497h1.59l1.088,5.783 h0.02l1.311-5.783h1.487l1.177,5.854h0.02l1.242-5.854h1.561l-2.027,8.497H11.454z M20.209,21.431l-0.542-1.891h-2.861l-0.417,1.891 h-1.59l2.056-8.497h2.509l2.5,8.497H20.209z M17.812,15.028l-0.694,3.118h2.159l-0.796-3.118H17.812z"/></svg>
+        </span>
+        <h1>WebAssembly in the browser</h1>
+      </div>
+      <p class="sub">Static site served by nginx. Logic executed by a Rust-compiled <code>.wasm</code> module running locally in your browser.</p>
+
+      <div class="label">greet()</div>
+      <div class="out" id="greeting">loading wasm…</div>
+
+      <div class="label">Try it</div>
+      <div class="row">
+        <input id="name" placeholder="your name" autocomplete="off" />
+        <button id="run">Run</button>
+      </div>
+
+      <div class="label">fib(40)</div>
+      <div class="out" id="fib">-</div>
+    </main>
+
+    <script type="module">
+      // Relative path resolves correctly behind the /wasm prefix.
+      import init, { greet, fib } from "./pkg/wasm_app.js";
+
+      await init();
+
+      const greetingEl = document.getElementById("greeting");
+      const nameEl = document.getElementById("name");
+      const fibEl = document.getElementById("fib");
+
+      function render() {
+        greetingEl.textContent = greet(nameEl.value.trim());
+        fibEl.textContent = String(fib(40));
+      }
+
+      document.getElementById("run").addEventListener("click", render);
+      nameEl.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") render();
+      });
+
+      render();
+    </script>
+  </body>
+</html>
