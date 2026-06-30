@@ -9,7 +9,6 @@
 import { Sandbox } from '@vercel/sandbox';
 import { createBashTool } from 'bash-tool';
 import { ToolLoopAgent, stepCountIs } from 'ai';
-import { anthropic } from '@ai-sdk/anthropic';
 
 const req = (name: string): string => {
   const value = process.env[name];
@@ -20,7 +19,6 @@ const req = (name: string): string => {
   return value;
 };
 
-const ANTHROPIC_API_KEY = req('ANTHROPIC_API_KEY');
 const BROWSERBASE_API_KEY = req('BROWSERBASE_API_KEY');
 const TASK =
   process.env.TASK ||
@@ -105,8 +103,13 @@ try {
   // Run bash from the sandbox's home dir (the bash tool prepends `cd <dest>`).
   const { tools } = await createBashTool({ sandbox: adapter, destination: '/vercel/sandbox' });
 
+  // The model is served through Vercel AI Gateway: a bare `provider/model`
+  // string resolves through the default Gateway provider in ai@6. Gateway reads
+  // its credentials from the environment automatically — `VERCEL_OIDC_TOKEN`
+  // (provided by `vercel env pull` / a linked Vercel project) or
+  // `AI_GATEWAY_API_KEY`. No separate Anthropic key is needed.
   const agent = new ToolLoopAgent({
-    model: anthropic('claude-sonnet-5'),
+    model: 'anthropic/claude-sonnet-5',
     tools,
     instructions: system,
     stopWhen: stepCountIs(40),
