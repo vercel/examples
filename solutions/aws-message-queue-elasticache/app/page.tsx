@@ -59,7 +59,8 @@ export default function Home() {
             id="name"
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => { setName(e.target.value); e.target.setCustomValidity('') }}
+            onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity('Please enter your name')}
             placeholder="Enter your name"
             required
             className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
@@ -74,7 +75,8 @@ export default function Home() {
             id="email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => { setEmail(e.target.value); e.target.setCustomValidity('') }}
+            onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity('Please enter a valid email address')}
             placeholder="Enter your email"
             required
             className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
@@ -88,7 +90,8 @@ export default function Home() {
           <textarea
             id="message"
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => { setMessage(e.target.value); e.target.setCustomValidity('') }}
+            onInvalid={(e) => (e.target as HTMLTextAreaElement).setCustomValidity('Please enter your message')}
             placeholder="Enter your message"
             required
             rows={5}
