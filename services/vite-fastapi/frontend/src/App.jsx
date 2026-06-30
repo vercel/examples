@@ -50,8 +50,8 @@ export default function App() {
     }
   },
   <span class="key">"rewrites"</span>: [
-    { <span class="key">"source"</span>: <span class="string">"/svc/api/:path*"</span>, <span class="key">"destination"</span>: { <span class="key">"type"</span>: <span class="string">"service"</span>, <span class="key">"service"</span>: <span class="string">"backend"</span> } },
-    { <span class="key">"source"</span>: <span class="string">"/(.*)"</span>, <span class="key">"destination"</span>: { <span class="key">"type"</span>: <span class="string">"service"</span>, <span class="key">"service"</span>: <span class="string">"frontend"</span> } }
+    { <span class="key">"source"</span>: <span class="string">"/svc/api/:path*"</span>, <span class="key">"destination"</span>: { <span class="key">"service"</span>: <span class="string">"backend"</span> } },
+    { <span class="key">"source"</span>: <span class="string">"/(.*)"</span>, <span class="key">"destination"</span>: { <span class="key">"service"</span>: <span class="string">"frontend"</span> } }
   ]
 }`,
               }}
