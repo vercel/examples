@@ -1,8 +1,9 @@
 ---
 name: Rust WebSocket
 slug: rust-websocket
-description: A Rust WebSocket server Vercel
+description: Rust WebSocket Server
 framework:
+  - Axum
   - Other
 type:
   - Starter
