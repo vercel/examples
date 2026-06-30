@@ -24,38 +24,23 @@ const TASK =
   process.env.TASK ||
   "Using SEC EDGAR (start at https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany), research the recent SEC filing activity of Snowflake, Datadog, and MongoDB. For each company find its most recent 10-Q — the filing date, the fiscal period it covers, and the URL of the primary filing document — plus the date of its most recent 10-K. Return a comparison table across all three companies, citing the EDGAR pages you used.";
 
-const system = `You are an autonomous deep-research agent. You answer questions by investigating the live web with a real browser that runs remotely on Browserbase. You drive it by running the \`browse\` CLI through the bash tool — it is already installed and authenticated (BROWSERBASE_API_KEY is set in the shell).
-
-Use one named session so every command shares one browser:
-  browse open <url> --remote --session agent   # navigate to a URL
-  browse get markdown body --session agent     # read the current page as markdown (keeps links)
-  browse get text body --session agent         # read the current page as plain text
-Run \`browse --help\` to discover more commands.
-Since you're typing real shell commands, wrap any URL containing shell metacharacters (e.g. & or ?) in single quotes so the shell doesn't split it, e.g. browse open 'https://example.com/path?a=1&b=2' --remote --session agent.
-
-Plan your own research: break the question into sub-questions, find and open relevant sources, follow links, and read pages to gather evidence. Use several independent sources and cross-check key facts. If a page errors or comes back empty, try a different source instead of retrying it unchanged. When you can answer thoroughly, run \`browse stop --session agent\` and return a concise, well-sourced synthesis that cites the URLs you used.
-
-When reporting:
-- When a question asks for "the most recent" or "the latest" of something, first locate the full set of candidates, then identify the single most recent one before reporting it — don't report the first one you happen to find.
-- When you report a document's URL, give the direct link to the document itself, not a viewer, preview, or index page that wraps it.
-
-To stay effective:
-- Pages are fully rendered (JavaScript runs) before you read them — the text/markdown you get back IS the real content. Read it carefully and extract what you need; don't assume a page "needs JavaScript" or abandon a source that already has the answer.
-- Read each page once. Don't fetch the same page twice or as both markdown and text (for long pages \`browse get text body\` is best), and don't chase detours when a page you already have answers the question.
-- Your steps are limited: once you have what you need for one item, move on, and leave yourself a step to write the final answer.`;
+const system = `You are an autonomous deep-research agent. You have a \`browse\` CLI (Browserbase browser automation) in your bash tool — it is installed, and its auth and a shared browser session are already configured via environment variables. Learn how to use it by running \`browse --help\` (and \`browse <command> --help\` as needed), then complete the task. When you cite a document, link the direct document itself, not a viewer, preview, or index page that wraps it. Return a clear, well-sourced answer.`;
 
 console.log('› Creating Vercel Sandbox (Firecracker microVM, node24)…');
-// BROWSERBASE_API_KEY is passed as a default sandbox env var. Vercel stores it
-// encrypted server-side and injects it into every command, so the key reaches
-// the `browse` commands the bash tool runs — without ever being written to a
-// committed file or echoed.
+// Default sandbox env vars. Vercel stores them encrypted server-side and injects
+// them into every command, so they reach the `browse` commands the bash tool runs
+// — without ever being written to a committed file or echoed.
+//   BROWSERBASE_API_KEY — authenticates `browse` against Browserbase.
+//   BROWSE_SESSION=agent — steers `browse` to run remotely and share one named
+//   browser session across commands, so the agent never has to pass
+//   --remote/--session flags itself.
 const sandbox = await Sandbox.create({
   runtime: 'node24',
   timeout: 600_000,
   token: req('VERCEL_TOKEN'),
   teamId: req('VERCEL_TEAM_ID'),
   projectId: req('VERCEL_PROJECT_ID'),
-  env: { BROWSERBASE_API_KEY },
+  env: { BROWSERBASE_API_KEY, BROWSE_SESSION: 'agent' },
 });
 console.log(`› Sandbox ready: ${sandbox.name}`);
 
