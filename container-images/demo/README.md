@@ -10,7 +10,7 @@ https://container-images-demo.vercel.app
 
 | Service | Route | Stack | Description |
 | --- | --- | --- | --- |
-| **web** | `/` | Next.js 15, React 19, Tailwind v4 | Landing page linking to every service (native `nextjs` framework, no Dockerfile). |
+| **web** | `/` | Next.js 16, React 19, Tailwind v4 | Landing page linking to every service (native `nextjs` framework, no Dockerfile). |
 | **rust** | `/rust` | Rust, axum, tokio | Dynamic HTTP server. |
 | **go** | `/go` | Go stdlib `net/http` | Lightweight server on a distroless image. |
 | **wasm** | `/wasm` | Rust → WebAssembly, nginx | Static site running a Rust-compiled WASM module in the browser. |
