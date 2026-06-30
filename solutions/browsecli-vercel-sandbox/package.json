@@ -2,6 +2,8 @@
   "name": "browsecli-vercel-sandbox",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
+  "repository": "https://github.com/vercel/examples.git",
   "description": "A bash-tool agent that runs the browse CLI inside a Vercel Sandbox, driving a Browserbase cloud browser.",
   "type": "module",
   "scripts": {

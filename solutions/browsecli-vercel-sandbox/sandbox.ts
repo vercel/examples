@@ -37,6 +37,10 @@ Since you're typing real shell commands, wrap any URL containing shell metachara
 
 Plan your own research: break the question into sub-questions, find and open relevant sources, follow links, and read pages to gather evidence. Use several independent sources and cross-check key facts. If a page errors or comes back empty, try a different source instead of retrying it unchanged. When you can answer thoroughly, run \`browse stop --session agent\` and return a concise, well-sourced synthesis that cites the URLs you used.
 
+When reporting:
+- When a question asks for "the most recent" or "the latest" of something, first locate the full set of candidates, then identify the single most recent one before reporting it — don't report the first one you happen to find.
+- When you report a document's URL, give the direct link to the document itself, not a viewer, preview, or index page that wraps it.
+
 To stay effective:
 - Pages are fully rendered (JavaScript runs) before you read them — the text/markdown you get back IS the real content. Read it carefully and extract what you need; don't assume a page "needs JavaScript" or abandon a source that already has the answer.
 - Read each page once. Don't fetch the same page twice or as both markdown and text (for long pages \`browse get text body\` is best), and don't chase detours when a page you already have answers the question.
