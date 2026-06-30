@@ -106,7 +106,7 @@ try {
   const { tools } = await createBashTool({ sandbox: adapter, destination: '/vercel/sandbox' });
 
   const agent = new ToolLoopAgent({
-    model: anthropic('claude-sonnet-4-5'),
+    model: anthropic('claude-sonnet-5'),
     tools,
     instructions: system,
     stopWhen: stepCountIs(40),
