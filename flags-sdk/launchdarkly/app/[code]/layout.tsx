@@ -15,8 +15,8 @@ export async function generateStaticParams() {
 
   // Instead of returning an empty array you could also call generatePermutations
   // to generate the permutations upfront.
-  const codes = await generatePermutations(productFlags);
-  return codes.map((code) => ({ code }));
+  const codes = await generatePermutations(productFlags)
+  return codes.map((code) => ({ code }))
 }
 
 export default async function Layout(props: {
@@ -25,13 +25,13 @@ export default async function Layout(props: {
     code: string
   }>
 }) {
-  const params = await props.params;
-  const values = await deserialize(productFlags, params.code);
-  
+  const params = await props.params
+  const values = await deserialize(productFlags, params.code)
+
   const showFreeDeliveryBanner = await showFreeDeliveryBannerFlag(
     params.code,
-    productFlags,
-  );
+    productFlags
+  )
 
   return (
     <StaticLDProvider>
@@ -47,5 +47,5 @@ export default async function Layout(props: {
         <DevTools />
       </div>
     </StaticLDProvider>
-  );
+  )
 }

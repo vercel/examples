@@ -1,5 +1,5 @@
-import { ldAdapter, type LDContext } from '@flags-sdk/launchdarkly'
 import { flag } from 'flags/next'
+import { ldAdapter, type LDContext } from './lib/launchdarkly-adapter'
 import { identify } from './lib/identify'
 
 export const showSummerBannerFlag = flag<boolean, LDContext>({
