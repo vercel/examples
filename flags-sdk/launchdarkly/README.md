@@ -32,7 +32,7 @@ Clicking the button above will:
 3. Install the LaunchDarkly integration from the Vercel Marketplace, which connects your LaunchDarkly project and auto-injects `LAUNCHDARKLY_CLIENT_SIDE_ID`, `NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID`,and `LAUNCHDARKLY_SDK_KEY`.
 4. Prompt you to generate a `FLAGS_SECRET` for the Flags Explorer
 
-The integration does **not** set your `EDGE_CONFIG`. See [Step 5](#step-5-set-environment-variables) for optional variables that you can set.
+The integration does **not** set your `EDGE_CONFIG`. See [Step 5](#step-5-set-environment-variables) for other variables that you can set.
 
 ### Step 1: Link the project
 
@@ -112,11 +112,11 @@ This will show the description (if set) and displays a link to the feature flag 
 
 You can create an API key and find project and environment values in the [LaunchDarkly Console](https://app.launchdarkly.com/settings/projects).
 
-## Manual Setup (without the deploy button)
+## Manual Setup (without Marketplace integration)
 
-If you don't use the deploy button above, you can set the project up by hand:
+If you don't use the marketplace integration, you can set up this template by hand:
 
-1. Pick a server-side flag source: either install the [LaunchDarkly Vercel integration](https://launchdarkly.com/docs/integrations/vercel) so your flags are replicated into a Vercel Edge Config store (Edge Config mode), or grab a server-side SDK key from LaunchDarkly (server SDK mode). See [Step 5](#step-5-set-environment-variables).
+1. Pick a server-side flag source: either install the [LaunchDarkly Vercel integration](https://launchdarkly.com/docs/integrations/vercel) so your flags are replicated into a Vercel Edge Config store, or grab a server-side SDK key from LaunchDarkly (server SDK mode). See [Step 5](#step-5-set-environment-variables).
 2. Generate a `FLAGS_SECRET` yourself instead of relying on the deploy prompt:
 
    ```bash
@@ -132,7 +132,7 @@ If you don't use the deploy button above, you can set the project up by hand:
    | `FLAGS_SECRET`                            | Used by the Flags Explorer to securely read and override flags. 32 random bytes, base64url-encoded (see step 2). |
    | `NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID` | Your LaunchDarkly client-side ID, used by the client-side React SDK.                                             |
 
-   **Edge Config mode** (recommended — set these if you installed the Vercel integration):
+   **Edge Config mode** (recommended — set these if you are not using the marketplace integration):
 
    | Variable                      | Description                                                                                           |
    | ----------------------------- | ----------------------------------------------------------------------------------------------------- |
