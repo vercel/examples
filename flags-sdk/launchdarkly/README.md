@@ -56,7 +56,7 @@ vercel env pull
 
 Head over to the [LaunchDarkly Console](https://app.launchdarkly.com) and create the feature flags and experiments required by this template.
 
-Be sure to enable the `SDKs using Client-side ID` option for each Feature Flag.
+Be sure to enable the `Available on client-side SDKs` option for each Feature Flag.
 
 Feature Flags:
 
