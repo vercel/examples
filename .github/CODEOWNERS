@@ -16,11 +16,12 @@ solutions/testing @vercel/turbo-oss @goncy @lfades @lpalmes
 build-output-api @tootallnate @lfades @lpalmes
 
 # Backend language and service examples
-/go/ @vercel/team-backends
-/rust/ @vercel/team-backends
-/ruby/ @vercel/team-backends
-/services/ @vercel/team-backends
-/python/ @vercel/team-backends @vercel/team-python
+/go/ @vercel/team-backends @vercel/compute
+/rust/ @vercel/team-backends @vercel/compute
+/ruby/ @vercel/team-backends @vercel/compute
+/services/ @vercel/team-backends @vercel/compute
+/python/ @vercel/team-backends @vercel/team-python @vercel/compute
+/container-images/ @vercel/team-backends @vercel/compute
 
 vercel-tutor @chibicode
 
