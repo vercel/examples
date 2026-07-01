@@ -1,0 +1,17 @@
+# Dockerfile.vercel
+# Vercel detects this file, builds the image, and runs it on Fluid compute.
+# The server only needs to listen on $PORT.
+
+FROM golang:1.24-alpine AS build
+WORKDIR /src
+COPY . .
+# Static, stripped binary so it runs on a minimal image.
+RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o /server .
+
+FROM alpine:3.20
+# Run as a non-root user.
+RUN adduser -D -u 10001 app
+USER app
+COPY --from=build /server /server
+EXPOSE 3000
+ENTRYPOINT ["/server"]
