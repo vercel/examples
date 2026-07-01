@@ -29,10 +29,10 @@ Clicking the button above will:
 
 1. Clone this repository to your GitHub account
 2. Create a new Vercel project
-3. Install the LaunchDarkly integration from the Vercel Marketplace, which connects your LaunchDarkly project and auto-injects `LAUNCHDARKLY_CLIENT_SIDE_ID` and `NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID`
+3. Install the LaunchDarkly integration from the Vercel Marketplace, which connects your LaunchDarkly project and auto-injects `LAUNCHDARKLY_CLIENT_SIDE_ID`, `NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID`,and `LAUNCHDARKLY_SDK_KEY`.
 4. Prompt you to generate a `FLAGS_SECRET` for the Flags Explorer
 
-The integration does **not** set your server-side flag source (`EDGE_CONFIG` for Edge Config mode, or `LAUNCHDARKLY_SDK_KEY` for server SDK mode). After the project is created, choose a mode and set the remaining variables as described in [Step 5](#step-5-set-environment-variables).
+The integration does **not** set your `EDGE_CONFIG`. See [Step 5](#step-5-set-environment-variables) for optional variables that you can set.
 
 ### Step 1: Link the project
 
@@ -96,15 +96,10 @@ After that, start the Experiment.
 
 ### Step 5: Set environment variables
 
-The Marketplace integration auto-injects these into your project — you don't need to set them:
-
-- `LAUNCHDARKLY_CLIENT_SIDE_ID` — your LaunchDarkly environment's client-side ID
-- `NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID` — the same client-side ID, exposed to the browser
-
 This template reads server-side flags in one of two modes, and picks whichever you configure (Edge Config is preferred when both are set). Configure **one**:
 
-- **Edge Config mode (recommended):** set `EDGE_CONFIG` (your Vercel Edge Config connection string). Flags are read from a Vercel Edge Config store that the Marketplace integration keeps in sync — the lowest-latency option. Requires `LAUNCHDARKLY_CLIENT_SIDE_ID`, which the integration already injects.
-- **Server SDK mode:** set `LAUNCHDARKLY_SDK_KEY` (a server-side SDK key). Flags are read directly from LaunchDarkly, with no Edge Config required. Used automatically when `EDGE_CONFIG` is not set.
+- **Edge Config mode (recommended):** set `EDGE_CONFIG` (your Vercel Edge Config connection string). Flags are read from a Vercel Edge Config store that the Marketplace integration keeps in sync — the lowest-latency option.
+- **Server SDK mode (default):** Flags are read directly from LaunchDarkly, with no Edge Config required. Used automatically when `EDGE_CONFIG` is not set.
 
 You also need to set (see `.env.example` for a template):
 
@@ -128,4 +123,35 @@ If you don't use the deploy button above, you can set the project up by hand:
    node -e "console.log(crypto.randomBytes(32).toString('base64url'))"
    ```
 
-3. Set all of the environment variables listed in [Step 5](#step-5-set-environment-variables).
+3. Set the environment variables below (see `.env.example` for a template). Which ones you need depends on the server-side flag source you picked in step 1.
+
+   **Always required:**
+
+   | Variable                                  | Description                                                                                                      |
+   | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+   | `FLAGS_SECRET`                            | Used by the Flags Explorer to securely read and override flags. 32 random bytes, base64url-encoded (see step 2). |
+   | `NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID` | Your LaunchDarkly client-side ID, used by the client-side React SDK.                                             |
+
+   **Edge Config mode** (recommended — set these if you installed the Vercel integration):
+
+   | Variable                      | Description                                                                                           |
+   | ----------------------------- | ----------------------------------------------------------------------------------------------------- |
+   | `EDGE_CONFIG`                 | Connection string for the Vercel Edge Config store the integration keeps in sync. Preferred when set. |
+   | `LAUNCHDARKLY_CLIENT_SIDE_ID` | Your LaunchDarkly client-side ID, used to read flags from Edge Config.                                |
+
+   **Server SDK mode** (set this instead if you're reading flags directly from LaunchDarkly):
+
+   | Variable               | Description                                                                           |
+   | ---------------------- | ------------------------------------------------------------------------------------- |
+   | `LAUNCHDARKLY_SDK_KEY` | A LaunchDarkly server-side SDK key. Used automatically when `EDGE_CONFIG` is not set. |
+
+   **Optional** (enable richer Flags Explorer metadata):
+
+   | Variable                    | Description                                                                                                |
+   | --------------------------- | ---------------------------------------------------------------------------------------------------------- |
+   | `LAUNCHDARKLY_PROJECT_SLUG` | Links each flag to its details page in the LaunchDarkly console.                                           |
+   | `LAUNCHDARKLY_API_KEY`      | Lets the Flags Explorer fetch extra flag metadata (descriptions, console links) from the LaunchDarkly API. |
+   | `LAUNCHDARKLY_PROJECT_KEY`  | Project the API key reads from. Required alongside `LAUNCHDARKLY_API_KEY`.                                 |
+   | `LAUNCHDARKLY_ENVIRONMENT`  | Environment the API key reads from. Required alongside `LAUNCHDARKLY_API_KEY`.                             |
+
+   You can create an API key and find your project and environment values in the [LaunchDarkly Console](https://app.launchdarkly.com/settings/projects).
