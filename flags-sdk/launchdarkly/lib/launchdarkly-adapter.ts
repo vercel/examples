@@ -10,10 +10,13 @@ export type { LDContext }
  * This adapter supports two ways of reading LaunchDarkly flags, and picks one
  * automatically based on which environment variables are present:
  *
- * 1. Edge Config mode (`EDGE_CONFIG` + `LAUNCHDARKLY_CLIENT_SIDE_ID`): reads
- *    flags from a Vercel Edge Config store using `@flags-sdk/launchdarkly`.
- *    This is edge-native and the lowest latency, and is what the LaunchDarkly
- *    Vercel Marketplace integration is designed for.
+ * 1. Edge Config mode (`EDGE_CONFIG` or `EXPERIMENTATION_CONFIG`, plus
+ *    `LAUNCHDARKLY_CLIENT_SIDE_ID`): reads flags from a Vercel Edge Config
+ *    store using `@flags-sdk/launchdarkly`. This is edge-native and the lowest
+ *    latency, and is what the LaunchDarkly Vercel Marketplace integration is
+ *    designed for. The Marketplace integration injects the connection string
+ *    as `EXPERIMENTATION_CONFIG` when Edge Config syncing is enabled; a
+ *    manually-provisioned store is typically `EDGE_CONFIG`. Either works.
  *
  * 2. Server SDK mode (`LAUNCHDARKLY_SDK_KEY`): talks to LaunchDarkly directly
  *    using `@launchdarkly/node-server-sdk`. This requires no Edge Config, so
@@ -22,7 +25,11 @@ export type { LDContext }
  * Edge Config mode is preferred when both are configured.
  */
 
-const edgeConfigConnectionString = process.env.EDGE_CONFIG
+// The Marketplace integration provides the Edge Config connection string as
+// `EXPERIMENTATION_CONFIG`; a manually-created store is usually `EDGE_CONFIG`.
+// Both are valid Edge Config URLs, so accept either (EDGE_CONFIG wins if set).
+const edgeConfigConnectionString =
+  process.env.EDGE_CONFIG ?? process.env.EXPERIMENTATION_CONFIG
 const clientSideId = process.env.LAUNCHDARKLY_CLIENT_SIDE_ID
 const projectSlug = process.env.LAUNCHDARKLY_PROJECT_SLUG
 const sdkKey = process.env.LAUNCHDARKLY_SDK_KEY
@@ -37,9 +44,7 @@ function flagOrigin(key: string): string | undefined {
 /** The subset of the LaunchDarkly client this app relies on. */
 interface LDClientLike {
   waitForInitialization(): Promise<unknown>
-  allFlagsState(
-    context: LDContext,
-  ): Promise<{ toJSON(): unknown } | undefined>
+  allFlagsState(context: LDContext): Promise<{ toJSON(): unknown } | undefined>
 }
 
 interface LDAdapterLike {
@@ -68,7 +73,7 @@ function createServerSdkAdapter(): LDAdapterLike {
           const client = init(sdkKey!)
           await client.waitForInitialization({ timeout: 10 })
           return client
-        },
+        }
       )
     }
     return clientPromise
@@ -80,12 +85,15 @@ function createServerSdkAdapter(): LDAdapterLike {
         origin: flagOrigin,
         async decide({ key, entities, defaultValue }) {
           const client = await getClient()
-          const context: LDContext =
-            entities ?? { kind: 'user', key: 'anonymous', anonymous: true }
+          const context: LDContext = entities ?? {
+            kind: 'user',
+            key: 'anonymous',
+            anonymous: true,
+          }
           return client.variation(
             key,
             context,
-            defaultValue,
+            defaultValue
           ) as Promise<ValueType>
         },
       }
@@ -114,8 +122,9 @@ function adapter(): LDAdapterLike {
     resolved = createServerSdkAdapter()
   } else {
     throw new Error(
-      'LaunchDarkly is not configured. Set EDGE_CONFIG and LAUNCHDARKLY_CLIENT_SIDE_ID ' +
-        'for Edge Config mode, or LAUNCHDARKLY_SDK_KEY for server SDK mode.',
+      'LaunchDarkly is not configured. Set EDGE_CONFIG (or EXPERIMENTATION_CONFIG) ' +
+        'and LAUNCHDARKLY_CLIENT_SIDE_ID for Edge Config mode, or LAUNCHDARKLY_SDK_KEY ' +
+        'for server SDK mode.'
     )
   }
   return resolved

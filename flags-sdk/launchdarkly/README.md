@@ -98,8 +98,8 @@ After that, start the Experiment.
 
 This template reads server-side flags in one of two modes, and picks whichever you configure (Edge Config is preferred when both are set). Configure **one**:
 
-- **Edge Config mode (recommended):** set `EDGE_CONFIG` (your Vercel Edge Config connection string). Flags are read from a Vercel Edge Config store that the Marketplace integration keeps in sync — the lowest-latency option.
-- **Server SDK mode (default):** Flags are read directly from LaunchDarkly, with no Edge Config required. Used automatically when `EDGE_CONFIG` is not set.
+- **Edge Config mode (recommended):** set `EDGE_CONFIG` **or** `EXPERIMENTATION_CONFIG` (both are Vercel Edge Config connection strings). Flags are read from a Vercel Edge Config store that the Marketplace integration keeps in sync — the lowest-latency option. The Marketplace integration injects `EXPERIMENTATION_CONFIG` when you enable Edge Config syncing; `EDGE_CONFIG` takes precedence if both are set.
+- **Server SDK mode (default):** Flags are read directly from LaunchDarkly, with no Edge Config required. Used automatically when neither `EDGE_CONFIG` nor `EXPERIMENTATION_CONFIG` is set.
 
 You also need to set (see `.env.example` for a template):
 
@@ -134,16 +134,17 @@ If you don't use the marketplace integration, you can set up this template by ha
 
    **Edge Config mode** (recommended — set these if you are not using the marketplace integration):
 
-   | Variable                      | Description                                                                                           |
-   | ----------------------------- | ----------------------------------------------------------------------------------------------------- |
-   | `EDGE_CONFIG`                 | Connection string for the Vercel Edge Config store the integration keeps in sync. Preferred when set. |
-   | `LAUNCHDARKLY_CLIENT_SIDE_ID` | Your LaunchDarkly client-side ID, used to read flags from Edge Config.                                |
+   | Variable                      | Description                                                                                                                                                 |
+   | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | `EDGE_CONFIG`                 | Connection string for the Vercel Edge Config store the integration keeps in sync. Preferred when set.                                                       |
+   | `EXPERIMENTATION_CONFIG`      | Alternative Edge Config connection string. Injected by the Marketplace integration when Edge Config syncing is enabled. Used when `EDGE_CONFIG` is not set. |
+   | `LAUNCHDARKLY_CLIENT_SIDE_ID` | Your LaunchDarkly client-side ID, used to read flags from Edge Config.                                                                                      |
 
    **Server SDK mode** (set this instead if you're reading flags directly from LaunchDarkly):
 
-   | Variable               | Description                                                                           |
-   | ---------------------- | ------------------------------------------------------------------------------------- |
-   | `LAUNCHDARKLY_SDK_KEY` | A LaunchDarkly server-side SDK key. Used automatically when `EDGE_CONFIG` is not set. |
+   | Variable               | Description                                                                                                            |
+   | ---------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+   | `LAUNCHDARKLY_SDK_KEY` | A LaunchDarkly server-side SDK key. Used automatically when neither `EDGE_CONFIG` nor `EXPERIMENTATION_CONFIG` is set. |
 
    **Optional** (enable richer Flags Explorer metadata):
 
