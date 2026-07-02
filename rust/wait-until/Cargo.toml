@@ -1,0 +1,27 @@
+[package]
+name = "vercel-rust-wait-until"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# `AppState::wait_until` was introduced in vercel_runtime 2.4.0.
+vercel_runtime = { version = "2.4", features = ["axum"] }
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+
+# Each handler has to be specified as [[bin]]
+# Note that you need to provide unique names for each binary:
+[[bin]]
+name = "wait-until"
+path = "api/wait-until.rs"
+
+[[bin]]
+name = "recent"
+path = "api/recent.rs"
+
+[profile.release]
+codegen-units = 1
+lto = "fat"
+opt-level = 3

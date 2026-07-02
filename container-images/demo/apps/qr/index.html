@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/apple-icon.png" />
+    <title>QR · /qr</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #09090b; --bg-elev: #0c0c0e; --card: #0e0e11;
+        --border: #1f1f23; --border-hover: #2e2e35;
+        --fg: #fafafa; --muted: #a1a1aa; --subtle: #71717a;
+        --accent: #3b82f6; --radius: 12px;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased; display: flex; justify-content: center; padding: 2.5rem 1.5rem;
+        background-image:
+          radial-gradient(55rem 55rem at 50% -18rem, rgba(59, 130, 246, 0.08), transparent 70%),
+          radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+        background-size: auto, 22px 22px;
+      }
+      main { width: min(820px, 100%); }
+      .back { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--subtle); text-decoration: none; font-size: 0.8rem; margin-bottom: 1.75rem; }
+      .back:hover { color: var(--fg); }
+      .head { display: flex; align-items: center; gap: 0.85rem; margin: 0.85rem 0; }
+      .icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-elev); }
+      .icon svg { width: 22px; height: 22px; fill: var(--fg); }
+      h1 { margin: 0; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; }
+      p.sub { margin: 0 0 1.5rem; color: var(--muted); font-size: 0.95rem; }
+      .grid { display: grid; grid-template-columns: 1fr 320px; gap: 1rem; }
+      @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+      .panel { border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); padding: 1.25rem; }
+      label.lbl { display: block; font-size: 0.72rem; color: var(--subtle); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.5rem; }
+      .lbl + .lbl, .field + .field { margin-top: 1rem; }
+      input, select {
+        font: inherit; padding: 0.65rem 0.85rem; border-radius: 9px;
+        border: 1px solid var(--border); background: var(--bg-elev); color: var(--fg); width: 100%;
+      }
+      input:focus, select:focus { outline: none; border-color: var(--border-hover); }
+      .row { display: flex; gap: 0.65rem; align-items: center; }
+      .row label.inline { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--muted); cursor: pointer; user-select: none; }
+      .row input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--accent); }
+      .preview { display: grid; place-items: center; }
+      .qr-box { width: 100%; aspect-ratio: 1; background: #fff; border-radius: 9px; border: 1px solid var(--border); display: grid; place-items: center; overflow: hidden; }
+      .qr-box img { width: 100%; height: 100%; display: block; }
+      .actions { margin-top: 0.85rem; display: flex; gap: 0.5rem; }
+      a.btn, button.btn {
+        font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; text-align: center;
+        padding: 0.6rem 0.9rem; border-radius: 9px; border: 1px solid var(--border);
+        background: var(--bg-elev); color: var(--fg); flex: 1;
+      }
+      a.btn.primary { background: var(--fg); color: #09090b; border: none; }
+      a.btn:hover, button.btn:hover { border-color: var(--border-hover); }
+      a.btn.primary:hover { opacity: 0.9; border: none; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back" href="/">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All services
+      </a>
+      <div class="head">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>QR</title><path d="M3 3h8v8H3V3Zm2 2v4h4V5H5Zm-2 8h8v8H3v-8Zm2 2v4h4v-4H5ZM13 3h8v8h-8V3Zm2 2v4h4V5h-4Zm-2 8h2v2h-2v-2Zm2 2h2v2h-2v-2Zm2-2h2v2h-2v-2Zm2 2h2v2h-2v-2Zm-4 2h2v2h-2v-2Zm2 2h2v2h-2v-2Zm2-2h2v2h-2v-2Z"/></svg>
+        </span>
+        <h1>QR code generator</h1>
+      </div>
+      <p class="sub">Generate Vercel-branded QR codes with the triangle in the center. Highest error correction keeps them scannable.</p>
+
+      <div class="grid">
+        <section class="panel">
+          <div class="field">
+            <label class="lbl" for="data">Content (URL or text)</label>
+            <input id="data" type="text" value="https://vercel.com" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label class="lbl" for="size">Size</label>
+            <select id="size">
+              <option value="256">256 px</option>
+              <option value="512" selected>512 px</option>
+              <option value="1024">1024 px</option>
+            </select>
+          </div>
+          <div class="field row" style="margin-top:1rem">
+            <label class="inline">
+              <input type="checkbox" id="logo" checked />
+              Vercel triangle in center
+            </label>
+          </div>
+        </section>
+
+        <section class="panel preview">
+          <div class="qr-box">
+            <img id="qr" alt="QR code preview" />
+          </div>
+          <div class="actions">
+            <a class="btn primary" id="download" download="qr.png">Download</a>
+            <button class="btn" id="copy" type="button">Copy URL</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const dataEl = document.getElementById("data");
+      const sizeEl = document.getElementById("size");
+      const logoEl = document.getElementById("logo");
+      const img = document.getElementById("qr");
+      const download = document.getElementById("download");
+      const copyBtn = document.getElementById("copy");
+
+      function basePath() {
+        const p = location.pathname.replace(/\/$/, "");
+        return p.endsWith("/qr") ? p : "/qr";
+      }
+
+      function buildURL() {
+        const params = new URLSearchParams({
+          data: dataEl.value || " ",
+          size: sizeEl.value,
+          logo: logoEl.checked ? "1" : "0",
+        });
+        return `${basePath()}/generate?${params.toString()}`;
+      }
+
+      let timer = null;
+      function render() {
+        const url = buildURL();
+        img.src = url;
+        download.href = url;
+      }
+      function debouncedRender() {
+        clearTimeout(timer);
+        timer = setTimeout(render, 200);
+      }
+
+      dataEl.addEventListener("input", debouncedRender);
+      sizeEl.addEventListener("change", render);
+      logoEl.addEventListener("change", render);
+
+      copyBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(new URL(buildURL(), location.origin).href);
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => (copyBtn.textContent = "Copy URL"), 1500);
+        } catch {
+          copyBtn.textContent = "Copy failed";
+          setTimeout(() => (copyBtn.textContent = "Copy URL"), 1500);
+        }
+      });
+
+      render();
+    </script>
+  </body>
+</html>

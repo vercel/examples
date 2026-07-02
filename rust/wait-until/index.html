@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vercel Rust waitUntil</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #000000;
+        color: #ffffff;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+          'Inter', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 4rem 2rem;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 800px;
+      }
+
+      h1 {
+        font-size: 2.25rem;
+        font-weight: 500;
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.025em;
+      }
+
+      .subtitle {
+        font-size: 0.95rem;
+        color: #a3a3a3;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+      }
+
+      .subtitle a {
+        color: #60a5fa;
+        text-decoration: none;
+      }
+
+      .controls {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        background-color: #ffffff;
+        color: #000000;
+        border: none;
+        border-radius: 8px;
+        padding: 0.625rem 1.25rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.15s ease;
+      }
+
+      button:hover {
+        opacity: 0.85;
+      }
+
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      button.secondary {
+        background-color: #0a0a0a;
+        color: #ffffff;
+        border: 1px solid #262626;
+      }
+
+      /* Loading spinner shown inside a button while it is busy. */
+      .spinner {
+        display: none;
+        width: 0.875rem;
+        height: 0.875rem;
+        border: 2px solid currentColor;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+      }
+
+      button.loading .spinner {
+        display: inline-block;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .spinner {
+          animation-duration: 1.5s;
+        }
+      }
+
+      .status {
+        font-size: 0.8125rem;
+        color: #a3a3a3;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+      }
+
+      h2 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .list {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .item {
+        background-color: #0a0a0a;
+        border: 1px solid #262626;
+        border-radius: 8px;
+        padding: 1rem 1.25rem;
+      }
+
+      .item-head {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .method {
+        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #4ade80;
+        background-color: #052e16;
+        padding: 0.125rem 0.5rem;
+        border-radius: 4px;
+      }
+
+      .flag {
+        font-size: 1.125rem;
+        line-height: 1;
+      }
+
+      .time {
+        margin-left: auto;
+        font-size: 0.75rem;
+        color: #737373;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+      }
+
+      .meta {
+        font-size: 0.8125rem;
+        color: #a3a3a3;
+        line-height: 1.5;
+        word-break: break-word;
+      }
+
+      .meta span {
+        color: #e5e5e5;
+      }
+
+      .empty {
+        color: #737373;
+        font-size: 0.875rem;
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Vercel Rust waitUntil</h1>
+      <p class="subtitle">
+        Each request to <code>/api/wait-until</code> returns immediately, then
+        records itself in Upstash Redis <em>after the response is sent</em> using
+        <code>waitUntil()</code>. The list below reads the last 10 records from
+        <code>/api/recent</code>.
+        <a
+          href="https://github.com/vercel/examples/tree/main/rust/wait-until"
+          >View on GitHub</a
+        >
+      </p>
+
+      <div class="controls">
+        <button id="fire">
+          <span class="spinner" aria-hidden="true"></span>
+          <span class="label">Fire a request</span>
+        </button>
+        <button id="refresh" class="secondary">
+          <span class="spinner" aria-hidden="true"></span>
+          <span class="label">Refresh list</span>
+        </button>
+        <span class="status" id="status"></span>
+      </div>
+
+      <h2>Last 10 requests</h2>
+      <div class="list" id="list">
+        <p class="empty">Loading…</p>
+      </div>
+    </div>
+
+    <script>
+      const statusEl = document.getElementById('status');
+      const listEl = document.getElementById('list');
+      const fireBtn = document.getElementById('fire');
+      const refreshBtn = document.getElementById('refresh');
+
+      function setStatus(msg) {
+        statusEl.textContent = msg;
+      }
+
+      // Toggle a button's loading state: show its spinner, disable it, and
+      // optionally swap its label while busy.
+      function setLoading(btn, isLoading, label) {
+        const labelEl = btn.querySelector('.label');
+        if (isLoading) {
+          if (label) {
+            btn.dataset.label = labelEl.textContent;
+            labelEl.textContent = label;
+          }
+          btn.classList.add('loading');
+          btn.disabled = true;
+          btn.setAttribute('aria-busy', 'true');
+        } else {
+          if (btn.dataset.label) {
+            labelEl.textContent = btn.dataset.label;
+            delete btn.dataset.label;
+          }
+          btn.classList.remove('loading');
+          btn.disabled = false;
+          btn.removeAttribute('aria-busy');
+        }
+      }
+
+      function formatTime(ms) {
+        if (!ms) return 'unknown time';
+        const d = new Date(Number(ms));
+        return d.toLocaleString();
+      }
+
+      function escapeHtml(str) {
+        return String(str ?? '').replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              '&': '&amp;',
+              '<': '&lt;',
+              '>': '&gt;',
+              '"': '&quot;',
+              "'": '&#39;',
+            })[c]
+        );
+      }
+
+      function render(requests) {
+        if (!requests || requests.length === 0) {
+          listEl.innerHTML =
+            '<p class="empty">No requests recorded yet. Click "Fire a request".</p>';
+          return;
+        }
+
+        listEl.innerHTML = requests
+          .map(
+            (r) => `
+            <div class="item">
+              <div class="item-head">
+                <span class="method">${escapeHtml(r.method || 'GET')}</span>
+                <span class="flag" title="${escapeHtml(r.country || '')}">${escapeHtml(r.flag || '🏳️')}</span>
+                <span class="time">${escapeHtml(formatTime(r.timestamp))}</span>
+              </div>
+              <div class="meta">
+                <span>User-Agent:</span> ${escapeHtml(r.userAgent || 'unknown')}
+              </div>
+            </div>`
+          )
+          .join('');
+      }
+
+      async function loadRecent() {
+        const res = await fetch('/api/recent', { cache: 'no-store' });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        render(data.requests);
+        setStatus(`Updated ${new Date().toLocaleTimeString()}`);
+      }
+
+      async function refresh() {
+        setLoading(refreshBtn, true, 'Refreshing…');
+        try {
+          await loadRecent();
+        } catch (e) {
+          setStatus(`Failed to load: ${e.message}`);
+        } finally {
+          setLoading(refreshBtn, false);
+        }
+      }
+
+      async function fire() {
+        setLoading(fireBtn, true, 'Firing…');
+        setStatus('Firing request…');
+        try {
+          await fetch('/api/wait-until', { cache: 'no-store' });
+          // The record is written in the background via waitUntil(), so it may
+          // take a moment to appear. Keep the button in its loading state until
+          // we refresh the list shortly after.
+          setStatus('Request sent. Waiting for background write…');
+          await new Promise((resolve) => setTimeout(resolve, 1200));
+          await loadRecent();
+        } catch (e) {
+          setStatus(`Request failed: ${e.message}`);
+        } finally {
+          setLoading(fireBtn, false);
+        }
+      }
+
+      fireBtn.addEventListener('click', fire);
+      refreshBtn.addEventListener('click', refresh);
+      refresh();
+    </script>
+  </body>
+</html>

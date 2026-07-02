@@ -1,0 +1,6 @@
+{
+	"name": "container-images-demo",
+	"dependencies": {
+		"vercel": "^54.18.0"
+	}
+}

@@ -3,7 +3,7 @@ use tokio::time::Duration;
 use vercel_runtime::{AppState, Error, Request, Response, ResponseBody, service_fn};
 
 async fn handler(_req: Request, state: AppState) -> Result<Response<ResponseBody>, Error> {
-    let AppState { log_context } = state;
+    let log_context = state.log_context;
     log_context.info("Starting streaming response");
 
     use tokio::sync::mpsc;

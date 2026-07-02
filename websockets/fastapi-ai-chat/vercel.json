@@ -1,14 +1,26 @@
 {
-  "experimentalServices": {
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": {
+        "service": "backend"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "frontend"
+      }
+    }
+  ],
+  "services": {
     "frontend": {
-      "framework": "nextjs",
-      "entrypoint": "frontend",
-      "routePrefix": "/"
+      "root": "frontend",
+      "framework": "nextjs"
     },
     "backend": {
-      "framework": "fastapi",
-      "entrypoint": "backend/main.py",
-      "routePrefix": "/svc/api"
+      "root": "backend",
+      "framework": "fastapi"
     }
   }
 }

@@ -1,0 +1,12 @@
+[project]
+name = "flask-ai-chat"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "flask>=3.1,<4.0",
+    "flask-sock>=0.7",
+    "ai",
+]
+
+[tool.uv.sources]
+ai = { git = "https://github.com/vercel-labs/ai-python" }
