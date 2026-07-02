@@ -19,7 +19,7 @@ relatedTemplates:
   - rust-hello-world
 ---
 
-# Container Images Demo 
+# Container Images Demo
 
 A collection of containerized services running as [Vercel Functions](https://vercel.com/docs/functions), each built from its own `Dockerfile` and routed through a single [`vercel.json`](./vercel.json). It showcases the Vercel Dockerfile runtime alongside the native Next.js runtime — nine independent services sharing one domain.
 
