@@ -8,7 +8,7 @@ ogImage:
   url: "/assets/blog/hello-world/cover.jpg"
 author:
   name: hold your voice
-  picture: "/assets/blog/authors/hyv.jpeg"
+  picture: "/assets/blog/authors/tim.jpeg"
 ---
 
 # ship the ugly version first

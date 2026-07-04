@@ -6,7 +6,7 @@ coverImage: "/assets/blog/hello-world/cover.jpg"
 date: "2026-07-02T00:00:00.000Z"
 author:
   name: hold your voice
-  picture: "/assets/blog/authors/hyv.jpeg"
+  picture: "/assets/blog/authors/tim.jpeg"
 ogImage:
   url: "/assets/blog/hello-world/cover.jpg"
 ---
