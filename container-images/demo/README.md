@@ -10,7 +10,7 @@ type:
 css:
   - Tailwind
 githubUrl: https://github.com/vercel/examples/tree/main/container-images/demo
-demoUrl: https://container-images-demo.vercel.app
+demoUrl: https://container-images-demo.labs.vercel.dev
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/container-images/demo&project-name=container-images-demo&repository-name=container-images-demo
 publisher: Vercel
 relatedTemplates:
@@ -19,13 +19,13 @@ relatedTemplates:
   - rust-hello-world
 ---
 
-# Dockerfile Runtime
+# Container Images Demo
 
 A collection of containerized services running as [Vercel Functions](https://vercel.com/docs/functions), each built from its own `Dockerfile` and routed through a single [`vercel.json`](./vercel.json). It showcases the Vercel Dockerfile runtime alongside the native Next.js runtime — nine independent services sharing one domain.
 
 ## Demo
 
-https://container-images-demo.vercel.app
+https://container-images-demo.labs.vercel.dev
 
 ## Services
 
