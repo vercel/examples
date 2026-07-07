@@ -72,15 +72,14 @@ The default uses a plain `--remote` Browserbase session, which works on any plan
 
 ## Template image (faster cold start)
 
-By default the route boots a `node24` sandbox and runs `npm install -g browse@latest` per request. To skip that install, bake `browse` into a sandbox image and point `BROWSE_VCR_IMAGE` at it.
-
-The `Dockerfile` in this directory builds that image:
+By default the route boots a `node24` sandbox and runs `npm install -g browse@latest` per request. To skip that install, point `BROWSE_VCR_IMAGE` at a prebuilt image — the `Dockerfile` here builds one from the official [`ghcr.io/browserbase/browse`](https://github.com/browserbase/stagehand/pkgs/container/browse) image:
 
 ```dockerfile
-FROM node:24
-RUN npm i -g browse
+FROM ghcr.io/browserbase/browse
 WORKDIR /work
 ```
+
+(Vercel Sandbox base images must live in VCR, so you build/mirror from the official image into your project's registry — the runtime doesn't pull `ghcr.io` directly.)
 
 Build and push it to your project's [Vercel Container Registry](https://vercel.com/docs/vercel-sandbox/images) (VCR), then set `BROWSE_VCR_IMAGE`:
 
