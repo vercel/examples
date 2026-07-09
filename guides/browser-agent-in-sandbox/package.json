@@ -10,7 +10,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "smoke": "tsx --conditions=import scripts/smoke.ts"
   },
   "dependencies": {
     "@ai-sdk/gateway": "3.0.59",

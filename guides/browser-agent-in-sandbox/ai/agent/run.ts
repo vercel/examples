@@ -15,7 +15,7 @@ import {
   streamText,
 } from 'ai'
 import { createBashTool } from 'bash-tool'
-import { MODEL, SYSTEM_PROMPT } from './constants'
+import { MODEL, buildSystemPrompt } from './constants'
 import { createBrowseSandbox, toBashToolSandbox } from './sandbox'
 import type { ChatUIMessage } from '@/lib/types'
 
@@ -52,7 +52,7 @@ export async function runBrowserAgent({
       execute: ({ writer }) => {
         const result = streamText({
           model: MODEL,
-          system: SYSTEM_PROMPT,
+          system: buildSystemPrompt(),
           messages: modelMessages,
           tools: agentTools,
           // The agent navigates the web over many steps; give it room.

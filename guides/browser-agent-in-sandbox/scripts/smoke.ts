@@ -4,7 +4,10 @@
 //
 // Usage (from the project root, after `vercel env pull .env.local`):
 //   set -a; source .env.local; set +a
-//   BROWSERBASE_API_KEY=... pnpm tsx scripts/smoke.ts
+//   BROWSERBASE_API_KEY=... pnpm smoke
+//
+// (`pnpm smoke` runs tsx with `--conditions=import`: this package is CJS-scoped
+// and `bash-tool` is ESM-only, so a plain `tsx scripts/smoke.ts` cannot resolve it.)
 import { runBrowserAgent } from '../ai/agent/run'
 import { DEFAULT_TASK } from '../ai/agent/constants'
 

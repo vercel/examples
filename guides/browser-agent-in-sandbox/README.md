@@ -30,6 +30,7 @@ Enter a research task and watch the agent stream its `browse` steps live, then r
 - The **`bash` tool executes inside the sandbox**. The model navigates the web by emitting `browse` commands, which run in the microVM.
 - The **model is served through [Vercel AI Gateway](https://vercel.com/docs/ai-gateway)**. A bare `provider/model` string (`anthropic/claude-sonnet-5`) resolves through the default Gateway provider in `ai@6`, authenticated by Vercel's OIDC token — so the same Vercel auth that powers the Sandbox also powers the model, and there's no separate `ANTHROPIC_API_KEY`.
 - The **UI streams live**. `useChat` from `@ai-sdk/react` renders each `browse` tool call (with a compact running/done/error indicator) as it happens, and the final answer as Markdown (the comparison table).
+- The **system prompt is built fresh per request** (`buildSystemPrompt()`, not a static constant). It tells the agent it's running inside a sandbox microVM with no local browser (so it never passes `--local`), injects today's date at request time so it never guesses or hardcodes one, and tells it to give its best final answer from whatever it's gathered if it's nearing the step limit.
 
 The default task is a genuinely browser-only example: on Amazon, search for the current top mechanical keyboards and, for the top 5 results, compare each product's title, price, star rating, and number of ratings — returning a comparison table with each product's URL. Amazon renders results client-side and returns nothing useful to a plain HTTP fetch, so the agent has to drive a real browser.
 
