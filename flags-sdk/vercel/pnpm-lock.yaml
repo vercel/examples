@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@flags-sdk/vercel':
-        specifier: 1.4.4
-        version: 1.4.4(flags@4.1.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
+        specifier: 1.4.5
+        version: 1.4.5(flags@4.1.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.9(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -30,8 +30,8 @@ importers:
         specifier: 0.5.16
         version: 0.5.16(tailwindcss@4.1.18)
       '@vercel/flags-core':
-        specifier: 1.6.0
-        version: 1.6.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
+        specifier: 1.7.0
+        version: 1.7.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       '@vercel/toolbar':
         specifier: 0.1.33
         version: 0.1.33(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -145,8 +145,8 @@ packages:
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@flags-sdk/vercel@1.4.4':
-    resolution: {integrity: sha512-A+ITLcKSM3k8+2YtjzKAJMoiBukwCWcrMAHhxO/4/7PXNfuJLjatR3Rc9qkM1AS7mEqoEUT0xK9RsJ8JgMCBfg==}
+  '@flags-sdk/vercel@1.4.5':
+    resolution: {integrity: sha512-ZLdFXQISmcDpAUpjpruYTUIR3a0gMpBo9crRRWG08RA/C6v0OVSP3IV4AhkrfLAbNULnBZ769w+lDwnopT9aag==}
     peerDependencies:
       flags: '*'
 
@@ -830,8 +830,8 @@ packages:
     resolution: {integrity: sha512-LMRMEai3Z+BODyxGcU9+KiWrS/UElNiOLKiNRfGNt2Vu3NTEmXgFeXG9wBfocAnTe5yJCX/DY6k3k7S/LkPp/g==}
     engines: {node: '>= 18'}
 
-  '@vercel/flags-core@1.6.0':
-    resolution: {integrity: sha512-PjcJXJlOPa6SXFcxi8O/pd23hnN51ZYvTtkDi3cxuSZtf5XEOCMw0Lp7b4qIsyQfurTAQR9sBGBpSZvIugeosQ==}
+  '@vercel/flags-core@1.7.0':
+    resolution: {integrity: sha512-lQTNIL/9hWQvrGAOydGQEAKhcvVkif3FlZbX14BnIF4G9D5h/BIR9myssmw0j+QrqHN3rbh+c0WVHapw1QYy9g==}
     peerDependencies:
       '@openfeature/server-sdk': 1.18.0
       next: '*'
@@ -2423,9 +2423,9 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
-  '@flags-sdk/vercel@1.4.4(flags@4.1.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))':
+  '@flags-sdk/vercel@1.4.5(flags@4.1.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))':
     dependencies:
-      '@vercel/flags-core': 1.6.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
+      '@vercel/flags-core': 1.7.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       flags: 4.1.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
     transitivePeerDependencies:
       - '@aws-sdk/credential-provider-web-identity'
@@ -3053,7 +3053,7 @@ snapshots:
     dependencies:
       execa: 5.1.1
 
-  '@vercel/flags-core@1.6.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))':
+  '@vercel/flags-core@1.7.0(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))':
     dependencies:
       '@vercel/functions': 3.7.1
       '@vercel/oidc': 3.5.0
