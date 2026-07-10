@@ -41,9 +41,3 @@
 - `VALKEY_ENDPOINT` — Required. Format: `host:port`. Local dev default: `localhost:6379`
 - Create `.env.local` for local development (not committed to git)
 
-## PR and review process
-
-- Open PR: [#1309](https://github.com/vercel/examples/pull/1309) on `vercel/examples`
-- Template reviewer: [plmrry](https://github.com/plmrry) (Paul Murray)
-- Post-merge: requires manual approval by v0 team to appear on [Vercel Templates homepage](https://vercel.com/templates)
-- Any code change must land in **both** the PR branch and the [demo fork](https://github.com/Jonathan-Improving/vercel-valkey-message-queue-demo) — see TECH.md Deployment section for the backport workflow
