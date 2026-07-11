@@ -1,0 +1,31 @@
+{
+  "name": "hyv-guarded-blog",
+  "repository": "https://github.com/shashank-sn/hold-your-voice",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "prebuild": "bash -c 'set -e; for f in _posts/*.md; do npx @holdyourvoice/hyv@latest scan \"$f\" --fail-on-hit --ignore voice.staccato-triplet; done'",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "classnames": "^2.5.1",
+    "date-fns": "^3.6.0",
+    "gray-matter": "^4.0.3",
+    "next": "^16.2.10",
+    "react": "^19",
+    "react-dom": "^19",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.2"
+  }
+}
