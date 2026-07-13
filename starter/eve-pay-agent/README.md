@@ -75,6 +75,8 @@ The shell, filesystem, and web tools are disabled so the agent cannot bypass the
 
 This example is limited to the fixed Pay.sh debugger endpoint and sandbox funds. It never reads a wallet, seed phrase, or private key. The pinned Pay.sh CLI runs only after approval and only with `--sandbox`.
 
+This sandbox demo rechecks the displayed terms before handing off to Pay.sh. Production code must bind the signer to the exact approved challenge or enforce hard client-side limits in the signing path.
+
 For real payments, use a reviewed custody design and keep the same boundaries: explicit approval or a reviewed spending policy, endpoint and amount limits, idempotency, pre-signing simulation, on-chain confirmation, and managed signing authority.
 
 Read the [Pay.sh client guide](https://pay.sh/docs/get-started/client-quickstart) and [eve approval guide](https://eve.dev/docs/human-in-the-loop) before adapting the example.
