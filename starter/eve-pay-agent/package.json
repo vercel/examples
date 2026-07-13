@@ -1,0 +1,33 @@
+{
+  "name": "eve-pay-agent",
+  "version": "0.1.0",
+  "description": "Approval-gated eve agent that buys sandbox API access with Pay.sh",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "build": "eve build",
+    "check": "pnpm typecheck && pnpm build && pnpm format:check",
+    "dev": "eve dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "start": "eve start",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@solana/addresses": "6.9.0",
+    "ai": "7.0.22",
+    "eve": "0.22.5",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "24.5.2",
+    "prettier": "2.8.8",
+    "typescript": "5.9.3"
+  },
+  "packageManager": "pnpm@11.7.0"
+}
