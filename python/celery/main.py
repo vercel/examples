@@ -44,7 +44,7 @@ TASK_REGISTRY: dict[str, tuple] = {
 
 templates = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 
-app = FastAPI(title="Celery + Vercel Queues + Redis")
+app = FastAPI(title="Celery + Vercel Queues + Runtime Cache")
 
 
 class CreateJobRequest(BaseModel):
