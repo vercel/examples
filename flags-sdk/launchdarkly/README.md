@@ -25,7 +25,7 @@ The easiest way to get started with LaunchDarkly is through the native integrati
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Flaunchdarkly&env=FLAGS_SECRET&envDescription=The+FLAGS_SECRET+will+be+used+by+the+Flags+Explorer+to+securely+overwrite+feature+flags.+Must+be+32+random+bytes%2C+base64-encoded.+Use+the+generated+value+or+set+your+own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fworkflow-collaboration%2Ffeature-flags%2Fsupporting-feature-flags%23flags_secret-environment-variable&project-name=launchdarkly-flags-sdk&repository-name=launchdarkly-flags-sdk&products=%5B%7B%22integrationSlug%22%3A%22launchdarkly%22%2C%22productSlug%22%3A%22launchdarkly%22%2C%22type%22%3A%22integration%22%2C%22protocol%22%3A%22experimentation%22%7D%5D)
 
-After installing the LaunchDarkly integration from the Vercel Marketplace, open your LaunchDarkly collection in the Vercel dashboard and turn on the **Enable Edge Config Syncing** toggle. Once enabled, the integration provisions an Edge Config and exposes its connection string as the `EXPERIMENTATION_CONFIG` environment variable, which LaunchDarkly syncs your flags into. The `@flags-sdk/launchdarkly` adapter (v1.0.0+) reads this variable by default.
+When installing the LaunchDarkly integration from the Vercel Marketplace, turn on the **Enable Edge Config Syncing** toggle in the "Configuration and Plan" step of the install process. This provisions an Edge Config and exposes its connection string as the `EXPERIMENTATION_CONFIG` environment variable, which LaunchDarkly syncs your flags into. The `@flags-sdk/launchdarkly` adapter (v1.0.0+) reads this variable by default.
 
 ### Step 1: Link the project
 
@@ -92,7 +92,7 @@ After that, start the Experiment.
 See `.env.example` for a template.
 
 - [`FLAGS_SECRET`](https://vercel.com/docs/feature-flags/flags-explorer/reference#flags_secret-environment-variable)
-- `EXPERIMENTATION_CONFIG` (Edge Config connection string, exposed by the LaunchDarkly Marketplace integration once you turn on **Enable Edge Config Syncing** in your LaunchDarkly collection)
+- `EXPERIMENTATION_CONFIG` (Edge Config connection string, exposed by the LaunchDarkly Marketplace integration when you turn on **Enable Edge Config Syncing** during install)
 - `LAUNCHDARKLY_PROJECT_SLUG`
 - `LAUNCHDARKLY_CLIENT_SIDE_ID`
 - `NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID` (set to same value as `LAUNCHDARKLY_CLIENT_SIDE_ID`)

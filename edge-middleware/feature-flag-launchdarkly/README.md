@@ -18,7 +18,7 @@ This example shows how to use the native [LaunchDarkly integration](https://verc
 
 You will need to provide the `NEXT_PUBLIC_LD_CLIENT_SIDE_ID` environment variable. Fill it with your client-side ID from LaunchDarkly.
 
-LaunchDarkly syncs your feature flags into an Edge Config. After installing the LaunchDarkly integration from the Vercel Marketplace, open your LaunchDarkly collection in the Vercel dashboard and turn on the **Enable Edge Config Syncing** toggle. Once enabled, the integration provisions an Edge Config and exposes its connection string as the `EXPERIMENTATION_CONFIG` environment variable, which this example reads to create the Edge Config client.
+LaunchDarkly syncs your feature flags into an Edge Config. When installing the LaunchDarkly integration from the Vercel Marketplace, turn on the **Enable Edge Config Syncing** toggle in the "Configuration and Plan" step of the install process. This provisions an Edge Config and exposes its connection string as the `EXPERIMENTATION_CONFIG` environment variable, which this example reads to create the Edge Config client.
 
 ## Demo
 
