@@ -1,11 +1,17 @@
 [project]
 name = "celery-vercel"
 version = "0.1.0"
-requires-python = ">=3.14"
+requires-python = ">=3.12"
 dependencies = [
     "fastapi",
-    "celery",
+    "celery==5.6.3",
     "jinja2",
-    "redis",
-    "vercel",
+    "vercel>=0.6.0",
 ]
+
+[tool.vercel]
+entrypoint = "main:app"
+
+[[tool.vercel.subscribers]]
+entrypoint = "worker.run:app"
+topics = ["jobs"]
