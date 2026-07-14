@@ -29,19 +29,19 @@ export function validateContactForm(data: unknown): ValidationResult {
     return { valid: false, error: 'Invalid request body' }
   }
   const d = data as Record<string, unknown>
-  if (!d.name || typeof d.name !== 'string') {
+  if (!d.name || typeof d.name !== 'string' || !d.name.trim()) {
     return { valid: false, error: 'Name is required and must be a string' }
   }
   if (d.name.length > 200) {
     return { valid: false, error: 'Name must be 200 characters or fewer' }
   }
-  if (!d.email || typeof d.email !== 'string') {
+  if (!d.email || typeof d.email !== 'string' || !d.email.trim()) {
     return { valid: false, error: 'Email is required and must be a string' }
   }
   if (d.email.length > 320) {
     return { valid: false, error: 'Email must be 320 characters or fewer' }
   }
-  if (!d.message || typeof d.message !== 'string') {
+  if (!d.message || typeof d.message !== 'string' || !d.message.trim()) {
     return { valid: false, error: 'Message is required and must be a string' }
   }
   if (d.message.length > 10000) {

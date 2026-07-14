@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { GlideClient, GlideClientConfiguration } from '@valkey/valkey-glide'
-import { validateContactForm, buildMessageResponse } from './helpers'
+import { validateContactForm, buildMessageResponse, ValidationError, ValidationSuccess } from './helpers'
 
 // Force Node.js runtime for native modules
 // NOTE: This demo has no authentication. In production, add auth middleware
@@ -91,10 +91,10 @@ export async function POST(request: Request) {
     const validation = validateContactForm(body)
 
     if (!validation.valid) {
-      return NextResponse.json({ error: validation.error }, { status: 400 })
+      return NextResponse.json({ error: (validation as ValidationError).error }, { status: 400 })
     }
 
-    const { name, email, message } = validation.data
+    const { name, email, message } = (validation as ValidationSuccess).data
 
     const client = await getClient()
     const timestamp = new Date().toISOString()
@@ -108,7 +108,7 @@ export async function POST(request: Request) {
       ['email', email],
       ['message', message],
       ['timestamp', timestamp],
-    ], { maxLen: { count: 10000, approximate: true } })
+    ], { trim: { method: "maxlen", threshold: 10000, exact: false } })
 
     return NextResponse.json(
       { streamMessageId, timestamp },

@@ -1,9 +1,18 @@
-'use client'
-
 import type { ReactNode } from 'react'
+import type { Metadata, Viewport } from 'next'
 import Link from 'next/link'
 import '@vercel/examples-ui/globals.css'
 import './globals.css'
+
+export const metadata: Metadata = {
+  title: 'AWS Message Queue + ElastiCache',
+  description: 'A Next.js demo using Valkey streams for message queuing with AWS ElastiCache',
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
 
 const REPO_URL = 'https://github.com/vercel/examples/tree/main/solutions/aws-message-queue-elasticache'
 
