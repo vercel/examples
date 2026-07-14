@@ -10,7 +10,7 @@ export const metadata = {
 }
 export const runtime = 'edge'
 
-const edgeConfigClient = createClient(process.env.EDGE_CONFIG)
+const edgeConfigClient = createClient(process.env.EXPERIMENTATION_CONFIG)
 
 // In Edge Runtime it's not possible to share promises across requests.
 //
@@ -62,7 +62,7 @@ export default async function Home() {
         <Text>
           This example shows how to use the{' '}
           <Link
-            href="https://vercel.com/integrations/launchdarkly"
+            href="https://vercel.com/marketplace/launchdarkly"
             target="_blank"
           >
             LaunchDarkly integration

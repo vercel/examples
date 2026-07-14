@@ -5,7 +5,7 @@ description: Learn how to set up the LaunchDarkly integration to read flags from
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-launchdarkly&project-name=feature-flag-launchdarkly&repository-name=feature-flag-launchdarkly&integration-ids=oac_8DFUMlauSkqeQhdGHpL5xbWp&env=NEXT_PUBLIC_LD_CLIENT_SIDE_ID&env=EDGE_CONFIG&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%7D%7D
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-launchdarkly&project-name=feature-flag-launchdarkly&repository-name=feature-flag-launchdarkly&env=NEXT_PUBLIC_LD_CLIENT_SIDE_ID&products=%5B%7B%22integrationSlug%22%3A%22launchdarkly%22%2C%22productSlug%22%3A%22launchdarkly%22%2C%22type%22%3A%22integration%22%2C%22protocol%22%3A%22experimentation%22%7D%5D
 demoUrl: https://feature-flag-launchdarkly.vercel.app
 relatedTemplates:
   - maintenance-page
@@ -14,13 +14,11 @@ relatedTemplates:
 
 # feature-flag-launchdarkly example
 
-This example shows how to use the [LaunchDarkly integration](https://vercel.com/integrations/launchdarkly) with Next.js.
-
-> ℹ️ The LaunchDarkly integration requires a LaunchDarkly enterprise account.
+This example shows how to use the native [LaunchDarkly integration](https://vercel.com/marketplace/launchdarkly) from the Vercel Marketplace with Next.js.
 
 You will need to provide the `NEXT_PUBLIC_LD_CLIENT_SIDE_ID` environment variable. Fill it with your client-side ID from LaunchDarkly.
 
-LaunchDarkly wills sync your feature flags into an Edge Config, which you can set in the integration. Note that the same Edge Config also needs to be linked to this project via the `EDGE_CONFIG` environment variable. If you clone this template, this will be set up for you automatically when you select the Edge Config.
+LaunchDarkly syncs your feature flags into an Edge Config. After installing the LaunchDarkly integration from the Vercel Marketplace, enable the Edge Config sync from the integration's resource in your Vercel dashboard. Once enabled, the connection string for that Edge Config is exposed as the `EXPERIMENTATION_CONFIG` environment variable, which this example reads to create the Edge Config client.
 
 ## Demo
 
@@ -34,7 +32,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-launchdarkly&project-name=feature-flag-launchdarkly&repository-name=feature-flag-launchdarkly&integration-ids=oac_8DFUMlauSkqeQhdGHpL5xbWp&env=NEXT_PUBLIC_LD_CLIENT_SIDE_ID&env=EDGE_CONFIG&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%7D%7D)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-launchdarkly&project-name=feature-flag-launchdarkly&repository-name=feature-flag-launchdarkly&env=NEXT_PUBLIC_LD_CLIENT_SIDE_ID&products=%5B%7B%22integrationSlug%22%3A%22launchdarkly%22%2C%22productSlug%22%3A%22launchdarkly%22%2C%22type%22%3A%22integration%22%2C%22protocol%22%3A%22experimentation%22%7D%5D)
 
 ### Clone and Deploy
 
