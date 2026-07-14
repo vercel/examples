@@ -98,6 +98,7 @@ This template demonstrates a reliable serverless message queue workflow:
 
 - Single consumer group prevents message duplication
 - Message acknowledgment ensures reliable processing
+- Automatic reclaim of messages idle longer than 60 seconds (prevents stuck messages)
 - Refreshing the page won't cause duplicate processing
 - Demonstrates how ElastiCache Streams support reliable serverless workflows
 
@@ -108,7 +109,7 @@ The application provides a single API route (`/api/messages`) with three HTTP me
 ### Message Operations
 
 - `POST /api/messages` - Add a new message to the queue (contact form submission)
-- `GET /api/messages` - Read the next unprocessed message from the consumer group
+- `GET /api/messages` - Read the next unprocessed message from the consumer group (auto-claims messages idle for >60 seconds)
 - `DELETE /api/messages?messageId=<id>` - Acknowledge and remove a message from the pending list
 
 ## Testing
