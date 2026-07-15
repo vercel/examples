@@ -6,12 +6,11 @@ from celery import Celery
 
 QUEUE_NAME = os.getenv("CELERY_QUEUE_NAME", "jobs")
 
-# On Vercel and in `vercel dev`, worker services default CELERY_BROKER_URL to
-# `vercel://`. When you run this project outside the Vercel runtime you can
-# point it at Redis instead.
+# Vercel worker services use the Vercel Queues Celery broker. Set
+# CELERY_BROKER_URL explicitly if you want to run Celery against another broker.
 app = Celery(
     "celery-demo-worker",
-    broker=os.getenv("CELERY_BROKER_URL", "redis://localhost:6379/0"),
+    broker=os.getenv("CELERY_BROKER_URL", "vercel://"),
 )
 
 app.conf.update(
