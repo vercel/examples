@@ -34,13 +34,13 @@ importers:
         specifier: ^19.0.0
         version: 19.2.14
       '@vercel/config':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.5.5
+        version: 0.5.5
       autoprefixer:
         specifier: ^10.4.14
         version: 10.5.0(postcss@8.5.14)
       eslint:
-        specifier: ^9.0.0
+        specifier: ^9.39.5
         version: 9.39.5(jiti@2.7.0)
       eslint-config-next:
         specifier: ^16.2.1
@@ -1105,8 +1105,8 @@ packages:
     resolution: {integrity: sha512-HzKCoNRSJYG83vKrYVJk+By2a0qVt/VuQfziCtdM6Q3Lt2WUE1PqxUAwO1Br2flSgrTxNdGgaGmX8qdnM25d5w==}
     engines: {node: '>=16'}
 
-  '@vercel/config@0.3.0':
-    resolution: {integrity: sha512-Tf5k5y2F478oTiQcU5R8Ntix1UejE6NdduZnI7aa1XXxjCtifX1XdRS/D2uTjiQAwIL3pLa1LSAN80ABbba+TQ==}
+  '@vercel/config@0.5.5':
+    resolution: {integrity: sha512-U0QX7p08vgk8D47HI74wYyRuDJ2IYHbFQyfVdwO81Xchjp5CsV58/xhkV4EAXXj4NuLuELBwdPDa6oOdCYvEhg==}
     hasBin: true
 
   '@vercel/examples-ui@2.0.4':
@@ -1116,8 +1116,8 @@ packages:
       react: ^17.0.2 || ^18.0.0-0 || ^19.0.0-0
       react-dom: ^17.0.2 || ^18.0.0-0 || ^19.0.0-0
 
-  '@vercel/routing-utils@6.2.0':
-    resolution: {integrity: sha512-YI2cGYZmJKEyGSEgf5Fw5rVuW7X1bTOQ7/pnLRNTFMH3YB3qqP5erCLCJGv2kIvNo1iQAPINHQRJj6ykEdGoPg==}
+  '@vercel/routing-utils@6.4.0':
+    resolution: {integrity: sha512-SnL/449ftNIDt1cB/oDqFmdZWywckNA6Q/S3WuzzsxBdE9DxmNn498qMKRtgx0W6EW3Mm/wVmg7aNJrfElMBTA==}
 
   '@vitest/expect@2.1.9':
     resolution: {integrity: sha512-UJCIkTBenHeKT1TTlKMJWy1laZewsRIzYighyYiJKZreqtdxSos/S1t+ktRMQWu2CKqaarrkeszJx1cgC5tGZw==}
@@ -3394,9 +3394,9 @@ snapshots:
       '@valkey/valkey-glide-linux-x64-gnu': 2.3.1
       '@valkey/valkey-glide-linux-x64-musl': 2.3.1
 
-  '@vercel/config@0.3.0':
+  '@vercel/config@0.5.5':
     dependencies:
-      '@vercel/routing-utils': 6.2.0
+      '@vercel/routing-utils': 6.4.0
       pretty-cache-header: 1.0.0
       zod: 3.25.76
 
@@ -3408,7 +3408,7 @@ snapshots:
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
 
-  '@vercel/routing-utils@6.2.0':
+  '@vercel/routing-utils@6.4.0':
     dependencies:
       path-to-regexp: 6.1.0
       path-to-regexp-updated: path-to-regexp@6.3.0

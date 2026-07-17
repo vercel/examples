@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import type { StreamMessage } from '../api/messages/helpers'
 import { getErrorMessage } from '../api/messages/helpers'
@@ -19,12 +19,10 @@ export default function ProcessPage() {
   const [showNextButton, setShowNextButton] = useState(false)
   const [result, setResult] = useState<ResultStatus>({ status: 'idle' })
 
-  const fetchNextMessage = useCallback(async (resetState = true) => {
-    if (resetState) {
-      setIsLoading(true)
-      setResult({ status: 'idle' })
-      setShowNextButton(false)
-    }
+  const fetchNextMessage = async () => {
+    setIsLoading(true)
+    setResult({ status: 'idle' })
+    setShowNextButton(false)
 
     try {
       const response = await fetch('/api/messages')
@@ -50,7 +48,7 @@ export default function ProcessPage() {
     } finally {
       setIsLoading(false)
     }
-  }, [])
+  }
 
   const handleAcknowledge = async () => {
     if (!currentMessage) return
@@ -89,10 +87,9 @@ export default function ProcessPage() {
   }
 
   useEffect(() => {
-    // Load the first queue item after mount.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    void fetchNextMessage(false)
-  }, [fetchNextMessage])
+    fetchNextMessage()
+  }, [])
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-10">
@@ -187,7 +184,7 @@ export default function ProcessPage() {
         <div className="py-10 text-center">
           <p className="text-gray-500 mb-4">Message processed successfully!</p>
           <button
-            onClick={() => void fetchNextMessage()}
+            onClick={fetchNextMessage}
             className="rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             Next Message →
