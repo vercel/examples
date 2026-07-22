@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@flags-sdk/launchdarkly": "^0.3.2",
+    "@launchdarkly/node-server-sdk": "^9.11.3",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "2.2.0",
     "@tailwindcss/aspect-ratio": "0.4.2",
