@@ -55,7 +55,7 @@ Feature Flags:
 
 - `Summer Sale` (type boolean) with the key `summer-sale` and the variations `true` and `false`. Edit the default targeting rule to serve a percentage rollout with a 50/50 split by `user.key`.
 - `Free Delivery` (type boolean) with the key `free-delivery` and the variations `true` and `false`. Edit the default targeting rule to serve a percentage rollout with a 50/50 split by `user.key`.
-- `Proceed to Checkout` (type string) with the key `proceed-to-checkout` and the following variations:
+- `Proceed to Checkout Color` (type string) with the key `proceed-to-checkout-color` and the following variations:
   - Name: `Control`, Value: `blue`
   - Name: `Test`, Value: `green`
   - Name: `Test #2`, Value: `red`
