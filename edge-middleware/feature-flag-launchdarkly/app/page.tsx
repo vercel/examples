@@ -10,7 +10,7 @@ export const metadata = {
 }
 export const runtime = 'edge'
 
-const edgeConfigClient = createClient(process.env.EDGE_CONFIG)
+const edgeConfigClient = createClient(process.env.GLOBAL_CONFIG)
 
 // In Edge Runtime it's not possible to share promises across requests.
 //

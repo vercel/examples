@@ -10,10 +10,10 @@ import { getVercelOverride } from '../generated/hypertune.vercel'
 const hypertuneSource = createSource({
   token: process.env.NEXT_PUBLIC_HYPERTUNE_TOKEN!,
   initDataProvider:
-    process.env.EDGE_CONFIG && process.env.EDGE_CONFIG_HYPERTUNE_ITEM_KEY
+    process.env.GLOBAL_CONFIG && process.env.GLOBAL_CONFIG_HYPERTUNE_ITEM_KEY
       ? new VercelEdgeConfigInitDataProvider({
-          edgeConfigClient: createClient(process.env.EDGE_CONFIG),
-          itemKey: process.env.EDGE_CONFIG_HYPERTUNE_ITEM_KEY,
+          edgeConfigClient: createClient(process.env.GLOBAL_CONFIG),
+          itemKey: process.env.GLOBAL_CONFIG_HYPERTUNE_ITEM_KEY,
         })
       : undefined,
 })

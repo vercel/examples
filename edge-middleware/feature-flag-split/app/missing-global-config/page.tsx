@@ -51,14 +51,14 @@ export default function MissingGlobalConfigDialog() {
                       Create a Global Config and connect it to this project and
                       store its connection string under the{' '}
                       <span className="bg-gray-100 p-1 text-gray-900 rounded">
-                        EDGE_CONFIG
+                        GLOBAL_CONFIG
                       </span>{' '}
                       environment variable
                     </li>
                     <li className="list-item list-disc">
                       Ensure you have the{' '}
                       <span className="bg-gray-100 p-1 text-gray-900 rounded">
-                        EDGE_CONFIG_SPLIT_ITEM_KEY
+                        GLOBAL_CONFIG_SPLIT_ITEM_KEY
                       </span>{' '}
                       environment variable configured and it contains the item
                       key as specified by the Split integration. You can find

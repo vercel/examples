@@ -90,7 +90,7 @@ After that, start the Experiment.
 See `.env.example` for a template.
 
 - [`FLAGS_SECRET`](https://vercel.com/docs/feature-flags/flags-explorer/reference#flags_secret-environment-variable)
-- `EDGE_CONFIG` (Vercel Global Config connection string)
+- `GLOBAL_CONFIG` (Vercel Global Config connection string)
 - `LAUNCHDARKLY_PROJECT_SLUG`
 - `LAUNCHDARKLY_CLIENT_SIDE_ID`
 - `NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID` (set to same value as `LAUNCHDARKLY_CLIENT_SIDE_ID`)

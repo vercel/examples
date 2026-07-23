@@ -7,10 +7,10 @@ import { EXPERIMENT, UID_COOKIE, GROUP_PARAM_FALLBACK } from './lib/constants'
 // We'll use this to validate a random UUID
 const IS_UUID = /^[0-9a-f-]+$/i
 
-const edgeConfigClient = createClient(process.env.EDGE_CONFIG)
+const edgeConfigClient = createClient(process.env.GLOBAL_CONFIG)
 const dataAdapter = new EdgeConfigDataAdapter({
   edgeConfigClient,
-  edgeConfigItemKey: process.env.EDGE_CONFIG_ITEM_KEY!,
+  edgeConfigItemKey: process.env.GLOBAL_CONFIG_ITEM_KEY!,
 })
 
 export const config = {
