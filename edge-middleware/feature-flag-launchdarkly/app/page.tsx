@@ -36,7 +36,7 @@ export const dynamic = 'force-dynamic'
 const getLdClient = cache(async (): Promise<LDClient> => {
   const edgeConfigClient = createClient(process.env.EXPERIMENTATION_CONFIG)
   const ldClient = init(
-    process.env.NEXT_PUBLIC_LD_CLIENT_SIDE_ID!,
+    process.env.NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID!,
     edgeConfigClient
   )
   await ldClient.waitForInitialization()
