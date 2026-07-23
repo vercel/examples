@@ -21,9 +21,11 @@ If you deployed your own and configured the feature flags on LaunchDarkly, you c
 
 ## Deploy this template
 
-The easiest way to get started with LaunchDarkly is through the integration in [Vercel Marketplace](https://vercel.com/marketplace/launchdarkly).
+The easiest way to get started with LaunchDarkly is through the native integration in the [Vercel Marketplace](https://vercel.com/marketplace/launchdarkly).
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Flaunchdarkly&env=FLAGS_SECRET&envDescription=The+FLAGS_SECRET+will+be+used+by+the+Flags+Explorer+to+securely+overwrite+feature+flags.+Must+be+32+random+bytes%2C+base64-encoded.+Use+the+generated+value+or+set+your+own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fworkflow-collaboration%2Ffeature-flags%2Fsupporting-feature-flags%23flags_secret-environment-variable&project-name=launchdarkly-flags-sdk&repository-name=launchdarkly-flags-sdk)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fflags-sdk%2Flaunchdarkly&env=FLAGS_SECRET&envDescription=The+FLAGS_SECRET+will+be+used+by+the+Flags+Explorer+to+securely+overwrite+feature+flags.+Must+be+32+random+bytes%2C+base64-encoded.+Use+the+generated+value+or+set+your+own.&envLink=https%3A%2F%2Fvercel.com%2Fdocs%2Fworkflow-collaboration%2Ffeature-flags%2Fsupporting-feature-flags%23flags_secret-environment-variable&project-name=launchdarkly-flags-sdk&repository-name=launchdarkly-flags-sdk&products=%5B%7B%22integrationSlug%22%3A%22launchdarkly%22%2C%22productSlug%22%3A%22launchdarkly%22%2C%22type%22%3A%22integration%22%2C%22protocol%22%3A%22experimentation%22%7D%5D)
+
+When installing the LaunchDarkly integration from the Vercel Marketplace, turn on the **Enable Edge Config Syncing** toggle in the "Configuration and Plan" step of the install process. This provisions an Edge Config and exposes its connection string as the `EXPERIMENTATION_CONFIG` environment variable, which LaunchDarkly syncs your flags into. The `@flags-sdk/launchdarkly` adapter (v1.0.0+) reads this variable by default.
 
 ### Step 1: Link the project
 
@@ -53,7 +55,7 @@ Feature Flags:
 
 - `Summer Sale` (type boolean) with the key `summer-sale` and the variations `true` and `false`. Edit the default targeting rule to serve a percentage rollout with a 50/50 split by `user.key`.
 - `Free Delivery` (type boolean) with the key `free-delivery` and the variations `true` and `false`. Edit the default targeting rule to serve a percentage rollout with a 50/50 split by `user.key`.
-- `Proceed to Checkout` (type string) with the key `proceed-to-checkout` and the following variations:
+- `Proceed to Checkout Color` (type string) with the key `proceed-to-checkout-color` and the following variations:
   - Name: `Control`, Value: `blue`
   - Name: `Test`, Value: `green`
   - Name: `Test #2`, Value: `red`
@@ -90,7 +92,7 @@ After that, start the Experiment.
 See `.env.example` for a template.
 
 - [`FLAGS_SECRET`](https://vercel.com/docs/feature-flags/flags-explorer/reference#flags_secret-environment-variable)
-- `EDGE_CONFIG` (Vercel Edge Config connection string)
+- `EXPERIMENTATION_CONFIG` (Edge Config connection string, exposed by the LaunchDarkly Marketplace integration when you turn on **Enable Edge Config Syncing** during install)
 - `LAUNCHDARKLY_PROJECT_SLUG`
 - `LAUNCHDARKLY_CLIENT_SIDE_ID`
 - `NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID` (set to same value as `LAUNCHDARKLY_CLIENT_SIDE_ID`)
