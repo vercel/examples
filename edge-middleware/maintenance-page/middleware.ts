@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { get } from '@vercel/edge-config'
+import { get } from '@vercel/global-config'
 
 export const config = {
   matcher: ['/big-promo'],
@@ -7,7 +7,7 @@ export const config = {
 
 export async function middleware(req: NextRequest) {
   if (!process.env.EDGE_CONFIG) {
-    req.nextUrl.pathname = `/missing-edge-config`
+    req.nextUrl.pathname = `/missing-global-config`
     return NextResponse.rewrite(req.nextUrl)
   }
 

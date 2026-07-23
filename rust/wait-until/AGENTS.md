@@ -1,4 +1,5 @@
 <!-- VERCEL BEST PRACTICES START -->
+
 ## Best practices for developing on Vercel
 
 These defaults are optimized for AI coding agents (and humans) working on apps that deploy to Vercel.
@@ -14,7 +15,7 @@ These defaults are optimized for AI coding agents (and humans) working on apps t
 - Tune Fluid Compute knobs (e.g., `maxDuration`, memory/CPU) for long I/O-heavy calls (LLMs, APIs)
 - Use Runtime Cache for fast **regional** caching + tag invalidation (don't treat it as global KV)
 - Use Cron Jobs for schedules; cron runs in UTC and triggers your production URL via HTTP GET
-- Use Vercel Blob for uploads/media; Use Edge Config for small, globally-read config
+- Use Vercel Blob for uploads/media; Use Global Config for small, globally-read config
 - If Enable Deployment Protection is enabled, use a bypass secret to directly access them
 - Add OpenTelemetry via `@vercel/otel` on Node; don't expect OTEL support on the Edge runtime
 - Enable Web Analytics + Speed Insights early

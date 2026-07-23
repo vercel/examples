@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@vercel/edge-config':
-        specifier: 0.1.0-canary.15
-        version: 0.1.0-canary.15
+      '@vercel/global-config':
+        specifier: ^1.4.3
+        version: 1.4.3(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
       next:
         specifier: ^16.0.10
         version: 16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -340,9 +340,20 @@ packages:
     resolution: {integrity: sha512-1mFdED7u5bZpX6Xxf5N9U2c18sb+8EvU3tyOIj6LQZ5OOvnmj8BVeNNP603OFPm5KkS1a7IvCIcwrdHXaEMG/Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  '@vercel/edge-config@0.1.0-canary.15':
-    resolution: {integrity: sha512-CgafJ+qlF2XZU5z6YJ/Dc06A9z/3KHeuenQqZdQQNMEm1yYyZcKkL3i68qSXT/4h4axZ2oqzcdwHJA2A6Yqt9g==}
+  '@vercel/edge-config-fs@0.1.0':
+    resolution: {integrity: sha512-NRIBwfcS0bUoUbRWlNGetqjvLSwgYH/BqKqDN7vK1g32p7dN96k0712COgaz6VFizAm9b0g6IG6hR6+hc0KCPg==}
+
+  '@vercel/global-config@1.4.3':
+    resolution: {integrity: sha512-IH0qScChzEgto5qmG/jMPQmJmmDWua5UZQqNu40zAZ5Y9ray+gFQzox4/FTFWthIycVxDwGfshNKH4AX4+lcDQ==}
     engines: {node: '>=14.6'}
+    peerDependencies:
+      '@opentelemetry/api': ^1.7.0
+      next: '>=1'
+    peerDependenciesMeta:
+      '@opentelemetry/api':
+        optional: true
+      next:
+        optional: true
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -1781,7 +1792,13 @@ snapshots:
       '@typescript-eslint/types': 5.56.0
       eslint-visitor-keys: 3.3.0
 
-  '@vercel/edge-config@0.1.0-canary.15': {}
+  '@vercel/edge-config-fs@0.1.0': {}
+
+  '@vercel/global-config@1.4.3(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))':
+    dependencies:
+      '@vercel/edge-config-fs': 0.1.0
+    optionalDependencies:
+      next: 16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
 
   acorn-jsx@5.3.2(acorn@8.8.2):
     dependencies:

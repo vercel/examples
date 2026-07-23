@@ -4,7 +4,7 @@
  * It would not be needed in a real application.
  */
 import { NextRequest, NextResponse } from 'next/server'
-import { has } from '@vercel/edge-config'
+import { has } from '@vercel/global-config'
 
 export const config = {
   matcher: ['/', '/about', '/marketing'],
@@ -12,7 +12,7 @@ export const config = {
 
 export async function middleware(req: NextRequest) {
   if (!process.env.EDGE_CONFIG || !process.env.EDGE_CONFIG_SPLIT_ITEM_KEY) {
-    req.nextUrl.pathname = `/missing-edge-config`
+    req.nextUrl.pathname = `/missing-global-config`
     return NextResponse.rewrite(req.nextUrl)
   }
 

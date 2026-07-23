@@ -1,10 +1,10 @@
-import { createClient, parseConnectionString } from '@vercel/edge-config'
+import { createClient, parseConnectionString } from '@vercel/global-config'
 
 interface FeatureFlags {
   storeClosed: boolean
 }
 
-// We use prefixes to avoid mixing up the flags with other Edge Config values
+// We use prefixes to avoid mixing up the flags with other Global Config values
 const prefixKey = (key: string) => `featureFlagsAppleStore_${key}`
 
 export async function get(key: keyof FeatureFlags) {
