@@ -10,7 +10,7 @@ export const metadata = {
 }
 export const runtime = 'edge'
 
-const edgeConfigClient = createClient(process.env.EXPERIMENTATION_CONFIG)
+export const dynamic = 'force-dynamic'
 
 // In Edge Runtime it's not possible to share promises across requests.
 //
@@ -34,6 +34,7 @@ const edgeConfigClient = createClient(process.env.EXPERIMENTATION_CONFIG)
 // - "cache" does not work in Edge Middleware, so you'd need to create a fresh
 //   instance of the LaunchDarkly client for every request.
 const getLdClient = cache(async (): Promise<LDClient> => {
+  const edgeConfigClient = createClient(process.env.EXPERIMENTATION_CONFIG)
   const ldClient = init(
     process.env.NEXT_PUBLIC_LD_CLIENT_SIDE_ID!,
     edgeConfigClient
