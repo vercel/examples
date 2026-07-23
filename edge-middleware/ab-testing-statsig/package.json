@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/edge-config": "^0.3.0",
+    "@vercel/global-config": "^1.5.0",
     "@vercel/examples-ui": "^1.0.4",
     "js-cookie": "^3.0.1",
     "next": "^16.0.10",

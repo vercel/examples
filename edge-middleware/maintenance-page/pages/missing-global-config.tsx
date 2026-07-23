@@ -1,4 +1,4 @@
-export default function MissingEdgeConfigDialog() {
+export default function MissingGlobalConfigDialog() {
   return (
     <div
       className="relative z-10"
@@ -42,10 +42,10 @@ export default function MissingEdgeConfigDialog() {
                   </p>
                   <ol className="text-sm text-gray-500 list-disc ml-8 mt-2 flex gap-2 flex-col">
                     <li className="list-item list-disc">
-                      Create an Edge Config and connect it to this project and
+                      Create a Global Config and connect it to this project and
                       store its connection string under the{' '}
                       <span className="bg-gray-100 p-1 text-gray-900 rounded">
-                        EDGE_CONFIG
+                        GLOBAL_CONFIG
                       </span>{' '}
                       environment variable
                     </li>
@@ -66,7 +66,7 @@ export default function MissingEdgeConfigDialog() {
             </div>
             <div className="mt-5 sm:mt-4 sm:ml-10 sm:flex sm:pl-4">
               <a
-                href="https://github.com/vercel/examples/blob/main/edge-middleware/feature-flag-apple-store/README.md#set-up-environment-variables"
+                href="https://github.com/vercel/examples/blob/main/edge-middleware/maintenance-page/README.md#set-up-environment-variables"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex w-full justify-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
