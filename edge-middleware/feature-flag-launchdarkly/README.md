@@ -5,7 +5,7 @@ description: Learn how to set up the LaunchDarkly integration to read flags from
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-launchdarkly&project-name=feature-flag-launchdarkly&repository-name=feature-flag-launchdarkly&integration-ids=oac_8DFUMlauSkqeQhdGHpL5xbWp&env=NEXT_PUBLIC_LD_CLIENT_SIDE_ID&env=EDGE_CONFIG&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%7D%7D
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-launchdarkly&project-name=feature-flag-launchdarkly&repository-name=feature-flag-launchdarkly&products=%5B%7B%22integrationSlug%22%3A%22launchdarkly%22%2C%22productSlug%22%3A%22launchdarkly%22%2C%22type%22%3A%22integration%22%2C%22protocol%22%3A%22experimentation%22%7D%5D
 demoUrl: https://feature-flag-launchdarkly.vercel.app
 relatedTemplates:
   - maintenance-page
@@ -14,13 +14,21 @@ relatedTemplates:
 
 # feature-flag-launchdarkly example
 
-This example shows how to use the [LaunchDarkly integration](https://vercel.com/integrations/launchdarkly) with Next.js.
+This example shows how to use the native [LaunchDarkly integration](https://vercel.com/marketplace/launchdarkly) from the Vercel Marketplace with Next.js.
 
-> ℹ️ The LaunchDarkly integration requires a LaunchDarkly enterprise account.
+The integration provides the `NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID` environment variable, which contains your client-side ID from LaunchDarkly.
 
-You will need to provide the `NEXT_PUBLIC_LD_CLIENT_SIDE_ID` environment variable. Fill it with your client-side ID from LaunchDarkly.
+LaunchDarkly syncs your feature flags into an Edge Config. When installing the LaunchDarkly integration from the Vercel Marketplace, turn on the **Enable Edge Config Syncing** toggle in the "Configuration and Plan" step of the install process. This provisions an Edge Config and exposes its connection string as the `EXPERIMENTATION_CONFIG` environment variable, which this example reads to create the Edge Config client.
 
-LaunchDarkly wills sync your feature flags into an Edge Config, which you can set in the integration. Note that the same Edge Config also needs to be linked to this project via the `EDGE_CONFIG` environment variable. If you clone this template, this will be set up for you automatically when you select the Edge Config.
+## Set up the feature flag
+
+Head over to the [LaunchDarkly Console](https://app.launchdarkly.com) and create the feature flag used by this example, in the same project and environment your client-side ID belongs to:
+
+- `My Flag` (type boolean) with the key `my-flag` and the variations `true` and `false`
+
+Turn the flag ON. Toggling targeting on and off changes what the page shows, confirming flags are being read from Edge Config.
+
+The example evaluates the flag against a context of kind `org` with the key `my-org-key` (see `app/page.tsx`). Contexts do not need to be created in LaunchDarkly ahead of time — they are simply sent by the app at evaluation time. The default targeting rule works without any extra setup. If you want to add targeting rules, target the `org` context kind rather than `user`.
 
 ## Demo
 
@@ -34,7 +42,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-launchdarkly&project-name=feature-flag-launchdarkly&repository-name=feature-flag-launchdarkly&integration-ids=oac_8DFUMlauSkqeQhdGHpL5xbWp&env=NEXT_PUBLIC_LD_CLIENT_SIDE_ID&env=EDGE_CONFIG&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%7D%7D)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-launchdarkly&project-name=feature-flag-launchdarkly&repository-name=feature-flag-launchdarkly&products=%5B%7B%22integrationSlug%22%3A%22launchdarkly%22%2C%22productSlug%22%3A%22launchdarkly%22%2C%22type%22%3A%22integration%22%2C%22protocol%22%3A%22experimentation%22%7D%5D)
 
 ### Clone and Deploy
 
