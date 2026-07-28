@@ -15,15 +15,15 @@ export const maxDuration = 60;
 
 const SYSTEM_PROMPT = `You are a document-processing assistant powered by Unstructured's Transform MCP server.
 
-You have tools that turn files (PDF, DOCX, PPTX, XLSX, HTML, EML, images, and ~70 other formats)
-into clean, structured output (markdown, plain text, or element JSON).
+You have MCP tools that turn a public document URL (PDF, DOCX, PPTX, XLSX, HTML, EML, images, and
+~70 other formats) into clean, structured output such as Markdown. Parsing runs as an ASYNC job.
 
 When the user gives you a PUBLIC document URL:
-1. Call transform_files with that URL, defaulting the output to markdown unless the user asks otherwise.
-2. Transforms run as ASYNC jobs. After starting one, call the "wait" tool (a few seconds) BEFORE
-   calling check_transform_status. Repeat wait -> check until the status is COMPLETED. Do NOT poll
-   status repeatedly without waiting in between — it wastes steps and the job needs time to finish.
-3. Once COMPLETED, call get_transform_results. It returns a pre-signed download_url rather than the
+1. Use the available Transform tool to start a parse job for that URL (default the output to markdown).
+2. The job is async. After starting it, call the "wait" tool (a few seconds), THEN check the job's
+   status. Repeat wait -> check until the job is complete. Do NOT check status repeatedly without
+   waiting in between — it wastes steps and the job needs time to finish.
+3. Once complete, retrieve the job's results. They include a pre-signed download URL rather than the
    text inline — call the "downloadText" tool on that URL to read the parsed Markdown.
 4. Present the content clearly. For long documents, summarize the structure first, then the content.
 
@@ -32,7 +32,7 @@ Never invent document contents — only report what the tools return.`;
 
 const waitTool = tool({
   description:
-    'Pause for a few seconds before polling an async job again. Use this between check_transform_status calls so the job has time to finish.',
+    'Pause for a few seconds before polling an async job again. Use this between job-status checks so the job has time to finish.',
   inputSchema: z.object({
     seconds: z
       .number()
@@ -46,7 +46,7 @@ const waitTool = tool({
   },
 });
 
-// The download_url from get_transform_results is served from the Transform host.
+// The pre-signed download URL in the job results is served from the Transform host.
 // Restrict downloads to that host so a crafted prompt cannot turn this tool into
 // an SSRF vector (e.g. fetching internal/metadata URLs from the serverless function).
 const ALLOWED_DOWNLOAD_HOST = new URL(
@@ -55,7 +55,7 @@ const ALLOWED_DOWNLOAD_HOST = new URL(
 
 const downloadTextTool = tool({
   description:
-    'Download transformed output from a pre-signed download_url with an HTTP GET. Use this to read the parsed content returned by get_transform_results.',
+    'Download transformed output from a pre-signed download URL with an HTTP GET. Use this to read the parsed content returned by the job results.',
   inputSchema: z.object({
     url: z.string().url().describe('The pre-signed download_url from the results.'),
   }),
