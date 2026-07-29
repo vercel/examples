@@ -12,8 +12,8 @@ importers:
         specifier: ^1.0.5
         version: 1.0.5(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@vercel/global-config':
-        specifier: ^1.4.3
-        version: 1.4.3(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
+        specifier: ^1.5.0
+        version: 1.5.0(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
       next:
         specifier: ^16.0.10
         version: 16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -356,8 +356,8 @@ packages:
       react: ^17.0.2 || ^18.0.0-0
       react-dom: ^17.0.2 || ^18.0.0-0
 
-  '@vercel/global-config@1.4.3':
-    resolution: {integrity: sha512-IH0qScChzEgto5qmG/jMPQmJmmDWua5UZQqNu40zAZ5Y9ray+gFQzox4/FTFWthIycVxDwGfshNKH4AX4+lcDQ==}
+  '@vercel/global-config@1.5.0':
+    resolution: {integrity: sha512-YxyyzkIjlD7kHSlPpYOQun81Y1o3JUU19snytzFSex/l6h6t5kEg9UsWoG7F5BIT1aBcCmTGUtP5LpkeSN+b8w==}
     engines: {node: '>=14.6'}
     peerDependencies:
       '@opentelemetry/api': ^1.7.0
@@ -1827,7 +1827,7 @@ snapshots:
       react-dom: 19.2.3(react@19.2.3)
       sugar-high: 0.4.6
 
-  '@vercel/global-config@1.4.3(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))':
+  '@vercel/global-config@1.5.0(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))':
     dependencies:
       '@vercel/edge-config-fs': 0.1.0
     optionalDependencies:
