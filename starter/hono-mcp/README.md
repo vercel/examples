@@ -15,12 +15,14 @@ The Model Context Protocol (MCP) is an open protocol that standardizes how appli
 ## Features
 
 - **Math Operations**: Four basic calculator tools (add, subtract, multiply, divide)
-- **MCP Handler**: Uses `mcp-handler` library for easy MCP server creation
-- **Type Safety**: Built with TypeScript and Zod for runtime validation
+- **Current MCP Protocol**: Uses `mcp-handler` 2 and the MCP TypeScript SDK v2
+- **Compatibility**: Serves MCP 2026-07-28 natively with stateless fallback for 2025-era Streamable HTTP clients
+- **Type Safety**: Uses strict Zod 4 input and output schemas
 - **Vercel Deployment**: Optimized for serverless deployment on Vercel
 
 ## Prerequisites
 
+- Node.js 20 or later
 - [Vercel CLI](https://vercel.com/docs/cli) installed globally
 
 ## Development
@@ -45,6 +47,14 @@ npm install
 vc build
 ```
 
+## Test with an MCP client
+
+With the development server running, connect with the included SDK v2 client:
+
+```
+pnpm test:client -- http://localhost:3000
+```
+
 ## Deployment
 
 To deploy:
@@ -57,7 +67,9 @@ vc deploy
 ## API Endpoints
 
 - **GET `/`** - Welcome endpoint with server information
-- **POST `/mcp/*`** - MCP protocol endpoint for tool execution
+- **GET/POST `/mcp`** - Stateless Streamable HTTP MCP endpoint
+
+The deprecated HTTP+SSE transport is not supported. Redis is not required.
 
 ## Available Tools
 

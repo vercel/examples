@@ -7,61 +7,113 @@ const app = new Hono()
 // Create MCP handler
 const handler = createMcpHandler(
   (server) => {
-    server.tool(
+    server.registerTool(
       'add',
-      'Add two numbers',
       {
-        a: z.number().describe('First number'),
-        b: z.number().describe('Second number'),
+        title: 'Add Numbers',
+        description: 'Add two numbers',
+        inputSchema: z
+          .object({
+            a: z.number().describe('First number'),
+            b: z.number().describe('Second number'),
+          })
+          .strict(),
+        outputSchema: z.object({ result: z.number() }).strict(),
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false,
+        },
       },
       async ({ a, b }) => {
         const result = a + b
         return {
           content: [{ type: 'text', text: `${a} + ${b} = ${result}` }],
+          structuredContent: { result },
         }
       }
     )
 
-    server.tool(
+    server.registerTool(
       'subtract',
-      'Subtract two numbers',
       {
-        a: z.number().describe('First number'),
-        b: z.number().describe('Second number'),
+        title: 'Subtract Numbers',
+        description: 'Subtract one number from another',
+        inputSchema: z
+          .object({
+            a: z.number().describe('Number to subtract from'),
+            b: z.number().describe('Number to subtract'),
+          })
+          .strict(),
+        outputSchema: z.object({ result: z.number() }).strict(),
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false,
+        },
       },
       async ({ a, b }) => {
         const result = a - b
         return {
           content: [{ type: 'text', text: `${a} - ${b} = ${result}` }],
+          structuredContent: { result },
         }
       }
     )
 
-    server.tool(
+    server.registerTool(
       'multiply',
-      'Multiply two numbers',
       {
-        a: z.number().describe('First number'),
-        b: z.number().describe('Second number'),
+        title: 'Multiply Numbers',
+        description: 'Multiply two numbers',
+        inputSchema: z
+          .object({
+            a: z.number().describe('First factor'),
+            b: z.number().describe('Second factor'),
+          })
+          .strict(),
+        outputSchema: z.object({ result: z.number() }).strict(),
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false,
+        },
       },
       async ({ a, b }) => {
         const result = a * b
         return {
           content: [{ type: 'text', text: `${a} × ${b} = ${result}` }],
+          structuredContent: { result },
         }
       }
     )
 
-    server.tool(
+    server.registerTool(
       'divide',
-      'Divide two numbers',
       {
-        a: z.number().describe('Dividend'),
-        b: z.number().describe('Divisor (cannot be zero)'),
+        title: 'Divide Numbers',
+        description: 'Divide one number by another',
+        inputSchema: z
+          .object({
+            a: z.number().describe('Dividend'),
+            b: z.number().describe('Non-zero divisor'),
+          })
+          .strict(),
+        outputSchema: z.object({ result: z.number() }).strict(),
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          idempotentHint: true,
+          openWorldHint: false,
+        },
       },
       async ({ a, b }) => {
         if (b === 0) {
           return {
+            isError: true,
             content: [
               { type: 'text', text: 'Error: Division by zero is not allowed' },
             ],
@@ -70,6 +122,7 @@ const handler = createMcpHandler(
         const result = a / b
         return {
           content: [{ type: 'text', text: `${a} ÷ ${b} = ${result}` }],
+          structuredContent: { result },
         }
       }
     )
@@ -77,13 +130,12 @@ const handler = createMcpHandler(
   {},
   {
     basePath: '/',
-    maxDuration: 60,
     verboseLogs: true,
   }
 )
 
-// Mount MCP handler on /mcp route (it handles transport internally)
-app.all('/mcp/*', async (c) => {
+// Mount the stateless Streamable HTTP handler at its exact endpoint.
+app.on(['GET', 'POST'], '/mcp', async (c) => {
   return await handler(c.req.raw)
 })
 
