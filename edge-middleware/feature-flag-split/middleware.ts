@@ -11,12 +11,12 @@ export const config = {
 }
 
 export async function middleware(req: NextRequest) {
-  if (!process.env.EDGE_CONFIG || !process.env.EDGE_CONFIG_SPLIT_ITEM_KEY) {
+  if (!process.env.GLOBAL_CONFIG || !process.env.GLOBAL_CONFIG_SPLIT_ITEM_KEY) {
     req.nextUrl.pathname = `/missing-global-config`
     return NextResponse.rewrite(req.nextUrl)
   }
 
-  if (!(await has(process.env.EDGE_CONFIG_SPLIT_ITEM_KEY))) {
+  if (!(await has(process.env.GLOBAL_CONFIG_SPLIT_ITEM_KEY))) {
     req.nextUrl.pathname = `/missing-split-item`
     return NextResponse.rewrite(req.nextUrl)
   }

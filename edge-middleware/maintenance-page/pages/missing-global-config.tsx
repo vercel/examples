@@ -45,7 +45,7 @@ export default function MissingGlobalConfigDialog() {
                       Create a Global Config and connect it to this project and
                       store its connection string under the{' '}
                       <span className="bg-gray-100 p-1 text-gray-900 rounded">
-                        EDGE_CONFIG
+                        GLOBAL_CONFIG
                       </span>{' '}
                       environment variable
                     </li>

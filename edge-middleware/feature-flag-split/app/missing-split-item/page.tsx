@@ -73,7 +73,7 @@ export default function MissingSplitItemDialog() {
                     <li className="list-item list-disc">
                       Ensure you have the{' '}
                       <span className="bg-gray-100 p-1 text-gray-900 rounded">
-                        EDGE_CONFIG_SPLIT_ITEM_KEY
+                        GLOBAL_CONFIG_SPLIT_ITEM_KEY
                       </span>{' '}
                       environment variable configured and it contains the item
                       key as specified by the Split integration. You can find
@@ -85,13 +85,13 @@ export default function MissingSplitItemDialog() {
                       data. Check whether your Global Config contains a key
                       called{' '}
                       <span className="bg-gray-100 p-1 text-gray-900 rounded">
-                        {process.env.EDGE_CONFIG_SPLIT_ITEM_KEY}
+                        {process.env.GLOBAL_CONFIG_SPLIT_ITEM_KEY}
                       </span>
-                      , as defined by the EDGE_CONFIG_SPLIT_ITEM_KEY environment
-                      variable. If it does not contain such a key, you can go to
-                      Split and make a change to a feature flag. This causes the
-                      integration to resync. You should then see the value in
-                      your Global Config.
+                      , as defined by the GLOBAL_CONFIG_SPLIT_ITEM_KEY
+                      environment variable. If it does not contain such a key,
+                      you can go to Split and make a change to a feature flag.
+                      This causes the integration to resync. You should then see
+                      the value in your Global Config.
                     </li>
                     <li className="list-item list-disc">
                       Pull your latest Environment Variables if you are
