@@ -14,12 +14,12 @@ importers:
       '@splitsoftware/vercel-integration-utils':
         specifier: 1.0.1
         version: 1.0.1(@vercel/edge-config@0.2.1)
-      '@vercel/edge-config':
-        specifier: ^0.2.1
-        version: 0.2.1
       '@vercel/examples-ui':
         specifier: ^2.0.1
         version: 2.0.1(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@vercel/global-config':
+        specifier: ^1.5.0
+        version: 1.5.0(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
@@ -418,6 +418,7 @@ packages:
   '@vercel/edge-config@0.2.1':
     resolution: {integrity: sha512-847kYqJEbga4PGgNrctQ9XsD+2Kw/S+UjzZnIFpebQ9VbdtB0MX4anq33WetcYZYPfhZd2L0uXVnY/BcjI5dOw==}
     engines: {node: '>=14.6'}
+    deprecated: This version is no longer supported. Please upgrade to the latest version.
 
   '@vercel/examples-ui@2.0.1':
     resolution: {integrity: sha512-BQZ6QKpgH8wcO4MkGD/FN8AYG+xQJnNXHfGmg9geVPB0A/0oOgDFTaRhJ0v/OXIqytwmKMXtJjZeRT4AK+QvuQ==}
@@ -425,6 +426,18 @@ packages:
       next: '*'
       react: ^17.0.2 || ^18.0.0-0
       react-dom: ^17.0.2 || ^18.0.0-0
+
+  '@vercel/global-config@1.5.0':
+    resolution: {integrity: sha512-YxyyzkIjlD7kHSlPpYOQun81Y1o3JUU19snytzFSex/l6h6t5kEg9UsWoG7F5BIT1aBcCmTGUtP5LpkeSN+b8w==}
+    engines: {node: '>=14.6'}
+    peerDependencies:
+      '@opentelemetry/api': ^1.7.0
+      next: '>=1'
+    peerDependenciesMeta:
+      '@opentelemetry/api':
+        optional: true
+      next:
+        optional: true
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -2028,6 +2041,12 @@ snapshots:
       next: 16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
+
+  '@vercel/global-config@1.5.0(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))':
+    dependencies:
+      '@vercel/edge-config-fs': 0.1.0
+    optionalDependencies:
+      next: 16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
 
   acorn-jsx@5.3.2(acorn@8.10.0):
     dependencies:

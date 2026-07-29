@@ -1,18 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { get } from 'lib/feature-flags'
-import { parseConnectionString } from '@vercel/edge-config'
+import { parseConnectionString } from '@vercel/global-config'
 
 export const config = {
   matcher: '/',
 }
 
 export async function middleware(req: NextRequest) {
-  // for demo purposes, warn when there is no EDGE_CONFIG
+  // for demo purposes, warn when there is no GLOBAL_CONFIG
   if (
-    !process.env.EDGE_CONFIG ||
-    !parseConnectionString(process.env.EDGE_CONFIG)
+    !process.env.GLOBAL_CONFIG ||
+    !parseConnectionString(process.env.GLOBAL_CONFIG)
   ) {
-    req.nextUrl.pathname = '/missing-edge-config'
+    req.nextUrl.pathname = '/missing-global-config'
     return NextResponse.rewrite(req.nextUrl)
   }
 

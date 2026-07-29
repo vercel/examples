@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/edge-config": "0.1.0-canary.15",
+    "@vercel/global-config": "^1.5.0",
     "@vercel/examples-ui": "^1.0.5",
     "next": "^16.0.10",
     "react": "^19.2.1",
