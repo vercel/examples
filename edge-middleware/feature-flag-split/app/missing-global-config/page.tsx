@@ -19,7 +19,7 @@ function ExclamantionTriangleIcon() {
   )
 }
 
-export default function MissingEdgeConfigDialog() {
+export default function MissingGlobalConfigDialog() {
   return (
     <div
       className="relative z-30"
@@ -48,7 +48,7 @@ export default function MissingEdgeConfigDialog() {
                   </p>
                   <ol className="text-sm text-gray-500 list-disc ml-8 mt-2 flex gap-2 flex-col">
                     <li className="list-item list-disc">
-                      Create an Edge Config and connect it to this project and
+                      Create a Global Config and connect it to this project and
                       store its connection string under the{' '}
                       <span className="bg-gray-100 p-1 text-gray-900 rounded">
                         EDGE_CONFIG
@@ -63,7 +63,8 @@ export default function MissingEdgeConfigDialog() {
                       environment variable configured and it contains the item
                       key as specified by the Split integration. You can find
                       this key on your account at Vercel under Integrations &gt;
-                      Split &gt; Manage &gt; Configure &gt; Edge Config Item Key
+                      Split &gt; Manage &gt; Configure &gt; Global Config Item
+                      Key
                     </li>
                     <li className="list-item list-disc">
                       Pull your latest Environment Variables if you are

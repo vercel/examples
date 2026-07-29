@@ -35,7 +35,7 @@ importers:
       '@vercel/edge':
         specifier: 1.2.1
         version: 1.2.1
-      '@vercel/edge-config':
+      '@vercel/global-config':
         specifier: 1.4.3
         version: 1.4.3(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
       '@vercel/toolbar':
@@ -729,6 +729,18 @@ packages:
       '@aws-sdk/credential-provider-web-identity': '*'
     peerDependenciesMeta:
       '@aws-sdk/credential-provider-web-identity':
+        optional: true
+
+  '@vercel/global-config@1.4.3':
+    resolution: {integrity: sha512-IH0qScChzEgto5qmG/jMPQmJmmDWua5UZQqNu40zAZ5Y9ray+gFQzox4/FTFWthIycVxDwGfshNKH4AX4+lcDQ==}
+    engines: {node: '>=14.6'}
+    peerDependencies:
+      '@opentelemetry/api': ^1.7.0
+      next: '>=1'
+    peerDependenciesMeta:
+      '@opentelemetry/api':
+        optional: true
+      next:
         optional: true
 
   '@vercel/microfrontends@1.0.0':
@@ -2760,6 +2772,12 @@ snapshots:
   '@vercel/edge@1.2.1': {}
 
   '@vercel/functions@1.6.0': {}
+
+  '@vercel/global-config@1.4.3(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))':
+    dependencies:
+      '@vercel/edge-config-fs': 0.1.0
+    optionalDependencies:
+      next: 16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
 
   '@vercel/microfrontends@1.0.0(@vercel/analytics@1.5.0(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3))(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:

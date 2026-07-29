@@ -32,7 +32,7 @@ importers:
       '@vercel/edge':
         specifier: 1.2.1
         version: 1.2.1
-      '@vercel/edge-config':
+      '@vercel/global-config':
         specifier: 1.4.3
         version: 1.4.3(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
       '@vercel/toolbar':
@@ -703,8 +703,11 @@ packages:
   '@vercel/edge-config-fs@0.1.0':
     resolution: {integrity: sha512-NRIBwfcS0bUoUbRWlNGetqjvLSwgYH/BqKqDN7vK1g32p7dN96k0712COgaz6VFizAm9b0g6IG6hR6+hc0KCPg==}
 
-  '@vercel/edge-config@1.4.3':
-    resolution: {integrity: sha512-8vTDATodRrH49wMzKEjZ8/5H2qs1aPkD0uRK585f/Fx4YN2wfHfY/3td9OFrh+gdnCq07z8A5f0hoY6xhBcPkg==}
+  '@vercel/edge@1.2.1':
+    resolution: {integrity: sha512-1++yncEyIAi68D3UEOlytYb1IUcIulMWdoSzX2h9LuSeeyR7JtaIgR8DcTQ6+DmYOQn+5MCh6LY+UmK6QBByNA==}
+
+  '@vercel/global-config@1.4.3':
+    resolution: {integrity: sha512-IH0qScChzEgto5qmG/jMPQmJmmDWua5UZQqNu40zAZ5Y9ray+gFQzox4/FTFWthIycVxDwGfshNKH4AX4+lcDQ==}
     engines: {node: '>=14.6'}
     peerDependencies:
       '@opentelemetry/api': ^1.7.0
@@ -714,9 +717,6 @@ packages:
         optional: true
       next:
         optional: true
-
-  '@vercel/edge@1.2.1':
-    resolution: {integrity: sha512-1++yncEyIAi68D3UEOlytYb1IUcIulMWdoSzX2h9LuSeeyR7JtaIgR8DcTQ6+DmYOQn+5MCh6LY+UmK6QBByNA==}
 
   '@vercel/microfrontends@1.0.0':
     resolution: {integrity: sha512-83ikhvV/k9F48zu/J7KtIi6ly1hZ5vSAosBBdkb9hmFgz8iL7iifjEpNp9cREjYa/8hajpbuVhqzsL23Cc+70Q==}
@@ -2727,13 +2727,13 @@ snapshots:
 
   '@vercel/edge-config-fs@0.1.0': {}
 
-  '@vercel/edge-config@1.4.3(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))':
+  '@vercel/edge@1.2.1': {}
+
+  '@vercel/global-config@1.4.3(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))':
     dependencies:
       '@vercel/edge-config-fs': 0.1.0
     optionalDependencies:
       next: 16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-
-  '@vercel/edge@1.2.1': {}
 
   '@vercel/microfrontends@1.0.0(@vercel/analytics@1.5.0(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3))(next@16.0.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:

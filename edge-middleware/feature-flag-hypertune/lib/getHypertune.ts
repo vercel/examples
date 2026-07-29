@@ -3,7 +3,7 @@ import { VercelEdgeConfigInitDataProvider } from 'hypertune'
 import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers'
 import { RequestCookies } from 'next/dist/server/web/spec-extension/cookies'
 import { unstable_noStore as noStore } from 'next/cache'
-import { createClient } from '@vercel/edge-config'
+import { createClient } from '@vercel/global-config'
 import { Environment, createSource } from '../generated/hypertune'
 import { getVercelOverride } from '../generated/hypertune.vercel'
 
