@@ -5,85 +5,122 @@ import { z } from 'zod'
 const app = new Hono()
 
 // Create MCP handler
-const handler = createMcpHandler(
-  (server) => {
-    server.tool(
-      'add',
-      'Add two numbers',
-      {
-        a: z.number().describe('First number'),
-        b: z.number().describe('Second number'),
+const handler = createMcpHandler((server) => {
+  server.registerTool(
+    'add',
+    {
+      title: 'Add',
+      description: 'Add two numbers',
+      inputSchema: z
+        .object({
+          a: z.number().describe('First number'),
+          b: z.number().describe('Second number'),
+        })
+        .strict(),
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: false,
       },
-      async ({ a, b }) => {
-        const result = a + b
+    },
+    async ({ a, b }) => {
+      const result = a + b
+      return {
+        content: [{ type: 'text', text: `${a} + ${b} = ${result}` }],
+      }
+    }
+  )
+
+  server.registerTool(
+    'subtract',
+    {
+      title: 'Subtract',
+      description: 'Subtract two numbers',
+      inputSchema: z
+        .object({
+          a: z.number().describe('First number'),
+          b: z.number().describe('Second number'),
+        })
+        .strict(),
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
+    },
+    async ({ a, b }) => {
+      const result = a - b
+      return {
+        content: [{ type: 'text', text: `${a} - ${b} = ${result}` }],
+      }
+    }
+  )
+
+  server.registerTool(
+    'multiply',
+    {
+      title: 'Multiply',
+      description: 'Multiply two numbers',
+      inputSchema: z
+        .object({
+          a: z.number().describe('First number'),
+          b: z.number().describe('Second number'),
+        })
+        .strict(),
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
+    },
+    async ({ a, b }) => {
+      const result = a * b
+      return {
+        content: [{ type: 'text', text: `${a} × ${b} = ${result}` }],
+      }
+    }
+  )
+
+  server.registerTool(
+    'divide',
+    {
+      title: 'Divide',
+      description: 'Divide two numbers',
+      inputSchema: z
+        .object({
+          a: z.number().describe('Dividend'),
+          b: z.number().describe('Divisor (cannot be zero)'),
+        })
+        .strict(),
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
+    },
+    async ({ a, b }) => {
+      if (b === 0) {
         return {
-          content: [{ type: 'text', text: `${a} + ${b} = ${result}` }],
+          isError: true,
+          content: [
+            { type: 'text', text: 'Error: Division by zero is not allowed' },
+          ],
         }
       }
-    )
-
-    server.tool(
-      'subtract',
-      'Subtract two numbers',
-      {
-        a: z.number().describe('First number'),
-        b: z.number().describe('Second number'),
-      },
-      async ({ a, b }) => {
-        const result = a - b
-        return {
-          content: [{ type: 'text', text: `${a} - ${b} = ${result}` }],
-        }
+      const result = a / b
+      return {
+        content: [{ type: 'text', text: `${a} ÷ ${b} = ${result}` }],
       }
-    )
+    }
+  )
+})
 
-    server.tool(
-      'multiply',
-      'Multiply two numbers',
-      {
-        a: z.number().describe('First number'),
-        b: z.number().describe('Second number'),
-      },
-      async ({ a, b }) => {
-        const result = a * b
-        return {
-          content: [{ type: 'text', text: `${a} × ${b} = ${result}` }],
-        }
-      }
-    )
-
-    server.tool(
-      'divide',
-      'Divide two numbers',
-      {
-        a: z.number().describe('Dividend'),
-        b: z.number().describe('Divisor (cannot be zero)'),
-      },
-      async ({ a, b }) => {
-        if (b === 0) {
-          return {
-            content: [
-              { type: 'text', text: 'Error: Division by zero is not allowed' },
-            ],
-          }
-        }
-        const result = a / b
-        return {
-          content: [{ type: 'text', text: `${a} ÷ ${b} = ${result}` }],
-        }
-      }
-    )
-  },
-  {},
-  {
-    basePath: '/',
-    maxDuration: 60,
-    verboseLogs: true,
-  }
-)
-
-// Mount MCP handler on /mcp route (it handles transport internally)
-app.all('/mcp/*', async (c) => {
+// Mount the single Streamable HTTP endpoint.
+app.all('/mcp', async (c) => {
   return await handler(c.req.raw)
 })
 
