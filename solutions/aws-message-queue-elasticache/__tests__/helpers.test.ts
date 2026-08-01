@@ -119,12 +119,12 @@ describe('validateContactForm', () => {
   })
 
   it('rejects null input', () => {
-    const result = validateContactForm(null as any)
+    const result = validateContactForm(null)
     expect(result).toEqual({ valid: false, error: 'Invalid request body' })
   })
 
   it('rejects undefined input', () => {
-    const result = validateContactForm(undefined as any)
+    const result = validateContactForm(undefined)
     expect(result).toEqual({ valid: false, error: 'Invalid request body' })
   })
 })

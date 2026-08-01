@@ -1,6 +1,8 @@
-import { defineConfig } from '@vercel/config'
+import type { VercelConfig } from '@vercel/config/v1'
 
-export default defineConfig({
+const config: VercelConfig = {
   buildCommand: 'pnpm turbo build',
   ignoreCommand: 'pnpm dlx turbo-ignore',
-})
+}
+
+export default config

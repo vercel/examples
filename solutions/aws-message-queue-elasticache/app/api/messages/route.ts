@@ -157,7 +157,7 @@ export async function GET() {
       { count: 1 }
     )
 
-    const [_next_id, claimMessages] = claimResponse
+    const [, claimMessages] = claimResponse
     const messageIds = Object.keys(claimMessages)
     if (messageIds.length > 0) {
       const streamMessageId = messageIds[0]

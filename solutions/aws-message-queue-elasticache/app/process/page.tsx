@@ -87,6 +87,7 @@ export default function ProcessPage() {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchNextMessage()
   }, [])
 
