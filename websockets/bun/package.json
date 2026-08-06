@@ -1,5 +1,5 @@
 {
-  "name": "websockets-bun",
+  "name": "example-websockets-bun",
   "version": "0.0.0",
   "private": true,
   "description": "Minimal native Bun WebSocket echo server on Vercel",
