@@ -1,0 +1,19 @@
+{
+  "name": "bun-websockets",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Minimal native Bun WebSocket echo server on Vercel",
+  "license": "MIT",
+  "scripts": {
+    "dev": "bun --hot server.ts",
+    "start": "bun server.ts",
+    "type-check": "tsc --noEmit"
+  },
+  "engines": {
+    "bun": "1.x"
+  },
+  "devDependencies": {
+    "@types/bun": "1.3.13",
+    "typescript": "6.0.3"
+  }
+}
