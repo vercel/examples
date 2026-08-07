@@ -2,11 +2,15 @@
 name = "queue-subscribers"
 version = "0.1.0"
 description = "A FastAPI application for queue subscribers"
+requires-python = ">=3.12"
 dependencies = [
     "fastapi",
     "vercel-cache",
     "vercel-workers",
 ]
+
+[tool.uv]
+package = false
 
 [[tool.vercel.subscribers]]
 entrypoint = "worker:queue"

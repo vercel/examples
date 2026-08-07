@@ -1,15 +1,18 @@
+import logging
 from typing import Literal
 from uuid import uuid4
 
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-from vercel.cache import AsyncRuntimeCache
 
+from store import result_store
 from worker import queue
 
+logger = logging.getLogger("queue-subscribers")
+logger.setLevel(logging.INFO)
+
 app = FastAPI()
-cache = AsyncRuntimeCache(namespace="queue-subscribers")
 
 INDEX_HTML = """
 <!doctype html>
@@ -20,64 +23,78 @@ INDEX_HTML = """
   <title>Queue Calculator</title>
   <style>
     :root {
-      color-scheme: dark;
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-      background: #09090b;
-      color: #fafafa;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fff;
+      color: #000;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      background:
-        radial-gradient(circle at top, #27272a 0, transparent 42%),
-        #09090b;
+      background: #fff;
     }
-    main { width: min(100%, 680px); }
-    header { margin-bottom: 24px; }
-    h1 { margin: 0 0 8px; font-size: clamp(2rem, 7vw, 3.5rem); letter-spacing: -0.05em; }
-    header p { margin: 0; color: #a1a1aa; }
-    .grid { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    main {
+      width: min(100%, 720px);
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid #eaeaea;
+      border-left: 1px solid #eaeaea;
+    }
     .card {
-      padding: 20px;
-      border: 1px solid #27272a;
-      border-radius: 16px;
-      background: rgb(24 24 27 / 78%);
-      box-shadow: 0 18px 50px rgb(0 0 0 / 30%);
+      padding: 24px;
+      border-right: 1px solid #eaeaea;
+      border-bottom: 1px solid #eaeaea;
+      background: #fff;
     }
     .wide { grid-column: 1 / -1; }
-    h2 { margin: 0 0 16px; font-size: 1rem; }
-    label { display: block; margin: 0 0 6px; color: #d4d4d8; font-size: 0.875rem; }
+    h2 {
+      margin: 0 0 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    label {
+      display: block;
+      margin: 0 0 7px;
+      color: #444;
+      font-size: 13px;
+    }
     input, select, button {
       width: 100%;
-      min-height: 44px;
-      border-radius: 9px;
+      min-height: 40px;
+      border-radius: 6px;
       font: inherit;
     }
     input, select {
-      border: 1px solid #3f3f46;
-      padding: 10px 12px;
-      background: #18181b;
-      color: #fafafa;
+      border: 1px solid #e1e1e1;
+      padding: 8px 10px;
+      background: #fff;
+      color: #000;
+      font-size: 14px;
     }
     input:focus, select:focus, button:focus-visible {
-      outline: 2px solid #a78bfa;
+      outline: 2px solid #000;
       outline-offset: 2px;
     }
-    .field { margin-bottom: 14px; }
-    .operands { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .field { margin-bottom: 16px; }
+    .operands {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
     button {
-      border: 0;
-      padding: 10px 16px;
-      background: #8b5cf6;
-      color: white;
-      font-weight: 650;
+      border: 1px solid #000;
+      padding: 8px 14px;
+      background: #000;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
       cursor: pointer;
     }
-    button:hover { background: #7c3aed; }
+    button:hover { background: #333; }
     button:disabled { cursor: wait; opacity: 0.65; }
     .check-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
     .check-row button { width: auto; }
@@ -88,17 +105,32 @@ INDEX_HTML = """
       gap: 16px;
     }
     .badge {
-      padding: 5px 9px;
+      padding: 4px 8px;
+      border: 1px solid #eaeaea;
       border-radius: 999px;
-      background: #27272a;
-      color: #d4d4d8;
-      font-size: 0.75rem;
+      background: #fafafa;
+      color: #666;
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
     }
-    output { display: block; margin-top: 16px; color: #a1a1aa; overflow-wrap: anywhere; }
-    .answer { color: #fafafa; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.04em; }
+    output {
+      display: block;
+      margin-top: 18px;
+      color: #666;
+      font-size: 13px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+    .answer {
+      min-height: 58px;
+      color: #000;
+      font-size: 42px;
+      font-weight: 600;
+      letter-spacing: -0.05em;
+    }
     @media (max-width: 560px) {
+      main { padding: 16px; }
       .grid { grid-template-columns: 1fr; }
       .wide { grid-column: auto; }
       .operands, .check-row { grid-template-columns: 1fr; }
@@ -108,11 +140,6 @@ INDEX_HTML = """
 </head>
 <body>
   <main>
-    <header>
-      <h1>Queue calculator</h1>
-      <p>Enqueue arithmetic work and read its cached result.</p>
-    </header>
-
     <div class="grid">
       <form id="enqueue-form" class="card" aria-labelledby="enqueue-title">
         <h2 id="enqueue-title">New task</h2>
@@ -254,14 +281,14 @@ async def create_task(
     operands: Operands,
 ) -> dict[str, str | None]:
     task_id = str(uuid4())
-    await cache.set(
+    logger.info("Creating task task_id=%s operation=%s", task_id, operation)
+    await result_store.set(
         task_id,
         {
             "task_id": task_id,
             "operation": operation,
             "status": "pending",
         },
-        {"ttl": 3600, "tags": ["queue-task-results"]},
     )
     try:
         result = await queue.send(
@@ -273,8 +300,19 @@ async def create_task(
             },
         )
     except Exception:
-        await cache.delete(task_id)
+        logger.exception(
+            "Failed to enqueue task task_id=%s operation=%s",
+            task_id,
+            operation,
+        )
+        await result_store.delete(task_id)
         raise
+    logger.info(
+        "Task enqueued task_id=%s operation=%s message_id=%s",
+        task_id,
+        operation,
+        result["messageId"],
+    )
     return {"task_id": task_id, "message_id": result["messageId"]}
 
 
@@ -290,7 +328,7 @@ async def enqueue_multiply(operands: Operands) -> dict[str, str | None]:
 
 @app.get("/tasks/{task_id}")
 async def get_task(task_id: str) -> dict[str, object]:
-    result = await cache.get(task_id)
+    result = await result_store.get(task_id)
     if result is None:
         raise HTTPException(status_code=404, detail="Task not found")
     return result

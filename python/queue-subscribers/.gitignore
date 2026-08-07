@@ -95,6 +95,7 @@ celerybeat-schedule
 
 # DB
 *.sqlite3
+*.sqlite3-*
 
 # SQLite
 *.db
@@ -107,3 +108,4 @@ celerybeat-schedule
 
 # System files
 Thumbs.db
+.env*

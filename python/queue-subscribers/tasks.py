@@ -1,9 +1,12 @@
+import logging
 from typing import Any
 
-from vercel.cache import AsyncRuntimeCache
 from vercel.workers import subscribe
 
-cache = AsyncRuntimeCache(namespace="queue-subscribers")
+from store import result_store
+
+logger = logging.getLogger("queue-subscribers")
+logger.setLevel(logging.INFO)
 
 
 async def store_result(
@@ -12,7 +15,12 @@ async def store_result(
     result: int | float,
 ) -> None:
     task_id = str(task["task_id"])
-    await cache.set(
+    logger.info(
+        "Processing task task_id=%s operation=%s",
+        task_id,
+        operation,
+    )
+    await result_store.set(
         task_id,
         {
             "task_id": task_id,
@@ -20,7 +28,12 @@ async def store_result(
             "result": result,
             "status": "completed",
         },
-        {"ttl": 3600, "tags": ["queue-task-results"]},
+    )
+    logger.info(
+        "Task completed task_id=%s operation=%s result=%s",
+        task_id,
+        operation,
+        result,
     )
 
 
