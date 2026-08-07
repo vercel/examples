@@ -1,4 +1,4 @@
-import type { VercelConfig } from '@vercel/config/v1'
+import { routes, type VercelConfig } from '@vercel/config/v1'
 
 const MINTLIFY_DOCS_URL = process.env.MINTLIFY_DOCS_URL || 'https://vercel-fcadfe60.mintlify.dev'
 
@@ -6,14 +6,11 @@ export const config: VercelConfig = {
   framework: 'nextjs',
   outputDirectory: '.next',
   rewrites: [
-    {
-      source: '/docs',
-      destination: `${MINTLIFY_DOCS_URL}/docs`,
-    },
-    {
-      source: '/docs/:match*',
-      destination: `${MINTLIFY_DOCS_URL}/docs/:match*`,
-    },
+    routes.rewrite('/docs', `${MINTLIFY_DOCS_URL}/docs`),
+    routes.rewrite(
+      '/docs/:match*',
+      `${MINTLIFY_DOCS_URL}/docs/:match*`,
+    ),
   ],
   headers: [
     {
@@ -27,4 +24,3 @@ export const config: VercelConfig = {
     },
   ],
 }
-
