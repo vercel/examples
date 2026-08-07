@@ -1,4 +1,4 @@
-const server = Bun.serve({
+Bun.serve({
   routes: {
     "/": new Response(Bun.file(new URL("./public/index.html", import.meta.url)), {
       headers: { "Content-Type": "text/html; charset=utf-8" },
@@ -18,5 +18,3 @@ const server = Bun.serve({
     },
   },
 });
-
-console.log(`Listening on ${server.url}`);
