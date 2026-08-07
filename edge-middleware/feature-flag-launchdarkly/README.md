@@ -1,7 +1,7 @@
 ---
 name: LaunchDarkly Integration example
 slug: feature-flag-launchdarkly
-description: Learn how to set up the LaunchDarkly integration to read flags from Edge Config
+description: Learn how to set up the LaunchDarkly integration to read flags from Global Config
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
@@ -18,7 +18,7 @@ This example shows how to use the native [LaunchDarkly integration](https://verc
 
 The integration provides the `NEXT_PUBLIC_LAUNCHDARKLY_CLIENT_SIDE_ID` environment variable, which contains your client-side ID from LaunchDarkly.
 
-LaunchDarkly syncs your feature flags into an Edge Config. When installing the LaunchDarkly integration from the Vercel Marketplace, turn on the **Enable Edge Config Syncing** toggle in the "Configuration and Plan" step of the install process. This provisions an Edge Config and exposes its connection string as the `EXPERIMENTATION_CONFIG` environment variable, which this example reads to create the Edge Config client.
+LaunchDarkly syncs your feature flags into a Global Config. When installing the LaunchDarkly integration from the Vercel Marketplace, turn on the **Enable Global Config Syncing** toggle in the "Configuration and Plan" step of the install process. This provisions a Global Config and exposes its connection string as the `EXPERIMENTATION_CONFIG` environment variable, which this example reads to create the Global Config client.
 
 ## Set up the feature flag
 
@@ -26,7 +26,7 @@ Head over to the [LaunchDarkly Console](https://app.launchdarkly.com) and create
 
 - `My Flag` (type boolean) with the key `my-flag` and the variations `true` and `false`
 
-Turn the flag ON. Toggling targeting on and off changes what the page shows, confirming flags are being read from Edge Config.
+Turn the flag ON. Toggling targeting on and off changes what the page shows, confirming flags are being read from Global Config.
 
 The example evaluates the flag against a context of kind `org` with the key `my-org-key` (see `app/page.tsx`). Contexts do not need to be created in LaunchDarkly ahead of time — they are simply sent by the app at evaluation time. The default targeting rule works without any extra setup. If you want to add targeting rules, target the `org` context kind rather than `user`.
 
