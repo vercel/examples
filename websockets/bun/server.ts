@@ -1,9 +1,12 @@
 const server = Bun.serve({
   port: Number(process.env.PORT || 3000),
   routes: {
-    '/': new Response(Bun.file('public/index.html'), {
-      headers: { 'Content-Type': 'text/html; charset=utf-8' },
-    }),
+    '/': new Response(
+      Bun.file(new URL('./public/index.html', import.meta.url)),
+      {
+        headers: { 'Content-Type': 'text/html; charset=utf-8' },
+      },
+    ),
     '/health': Response.json({ status: 'ok' }),
   },
   fetch(request, server) {

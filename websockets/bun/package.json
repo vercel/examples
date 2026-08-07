@@ -2,6 +2,7 @@
   "name": "example-websockets-bun",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "description": "Minimal native Bun WebSocket echo server on Vercel",
   "license": "MIT",
   "scripts": {
