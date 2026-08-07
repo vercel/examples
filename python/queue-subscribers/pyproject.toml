@@ -1,0 +1,13 @@
+[project]
+name = "queue-subscribers"
+version = "0.1.0"
+description = "A FastAPI application for queue subscribers"
+dependencies = [
+    "fastapi",
+    "vercel-cache",
+    "vercel-workers",
+]
+
+[[tool.vercel.subscribers]]
+entrypoint = "worker:queue"
+topics = ["add", "multiply"]
