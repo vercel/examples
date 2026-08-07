@@ -2,7 +2,7 @@
   "bunVersion": "1.x",
   "functions": {
     "server.ts": {
-      "includeFiles": "index.html"
+      "includeFiles": "public/**"
     }
   }
 }
