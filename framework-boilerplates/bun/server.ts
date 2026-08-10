@@ -1,9 +1,8 @@
 Bun.serve({
   routes: {
-    "/": () =>
-      new Response(Bun.file("public/index.html"), {
-        headers: { "content-type": "text/html; charset=utf-8" },
-      }),
+    "/": new Response(Bun.file(new URL("./public/index.html", import.meta.url)), {
+      headers: { "Content-Type": "text/html; charset=utf-8" },
+    }),
     "/api/hello": (request) =>
       Response.json({
         message: "Hello from a Bun route handler!",
