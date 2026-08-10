@@ -61,7 +61,7 @@ async function setupUpstash() {
 
   await writeFile(filePath, content)
 
-  if (process.env.POPULATE_REDIS === 'false') {
+  if (process.env.POPULATE_REDIS !== 'true') {
     console.log('Skipping redis population of redirects')
     return
   }

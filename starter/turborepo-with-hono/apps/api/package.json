@@ -2,7 +2,7 @@
   "name": "api",
   "type": "module",
   "scripts": {
-    "build": "pnpm --filter @repo/constants build && tsc",
+    "build": "tsc",
     "dev": "srvx"
   },
   "dependencies": {
