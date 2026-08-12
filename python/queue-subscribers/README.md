@@ -10,7 +10,7 @@ https://python-queue-subscribers.labs.vercel.dev/
 
 ## How it Works
 
-The FastAPI app publishes addition and multiplication tasks with `AsyncQueueClient`. The subscriber configuration in `pyproject.toml` points to the queue client in `worker.py`, while the decorated handlers in `tasks.py` process messages from the `add` and `multiply` topics. Results are shared through a local SQLite file during development and Vercel Runtime Cache when deployed. The dashboard polls for each task until its result is available.
+The FastAPI app publishes addition and multiplication tasks with `vercel.queue.send`. The subscriber configuration in `pyproject.toml` points to `tasks.py`, where decorated handlers process messages from the `add` and `multiply` topics. Results are shared through a local SQLite file during development and Vercel Runtime Cache when deployed. The dashboard polls for each task until its result is available.
 
 ## Running Locally
 

@@ -5,9 +5,9 @@ from uuid import uuid4
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
+from vercel.queue import send
 
 from store import result_store
-from worker import queue
 
 logger = logging.getLogger("queue-subscribers")
 logger.setLevel(logging.INFO)
@@ -291,7 +291,7 @@ async def create_task(
         },
     )
     try:
-        result = await queue.send(
+        message_id = await send(
             operation,
             {
                 "task_id": task_id,
@@ -305,15 +305,22 @@ async def create_task(
             task_id,
             operation,
         )
-        await result_store.delete(task_id)
+        try:
+            await result_store.delete(task_id)
+        except Exception:
+            logger.exception(
+                "Failed to clean up pending task task_id=%s operation=%s",
+                task_id,
+                operation,
+            )
         raise
     logger.info(
         "Task enqueued task_id=%s operation=%s message_id=%s",
         task_id,
         operation,
-        result["messageId"],
+        message_id,
     )
-    return {"task_id": task_id, "message_id": result["messageId"]}
+    return {"task_id": task_id, "message_id": message_id}
 
 
 @app.post("/tasks/add", status_code=202)

@@ -6,12 +6,11 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi",
     "vercel-cache",
-    "vercel-workers",
+    "vercel-queue",
 ]
 
 [tool.uv]
 package = false
 
 [[tool.vercel.subscribers]]
-entrypoint = "worker:queue"
-topics = ["add", "multiply"]
+entrypoint = "tasks"
