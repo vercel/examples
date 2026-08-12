@@ -1,7 +1,7 @@
 import logging
 from typing import Any
 
-from vercel.workers import subscribe
+from vercel.queue import subscribe
 
 from store import result_store
 
