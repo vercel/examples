@@ -1,0 +1,17 @@
+name: E2E-Release-Production
+on: [deployment_status]
+jobs:
+  e2e:
+    if: github.event.deployment.environment == 'Production' && github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder for running e2e tests via Github Actions (Cypress, Playwright, etc)
+        run: sleep 30
+  release:
+    needs: e2e
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Alias Production URL
+        run: vercel alias --token=${{ secrets.VERCEL_TOKEN }} set $VERCEL_URL ${{ vars.PRODUCTION_URL }}
