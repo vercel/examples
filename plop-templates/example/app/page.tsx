@@ -1,4 +1,4 @@
-import { Page, Text, Code, Link } from '@vercel/examples-ui'
+import { Page, Text, Code } from '@vercel/examples-ui'
 
 export default function Home() {
   return (
@@ -17,7 +17,7 @@ export default function Home() {
         <Text variant="h2">Header</Text>
         <Text>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error quasi{' '}
-          <code>dolorum natus</code>, quaerat voluptatum laboriosam minima quis
+          <Code>dolorum natus</Code>, quaerat voluptatum laboriosam minima quis
           consectetur quam architecto veniam! Ex atque rem, unde tempora eaque
           quasi mollitia tenetur.
         </Text>
