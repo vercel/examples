@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdel One High-tech Market</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: #000;
+        color: white;
+        padding: 30px 15px;
+        text-align: center;
+    }
+    nav {
+        background-color: #111;
+        text-align: center;
+    }
+    nav a {
+        color: white;
+        padding: 12px 20px;
+        text-decoration: none;
+        display: inline-block;
+    }
+    nav a:hover {
+        background-color: #ff9800;
+        color: black;
+    }
+    section {
+        max-width: 1200px;
+        margin: auto;
+        padding: 40px 15px;
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+    }
+    .product {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        padding: 15px;
+        text-align: center;
+    }
+    .product img {
+        width: 100%;
+        height: 220px;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+    .btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 12px 18px;
+        background-color: #25D366;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+    }
+    .btn:hover {
+        background-color: #1ebc59;
+    }
+    footer {
+        background-color: #000;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: 30px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>ABDEL ONE HIGH-TECH MARKET</h1>
+    <p>Smartphones & High-Tech 100% authentiques – Niger 🇳🇪</p>
+</header>
+
+<nav>
+    <a href="#produits">Produits</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="produits">
+    <h2>Nos Produits</h2>
+    <div class="products">
+        <div class="product">
+            <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s23-ultra-5g-1.jpg" alt="Samsung Galaxy S23 Ultra">
+            <h3>Samsung Galaxy S23 Ultra</h3>
+            <p>Neuf – Scellé – Haute performance</p>
+            <a class="btn" href="https://wa.me/22798848481" target="_blank">Commander sur WhatsApp</a>
+        </div>
+
+        <div class="product">
+            <img src="https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-14-pro-max-1.jpg" alt="iPhone 14 Pro Max">
+            <h3>iPhone 14 Pro Max</h3>
+            <p>Original – Batterie longue durée</p>
+            <a class="btn" href="https://wa.me/22798848481" target="_blank">Commander sur WhatsApp</a>
+        </div>
+
+        <div class="product">
+            <img src="https://fdn2.gsmarena.com/vv/pics/tecno/tecno-phantom-x2-pro-1.jpg" alt="Tecno Phantom X2 Pro">
+            <h3>Tecno Phantom X2 Pro</h3>
+            <p>Excellent rapport qualité/prix</p>
+            <a class="btn" href="https://wa.me/22798848481" target="_blank">Commander sur WhatsApp</a>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact & Infos</h2>
+    <p style="text-align:center;">
+        📍 Niamey – Niger<br>
+        📞 98 84 84 81 / 88 84 84 81 / 81 84 84 81<br>
+        Paiement : MyNita<br>
+        Livraison gratuite à Niamey
+    </p>
+</section>
+
+<footer>
+    © 2025 Abdel One High-tech Market – Tous droits réservés
+</footer>
+
+</body>
+</html>
