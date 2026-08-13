@@ -1,0 +1,22 @@
+export default async function handler(req, res) {
+  try {
+    // Replace with your actual Web App URL
+    const GOOGLE_APP_URL =
+      "https://script.google.com/macros/s/AKfycbyw7749VbLR4kTp5uLkZpFacd1sBibUXXO8Nl9YHBerbTMUG_3_WaiGQpL27lwfw2F0rQ/exec";
+
+    const response = await fetch(GOOGLE_APP_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(req.body),
+    });
+
+    const data = await response.text();
+    // Forward Google’s JSON straight back
+    res
+      .status(response.status)
+      .setHeader("Content-Type", "application/json")
+      .send(data);
+  } catch (err) {
+    res.status(500).json({ ok: false, error: String(err) });
+  }
+}
