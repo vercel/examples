@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/trustclaw",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}
