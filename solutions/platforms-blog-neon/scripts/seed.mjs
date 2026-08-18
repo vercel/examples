@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import { neon } from '@neondatabase/serverless'
 
-const DEMO_EMAIL = 'demo@neon.dev'
+const DEMO_EMAIL = 'demo@random.dev'
 const DEMO_PASSWORD = 'NeonDemo123!'
 const DEMO_NAME = 'Demo Publisher'
 

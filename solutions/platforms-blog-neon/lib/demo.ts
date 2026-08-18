@@ -1,4 +1,4 @@
-export const DEMO_EMAIL = 'demo@neon.dev'
+export const DEMO_EMAIL = 'demo@random.dev'
 export const DEMO_PASSWORD = 'NeonDemo123!'
 export const DEMO_NAME = 'Demo Publisher'
 
