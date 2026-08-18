@@ -70,7 +70,7 @@ export default function Home() {
           JWT, and Row-Level Security keeps each user{"'"}s sites and posts
           private to them. The server renders public tenant blogs with the{' '}
           <strong>serverless driver</strong>, so every subdomain is fast and
-          SEO-friendly. Cover images live in{' '}
+          SEO-friendly. Cover images are stored in{' '}
           <UILink href="https://neon.com/docs/storage/overview">
             Neon Object Storage
           </UILink>
