@@ -3,55 +3,379 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A minimal Bun HTTP server running on Vercel."
+    />
     <title>Bun on Vercel</title>
     <style>
       :root {
         color-scheme: light dark;
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        --border: color-mix(in oklab, currentColor 15%, transparent);
+        --muted: color-mix(in oklab, currentColor 55%, transparent);
+        --hover: color-mix(in oklab, currentColor 4%, transparent);
       }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
-        max-width: 42rem;
-        margin: 4rem auto;
-        padding: 0 1.5rem;
+        max-width: 32rem;
+        margin: 3rem auto;
+        padding: 0 1rem;
+        font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+        line-height: 1.5;
       }
+
       h1 {
-        letter-spacing: -0.04em;
+        margin: 0 0 0.25rem;
+        font-size: 1.25rem;
       }
+
+      .lead {
+        margin: 0 0 1rem;
+        color: var(--muted);
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+
+      .dot {
+        width: 0.625rem;
+        height: 0.625rem;
+        border-radius: 50%;
+        background: #22c55e;
+      }
+
+      h2 {
+        margin: 2rem 0 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
       ul {
+        margin: 0;
         padding: 0;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
         list-style: none;
+        overflow: hidden;
       }
-      a {
-        display: block;
-        margin: 0.75rem 0;
-        padding: 1rem;
-        border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
-        border-radius: 0.5rem;
+
+      li + li {
+        border-top: 1px solid var(--border);
+      }
+
+      .route {
+        display: grid;
+        grid-template-columns: 3.25rem 1fr auto;
+        gap: 0.75rem;
+        align-items: center;
+        padding: 0.875rem 1rem;
         color: inherit;
         text-decoration: none;
+        transition: background-color 150ms ease;
       }
-      a:hover {
-        border-color: currentColor;
+
+      .route:hover {
+        background: var(--hover);
       }
+
+      .route:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
+      }
+
+      .method,
       code {
-        opacity: 0.7;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.8125rem;
+      }
+
+      .method {
+        color: #16a34a;
+        font-weight: 600;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .method {
+          color: #4ade80;
+        }
+      }
+
+      .details {
+        min-width: 0;
+      }
+
+      .details strong,
+      .details code {
+        display: block;
+      }
+
+      .details strong {
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      .details code,
+      .arrow {
+        color: var(--muted);
+      }
+
+      .details code {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .arrow {
+        font-size: 1rem;
+      }
+
+      .stream-panel {
+        margin-top: 1rem;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        overflow: hidden;
+      }
+
+      .stream-panel[hidden] {
+        display: none;
+      }
+
+      .stream-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+      }
+
+      .stream-header h2 {
+        margin: 0;
+      }
+
+      .stream-status {
+        margin: 0.125rem 0 0;
+        color: var(--muted);
+        font-size: 0.8125rem;
+      }
+
+      button {
+        padding: 0.375rem 0.75rem;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        font-size: 0.8125rem;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: var(--hover);
+      }
+
+      button:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+      }
+
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      #stream-output {
+        min-height: 8rem;
+        max-height: 16rem;
+        margin: 0;
+        padding: 0.875rem 1rem;
+        border-top: 1px solid var(--border);
+        overflow: auto;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.8125rem;
+        line-height: 1.6;
+        white-space: pre-wrap;
+      }
+
+      footer {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        font-size: 0.875rem;
+      }
+
+      footer a {
+        color: var(--muted);
+        text-underline-offset: 0.2em;
+      }
+
+      footer a:hover {
+        color: inherit;
+      }
+
+      @media (max-width: 30rem) {
+        body {
+          margin-top: 2rem;
+        }
+
+        .route {
+          grid-template-columns: 3rem 1fr auto;
+          gap: 0.5rem;
+          padding-inline: 0.75rem;
+        }
       }
     </style>
   </head>
   <body>
-    <h1>Bun on Vercel</h1>
-    <p>This example uses <code>Bun.serve()</code> route handlers.</p>
-    <nav aria-label="Example routes">
-      <ul>
-        <li>
-          <a href="/"><strong>Home</strong><br /><code>GET /</code></a>
-        </li>
-        <li>
-          <a href="/api/hello"
-            ><strong>Hello API</strong><br /><code>GET /api/hello</code></a
-          >
-        </li>
-      </ul>
-    </nav>
+    <main>
+      <h1>Bun on Vercel</h1>
+      <p class="lead">
+        A minimal HTTP server built with native <code>Bun.serve()</code> route
+        handlers.
+      </p>
+      <p class="status">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Server running</span>
+      </p>
+
+      <nav aria-labelledby="routes-heading">
+        <h2 id="routes-heading">Example routes</h2>
+        <ul>
+          <li>
+            <a class="route" href="/">
+              <span class="method">GET</span>
+              <span class="details">
+                <strong>Home</strong>
+                <code>/</code>
+              </span>
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+          <li>
+            <a class="route" href="/api/hello">
+              <span class="method">GET</span>
+              <span class="details">
+                <strong>JSON response</strong>
+                <code>/api/hello</code>
+              </span>
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+          <li>
+            <a
+              id="stream-route"
+              class="route"
+              href="/api/stream"
+              aria-controls="stream-panel"
+            >
+              <span class="method">GET</span>
+              <span class="details">
+                <strong>Streaming response</strong>
+                <code>/api/stream</code>
+              </span>
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <section
+        id="stream-panel"
+        class="stream-panel"
+        aria-labelledby="stream-title"
+        hidden
+      >
+        <div class="stream-header">
+          <div>
+            <h2 id="stream-title">Live stream</h2>
+            <p id="stream-status" class="stream-status" aria-live="polite">
+              Connecting...
+            </p>
+          </div>
+          <button id="stop-stream" type="button">Stop</button>
+        </div>
+        <pre
+          id="stream-output"
+          tabindex="0"
+          aria-label="Streaming response output"
+        ></pre>
+      </section>
+    </main>
+
+    <footer>
+      <a href="https://bun.sh/docs/api/http">Bun docs</a>
+      <a href="https://vercel.com/docs/functions/runtimes/bun">Vercel docs</a>
+    </footer>
+
+    <script>
+      const streamRoute = document.querySelector('#stream-route')
+      const streamPanel = document.querySelector('#stream-panel')
+      const streamStatus = document.querySelector('#stream-status')
+      const streamOutput = document.querySelector('#stream-output')
+      const stopStream = document.querySelector('#stop-stream')
+      let streamController
+
+      streamRoute.addEventListener('click', async (event) => {
+        event.preventDefault()
+        streamController?.abort()
+
+        const controller = new AbortController()
+        streamController = controller
+        streamPanel.hidden = false
+        streamStatus.textContent = 'Connecting...'
+        streamOutput.replaceChildren()
+        stopStream.disabled = false
+
+        try {
+          const response = await fetch(streamRoute.href, {
+            signal: controller.signal,
+          })
+
+          if (!response.ok || !response.body) {
+            throw new Error(`Request failed with status ${response.status}`)
+          }
+
+          streamStatus.textContent = 'Streaming'
+          const reader = response.body.getReader()
+          const decoder = new TextDecoder()
+
+          while (true) {
+            const { done, value } = await reader.read()
+            if (done) break
+
+            streamOutput.append(decoder.decode(value, { stream: true }))
+            streamOutput.scrollTop = streamOutput.scrollHeight
+          }
+
+          streamOutput.append(decoder.decode())
+          streamStatus.textContent = 'Completed'
+        } catch (error) {
+          if (streamController !== controller) return
+
+          if (error.name === 'AbortError') {
+            streamStatus.textContent = 'Stopped'
+          } else {
+            streamStatus.textContent = 'Stream failed'
+            streamOutput.textContent = error.message
+          }
+        } finally {
+          if (streamController === controller) {
+            streamController = undefined
+            stopStream.disabled = true
+          }
+        }
+      })
+
+      stopStream.addEventListener('click', () => streamController?.abort())
+    </script>
   </body>
 </html>
