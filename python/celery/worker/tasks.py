@@ -3,7 +3,7 @@ from __future__ import annotations
 import time
 from typing import Any
 
-from worker.celery import QUEUE_NAME, app
+from worker.celery import app
 from worker.store import update_job
 
 
@@ -16,7 +16,7 @@ def _fibonacci_number(n: int) -> int:
     return b
 
 
-@app.task(queue=QUEUE_NAME, name="worker.tasks.calculate_fibonacci")
+@app.task(name="worker.tasks.calculate_fibonacci")
 def calculate_fibonacci(job_id: str, n: int) -> dict[str, Any]:
     target = max(0, int(n))
     try:
@@ -36,7 +36,7 @@ def calculate_fibonacci(job_id: str, n: int) -> dict[str, Any]:
         return {"error": str(exc)}
 
 
-@app.task(queue=QUEUE_NAME, name="worker.tasks.prime_factorize")
+@app.task(name="worker.tasks.prime_factorize")
 def prime_factorize(job_id: str, number: int) -> dict[str, Any]:
     original = int(number)
     value = abs(original)
