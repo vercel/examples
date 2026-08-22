@@ -14,4 +14,3 @@ entrypoint = "main:app"
 
 [[tool.vercel.subscribers]]
 entrypoint = "worker.run:app"
-topics = ["jobs"]

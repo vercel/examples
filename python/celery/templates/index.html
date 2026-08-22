@@ -743,9 +743,7 @@
               const duration = formatDuration(job.started_at, job.completed_at);
               const params = job.params && typeof job.params === "object" ? Object.entries(job.params) : [];
               const resultRows = job.result && typeof job.result === "object" ? Object.entries(job.result) : [];
-              const metadata = [job.queue_name ? `queue ${job.queue_name}` : "", job.message_id ? `message ${job.message_id}` : ""]
-                .filter(Boolean)
-                .join(" · ");
+              const metadata = job.message_id ? `message ${job.message_id}` : "";
 
               return `
                 <div class="job-row">
