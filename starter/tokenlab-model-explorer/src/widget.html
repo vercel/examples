@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TokenLab Model Explorer</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: Canvas;
+        color: CanvasText;
+      }
+
+      body {
+        margin: 0;
+        padding: 18px;
+      }
+
+      main {
+        display: grid;
+        gap: 14px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.2;
+      }
+
+      .pill {
+        border: 1px solid color-mix(in srgb, CanvasText 18%, transparent);
+        border-radius: 999px;
+        padding: 4px 9px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 10px;
+      }
+
+      .card {
+        border: 1px solid color-mix(in srgb, CanvasText 16%, transparent);
+        border-radius: 8px;
+        padding: 12px;
+        background: color-mix(in srgb, Canvas 92%, CanvasText 8%);
+      }
+
+      .model {
+        font-weight: 650;
+        overflow-wrap: anywhere;
+      }
+
+      .meta {
+        margin-top: 8px;
+        color: color-mix(in srgb, CanvasText 65%, transparent);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      pre {
+        overflow: auto;
+        margin: 0;
+        padding: 12px;
+        border-radius: 8px;
+        background: color-mix(in srgb, CanvasText 10%, Canvas);
+        font-size: 12px;
+      }
+
+      a {
+        color: LinkText;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>TokenLab Model Explorer</h1>
+        <span class="pill">OpenAI-compatible + native endpoints</span>
+      </header>
+      <section id="summary" class="meta">Run the MCP tool to load live model data.</section>
+      <section id="models" class="grid"></section>
+      <pre id="example">Ask for an endpoint example to populate this panel.</pre>
+      <a href="https://docs.tokenlab.sh" target="_blank" rel="noreferrer">docs.tokenlab.sh</a>
+    </main>
+    <script>
+      const fallback = {
+        models: [
+          { id: "gpt-5.5", category: "text", provider: "openai" },
+          { id: "claude-sonnet-5", category: "text", provider: "anthropic" },
+          { id: "gemini-3.5-flash", category: "text", provider: "google" }
+        ],
+        example: null
+      };
+
+      function readToolOutput() {
+        const host = window.openai || window.mcp;
+        return host?.toolOutput || host?.toolResult || fallback;
+      }
+
+      function render() {
+        const output = readToolOutput() || fallback;
+        const models = Array.isArray(output.models) ? output.models : fallback.models;
+        document.getElementById("summary").textContent =
+          `${models.length} models shown${output.category ? ` for ${output.category}` : ""}.`;
+        document.getElementById("models").innerHTML = models.map((model) => `
+          <article class="card">
+            <div class="model">${model.id || model.model}</div>
+            <div class="meta">${model.category || "model"}${model.provider ? ` · ${model.provider}` : ""}</div>
+          </article>
+        `).join("");
+        if (output.example) {
+          document.getElementById("example").textContent = output.example;
+        }
+      }
+
+      render();
+      window.addEventListener("message", render);
+    </script>
+  </body>
+</html>
