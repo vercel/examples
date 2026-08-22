@@ -31,3 +31,20 @@ To deploy:
 npm install
 vc deploy
 ```
+
+
+### Usage
+
+Pass a prompt via the `prompt` URL query parameter to get a streamed response:
+
+- Browser:
+  - `http://localhost:3000/?prompt=What%20is%20the%20capital%20of%20France?`
+
+- cURL:
+
+```bash
+curl -G 'http://localhost:3000/' \
+  --data-urlencode 'prompt=What is the capital of France?'
+```
+
+If `prompt` is omitted, the server falls back to a default prompt.
