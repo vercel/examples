@@ -6,7 +6,7 @@ Deploy your [Nuxt](https://nuxt.com) project to Vercel with zero configuration.
 
 _Live Example: https://nuxtjs-template.vercel.app_
 
-Look at the [Nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+Look at the [Nuxt documentation](https://nuxt.com/docs/4.x/getting-started/introduction) to learn more.
 
 ## Setup
 
