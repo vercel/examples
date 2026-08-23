@@ -1,0 +1,23 @@
+/node_modules
+/.next
+/out
+/build
+.DS_Store
+*.pem
+
+# env
+.env
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# local validation helper (not part of the template)
+smoke.mjs
+
+# docs-repo staging artifact (destined for Unstructured-IO/docs, not this repo)
+/docs/
