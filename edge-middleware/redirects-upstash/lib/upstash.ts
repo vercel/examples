@@ -35,22 +35,17 @@ export async function upstashRest(
   args: any[],
   options?: { pipeline: boolean }
 ) {
-  const domain = process.env.UPSTASH_REST_API_DOMAIN
-  const token = process.env.UPSTASH_REST_API_TOKEN
+  const url = process.env.KV_REST_API_URL
+  const token =
+    process.env.KV_REST_API_READ_ONLY_TOKEN ?? process.env.KV_REST_API_TOKEN
 
-  if (!domain || !token) {
-    throw new Error('Missing required Upstash credentials of the REST API')
-  }
-
-  if (domain.includes('http')) {
-    throw new Error(
-      "UPSTASH_REST_API_DOMAIN shouldn't include protocol (e.g: your-domain.upstash.io)"
-    )
+  if (!url || !token) {
+    throw new Error('Missing required KV REST API credentials')
   }
 
   return upstash({
     token,
-    url: `https://${domain}${options?.pipeline ? '/pipeline' : ''}`,
+    url: `${url}${options?.pipeline ? '/pipeline' : ''}`,
     method: 'POST',
     body: JSON.stringify(args),
   })
