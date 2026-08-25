@@ -1,0 +1,14 @@
+# Agent Analytics Starter
+
+> A Next.js starter that tracks AI agent traffic in PostHog via @apideck/agent-analytics.
+> Every page is reachable as clean Markdown at the same URL; every Markdown fetch fires a doc_view event.
+
+## Docs
+
+- [Intro](/docs/intro.md): How the Markdown mirror works and how agents ask for it
+- [Usage](/docs/usage.md): Full request lifecycle, event shape, and customisation steps
+
+## Related
+
+- [@apideck/agent-analytics on GitHub](https://github.com/apideck-libraries/agent-analytics): The library that powers this template
+- [Agentic Engine Optimization](https://addyosmani.com/blog/agentic-engine-optimization/): The case for agent-ready docs
