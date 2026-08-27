@@ -1,0 +1,28 @@
+{
+  "name": "tarot-reading-starter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Next.js starter for random tarot draws, three-card spreads, and card lookup APIs.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@vercel/examples-ui": "^2.0.1",
+    "next": "^16.0.10",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2"
+  }
+}
