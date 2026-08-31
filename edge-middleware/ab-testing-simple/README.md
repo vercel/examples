@@ -10,7 +10,6 @@ css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/ab-testing-simple&project-name=ab-testing-simple&repository-name=ab-testing-simple
 demoUrl: https://edge-functions-ab-testing-simple.vercel.app
 relatedTemplates:
-  - ab-testing-google-optimize
   - ab-testing-statsig
 ---
 
