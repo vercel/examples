@@ -1,0 +1,24 @@
+.breadcrumb {
+  // Theme-aware muted text for links + separator. color-mix on
+  // --text-primary adapts to light/dark automatically and keeps readable
+  // contrast over the frosted reading surface.
+  color: color-mix(in srgb, var(--text-primary) 70%, transparent);
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    // Hover color + underline-draw are owned globally by .link-underline
+    // (applied on each <Link> in Breadcrumb.tsx) so every text link that opts
+    // in gets the same treatment without re-declaring it here.
+  }
+
+  // The trailing current-page item gets full contrast so the reader can
+  // tell at a glance where they are.
+  .breadcrumb__current {
+    color: var(--text-primary);
+  }
+
+  .breadcrumb__separator {
+    color: color-mix(in srgb, var(--text-primary) 45%, transparent);
+  }
+}
