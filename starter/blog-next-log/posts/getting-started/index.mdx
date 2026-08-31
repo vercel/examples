@@ -1,0 +1,85 @@
+---
+title: "Getting Started"
+date: 2024-01-03
+description: "Set up your blog in under 5 minutes"
+author: "next-log"
+category: "Guide"
+published: true
+---
+
+# Getting Started
+
+Welcome to **next-log**! This guide walks you through setting up your blog.
+
+## Configure Your Blog
+
+Open `next-log.config.ts` in the project root and update the fields:
+
+```typescript:next-log.config.ts
+const config = {
+  title: "My Awesome Blog",
+  description: "Thoughts on web development",
+  url: "https://myblog.com",
+
+  author: {
+    name: "Jane Doe",
+  },
+
+  social: {
+    github: "https://github.com/janedoe",
+    linkedin: "https://linkedin.com/in/janedoe",
+  },
+
+  theme: {
+    primaryColor: "#2563eb",
+  },
+};
+
+export default config;
+```
+
+- **title** and **description** are used for SEO and the site header.
+- **url** should be your production domain.
+- **social** links appear as icons in the header. Set a link to `""` (empty string) to hide that icon.
+- **primaryColor** accepts any CSS color value. Try `"#10b981"` for green or `"#f59e0b"` for amber.
+
+## Create Your First Post
+
+Run the following command to scaffold a new post:
+
+```bash:Terminal
+npm run new-post "my-first-post"
+```
+
+This creates `posts/my-first-post/index.mdx` with frontmatter already filled in. Open it and start writing!
+
+## Add a Resume Page
+
+If you want a resume/about page:
+
+```bash:Terminal
+npm run new-resume
+```
+
+This generates a resume template you can customize with your experience and skills.
+
+## Publishing Workflow
+
+New posts are created with `published: false` by default. This lets you draft posts without them appearing on your site.
+
+When you are ready to publish, change the frontmatter:
+
+```yaml:frontmatter
+published: true
+```
+
+Posts with `published: false` are hidden from the blog listing and sitemap.
+
+## Deploy to Vercel
+
+1. Push your project to a GitHub repository.
+2. Go to [vercel.com](https://vercel.com) and import the repository.
+3. Vercel auto-detects Next.js -- just click **Deploy**.
+4. Every push to `main` will automatically redeploy your blog.
+
+That's it! Your blog is live.

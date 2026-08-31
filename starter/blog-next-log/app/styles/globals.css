@@ -1,0 +1,372 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+@variant dark (&:where(.dark, .dark *));
+
+/* ─── Theme tokens ─── */
+
+@theme {
+  --font-sans: "Pretendard Variable", "Pretendard", system-ui, sans-serif;
+
+  --text-4xl: 36px;
+  --text-4xl--line-height: 1.4;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-red: var(--red);
+  --color-blue: var(--blue);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --width-full-minus-1: calc(100% - 1rem);
+  --width-full-minus-3: calc(100% - 3rem);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-spin: spin 1s linear infinite;
+}
+
+/* ─── CSS variables ─── */
+
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 10% 3.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(240 10% 3.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(240 10% 3.9%);
+  --primary: #2563eb;
+  --primary-foreground: hsl(0 0% 98%);
+  --red: hsl(0, 60%, 50%);
+  --blue: hsl(216, 92%, 58%);
+  --secondary: hsl(240 4.8% 95.9%);
+  --secondary-foreground: hsl(240 5.9% 10%);
+  --muted: hsl(240 4.8% 95.9%);
+  --muted-foreground: hsl(240 3.8% 46.1%);
+  --accent: hsl(240 4.8% 95.9%);
+  --accent-foreground: hsl(240 5.9% 10%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(240 5.9% 90%);
+  --input: hsl(240 5.9% 90%);
+  --ring: hsl(240 5.9% 10%);
+  --radius: 0.5rem;
+  --code-highlight-color: 55, 65, 81;
+  --code-inline-highlight-background: rgba(0, 0, 0, 0.03);
+  --code-inline-highlight-border: rgba(0, 0, 0, 0.04);
+  --code-keyword: #cf222e;
+  --code-control: #cf222e;
+  --code-function: #8250df;
+  --code-string: #0a3069;
+  --code-comment: #6a737d;
+  --code-constant: #0550ae;
+  --code-variable: #953800;
+  --code-type: #953800;
+  --code-tag: #116329;
+  --code-punctuation: #24292f;
+  --code-selector: #6f42c1;
+}
+
+.dark {
+  --background: hsl(240 10% 3.9%);
+  --foreground: hsl(0 0% 98%);
+  --card: hsl(240 10% 3.9%);
+  --card-foreground: hsl(0 0% 98%);
+  --popover: hsl(240 10% 3.9%);
+  --popover-foreground: hsl(0 0% 98%);
+  --primary: #2563eb;
+  --red: hsl(0, 60%, 50%);
+  --blue: hsl(216, 92%, 58%);
+  --primary-foreground: hsl(240 5.9% 10%);
+  --secondary: hsl(240 3.7% 15.9%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(240 3.7% 15.9%);
+  --muted-foreground: hsl(240 5% 64.9%);
+  --accent: hsl(240 3.7% 15.9%);
+  --accent-foreground: hsl(0 0% 98%);
+  --destructive: hsl(0 62.8% 30.6%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(240 3.7% 15.9%);
+  --input: hsl(240 3.7% 15.9%);
+  --ring: hsl(240 4.9% 83.9%);
+  --code-highlight-color: 229, 231, 235;
+  --code-inline-highlight-background: #2a2828;
+  --code-inline-highlight-border: #3e3c3c;
+  --code-keyword: #569cd6;
+  --code-control: #c586c0;
+  --code-function: #dcdcaa;
+  --code-string: #ce9178;
+  --code-comment: #6a9955;
+  --code-constant: #b5cea8;
+  --code-variable: #9cdcfe;
+  --code-type: #4ec9b0;
+  --code-tag: #569cd6;
+  --code-punctuation: #d4d4d4;
+  --code-selector: #d7ba7d;
+}
+
+/* ─── Base styles ─── */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
+
+/* ─── Prose overrides for code blocks ─── */
+
+.prose pre {
+  background-color: hsl(204deg 100% 77%/0.1);
+  border: none;
+  box-shadow: none;
+  border-radius: 0.75rem;
+  padding: 1em 0;
+  margin: 0;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.prose pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: 13px;
+}
+
+.prose code {
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+.prose code::before,
+.prose code::after {
+  display: none;
+}
+
+/* ─── Container utility ─── */
+
+@utility container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1400px;
+  padding-inline: 1rem;
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+/* ─── Keyframes ─── */
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes enter {
+  from {
+    opacity: var(--tw-enter-opacity, 1);
+    transform: translate3d(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0), 0)
+      scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), var(--tw-enter-scale, 1))
+      rotate(var(--tw-enter-rotate, 0));
+  }
+}
+
+@keyframes exit {
+  to {
+    opacity: var(--tw-exit-opacity, 1);
+    transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0)
+      scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1))
+      rotate(var(--tw-exit-rotate, 0));
+  }
+}
+
+/* ─── Animation utilities (tailwindcss-animate replacement) ─── */
+
+@utility animate-in {
+  animation-name: enter;
+  animation-duration: 150ms;
+  --tw-enter-opacity: initial;
+  --tw-enter-scale: initial;
+  --tw-enter-rotate: initial;
+  --tw-enter-translate-x: initial;
+  --tw-enter-translate-y: initial;
+}
+
+@utility animate-out {
+  animation-name: exit;
+  animation-duration: 150ms;
+  --tw-exit-opacity: initial;
+  --tw-exit-scale: initial;
+  --tw-exit-rotate: initial;
+  --tw-exit-translate-x: initial;
+  --tw-exit-translate-y: initial;
+}
+
+@utility fade-in-0 {
+  --tw-enter-opacity: 0;
+}
+
+@utility fade-in-* {
+  --tw-enter-opacity: calc(var(--value) / 100);
+}
+
+@utility fade-out-0 {
+  --tw-exit-opacity: 0;
+}
+
+@utility fade-out-* {
+  --tw-exit-opacity: calc(var(--value) / 100);
+}
+
+@utility zoom-in-* {
+  --tw-enter-scale: calc(var(--value) / 100);
+}
+
+@utility zoom-out-* {
+  --tw-exit-scale: calc(var(--value) / 100);
+}
+
+@utility slide-in-from-top {
+  --tw-enter-translate-y: -100%;
+}
+
+@utility slide-in-from-top-* {
+  --tw-enter-translate-y: calc(var(--spacing) * var(--value) * -1);
+}
+
+@utility slide-in-from-bottom {
+  --tw-enter-translate-y: 100%;
+}
+
+@utility slide-in-from-bottom-* {
+  --tw-enter-translate-y: calc(var(--spacing) * var(--value));
+}
+
+@utility slide-in-from-left {
+  --tw-enter-translate-x: -100%;
+}
+
+@utility slide-in-from-left-* {
+  --tw-enter-translate-x: calc(var(--spacing) * var(--value) * -1);
+}
+
+@utility slide-in-from-right {
+  --tw-enter-translate-x: 100%;
+}
+
+@utility slide-in-from-right-* {
+  --tw-enter-translate-x: calc(var(--spacing) * var(--value));
+}
+
+@utility slide-out-to-top {
+  --tw-exit-translate-y: -100%;
+}
+
+@utility slide-out-to-top-* {
+  --tw-exit-translate-y: calc(var(--spacing) * var(--value) * -1);
+}
+
+@utility slide-out-to-bottom {
+  --tw-exit-translate-y: 100%;
+}
+
+@utility slide-out-to-bottom-* {
+  --tw-exit-translate-y: calc(var(--spacing) * var(--value));
+}
+
+@utility slide-out-to-left {
+  --tw-exit-translate-x: -100%;
+}
+
+@utility slide-out-to-left-* {
+  --tw-exit-translate-x: calc(var(--spacing) * var(--value) * -1);
+}
+
+@utility slide-out-to-right {
+  --tw-exit-translate-x: 100%;
+}
+
+@utility slide-out-to-right-* {
+  --tw-exit-translate-x: calc(var(--spacing) * var(--value));
+}
+
+/* ─── Dialog-specific animations ─── */
+
+@keyframes dialog-enter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes dialog-exit {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.95);
+  }
+}
+
+@utility animate-dialog-in {
+  animation: dialog-enter 200ms ease-out;
+}
+
+@utility animate-dialog-out {
+  animation: dialog-exit 200ms ease-in;
+}
+
