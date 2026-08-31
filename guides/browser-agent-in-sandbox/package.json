@@ -1,0 +1,53 @@
+{
+  "name": "browser-agent-in-sandbox",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "repository": "https://github.com/vercel/examples.git",
+  "description": "A browser-research agent that drives the Browserbase browse CLI inside a Vercel Sandbox and streams its steps to a Next.js UI.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "smoke": "tsx --conditions=import scripts/smoke.ts"
+  },
+  "dependencies": {
+    "@ai-sdk/gateway": "3.0.59",
+    "@ai-sdk/react": "3.0.107",
+    "@radix-ui/react-slot": "1.2.3",
+    "@vercel/sandbox": "^2.2.1",
+    "ai": "6.0.105",
+    "bash-tool": "^1.3.17",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "geist": "^1.4.2",
+    "just-bash": "^3.0.1",
+    "lucide-react": "0.528.0",
+    "next": "^16.0.10",
+    "next-themes": "^0.4.6",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "streamdown": "^1.6.6",
+    "tailwind-merge": "3.3.1",
+    "use-stick-to-bottom": "1.1.1",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^10.6.0",
+    "eslint-config-next": "^16.2.9",
+    "tailwindcss": "^4",
+    "tsx": "^4.22.4",
+    "tw-animate-css": "1.3.6",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}
