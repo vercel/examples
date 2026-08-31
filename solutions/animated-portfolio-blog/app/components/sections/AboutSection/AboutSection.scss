@@ -1,0 +1,206 @@
+// Bento grid for the About section. Cards have their own frosted surfaces so
+// they stay readable whether or not the parent .section is .section-active.
+//
+// Mobile-first: the base rules target small screens. Tablet (≥768px) and
+// desktop (≥1024px) overrides layered on top via min-width media queries.
+.about-bento {
+  display: grid;
+  // Single-column stack on phones.
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "stats"
+    "bio"
+    "prog"
+    "tools";
+  gap: 1rem;
+  width: 100%;
+
+  &__card {
+    background: color-mix(in srgb, var(--bg-primary) 72%, transparent);
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+    border: 1px solid color-mix(in srgb, var(--text-secondary) 22%, transparent);
+    border-radius: 14px;
+    padding: clamp(1.1rem, 4vw, 1.75rem);
+    // Grid item: allow shrinking below intrinsic min-width of children (the
+    // marquee track has width: max-content) so the card stays within the
+    // viewport on mobile.
+    min-width: 0;
+    overflow: hidden;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      border-color: color-mix(in srgb, var(--brand-color) 45%, transparent);
+    }
+
+    h3 {
+      font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+      margin: 0 0 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-primary);
+
+      svg {
+        width: 1.4rem;
+        height: 1.4rem;
+        color: var(--brand-color);
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  &__stats {
+    grid-area: stats;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem 1rem;
+    align-content: center;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    min-width: 0; // lets long labels wrap on narrow phones
+  }
+
+  &__stat-value {
+    font-family: var(--font-bricolage), var(--font-varela-round), sans-serif;
+    font-size: clamp(1.5rem, 6vw, 2.1rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--brand-color);
+  }
+
+  &__stat-label {
+    font-size: clamp(0.65rem, 1.6vw, 0.72rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-top: 0.45rem;
+  }
+
+  &__bio {
+    grid-area: bio;
+
+    p {
+      margin: 0;
+      font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+      line-height: 1.7;
+      color: var(--text-primary);
+    }
+  }
+
+  &__marquee--prog {
+    grid-area: prog;
+  }
+  &__marquee--tools {
+    grid-area: tools;
+  }
+}
+
+// Marquee rows: duplicate the icon list and translate -50% so the loop is
+// seamless. Edge fade mask softens the entry/exit.
+.about-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  // Vertical breathing room so the hover scale + lift (&__item svg:hover)
+  // isn't clipped by overflow:hidden — without this the zoomed icon's top
+  // edge gets cut off under the section heading. overflow-x must stay hidden
+  // to clip the scrolling track (and CSS then forces overflow-y to auto, not
+  // visible), so padding is the fix rather than overflow-y: visible.
+  padding: 0.5rem 0;
+  // Guard against the track's width: max-content pulling the parent grid
+  // item wider than the viewport on mobile.
+  min-width: 0;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+
+  &__track {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    align-items: center;
+  }
+
+  &__item {
+    display: inline-flex;
+
+    svg {
+      width: clamp(2rem, 7vw, 2.8rem);
+      height: clamp(2rem, 7vw, 2.8rem);
+      display: block;
+      transition: transform 0.25s ease, filter 0.25s ease;
+
+      &:hover {
+        transform: translateY(-3px) scale(1.08);
+        filter: drop-shadow(0 4px 10px rgba(var(--brand-color-rgb), 0.35));
+      }
+    }
+  }
+
+  &--left &__track {
+    animation: about-marquee-left 32s linear infinite;
+  }
+  &--right &__track {
+    animation: about-marquee-right 32s linear infinite;
+  }
+
+  // Pause the row on hover so the user can read a specific icon.
+  &:hover &__track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes about-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes about-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+// Static fallback: show icons as a centered wrap instead of clipping.
+@media (prefers-reduced-motion: reduce) {
+  .about-marquee {
+    &__track {
+      animation: none !important;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+// Desktop: two-column top row (stats left + bio right). Previously this
+// kicked in at 768px, but between 768–1024px the section is flex-row with a
+// ~180px header and 5rem padding, which starved the stats card of width and
+// caused its inner 2-col grid (values + labels) to overlap. Holding the
+// single-column stack until 1024px gives stats the full content width.
+@media (min-width: 1024px) {
+  .about-bento {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+      "stats bio"
+      "prog  prog"
+      "tools tools";
+    gap: 1.5rem;
+  }
+}

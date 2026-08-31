@@ -1,0 +1,7 @@
+// Owns only the 3D-tilt context for the card. Surface (background, border,
+// blur, hover) is the consumer's job — usually the shared .glass-card utility.
+.tilt-card {
+  transform-style: preserve-3d;
+  // Guard against flex/grid overflow (learned from the About bento fix).
+  min-width: 0;
+}
