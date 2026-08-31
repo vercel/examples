@@ -2,12 +2,12 @@ import Image from 'next/image'
 import { cookies } from 'next/headers'
 import { Suspense } from 'react'
 import {
-  encrypt,
-  decrypt,
+  encryptFlagValues,
+  decryptOverrides,
   type FlagValuesType,
   type FlagOverridesType,
-} from '@vercel/flags'
-import { FlagValues } from '@vercel/flags/react'
+} from 'flags'
+import { FlagValues } from 'flags/react'
 import { LDContext } from '@launchdarkly/node-server-sdk'
 import { getClient } from './launchdarkly'
 
@@ -18,7 +18,7 @@ async function getFlags() {
   const cookieStore = await cookies()
   const overridesCookieValue = cookieStore.get('vercel-flag-overrides')?.value
   const overrides = overridesCookieValue
-    ? await decrypt<FlagOverridesType>(overridesCookieValue)
+    ? await decryptOverrides<FlagOverridesType>(overridesCookieValue)
     : null
 
   const client = await getClient()
@@ -44,7 +44,7 @@ async function ConfidentialFlagValues({
 }: {
   flagValues: FlagValuesType
 }) {
-  const encryptedFlagValues = await encrypt(flagValues)
+  const encryptedFlagValues = await encryptFlagValues(flagValues)
   return <FlagValues values={encryptedFlagValues} />
 }
 

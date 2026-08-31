@@ -9,9 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@flags-sdk/launchdarkly": "^0.3.2",
     "@launchdarkly/node-server-sdk": "^9.1.1",
-    "@vercel/flags": "2.2.1",
-    "@vercel/toolbar": "^0.1.10",
+    "@vercel/toolbar": "^0.2.2",
+    "flags": "^4.0.0",
     "next": "^16.0.10",
     "react": "^19.2.1",
     "react-dom": "^19.2.1"
