@@ -27,7 +27,7 @@ Our card is represented by this code:
 
 But wait, given this code we end up with this 👇
 
-![01](./public/docs/screenshot-1.jpg)
+![Our element has a width of 256px but we are serving a 1000px image!](./public/docs/screenshot-1a.png)
 
 > Our element has a width of 256px but we are serving a 1000px image!
 
@@ -39,7 +39,7 @@ The [`sizes`](https://nextjs.org/docs/api-reference/next/image#sizes) prop provi
 </Card>
 ```
 
-![02](./public/docs/screenshot-2.jpg)
+![Now we are being served with an optimized image](./public/docs/screenshot-2a.png)
 
 > Now we are being served with an optimized image.
 
