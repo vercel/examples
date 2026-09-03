@@ -11,7 +11,7 @@ demoUrl: https://aws-message-queue-elasticache.vercel.app
 
 # Next.js + Amazon ElastiCache Message Queue
 
-This is an example of a Next.js application using ElastiCache for implementing a reliable message queue with streams. The template demonstrates a contact form processor where messages are queued, consumed, and acknowledged using Valkey's streaming capabilities.
+This is an example of a Next.js application using Amazon ElastiCache for implementing a reliable message queue with streams. The template demonstrates a contact form processor where messages are queued, consumed, and acknowledged using Valkey's streaming capabilities.
 
 ## How to Use
 
