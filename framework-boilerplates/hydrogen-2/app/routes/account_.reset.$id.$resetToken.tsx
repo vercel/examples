@@ -73,7 +73,7 @@ export default function Reset() {
           <input
             aria-label="Password"
             autoComplete="current-password"
-            // eslint-disable-next-line jsx-a11y/no-autofocus
+             
             autoFocus
             id="password"
             minLength={8}

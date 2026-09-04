@@ -59,11 +59,13 @@ Set both feature flags to rollout to 50% of users.
 
 If you prefer not to use the Vercel Marketplace integration, you can manually configure the environment variables:
 
-1. Set `NEXT_PUBLIC_POSTHOG_KEY` to your PostHog project API key
-2. Set `NEXT_PUBLIC_POSTHOG_HOST` to your PostHog host (e.g., `https://us.i.posthog.com`)
+1. Set `POSTHOG_PROJECT_API_KEY` to your PostHog project API key (`phc_...`)
+2. Set `POSTHOG_HOST` to your PostHog host, which selects the region (e.g., `https://us.i.posthog.com` or `https://eu.i.posthog.com`)
 3. Set `FLAGS_SECRET` to a base64-encoded 32-byte random value
+
+Optionally set `POSTHOG_SECRET_KEY` (the feature flags secret key, `phs_...`) to opt the adapter into local evaluation instead of evaluating each flag remotely.
 
 For the Flags Explorer feature, also set:
 
-- `POSTHOG_PERSONAL_API_KEY` - Your PostHog personal API key
-- `POSTHOG_PROJECT_ID` - Your PostHog project ID
+- `POSTHOG_PERSONAL_API_KEY` - Your PostHog personal API key (`phx_...`)
+- `POSTHOG_PROJECT_ID` - Your PostHog project ID (e.g. `521742`)

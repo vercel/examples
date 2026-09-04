@@ -100,7 +100,7 @@ export function AccountPasswordResetForm({
               autoComplete="current-password"
               placeholder="Password"
               aria-label="Password"
-              // eslint-disable-next-line jsx-a11y/no-autofocus
+               
               autoFocus
               value={password}
               minLength={8}

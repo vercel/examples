@@ -4,7 +4,6 @@ import { Text } from 'slate'
 import { Label } from '../Label'
 import { LargeBody } from '../LargeBody'
 
-// eslint-disable-next-line no-use-before-define
 type Children = Leaf[]
 
 type Leaf = {

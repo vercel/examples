@@ -1,12 +1,12 @@
 import { Text, Page, Link } from '@vercel/examples-ui'
 import { type LDClient, init } from '@launchdarkly/vercel-server-sdk'
-import { createClient } from '@vercel/edge-config'
+import { createClient } from '@vercel/global-config'
 import { cache } from 'react'
 
 export const metadata = {
   title: 'Vercel x LaunchDarkly example',
   description:
-    'An example showing how to use LaunchDarkly and Vercel. This example builds on top of the LaunchDarkly integration which syncs LaunchDarkly flags into Edge Config, so you can read them from your application near-instantly.',
+    'An example showing how to use LaunchDarkly and Vercel. This example builds on top of the LaunchDarkly integration which syncs LaunchDarkly flags into Global Config, so you can read them from your application near-instantly.',
 }
 export const runtime = 'edge'
 
@@ -44,6 +44,7 @@ const getLdClient = cache(async (): Promise<LDClient> => {
 })
 
 export default async function Home() {
+  // eslint-disable-next-line react-hooks/purity
   const before = Date.now()
 
   const ldClient = await getLdClient()
@@ -54,6 +55,7 @@ export default async function Home() {
     someAttribute: 'my-attribute-value',
   }
   const flagValue = await ldClient.variation('my-flag', ldContext, true)
+  // eslint-disable-next-line react-hooks/purity
   const duration = Date.now() - before
 
   return (
@@ -68,7 +70,7 @@ export default async function Home() {
           >
             LaunchDarkly integration
           </Link>{' '}
-          with Edge Config.
+          with Global Config.
         </Text>
       </section>
 
@@ -80,9 +82,9 @@ export default async function Home() {
           <code>{duration === 0 ? `<1` : duration}ms</code>.
         </p>
         <Text>
-          The feature flag above is loaded from Edge Config. The LaunchDarkly
-          integration syncs all LaunchDarkly flags into Edge Config so they can
-          be read from your application near-instantly.
+          The feature flag above is loaded from Global Config. The LaunchDarkly
+          integration syncs all LaunchDarkly flags into Global Config so they
+          can be read from your application near-instantly.
         </Text>
         <Text>
           Read more about this in our{' '}

@@ -9,7 +9,6 @@ from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field, ValidationError
 
-from worker.celery import QUEUE_NAME
 from worker.store import clear_jobs, create_job, get_job, list_recent_jobs, update_job
 from worker.tasks import calculate_fibonacci, prime_factorize
 
@@ -63,7 +62,7 @@ def read_root(request: Request):
 
 @app.get("/api/health")
 def health():
-    return {"status": "ok", "queue": QUEUE_NAME, "tasks": list(TASK_REGISTRY)}
+    return {"status": "ok", "tasks": list(TASK_REGISTRY)}
 
 
 @app.get("/api/jobs")
@@ -103,16 +102,15 @@ def enqueue_job(body: CreateJobRequest):
 
     try:
         result = celery_task.apply_async(
-            args=[job_id], kwargs=params, task_id=job_id, queue=QUEUE_NAME,
+            args=[job_id], kwargs=params, task_id=job_id,
         )
     except Exception as exc:
         update_job(job_id, status="failed", result={"error": str(exc)})
         raise HTTPException(status_code=500, detail="Failed to enqueue task.") from exc
 
-    update_job(job_id, message_id=str(result.id), queue_name=QUEUE_NAME)
+    update_job(job_id, message_id=str(result.id))
     return {
         "id": job_id,
         "messageId": str(result.id),
-        "queueName": QUEUE_NAME,
         "taskName": body.task,
     }

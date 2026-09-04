@@ -51,7 +51,6 @@ class Job(BaseModel):
     result: dict[str, Any] | None = None
     progress: dict[str, Any] | None = None
     message_id: str = ""
-    queue_name: str = ""
 
 
 def create_job(job_id: str, *, task: str, params: dict[str, Any]) -> Job:

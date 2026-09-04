@@ -1,8 +1,8 @@
-import { type NextRequest, NextResponse } from 'next/server'
 import { precompute } from 'flags/next'
+import { type NextRequest, NextResponse } from 'next/server'
 import { productFlags } from '@/flags'
-import { getStableId } from './lib/get-stable-id'
 import { getCartId } from './lib/get-cart-id'
+import { getStableId } from './lib/get-stable-id'
 
 export const config = {
   matcher: ['/', '/cart'],

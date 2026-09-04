@@ -13,7 +13,7 @@ function Home() {
           attention than usual to a page; Its a good idea to have a backup plan
           that includes showing a different page to the users in case something
           fails. If this page receives a lot of traffic, we can use the edge, a
-          previously generated static page and Edge Config to give the users
+          previously generated static page and Global Config to give the users
           dynamic at the speed of static.
         </Text>
         <Image src={board} alt="Graph showing how to use middleware" />
@@ -31,14 +31,14 @@ function Home() {
           this:
         </Text>
         <Snippet>{`import { NextRequest, NextResponse } from 'next/server'
-import { get } from '@vercel/edge-config'
+import { get } from '@vercel/global-config'
 
 export const config = {
   matcher: '/big-promo',
 }
 
 export async function middleware(req: NextRequest) {
-  // Check Edge Config to see if the maintenance page should be shown
+  // Check Global Config to see if the maintenance page should be shown
   const isInMaintenanceMode = await get('isInMaintenanceMode')
 
   // If in maintenance mode, point the url pathname to the maintenance page

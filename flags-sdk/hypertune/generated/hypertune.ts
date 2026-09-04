@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import * as sdk from 'hypertune'
 
 export const queryCode = `query FullQuery{root{delay proceedToCheckout freeDelivery summerSale}}`

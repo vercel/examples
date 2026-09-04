@@ -1,9 +1,6 @@
 # Learn how to add code owners here:
 # https://help.github.com/en/articles/about-code-owners
 
-# Solutions Eng and Dev Rel are the default owners of everything
-* @okbel @lfades @goncy @dominiksipowicz @lpalmes
-
 # For examples that are a Monorepo we add the Turbo team and some members
 # from Solutions and Dev Rel
 solutions/monorepo @vercel/turbo-oss @goncy @lfades @lpalmes
@@ -29,4 +26,4 @@ microfrontends @kitfoster @lazarv @mknichel
 
 cdn @vercel/edge-ingress @vercel/edge-content @vercel/edge-security @pranavkarthik10
 
-websockets @vercel/edge-ingress @vercel/team-backends @vercel/team-python
+websockets @vercel/edge-ingress @vercel/team-backends @vercel/team-python @vercel/compute

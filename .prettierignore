@@ -8,3 +8,9 @@ dist
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+
+# Self-contained pnpm workspaces with their own prettier/style-guide versions
+microfrontends/single-spa
+microfrontends/nextjs-multi-zones
+framework-boilerplates/hydrogen
+framework-boilerplates/hydrogen-2

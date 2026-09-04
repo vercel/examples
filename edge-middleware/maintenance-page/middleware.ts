@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { get } from '@vercel/edge-config'
+import { get } from '@vercel/global-config'
 
 export const config = {
   matcher: ['/big-promo'],
 }
 
 export async function middleware(req: NextRequest) {
-  if (!process.env.EDGE_CONFIG) {
-    req.nextUrl.pathname = `/missing-edge-config`
+  if (!process.env.GLOBAL_CONFIG) {
+    req.nextUrl.pathname = `/missing-global-config`
     return NextResponse.rewrite(req.nextUrl)
   }
 
@@ -23,7 +23,7 @@ export async function middleware(req: NextRequest) {
       return NextResponse.rewrite(req.nextUrl)
     }
   } catch (error) {
-    // show the default page if EDGE_CONFIG env var is missing,
+    // show the default page if GLOBAL_CONFIG env var is missing,
     // but log the error to the console
     console.error(error)
   }

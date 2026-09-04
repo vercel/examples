@@ -9,7 +9,7 @@ export const svelteColor = flag<boolean>({
   decide(event) {
     // Very simple example to show how to use the URL to determine the flag.
     // In real live you would probably query an external source such as
-    // Vercel Edge Config (https://vercel.com/docs/storage/edge-config)
+    // Vercel Global Config (https://vercel.com/docs/storage/edge-config)
     return event.url.searchParams.has('svelteColor')
   },
 })
