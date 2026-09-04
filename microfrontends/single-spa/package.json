@@ -34,6 +34,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "prettier": "^3.4.2",
+    "prettier-plugin-packagejson": "^2.4.12",
     "turbo": "2.5.2-canary.0",
     "typescript": "5.7.3"
   },
@@ -43,3 +44,4 @@
     "pnpm": "9.4.0"
   }
 }
+
