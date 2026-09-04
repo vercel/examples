@@ -27,6 +27,9 @@ importers:
       prettier:
         specifier: ^3.4.2
         version: 3.5.3
+      prettier-plugin-packagejson:
+        specifier: ^2.4.12
+        version: 2.5.14(prettier@3.5.3)
       turbo:
         specifier: 2.5.2-canary.0
         version: 2.5.2-canary.0
