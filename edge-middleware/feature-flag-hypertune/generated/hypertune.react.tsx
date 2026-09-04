@@ -52,12 +52,12 @@ export function HypertuneSourceProvider({
         remoteLogging: {
           mode: typeof window === 'undefined' ? 'off' : undefined,
         },
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
+
         localLogger: typeof window === 'undefined' ? () => {} : undefined,
         ...createSourceOptions,
       }),
     // Don't recreate the source even if createSourceOptions changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
     []
   )
 

@@ -16,17 +16,18 @@
   "lint-staged": {
     "!(**/.vercel/**/*)**/*.{ts,tsx}": [
       "prettier --write",
-      "eslint -c .eslintrc.json --no-eslintrc --no-ignore --max-warnings=0 --fix"
+      "eslint --no-ignore --max-warnings=0 --fix"
     ],
     "**/*.{json,md,mdx,css,html,yml,yaml,scss,vue}": [
       "prettier --write"
     ]
   },
   "devDependencies": {
-    "eslint": "latest",
-    "eslint-config-next": "canary",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.2.10",
     "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
+    "lint-staged": "^17.0.8",
+    "next": "16.2.10",
     "plop": "^3.1.1",
     "prettier": "^2.7.1",
     "typescript": "^4.9.5"

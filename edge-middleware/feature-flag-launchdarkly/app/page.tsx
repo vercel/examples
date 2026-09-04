@@ -44,6 +44,7 @@ const getLdClient = cache(async (): Promise<LDClient> => {
 })
 
 export default async function Home() {
+  // eslint-disable-next-line react-hooks/purity
   const before = Date.now()
 
   const ldClient = await getLdClient()
@@ -54,6 +55,7 @@ export default async function Home() {
     someAttribute: 'my-attribute-value',
   }
   const flagValue = await ldClient.variation('my-flag', ldContext, true)
+  // eslint-disable-next-line react-hooks/purity
   const duration = Date.now() - before
 
   return (
