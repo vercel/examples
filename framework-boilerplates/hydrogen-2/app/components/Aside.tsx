@@ -39,7 +39,6 @@ export function Aside({
 
 function CloseAside() {
   return (
-     
     <a className="close" href="#" onChange={() => history.go(-1)}>
       &times;
     </a>

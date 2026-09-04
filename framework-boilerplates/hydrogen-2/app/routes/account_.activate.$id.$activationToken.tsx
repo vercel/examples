@@ -99,7 +99,6 @@ export default function Activate() {
             aria-label="Password"
             minLength={8}
             required
-             
             autoFocus
           />
           <label htmlFor="passwordConfirm">Re-enter password</label>

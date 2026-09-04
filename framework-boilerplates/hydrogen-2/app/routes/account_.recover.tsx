@@ -73,7 +73,6 @@ export default function Recover() {
                 <input
                   aria-label="Email address"
                   autoComplete="email"
-                   
                   autoFocus
                   id="email"
                   name="email"

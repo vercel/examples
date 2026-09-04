@@ -64,7 +64,6 @@ export async function loader({request, context}: LoaderArgs) {
       },
     );
   } catch (error) {
-     
     console.error('There was a problem loading account', error);
     session.unset('customerAccessToken');
     return redirect('/account/login', {

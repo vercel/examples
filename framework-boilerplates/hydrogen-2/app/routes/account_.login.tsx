@@ -86,7 +86,6 @@ export default function Login() {
             required
             placeholder="Email address"
             aria-label="Email address"
-             
             autoFocus
           />
           <label htmlFor="password">Password</label>

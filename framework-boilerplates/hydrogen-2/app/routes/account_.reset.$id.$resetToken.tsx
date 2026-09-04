@@ -73,7 +73,6 @@ export default function Reset() {
           <input
             aria-label="Password"
             autoComplete="current-password"
-             
             autoFocus
             id="password"
             minLength={8}
