@@ -5,9 +5,9 @@ import '@vercel/examples-ui/globals.css'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'AWS Message Queue + ElastiCache',
+  title: 'Amazon ElastiCache Message Queue',
   description:
-    'A Next.js demo using Valkey streams for message queuing with AWS ElastiCache',
+    'A Next.js demo using Valkey streams for message queuing with Amazon ElastiCache',
 }
 
 export const viewport: Viewport = {
@@ -55,7 +55,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   className="font-medium text-gray-500 hover:text-gray-900"
                   style={{ letterSpacing: '.01px' }}
                 >
-                  AWS Message Queue + ElastiCache
+                  Amazon ElastiCache Message Queue
                 </a>
               </div>
               <div className="flex-1 justify-end hidden md:flex">

@@ -1,21 +1,21 @@
 ---
-name: Message Queue with AWS ElastiCache and Next.js
+name: Valkey Message Queue with Amazon ElastiCache and Next.js
 slug: aws-message-queue-elasticache
-description: Learn to use AWS ElastiCache with Next.js API Routes for reliable message queue processing using streams.
+description: Learn to use Amazon ElastiCache with Next.js API Routes for reliable message queue processing using streams.
 framework: Next.js
 css: Tailwind
 type: Starter
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-message-queue-elasticache&project-name=aws-message-queue-elasticache&repository-name=aws-message-queue-elasticache&env=VALKEY_ENDPOINT&envDescription=Valkey%20endpoint%20URL
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-message-queue-elasticache&project-name=Valkey%20Message%20Queue%20with%20Amazon%20ElastiCache%20and%20Next.js&repository-name=aws-message-queue-elasticache&demo-title=Valkey%20Message%20Queue%20with%20Amazon%20ElastiCache%20and%20Next.js&env=VALKEY_ENDPOINT&envDescription=Valkey%20endpoint%20URL
 demoUrl: https://aws-message-queue-elasticache.vercel.app
 ---
 
-# Next.js + AWS ElastiCache Message Queue
+# Next.js + Amazon ElastiCache Message Queue
 
-This is an example of a Next.js application using AWS ElastiCache for implementing a reliable message queue with streams. The template demonstrates a contact form processor where messages are queued, consumed, and acknowledged using Valkey's streaming capabilities.
+This is an example of a Next.js application using Amazon ElastiCache for implementing a reliable message queue with streams. The template demonstrates a contact form processor where messages are queued, consumed, and acknowledged using Valkey's streaming capabilities.
 
 ## How to Use
 
-This template demonstrates the code pattern for implementing message queues with Valkey streams. It's designed to work with AWS ElastiCache in production environments.
+This template demonstrates the code pattern for implementing message queues with Valkey streams. It's designed to work with Amazon ElastiCache in production environments.
 
 ### Local Development
 
@@ -51,13 +51,13 @@ pnpm dev
 
 Visit <http://localhost:3000> to see the application.
 
-### Production Deployment with AWS ElastiCache
+### Production Deployment with Amazon ElastiCache
 
-AWS ElastiCache clusters run within a VPC (private network), which requires network connectivity setup for production deployments on Vercel.
+ElastiCache clusters run within a VPC (private network), which requires network connectivity setup for production deployments on Vercel.
 
 #### Networking Requirements
 
-**For Vercel Enterprise customers**, connectivity to AWS ElastiCache is available through [Vercel Secure Compute](https://vercel.com/docs/connectivity/secure-compute), which enables private network access between Vercel Functions and AWS VPC resources.
+**For Vercel Enterprise customers**, connectivity to Amazon ElastiCache is available through [Vercel Secure Compute](https://vercel.com/docs/connectivity/secure-compute), which enables private network access between Vercel Functions and AWS VPC resources.
 
 **High-level setup steps:**
 
@@ -80,7 +80,7 @@ VALKEY_ENDPOINT=your-cluster.cache.amazonaws.com:6379
 
 4. Deploy your application
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-message-queue-elasticache&project-name=aws-message-queue-elasticache&repository-name=aws-message-queue-elasticache&env=VALKEY_ENDPOINT&envDescription=Valkey%20endpoint%20URL)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-message-queue-elasticache&project-name=Valkey%20Message%20Queue%20with%20Amazon%20ElastiCache%20and%20Next.js&repository-name=aws-message-queue-elasticache&demo-title=Valkey%20Message%20Queue%20with%20Amazon%20ElastiCache%20and%20Next.js&env=VALKEY_ENDPOINT&envDescription=Valkey%20endpoint%20URL)
 
 For detailed networking configuration, refer to the [Vercel Secure Compute documentation](https://vercel.com/docs/connectivity/secure-compute).
 
@@ -100,7 +100,7 @@ This template demonstrates a reliable serverless message queue workflow:
 - Message acknowledgment ensures reliable processing
 - Automatic reclaim of messages idle longer than 60 seconds (prevents stuck messages)
 - Refreshing the page won't cause duplicate processing
-- Demonstrates how ElastiCache Streams support reliable serverless workflows
+- Demonstrates how Amazon ElastiCache Streams support reliable serverless workflows
 
 ## API Endpoints
 
