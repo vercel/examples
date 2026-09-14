@@ -1,7 +1,30 @@
+import type { ReactNode } from 'react';
 import Image from 'next/image';
 import { Link } from '@vercel/microfrontends/next/client';
+import { ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import mfeIcon from '../../public/mfe-icon-dark.png';
+
+function ExternalTextLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: ReactNode;
+}) {
+  return (
+    <a
+      className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800"
+      href={href}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      {children}
+      <ExternalLink aria-hidden="true" className="size-3.5" />
+      <span className="sr-only">(opens in a new tab)</span>
+    </a>
+  );
+}
 
 export default function DocsPage() {
   return (
@@ -31,9 +54,9 @@ export default function DocsPage() {
               <li>
                 <Link
                   className="text-gray-600 hover:text-gray-900"
-                  href="#examples"
+                  href="#learn-more"
                 >
-                  Examples
+                  Learn more
                 </Link>
               </li>
               <li>
@@ -57,28 +80,58 @@ export default function DocsPage() {
               Getting Started
             </h3>
             <p className="text-gray-600 mb-4">
-              Welcome to Vercel Microfrontends documentation. This guide will
-              help you get started with implementing microfrontends in your
-              project.
+              This <code>/docs</code> page is a separate Next.js app, routed
+              here by Vercel Microfrontends. The fastest way to set up the same
+              architecture is to give your coding agent the{' '}
+              <code>microfrontends</code> skill.
             </p>
-            <ol className="list-decimal list-inside text-gray-600">
-              <li className="mb-2">Install the Microfrontends CLI tool</li>
-              <li className="mb-2">Create your first microfrontend</li>
-              <li className="mb-2">Configure the host application</li>
-              <li>Deploy your microfrontends</li>
-            </ol>
+            <p className="text-gray-600 mb-2">
+              Install the{' '}
+              <ExternalTextLink href="https://vercel.com/docs/agent-resources/vercel-plugin">
+                Vercel plugin
+              </ExternalTextLink>{' '}
+              (includes the skill), or install the skill on its own:
+            </p>
+            <pre className="mb-4 overflow-x-auto rounded-md bg-gray-900 p-4 text-sm text-gray-100">
+              <code>{`npx plugins add vercel/vercel-plugin\n# or\nnpx skills add vercel/microfrontends`}</code>
+            </pre>
+            <p className="text-gray-600 mb-2">Then ask your agent:</p>
+            <blockquote className="mb-4 border-l-4 border-blue-600 bg-blue-50 px-4 py-3 text-gray-700">
+              Use the microfrontends skill to set up this Next.js multi-zones
+              example. Install dependencies and start local development.
+            </blockquote>
+            <p className="text-gray-600">
+              In Cursor you can also run{' '}
+              <code className="rounded bg-gray-100 px-1 py-0.5 text-sm">
+                /add-plugin vercel
+              </code>
+              .
+            </p>
           </section>
 
-          <section className="mb-12" id="examples">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Examples</h3>
+          <section className="mb-12" id="learn-more">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Learn more
+            </h3>
             <p className="text-gray-600 mb-4">
-              Check out these examples to see Vercel Microfrontends in action:
+              Official docs and the skill your agent should use:
             </p>
             <ul className="list-disc list-inside text-gray-600">
-              <li className="mb-2">Basic microfrontend setup</li>
-              <li className="mb-2">Communication between microfrontends</li>
-              <li className="mb-2">Shared state management</li>
-              <li>Microfrontend with different frameworks</li>
+              <li className="mb-2">
+                <ExternalTextLink href="https://vercel.com/docs/microfrontends">
+                  Vercel Microfrontends documentation
+                </ExternalTextLink>
+              </li>
+              <li className="mb-2">
+                <ExternalTextLink href="https://vercel.com/docs/agent-resources/vercel-plugin">
+                  Vercel plugin for coding agents
+                </ExternalTextLink>
+              </li>
+              <li>
+                <ExternalTextLink href="https://vercel.com/changelog/manage-vercel-microfrontends-with-ai-agents-and-the-cli">
+                  Microfrontends skill and CLI
+                </ExternalTextLink>
+              </li>
             </ul>
           </section>
 

@@ -8,7 +8,7 @@
 
 This example showcases how to build and deploy a [Next.js Multi-Zones](https://nextjs.org/docs/pages/guides/multi-zones) microfrontends application using [Vercel Microfrontends](https://vercel.com/docs/microfrontends) with [Next.js App Router](https://nextjs.org/docs/app/building-your-application/routing). Learn how to architect independent, deployable frontend applications that work together seamlessly while maintaining team autonomy and deployment independence.
 
-Demo URL: https://vercel-microfrontends-multi-zones.vercel.app/
+Demo URL: https://microfrontends-marketing-three.vercel.app/
 
 ## 🚀 Deploy to Vercel
 
@@ -22,6 +22,36 @@ This example consists of two separate microfrontends that can be deployed indepe
 ---
 
 ## Getting Started
+
+### Set up with an agent
+
+The fastest way to run this example, or apply the same architecture to your own apps, is to give your coding agent the Vercel `microfrontends` skill.
+
+Install the [Vercel plugin](https://vercel.com/docs/agent-resources/vercel-plugin) (includes the `microfrontends` skill):
+
+```bash
+npx plugins add vercel/vercel-plugin
+```
+
+In Cursor you can also run `/add-plugin vercel`. To install only the skill:
+
+```bash
+npx skills add vercel/microfrontends
+```
+
+Then ask your agent:
+
+```
+Use the microfrontends skill to set up this Next.js multi-zones example. Install dependencies and start local development.
+```
+
+To wire the same pattern into your own projects:
+
+```
+Use the microfrontends skill to create a microfrontends group, add these projects, and configure the default app and /docs routing.
+```
+
+See the [Microfrontends skill](https://vercel.com/changelog/manage-vercel-microfrontends-with-ai-agents-and-the-cli) and [Vercel Microfrontends docs](https://vercel.com/docs/microfrontends).
 
 ### Prerequisites
 
