@@ -5,7 +5,7 @@ description: Learn to use Amazon ElastiCache with Next.js API Routes for reliabl
 framework: Next.js
 css: Tailwind
 type: Starter
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-message-queue-elasticache&project-name=Valkey%20Message%20Queue%20with%20Amazon%20ElastiCache%20and%20Next.js&repository-name=aws-message-queue-elasticache&demo-title=Valkey%20Message%20Queue%20with%20Amazon%20ElastiCache%20and%20Next.js&env=VALKEY_ENDPOINT&envDescription=Valkey%20endpoint%20URL
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-message-queue-elasticache&project-name=aws-message-queue-elasticache&repository-name=aws-message-queue-elasticache&demo-title=Valkey%20Message%20Queue%20with%20Amazon%20ElastiCache%20and%20Next.js&env=VALKEY_ENDPOINT&envDescription=Valkey%20endpoint%20URL
 demoUrl: https://aws-message-queue-elasticache.vercel.app
 ---
 
@@ -80,7 +80,7 @@ VALKEY_ENDPOINT=your-cluster.cache.amazonaws.com:6379
 
 4. Deploy your application
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-message-queue-elasticache&project-name=Valkey%20Message%20Queue%20with%20Amazon%20ElastiCache%20and%20Next.js&repository-name=aws-message-queue-elasticache&demo-title=Valkey%20Message%20Queue%20with%20Amazon%20ElastiCache%20and%20Next.js&env=VALKEY_ENDPOINT&envDescription=Valkey%20endpoint%20URL)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/aws-message-queue-elasticache&project-name=aws-message-queue-elasticache&repository-name=aws-message-queue-elasticache&demo-title=Valkey%20Message%20Queue%20with%20Amazon%20ElastiCache%20and%20Next.js&env=VALKEY_ENDPOINT&envDescription=Valkey%20endpoint%20URL)
 
 For detailed networking configuration, refer to the [Vercel Secure Compute documentation](https://vercel.com/docs/connectivity/secure-compute).
 
