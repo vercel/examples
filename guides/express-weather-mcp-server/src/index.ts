@@ -116,177 +116,218 @@ async function callWeatherAPI(
 // MCP SERVER - Uses Express API as backend
 // ============================================
 
-const mcpHandler = createMcpHandler(
-  (server) => {
-    // Tool 1: Get Temperature
-    server.tool(
-      'get_temperature',
-      'Get current temperature and "feels like" temperature for a city',
-      {
-        city: z.string().describe('City name (e.g., "London", "Tokyo")'),
-        units: z
-          .enum(['metric', 'imperial'])
-          .optional()
-          .describe('metric (Celsius) or imperial (Fahrenheit)'),
+const mcpHandler = createMcpHandler((server) => {
+  // Tool 1: Get Temperature
+  server.registerTool(
+    'get_temperature',
+    {
+      title: 'Get Temperature',
+      description:
+        'Get current temperature and "feels like" temperature for a city',
+      inputSchema: z
+        .object({
+          city: z.string().describe('City name (e.g., "London", "Tokyo")'),
+          units: z
+            .enum(['metric', 'imperial'])
+            .optional()
+            .describe('metric (Celsius) or imperial (Fahrenheit)'),
+        })
+        .strict(),
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: true,
       },
-      async ({ city, units = 'metric' }) => {
-        try {
-          const data = await callWeatherAPI(city, units)
-          const tempUnit = units === 'imperial' ? '°F' : '°C'
+    },
+    async ({ city, units = 'metric' }) => {
+      try {
+        const data = await callWeatherAPI(city, units)
+        const tempUnit = units === 'imperial' ? '°F' : '°C'
 
-          return {
-            content: [
-              {
-                type: 'text',
-                text: `Temperature in ${data.city}, ${data.country}:
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Temperature in ${data.city}, ${data.country}:
 - Current: ${data.current.temperature_2m}${tempUnit}
 - Feels like: ${data.current.apparent_temperature}${tempUnit}`,
-              },
-            ],
-          }
-        } catch (error) {
-          return {
-            content: [
-              {
-                type: 'text',
-                text: `Error: ${
-                  error instanceof Error ? error.message : 'Unknown error'
-                }`,
-              },
-            ],
-            isError: true,
-          }
+            },
+          ],
+        }
+      } catch (error) {
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Error: ${
+                error instanceof Error ? error.message : 'Unknown error'
+              }`,
+            },
+          ],
+          isError: true,
         }
       }
-    )
+    }
+  )
 
-    // Tool 2: Get Humidity
-    server.tool(
-      'get_humidity',
-      'Get current relative humidity for a city',
-      {
-        city: z.string().describe('City name (e.g., "London", "Tokyo")'),
+  // Tool 2: Get Humidity
+  server.registerTool(
+    'get_humidity',
+    {
+      title: 'Get Humidity',
+      description: 'Get current relative humidity for a city',
+      inputSchema: z
+        .object({
+          city: z.string().describe('City name (e.g., "London", "Tokyo")'),
+        })
+        .strict(),
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: true,
       },
-      async ({ city }) => {
-        try {
-          const data = await callWeatherAPI(city, 'metric')
+    },
+    async ({ city }) => {
+      try {
+        const data = await callWeatherAPI(city, 'metric')
 
-          return {
-            content: [
-              {
-                type: 'text',
-                text: `Humidity in ${data.city}, ${data.country}:
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Humidity in ${data.city}, ${data.country}:
 - Relative Humidity: ${data.current.relative_humidity_2m}%`,
-              },
-            ],
-          }
-        } catch (error) {
-          return {
-            content: [
-              {
-                type: 'text',
-                text: `Error: ${
-                  error instanceof Error ? error.message : 'Unknown error'
-                }`,
-              },
-            ],
-            isError: true,
-          }
+            },
+          ],
+        }
+      } catch (error) {
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Error: ${
+                error instanceof Error ? error.message : 'Unknown error'
+              }`,
+            },
+          ],
+          isError: true,
         }
       }
-    )
+    }
+  )
 
-    // Tool 3: Get Wind Speed
-    server.tool(
-      'get_wind_speed',
-      'Get current wind speed for a city',
-      {
-        city: z.string().describe('City name (e.g., "London", "Tokyo")'),
-        units: z
-          .enum(['metric', 'imperial'])
-          .optional()
-          .describe('metric (km/h) or imperial (mph)'),
+  // Tool 3: Get Wind Speed
+  server.registerTool(
+    'get_wind_speed',
+    {
+      title: 'Get Wind Speed',
+      description: 'Get current wind speed for a city',
+      inputSchema: z
+        .object({
+          city: z.string().describe('City name (e.g., "London", "Tokyo")'),
+          units: z
+            .enum(['metric', 'imperial'])
+            .optional()
+            .describe('metric (km/h) or imperial (mph)'),
+        })
+        .strict(),
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: true,
       },
-      async ({ city, units = 'metric' }) => {
-        try {
-          const data = await callWeatherAPI(city, units)
-          const speedUnit = units === 'imperial' ? 'mph' : 'km/h'
+    },
+    async ({ city, units = 'metric' }) => {
+      try {
+        const data = await callWeatherAPI(city, units)
+        const speedUnit = units === 'imperial' ? 'mph' : 'km/h'
 
-          return {
-            content: [
-              {
-                type: 'text',
-                text: `Wind Speed in ${data.city}, ${data.country}:
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Wind Speed in ${data.city}, ${data.country}:
 - Current: ${data.current.wind_speed_10m} ${speedUnit}`,
-              },
-            ],
-          }
-        } catch (error) {
-          return {
-            content: [
-              {
-                type: 'text',
-                text: `Error: ${
-                  error instanceof Error ? error.message : 'Unknown error'
-                }`,
-              },
-            ],
-            isError: true,
-          }
+            },
+          ],
+        }
+      } catch (error) {
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Error: ${
+                error instanceof Error ? error.message : 'Unknown error'
+              }`,
+            },
+          ],
+          isError: true,
         }
       }
-    )
+    }
+  )
 
-    // Tool 4: Get Full Weather
-    server.tool(
-      'get_full_weather',
-      'Get complete weather information for a city',
-      {
-        city: z.string().describe('City name (e.g., "London", "Tokyo")'),
-        units: z
-          .enum(['metric', 'imperial'])
-          .optional()
-          .describe('metric or imperial units'),
+  // Tool 4: Get Full Weather
+  server.registerTool(
+    'get_full_weather',
+    {
+      title: 'Get Full Weather',
+      description: 'Get complete weather information for a city',
+      inputSchema: z
+        .object({
+          city: z.string().describe('City name (e.g., "London", "Tokyo")'),
+          units: z
+            .enum(['metric', 'imperial'])
+            .optional()
+            .describe('metric or imperial units'),
+        })
+        .strict(),
+      annotations: {
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: true,
       },
-      async ({ city, units = 'metric' }) => {
-        try {
-          const data = await callWeatherAPI(city, units)
-          const tempUnit = units === 'imperial' ? '°F' : '°C'
-          const speedUnit = units === 'imperial' ? 'mph' : 'km/h'
+    },
+    async ({ city, units = 'metric' }) => {
+      try {
+        const data = await callWeatherAPI(city, units)
+        const tempUnit = units === 'imperial' ? '°F' : '°C'
+        const speedUnit = units === 'imperial' ? 'mph' : 'km/h'
 
-          return {
-            content: [
-              {
-                type: 'text',
-                text: `Weather for ${data.city}, ${data.country}:
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Weather for ${data.city}, ${data.country}:
 
 📍 Location: ${data.latitude}, ${data.longitude}
 🌡️ Temperature: ${data.current.temperature_2m}${tempUnit} (feels like ${data.current.apparent_temperature}${tempUnit})
 💧 Humidity: ${data.current.relative_humidity_2m}%
 💨 Wind: ${data.current.wind_speed_10m} ${speedUnit}
 🕐 Updated: ${data.current.time}`,
-              },
-            ],
-          }
-        } catch (error) {
-          return {
-            content: [
-              {
-                type: 'text',
-                text: `Error: ${
-                  error instanceof Error ? error.message : 'Unknown error'
-                }`,
-              },
-            ],
-            isError: true,
-          }
+            },
+          ],
+        }
+      } catch (error) {
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Error: ${
+                error instanceof Error ? error.message : 'Unknown error'
+              }`,
+            },
+          ],
+          isError: true,
         }
       }
-    )
-  },
-  {},
-  { basePath: '/api' }
-)
+    }
+  )
+})
 
 // Helper: Convert Express req to Web Request
 function toWebRequest(req: express.Request): Request {

@@ -1,31 +1,38 @@
-import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js";
+import {
+  Client,
+  StreamableHTTPClientTransport,
+} from '@modelcontextprotocol/client'
 
-const origin = process.argv[2] || "https://mcp-on-vercel.vercel.app";
+const origin =
+  process.argv.slice(2).find((argument) => argument !== '--') ||
+  'https://mcp-on-vercel.vercel.app'
 
 async function main() {
-  const transport = new SSEClientTransport(new URL(`${origin}/sse`));
+  const client = new Client({
+    name: 'mcp-on-vercel-example-client',
+    version: '1.0.0',
+  })
+  const transport = new StreamableHTTPClientTransport(
+    new URL('/mcp', `${origin}/`)
+  )
 
-  const client = new Client(
-    {
-      name: "example-client",
-      version: "1.0.0",
-    },
-    {
-      capabilities: {
-        prompts: {},
-        resources: {},
-        tools: {},
-      },
-    }
-  );
+  await client.connect(transport)
 
-  await client.connect(transport);
+  console.log('Connected', client.getServerCapabilities())
 
-  console.log("Connected", client.getServerCapabilities());
+  const { tools } = await client.listTools()
+  console.log('Tools', tools)
 
-  const result = await client.listTools();
-  console.log(result);
+  const result = await client.callTool({
+    name: 'roll_dice',
+    arguments: { sides: 6 },
+  })
+  console.log('Result', result)
+
+  await client.close()
 }
 
-main();
+main().catch((error) => {
+  console.error(error)
+  process.exitCode = 1
+})
