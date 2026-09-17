@@ -86,7 +86,6 @@ export default function Login() {
             required
             placeholder="Email address"
             aria-label="Email address"
-            // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus
           />
           <label htmlFor="password">Password</label>
