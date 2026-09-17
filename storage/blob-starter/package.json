@@ -6,7 +6,7 @@
   "private": true,
   "engines": {
     "node": "22.x",
-    "pnpm": "9.13.0"
+    "pnpm": "9.x"
   },
   "scripts": {
     "dev": "next dev --turbopack",
