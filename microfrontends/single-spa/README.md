@@ -6,7 +6,7 @@
 
 This example demonstrates using [single-spa](https://single-spa.js.org/) with [Module Federation](https://module-federation.io/) on Vercel using [Vercel Microfrontends](https://vercel.com/docs/microfrontends). The application consists of two microfrontends that allows you to load multiple applications in a single page, enabling independent deployments and development.
 
-Demo URL: https://microfrontends-single-spa-module-federation-root.labs.vercel.dev/
+Demo URL: https://vercel-microfrontends-single-spa.vercel.app/
 
 ## 🚀 Deploy to Vercel
 
