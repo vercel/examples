@@ -1,13 +1,16 @@
 <script lang="ts">
   import { mountVercelToolbar } from '@vercel/toolbar/vite'
   import { onMount } from 'svelte'
+  import { dev } from '$app/environment'
   import Footer from './Footer.svelte'
 
   let { children } = $props()
 
-  // This always shows the toolbar in production. In your project, you probably
-  // want to show it only under certain conditions.
-  onMount(() => mountVercelToolbar())
+  // This only shows the toolbar in development. In your project, you might
+  // want to show it under different conditions.
+  if (dev) {
+    onMount(() => mountVercelToolbar())
+  }
 </script>
 
 <main>
