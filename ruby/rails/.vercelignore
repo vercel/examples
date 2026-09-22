@@ -1,0 +1,11 @@
+.bundle
+.env*
+!.env.example
+vendor/bundle
+node_modules
+public/assets
+config/master.key
+config/credentials/*.key
+log
+tmp
+test

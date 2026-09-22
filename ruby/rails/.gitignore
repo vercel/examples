@@ -1,0 +1,17 @@
+/.bundle/
+/.vercel/
+/node_modules/
+/vendor/bundle/
+/.env*
+!/.env.example
+/config/master.key
+/config/credentials/*.key
+/log/*
+!/log/.keep
+/tmp/*
+!/tmp/.keep
+!/tmp/pids/
+/tmp/pids/*
+!/tmp/pids/.keep
+/public/assets/
+.DS_Store

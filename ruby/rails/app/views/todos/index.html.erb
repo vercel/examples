@@ -1,0 +1,80 @@
+<section class="page-heading" aria-labelledby="page-title">
+  <p class="eyebrow">Personal workspace</p>
+  <h1 id="page-title">Your tasks</h1>
+</section>
+
+<dl class="task-summary" aria-label="Task summary">
+  <div><dt>Total tasks</dt><dd><%= @total_count %></dd></div>
+  <div><dt><span class="status-dot" aria-hidden="true"></span>Active</dt><dd><%= @active_count %></dd></div>
+  <div><dt><span class="status-dot completed-dot" aria-hidden="true"></span>Completed</dt><dd><%= @completed_count %></dd></div>
+</dl>
+
+<section class="list-panel" aria-labelledby="list-title">
+  <div class="panel-heading">
+    <h2 id="list-title">My tasks</h2>
+    <span class="quiet-label">One thing at a time.</span>
+  </div>
+  <%= form_with model: @todo, class: "add-form" do |form| %>
+    <%= form.label :title, "What needs to get done?", class: "sr-only" %>
+    <%= form.text_field :title, placeholder: "What needs to get done?", required: true, maxlength: 200, autocomplete: "off", aria: { invalid: @todo.errors.any?, describedby: (@todo.errors.any? ? "task-errors" : nil) } %>
+    <%= form.button class: "button button-primary" do %>
+      <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>
+      Add task
+    <% end %>
+  <% end %>
+  <%= render "errors", todo: @todo %>
+  <nav class="filters" aria-label="Filter tasks">
+    <% [["all", "All", @total_count], ["active", "Active", @active_count], ["completed", "Completed", @completed_count]].each do |value, label, count| %>
+      <%= link_to root_path(filter: value), class: ["filter", ("selected" if @filter == value)], aria: { current: ("page" if @filter == value) } do %>
+        <%= label %><span class="filter-count"><%= count %></span>
+      <% end %>
+    <% end %>
+  </nav>
+  <% if @todos.any? %>
+    <ul class="task-list">
+      <% @todos.each do |todo| %>
+        <li class="task <%= "is-complete" if todo.completed? %>" id="<%= dom_id(todo) %>">
+          <%= button_to todo_path(todo, filter: @filter), method: :patch, params: { todo: { completed: !todo.completed? } }, class: "task-toggle", aria: { label: "Mark #{todo.title} as #{todo.completed? ? 'active' : 'completed'}", pressed: todo.completed? } do %>
+            <span class="task-checkbox" aria-hidden="true">
+              <% if todo.completed? %>
+                <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m3 8 3 3 7-7"/></svg>
+              <% end %>
+            </span>
+          <% end %>
+          <span class="task-title"><%= todo.title %></span>
+          <div class="task-actions">
+            <%= link_to edit_todo_path(todo, filter: @filter), class: "icon-button", aria: { label: "Edit #{todo.title}" } do %>
+              <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="m10 3 3 3M3 10l7.5-7.5a1.77 1.77 0 0 1 2.5 2.5L5.5 12.5l-3.5 1 1-3.5Z"/></svg>
+            <% end %>
+            <%= button_to todo_path(todo, filter: @filter), method: :delete, class: "icon-button delete-button", aria: { label: "Delete #{todo.title}" } do %>
+              <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M2 4h12M6 4V2h4v2M4 4l.5 10h7L12 4M6.5 6.5v5m3-5v5"/></svg>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <div class="empty-state">
+      <div class="empty-symbol" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="5" width="18" height="23" rx="3"/><path d="M12 4h8v4h-8zM12 15h8M12 20h5"/></svg>
+      </div>
+      <% if @filter == "completed" %>
+        <h3>No completed tasks yet</h3>
+        <p>Check off a task and it will appear here.</p>
+      <% elsif @total_count.positive? %>
+        <h3>You're all caught up</h3>
+        <p>Everything is checked off. Enjoy a little breathing room.</p>
+      <% else %>
+        <h3>A fresh start</h3>
+        <p>Add your first task above. Make room for what's next.</p>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="list-footer">
+    <span><strong><%= @active_count %></strong> <%= "task".pluralize(@active_count) %> remaining</span>
+    <div class="list-progress">
+      <progress value="<%= @completed_count %>" max="<%= [@total_count, 1].max %>" aria-label="Completed tasks"><%= @progress %>%</progress>
+      <span><%= @progress %>%</span>
+    </div>
+  </div>
+</section>

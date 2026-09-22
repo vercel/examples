@@ -1,0 +1,5 @@
+<% if todo.errors.any? %>
+  <div class="form-errors" role="alert" id="task-errors">
+    <% todo.errors.full_messages.each do |message| %><p><%= message %></p><% end %>
+  </div>
+<% end %>

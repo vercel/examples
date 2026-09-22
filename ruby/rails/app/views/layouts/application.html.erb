@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= content_for(:title) || "Todo" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="A simple space to organize your tasks and focus on what's next.">
+    <meta name="color-scheme" content="light dark">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <%= stylesheet_link_tag "application" %>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to your tasks</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <%= link_to root_path, class: "brand", aria: { label: "Todo home" } do %>
+          <svg class="vercel-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 24 24H0L12 3Z"/></svg>
+          <span class="brand-divider" aria-hidden="true">/</span>
+          <span>Todo</span>
+        <% end %>
+        <a class="source-link" href="https://github.com/vercel/examples/tree/main/ruby/rails">
+          View source
+          <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8"/></svg>
+        </a>
+      </div>
+    </header>
+    <div class="page-shell">
+      <main id="main">
+        <% if notice %>
+          <div class="flash" role="status">
+            <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 8 3 3 7-7"/></svg>
+            <%= notice %>
+          </div>
+        <% end %>
+        <%= yield %>
+      </main>
+      <footer class="site-footer">
+        <span>Your list is saved for this browser.</span>
+        <a href="https://vercel.com">Powered by Vercel <span aria-hidden="true">↗</span></a>
+      </footer>
+    </div>
+  </body>
+</html>

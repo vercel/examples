@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require_relative "../config/boot"
+
+database_url = ENV["DATABASE_URL_UNPOOLED"]
+abort "Set DATABASE_URL_UNPOOLED to the direct Neon connection string. See README.md." if database_url.to_s.strip.empty?
+
+ENV["DATABASE_URL"] = database_url
+exec("bundle", "exec", "rails", "db:migrate")

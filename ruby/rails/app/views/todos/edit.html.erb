@@ -1,0 +1,21 @@
+<% content_for :title, "Edit task — Todo" %>
+<%= link_to root_path(filter: @filter), class: "back-link" do %>
+  <span aria-hidden="true">←</span> Back to tasks
+<% end %>
+<section class="edit-panel list-panel" aria-labelledby="edit-title">
+  <div class="edit-heading">
+    <h1 id="edit-title">Edit task</h1>
+    <p class="page-description">Plans change. Your list can too.</p>
+  </div>
+  <%= render "errors", todo: @todo %>
+  <%= form_with model: @todo, class: "edit-form" do |form| %>
+    <%= hidden_field_tag :filter, @filter %>
+    <%= form.label :title, "Task" %>
+    <%= form.text_field :title, required: true, maxlength: 200, autofocus: true, aria: { invalid: @todo.errors.any?, describedby: (@todo.errors.any? ? "task-errors" : nil) } %>
+    <label class="completed-field"><%= form.check_box :completed %> Mark as completed</label>
+    <div class="edit-actions">
+      <%= form.submit "Save changes", class: "button button-primary" %>
+      <%= link_to "Cancel", root_path(filter: @filter), class: "button button-secondary" %>
+    </div>
+  <% end %>
+</section>

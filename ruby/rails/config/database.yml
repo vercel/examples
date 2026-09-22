@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
+  connect_timeout: 10
+  prepared_statements: false
+  advisory_locks: false
+
+development:
+  <<: *default
+  url: <%= ENV.fetch("DATABASE_URL", "postgresql://localhost/vercel_todo_development") %>
+
+test:
+  <<: *default
+  url: <%= ENV.fetch("TEST_DATABASE_URL", "postgresql://localhost/vercel_todo_test") %>
+
+production:
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>

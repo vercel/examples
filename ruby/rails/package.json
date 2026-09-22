@@ -1,0 +1,10 @@
+{
+  "name": "todo",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "bin/rails server",
+    "test": "bin/rails test"
+  }
+}

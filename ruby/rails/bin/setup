@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require "fileutils"
+
+FileUtils.chdir File.expand_path("..", __dir__) do
+  system("bundle", "check") || system("bundle", "install", exception: true)
+  system("bin/migrate", exception: true)
+  exec("bin/rails", "server") unless ARGV.include?("--skip-server")
+end
