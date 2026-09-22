@@ -116,8 +116,13 @@ Requests use Neon's pooled connection. [`bin/migrate`](./bin/migrate) uses the d
 connection for schema changes, so migrations run explicitly before deployments.
 
 The Vercel Ruby buildpack installs gems, precompiles assets with Propshaft, and
-starts Rails. Geist and Geist Mono are served locally from `app/assets/fonts`
-under the included [SIL Open Font License](./app/assets/fonts/OFL.txt).
+starts Rails. Compiled assets and other public files are served by Rails with
+`Vercel-CDN-Cache-Control: public, s-maxage=31536000`, allowing Vercel to cache
+responses for up to a year. Cache misses reach Rails; cache hits are served by
+the CDN. Personalized pages remain `private, no-store`.
+
+Geist and Geist Mono are bundled in `app/assets/fonts` under the included
+[SIL Open Font License](./app/assets/fonts/OFL.txt).
 
 ## Environment variables
 
