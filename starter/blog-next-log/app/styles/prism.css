@@ -1,0 +1,342 @@
+pre[class*="language-"],
+code[class*="language-"] {
+  color: rgba(var(--code-highlight-color), 1);
+  font-size: 13px;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
+    "Courier New", monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.25rem;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"] *::selection,
+code[class*="language-"] *::selection {
+  text-shadow: none;
+  background-color: hsl(212deg 60% 50%/0.25);
+}
+
+.dark pre[class*="language-"]::selection,
+.dark code[class*="language-"]::selection,
+.dark pre[class*="language-"] *::selection,
+.dark code[class*="language-"] *::selection {
+  background-color: hsl(210deg 50% 60%/0.2);
+}
+
+pre {
+  white-space-collapse: preserve;
+  text-wrap: nowrap;
+}
+
+.rehype-code-title + pre {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding-top: 53px;
+}
+
+/* Inline code (not inside pre) */
+:not(pre) > code {
+  background: var(--code-inline-highlight-background);
+  border: 1px solid var(--code-inline-highlight-border);
+  padding: 0.125rem 0.25em;
+  border-radius: 0.375rem;
+  display: inline-block;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* border: 1px solid #ededed; */
+@media print {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+pre[class*="language-"] {
+  overflow: auto;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  color: #db4c69;
+  background-color: hsl(204deg 100% 77%/0.1);
+}
+
+.dark :not(pre) > code[class*="language-"] {
+  color: #db4c69;
+  background-color: hsl(204deg 100% 77%/0.1);
+}
+/*********************************************************
+* Tokens
+*/
+.namespace {
+  opacity: 0.7;
+}
+
+.token.doctype .token.doctype-tag {
+  color: var(--code-keyword);
+}
+
+.token.doctype .token.name {
+  color: var(--code-variable);
+}
+
+.token.comment,
+.token.prolog {
+  color: var(--code-comment);
+}
+
+.token.punctuation,
+.language-html .language-css .token.punctuation,
+.language-html .language-javascript .token.punctuation {
+  color: rgba(var(--code-highlight-color), 1);
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.inserted,
+.token.unit {
+  color: var(--code-constant);
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.deleted {
+  color: var(--code-string);
+}
+
+.language-css .token.string.url {
+  text-decoration: underline;
+}
+
+.token.operator,
+.token.entity {
+  color: var(--code-punctuation);
+}
+
+.token.operator.arrow {
+  color: var(--code-keyword);
+}
+
+.token.atrule {
+  color: var(--code-string);
+}
+
+.token.atrule .token.rule {
+  color: var(--code-control);
+}
+
+.token.atrule .token.url {
+  color: var(--code-variable);
+}
+
+.token.atrule .token.url .token.function {
+  color: var(--code-function);
+}
+
+.token.atrule .token.url .token.punctuation {
+  color: var(--code-punctuation);
+}
+
+.token.keyword {
+  color: var(--code-keyword);
+}
+
+.token.keyword.module,
+.token.keyword.control-flow {
+  color: var(--code-control);
+}
+
+.token.function,
+.token.function .token.maybe-class-name {
+  color: var(--code-function);
+}
+
+.token.regex {
+  color: var(--code-string);
+}
+
+.token.important {
+  color: var(--code-keyword);
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.constant {
+  color: var(--code-constant);
+}
+
+.token.class-name,
+.token.maybe-class-name {
+  color: var(--code-type);
+}
+
+.token.console {
+  color: var(--code-variable);
+}
+
+.token.parameter {
+  color: var(--code-variable);
+}
+
+.token.interpolation {
+  color: var(--code-variable);
+}
+
+.token.punctuation.interpolation-punctuation {
+  color: var(--code-keyword);
+}
+
+.token.boolean {
+  color: var(--code-keyword);
+}
+
+.token.property,
+.token.variable,
+.token.imports .token.maybe-class-name,
+.token.exports .token.maybe-class-name {
+  color: var(--code-variable);
+}
+
+.token.selector {
+  color: var(--code-selector);
+}
+
+.token.escape {
+  color: var(--code-selector);
+}
+
+.token.tag {
+  color: var(--code-tag);
+}
+
+.token.tag .token.punctuation {
+  color: var(--code-punctuation);
+}
+
+.token.cdata {
+  color: var(--code-comment);
+}
+
+.token.attr-name {
+  color: var(--code-constant);
+}
+
+.token.attr-value,
+.token.attr-value .token.punctuation {
+  color: var(--code-string);
+}
+
+.token.attr-value .token.punctuation.attr-equals {
+  color: var(--code-punctuation);
+}
+
+.token.entity {
+  color: var(--code-constant);
+}
+
+.token.namespace {
+  color: var(--code-type);
+}
+
+/*********************************************************
+* Language Specific
+*/
+
+pre[class*="language-javascript"],
+code[class*="language-javascript"],
+pre[class*="language-jsx"],
+code[class*="language-jsx"],
+pre[class*="language-typescript"],
+code[class*="language-typescript"],
+pre[class*="language-tsx"],
+code[class*="language-tsx"] {
+  color: var(--code-punctuation);
+}
+
+pre[class*="language-css"],
+code[class*="language-css"] {
+  color: var(--code-string);
+}
+
+pre[class*="language-html"],
+code[class*="language-html"] {
+  color: var(--code-punctuation);
+}
+
+.language-regex .token.anchor {
+  color: var(--code-function);
+}
+
+.language-html .token.punctuation {
+  color: var(--code-punctuation);
+}
+
+/*********************************************************
+* Line highlighting
+*/
+pre[class*="language-"] > code[class*="language-"] {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.code-line {
+  display: block;
+  padding: 0 1rem;
+}
+.line-highlight.line-highlight {
+  background: #f7ebc6;
+  box-shadow: inset 5px 0 0 #f7d87c;
+  z-index: 0;
+}
+
+.highlight-line {
+  box-shadow: inset 2px 0 hsl(204deg 100% 45%/0.5);
+  background-color: hsl(204deg 100% 77%/0.15);
+  color: hsl(204deg 100% 30%);
+}
+
+.dark .highlight-line {
+  background-color: hsl(204deg 100% 77%/0.1);
+  color: hsl(204deg 100% 75%);
+}
+
+.rehype-code-title {
+  color: rgba(var(--code-highlight-color), 1);
+  background-color: hsl(204deg 100% 77%/0.1);
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  margin-bottom: -37px;
+}
+
+.rehype-code-title + pre[class*="language-"],
+.rehype-code-title + div > pre[class*="language-"] {
+  padding-top: 53px;
+}
