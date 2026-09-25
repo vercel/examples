@@ -1,0 +1,104 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  color: #172033;
+  background: #f3f6fb;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  width: min(760px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 64px 0;
+}
+
+header {
+  margin-bottom: 24px;
+}
+
+header a {
+  color: #3857d6;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+h1 {
+  max-width: 650px;
+  margin: 12px 0;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+header p {
+  max-width: 620px;
+  color: #5d687c;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.demo {
+  min-height: 420px;
+  padding: 20px;
+  border: 1px solid #dce3ef;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 18px 60px rgb(36 50 80 / 10%);
+}
+
+[data-ak-app-chat] {
+  display: grid;
+  gap: 16px;
+}
+
+[data-ak-assistant-content] {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #edf2ff;
+  line-height: 1.55;
+}
+
+textarea,
+input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font: inherit;
+}
+
+button {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 999px;
+  color: white;
+  background: #3857d6;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+@media (max-width: 520px) {
+  main {
+    padding: 36px 0;
+  }
+
+  .demo {
+    padding: 14px;
+    border-radius: 16px;
+  }
+}
