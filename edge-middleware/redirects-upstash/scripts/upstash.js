@@ -3,20 +3,14 @@ const { writeFile } = require('fs/promises')
 const prettier = require('prettier')
 
 async function upstash(args) {
-  const domain = process.env.UPSTASH_REST_API_DOMAIN
-  const token = process.env.UPSTASH_REST_API_TOKEN
+  const url = process.env.KV_REST_API_URL
+  const token = process.env.KV_REST_API_TOKEN
 
-  if (!domain || !token) {
-    throw new Error('Missing required Upstash credentials of the REST API')
+  if (!url || !token) {
+    throw new Error('Missing required KV REST API credentials')
   }
 
-  if (domain.includes('http')) {
-    throw new Error(
-      "UPSTASH_REST_API_DOMAIN shouldn't include protocol (e.g: your-domain.upstash.io)"
-    )
-  }
-
-  const res = await fetch(`https://${domain}`, {
+  const res = await fetch(url, {
     method: 'POST',
     headers: {
       authorization: `Bearer ${token}`,
@@ -61,7 +55,7 @@ async function setupUpstash() {
 
   await writeFile(filePath, content)
 
-  if (!process.env.POPULATE_REDIS) {
+  if (process.env.POPULATE_REDIS !== 'true') {
     console.log('Skipping redis population of redirects')
     return
   }

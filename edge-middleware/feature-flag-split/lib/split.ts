@@ -6,9 +6,9 @@ import {
 import { EdgeConfigWrapper } from '@splitsoftware/vercel-integration-utils'
 import { createClient } from '@vercel/global-config'
 
-const edgeConfigClient = createClient(process.env.GLOBAL_CONFIG)
-
 export async function createSplitClient(userKey: string) {
+  const edgeConfigClient = createClient(process.env.GLOBAL_CONFIG)
+
   const client = SplitFactory({
     core: {
       authorizationKey: process.env.SPLIT_SDK_CLIENT_API_KEY!,
