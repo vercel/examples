@@ -3,6 +3,39 @@ import ReactDOMClient from 'react-dom/client';
 import singleSpaReact from 'single-spa-react';
 import './globals.css';
 
+const MICROFRONTENDS_DOCS_URL = 'https://vercel.com/docs/microfrontends';
+
+function DocsLink({ className }: { className: string }): React.JSX.Element {
+  return (
+    <a
+      className={className}
+      href={MICROFRONTENDS_DOCS_URL}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      Read the docs
+      <svg
+        aria-hidden="true"
+        className="size-4"
+        fill="none"
+        height="16"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M15 3h6v6" />
+        <path d="M10 14 21 3" />
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      </svg>
+      <span className="sr-only">(opens in a new tab)</span>
+    </a>
+  );
+}
+
 function Landing(): React.JSX.Element {
   return (
     <>
@@ -321,8 +354,7 @@ function Landing(): React.JSX.Element {
                 Simple, Transparent Pricing
               </h2>
               <p className="mx-auto mt-4 max-w-[700px] text-muted-foreground md:text-xl">
-                Choose the plan that&apos;s right for your business. All plans
-                include a 14-day free trial.
+                Choose the plan that&apos;s right for your business.
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-3">
@@ -415,12 +447,7 @@ function Landing(): React.JSX.Element {
                   </ul>
                 </div>
                 <div className="mt-auto p-6 pt-0">
-                  <button
-                    className="w-full rounded-md border border-primary bg-background px-4 py-2 text-sm font-medium text-primary shadow-sm hover:bg-primary/5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                    type="button"
-                  >
-                    Start Free Trial
-                  </button>
+                  <DocsLink className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-primary bg-background px-4 py-2 text-sm font-medium text-primary shadow-sm hover:bg-primary/5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" />
                 </div>
               </div>
 
@@ -536,12 +563,7 @@ function Landing(): React.JSX.Element {
                   </ul>
                 </div>
                 <div className="mt-auto p-6 pt-0">
-                  <button
-                    className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                    type="button"
-                  >
-                    Start Free Trial
-                  </button>
+                  <DocsLink className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" />
                 </div>
               </div>
 
@@ -872,12 +894,7 @@ function Landing(): React.JSX.Element {
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <button
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-white px-8 py-2 text-sm font-medium text-primary shadow transition-colors hover:bg-white/90"
-                  type="button"
-                >
-                  Start Free Trial
-                </button>
+                <DocsLink className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-white px-8 py-2 text-sm font-medium text-primary shadow transition-colors hover:bg-white/90" />
                 <button
                   className="inline-flex h-10 items-center justify-center rounded-md border border-white bg-transparent px-8 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-white/10"
                   type="button"
