@@ -1,0 +1,33 @@
+.menu-item {
+  position: fixed;
+  top: 50%;
+  left: 2rem;
+  background-color: var(--bg-primary);
+  transform: translateY(-50%);
+  visibility: hidden;
+  opacity: 0;
+  z-index: 100;
+}
+
+.menu-active {
+  .menu-item {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .menu-item {
+    left: 1rem;
+    top: 1rem;
+    transform: translateY(0);
+
+    // .circle-button bump raises specificity above the base
+    // `.circle-button svg { 1.5rem }` rule so this mobile shrink wins
+    // regardless of stylesheet source order.
+    &.circle-button > svg {
+      width: 0.8em;
+      height: 0.8em;
+    }
+  }
+}

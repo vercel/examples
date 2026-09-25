@@ -1,0 +1,294 @@
+// Per-section webp background removed — background is rendered globally by
+// <ShaderBackground />.
+
+// Frosted "reading surface" — wraps title, date, article body, and
+// AboutWriter so prose stays readable over the animated shader.
+.blog-post__surface {
+  --radius: 16px;
+
+  background: color-mix(in srgb, var(--bg-primary) 70%, transparent);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  border: 1px solid color-mix(in srgb, var(--text-secondary) 18%, transparent);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  margin-top: 1.5rem;
+  box-shadow: 0 18px 50px rgba(2, 6, 23, 0.12);
+
+  // The article body's own top border no longer makes sense inside a card.
+  > .medium-content {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  @media (max-width: 720px) {
+    padding: 1.25rem;
+  }
+}
+
+.medium-content {
+  --radius: 12px;
+  --max-width: 820px;
+  --line-height: 1.75;
+  --read-width-padding: 28px;
+  --transition-fast: 300ms ease;
+
+  box-sizing: border-box;
+  margin: 24px auto;
+  padding: 32px 0;
+  max-width: var(--max-width);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial;
+  line-height: var(--line-height);
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  border-top: solid 2px var(--bg-secondary);
+
+  /* HEADINGS */
+  h1,
+  h2 {
+    color: var(--brand-color);
+    margin: 1.8em 0 1em;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    scroll-margin-top: 2rem;
+  }
+
+  h3 {
+    font-size: 1.35rem;
+    margin: 1.4em 0 0.8em;
+    font-weight: 700;
+    color: var(--text-primary);
+    scroll-margin-top: 2rem;
+  }
+
+  h4 {
+    font-size: 1.05rem;
+    margin-top: 1em;
+    color: var(--text-primary);
+  }
+
+  /* PARAGRAPHS */
+  p {
+    margin: 0 0 1.15em;
+    font-size: 1.02rem;
+    color: var(--text-primary);
+
+    strong em {
+      color: var(--brand-color-light);
+    }
+  }
+
+  /* LINKS */
+  a {
+    color: var(--medium-link);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--medium-link) 40%, transparent);
+    transition:
+      color var(--transition-fast),
+      border-color var(--transition-fast),
+      transform var(--transition-fast);
+
+    &:hover,
+    &:focus {
+      color: var(--medium-accent);
+      border-bottom-color: transparent;
+      transform: translateY(-1px);
+    }
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  /* BLOCKQUOTE */
+  blockquote {
+    background: color-mix(in srgb, var(--bg-secondary) 70%, transparent);
+    border-left: 4px solid var(--brand-color);
+    padding: 18px 20px;
+    margin: 18px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(2, 6, 23, 0.04);
+    font-weight: 600;
+    color: var(--text-primary);
+
+    strong {
+      display: inline;
+    }
+  }
+
+  /* LISTS */
+  ul,
+  ol {
+    margin: 0 0 1.15em 1.25em;
+    list-style: initial;
+    color: var(--text-primary);
+
+    li {
+      margin: 0.5em 0;
+      line-height: 1.6;
+    }
+  }
+
+  /* FIGURES / IMAGES */
+  figure {
+    margin: 1.5em 0;
+    background: color-mix(in srgb, var(--bg-primary) 65%, transparent);
+    border-radius: var(--radius);
+    overflow: hidden;
+    padding: 12px;
+    border: 1px solid var(--medium-border);
+    transition:
+      transform var(--transition-fast),
+      box-shadow var(--transition-fast);
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(2, 6, 23, 0.18);
+    }
+
+    img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 480px;
+      border-radius: 6px;
+      object-fit: cover;
+      margin: auto;
+    }
+
+    figcaption {
+      margin-top: 8px;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+
+    &[width="1"][height="1"] {
+      display: none !important;
+    }
+  }
+
+  /* CODE */
+  pre {
+    scrollbar-width: thin;
+    scrollbar-color: var(--medium-border) transparent;
+    background: color-mix(in srgb, var(--bg-primary) 75%, transparent);
+    padding: 1.1em;
+    border: 1px solid var(--medium-border);
+    border-radius: var(--radius);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+    font-size: 0.9em;
+    line-height: 1.55;
+    overflow: auto;
+    max-height: 800px;
+    white-space: pre;
+  }
+
+  // Defensive fallback: if consecutive <pre> siblings slip through the
+  // sanitizer's merge step in lib/sanitize.ts (feed-format drift, edge case),
+  // collapse their visual separation so they read as one continuous code
+  // block. Should rarely fire — primary fix is the post-sanitize regex.
+  pre + pre {
+    margin-top: 0;
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  code {
+    background: color-mix(in srgb, var(--bg-secondary) 80%, transparent);
+    border: 1px solid var(--medium-border);
+    padding: 0.15em 0.35em;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+    font-size: 0.9em;
+    color: var(--text-primary);
+  }
+
+  pre code {
+    background: transparent;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+
+  hr {
+    height: 1px;
+    border: none;
+    background: var(--medium-border);
+    margin: 32px 0;
+  }
+
+  /* BADGES */
+  .badge {
+    display: inline-block;
+    padding: 0.18em 0.6em;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    background: rgba(124, 58, 237, 0.08);
+    color: var(--medium-accent);
+    margin-right: 0.35em;
+  }
+
+  /* OPTIONAL LEAD PARAGRAPH */
+  .lead {
+    font-size: 1.1rem;
+    color: var(--medium-muted);
+    margin-bottom: 1.25em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    padding: 20px 0;
+    font-size: 17px;
+
+    h3 {
+      font-size: 1.15rem;
+    }
+
+    figure {
+      padding: 10px;
+    }
+  }
+
+  /* PRINT */
+  @media print {
+    color: #000;
+    background: #fff;
+
+    figure {
+      box-shadow: none;
+      border: none;
+      background: transparent;
+    }
+
+    a::after {
+      content: " (" attr(href) ")";
+      font-size: 90%;
+      color: #000;
+    }
+  }
+}
