@@ -5,7 +5,6 @@ import { microfrontends } from '@vercel/microfrontends/experimental/vite';
 import { vercelToolbar } from '@vercel/toolbar/plugins/vite';
 import react from '@vitejs/plugin-react';
 
-// eslint-disable-next-line import/no-default-export
 export default defineConfig({
   plugins: [
     tailwindcss(),

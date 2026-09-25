@@ -86,7 +86,6 @@ export default {
 
       return response;
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error(error);
       return new Response('An unexpected error occurred', {status: 500});
     }

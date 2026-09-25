@@ -142,7 +142,7 @@ function resolveToFromType(
 function parseItem(customPrefixes = {}) {
   return function (item: MenuItem): EnhancedMenuItem {
     if (!item?.url || !item?.type) {
-      // eslint-disable-next-line no-console
+       
       console.warn('Invalid menu item.  Must include a url and type.');
       // @ts-ignore
       return;
@@ -198,7 +198,7 @@ export interface EnhancedMenu extends Menu {
 */
 export function parseMenu(menu: Menu, customPrefixes = {}): EnhancedMenu {
   if (!menu?.items) {
-    // eslint-disable-next-line no-console
+     
     console.warn('Invalid menu passed to parseMenu');
     // @ts-ignore
     return menu;

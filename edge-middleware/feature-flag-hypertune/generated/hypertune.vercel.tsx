@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import { type FlagOverridesType, encrypt, decrypt } from '@vercel/flags'
 import { FlagValues } from '@vercel/flags/react'
 import { cookies } from 'next/headers'

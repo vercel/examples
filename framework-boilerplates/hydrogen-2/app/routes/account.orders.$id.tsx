@@ -69,7 +69,6 @@ export default function OrderRoute() {
           </thead>
           <tbody>
             {lineItems.map((lineItem, lineItemIndex) => (
-              // eslint-disable-next-line react/no-array-index-key
               <OrderLineRow key={lineItemIndex} lineItem={lineItem} />
             ))}
           </tbody>
@@ -171,7 +170,12 @@ function OrderLineRow({lineItem}: {lineItem: OrderLineItemFullFragment}) {
           <Link to={`/products/${lineItem.variant!.product!.handle}`}>
             {lineItem?.variant?.image && (
               <div>
-                <Image data={lineItem.variant.image} width={96} height={96} />
+                <Image
+                  data={lineItem.variant.image}
+                  alt={lineItem.variant.image.altText ?? lineItem.title}
+                  width={96}
+                  height={96}
+                />
               </div>
             )}
           </Link>
