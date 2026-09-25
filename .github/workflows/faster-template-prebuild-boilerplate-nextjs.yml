@@ -34,17 +34,17 @@ jobs:
         env:
           NPM_CONFIG_LOGLEVEL: http
 
-      - working-directory: ./framework-boilerplates/nextjs
-        run: |
-          vc build --debug --token $VERCEL_TOKEN --yes --prod
-        env:
-          VERCEL_PROJECT_ID: prj_D1Kp06w4jE67wyV3WlMHjtfDLjhC
-          VERCEL_TOKEN: ${{ secrets.VERCEL_EXAMPLES_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_EXAMPLES_ORG_ID }}
+      # - working-directory: ./framework-boilerplates/nextjs
+      #   run: |
+      #     vc build --debug --token $VERCEL_TOKEN --yes --prod
+      #   env:
+      #     VERCEL_PROJECT_ID: prj_D1Kp06w4jE67wyV3WlMHjtfDLjhC
+      #     VERCEL_TOKEN: ${{ secrets.VERCEL_EXAMPLES_TOKEN }}
+      #     VERCEL_ORG_ID: ${{ secrets.VERCEL_EXAMPLES_ORG_ID }}
 
       - working-directory: ./framework-boilerplates/nextjs
         run: |
-          vc deploy --debug --token $VERCEL_TOKEN --yes --prod --prebuilt --archive=tgz
+          vc deploy --debug --token $VERCEL_TOKEN --yes --prod
         env:
           VERCEL_PROJECT_ID: prj_D1Kp06w4jE67wyV3WlMHjtfDLjhC
           VERCEL_TOKEN: ${{ secrets.VERCEL_EXAMPLES_TOKEN }}
