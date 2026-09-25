@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 540" width="1280" height="540" role="img" aria-label="Agent Analytics — see the agents your JavaScript can't.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="60%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="term-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#161b22"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1f2937" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="540" fill="url(#bg)"/>
+  <rect width="1280" height="540" fill="url(#grid)" opacity="0.35"/>
+
+  <!-- ambient accent blur -->
+  <circle cx="1080" cy="120" r="140" fill="#60a5fa" opacity="0.08" filter="url(#glow)"/>
+  <circle cx="180" cy="460" r="160" fill="#a78bfa" opacity="0.07" filter="url(#glow)"/>
+
+  <!-- Top-left label -->
+  <g transform="translate(80, 72)">
+    <rect x="0" y="0" width="220" height="28" rx="14" fill="none" stroke="url(#accent)" stroke-width="1" opacity="0.55"/>
+    <text x="110" y="19" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="700" letter-spacing="0.14em" fill="url(#accent)" text-anchor="middle">@APIDECK/AGENT-ANALYTICS</text>
+  </g>
+
+  <!-- Headline -->
+  <text x="80" y="168" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="64" font-weight="700" fill="#f5f5f5" letter-spacing="-0.025em">See the agents your</text>
+  <text x="80" y="236" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="64" font-weight="700" fill="#f5f5f5" letter-spacing="-0.025em">JavaScript can't.</text>
+
+  <!-- Subhead -->
+  <text x="80" y="280" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="19" fill="#9ca3af" font-weight="400">Drop-in Next.js middleware that tracks ClaudeBot, GPTBot,</text>
+  <text x="80" y="306" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="19" fill="#9ca3af" font-weight="400">Perplexity, and 20+ AI crawlers in PostHog — or any analytics.</text>
+
+  <!-- Bot pills -->
+  <g transform="translate(80, 352)">
+    <g transform="translate(0, 0)"><rect width="82" height="28" rx="14" fill="#1f2937" stroke="#374151"/><text x="41" y="19" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#e5e7eb" font-weight="600" text-anchor="middle">ClaudeBot</text></g>
+    <g transform="translate(92, 0)"><rect width="66" height="28" rx="14" fill="#1f2937" stroke="#374151"/><text x="33" y="19" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#e5e7eb" font-weight="600" text-anchor="middle">GPTBot</text></g>
+    <g transform="translate(168, 0)"><rect width="96" height="28" rx="14" fill="#1f2937" stroke="#374151"/><text x="48" y="19" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#e5e7eb" font-weight="600" text-anchor="middle">PerplexityBot</text></g>
+    <g transform="translate(274, 0)"><rect width="128" height="28" rx="14" fill="#1f2937" stroke="#374151"/><text x="64" y="19" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#e5e7eb" font-weight="600" text-anchor="middle">Google-Extended</text></g>
+    <g transform="translate(412, 0)"><rect width="58" height="28" rx="14" fill="#1f2937" stroke="#374151"/><text x="29" y="19" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#e5e7eb" font-weight="600" text-anchor="middle">Cursor</text></g>
+  </g>
+
+  <g transform="translate(80, 390)">
+    <g transform="translate(0, 0)"><rect width="76" height="28" rx="14" fill="#1f2937" stroke="#374151"/><text x="38" y="19" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#e5e7eb" font-weight="600" text-anchor="middle">Windsurf</text></g>
+    <g transform="translate(86, 0)"><rect width="78" height="28" rx="14" fill="#1f2937" stroke="#374151"/><text x="39" y="19" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#e5e7eb" font-weight="600" text-anchor="middle">Applebot</text></g>
+    <g transform="translate(174, 0)"><rect width="116" height="28" rx="14" fill="#1f2937" stroke="#374151"/><text x="58" y="19" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#e5e7eb" font-weight="600" text-anchor="middle">Meta-ExternalAgent</text></g>
+    <g transform="translate(300, 0)"><rect width="96" height="28" rx="14" fill="#1f2937" stroke="#374151"/><text x="48" y="19" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#e5e7eb" font-weight="600" text-anchor="middle">Bytespider</text></g>
+    <g transform="translate(406, 0)"><rect width="54" height="28" rx="14" fill="#1f2937" stroke="#374151"/><text x="27" y="19" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#e5e7eb" font-weight="600" text-anchor="middle">+ 12</text></g>
+  </g>
+
+  <!-- Terminal card on the right -->
+  <g transform="translate(700, 128)">
+    <rect width="500" height="320" rx="12" fill="url(#term-bg)" stroke="#1f2937"/>
+    <!-- chrome dots -->
+    <circle cx="22" cy="22" r="6" fill="#ef4444"/>
+    <circle cx="44" cy="22" r="6" fill="#f59e0b"/>
+    <circle cx="66" cy="22" r="6" fill="#22c55e"/>
+    <text x="250" y="27" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#6b7280" text-anchor="middle">middleware.ts</text>
+
+    <!-- code -->
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="400">
+      <text x="24" y="72"><tspan fill="#c084fc">import</tspan><tspan fill="#9ca3af"> {</tspan></text>
+      <text x="24" y="94"><tspan fill="#e5e7eb">  trackDocView, posthogAnalytics</tspan></text>
+      <text x="24" y="116"><tspan fill="#9ca3af">} </tspan><tspan fill="#c084fc">from</tspan><tspan fill="#86efac"> '@apideck/agent-analytics'</tspan></text>
+
+      <text x="24" y="152"><tspan fill="#c084fc">const</tspan><tspan fill="#e5e7eb"> analytics = </tspan><tspan fill="#fbbf24">posthogAnalytics</tspan><tspan fill="#9ca3af">({</tspan></text>
+      <text x="24" y="174"><tspan fill="#e5e7eb">  apiKey: process.env.</tspan><tspan fill="#93c5fd">POSTHOG_KEY</tspan></text>
+      <text x="24" y="196"><tspan fill="#9ca3af">})</tspan></text>
+
+      <text x="24" y="232"><tspan fill="#c084fc">export function</tspan><tspan fill="#fbbf24"> middleware</tspan><tspan fill="#9ca3af">(req) {</tspan></text>
+      <text x="24" y="254"><tspan fill="#f472b6">  void</tspan><tspan fill="#fbbf24"> trackDocView</tspan><tspan fill="#e5e7eb">(req, { analytics })</tspan></text>
+      <text x="24" y="276"><tspan fill="#c084fc">  return</tspan><tspan fill="#e5e7eb"> NextResponse.</tspan><tspan fill="#fbbf24">next</tspan><tspan fill="#9ca3af">()</tspan></text>
+      <text x="24" y="298"><tspan fill="#9ca3af">}</tspan></text>
+    </g>
+  </g>
+
+  <!-- Footer strip -->
+  <g transform="translate(80, 482)">
+    <text font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#6b7280">
+      <tspan fill="#22c55e">●</tspan><tspan fill="#9ca3af"> zero deps</tspan>
+      <tspan fill="#9ca3af" dx="20">·</tspan><tspan fill="#22c55e" dx="20">●</tspan><tspan fill="#9ca3af"> node 18+ · edge · bun</tspan>
+      <tspan fill="#9ca3af" dx="20">·</tspan><tspan fill="#22c55e" dx="20">●</tspan><tspan fill="#9ca3af"> postHog · webhook · custom</tspan>
+      <tspan fill="#9ca3af" dx="20">·</tspan><tspan fill="#22c55e" dx="20">●</tspan><tspan fill="#9ca3af"> markdown mirror helpers</tspan>
+    </text>
+  </g>
+</svg>
