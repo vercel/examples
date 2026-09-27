@@ -83,7 +83,7 @@ export function AccountCreateForm() {
               required
               placeholder="Email address"
               aria-label="Email address"
-              // eslint-disable-next-line jsx-a11y/no-autofocus
+               
               autoFocus
               value={email}
               onChange={(event) => {

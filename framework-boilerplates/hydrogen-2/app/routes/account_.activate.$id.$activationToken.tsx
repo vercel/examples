@@ -99,7 +99,6 @@ export default function Activate() {
             aria-label="Password"
             minLength={8}
             required
-            // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus
           />
           <label htmlFor="passwordConfirm">Re-enter password</label>

@@ -73,7 +73,6 @@ export default function Recover() {
                 <input
                   aria-label="Email address"
                   autoComplete="email"
-                  // eslint-disable-next-line jsx-a11y/no-autofocus
                   autoFocus
                   id="email"
                   name="email"
