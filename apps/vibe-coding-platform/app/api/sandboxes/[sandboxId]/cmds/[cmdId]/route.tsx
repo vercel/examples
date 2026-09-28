@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import { Sandbox } from '@vercel/sandbox'
+import { getRunningWorkspace, workspaceStopped } from '@/lib/running-workspace'
 import { authorizeWorkspace } from '@/lib/project-auth'
 
 interface Params {
@@ -14,10 +14,8 @@ export async function GET(
   const cmdParams = await params
   if (!(await authorizeWorkspace(request, cmdParams.sandboxId)))
     return new NextResponse(null, { status: 403 })
-  const sandbox = await Sandbox.get({
-    name: cmdParams.sandboxId,
-    resume: false,
-  })
+  const sandbox = await getRunningWorkspace(cmdParams.sandboxId)
+  if (!sandbox) return workspaceStopped()
   const command = await sandbox.getCommand(cmdParams.cmdId)
 
   /**

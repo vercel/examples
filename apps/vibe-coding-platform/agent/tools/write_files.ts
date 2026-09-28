@@ -13,13 +13,10 @@ export default defineTool({
       .max(50),
   }),
   async execute({ files }, ctx) {
-    const { native: sandbox } = await ctx.getSandbox(environment)
-    await sandbox.writeFiles(
-      files.map((file) => ({
-        path: projectPath(file.path),
-        content: Buffer.from(file.content),
-      }))
-    )
+    const sandbox = await ctx.getSandbox(environment)
+    for (const file of files) {
+      await sandbox.writeTextFile({ ...file, abortSignal: ctx.abortSignal })
+    }
     return {
       sandboxId: sandbox.name,
       paths: files.map((file) =>

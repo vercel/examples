@@ -114,6 +114,7 @@ function ProjectChat({
   const settingsRef = useRef(settings)
   settingsRef.current = settings
   const chat = useEveAgent({
+    host: '/api/agent',
     initialSession: { sessionId: project.sessionId, streamIndex: 0 },
     resume: true,
     headers: () => ({

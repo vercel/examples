@@ -1,6 +1,6 @@
 import { defineTool } from 'eve/tools'
 import { z } from 'zod'
-import { WORKSPACE } from '../../lib/workspace'
+import { commandLine, readOutputTail } from '../lib/command-output'
 import { environment } from '../sandbox'
 
 export default defineTool({
@@ -11,16 +11,14 @@ export default defineTool({
     args: z.array(z.string()).default([]),
   }),
   async *execute({ command, args }, ctx) {
-    const { native: sandbox } = await ctx.getSandbox(environment)
-    const process = await sandbox.runCommand({
-      cmd: command,
-      args,
-      cwd: WORKSPACE,
-      detached: true,
+    const sandbox = await ctx.getSandbox(environment)
+    const process = await sandbox.spawn({
+      command: commandLine(command, args),
+      abortSignal: ctx.abortSignal,
     })
     const progress = {
       sandboxId: sandbox.name,
-      commandId: process.cmdId,
+      commandId: process.commandId,
       command,
       args,
     }
@@ -31,18 +29,17 @@ export default defineTool({
       stdout: '',
       stderr: '',
     }
-    const done = await process
-      .wait({ signal: ctx.abortSignal })
-      .catch(async (error) => {
-        if (ctx.abortSignal?.aborted) await process.kill().catch(() => {})
-        throw error
-      })
+    const [done, stdout, stderr] = await Promise.all([
+      process.wait(),
+      readOutputTail(process.stdout),
+      readOutputTail(process.stderr),
+    ])
     yield {
       ...progress,
       status: 'done',
       exitCode: done.exitCode,
-      stdout: (await done.stdout()).slice(-16000),
-      stderr: (await done.stderr()).slice(-16000),
+      stdout,
+      stderr,
     }
   },
 })

@@ -1,4 +1,8 @@
-import type { SandboxSession } from 'eve/sandbox'
+import type {
+  SandboxSession,
+  SandboxProcess,
+  SandboxSpawnOptions,
+} from 'eve/sandbox'
 import {
   defineSandboxProvider,
   type SandboxProviderHandle,
@@ -8,14 +12,23 @@ import {
   openWorkspace,
   projectPath,
   restartPreview,
+  previewOutput,
+  startPreview,
   WORKSPACE,
 } from '../../lib/workspace'
 
 interface ProjectSandboxSession extends SandboxSession {
-  native: Sandbox
+  name: string
+  spawn(
+    options: SandboxSpawnOptions
+  ): Promise<SandboxProcess & { commandId: string }>
+  preview: {
+    current(): ReturnType<typeof previewOutput>
+    start(command: string, args: string[]): ReturnType<typeof startPreview>
+  }
 }
 
-// The native handle supplies preview URLs and command IDs for the existing UI.
+// Keep native SDK objects inside this adapter; tools use eve I/O and preview capabilities.
 // eve checkpoints its name and owns the compute lifecycle; the drive outlives it.
 export const ProjectSandbox = defineSandboxProvider<
   undefined,
@@ -34,10 +47,13 @@ export const ProjectSandbox = defineSandboxProvider<
     },
     async start(ctx, _options, artifact) {
       const native = await openWorkspace(ctx.session.id, artifact)
-      return { handle: adapt(native), state: { name: native.name } }
+      return {
+        handle: adaptProjectSandbox(native),
+        state: { name: native.name },
+      }
     },
     async resume(_ctx, _artifact, state) {
-      return adapt(
+      return adaptProjectSandbox(
         await Sandbox.get({
           name: state.name,
           resume: true,
@@ -48,23 +64,24 @@ export const ProjectSandbox = defineSandboxProvider<
   }),
 })
 
-function adapt(native: Sandbox): SandboxProviderHandle<ProjectSandboxSession> {
+export function adaptProjectSandbox(
+  native: Sandbox
+): SandboxProviderHandle<ProjectSandboxSession> {
   const sandbox: ProjectSandboxSession = {
-    native,
+    name: native.name,
+    preview: {
+      current: () => previewOutput(native),
+      start: (command, args) => startPreview(native, command, args),
+    },
     resolvePath: projectPath,
-    async run({ command, workingDirectory, env, abortSignal }) {
-      const result = await native.runCommand({
-        cmd: 'bash',
-        args: ['-lc', command],
-        cwd: workingDirectory ?? WORKSPACE,
-        env,
-        signal: abortSignal,
-      })
-      return {
-        exitCode: result.exitCode,
-        stdout: await result.stdout(),
-        stderr: await result.stderr(),
-      }
+    async run(options) {
+      const process = await sandbox.spawn(options)
+      const [result, stdout, stderr] = await Promise.all([
+        process.wait(),
+        new Response(process.stdout).text(),
+        new Response(process.stderr).text(),
+      ])
+      return { exitCode: result.exitCode, stdout, stderr }
     },
     async spawn({ command, workingDirectory, env, abortSignal }) {
       const process = await native.runCommand({
@@ -101,6 +118,7 @@ function adapt(native: Sandbox): SandboxProviderHandle<ProjectSandboxSession> {
           },
         })
       return {
+        commandId: process.cmdId,
         stdout: stdout.pipeThrough(filter('stdout')),
         stderr: stderr.pipeThrough(filter('stderr')),
         wait: async () => {

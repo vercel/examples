@@ -63,11 +63,11 @@ Compute pauses after ten minutes. **Resume workspace** restores compute and rest
 
 Command logs are streamed from Sandbox, not archived on the drive. Logs from older compute instances may no longer be available after resuming; new preview processes appear as separate commands.
 
-The custom provider in `agent/lib/project-sandbox.ts` connects eve's sandbox lifecycle to the native Sandbox APIs needed for preview URLs and command logs. Authored tools access it through `ctx.getSandbox(environment)`.
+The custom provider in `agent/lib/project-sandbox.ts` connects eve's sandbox lifecycle to Vercel Sandbox. Authored tools use its standard file and process methods through `ctx.getSandbox(environment)`; only preview control and command IDs are provider-specific capabilities. Native SDK objects stay inside the adapter.
 
 This demo stores only the current project's session ID and signed credential in browser local storage. The credential permits access to that session and workspace for 30 days. It is not an account system or a multi-project database. New projects do not delete old storage: use the Vercel Sandbox dashboard or CLI to delete unused sandboxes and drives. Drives persist and incur storage charges until deleted.
 
-`/api/projects` checks BotID before creating a session and issuing its credential. eve routes and file/log/resume endpoints verify that credential and its session scope. Do not expose `PROJECT_SECRET` to the browser or generated sandbox.
+`/api/projects` checks BotID before creating a session and issuing its credential. Browser eve requests use the `/api/agent` relay, which checks BotID on every message, input response, and session control before issuing a server-only, one-minute grant scoped to that exact eve route. The browser credential cannot directly mutate an eve session. Stream reads and file/log endpoints still verify its session scope; explicit workspace resume also checks BotID. Passive file/log/status reads check that compute is running before invoking SDK I/O. Do not expose `PROJECT_SECRET` to the browser or generated sandbox.
 
 ## Verification
 
@@ -78,7 +78,7 @@ pnpm build:agent
 pnpm build
 ```
 
-With Sandbox credentials loaded, `pnpm test:sandbox` creates an isolated test drive and sandbox, starts an HTTP preview, stops and resumes compute, verifies the file and preview survive, then deletes its test resources. This check uses billable Sandbox resources.
+With Sandbox credentials loaded, `pnpm test:sandbox` creates an isolated test drive and sandbox, checks adapter I/O, starts an HTTP preview, stops and resumes compute, and verifies the file and preview survive. Cleanup attempts sandbox stop, sandbox deletion, and drive deletion even when an earlier step fails, including partial creation failures. Cleanup errors report the resource name for manual recovery. This check uses billable Sandbox resources.
 
 For a local production run, build both services as above, then run `pnpm start`. The Vercel integration builds and routes the eve service automatically when deployed.
 

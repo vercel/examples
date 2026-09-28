@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { randomUUID } from 'node:crypto'
-import { Drive, Sandbox } from '@vercel/sandbox'
+import { Sandbox } from '@vercel/sandbox'
 import {
   listFiles,
   openWorkspace,
@@ -8,7 +8,9 @@ import {
   startPreview,
   WORKSPACE,
 } from '../lib/workspace'
-import { workspaceName } from '../lib/project-auth'
+import { adaptProjectSandbox } from '../agent/lib/project-sandbox'
+import { cleanupWorkspace } from './helpers/cleanup-workspace'
+import { getRunningWorkspace } from '../lib/running-workspace'
 
 async function checkPreview(url: string) {
   let failure: unknown
@@ -28,27 +30,45 @@ async function checkPreview(url: string) {
 async function main() {
   const sessionId = `smoke-${randomUUID()}`
   let sandbox: Sandbox | undefined
+  let failure: unknown
   try {
     sandbox = await openWorkspace(sessionId)
     console.log('Created test workspace')
-    await sandbox.writeFiles([
-      {
-        path: `${WORKSPACE}/server.cjs`,
-        content: Buffer.from(
-          'require("node:http").createServer((req, res) => res.end("persistent-preview")).listen(3000, "0.0.0.0")'
-        ),
-      },
-    ])
+    const adapter = adaptProjectSandbox(sandbox).sandbox
+    await adapter.writeTextFile({
+      path: 'server.cjs',
+      content:
+        'require("node:http").createServer((req, res) => res.end("persistent-preview")).listen(3000, "0.0.0.0")',
+    })
+    assert.match(
+      (await adapter.readTextFile({ path: 'server.cjs' }))!,
+      /persistent-preview/
+    )
+    const result = await adapter.run({
+      command: 'printf stdout; printf stderr >&2; exit 7',
+    })
+    assert.deepEqual(result, {
+      exitCode: 7,
+      stdout: 'stdout',
+      stderr: 'stderr',
+    })
     const initial = await startPreview(sandbox, 'node', ['server.cjs'])
     assert.ok(initial?.commandId)
     await checkPreview(sandbox.domain(3000))
     console.log('Initial preview verified')
     await sandbox.stop()
+    assert.equal(await getRunningWorkspace(sandbox.name), null)
+    assert.notEqual(
+      (await Sandbox.get({ name: sandbox.name, resume: false })).status,
+      'running'
+    )
     sandbox = await openWorkspace(sessionId)
     const resumed = await previewOutput(sandbox)
     assert.ok(resumed?.commandId)
     assert.notEqual(initial.commandId, resumed.commandId)
-    assert.deepEqual(await listFiles(sandbox), ['server.cjs'])
+    assert.deepEqual(await listFiles(adaptProjectSandbox(sandbox).sandbox), [
+      'server.cjs',
+    ])
     assert.ok(
       await sandbox.readFileToBuffer({ path: `${WORKSPACE}/server.cjs` })
     )
@@ -56,20 +76,26 @@ async function main() {
     console.log(
       'PASS: drive contents and HTTP preview survive sandbox stop/resume'
     )
+  } catch (error) {
+    failure = error
   } finally {
-    if (sandbox) {
-      await sandbox.stop()
-      await sandbox.delete()
-      const drive = await Drive.getOrCreate({
-        name: workspaceName(sessionId),
-        region: process.env.SANDBOX_REGION ?? 'iad1',
-      })
-      await drive.delete()
+    try {
+      await cleanupWorkspace(sessionId, sandbox)
+    } catch (error) {
+      throw failure
+        ? new AggregateError([failure, error], 'Smoke test and cleanup failed')
+        : error
     }
   }
+  if (failure) throw failure
+}
+
+function reportError(error: Error) {
+  console.error(error.message)
+  if (error instanceof AggregateError) error.errors.forEach(reportError)
 }
 
 main().catch((error) => {
-  console.error(error.message)
+  reportError(error)
   process.exitCode = 1
 })

@@ -1,4 +1,4 @@
-import { Sandbox } from '@vercel/sandbox'
+import { getRunningWorkspace, workspaceStopped } from '@/lib/running-workspace'
 import { authorizeWorkspace } from '@/lib/project-auth'
 import { projectPath } from '@/lib/workspace'
 
@@ -16,7 +16,8 @@ export async function GET(
   } catch {
     return Response.json({ error: 'Invalid project path' }, { status: 400 })
   }
-  const sandbox = await Sandbox.get({ name: sandboxId, resume: false })
+  const sandbox = await getRunningWorkspace(sandboxId)
+  if (!sandbox) return workspaceStopped()
   const content = await sandbox.readFileToBuffer({ path })
   if (!content) return new Response(null, { status: 404 })
   return new Response(new Uint8Array(content), {

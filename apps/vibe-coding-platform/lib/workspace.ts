@@ -1,6 +1,7 @@
 import { Drive, Sandbox } from '@vercel/sandbox'
 import { posix } from 'node:path'
 import { z } from 'zod'
+import type { SandboxSession } from 'eve/sandbox'
 import { workspaceName } from './project-auth'
 
 export const WORKSPACE = '/workspace'
@@ -91,36 +92,13 @@ export async function openWorkspace(
   })
 }
 
-export async function listFiles(sandbox: Sandbox) {
-  const result = await sandbox.runCommand({
-    cmd: 'find',
-    args: [
-      '.',
-      '-type',
-      'd',
-      '(',
-      '-name',
-      'node_modules',
-      '-o',
-      '-name',
-      '.next',
-      '-o',
-      '-name',
-      '.git',
-      '-o',
-      '-name',
-      '.vibe',
-      ')',
-      '-prune',
-      '-o',
-      '-type',
-      'f',
-      '-print',
-    ],
-    cwd: WORKSPACE,
+export async function listFiles(sandbox: Pick<SandboxSession, 'run'>) {
+  const result = await sandbox.run({
+    command:
+      'find . -type d \\( -name node_modules -o -name .next -o -name .git -o -name .vibe \\) -prune -o -type f -print',
   })
-  if (result.exitCode !== 0) throw new Error(await result.stderr())
-  return (await result.stdout())
+  if (result.exitCode !== 0) throw new Error(result.stderr)
+  return result.stdout
     .split('\n')
     .filter(Boolean)
     .map((path) => path.replace(/^\.\//, ''))

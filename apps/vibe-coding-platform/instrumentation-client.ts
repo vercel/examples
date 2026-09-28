@@ -7,5 +7,7 @@ initBotId({
       method: 'POST',
     },
     { path: '/api/errors', method: 'POST' },
+    { path: '/api/agent/*', method: 'POST' },
+    { path: '/api/sandboxes/*', method: 'POST' },
   ],
 })
