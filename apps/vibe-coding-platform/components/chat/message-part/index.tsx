@@ -1,39 +1,39 @@
-import type { Metadata } from '@/ai/messages/metadata'
-import type { DataPart } from '@/ai/messages/data-parts'
-import type { ToolSet } from '@/ai/tools'
-import type { UIMessage } from 'ai'
-import { GenerateFiles } from './generate-files'
-import { CreateSandbox } from './create-sandbox'
-import { GetSandboxURL } from './get-sandbox-url'
-import { RunCommand } from './run-command'
-import { ReportErrors } from './report-errors'
+import type { EveMessagePart } from 'eve/react'
+import { CheckIcon, LoaderCircleIcon, TerminalIcon, XIcon } from 'lucide-react'
 import { Reasoning } from './reasoning'
 import { Text } from './text'
-import { memo } from 'react'
+import { ToolMessage } from '../tool-message'
+import { ToolHeader } from '../tool-header'
 
-interface Props {
-  part: UIMessage<Metadata, DataPart, ToolSet>['parts'][number]
-  partIndex: number
-}
-
-export const MessagePart = memo(function MessagePart({
+export function MessagePart({
   part,
   partIndex,
-}: Props) {
-  if (part.type === 'data-generating-files') {
-    return <GenerateFiles message={part.data} />
-  } else if (part.type === 'data-create-sandbox') {
-    return <CreateSandbox message={part.data} />
-  } else if (part.type === 'data-get-sandbox-url') {
-    return <GetSandboxURL message={part.data} />
-  } else if (part.type === 'data-run-command') {
-    return <RunCommand message={part.data} />
-  } else if (part.type === 'reasoning') {
+}: {
+  part: EveMessagePart
+  partIndex: number
+}) {
+  if (part.type === 'text') return <Text part={part} />
+  if (part.type === 'reasoning')
     return <Reasoning part={part} partIndex={partIndex} />
-  } else if (part.type === 'data-report-errors') {
-    return <ReportErrors message={part.data} />
-  } else if (part.type === 'text') {
-    return <Text part={part} />
-  }
-  return null
-})
+  if (part.type !== 'dynamic-tool') return null
+  const complete = part.state === 'output-available'
+  const failed = part.state === 'output-error'
+  return (
+    <ToolMessage>
+      <ToolHeader>
+        <TerminalIcon className="size-3.5 shrink-0" />
+        <span className="min-w-0 break-words">
+          {part.toolName.replaceAll('_', ' ')}
+        </span>
+        {complete ? (
+          <CheckIcon className="ml-auto size-4" />
+        ) : failed ? (
+          <XIcon className="ml-auto size-4 text-red-600" />
+        ) : (
+          <LoaderCircleIcon className="ml-auto size-4 animate-spin" />
+        )}
+      </ToolHeader>
+      {failed && <p className="break-words text-red-600">{part.errorText}</p>}
+    </ToolMessage>
+  )
+}

@@ -28,14 +28,13 @@ export const Message = memo(function Message({ message }: Props) {
   const reasoningParts = message.parts
     .map((part, index) => ({ part, index }))
     .filter(({ part }) => part.type === 'reasoning')
+  const latestReasoningIndex = reasoningParts.at(-1)?.index ?? null
 
   useEffect(() => {
-    if (reasoningParts.length > 0) {
-      const latestReasoningIndex =
-        reasoningParts[reasoningParts.length - 1].index
+    if (latestReasoningIndex !== null) {
       setExpandedReasoningIndex(latestReasoningIndex)
     }
-  }, [reasoningParts])
+  }, [latestReasoningIndex])
 
   return (
     <ReasoningContext.Provider
@@ -57,7 +56,7 @@ export const Message = memo(function Message({ message }: Props) {
           ) : (
             <>
               <BotIcon className="w-4" />
-              <span>Assistant ({message.metadata?.model})</span>
+              <span>Assistant</span>
             </>
           )}
         </div>

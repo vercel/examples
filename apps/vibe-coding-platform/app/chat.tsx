@@ -1,8 +1,7 @@
 'use client'
 
-import type { ChatUIMessage } from '@/components/chat/types'
 import { TEST_PROMPTS } from '@/ai/constants'
-import { MessageCircleIcon, SendIcon } from 'lucide-react'
+import { MessageCircleIcon, SendIcon, SquareIcon, PlusIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Conversation,
@@ -14,11 +13,9 @@ import { Message } from '@/components/chat/message'
 import { ModelSelector } from '@/components/settings/model-selector'
 import { Panel, PanelHeader } from '@/components/panels/panels'
 import { Settings } from '@/components/settings/settings'
-import { useChat } from '@ai-sdk/react'
 import { useLocalStorageValue } from '@/lib/use-local-storage-value'
 import { useCallback, useEffect } from 'react'
 import { useSharedChatContext } from '@/lib/chat-context'
-import { useSettings } from '@/components/settings/use-settings'
 import { useSandboxStore } from './state'
 
 interface Props {
@@ -28,19 +25,24 @@ interface Props {
 
 export function Chat({ className }: Props) {
   const [input, setInput] = useLocalStorageValue('prompt-input')
-  const { chat } = useSharedChatContext()
-  const { modelId, reasoningEffort } = useSettings()
-  const { messages, sendMessage, status } = useChat<ChatUIMessage>({ chat })
+  const {
+    data: { messages },
+    send,
+    status,
+    cancel,
+    newProject,
+    error,
+  } = useSharedChatContext()
   const { setChatStatus } = useSandboxStore()
 
   const validateAndSubmitMessage = useCallback(
     (text: string) => {
       if (text.trim()) {
-        sendMessage({ text }, { body: { modelId, reasoningEffort } })
+        void send(text).catch(() => {})
         setInput('')
       }
     },
-    [sendMessage, modelId, setInput, reasoningEffort]
+    [send, setInput]
   )
 
   useEffect(() => {
@@ -55,6 +57,20 @@ export function Chat({ className }: Props) {
           Chat
         </div>
         <div className="ml-auto font-mono text-xs opacity-50">[{status}]</div>
+        <Button
+          variant="ghost"
+          size="icon"
+          title="New project"
+          aria-label="New project"
+          disabled={
+            status === 'resuming' ||
+            status === 'streaming' ||
+            status === 'submitted'
+          }
+          onClick={newProject}
+        >
+          <PlusIcon className="size-4" />
+        </Button>
       </PanelHeader>
 
       {/* Messages Area */}
@@ -69,7 +85,9 @@ export function Chat({ className }: Props) {
                 <li
                   key={idx}
                   className="px-4 py-2 rounded-sm border border-dashed shadow-sm cursor-pointer border-border hover:bg-secondary/50 hover:text-primary"
-                  onClick={() => validateAndSubmitMessage(prompt)}
+                  onClick={() => {
+                    if (status === 'ready') validateAndSubmitMessage(prompt)
+                  }}
                 >
                   {prompt}
                 </li>
@@ -88,6 +106,11 @@ export function Chat({ className }: Props) {
         </Conversation>
       )}
 
+      {error && (
+        <p role="alert" className="px-3 py-2 text-sm text-red-600 break-words">
+          {error.message}
+        </p>
+      )}
       <form
         className="flex items-center p-2 space-x-1 border-t border-primary/18 bg-background"
         onSubmit={async (event) => {
@@ -99,14 +122,35 @@ export function Chat({ className }: Props) {
         <ModelSelector />
         <Input
           className="w-full font-mono text-sm rounded-sm border-0 bg-background"
-          disabled={status === 'streaming' || status === 'submitted'}
+          disabled={
+            status === 'streaming' ||
+            status === 'submitted' ||
+            status === 'resuming'
+          }
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type your message..."
           value={input}
         />
-        <Button type="submit" disabled={status !== 'ready' || !input.trim()}>
-        <SendIcon className="w-4 h-4" />
-        </Button>
+        {status === 'streaming' || status === 'submitted' ? (
+          <Button
+            type="button"
+            title="Stop"
+            aria-label="Stop"
+            onClick={() => void cancel().catch(() => {})}
+          >
+            <SquareIcon className="size-4" />
+          </Button>
+        ) : (
+          <Button
+            type="submit"
+            aria-label="Send"
+            disabled={
+              (status !== 'ready' && status !== 'error') || !input.trim()
+            }
+          >
+            <SendIcon className="size-4" />
+          </Button>
+        )}
       </form>
     </Panel>
   )

@@ -1,46 +1,28 @@
-import { NextResponse, type NextRequest } from 'next/server'
 import { Sandbox } from '@vercel/sandbox'
-import z from 'zod/v3'
-
-const FileParamsSchema = z.object({
-  sandboxId: z.string(),
-  path: z.string(),
-})
+import { authorizeWorkspace } from '@/lib/project-auth'
+import { projectPath } from '@/lib/workspace'
 
 export async function GET(
-  request: NextRequest,
+  request: Request,
   { params }: { params: Promise<{ sandboxId: string }> }
 ) {
   const { sandboxId } = await params
-  const fileParams = FileParamsSchema.safeParse({
-    path: request.nextUrl.searchParams.get('path'),
-    sandboxId,
+  if (!(await authorizeWorkspace(request, sandboxId)))
+    return new Response(null, { status: 403 })
+  const requested = new URL(request.url).searchParams.get('path')
+  let path: string
+  try {
+    path = projectPath(requested ?? '')
+  } catch {
+    return Response.json({ error: 'Invalid project path' }, { status: 400 })
+  }
+  const sandbox = await Sandbox.get({ name: sandboxId, resume: false })
+  const content = await sandbox.readFileToBuffer({ path })
+  if (!content) return new Response(null, { status: 404 })
+  return new Response(new Uint8Array(content), {
+    headers: {
+      'content-type': 'text/plain; charset=utf-8',
+      'cache-control': 'no-store',
+    },
   })
-
-  if (fileParams.success === false) {
-    return NextResponse.json(
-      { error: 'Invalid parameters. You must pass a `path` as query' },
-      { status: 400 }
-    )
-  }
-
-  const sandbox = await Sandbox.get(fileParams.data)
-  const stream = await sandbox.readFile(fileParams.data)
-  if (!stream) {
-    return NextResponse.json(
-      { error: 'File not found in the Sandbox' },
-      { status: 404 }
-    )
-  }
-
-  return new NextResponse(
-    new ReadableStream({
-      async pull(controller) {
-        for await (const chunk of stream) {
-          controller.enqueue(chunk)
-        }
-        controller.close()
-      },
-    })
-  )
 }

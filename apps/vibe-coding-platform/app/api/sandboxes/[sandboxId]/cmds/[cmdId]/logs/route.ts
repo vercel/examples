@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { Sandbox } from '@vercel/sandbox'
+import { authorizeWorkspace } from '@/lib/project-auth'
 
 interface Params {
   sandboxId: string
@@ -7,18 +8,23 @@ interface Params {
 }
 
 export async function GET(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<Params> }
 ) {
   const logParams = await params
+  if (!(await authorizeWorkspace(request, logParams.sandboxId)))
+    return new NextResponse(null, { status: 403 })
   const encoder = new TextEncoder()
-  const sandbox = await Sandbox.get(logParams)
+  const sandbox = await Sandbox.get({
+    name: logParams.sandboxId,
+    resume: false,
+  })
   const command = await sandbox.getCommand(logParams.cmdId)
 
   return new NextResponse(
     new ReadableStream({
       async pull(controller) {
-        for await (const logline of command.logs()) {
+        for await (const logline of command.logs({ signal: request.signal })) {
           controller.enqueue(
             encoder.encode(
               JSON.stringify({

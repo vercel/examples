@@ -1,4 +1,3 @@
-import type { ReasoningUIPart } from 'ai'
 import { MessageSpinner } from '../message-spinner'
 import { useReasoningContext } from '../message'
 import { Streamdown } from 'streamdown'
@@ -7,7 +6,7 @@ export function Reasoning({
   part,
   partIndex,
 }: {
-  part: ReasoningUIPart
+  part: { text: string; state?: string }
   partIndex: number
 }) {
   const context = useReasoningContext()

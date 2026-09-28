@@ -57,10 +57,10 @@ export function Welcome(props: {
             </p>
             <p className="text-base text-secondary-foreground">
               It uses Vercel&apos;s AI Cloud services like{' '}
-              <ExternalLink href="https://vercel.com/docs/vercel-sandbox">
+              <ExternalLink href="https://vercel.com/docs/sandbox">
                 Sandbox
               </ExternalLink>{' '}
-              for secure code execution,{' '}
+              with persistent drives for project files,{' '}
               <ExternalLink href="https://vercel.com/docs/ai-gateway">
                 AI Gateway
               </ExternalLink>{' '}
@@ -70,11 +70,7 @@ export function Welcome(props: {
               </ExternalLink>{' '}
               for efficient rendering and streaming, and it&apos;s built with{' '}
               <ExternalLink href="https://nextjs.org/">Next.js</ExternalLink>{' '}
-              and the{' '}
-              <ExternalLink href="https://ai-sdk.dev/docs/introduction">
-                AI SDK
-              </ExternalLink>
-              .
+              and <ExternalLink href="https://eve.dev/">eve</ExternalLink>.
             </p>
           </div>
           <footer className="bg-secondary flex justify-end p-4 border-t border-border">
