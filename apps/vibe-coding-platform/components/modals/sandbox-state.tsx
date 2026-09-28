@@ -1,5 +1,8 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+import useSWR from 'swr'
+import { PlayIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -9,59 +12,59 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { useSandboxStore } from '@/app/state'
-import { useEffect } from 'react'
-import useSWR from 'swr'
+import { projectFetch } from '@/lib/project-client'
 
 export function SandboxState() {
-  const { sandboxId, status, setStatus } = useSandboxStore()
-  if (status === 'stopped') {
-    return (
-      <Dialog open>
-        <DialogHeader className="sr-only">
-          <DialogTitle className="sr-only">
-            Sandbox max. duration reached
-          </DialogTitle>
-          <DialogDescription className="sr-only">
-            The Vercel Sandbox is already stopped. You can start a new session
-            by clicking the button below.
-          </DialogDescription>
-        </DialogHeader>
-        <DialogContent>
-          Sandbox max. duration for this demo has been reached
-          <Button onClick={() => window.location.reload()}>
-            Start a new session
-          </Button>
-        </DialogContent>
-      </Dialog>
-    )
+  const { sandboxId, status, setStatus, applyToolOutput } = useSandboxStore()
+  const [pending, setPending] = useState(false)
+  const [error, setError] = useState<string>()
+  const { data, mutate } = useSWR(
+    sandboxId ? `/api/sandboxes/${sandboxId}` : null,
+    async (url: string) =>
+      (await projectFetch(url)).json() as Promise<{
+        status: 'running' | 'stopped'
+      }>,
+    { refreshInterval: 15_000 }
+  )
+  useEffect(() => {
+    if (data) {
+      setStatus(data.status)
+      applyToolOutput(data)
+    }
+  }, [data, setStatus, applyToolOutput])
+
+  async function resume() {
+    setPending(true)
+    setError(undefined)
+    try {
+      const response = await projectFetch(`/api/sandboxes/${sandboxId}`, {
+        method: 'POST',
+      })
+      applyToolOutput(await response.json())
+      setStatus('running')
+      await mutate()
+    } catch (error) {
+      setError(
+        error instanceof Error ? error.message : 'Could not resume workspace'
+      )
+    } finally {
+      setPending(false)
+    }
   }
 
-  return sandboxId ? (
-    <DirtyChecker sandboxId={sandboxId} setStatus={setStatus} />
-  ) : null
-}
-
-interface DirtyCheckerProps {
-  sandboxId: string
-  setStatus: (status: 'running' | 'stopped') => void
-}
-
-function DirtyChecker({ sandboxId, setStatus }: DirtyCheckerProps) {
-  const content = useSWR<'ok' | 'stopped'>(
-    `/api/sandboxes/${sandboxId}`,
-    async (pathname: string, init: RequestInit) => {
-      const response = await fetch(pathname, init)
-      const { status } = await response.json()
-      return status
-    },
-    { refreshInterval: 1000 }
+  return (
+    <Dialog open={status === 'stopped'}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Workspace paused</DialogTitle>
+          <DialogDescription>Your project files are saved.</DialogDescription>
+        </DialogHeader>
+        {error && <p role="alert">{error}</p>}
+        <Button disabled={pending} onClick={() => void resume()}>
+          <PlayIcon className="size-4 mr-2" />
+          {pending ? 'Resuming...' : 'Resume workspace'}
+        </Button>
+      </DialogContent>
+    </Dialog>
   )
-
-  useEffect(() => {
-    if (content.data === 'stopped') {
-      setStatus('stopped')
-    }
-  }, [setStatus, content.data])
-
-  return null
 }

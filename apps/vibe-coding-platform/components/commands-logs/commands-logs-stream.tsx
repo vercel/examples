@@ -1,49 +1,72 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useSandboxStore } from '@/app/state'
 import stripAnsi from 'strip-ansi'
 import z from 'zod/v3'
-
-type StreamingCommandLogs = Record<
-  string,
-  Awaited<ReturnType<typeof getCommandLogs>>
->
+import { projectFetch } from '@/lib/project-client'
 
 export function CommandLogsStream() {
-  const { sandboxId, commands, addLog, upsertCommand } = useSandboxStore()
-  const ref = useRef<StreamingCommandLogs>({})
+  const commands = useSandboxStore((state) => state.commands)
+  return commands.map(({ sandboxId, cmdId }) => (
+    <CommandLogStream
+      key={`${sandboxId}:${cmdId}`}
+      sandboxId={sandboxId}
+      cmdId={cmdId}
+    />
+  ))
+}
 
+function CommandLogStream({
+  sandboxId,
+  cmdId,
+}: {
+  sandboxId: string
+  cmdId: string
+}) {
   useEffect(() => {
-    if (sandboxId) {
-      for (const command of commands.filter(
-        (command) => typeof command.exitCode === 'undefined'
-      )) {
-        if (!ref.current[command.cmdId]) {
-          const iterator = getCommandLogs(sandboxId, command.cmdId)
-          ref.current[command.cmdId] = iterator
-          ;(async () => {
-            for await (const log of iterator) {
-              addLog({
-                sandboxId: sandboxId,
-                cmdId: command.cmdId,
-                log: log,
-              })
-            }
+    const controller = new AbortController()
+    const { signal } = controller
+    const store = useSandboxStore.getState()
+    const command = store.commands.find(
+      (item) => item.sandboxId === sandboxId && item.cmdId === cmdId
+    )
+    if (!command) return
+    store.upsertCommand({ ...command, logs: [] })
 
-            const log = await getCommand(sandboxId, command.cmdId)
-            upsertCommand({
-              sandboxId: log.sandboxId,
-              cmdId: log.cmdId,
-              exitCode: log.exitCode ?? 0,
-              command: command.command,
-              args: command.args,
-            })
-          })()
+    void (async () => {
+      try {
+        for await (const log of getCommandLogs(sandboxId, cmdId, signal)) {
+          if (signal.aborted) return
+          store.addLog({ sandboxId, cmdId, log })
+        }
+        const response = await projectFetch(
+          `/api/sandboxes/${sandboxId}/cmds/${cmdId}`,
+          { signal }
+        )
+        const result = cmdSchema.parse(await response.json())
+        const current = useSandboxStore
+          .getState()
+          .commands.find((item) => item.cmdId === cmdId)
+        if (!signal.aborted && current && result.exitCode !== undefined) {
+          store.upsertCommand({ ...current, exitCode: result.exitCode })
+        }
+      } catch {
+        if (!signal.aborted) {
+          store.addLog({
+            sandboxId,
+            cmdId,
+            log: {
+              stream: 'stdout',
+              timestamp: Date.now(),
+              data: '\nCommand log stream is no longer available.\n',
+            },
+          })
         }
       }
-    }
-  }, [sandboxId, commands, addLog, upsertCommand])
+    })()
+    return () => controller.abort()
+  }, [sandboxId, cmdId])
 
   return null
 }
@@ -54,45 +77,42 @@ const logSchema = z.object({
   timestamp: z.number(),
 })
 
-async function* getCommandLogs(sandboxId: string, cmdId: string) {
-  const response = await fetch(
-    `/api/sandboxes/${sandboxId}/cmds/${cmdId}/logs`,
-    { headers: { 'Content-Type': 'application/json' } }
-  )
+function parseLog(line: string) {
+  const log = logSchema.parse(JSON.parse(line))
+  return { ...log, data: stripAnsi(log.data) }
+}
 
-  const reader = response.body!.getReader()
+async function* getCommandLogs(
+  sandboxId: string,
+  cmdId: string,
+  signal: AbortSignal
+) {
+  const response = await projectFetch(
+    `/api/sandboxes/${sandboxId}/cmds/${cmdId}/logs`,
+    { signal }
+  )
+  if (!response.body) throw new Error('Missing command log stream')
+  const reader = response.body.getReader()
   const decoder = new TextDecoder()
   let line = ''
-  while (true) {
-    const { done, value } = await reader.read()
-    if (done) break
-
-    line += decoder.decode(value, { stream: true })
-    const lines = line.split('\n')
-    for (let i = 0; i < lines.length - 1; i++) {
-      if (lines[i]) {
-        const logEntry = JSON.parse(lines[i])
-        const parsed = logSchema.parse(logEntry)
-        yield {
-          data: stripAnsi(parsed.data),
-          stream: parsed.stream,
-          timestamp: parsed.timestamp,
-        }
+  try {
+    while (true) {
+      const { done, value } = await reader.read()
+      line += decoder.decode(value, { stream: !done })
+      const lines = line.split('\n')
+      line = lines.pop() ?? ''
+      for (const entry of lines) {
+        if (entry) yield parseLog(entry)
+      }
+      if (done) {
+        if (line) yield parseLog(line)
+        break
       }
     }
-    line = lines[lines.length - 1]
+  } finally {
+    await reader.cancel().catch(() => {})
+    reader.releaseLock()
   }
 }
 
-const cmdSchema = z.object({
-  sandboxId: z.string(),
-  cmdId: z.string(),
-  startedAt: z.number(),
-  exitCode: z.number().optional(),
-})
-
-async function getCommand(sandboxId: string, cmdId: string) {
-  const response = await fetch(`/api/sandboxes/${sandboxId}/cmds/${cmdId}`)
-  const json = await response.json()
-  return cmdSchema.parse(json)
-}
+const cmdSchema = z.object({ exitCode: z.number().optional() })

@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import { Sandbox } from '@vercel/sandbox'
+import { getRunningWorkspace, workspaceStopped } from '@/lib/running-workspace'
+import { authorizeWorkspace } from '@/lib/project-auth'
 
 interface Params {
   sandboxId: string
@@ -7,20 +8,23 @@ interface Params {
 }
 
 export async function GET(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<Params> }
 ) {
   const cmdParams = await params
-  const sandbox = await Sandbox.get(cmdParams)
+  if (!(await authorizeWorkspace(request, cmdParams.sandboxId)))
+    return new NextResponse(null, { status: 403 })
+  const sandbox = await getRunningWorkspace(cmdParams.sandboxId)
+  if (!sandbox) return workspaceStopped()
   const command = await sandbox.getCommand(cmdParams.cmdId)
 
   /**
    * The wait can get to fail when the Sandbox is stopped but the command
    * was still running. In such case we return empty for finish data.
    */
-  const done = await command.wait().catch(() => null)
+  const done = await command.wait({ signal: request.signal }).catch(() => null)
   return NextResponse.json({
-    sandboxId: sandbox.sandboxId,
+    sandboxId: sandbox.name,
     cmdId: command.cmdId,
     startedAt: command.startedAt,
     exitCode: done?.exitCode,

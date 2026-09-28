@@ -10,11 +10,11 @@ import {
   useTransition,
 } from 'react'
 import { getSummary } from './get-summary'
-import { useChat } from '@ai-sdk/react'
 import { useCommandErrorsLogs } from '@/app/state'
 import { useMonitorState } from './state'
 import { useSettings } from '@/components/settings/use-settings'
 import { useSharedChatContext } from '@/lib/chat-context'
+import { toast } from 'sonner'
 
 interface Props {
   children: React.ReactNode
@@ -26,13 +26,17 @@ export function ErrorMonitor({ children, debounceTimeMs = 10000 }: Props) {
   const { cursor, scheduled, setCursor, setScheduled } = useMonitorState()
   const { errors } = useCommandErrorsLogs()
   const { fixErrors } = useSettings()
-  const { chat } = useSharedChatContext()
-  const { sendMessage, status: chatStatus, messages } = useChat({ chat })
+  const {
+    send,
+    status: chatStatus,
+    data: { messages },
+  } = useSharedChatContext()
   const submitTimeout = useRef<NodeJS.Timeout | null>(null)
   const inspectedErrors = useRef<number>(0)
   const lastReportedErrors = useRef<string[]>([])
   const errorReportCount = useRef<Map<string, number>>(new Map())
   const lastErrorReportTime = useRef<number>(0)
+  const mounted = useRef(false)
   const clearSubmitTimeout = useCallback(() => {
     if (submitTimeout.current) {
       setScheduled(false)
@@ -41,12 +45,21 @@ export function ErrorMonitor({ children, debounceTimeMs = 10000 }: Props) {
     }
   }, [setScheduled])
 
+  useEffect(() => {
+    mounted.current = true
+    setCursor(0)
+    return () => {
+      mounted.current = false
+      clearSubmitTimeout()
+    }
+  }, [clearSubmitTimeout, setCursor])
+
   const status =
     chatStatus !== 'ready' || fixErrors === false
       ? 'disabled'
       : pending || scheduled
-      ? 'pending'
-      : 'ready'
+        ? 'pending'
+        : 'ready'
 
   const getErrorKey = (error: Line) => {
     return `${error.command}-${error.args.join(' ')}-${error.data.slice(
@@ -76,19 +89,27 @@ export function ErrorMonitor({ children, debounceTimeMs = 10000 }: Props) {
     }
 
     startTransition(async () => {
-      const summary = await getSummary(errors, prev)
-      if (summary.shouldBeFixed) {
-        newErrors.forEach((key) => {
-          errorReportCount.current.set(key, 1)
-        })
+      try {
+        const summary = await getSummary(errors, prev)
+        if (mounted.current && summary.shouldBeFixed) {
+          newErrors.forEach((key) => {
+            errorReportCount.current.set(key, 1)
+          })
 
-        lastReportedErrors.current = newErrors
-        lastErrorReportTime.current = Date.now()
+          lastReportedErrors.current = newErrors
+          lastErrorReportTime.current = Date.now()
 
-        sendMessage({
-          role: 'user',
-          parts: [{ type: 'data-report-errors', data: summary }],
-        })
+          await send(
+            `Fix the following preview errors with targeted changes:\n${summary.summary}\nFiles: ${summary.paths?.join(', ') ?? 'unknown'}`
+          )
+        }
+      } catch (error) {
+        if (mounted.current)
+          toast.error(
+            error instanceof Error
+              ? error.message
+              : 'Could not inspect preview errors'
+          )
       }
     })
   }

@@ -1,7 +1,9 @@
 import type { NextConfig } from 'next'
 import { withBotId } from 'botid/next/config'
+import { withEve } from 'eve/next'
 
 const nextConfig: NextConfig = {
+  agentRules: false,
   webpack(config) {
     config.module.rules.push({
       test: /\.md/,
@@ -10,6 +12,7 @@ const nextConfig: NextConfig = {
     return config
   },
   turbopack: {
+    root: process.cwd(),
     rules: {
       '*.md': {
         loaders: ['raw-loader'],
@@ -32,4 +35,4 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default withBotId(nextConfig)
+export default withEve(withBotId(nextConfig))
