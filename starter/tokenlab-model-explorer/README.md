@@ -7,7 +7,7 @@ type: AI
 css: None
 publisher: TokenLab
 deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fstarter%2Ftokenlab-model-explorer&project-name=tokenlab-model-explorer&repository-name=tokenlab-model-explorer
-demoUrl: https://tokenlab-model-explorer.vercel.app/widget
+demoUrl: https://exposure-tokenlab-openai-apps-model.vercel.app/widget
 ---
 
 # TokenLab Model Explorer
@@ -16,8 +16,8 @@ A deployable [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) se
 
 ## Demo
 
-- Interactive widget: [tokenlab-model-explorer.vercel.app/widget](https://tokenlab-model-explorer.vercel.app/widget)
-- Streamable HTTP MCP endpoint: `https://tokenlab-model-explorer.vercel.app/mcp`
+- Interactive widget: [exposure-tokenlab-openai-apps-model.vercel.app/widget](https://exposure-tokenlab-openai-apps-model.vercel.app/widget)
+- Streamable HTTP MCP endpoint: `https://exposure-tokenlab-openai-apps-model.vercel.app/mcp`
 
 ## Deploy
 
