@@ -1,9 +1,0 @@
-{
-  "$schema": "https://turborepo.com/schema.json",
-  "pipeline": {
-    "build": {
-      "outputs": [".next/**", "!.next/cache/**"]
-    },
-    "lint": {}
-  }
-}
