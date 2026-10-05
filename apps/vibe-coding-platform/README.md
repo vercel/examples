@@ -35,10 +35,10 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Supported Models
 
-- Claude Opus 4.6
-- Claude Sonnet 4.6
-- GPT-5.3 Codex
-- Grok 4.1 Reasoning
+- Claude Opus 5.5
+- Claude Sonnet 5.5
+- GPT-6.1 Sol
+- Grok 4.7
 
 ## Deploy
 
