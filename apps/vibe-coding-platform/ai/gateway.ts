@@ -38,8 +38,7 @@ export function getModelOptions(
 
   if (
     modelId === Models.AnthropicClaudeOpus55 ||
-    modelId === Models.AnthropicClaudeSonnet55 ||
-    modelId === Models.AnthropicClaudeFable51
+    modelId === Models.AnthropicClaudeSonnet55
   ) {
     return {
       model: gateway(modelId),

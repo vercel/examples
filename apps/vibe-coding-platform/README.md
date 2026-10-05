@@ -37,7 +37,6 @@ Open [http://localhost:3000](http://localhost:3000).
 
 - Claude Opus 5.5
 - Claude Sonnet 5.5
-- Claude Fable 5.1
 - GPT-6.1 Sol
 - Muse Spark 1.3
 - Grok 4.7
