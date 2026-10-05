@@ -64,7 +64,7 @@ export function Welcome(props: {
               <ExternalLink href="https://vercel.com/docs/ai-gateway">
                 AI Gateway
               </ExternalLink>{' '}
-              for Claude, GPT, and Grok model support,{' '}
+              for Claude, GPT, Muse, and Grok model support,{' '}
               <ExternalLink href="https://vercel.com/fluid">
                 Fluid Compute
               </ExternalLink>{' '}

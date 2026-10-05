@@ -22,7 +22,7 @@ export function getModelOptions(
   modelId: string,
   options?: { reasoningEffort?: 'low' | 'medium' | 'high' }
 ): ModelOptions {
-  if (modelId === Models.OpenAIGPT53Codex) {
+  if (modelId === Models.OpenAIGPT61Sol) {
     return {
       model: gateway(modelId),
       providerOptions: {
@@ -37,8 +37,9 @@ export function getModelOptions(
   }
 
   if (
-    modelId === Models.AnthropicClaudeSonnet46 ||
-    modelId === Models.AnthropicClaudeOpus46
+    modelId === Models.AnthropicClaudeOpus55 ||
+    modelId === Models.AnthropicClaudeSonnet55 ||
+    modelId === Models.AnthropicClaudeFable51
   ) {
     return {
       model: gateway(modelId),

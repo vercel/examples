@@ -6,7 +6,7 @@ An end-to-end coding platform where users enter text prompts and an AI agent gen
 
 ## Features
 
-- Multi-model support via AI Gateway (Claude, GPT, Grok)
+- Multi-model support via AI Gateway (Claude, GPT, Muse, Grok)
 - Secure code execution with Vercel Sandbox
 - Real-time live preview of generated apps
 - File explorer for browsing project files
@@ -35,10 +35,12 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Supported Models
 
-- Claude Opus 4.6
-- Claude Sonnet 4.6
-- GPT-5.3 Codex
-- Grok 4.1 Reasoning
+- Claude Opus 5.5
+- Claude Sonnet 5.5
+- Claude Fable 5.1
+- GPT-6.1 Sol
+- Muse Spark 1.3
+- Grok 4.7
 
 ## Deploy
 
