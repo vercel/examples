@@ -1,11 +1,16 @@
 # Flags SDK
 
-The [Flags SDK](https://flags-sdk.dev/) is a free, open-source library for using feature flags in Next.js and SvelteKit.
+The provider examples have moved to the [Flags SDK repository](https://github.com/vercel/flags/tree/main/examples/providers).
 
-Examples in this folder use the Flags SDK combined with different flag and experimentation providers to implement an ecommerce example application.
+- [Flagsmith](https://github.com/vercel/flags/tree/main/examples/providers/flagsmith)
+- [GrowthBook](https://github.com/vercel/flags/tree/main/examples/providers/growthbook)
+- [LaunchDarkly](https://github.com/vercel/flags/tree/main/examples/providers/launchdarkly)
+- [OpenFeature](https://github.com/vercel/flags/tree/main/examples/providers/openfeature)
+- [PostHog](https://github.com/vercel/flags/tree/main/examples/providers/posthog)
+- [Reflag](https://github.com/vercel/flags/tree/main/examples/providers/reflag)
+- [Statsig](https://github.com/vercel/flags/tree/main/examples/providers/statsig)
+- [Vercel](https://github.com/vercel/flags/tree/main/examples/providers/vercel)
 
-Examples are further set up to integrate with [Flags Explorer](https://vercel.com/docs/workflow-collaboration/feature-flags/using-vercel-toolbar), which allows overridding feature flags and experiments for the current session.
+The former `experimentation-statsig` example is now named `statsig`. The Hypertune example has been removed and has no replacement.
 
-### Template
-
-The starting point for these provider specific examples is maintained [in the Flags SDK repository](https://github.com/vercel/flags/tree/main/examples/shirt-shop).
+Follow each example's README in its new location for setup and deployment instructions.
