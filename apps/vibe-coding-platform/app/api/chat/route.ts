@@ -11,6 +11,7 @@ import { NextResponse } from 'next/server'
 import { getModelOptions } from '@/ai/gateway'
 import { checkBotId } from 'botid/server'
 import { tools } from '@/ai/tools'
+import { notifyPhone } from '@/lib/notify-phone'
 import prompt from './prompt.md'
 
 interface BodyData {
@@ -67,6 +68,26 @@ export async function POST(req: Request) {
           onError: (error) => {
             console.error('Error communicating with AI')
             console.error(JSON.stringify(error, null, 2))
+          },
+          onFinish: async ({ steps }) => {
+            // Optional: tell your phone the preview is ready (no-op unless
+            // LAUTHER_TOKEN is set). The tap opens the sandbox URL.
+            const previewUrl = steps
+              .flatMap((step) => step.toolResults)
+              .filter((result) => result.toolName === 'getSandboxURL')
+              .map((result) => (result.output as { url?: string } | undefined)?.url)
+              .filter((url): url is string => typeof url === 'string')
+              .at(-1)
+            const lastPrompt = messages
+              .filter((message) => message.role === 'user')
+              .at(-1)
+              ?.parts.flatMap((part) => (part.type === 'text' ? [part.text] : []))
+              .join(' ')
+            await notifyPhone({
+              title: previewUrl ? 'Your app is ready' : 'Generation finished',
+              message: lastPrompt?.slice(0, 200) ?? '',
+              ...(previewUrl ? { url: previewUrl } : {}),
+            })
           },
         })
         result.consumeStream()

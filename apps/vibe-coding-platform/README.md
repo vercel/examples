@@ -33,6 +33,10 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+## Optional: a push on your phone when a build finishes
+
+A generation can run for a few minutes. Set `LAUTHER_TOKEN` and the platform sends a native notification to your phone when the run ends, with the preview URL as the tap target. Install [Lauther](https://lauther.app) (free), mint a token in the app under **Apps → ＋ → New token**, and add it to `.env.local` or to the project's environment variables on Vercel. Unset, nothing is sent.
+
 ## Supported Models
 
 - Claude Opus 5.5
