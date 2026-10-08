@@ -14,8 +14,16 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 ### Clone and Deploy
 
+First, clone the entire repository:
+
 ```bash
-git clone https://github.com/vercel/examples/tree/main/solutions/express
+git clone https://github.com/vercel/examples.git
+```
+
+Navigate to the specific example directory:
+
+```bash
+cd examples/solutions/express
 ```
 
 Install the Vercel CLI:
