@@ -1,0 +1,12 @@
+[project]
+name = "fastapi-ai-chat"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.137",
+    "uvicorn[standard]>=0.49",
+    "ai",
+]
+
+[tool.uv.sources]
+ai = { git = "https://github.com/vercel-labs/ai-python" }
