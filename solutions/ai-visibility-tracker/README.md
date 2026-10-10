@@ -20,7 +20,7 @@ ignoreE2E: true
 > This directory mirrors the project's source repository, **[github.com/eduardmur/ai-visibility-tracker](https://github.com/eduardmur/ai-visibility-tracker)**, where development happens. Star it, open issues and send pull requests there; the Deploy button below clones that repository.
 
 
-Track how **ChatGPT, Perplexity, Gemini, Claude and Grok** answer the questions your customers ask: whether they mention your brand, cite your website, which competitors they recommend instead, and what they say about each one.
+Open-source **AEO/GEO tracker**: see how AI assistants answer the questions your customers ask, whether they mention your brand, cite your website, which competitors they recommend instead, and what they say about each one.
 
 Self-hosted, open source, and deliberately small. One Vercel AI Gateway key covers every platform, each platform answers with its **own native web search**, and the whole thing deploys to Vercel with one click.
 
