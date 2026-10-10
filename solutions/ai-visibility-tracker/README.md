@@ -2,7 +2,7 @@
 name: AI Visibility Tracker
 slug: ai-visibility-tracker
 publisher: Searcherries
-description: Track how ChatGPT, Perplexity, Gemini, Claude and Grok mention and cite your brand. One AI Gateway key, one-click deploy.
+description: Open-source AEO/GEO tracker: see how AI assistants mention, cite and recommend your brand. One AI Gateway key, one-click deploy.
 framework: Next.js
 type:
   - AI
