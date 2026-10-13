@@ -1,5 +1,8 @@
 This example shows how to build an MCP Server with Weather tools using Express and Vercel
 
+MCP clients connect to the Streamable HTTP endpoint at `/api/mcp`. This
+example requires Node.js 20 or later.
+
 ## How to Use
 
 You can choose from one of the following two methods to use this repository:
@@ -24,6 +27,7 @@ Run the Express app in development mode:
 First install the [Vercel CLI](https://vercel.com/docs/cli). You will need to link the code with a Vercel project.
 
 ```bash
+pnpm install
 vercel dev
 ```
 
