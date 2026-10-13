@@ -1,0 +1,17 @@
+.blog-card {
+  // Frosted-glass surface over the animated shader background so card text
+  // stays readable. color-mix() on --bg-primary adapts to light/dark themes
+  // without per-theme rgba. backdrop-filter stabilizes the moving gradient.
+  background: color-mix(in srgb, var(--bg-primary) 88%, transparent);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  border: 1px solid color-mix(in srgb, var(--text-secondary) 35%, transparent);
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--brand-color) 50%, transparent);
+  }
+}
+
+// Per-section webp background removed — background is rendered globally by
+// <ShaderBackground />.

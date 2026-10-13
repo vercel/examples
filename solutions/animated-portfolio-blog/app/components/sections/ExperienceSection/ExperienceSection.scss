@@ -1,0 +1,109 @@
+// Experience timeline. Single left rail at every breakpoint — cards stack
+// vertically regardless of viewport width. The card surface comes from the
+// shared .glass-card utility (global.css); cursor-driven 3D tilt from the
+// shared TiltCard wrapper. This file owns layout, spacing, and type.
+.experience-timeline {
+  position: relative;
+  width: 100%;
+  // Room for the rail + dots on the left of every card.
+  padding-left: 1.75rem;
+
+  // The rail itself — brand-tinted, fading at both ends.
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0.45rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    border-radius: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      color-mix(in srgb, var(--brand-color) 55%, transparent),
+      transparent
+    );
+  }
+
+  &__item {
+    position: relative;
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Dot sitting on the rail, aligned with the card title.
+  &__dot {
+    position: absolute;
+    left: -1.65rem;
+    top: 1.35rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 2px solid var(--brand-color);
+    box-shadow: 0 0 0 4px rgba(var(--brand-color-rgb), 0.15);
+  }
+
+  &__card {
+    padding: clamp(1.1rem, 4vw, 1.5rem);
+    // Hover lift matches the Reviews card so both sections feel cohesive
+    // when the cursor lands on a card.
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 12px 40px rgba(var(--brand-color-rgb), 0.18);
+    }
+  }
+
+  &__period {
+    display: block;
+    font-size: clamp(0.65rem, 1.6vw, 0.72rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand-color);
+    margin-bottom: 0.4rem;
+  }
+
+  &__role {
+    margin: 0 0 0.3rem;
+    font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+    color: var(--text-primary);
+  }
+
+  &__org {
+    margin: 0 0 0.75rem;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    color: var(--text-secondary);
+  }
+
+  &__description {
+    margin: 0;
+    font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+    line-height: 1.7;
+    color: var(--text-primary);
+  }
+
+  &__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0.9rem 0 0;
+  }
+
+  // Surface comes from the shared .pill utility; this owns chip sizing.
+  &__chip {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+
+    svg {
+      width: 0.95rem;
+      height: 0.95rem;
+      color: var(--brand-color);
+    }
+  }
+}

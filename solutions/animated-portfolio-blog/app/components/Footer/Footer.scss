@@ -1,0 +1,14 @@
+.footer {
+  padding: 2rem 0;
+  text-align: center;
+  border-top: solid 2px var(--bg-secondary);
+
+  // Social icon row — Magnetic wrappers butt up directly, so drive the
+  // inter-button spacing from the parent via gap.
+  > div {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+  }
+}

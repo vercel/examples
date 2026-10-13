@@ -1,0 +1,72 @@
+.custom-cursor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+
+  &__dot,
+  &__ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    translate: -50% -50%;
+    border-radius: 50%;
+    will-change: transform;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+  }
+
+  &__ring {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid #fff;
+    transition: width 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+      height 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+      border-color 0.25s ease, opacity 0.25s ease;
+  }
+
+  // Grow the ring and shrink the dot on interactive hover.
+  &__dot[data-hover="true"] {
+    opacity: 0;
+  }
+  &__ring[data-hover="true"] {
+    width: 56px;
+    height: 56px;
+    border-color: var(--brand-color-light);
+  }
+
+  // Pinch slightly on press.
+  &__dot[data-pressed="true"] {
+    width: 12px;
+    height: 12px;
+  }
+  &__ring[data-pressed="true"] {
+    width: 28px;
+    height: 28px;
+  }
+
+  &[data-hidden="true"] {
+    opacity: 0;
+  }
+}
+
+// Hide the native cursor only when our custom cursor is mounted (the
+// component adds the body class only on fine pointers without reduced-motion).
+@media (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: auto;
+  }
+}
