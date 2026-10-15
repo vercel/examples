@@ -6,7 +6,7 @@ framework: Next.js
 useCase: Rewrites
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/cdn/mintlify-docs-rewrite&project-name=mintlify-docs-rewrite&repository-name=mintlify-docs-rewrite&env=MINTLIFY_DOCS_URL
-demoUrl: https://docsrewrite.vercel.app
+demoUrl: https://mintlify-docs-rewrite.vercel.app/
 ---
 
 # Mintlify docs rewrite (vercel.ts) example
