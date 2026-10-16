@@ -36,7 +36,7 @@ export default defineNuxtConfig({
 })
 ```
 
-The headline: **one transport, every environment.** The same `defineWebSocketHandler` at `/api/ws` powers local dev _and_ production — locally through Nitro's dev server, on Vercel through the preset's `crossws/adapters/vercel` bridge, which hands the handler the runtime's socket upgrade. There's no Vercel-specific code path and no `experimental_upgradeWebSocket` bridge to maintain.
+The headline: **one transport, every environment.** The same `defineWebSocketHandler` at `/api/ws` powers local dev _and_ production — locally through Nitro's dev server, on Vercel through the preset's `crossws/adapters/vercel` bridge, which hands the handler the runtime's socket upgrade. There's no Vercel-specific code path and no `upgradeWebSocket` bridge to maintain.
 
 All room logic lives in the handler `server/api/ws.ts` itself.
 

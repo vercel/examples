@@ -48,7 +48,7 @@ pnpm dev
 ```
 
 `pnpm dev` runs the Vercel CLI (`vercel dev`) rather than the usual `next dev`,
-since `experimental_upgradeWebSocket` needs the Vercel runtime to handle the
+since `upgradeWebSocket` needs the Vercel runtime to handle the
 WebSocket `Upgrade` on `/api/ws` — the same path it takes in production. Open
 <http://localhost:3000> in two browser tabs and chat between them.
 
@@ -59,18 +59,18 @@ Then deploy with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=re
 ### Native WebSockets in a Route Handler
 
 `app/api/ws/route.ts` is an ordinary `GET` handler that returns
-`experimental_upgradeWebSocket(...)`. Vercel forwards the HTTP `Upgrade`, the
+`upgradeWebSocket(...)`. Vercel forwards the HTTP `Upgrade`, the
 helper completes the handshake using the [`ws`](https://github.com/websockets/ws)
 library, and hands back a single `WebSocket` that we register with the chat hub:
 
 ```ts
-import { experimental_upgradeWebSocket } from "@vercel/functions";
+import { upgradeWebSocket } from "@vercel/functions";
 import { ChatHub } from "@/lib/chat";
 
 const hub = new ChatHub();
 
 export function GET() {
-  return experimental_upgradeWebSocket((ws) => hub.handleUpgrade(ws));
+  return upgradeWebSocket((ws) => hub.handleUpgrade(ws));
 }
 ```
 
@@ -100,7 +100,7 @@ All optional — see [`.env.example`](./.env.example).
 ```
 next-chat/
 ├── app/
-│   ├── api/ws/route.ts     # GET → experimental_upgradeWebSocket
+│   ├── api/ws/route.ts     # GET → upgradeWebSocket
 │   ├── layout.tsx          # fonts + metadata
 │   └── page.tsx            # renders <Chat />
 ├── components/             # Chat, Login, Header, MessageList, Composer, …
@@ -117,4 +117,4 @@ next-chat/
 
 ## Note
 
-`experimental_upgradeWebSocket` is **experimental**, and is only supported when deployed on Vercel or when using `vc dev`. 
+`upgradeWebSocket` is only supported when deployed on Vercel or when using `vc dev`.
