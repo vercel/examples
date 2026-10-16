@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+@config '../../tailwind.config.ts';
+
+@theme {
+  --color-ink: #0f172a;
+  --color-ink-soft: #475569;
+  --color-line: #e2e8f0;
+  --color-paper: #ffffff;
+  --color-paper-soft: #f8fafc;
+  --color-accent: #2563eb;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
