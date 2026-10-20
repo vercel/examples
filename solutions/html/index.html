@@ -1,96 +1,397 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>הפקת חשבונית</title>
+    <style>
+        :root {
+            --ink: #1b1f24;
+            --line: #c9ced6;
+            --accent: #1f4e79;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #e6e9ee;
+            color: var(--ink);
+            font-family: Arial, "Noto Sans Hebrew", "Segoe UI", sans-serif;
+        }
+
+        .app {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            padding: 18px;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .panel {
+            width: 360px;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 14px 16px 18px;
+        }
+
+        .panel h1 {
+            font-size: 17px;
+            margin: 0 0 4px;
+        }
+
+        .panel h2 {
+            font-size: 13px;
+            margin: 16px 0 4px;
+            padding-top: 10px;
+            border-top: 1px solid var(--line);
+            color: var(--accent);
+        }
+
+        label {
+            display: block;
+            font-size: 12.5px;
+            margin: 8px 0 3px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 7px 8px;
+            border: 1px solid #aeb5c0;
+            border-radius: 5px;
+            font: inherit;
+            font-size: 14px;
+            background: #fff;
+        }
+
+        input:focus,
+        select:focus,
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 1px;
+        }
+
+        .two {
+            display: flex;
+            gap: 8px;
+        }
+
+        .two>div {
+            flex: 1;
+        }
+
+        .check {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .check input {
+            width: auto;
+        }
+
+        .item {
+            display: grid;
+            grid-template-columns: 1fr 52px 76px 30px;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .item input {
+            padding: 6px;
+        }
+
+        button {
+            font: inherit;
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid var(--accent);
+            background: #fff;
+            color: var(--accent);
+            cursor: pointer;
+        }
+
+        button.primary {
+            background: var(--accent);
+            color: #fff;
+            width: 100%;
+            margin-top: 14px;
+            padding: 10px;
+        }
+
+        button.del {
+            padding: 4px;
+            border-color: #b33;
+            color: #b33;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #555;
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        #page {
+            position: relative;
+            width: 595.28pt;
+            height: 841.89pt;
+            background: #fff;
+            color: #000;
+            overflow: hidden;
+            box-shadow: 0 2px 14px rgba(0, 0, 0, .18);
+            flex: none;
+        }
+
+        .t {
+            position: absolute;
+            white-space: nowrap;
+            line-height: 1;
+        }
+
+        .b {
+            font-weight: bold;
+        }
+
+        .u {
+            text-decoration: underline;
+            text-underline-offset: 2pt;
+        }
+
+        .ln {
+            position: absolute;
+            background: #000;
+        }
+
+        .bx {
+            position: absolute;
+            border: 0.7pt solid #000;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                background: #fff;
+            }
+
+            .panel {
+                display: none;
+            }
+
+            .app {
+                padding: 0;
+                display: block;
+            }
+
+            #page {
+                box-shadow: none;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="panel">
+            <h1>הפקת חשבונית</h1>
+
+            <h2>העסק</h2>
+            <label>שם העסק</label><input id="biz" value='א.א פט סטור בע"מ'>
+            <label>ע.מ / ח.פ</label><input id="bizId" value="514474832">
+
+            <h2>המסמך</h2>
+            <label>סוג מסמך</label><input id="title" value="חשבונית מס">
+            <div class="two">
+                <div><label>מספר חשבונית</label><input id="no" placeholder="45992"></div>
+                <div><label>עותק</label>
+                    <select id="copy">
+                        <option>מקור</option>
+                        <option>העתק</option>
+                        <option value="">ללא</option>
+                    </select>
+                </div>
+            </div>
+            <div class="two">
+                <div><label>תאריך</label><input type="date" id="date"></div>
+                <div><label>שעה</label><input type="time" id="time"></div>
+            </div>
+            <div class="two">
+                <div><label>סניף</label><input id="branch" value="פיק״א"></div>
+                <div><label>עובד מפיק</label>
+                    <select id="emp">
+                        <option>שירה</option>
+                        <option>אסף</option>
+                        <option>אתר</option>
+                    </select>
+                </div>
+            </div>
+            <label>מספר לקוח</label><input id="custNo">
+            <div class="check"><input type="checkbox" id="delivery" checked><label for="delivery" style="margin:0">הצג
+                    תיבת משלוח</label></div>
+
+            <h2>לקוח</h2>
+            <label>שם</label><input id="cust">
+            <label>כתובת</label><input id="addr">
+            <label>טלפון</label><input id="phone" inputmode="tel">
+
+            <h2>פריטים (מחירים כולל מע״מ)</h2>
+            <div id="items"></div>
+            <button type="button" id="addItem">+ הוסף פריט</button>
+            <div class="two">
+                <div><label>מע״מ %</label><input id="vat" type="number" step="0.01" value="17"></div>
+                <div><label>יתרה</label><input id="bal" value="0.00"></div>
+            </div>
+
+            <button class="primary" type="button" onclick="window.print()">הדפס / שמור כ-PDF</button>
+            <div class="hint">בחלון ההדפסה בחר "שמור כ-PDF" וכבה את האפשרות "כותרות עליונות ותחתונות".</div>
+        </div>
+
+        <div id="page"></div>
+    </div>
+
+    <script>
+        const W = 595.28;
+        const $ = id => document.getElementById(id);
+        const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const pad = n => String(n).padStart(2, '0');
+        const fmt = n => (Math.round(n * 100) / 100).toFixed(2);
+
+        // text helper: r = right edge, l = left edge, c = center x, y = vertical center (pt)
+        function T(txt, o) {
+            if (txt === '' || txt == null) return '';
+            let st = `top:${o.y}pt;font-size:${o.s || 10}pt;`, tr = 'translateY(-50%)';
+            if (o.r != null) st += `right:${W - o.r}pt;`;
+            else if (o.l != null) st += `left:${o.l}pt;`;
+            else { st += `left:${o.c}pt;`; tr = 'translate(-50%,-50%)'; }
+            st += `transform:${tr};`;
+            return `<div class="t${o.b ? ' b' : ''}${o.u ? ' u' : ''}" style="${st}">${esc(txt)}</div>`;
+        }
+        const line = (x1, x2, y) => `<div class="ln" style="left:${x1}pt;width:${x2 - x1}pt;top:${y}pt;height:0.7pt"></div>`;
+        const box = (x, y, w, h, extra = '') => `<div class="bx" style="left:${x}pt;top:${y}pt;width:${w}pt;height:${h}pt;${extra}"></div>`;
+
+        function barcode(x, y, w, h, label) {
+            const pat = [3, 1, 2, 2, 1, 3, 1, 2, 3, 1, 1, 2, 2, 3, 1, 2, 1, 3, 2, 1, 3, 2, 1, 1, 3, 2, 1, 2, 3, 1];
+            const total = pat.reduce((a, b) => a + b, 0), u = w / total;
+            let cx = 0, rects = '';
+            pat.forEach((p, i) => { if (i % 2 === 0) rects += `<rect x="${cx}" y="0" width="${p * u}" height="${h}"/>`; cx += p * u; });
+            return `<svg class="t" style="left:${x}pt;top:${y}pt;direction:ltr" width="${w}pt" height="${h}pt" viewBox="0 0 ${w} ${h}">${rects}</svg>` +
+                (label ? `<div class="t" style="left:${x + w / 2}pt;top:${y + h + 4}pt;font-size:5.5pt;color:#333;transform:translate(-50%,-50%);direction:ltr">${esc(label)}</div>` : '');
+        }
+
+        function getItems() {
+            return [...document.querySelectorAll('#items .item')].map(r => {
+                const [n, q, p] = r.querySelectorAll('input');
+                return { name: n.value.trim(), qty: parseFloat(q.value) || 0, price: parseFloat(p.value) || 0 };
+            }).filter(i => i.name || i.price);
+        }
+
+        function render() {
+            const items = getItems();
+            const vatRate = parseFloat($('vat').value) || 0;
+            const gross = items.reduce((s, i) => s + i.qty * i.price, 0);
+            const net = gross / (1 + vatRate / 100), vat = gross - net;
+
+            const [yy, mm, dd] = ($('date').value || '').split('-');
+            const dateStr = yy ? `${dd}/${mm}/${yy}` : '';
+            const shortDate = yy ? `${dd}/${mm}/${yy.slice(-2)}` : '';
+            const now = new Date();
+            const printStr = `${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+            const no = $('no').value.trim();
+
+            let h = '';
+            // header
+            h += T($('biz').value, { c: 269, y: 54.4, s: 20, b: 1 });
+            if ($('bizId').value) h += T(`ע.מ/ח.פ: ${$('bizId').value}`, { r: 498, y: 81.3, s: 16, b: 1 });
+
+            // barcode + title row (title right-anchored at 498, number and copy flow to its left)
+            if (no) h += barcode(30, 175, 82, 25, no);
+            h += `<div class="t" style="right:${W - 498}pt;top:188pt;transform:translateY(-50%);display:flex;align-items:center;gap:34pt">` +
+                `<span class="b" style="font-size:20pt">${esc($('title').value)}</span>` +
+                `<span style="font-size:22pt;direction:ltr">${esc(no)}</span>` +
+                `<span class="b" style="font-size:20pt">${esc($('copy').value)}</span></div>`;
+
+            // meta rows
+            const meta = [['שעה', $('time').value], ['תאריך', dateStr], ['סניף', $('branch').value.trim()],
+            ['עובד מפיק', $('emp').value], ['מספר לקוח', $('custNo').value.trim()]].filter(r => r[1]);
+            meta.forEach((r, i) => {
+                const y = 214.4 + i * 14.6;
+                h += T(r[0], { r: 184, y, s: 11, b: 1 }) + T(r[1], { r: 98, y, s: 11, b: 1 });
+            });
+
+            // delivery box
+            if ($('delivery').checked && shortDate) {
+                h += box(194, 208.7, 92, 19) + T('משלוח', { r: 282, y: 218.2, s: 11, b: 1 }) + T(shortDate, { l: 197, y: 218.2, s: 8, b: 1 });
+            }
+
+            // customer
+            h += T('לכבוד:', { r: 549, y: 207, s: 14, b: 1 });
+            h += T($('cust').value, { r: 535, y: 224, s: 14, b: 1, u: 1 });
+            [$('addr').value.trim(), $('phone').value.trim()].filter(Boolean)
+                .forEach((l, i) => { h += T(l, { r: 535, y: [241, 254][i], s: 12, b: 1 }); });
+
+            // table
+            h += T('שם פריט', { r: 535, y: 330, s: 11, b: 1 }) + T('כמות', { c: 226, y: 330, s: 11, b: 1 }) +
+                T('מחיר', { c: 182, y: 330, s: 11, b: 1 }) + T('סה"כ', { l: 46, y: 330, s: 11, b: 1 });
+            h += line(16, 574, 337);
+            items.forEach((it, i) => {
+                const y = 348 + i * 10;
+                h += T(it.name, { r: 543, y, s: 9.5 }) + T(String(it.qty), { r: 241, y, s: 9.5 }) +
+                    T(fmt(it.price), { r: 192, y, s: 9.5 }) + T(fmt(it.qty * it.price), { r: 84.5, y, s: 9.5 });
+            });
+            const lineY = 348 + Math.max(items.length - 1, 0) * 10 + 9;
+            h += line(16, 574, lineY);
+
+            // summary boxes
+            const sumY = lineY + 10;
+            h += `<div class="ln" style="left:35pt;top:${sumY}pt;width:187pt;height:0.7pt"></div>` +
+                `<div class="ln" style="left:35pt;top:${sumY}pt;width:0.7pt;height:51pt"></div>`;
+            [['סה"כ ללא מע"מ :', net, 14], [`מע"מ ${fmt(vatRate)}% :`, vat, 28.5], ['סה"כ כולל מע"מ :', gross, 43]]
+                .forEach(([lbl, val, dy]) => { h += T(lbl, { r: 221, y: sumY + dy, s: 11, b: 1 }) + T(fmt(val), { r: 112, y: sumY + dy, s: 11, b: 1 }); });
+
+            const rY = sumY + 4;
+            h += box(391, rY, 175, 36.5) +
+                T('ת.הדפסה :', { r: 556, y: rY + 9.6, s: 11, b: 1 }) + T(printStr, { r: 493, y: rY + 9.6, s: 11, b: 1 }) +
+                T('יתרה :', { r: 556, y: rY + 25, s: 11, b: 1 }) + T($('bal').value, { r: 493, y: rY + 25, s: 11, b: 1 });
+
+            $('page').innerHTML = h;
+        }
+
+        function addItem(name = '', qty = 1, price = '') {
+            const d = document.createElement('div');
+            d.className = 'item';
+            d.innerHTML = `<input placeholder="שם פריט" value="${esc(name)}"><input type="number" min="0" step="any" value="${qty}" aria-label="כמות">` +
+                `<input type="number" min="0" step="0.01" placeholder="מחיר" value="${price}" aria-label="מחיר"><button type="button" class="del" aria-label="מחק פריט">✕</button>`;
+            d.querySelector('button').onclick = () => { d.remove(); render(); };
+            $('items').appendChild(d);
+        }
+
+        const n = new Date();
+        $('date').value = `${n.getFullYear()}-${pad(n.getMonth() + 1)}-${pad(n.getDate())}`;
+        $('time').value = `${pad(n.getHours())}:${pad(n.getMinutes())}`;
+        addItem();
+        $('addItem').onclick = () => { addItem(); render(); };
+        document.querySelector('.panel').addEventListener('input', render);
+        window.addEventListener('beforeprint', render);
+        render();
+    </script>
+</body>
+
 </html>
