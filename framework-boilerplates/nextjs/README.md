@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+[Cache Components](https://nextjs.org/docs/app/getting-started/caching) and [Partial Prefetching](https://nextjs.org/docs/app/api-reference/config/next-config-js/partialPrefetching) are enabled in `next.config.ts`.
+
 ## Getting Started
 
 First, run the development server:
