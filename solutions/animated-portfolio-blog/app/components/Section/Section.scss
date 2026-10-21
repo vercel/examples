@@ -1,0 +1,121 @@
+.section-wrapper {
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+
+  .section-active {
+    // Translucent backdrop over the animated shader background so content
+    // stays readable. color-mix() on --bg-primary makes it theme-aware —
+    // light mode gets a frosted white, dark mode a frosted near-black —
+    // without hardcoded rgba per theme. backdrop-filter stabilizes contrast
+    // over the moving gradient.
+    background: color-mix(in srgb, var(--bg-primary) 82%, transparent);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    box-shadow: 0 0 40px var(--brand-color-light);
+    transform: translateY(-5px) !important;
+  }
+
+  .section {
+    padding: 5rem;
+    display: flex;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    .section-header {
+      font-size: 3rem;
+      padding-right: 2rem;
+      padding-top: 4rem;
+      border-right: 1px solid var(--text-primary);
+      display: flex;
+      align-items: center;
+
+      .section-header-icon {
+        padding: 0.625rem;
+        padding-left: 0;
+        font-size: 3rem;
+        transition: all 0.5s;
+      }
+    }
+
+    .section-content {
+      padding-left: 2rem;
+      // Flex item: allow shrinking below content's intrinsic min-width so
+      // wide children (e.g. marquee tracks) don't push the section past the
+      // viewport on mobile. Paired with min-width:0 on inner grids.
+      min-width: 0;
+      h3,
+      h4 {
+        text-underline-offset: 0.2rem;
+        display: flex;
+        align-items: center;
+
+        svg {
+          margin-right: 0.5rem;
+        }
+      }
+      b {
+        color: var(--brand-color-light);
+      }
+    }
+
+    &.section-reverse {
+      flex-direction: row-reverse;
+
+      .section-header {
+        border-right: none;
+        padding-right: 0;
+        padding-left: 2rem;
+        border-left: 1px solid var(--text-primary);
+      }
+
+      .section-content {
+        padding-left: 0;
+        padding-right: 2rem;
+        text-align: right;
+
+        h3,
+        h4 {
+          justify-content: flex-end;
+        }
+      }
+    }
+
+    &.section-centered {
+      align-items: center;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section-wrapper {
+    .section,
+    .section.section-reverse {
+      padding: 3rem;
+      flex-direction: column;
+
+      .section-header {
+        padding: 0;
+        padding-bottom: 0.7rem;
+        border: none;
+        border-bottom: 1px solid var(--text-primary);
+        text-align: center;
+        justify-content: center;
+      }
+
+      .section-content {
+        padding: 0;
+        text-align: center;
+
+        h3,
+        h4 {
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+// Per-section webp backgrounds removed — background is now rendered globally
+// by <ShaderBackground />. Committed images remain as the no-JS / no-WebGL
+// fallback inside that component.

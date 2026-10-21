@@ -1,0 +1,50 @@
+.shader-background {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+  // Static approximation of the shader palette, shown until the opaque
+  // canvas draws its first frame (and permanently if WebGL never runs but
+  // the image fallback hasn't mounted yet). Values mirror PALETTE in
+  // ShaderBackground.tsx.
+  background: linear-gradient(
+    160deg,
+    #f5f7fb 0%,
+    #d4e6ff 45%,
+    #8cc7ff 80%,
+    rgba(33, 229, 229, 0.4) 100%
+  );
+
+  &__fallback {
+    position: absolute;
+    inset: 0;
+    // Single committed image serves as the no-WebGL / context-lost fallback.
+    // Only mounted when the shader can't run, so bg01.webp is not fetched on
+    // the normal load path (see ShaderBackground.tsx).
+    background-image: url("/images/bg01.webp");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+// Dark-theme stand-in gradient — mirrors PALETTE.dark so the pre-shader
+// moment doesn't flash light colors in dark mode.
+.dark .shader-background {
+  background: linear-gradient(
+    160deg,
+    #0a0d14 0%,
+    #0f1f40 45%,
+    #1f529e 80%,
+    rgba(13, 140, 166, 0.4) 100%
+  );
+}

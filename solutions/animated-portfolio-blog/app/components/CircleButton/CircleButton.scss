@@ -1,0 +1,48 @@
+.circle-button {
+  border: 0.2rem solid rgba(var(--brand-color-rgb), 0.6);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  transition: all 0.5s;
+  margin: 0.5rem;
+
+  // Icons (lucide via the global svg.lucide{1em} rule, plus the hand-rolled
+  // brand SVGs) need an explicit size here — nothing else on the button sets
+  // font-size, so without this they fall back to the 16px body default.
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &:hover {
+    color: var(--bg-primary);
+    background: var(--text-primary);
+  }
+
+  // Keyboard / programmatic focus only — :focus-visible does not fire on
+  // mouse clicks, so mouse users see no ring.
+  &:focus-visible {
+    outline: 2px solid var(--brand-color-light, #21e5e5);
+    outline-offset: 2px;
+  }
+
+  &.circle-button-animated {
+    &:hover {
+      transform: scale(1.1) translateY(-5px);
+    }
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
