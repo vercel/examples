@@ -1,0 +1,8 @@
+{
+  "bunVersion": "1.4.x",
+  "functions": {
+    "server.ts": {
+      "maxDuration": 1200
+    }
+  }
+}

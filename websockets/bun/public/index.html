@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bun WebSocket Echo</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --border: color-mix(in oklab, currentColor 15%, transparent);
+        --muted: color-mix(in oklab, currentColor 55%, transparent);
+      }
+
+      body {
+        font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+        max-width: 32rem;
+        margin: 3rem auto;
+        padding: 0 1rem;
+        line-height: 1.5;
+      }
+
+      h1 {
+        margin-bottom: 0.25rem;
+        font-size: 1.25rem;
+      }
+
+      .lead {
+        margin: 0 0 1.25rem;
+        color: var(--muted);
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+
+      .dot {
+        width: 0.625rem;
+        height: 0.625rem;
+        border-radius: 50%;
+        background: #d4d4d4;
+      }
+
+      .dot.on {
+        background: #22c55e;
+      }
+
+      .dot.off {
+        background: #ef4444;
+      }
+
+      form {
+        display: flex;
+        gap: 0.5rem;
+        margin: 1.5rem 0 1rem;
+      }
+
+      input {
+        flex: 1;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      #log {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.875rem;
+      }
+
+      .line {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.1875rem 0;
+        word-break: break-word;
+      }
+
+      .arrow {
+        width: 1ch;
+        flex: none;
+      }
+
+      .text {
+        flex: 1;
+        white-space: pre-wrap;
+      }
+
+      .latency {
+        flex: none;
+        color: var(--muted);
+      }
+
+      .sent {
+        color: var(--muted);
+      }
+
+      .received .arrow {
+        color: #22c55e;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bun WebSocket Echo</h1>
+    <p class="lead">
+      Type a message and the native Bun server echoes it over a WebSocket.
+    </p>
+    <p class="status">
+      <span id="dot" class="dot"></span>
+      <span id="status">Connecting...</span>
+    </p>
+
+    <form>
+      <input name="message" autocomplete="off" placeholder="Type a message" />
+      <button type="submit" disabled>Send</button>
+    </form>
+
+    <div id="log"></div>
+
+    <script>
+      const dot = document.querySelector('#dot')
+      const status = document.querySelector('#status')
+      const form = document.querySelector('form')
+      const input = document.querySelector('input')
+      const button = document.querySelector('button')
+      const log = document.querySelector('#log')
+      const pending = []
+      const protocol = location.protocol === 'https:' ? 'wss' : 'ws'
+      const socket = new WebSocket(`${protocol}://${location.host}/ws`)
+
+      function addLine(direction, text, latency) {
+        const line = document.createElement('div')
+        const arrow = document.createElement('span')
+        const content = document.createElement('span')
+
+        line.className = `line ${direction}`
+        arrow.className = 'arrow'
+        arrow.textContent = direction === 'sent' ? '>' : '<'
+        content.className = 'text'
+        content.textContent = text
+        line.append(arrow, content)
+
+        if (latency !== undefined) {
+          const timing = document.createElement('span')
+          timing.className = 'latency'
+          timing.textContent = `${latency} ms`
+          line.append(timing)
+        }
+
+        log.append(line)
+      }
+
+      socket.addEventListener('open', () => {
+        dot.className = 'dot on'
+        status.textContent = 'Connected'
+        button.disabled = false
+      })
+
+      socket.addEventListener('close', () => {
+        dot.className = 'dot off'
+        status.textContent = 'Disconnected'
+        button.disabled = true
+      })
+
+      socket.addEventListener('message', (event) => {
+        const sentAt = pending.shift()
+        const latency = sentAt === undefined ? undefined : Date.now() - sentAt
+        addLine('received', event.data, latency)
+      })
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault()
+        const message = input.value.trim()
+        if (!message) return
+
+        pending.push(Date.now())
+        addLine('sent', message)
+        socket.send(message)
+        input.value = ''
+      })
+    </script>
+  </body>
+</html>

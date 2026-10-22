@@ -1,0 +1,6 @@
+node_modules/
+.env
+.env.production
+.DS_Store
+.vercel
+*.log

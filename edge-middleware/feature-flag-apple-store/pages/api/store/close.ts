@@ -9,7 +9,7 @@ export default async function CloseStore() {
     const result = await set('storeClosed', true)
 
     if (!result) {
-      throw new Error(`Something went wrong when updating the Edge Config`)
+      throw new Error(`Something went wrong when updating the Global Config`)
     }
 
     return new Response(

@@ -5,7 +5,7 @@ description: Learn to use Split, a feature delivery platform that powers feature
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split&env=SPLIT_SDK_CLIENT_API_KEY,EDGE_CONFIG,EDGE_CONFIG_SPLIT_ITEM_KEY&project-name=feature-flag-split&repository-name=feature-flag-split&integration-ids=oac_bic40oWF5k9pDFboJhKYqMd1&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%7D%7D
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split&env=SPLIT_SDK_CLIENT_API_KEY,GLOBAL_CONFIG,GLOBAL_CONFIG_SPLIT_ITEM_KEY&project-name=feature-flag-split&repository-name=feature-flag-split&integration-ids=oac_bic40oWF5k9pDFboJhKYqMd1&global-config-stores=%7B%22GLOBAL_CONFIG%22%3A%7B%7D%7D
 demoUrl: https://ab-testing-split.vercel.app
 relatedTemplates:
   - maintenance-page
@@ -28,7 +28,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split&env=SPLIT_SDK_CLIENT_API_KEY,EDGE_CONFIG,EDGE_CONFIG_SPLIT_ITEM_KEY&project-name=feature-flag-split&repository-name=feature-flag-split&integration-ids=oac_bic40oWF5k9pDFboJhKYqMd1&edge-config-stores=%7B%22EDGE_CONFIG%22%3A%7B%7D%7D)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-split&env=SPLIT_SDK_CLIENT_API_KEY,GLOBAL_CONFIG,GLOBAL_CONFIG_SPLIT_ITEM_KEY&project-name=feature-flag-split&repository-name=feature-flag-split&integration-ids=oac_bic40oWF5k9pDFboJhKYqMd1&global-config-stores=%7B%22GLOBAL_CONFIG%22%3A%7B%7D%7D)
 
 ### Clone and Deploy
 
@@ -59,9 +59,9 @@ Then fill it with the following information:
 - Log in to the [Split console](https://app.split.io/login) and navigate to **Profile -> Admin Settings -> API Keys -> SDK API Keys** to retreive your SDK API Key.
 
 - Install the [Split Vercel Integration](https://vercel.com/integrations/split) for your project.
-  Then fill in `.env.local` with the provided Edge Config Item Key.
+  Then fill in `.env.local` with the provided Global Config Item Key.
 
-- You can find the Edge Config Connection String on vercel.com -> Storage -> \[Your Edge Config\] -> Projects. You can click Connect Project if your Edge Config is not connected to any project yet. This will automatically create a token for you and set it up as an environment variable on your project. Note that you still need to provide it to your `.env.local` file. Otherwise, click on Tokens in the sidebar and find the token you want to use. Then click on the three dots of and select Copy Connection String.
+- You can find the Global Config Connection String on vercel.com -> Storage -> \[Your Global Config\] -> Projects. You can click Connect Project if your Global Config is not connected to any project yet. This will automatically create a token for you and set it up as an environment variable on your project. Note that you still need to provide it to your `.env.local` file. Otherwise, click on Tokens in the sidebar and find the token you want to use. Then click on the three dots of and select Copy Connection String.
 
 - You also need to create feature flags called `New_Marketing_Page` and `New_About_Page`. You can set the user targeting to `Joe` and `Bobby` in whatever configuration you'd like as those users are used by this example.
 

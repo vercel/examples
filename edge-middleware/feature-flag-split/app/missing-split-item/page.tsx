@@ -61,36 +61,37 @@ export default function MissingSplitItemDialog() {
                     </li>
                     <li className="list-item list-disc">
                       Make sure the integration is configured to sync your Split
-                      project to a Vercel Edge Config. Go to vercel.com →
+                      project to a Vercel Global Config. Go to vercel.com →
                       Integrations → Split → Manage → Configure.
                     </li>
                     <li className="list-item list-disc">
-                      Make sure that Edge Config is connected to your project.
+                      Make sure that Global Config is connected to your project.
                       To do so, open vercel.com, find your project and click on
-                      Storage. The Edge Config should show up there. If not, add
-                      it.
+                      Storage. The Global Config should show up there. If not,
+                      add it.
                     </li>
                     <li className="list-item list-disc">
                       Ensure you have the{' '}
                       <span className="bg-gray-100 p-1 text-gray-900 rounded">
-                        EDGE_CONFIG_SPLIT_ITEM_KEY
+                        GLOBAL_CONFIG_SPLIT_ITEM_KEY
                       </span>{' '}
                       environment variable configured and it contains the item
                       key as specified by the Split integration. You can find
                       this key on your account at Vercel under Integrations →
-                      Split → Manage → Configure → Edge Config Item Key
+                      Split → Manage → Configure → Global Config Item Key
                     </li>
                     <li className="list-item list-disc">
-                      Ensure the Edge Config actually contains your Split data.
-                      Check whether your Edge Config contains a key called{' '}
+                      Ensure the Global Config actually contains your Split
+                      data. Check whether your Global Config contains a key
+                      called{' '}
                       <span className="bg-gray-100 p-1 text-gray-900 rounded">
-                        {process.env.EDGE_CONFIG_SPLIT_ITEM_KEY}
+                        {process.env.GLOBAL_CONFIG_SPLIT_ITEM_KEY}
                       </span>
-                      , as defined by the EDGE_CONFIG_SPLIT_ITEM_KEY environment
-                      variable. If it does not contain such a key, you can go to
-                      Split and make a change to a feature flag. This causes the
-                      integration to resync. You should then see the value in
-                      your Edge Config.
+                      , as defined by the GLOBAL_CONFIG_SPLIT_ITEM_KEY
+                      environment variable. If it does not contain such a key,
+                      you can go to Split and make a change to a feature flag.
+                      This causes the integration to resync. You should then see
+                      the value in your Global Config.
                     </li>
                     <li className="list-item list-disc">
                       Pull your latest Environment Variables if you are

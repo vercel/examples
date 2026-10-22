@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@vercel/functions": "^3.7.1",
+    "@vercel/functions": "^3.10.1",
     "ioredis": "^5.11.1",
     "next": "16.2.9",
     "react": "19.2.4",

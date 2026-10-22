@@ -1,12 +1,12 @@
 ---
 name: A/B Testing with ConfigCat
 slug: ab-testing-configcat
+marketplace: false
 description: ConfigCat is a service for feature flag and configuration management. In this template you'll be able to use feature flags at the edge.
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
 deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/feature-flag-configcat&env=NEXT_PUBLIC_CONFIGCAT_SDK_KEY&project-name=feature-flag-configcat&repository-name=feature-flag-configcat
-demoUrl: https://edge-functions-feature-flag-configcat.vercel.app
 relatedTemplates:
   - ab-testing-simple
 ---
@@ -17,9 +17,9 @@ relatedTemplates:
 
 By A/B testing directly on the server-side, you'll reduce layout shift from client-loaded experiments and improving your site's performance with smaller JavaScript bundles.
 
-## Demo
+## Hosted demo
 
-https://edge-functions-feature-flag-configcat.vercel.app
+The hosted demo has been retired. For current integration guidance, see [ConfigCat with the Flags SDK](https://flags-sdk.dev/docs/providers/openfeature/configcat).
 
 ## How to Use
 

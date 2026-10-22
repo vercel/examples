@@ -51,7 +51,7 @@ export default function Page() {
         Although this example stores the redirects in a JSON file, you can also
         use a database such as{' '}
         <Link href="https://vercel.com/docs/storage/edge-config/get-started">
-          Edge Config
+          Global Config
         </Link>{' '}
         or <Link href="https://vercel.com/docs/storage/vercel-kv">Redis</Link>.
       </Text>

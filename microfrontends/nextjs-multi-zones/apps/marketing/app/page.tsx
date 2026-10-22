@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Link } from '@vercel/microfrontends/next/client';
+import { ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import mfeIcon from '../public/mfe-icon-dark.png';
 
@@ -60,7 +61,7 @@ export default function Home() {
       <footer className="bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <p className="text-center text-gray-500">
-            &copy; 2025 Vercel Microfrontends All rights reserved.
+            &copy; 2026 Vercel Microfrontends All rights reserved.
           </p>
         </div>
       </footer>
@@ -145,8 +146,16 @@ function CTASection() {
           Join the microfrontend revolution today and build better web
           applications.
         </p>
-        <Button size="lg" variant="secondary">
-          Start Free Trial
+        <Button asChild size="lg" variant="secondary">
+          <a
+            href="https://vercel.com/docs/microfrontends"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Read the docs
+            <ExternalLink aria-hidden="true" />
+            <span className="sr-only">(opens in a new tab)</span>
+          </a>
         </Button>
       </div>
     </section>

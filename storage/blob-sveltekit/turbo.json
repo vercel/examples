@@ -2,7 +2,7 @@
   "$schema": "https://turborepo.com/schema.json",
   "pipeline": {
     "build": {
-      "outputs": [".svelte-kit/**"]
+      "outputs": [".svelte-kit/**", ".vercel/output/**"]
     },
     "lint": {}
   }
