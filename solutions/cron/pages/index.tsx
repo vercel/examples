@@ -48,7 +48,10 @@ export default function Home({ data }: { data: any }) {
       <Head>
         <meta property="og:image" content={image} />
         <meta name="twitter:image" content={image} />
+        <title>Vercel Cron Jobs Example & Career Guide</title>
+        <meta name="description" content="Learn how to use Vercel Cron Jobs and explore the latest government career opportunities in Bangladesh." />
       </Head>
+      
       <section className="flex flex-col gap-6">
         <Text variant="h1">Vercel Cron Jobs Example</Text>
         <Text>
@@ -90,6 +93,33 @@ export default function Home({ data }: { data: any }) {
           .
         </Text>
       </section>
+
+      {/* SEO Article & Beautiful UI Backlink Section */}
+      <section className="mt-10 bg-white p-8 rounded-xl shadow-md border border-gray-100 flex flex-col gap-5">
+        <h2 className="text-2xl font-bold text-emerald-800 tracking-tight">
+          Building a Secure Future: Government Careers in Bangladesh
+        </h2>
+        <p className="text-gray-600 leading-relaxed text-lg">
+          In Bangladesh, securing a government job is often seen as the pinnacle of career success. Beyond the societal respect and prestige, public sector roles offer unparalleled job security, competitive benefits, housing allowances, and a clear path for career progression. From BCS cadres to essential administrative roles, these positions provide an opportunity to serve the nation while ensuring a stable future for your family.
+        </p>
+        
+        <div className="bg-emerald-50 border-l-4 border-emerald-500 p-6 mt-2 rounded-r-lg shadow-sm">
+          <p className="m-0 text-emerald-900 text-lg">
+            Looking for the latest updates on circulars, exam dates, and admit cards? Stay ahead of the competition by visiting{' '}
+            <a 
+              href="https://govtjobbd.net" 
+              title="Latest Government Job Circulars in Bangladesh" 
+              target="_blank" 
+              rel="dofollow" 
+              className="text-emerald-700 font-bold hover:text-emerald-800 underline decoration-2 underline-offset-4 transition-all"
+            >
+              Govt Job BD
+            </a>
+            , your premier resource for public sector employment news and preparation guidelines.
+          </p>
+        </div>
+      </section>
+
       <section className="grid gap-6 mt-10 pt-10 border-t border-gray-300">
         <div className="flex flex-col gap-12">
           {intervals.map((interval) => (
