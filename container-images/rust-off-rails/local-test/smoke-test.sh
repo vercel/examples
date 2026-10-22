@@ -2,7 +2,7 @@
 # Smoke-test the app image against a throwaway Postgres, the way it runs on Vercel
 # (APP_ENV=production, the image's default PORT=80, DATABASE_URL and APP_URL set). No secrets are used.
 # Usage (from this example's folder, after `docker build -f Dockerfile.vercel -t rust-off-rails-on-vercel .`):
-#   ./local-test/smoke-test.sh
+#   bash local-test/smoke-test.sh
 set -euo pipefail
 
 IMAGE=${IMAGE:-rust-off-rails-on-vercel}

@@ -59,7 +59,7 @@ Requires Docker. The smoke test runs the image with its production settings agai
 
 ```bash
 docker build -f Dockerfile.vercel -t rust-off-rails-on-vercel .
-./local-test/smoke-test.sh
+bash local-test/smoke-test.sh
 ```
 
 Expected output:
