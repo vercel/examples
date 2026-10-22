@@ -1,0 +1,36 @@
+# Rust off Rails app template on Vercel: fetch the pinned release, build the CSS and the binary, ship one image.
+
+# Rust off Rails v0.7.3. Change this commit to upgrade.
+ARG OFFRAILS_COMMIT=2913be26ad9476a35a3bf4e0e3551a8949b9bd19
+
+# 1. The framework source at the pinned commit. The app template lives in template/app.
+FROM rust:1.99-trixie AS source
+ARG OFFRAILS_COMMIT
+WORKDIR /src
+RUN git init -q . \
+ && git remote add origin https://github.com/rust-off-rails/rustoffrails.git \
+ && git fetch -q --depth 1 origin "$OFFRAILS_COMMIT" \
+ && git checkout -q FETCH_HEAD
+
+# 2. The CSS (pinned standalone Tailwind) and the release binary, as the template's own Dockerfile does.
+FROM source AS build
+WORKDIR /src/template/app
+RUN bin/setup-tailwind && bin/tailwindcss -i assets/app.css -o static/app.css --minify
+RUN cargo build --release --locked && cp target/release/offrails_app /usr/local/bin/app
+
+# 3. Runtime: the binary, its static files and the entrypoint that migrates on boot.
+FROM debian:trixie-slim
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
+ && rm -rf /var/lib/apt/lists/* \
+ && useradd --create-home --uid 1000 app
+WORKDIR /app
+COPY --from=build /usr/local/bin/app /usr/local/bin/app
+COPY --from=build /src/template/app/static ./static
+COPY --from=build /src/template/app/bin/docker-entrypoint /usr/local/bin/docker-entrypoint
+RUN mkdir -p /app/storage && chown -R app:app /app
+USER app
+# The app listens on 0.0.0.0:$PORT in production. 80 is Vercel's default.
+# Vercel's proxy sets X-Forwarded-For, so the app reads the client IP from it.
+ENV APP_ENV=production PORT=80 LOG_FORMAT=json APP_TRUSTED_PROXY=true
+ENTRYPOINT ["docker-entrypoint"]
+CMD ["app", "serve"]
