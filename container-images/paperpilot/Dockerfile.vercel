@@ -1,0 +1,27 @@
+# PaperPilot on Vercel: fetch the pinned source, compile the REST + MCP gateway, ship one binary.
+
+# PaperPilot has no tagged release for this code yet, so pin a commit.
+ARG PAPERPILOT_COMMIT=c7b72c0eeb9006df67e289971729165181ecef6b
+
+# 1. Compile the gateway from the pinned commit.
+FROM rust:1-bookworm AS build
+ARG PAPERPILOT_COMMIT
+WORKDIR /src
+RUN git init -q . \
+ && git remote add origin https://github.com/KrushnaVardhanReddy/PaperPilot.git \
+ && git fetch -q --depth 1 origin "$PAPERPILOT_COMMIT" \
+ && git checkout -q FETCH_HEAD
+# Upstream's release profile uses fat LTO with one codegen unit. Thin LTO keeps builds much faster.
+ENV CARGO_PROFILE_RELEASE_LTO=thin CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16
+RUN cargo build --release --locked -p paperpilot-gateway
+
+# 2. Runtime: Debian slim, CA certificates, tini for signal handling, and the binary.
+FROM debian:bookworm-slim
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates libssl3 tini \
+ && rm -rf /var/lib/apt/lists/*
+COPY --from=build /src/target/release/paperpilot-gateway /usr/local/bin/paperpilot-gateway
+# The gateway listens on $BIND:$PORT. 80 is Vercel's default port; /tmp is the only writable path you should rely on.
+ENV PORT=80 BIND=0.0.0.0 RUST_LOG=info TMPDIR=/tmp PAPERPILOT_DATA_DIR=/tmp/paperpilot
+# The gateway has no SIGTERM handler, so tini runs as PID 1 and forwards signals to it.
+ENTRYPOINT ["/usr/bin/tini", "--", "/usr/local/bin/paperpilot-gateway"]
