@@ -129,7 +129,7 @@ function App({ Component, pageProps }) {
   return (
     <StatsigProvider
       sdkKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY!}
-      waitForInitialization={true}
+      waitForInitialization={false}
       user={{ userID }}
     >
       <Layout title="statsig-metric" path="solutions/statsig-metric">
