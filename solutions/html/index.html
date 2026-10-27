@@ -1,96 +1,628 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ទ្រី ម៉ាលិដា | ហាងភេសជ្ជៈលំដាប់ខ្ពស់</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@100..700&family=Moul&family=Siemreap&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0ea5e9;
+            --accent-color: #f59e0b;
+            --clr: #222327;
+        }
+
+        body {
+            font-family: 'Siemreap', sans-serif;
+            background-color: #f8fafc;
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 100px; 
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .khmer-moul {
+            font-family: 'Moul', serif !important;
+            line-height: 1.8;
+        }
+
+        .hero-custom-bg {
+            background: linear-gradient(rgba(14, 165, 233, 0.7), rgba(30, 58, 138, 0.8)), 
+                        url('https://lh3.googleusercontent.com/d/1MfNcG0q_tDntBmq7SvF4alcVm6Y4VqNW');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(14, 165, 233, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-bg-layer {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://lh3.googleusercontent.com/d/1zt44xNXo9pptAJ402j4DPByQmGh7sdrC');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .category-pill {
+            transition: all 0.2s;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .category-pill:hover, .category-pill.active {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3);
+        }
+
+        #cart-sidebar {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+            max-width: 100%;
+        }
+        #cart-sidebar.open {
+            transform: translateX(0);
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        /* --- MAGIC NAVIGATION MENU 3 --- */
+        .navigation-container {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .navigation {
+            pointer-events: auto;
+            width: 400px;
+            height: 70px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 420px) {
+            .navigation { width: 95%; }
+        }
+
+        .navigation ul {
+            display: flex;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            justify-content: space-around;
+        }
+
+        .navigation ul li {
+            position: relative;
+            list-style: none;
+            width: 70px;
+            height: 70px;
+            z-index: 1;
+        }
+
+        .navigation ul li a {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .navigation ul li a .icon {
+            position: relative;
+            display: block;
+            line-height: 75px;
+            font-size: 1.5em;
+            text-align: center;
+            transition: 0.5s;
+            color: var(--clr);
+        }
+
+        .navigation ul li.active a .icon {
+            transform: translateY(-32px);
+            color: #fff;
+        }
+
+        .navigation ul li a .text {
+            position: absolute;
+            color: var(--clr);
+            font-weight: 400;
+            font-size: 0.75em;
+            letter-spacing: 0.05em;
+            transition: 0.5s;
+            opacity: 0;
+            transform: translateY(20px);
+            font-family: 'Siemreap', sans-serif;
+        }
+
+        .navigation ul li.active a .text {
+            opacity: 1;
+            transform: translateY(10px);
+        }
+
+        .indicator {
+            position: absolute;
+            top: -50%;
+            width: 70px;
+            height: 70px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 6px solid #f8fafc; 
+            transition: 0.5s;
+        }
+
+        .indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -22px;
+            width: 20px;
+            height: 20px;
+            background: transparent;
+            border-top-right-radius: 20px;
+            box-shadow: 1px -10px 0 0 #f8fafc;
+        }
+
+        .indicator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -22px;
+            width: 20px;
+            height: 20px;
+            background: transparent;
+            border-top-left-radius: 20px;
+            box-shadow: -1px -10px 0 0 #f8fafc;
+        }
+
+        .navigation ul li:nth-child(1).active ~ .indicator { transform: translateX(calc(70px * -2)); }
+        .navigation ul li:nth-child(2).active ~ .indicator { transform: translateX(calc(70px * -1)); }
+        .navigation ul li:nth-child(3).active ~ .indicator { transform: translateX(calc(70px * 0)); }
+        .navigation ul li:nth-child(4).active ~ .indicator { transform: translateX(calc(70px * 1)); }
+        .navigation ul li:nth-child(5).active ~ .indicator { transform: translateX(calc(70px * 2)); }
+
+        @media (max-width: 420px) {
+            .indicator { width: 18%; }
+            .navigation ul li { width: 20%; }
+            .navigation ul li:nth-child(1).active ~ .indicator { transform: translateX(-200%); }
+            .navigation ul li:nth-child(2).active ~ .indicator { transform: translateX(-100%); }
+            .navigation ul li:nth-child(3).active ~ .indicator { transform: translateX(0%); }
+            .navigation ul li:nth-child(4).active ~ .indicator { transform: translateX(100%); }
+            .navigation ul li:nth-child(5).active ~ .indicator { transform: translateX(200%); }
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- Desktop Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm hidden md:block">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 overflow-hidden rounded-full border-2 border-sky-500 shadow-sm">
+                        <img src="https://lh3.googleusercontent.com/d/1WIdMC-Km1JpZg2PTNZsqxPClzHzzkgvj" alt="Logo" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-xl font-bold text-sky-600 khmer-moul">ទ្រី ម៉ាលិដា</span>
+                </div>
+                <div class="flex space-x-6 items-center">
+                    <a href="#home" class="text-gray-700 hover:text-sky-600 font-medium transition">ទំព័រដើម</a>
+                    <a href="#special" class="text-gray-700 hover:text-sky-600 font-medium transition">ពិសេស</a>
+                    <a href="#menu" class="text-gray-700 hover:text-sky-600 font-medium transition">ម៉ឺនុយ</a>
+                    <button onclick="toggleCart()" class="relative p-3 bg-sky-100 rounded-full text-sky-600 hover:bg-sky-200 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        <span id="cart-count-desktop" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Magic Navigation Menu 3 -->
+    <div class="navigation-container">
+        <div class="navigation">
+            <ul>
+                <li class="list active" data-target="home">
+                    <a href="#home">
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                        </span>
+                        <span class="text">ដើម</span>
+                    </a>
+                </li>
+                <li class="list" data-target="special">
+                    <a href="#special">
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.382-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg>
+                        </span>
+                        <span class="text">ពិសេស</span>
+                    </a>
+                </li>
+                <li class="list" data-target="menu">
+                    <a href="#menu">
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                        </span>
+                        <span class="text">ម៉ឺនុយ</span>
+                    </a>
+                </li>
+                <li class="list" onclick="toggleCart()">
+                    <a href="javascript:void(0)">
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+                        </span>
+                        <span class="text">កន្ត្រក</span>
+                    </a>
+                </li>
+                <li class="list" data-target="contact">
+                    <a href="#contact">
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                        </span>
+                        <span class="text">ទាក់ទង</span>
+                    </a>
+                </li>
+                <div class="indicator"></div>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-2xl z-[2001] flex flex-col">
+        <div class="p-6 border-b flex justify-between items-center bg-sky-600 text-white">
+            <h2 class="text-xl font-bold khmer-moul">កន្ត្រកទំនិញ</h2>
+            <button onclick="toggleCart()" class="text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+        </div>
+        <div id="cart-items-container" class="flex-grow overflow-y-auto p-4 space-y-4 bg-slate-50">
+            <div class="text-center py-20 text-gray-400">មិនទាន់មានទំនិញ...</div>
+        </div>
+        <div class="p-6 border-t bg-white space-y-4">
+            <div class="flex justify-between items-center text-lg font-bold">
+                <span>សរុបការទូទាត់:</span>
+                <span id="cart-total" class="text-sky-600 font-bold text-xl">$0.00</span>
+            </div>
+            <button onclick="openPaymentModal()" class="w-full bg-sky-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-sky-700 transition">បញ្ជាទិញឥឡូវនេះ</button>
+        </div>
+    </div>
+
+    <!-- Modal for Payment -->
+    <div id="payment-modal" class="modal-overlay">
+        <div class="bg-white rounded-3xl w-full max-w-md overflow-hidden shadow-2xl">
+            <div class="p-6 border-b text-center relative bg-sky-50">
+                <h3 class="text-xl font-bold khmer-moul text-sky-900">វិធីទូទាត់</h3>
+                <button onclick="closePaymentModal()" class="absolute top-6 right-6 text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+            <div id="payment-step-1" class="p-6 space-y-4 text-center">
+                <div onclick="showQR('ABA Bank')" class="p-4 border rounded-2xl hover:bg-sky-50 cursor-pointer flex items-center shadow-sm">
+                    <div class="w-12 h-12 bg-sky-900 rounded-xl flex items-center justify-center text-white font-bold mr-4">ABA</div>
+                    <div class="text-left">
+                        <h4 class="font-bold">ABA Bank</h4>
+                        <p class="text-xs text-gray-500">Scan QR Code ដើម្បីបង់ប្រាក់</p>
+                    </div>
+                </div>
+                <div onclick="showQR('ACLEDA')" class="p-4 border rounded-2xl hover:bg-sky-50 cursor-pointer flex items-center shadow-sm">
+                    <div class="w-12 h-12 bg-blue-700 rounded-xl flex items-center justify-center text-white font-bold mr-4">ACL</div>
+                    <div class="text-left">
+                        <h4 class="font-bold">ACLEDA Bank</h4>
+                        <p class="text-xs text-gray-500">Scan QR Code ដើម្បីបង់ប្រាក់</p>
+                    </div>
+                </div>
+            </div>
+            <div id="payment-step-2" class="hidden p-8 text-center space-y-6">
+                <div class="bg-gray-50 p-6 rounded-3xl inline-block border-2 border-dashed border-sky-200">
+                    <img id="payment-qr-img" src="" alt="QR" class="w-48 h-48 mx-auto rounded-lg">
+                </div>
+                <p id="selected-bank-name" class="text-sky-600 font-bold"></p>
+                <p class="text-3xl font-bold text-gray-900" id="payment-amount-display"></p>
+                <button onclick="confirmPayment()" class="w-full bg-sky-600 text-white py-4 rounded-xl font-bold">ខ្ញុំបានទូទាត់រួចរាល់</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <header id="home" class="hero-custom-bg text-white py-16 sm:py-24 px-4 relative">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
+            <div class="md:w-1/2 space-y-6 z-10 bg-black/30 p-8 rounded-3xl backdrop-blur-sm border border-white/10">
+                <h1 class="text-xl md:text-3xl leading-loose">រសជាតិស្រស់ស្រាយ<br>ជាមួយ ទ្រី ម៉ាលិដា</h1>
+                <p class="text-base sm:text-lg opacity-90">ហាងយើងខ្ញុំមានភេសជ្ជៈដ៏សម្បូរបែប ផលិតពីគ្រឿងផ្សំធម្មជាតិ និងមានអនាម័យខ្ពស់បំផុត។</p>
+                <a href="#menu" class="inline-block bg-sky-500 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:bg-sky-600 transition">បញ្ជាទិញឥឡូវ</a>
+            </div>
+            <div class="md:w-1/2 hidden md:block">
+                <img src="https://lh3.googleusercontent.com/d/1xp4BL-FCIdKUdzC1_k4xTmMvXvIE8LOq" alt="Shop" class="rounded-3xl shadow-2xl w-full h-[400px] object-cover">
+            </div>
+        </div>
+    </header>
+
+    <section id="special" class="py-12 bg-sky-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="glass-card rounded-[2rem] flex flex-col md:flex-row items-center shadow-xl">
+                <div class="menu-bg-layer opacity-20"></div>
+                <div class="md:w-1/2 p-10 space-y-6 card-content">
+                    <span class="inline-block px-4 py-1 bg-sky-600 text-white rounded-full text-xs font-bold uppercase tracking-wider">Recommended</span>
+                    <h2 class="text-2xl sm:text-3xl text-sky-900 khmer-moul">ភេសជ្ជៈពិសេសប្រចាំថ្ងៃ</h2>
+                    <p class="text-gray-600">សាកល្បងរសជាតិថ្មីប្លែកដែលអ្នកមិនធ្លាប់បានញ៉ាំពីមុនមក ធានាថានឹងជាប់ចិត្ត។</p>
+                    <button onclick="addToCart('Special Drink', 2.50, 'https://lh3.googleusercontent.com/d/1fjc8zJMJfSE4LpVOpgyON3IscKfZYrts')" class="bg-sky-600 text-white px-10 py-4 rounded-xl font-bold hover:bg-sky-700 transition shadow-lg">$2.50 - កម្ម៉ង់ភ្លាម</button>
+                </div>
+                <div class="md:w-1/2 p-6 card-content w-full">
+                    <img src="https://lh3.googleusercontent.com/d/1fjc8zJMJfSE4LpVOpgyON3IscKfZYrts" alt="Special" class="w-full h-64 sm:h-80 object-cover rounded-[1.5rem]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl sm:text-3xl text-sky-900 khmer-moul">បញ្ជីភេសជ្ជៈទាំង ៥០ មុខ</h2>
+                <div class="w-16 h-1 bg-sky-500 mx-auto mt-2 rounded-full"></div>
+            </div>
+            <div class="flex flex-wrap justify-center gap-2 mb-10 overflow-x-auto pb-4 px-2">
+                <button onclick="filterMenu('all')" id="btn-all" class="category-pill active px-6 py-2 rounded-full border border-sky-100 bg-white shadow-sm">ទាំងអស់</button>
+                <button onclick="filterMenu('coffee')" id="btn-coffee" class="category-pill px-6 py-2 rounded-full border border-sky-100 bg-white shadow-sm">កាហ្វេ</button>
+                <button onclick="filterMenu('tea')" id="btn-tea" class="category-pill px-6 py-2 rounded-full border border-sky-100 bg-white shadow-sm">តែ</button>
+                <button onclick="filterMenu('smoothie')" id="btn-smoothie" class="category-pill px-6 py-2 rounded-full border border-sky-100 bg-white shadow-sm">ស្មូទី</button>
+                <button onclick="filterMenu('soda')" id="btn-soda" class="category-pill px-6 py-2 rounded-full border border-sky-100 bg-white shadow-sm">សូដា</button>
+            </div>
+            <div id="drink-container" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+            <h2 class="text-2xl font-bold text-sky-400 khmer-moul">ទ្រី ម៉ាលិដា</h2>
+            <div class="space-y-2 opacity-80">
+                <p>📍 ទីតាំង៖ ភូមិស្ដៅ ឃុំស្ដៅ ស្រុករតនមណ្ឌល ខេត្តបាត់ដំបង</p>
+                <p>📞 លេខទូរស័ព្ទ៖ 0887057250</p>
+            </div>
+            <div class="pt-6 flex justify-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-sky-900/50 flex items-center justify-center">FB</div>
+                <div class="w-10 h-10 rounded-full bg-sky-900/50 flex items-center justify-center">TG</div>
+                <div class="w-10 h-10 rounded-full bg-sky-900/50 flex items-center justify-center">IG</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const list = document.querySelectorAll('.list');
+        function activeLink() {
+            list.forEach((item) => item.classList.remove('active'));
+            this.classList.add('active');
+        }
+        list.forEach((item) => item.addEventListener('click', activeLink));
+
+        const drinkContainer = document.getElementById('drink-container');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const cartCountDesktop = document.getElementById('cart-count-desktop');
+        const cartTotalElement = document.getElementById('cart-total');
+        const paymentModal = document.getElementById('payment-modal');
+
+        let cart = [];
+        let currentFilter = 'all';
+
+        const drinksData = [
+            // កាហ្វេ (12 មុខ)
+            { id: 1, type: 'coffee', name: "កាហ្វេទឹកដោះគោ", price: 1.50, image: "https://lh3.googleusercontent.com/d/1WgsKZmJS3yy4neT93FNx7LoMZcp9lD64" },
+            { id: 2, type: 'coffee', name: "កាហ្វេខ្មៅ", price: 1.25, image: "https://lh3.googleusercontent.com/d/1R_6dBCnEKolWGKeXLMvyX5sibM6VHVJh" },
+            { id: 3, type: 'coffee', name: "ឡាតេ (Latte)", price: 2.00, image: "https://lh3.googleusercontent.com/d/1sW-RLrMfpU9Wol5FNNRlqOVfGKBb6M7F" },
+            { id: 4, type: 'coffee', name: "កាពូឈីណូ (Cappuccino)", price: 2.00, image: "https://lh3.googleusercontent.com/d/1Rp8dZVPY1FZ8ChQ-Yv_bCmCHi2VwVLIC" },
+            { id: 5, type: 'coffee', name: "អាមេរិកាណូ (Americano)", price: 1.50, image: "https://lh3.googleusercontent.com/d/1wABfdU8UpRPLm0FZ7FpW8bEha0o4cy3T" },
+            { id: 6, type: 'coffee', name: "ម៉ូកា (Mocha)", price: 2.25, image: "https://lh3.googleusercontent.com/d/1NN4ELjHQ6hjgGdFaTGZeVR0-AOzZ5DL5" },
+            { id: 7, type: 'coffee', name: "កាហ្វេទឹកដោះគោដូង", price: 2.00, image: "https://lh3.googleusercontent.com/d/1XUPeWPSuUbiXE-bhsV9nF8lYu8pUf5cR" },
+            { id: 8, type: 'coffee', name: "កាហ្វេវ៉ានីឡា", price: 2.00, image: "https://lh3.googleusercontent.com/d/1FQKu5QVqMKndgH7ckpw0UEU6nWKPkBCh" },
+            { id: 9, type: 'coffee', name: "កាហ្វេការ៉ាមែល", price: 2.25, image: "https://lh3.googleusercontent.com/d/1ZDz16kG4X2KBogKd_BMszDT3pIeuo_v2" },
+            { id: 10, type: 'coffee', name: "កាហ្វេទឹកដោះគោសូកូឡា", price: 2.25, image: "https://lh3.googleusercontent.com/d/1U2kekJg9H0O7yBT5uXLhYVMKJ8s5E52f" },
+            { id: 11, type: 'coffee', name: "កាហ្វេ Matcha", price: 2.50, image: "https://lh3.googleusercontent.com/d/1xc4K1RlVXLojfHu8gYQX-XISUDTm-vdy" },
+            { id: 12, type: 'coffee', name: "Double Espresso", price: 1.75, image: "https://lh3.googleusercontent.com/d/1XiMlDWoU7Y6tf0SBwSHu_3u9mg_GUNzY" },
+
+            // តែ (13 មុខ)
+            { id: 13, type: 'tea', name: "តែបៃតងទឹកដោះគោ", price: 1.75, image: "https://lh3.googleusercontent.com/d/1q3ZzW2SxjzQmHhXxKfC74Pg_qYLAp0nN" },
+            { id: 14, type: 'tea', name: "តែក្រហមទឹកដោះគោ", price: 1.75, image: "https://lh3.googleusercontent.com/d/1LYdZyYvqOpzMwoKwjdSmhCanM8TUCO7Y" },
+            { id: 15, type: 'tea', name: "តែក្រូចឆ្មារ", price: 1.50, image: "https://lh3.googleusercontent.com/d/1xWEmLcXAL7016_zBao0cn3cFZHgkwor6" },
+            { id: 16, type: 'tea', name: "តែផាសិន", price: 1.50, image: "https://lh3.googleusercontent.com/d/17PR9lRyJeIDDELNm7KImwFCeVmfpySbh" },
+            { id: 17, type: 'tea', name: "តែមេអំបៅ (Blue Pea)", price: 1.75, image: "https://lh3.googleusercontent.com/d/1vlrSthNHa_72UD_Rt6i_SmpyQB-H8ssh" },
+            { id: 18, type: 'tea', name: "តែគូលែន", price: 2.00, image: "https://lh3.googleusercontent.com/d/1zLL9dGNDSOseWROjBwXH0T7AHRfegE2Y" },
+            { id: 19, type: 'tea', name: "តែប៉េស", price: 2.00, image: "https://lh3.googleusercontent.com/d/1KejQ4Sn-UK7U9oDY1VdEzOc60xzLBhuI" },
+            { id: 20, type: 'tea', name: "តែទឹកឃ្មុំក្រូចឆ្មារ", price: 1.75, image: "https://lh3.googleusercontent.com/d/1tYHR8m0OXoNVlnpgeH-GoKtZ7J_lPlME" },
+            { id: 21, type: 'tea', name: "តែបៃតងទឹកដោះគោជូ", price: 2.00, image: "https://lh3.googleusercontent.com/d/17W7WnnGxkN490iaUGdJe_kNVrkMKzPOF" },
+            { id: 22, type: 'tea', name: "តែ Oolong", price: 1.50, image: "https://lh3.googleusercontent.com/d/1mxMI_SycNmTnQhW_ry2EKV_VWxRFuiaz" },
+            { id: 23, type: 'tea', name: "តែផ្កាម្លិះ", price: 1.25, image: "https://lh3.googleusercontent.com/d/19EL3ePa2EMrY2QCyy-TPs64gvDYmftBg" },
+            { id: 24, type: 'tea', name: "តែគុជទឹកដោះគោ", price: 2.00, image: "https://lh3.googleusercontent.com/d/15o2hh72_gXDouVMh9nOMhIcVmXW3ft1R" },
+            { id: 25, type: 'tea', name: "តែបៃតងម៉ាឆា", price: 2.50, image: "https://lh3.googleusercontent.com/d/1qeS7bG3UDx2fulla9nCt8eiad_YoiWUz" },
+
+            // ស្មូទី & ទឹកក្រឡុក (12 មុខ)
+            { id: 26, type: 'smoothie', name: "ផាសិនទឹកដោះគោ", price: 2.00, image: "https://lh3.googleusercontent.com/d/1sJs0p_SQMxbQpvM1MbavtnK0T7mHImI4" },
+            { id: 27, type: 'smoothie', name: "ស្ដ្របឺរីស្មូទី", price: 2.50, image: "https://lh3.googleusercontent.com/d/1yridXrR4CM9ejAjb7M7zWCTUe4pmoL5F" },
+            { id: 28, type: 'smoothie', name: "ប៊្លូបឺរីស្មូទី", price: 2.50, image: "https://lh3.googleusercontent.com/d/1s-QY-qzAZqHjbNX6uo7R2bkH4J8UUDAa" },
+            { id: 29, type: 'smoothie', name: "បឺរក្រឡុក", price: 2.50, image: "https://lh3.googleusercontent.com/d/1w8UwSlB1VwTv7W6ZtRIM4O83b3xJTw0p" },
+            { id: 30, type: 'smoothie', name: "ស្វាយក្រឡុក", price: 2.00, image: "https://lh3.googleusercontent.com/d/1tu4RRx_YUei3tGv5Gq0G9VFQ385we9Nt" },
+            { id: 31, type: 'smoothie', name: "ដូងក្រឡុក", price: 2.00, image: "https://lh3.googleusercontent.com/d/1ErIbpwRyC_P0EQbQlJo-KyT1KwGqyDjI" },
+            { id: 32, type: 'smoothie', name: "សូកូឡាក្រឡុក", price: 2.25, image: "https://lh3.googleusercontent.com/d/14EOfFN7kmBXnHmwwWm26gTByXPBPD13t" },
+            { id: 33, type: 'smoothie', name: "វ៉ានីឡាក្រឡុក", price: 2.25, image: "https://lh3.googleusercontent.com/d/1SQY97PTmdlWuLpfP5TutvW7Vn5aVLD4c" },
+            { id: 34, type: 'smoothie', name: "អូរីអូក្រឡុក", price: 2.50, image: "https://lh3.googleusercontent.com/d/1TFL7MGgL90mQu1rWE4zeK5foa-KAlxCL" },
+            { id: 35, type: 'smoothie', name: "ម្នាស់ក្រឡុក", price: 1.75, image: "https://lh3.googleusercontent.com/d/1O3CTyc6U3wdpklr9yYAoza-9VZr6uZ98" },
+            { id: 36, type: 'smoothie', name: "ឪឡឹកក្រឡុក", price: 1.75, image: "https://lh3.googleusercontent.com/d/1Ob7u0Tnnh_ffezti0ik82lTkK0vK8jSW" },
+            { id: 37, type: 'smoothie', name: "ការ៉ាមែលម៉ាកូ", price: 2.50, image: "https://lh3.googleusercontent.com/d/1mHHIhk4HIwbubk-emt8Bj0V-3g3ztHaG" },
+
+            // សូដា (13 មុខ)
+            { id: 38, type: 'soda', name: "ផាសិនសូដា", price: 1.50, image: "https://lh3.googleusercontent.com/d/1AHHOpMJrqWMt2Xl6DpoWxJerp-n1OdHI" },
+            { id: 39, type: 'soda', name: "ប៊្លូបឺរីសូដា", price: 1.50, image: "https://lh3.googleusercontent.com/d/1xGBtUBKJHgwqy3CVZPw-D01y5cm7j_CJ" },
+            { id: 40, type: 'soda', name: "ស្ដ្របឺរីសូដា", price: 1.50, image: "https://lh3.googleusercontent.com/d/1_pVkZ0WjcBw5YYXVWNiF4WjWd_8x0yfA" },
+            { id: 41, type: 'soda', name: "ក្រូចឆ្មារសូដា", price: 1.25, image: "https://lh3.googleusercontent.com/d/1PwZ8MTd50P_40aQV1VMlE1ZC9EJaAmRt" },
+            { id: 42, type: 'soda', name: "ទឹកឃ្មុំសូដា", price: 1.50, image: "https://lh3.googleusercontent.com/d/1rUOib6nGLCNDTWnokwt5ajiR1goQ0QIr" },
+            { id: 43, type: 'soda', name: "គីវីសូដា", price: 1.50, image: "https://lh3.googleusercontent.com/d/1gxqV9XjTak0mXxj2vnj60gqcFPbm15o7" },
+            { id: 44, type: 'soda', name: "ផ្លែប៉ោមសូដា", price: 1.50, image: "https://lh3.googleusercontent.com/d/11KpwyohSfvvJ4IazIeFoQAo9LLleeZBu" },
+            { id: 45, type: 'soda', name: "ទំពាំងបាយជូសូដា", price: 1.50, image: "https://lh3.googleusercontent.com/d/1sW-RLrMfpU9Wol5FNNRlqOVfGKBb6M7F" },
+            { id: 46, type: 'soda', name: "Blue Hawaii", price: 2.00, image: "https://lh3.googleusercontent.com/d/1Rp8dZVPY1FZ8ChQ-Yv_bCmCHi2VwVLIC" },
+            { id: 47, type: 'soda', name: "Sunrise Soda", price: 2.00, image: "https://lh3.googleusercontent.com/d/1e2cLGF1Au-7BYtmsHF0B224zEpEdxZy2" },
+            { id: 48, type: 'soda', name: "Red Bull Coffee", price: 2.00, image: "https://lh3.googleusercontent.com/d/1nUPgJCL-Li5RmDGs5LWJmJKnX5LlWtIm" },
+            // Updated Image for តែទឹកដោះគោសូដា
+            { id: 49, type: 'soda', name: "តែទឹកដោះគោសូដា", price: 1.75, image: "https://lh3.googleusercontent.com/d/1Jr4EotrQ9XQ8Q1Xffeczq1J6UATywbNz" },
+            // Updated Image for Lemon Mint Soda
+            { id: 50, type: 'soda', name: "Lemon Mint Soda", price: 1.75, image: "https://lh3.googleusercontent.com/d/1M28cyO3_vbRQqZzB__kVrIEYzNOIhjEG" },
+        ];
+
+        function renderDrinks() {
+            const filtered = currentFilter === 'all' ? drinksData : drinksData.filter(d => d.type === currentFilter);
+            drinkContainer.innerHTML = filtered.map(drink => `
+                <div class="glass-card rounded-2xl flex flex-col shadow-sm">
+                    <div class="menu-bg-layer"></div>
+                    <div class="relative h-32 sm:h-40 p-2 card-content">
+                        <img src="${drink.image}" class="w-full h-full object-cover rounded-xl" alt="${drink.name}">
+                    </div>
+                    <div class="p-3 flex flex-col flex-grow card-content">
+                        <h4 class="font-bold text-gray-800 text-[11px] sm:text-sm h-8 overflow-hidden">${drink.name}</h4>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-sky-600 font-bold text-xs sm:text-base">$${drink.price.toFixed(2)}</span>
+                            <button onclick="addToCart('${drink.name}', ${drink.price}, '${drink.image}')" class="bg-sky-500 text-white w-7 h-7 rounded-full flex items-center justify-center hover:bg-sky-600 active:scale-90 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterMenu(type) {
+            currentFilter = type;
+            document.querySelectorAll('.category-pill').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + type).classList.add('active');
+            renderDrinks();
+        }
+
+        function toggleCart() { cartSidebar.classList.toggle('open'); }
+
+        function addToCart(name, price, image) {
+            const item = cart.find(i => i.name === name);
+            if (item) item.quantity++; else cart.push({ name, price, image, quantity: 1 });
+            updateCartUI();
+            if (!cartSidebar.classList.contains('open')) toggleCart();
+        }
+
+        function updateCartUI() {
+            const count = cart.reduce((a, b) => a + b.quantity, 0);
+            if (cartCountDesktop) cartCountDesktop.innerText = count;
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<div class="text-center py-20 text-gray-400">មិនទាន់មានទំនិញ...</div>';
+                cartTotalElement.innerText = "$0.00";
+                return;
+            }
+            let total = 0;
+            cartItemsContainer.innerHTML = cart.map((item, i) => {
+                total += item.price * item.quantity;
+                return `
+                    <div class="flex items-center gap-3 bg-white p-3 rounded-2xl shadow-sm border border-sky-50">
+                        <img src="${item.image}" class="w-10 h-10 rounded-lg object-cover">
+                        <div class="flex-grow">
+                            <h5 class="font-bold text-[11px]">${item.name}</h5>
+                            <div class="flex items-center gap-2 mt-1">
+                                <button onclick="changeQty(${i}, -1)" class="w-5 h-5 flex items-center justify-center bg-gray-100 rounded-full">-</button>
+                                <span class="text-xs font-bold">${item.quantity}</span>
+                                <button onclick="changeQty(${i}, 1)" class="w-5 h-5 flex items-center justify-center bg-gray-100 rounded-full">+</button>
+                            </div>
+                        </div>
+                        <span class="font-bold text-sky-600 text-xs">$${(item.price * item.quantity).toFixed(2)}</span>
+                    </div>
+                `;
+            }).join('');
+            cartTotalElement.innerText = `$${total.toFixed(2)}`;
+        }
+
+        function changeQty(index, delta) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function openPaymentModal() {
+            if (cart.length === 0) return;
+            paymentModal.style.display = "flex";
+            document.getElementById('payment-amount-display').innerText = cartTotalElement.innerText;
+        }
+
+        function closePaymentModal() { 
+            paymentModal.style.display = "none";
+            document.getElementById('payment-step-1').classList.remove('hidden');
+            document.getElementById('payment-step-2').classList.add('hidden');
+        }
+
+        function showQR(bank) { 
+            document.getElementById('payment-step-1').classList.add('hidden');
+            document.getElementById('payment-step-2').classList.remove('hidden');
+            document.getElementById('selected-bank-name').innerText = bank;
+            document.getElementById('payment-qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=THRI_MALIDA_${bank}_${cartTotalElement.innerText}`;
+        }
+
+        function confirmPayment() { 
+            alert('អរគុណ! យើងនឹងរៀបចំភេសជ្ជៈជូនលោកអ្នក។'); 
+            cart = []; updateCartUI(); closePaymentModal(); if(cartSidebar.classList.contains('open')) toggleCart();
+        }
+
+        window.addEventListener('scroll', () => {
+            const sections = ['home', 'special', 'menu', 'contact'];
+            let current = '';
+            sections.forEach(s => {
+                const el = document.getElementById(s);
+                if (window.scrollY >= (el.offsetTop - 150)) current = s;
+            });
+            if (current) {
+                list.forEach(li => {
+                    li.classList.remove('active');
+                    if (li.getAttribute('data-target') === current) li.classList.add('active');
+                });
+            }
+        });
+
+        window.onload = renderDrinks;
+    </script>
+</body>
 </html>
