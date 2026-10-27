@@ -1,0 +1,38 @@
+# Hatamoto on Vercel: fetch the pinned release source, compile the Go binary, ship it on Alpine.
+
+# Upgrade by changing the release tag.
+ARG HATAMOTO_VERSION=v1.0.1
+
+# 1. Build the single hatamoto binary from the tagged source.
+FROM golang:1.27-alpine AS build
+ARG HATAMOTO_VERSION
+RUN apk add --no-cache git
+WORKDIR /src
+RUN git clone -q --depth 1 --branch "$HATAMOTO_VERSION" https://github.com/Zen-Labs-Corp/hatamoto.git .
+WORKDIR /src/backend
+RUN CGO_ENABLED=0 go build -trimpath \
+    -ldflags "-X hatamoto.dev/core/app.Version=$HATAMOTO_VERSION -X hatamoto.dev/core/app.Commit=$(git rev-parse --short HEAD)" \
+    -o /out/hatamoto ./cmd/hatamoto
+
+# 2. Runtime: the binary, CA certificates, time zones and a shell for the entrypoint.
+FROM alpine:3.22
+RUN apk add --no-cache ca-certificates tzdata
+COPY --from=build /out/hatamoto /usr/local/bin/hatamoto
+COPY --from=build /src/LICENSE /src/NOTICE /usr/share/doc/hatamoto/
+
+# Content, users, sessions, themes and plugins live in Postgres. The local disk
+# on Vercel is ephemeral and per instance, so data and uploads go to /tmp.
+# Updates are pinned by HATAMOTO_VERSION above, so the in-app updater is off.
+# Every request reaches the container through Vercel's proxy, so its
+# X-Forwarded-* headers are trusted for client IPs and the HTTPS scheme.
+ENV ENVIRONMENT=production \
+    HATAMOTO_DATA=/tmp/hatamoto \
+    MEDIA_UPLOAD_DIR=/tmp/hatamoto/uploads \
+    HATAMOTO_UPDATES=off \
+    HATAMOTO_TRUSTED_PROXIES=0.0.0.0/0,::/0 \
+    DATABASE_MIN_CONNECTIONS=0 \
+    DATABASE_MAX_CONNECTIONS=5
+
+# Listen on $PORT (Vercel routes to 80 by default) and prefer Neon's direct,
+# unpooled connection string: migrations take a session-level advisory lock.
+ENTRYPOINT ["/bin/sh", "-c", "export API_PORT=\"${PORT:-80}\" DATABASE_URL=\"${DATABASE_URL_UNPOOLED:-$DATABASE_URL}\"; exec hatamoto serve"]
