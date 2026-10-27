@@ -1,96 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Trading Platform</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Chart.js (用于K线图) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <!-- Font Awesome (图标) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .navbar {
+            background-color: #0f172a !important;
+        }
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+        }
+        .trading-panel {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .price-display {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #e63946; /* 红色表示上涨，可动态切换 */
+        }
+        .trade-btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.1rem;
+            margin: 5px 0;
+        }
+        .admin-panel {
+            display: none; /* 默认隐藏后台，登录后显示 */
+        }
+        .login-form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .k线图-container {
+            height: 400px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">GoldTrader Pro</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon text-white"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#trading">Trading Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#admin-login">Admin Panel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logout-btn" style="display: none;">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 交易面板 -->
+    <section id="trading" class="container my-5">
+        <div class="trading-panel">
+            <h2>Gold Spot Price (XAU/USD)</h2>
+            <div class="row">
+                <!-- 价格显示 -->
+                <div class="col-md-6">
+                    <div class="price-display" id="gold-price">2050.85</div>
+                    <div class="text-muted" id="price-change">+12.35 (+0.60%) Today</div>
+                    <div class="mt-3">
+                        <small>Last updated: <span id="update-time">2026-03-10 14:30:00</span></small>
+                    </div>
+                </div>
+                <!-- 交易操作 -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Trade Volume (Ounces)</label>
+                        <input type="number" class="form-control" id="trade-volume" value="1" min="0.1" step="0.1">
+                    </div>
+                    <button class="btn btn-success trade-btn" id="buy-btn">
+                        <i class="fas fa-arrow-up"></i> Buy Gold
+                    </button>
+                    <button class="btn btn-danger trade-btn" id="sell-btn">
+                        <i class="fas fa-arrow-down"></i> Sell Gold
+                    </button>
+                </div>
+            </div>
+
+            <!-- K线图 -->
+            <div class="k线图-container mt-4">
+                <canvas id="gold-chart"></canvas>
+            </div>
+
+            <!-- 交易历史 -->
+            <h4 class="mt-4">Trade History</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Type</th>
+                            <th>Volume</th>
+                            <th>Price (USD)</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="trade-history">
+                        <tr>
+                            <td>2026-03-10 14:25:00</td>
+                            <td>Buy</td>
+                            <td>1.5</td>
+                            <td>2048.50</td>
+                            <td>3072.75</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>2026-03-10 13:10:00</td>
+                            <td>Sell</td>
+                            <td>0.8</td>
+                            <td>2039.20</td>
+                            <td>1631.36</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 管理员登录 -->
+    <section id="admin-login" class="container">
+        <div class="login-form">
+            <h3 class="text-center">Admin Login</h3>
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control" id="admin-username" placeholder="Enter username">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" id="admin-password" placeholder="Enter password">
+            </div>
+            <button class="btn btn-primary w-100" id="admin-login-btn">Login</button>
+            <div class="text-center text-danger mt-2" id="login-error"></div>
+        </div>
+    </section>
+
+    <!-- 管理员面板 (默认隐藏) -->
+    <section id="admin-panel" class="admin-panel container my-5">
+        <div class="trading-panel">
+            <h2>Admin Management Panel</h2>
+            <div class="row">
+                <!-- 价格管理 -->
+                <div class="col-md-6 mb-4">
+                    <h4>Update Gold Price</h4>
+                    <div class="mb-3">
+                        <label class="form-label">New Price (USD)</label>
+                        <input type="number" class="form-control" id="new-price" step="0.01" value="2050.85">
+                    </div>
+                    <button class="btn btn-primary" id="update-price-btn">Update Price</button>
+                </div>
+                <!-- 用户管理 -->
+                <div class="col-md-6 mb-4">
+                    <h4>User Management</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>Username</th>
+                                    <th>Balance (USD)</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="user-list">
+                                <tr>
+                                    <td>1001</td>
+                                    <td>john_doe</td>
+                                    <td>15,890.50</td>
+                                    <td><button class="btn btn-sm btn-warning">Edit</button></td>
+                                </tr>
+                                <tr>
+                                    <td>1002</td>
+                                    <td>emily_smith</td>
+                                    <td>8,750.25</td>
+                                    <td><button class="btn btn-sm btn-warning">Edit</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 交易记录管理 -->
+            <h4>All Trade Records</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Trade ID</th>
+                            <th>User</th>
+                            <th>Type</th>
+                            <th>Volume</th>
+                            <th>Price</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>5897</td>
+                            <td>john_doe</td>
+                            <td>Buy</td>
+                            <td>1.5</td>
+                            <td>2048.50</td>
+                            <td>2026-03-10 14:25:00</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>5896</td>
+                            <td>emily_smith</td>
+                            <td>Sell</td>
+                            <td>2.0</td>
+                            <td>2045.30</td>
+                            <td>2026-03-10 13:45:00</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 1. 模拟黄金价格实时波动
+        const goldPriceElement = document.getElementById('gold-price');
+        const priceChangeElement = document.getElementById('price-change');
+        const updateTimeElement = document.getElementById('update-time');
+        
+        function updateGoldPrice() {
+            // 随机波动 ±0.5 美元
+            let currentPrice = parseFloat(goldPriceElement.textContent);
+            const randomChange = (Math.random() - 0.5) * 1; // -0.5 到 +0.5
+            const newPrice = (currentPrice + randomChange).toFixed(2);
+            
+            // 更新价格和样式
+            goldPriceElement.textContent = newPrice;
+            if (randomChange > 0) {
+                goldPriceElement.style.color = '#e63946'; // 上涨红色
+                priceChangeElement.innerHTML = `+${Math.abs(randomChange).toFixed(2)} (+${(Math.abs(randomChange)/currentPrice*100).toFixed(2)}%) Today`;
+            } else {
+                goldPriceElement.style.color = '#16a34a'; // 下跌绿色
+                priceChangeElement.innerHTML = `-${Math.abs(randomChange).toFixed(2)} (-${(Math.abs(randomChange)/currentPrice*100).toFixed(2)}%) Today`;
+            }
+            
+            // 更新时间
+            const now = new Date();
+            updateTimeElement.textContent = now.toLocaleString('en-US', {
+                year: 'numeric', month: 'numeric', day: 'numeric',
+                hour: '2-digit', minute: '2-digit', second: '2-digit'
+            });
+        }
+        
+        // 每5秒更新一次价格
+        setInterval(updateGoldPrice, 5000);
+
+        // 2. 绘制K线图 (模拟7天数据)
+        const ctx = document.getElementById('gold-chart').getContext('2d');
+        const goldChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mar 4', 'Mar 5', 'Mar 6', 'Mar 7', 'Mar 8', 'Mar 9', 'Mar 10'],
+                datasets: [{
+                    label: 'Gold Price (XAU/USD)',
+                    data: [2020.50, 2035.75, 2040.20, 2038.80, 2045.10, 2038.50, 2050.85],
+                    borderColor: '#e63946',
+                    backgroundColor: 'rgba(230, 57, 70, 0.1)',
+                    fill: true,
+                    tension: 0.2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Price (USD)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    }
+                }
+            }
+        });
+
+        // 3. 交易按钮逻辑
+        const buyBtn = document.getElementById('buy-btn');
+        const sellBtn = document.getElementById('sell-btn');
+        const tradeVolume = document.getElementById('trade-volume');
+        const tradeHistory = document.getElementById('trade-history');
+        
+        buyBtn.addEventListener('click', () => {
+            addTradeRecord('Buy');
+        });
+        
+        sellBtn.addEventListener('click', () => {
+            addTradeRecord('Sell');
+        });
+        
+        function addTradeRecord(type) {
+            const volume = tradeVolume.value;
+            const price = goldPriceElement.textContent;
+            const total = (volume * price).toFixed(2);
+            const time = new Date().toLocaleString('en-US', {
+                year: 'numeric', month: 'numeric', day: 'numeric',
+                hour: '2-digit', minute: '2-digit'
+            });
+            
+            // 添加新交易记录
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${time}</td>
+                <td>${type}</td>
+                <td>${volume}</td>
+                <td>${price}</td>
+                <td>${total}</td>
+                <td><span class="badge bg-success">Completed</span></td>
+            `;
+            tradeHistory.insertBefore(newRow, tradeHistory.firstChild);
+            
+            // 提示
+            alert(`Successfully ${type.toLowerCase()} ${volume} ounces of gold at $${price} per ounce!`);
+        }
+
+        // 4. 管理员登录逻辑
+        const adminLoginBtn = document.getElementById('admin-login-btn');
+        const adminUsername = document.getElementById('admin-username');
+        const adminPassword = document.getElementById('admin-password');
+        const loginError = document.getElementById('login-error');
+        const adminPanel = document.getElementById('admin-panel');
+        const adminLoginSection = document.getElementById('admin-login');
+        const logoutBtn = document.getElementById('logout-btn');
+        
+        // 默认管理员账号: admin / password123
+        adminLoginBtn.addEventListener('click', () => {
+            if (adminUsername.value === 'admin' && adminPassword.value === 'password123') {
+                loginError.textContent = '';
+                adminLoginSection.style.display = 'none'; // 隐藏登录页
+                adminPanel.style.display = 'block'; // 显示后台
+                logoutBtn.style.display = 'block'; // 显示登出按钮
+            } else {
+                loginError.textContent = 'Invalid username or password! (Default: admin / password123)';
+            }
+        });
+        
+        // 登出逻辑
+        logoutBtn.addEventListener('click', () => {
+            adminPanel.style.display = 'none';
+            adminLoginSection.style.display = 'block';
+            logoutBtn.style.display = 'none';
+            adminUsername.value = '';
+            adminPassword.value = '';
+        });
+
+        // 5. 更新价格按钮逻辑
+        const updatePriceBtn = document.getElementById('update-price-btn');
+        const newPriceInput = document.getElementById('new-price');
+        
+        updatePriceBtn.addEventListener('click', () => {
+            const newPrice = newPriceInput.value;
+            goldPriceElement.textContent = newPrice;
+            // 更新K线图最后一个数据点
+            goldChart.data.datasets[0].data[6] = parseFloat(newPrice);
+            goldChart.update();
+            alert(`Gold price updated to $${newPrice} successfully!`);
+        });
+    </script>
+</body>
 </html>
