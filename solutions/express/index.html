@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiro Ai</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #000000;
+            --card: #121212;
+            --input: #2d2d2d;
+            --text: #ffffff;
+            --accent: #4F46E5;
+            --accent2: #8B5CF6;
+            --success: #10B981;
+            --danger: #EF4444;
+            --gray: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* === Homepage === */
+        .page { min-height: 100vh; }
+        #homePage { display: block; }
+        #chatPage { display: none; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .logo { font-size: 24px; font-weight: 700; }
+        .btn { padding: 12px 24px; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-primary:hover { opacity: 0.9; }
+        .btn-secondary { background: #333; color: white; }
+
+        .hero {
+            text-align: center;
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 5%;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin: 20px 0;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p { font-size: 1.2rem; line-height: 1.6; color: #aaa; margin: 20px 0; }
+
+        .social-section {
+            padding: 60px 5%;
+            background: #0f0f0f;
+            margin-top: 40px;
+            border-top: 1px solid var(--gray);
+        }
+
+        .social-section h2 { text-align: center; margin-bottom: 30px; }
+        .social-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: var(--card);
+            border-radius: 12px;
+            width: 250px;
+        }
+
+        /* === Chat Page === */
+        #chatPage {
+            display: none;
+            height: 100vh;
+            position: relative;
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: var(--bg);
+            border-bottom: 1px solid var(--gray);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100%;
+            background: var(--card);
+            z-index: 1000;
+            transition: left 0.3s ease;
+            padding: 20px 0;
+            overflow-y: auto;
+            border-right: 1px solid var(--gray);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-item {
+            padding: 14px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+
+        .sidebar-item:hover {
+            background: #1e1e1e;
+        }
+
+        .sidebar-item i {
+            font-size: 18px;
+        }
+
+        /* Ad Banner in Sidebar - TOP */
+        .ad-banner-sidebar {
+            padding: 12px 24px;
+            margin: 15px 24px 15px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .ad-banner-sidebar img {
+            max-width: 100%;
+            max-height: 60px;
+            object-fit: contain;
+            margin: 5px 0;
+            border-radius: 8px;
+        }
+
+        /* Messages */
+        .messages {
+            padding: 20px;
+            margin-top: 70px;
+            margin-bottom: 120px;
+            height: calc(100vh - 190px);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message {
+            max-width: 85%;
+            margin: 10px 0;
+            padding: 14px 18px;
+            border-radius: 18px;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease;
+            word-break: break-word;
+        }
+
+        .file-message {
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 12px;
+            margin: 8px 0;
+            display: inline-block;
+        }
+
+        .file-message i {
+            margin-right: 8px;
+            color: var(--accent);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .msg-user {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .msg-ai {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Typing indicator */
+        .typing {
+            display: inline-block;
+            width: 3px;
+            height: 16px;
+            background: var(--text);
+            margin: 0 2px;
+            border-radius: 2px;
+            animation: blink 1.4s infinite;
+        }
+        .typing:nth-child(2) { animation-delay: 0.2s; }
+        .typing:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes blink {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        /* Input */
+        .input-area {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--input);
+            padding: 16px 20px;
+            border-top: 1px solid var(--gray);
+            z-index: 50;
+        }
+
+        .input-box {
+            display: flex;
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 8px 14px;
+            gap: 10px;
+        }
+
+        .input-field {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            height: 36px;
+        }
+
+        .btn-send {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-send.generating {
+            background: var(--danger);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        .btn-send i { color: white; font-size: 18px; }
+        .btn-send:hover { transform: scale(1.05); }
+
+        /* Upload Panel */
+        .upload-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--card);
+            border-top: 1px solid var(--gray);
+            z-index: 60;
+            padding: 16px 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .upload-panel.active {
+            transform: translateY(0);
+        }
+
+        .upload-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .upload-header h3 {
+            margin: 0;
+        }
+
+        .close-upload {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .upload-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .upload-item:hover {
+            background: #2a2a2a;
+        }
+
+        .upload-item i {
+            font-size: 20px;
+        }
+
+        /* Fullscreen Pages */
+        .fullscreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            z-index: 200;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--card);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Gallery Modal */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 300;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 80vh;
+        }
+
+        .gallery-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 12px;
+        }
+
+        .gallery-actions {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 300;
+        }
+
+        .modal-content {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 30px;
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .modal h3 { margin-bottom: 20px; }
+        .modal input { width: 100%; padding: 12px; margin: 8px 0; background: #2d2d2d; border: 1px solid #444; color: white; border-radius: 10px; }
+
+        .form-group {
+            margin: 12px 0;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #777;
+            font-size: 20px;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .close-btn:hover {
+            background: #2a2a2a;
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar { width: 80%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HOME PAGE -->
+    <div class="page" id="homePage">
+        <div class="header">
+            <div class="logo">Hiro Ai</div>
+            <button class="btn btn-primary" onclick="showRegisterForm()">Start Chat</button>
+        </div>
+
+        <div class="hero">
+            <h1>Your AI Assistant, Reimagined</h1>
+            <p>
+                Powered by Hiro Ai — an advanced AI that understands context, generates images & videos,
+                edits media, and learns from every interaction.
+            </p>
+            <button class="btn btn-primary" onclick="showRegisterForm()">Start Chat</button>
+        </div>
+
+        <div class="social-section">
+            <h2>Connect With Us</h2>
+            <div class="social-links" id="socialLinks">
+                <!-- Social links will be added dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAT PAGE -->
+    <div class="page" id="chatPage">
+        <!-- Header -->
+        <div class="chat-header">
+            <div class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></div>
+            <div class="logo">Hiro Ai</div>
+            <div class="user-btn" id="userBtn"><i class="far fa-user"></i></div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-item" onclick="newChat()"><i class="fas fa-comment"></i> New Chat</div>
+            <div class="sidebar-item" onclick="openPage('gallery')"><i class="fas fa-images"></i> Gallery</div>
+            <div class="sidebar-item" onclick="openModal('gpts')"><i class="fas fa-key"></i> Subscription Code</div>
+            <!-- Admin Panel and Ad Banner will be added here dynamically -->
+        </div>
+
+        <!-- Messages -->
+        <div class="messages" id="messages">
+            <div class="message msg-ai">Hello! I'm Hiro Ai. How can I assist you today? 😊</div>
+        </div>
+
+        <!-- Input -->
+        <div class="input-area">
+            <div class="input-box">
+                <input type="text" class="input-field" id="userInput" placeholder="How can I help you today?" onkeypress="if(event.key==='Enter') sendMessage()">
+                <button class="btn-send" id="sendBtn" onclick="toggleGenerate()"><i class="fas fa-arrow-up"></i></button>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;">
+                <div class="action" onclick="toggleUploadPanel()"><i class="fas fa-plus"></i></div>
+                <div class="action" onclick="showSubscription()"><i class="fas fa-cog"></i> Thinking</div>
+                <div class="action" onclick="searchGoogle()"><i class="fas fa-globe"></i> Search</div>
+                <div class="action" onclick="startVoiceInput()"><i class="fas fa-microphone"></i></div>
+            </div>
+        </div>
+
+        <!-- Upload Panel -->
+        <div class="upload-panel" id="uploadPanel">
+            <div class="upload-header">
+                <h3>Upload Options</h3>
+                <button class="close-upload" onclick="toggleUploadPanel()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="upload-item" onclick="useCamera()">
+                <i class="fas fa-camera"></i> Use Camera
+            </div>
+            <div class="upload-item" onclick="uploadFiles()">
+                <i class="fas fa-folder-open"></i> Upload Files
+            </div>
+            <div class="upload-item" onclick="uploadImage()">
+                <i class="fas fa-image"></i> Upload Image
+            </div>
+            <div class="upload-item" onclick="uploadVideo()">
+                <i class="fas fa-video"></i> Upload Video
+            </div>
+            <div class="upload-item" onclick="uploadAudio()">
+                <i class="fas fa-music"></i> Upload Audio
+            </div>
+        </div>
+    </div>
+
+    <!-- FULLSCREEN: Gallery -->
+    <div class="fullscreen" id="galleryPage">
+        <div class="back-btn" onclick="closePage('gallery')"><i class="fas fa-arrow-left"></i> Back</div>
+        <h1><i class="fas fa-images"></i> Your Generated Media</h1>
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Gallery items will be added dynamically -->
+        </div>
+    </div>
+
+    <!-- FULLSCREEN: Admin -->
+    <div class="fullscreen" id="adminPage">
+        <div class="back-btn" onclick="closePage('admin')"><i class="fas fa-arrow-left"></i> Back</div>
+        <h1><i class="fas fa-shield-alt"></i> Admin Panel</h1>
+        <div class="admin-section">
+            <h3><i class="fas fa-key"></i> Create Subscription Code</h3>
+            <button class="btn btn-primary" onclick="openPage('createCode')">Create Code</button>
+        </div>
+        <div class="admin-section">
+            <h3><i class="fas fa-ad"></i> Manage Ads</h3>
+            <button class="btn btn-primary" onclick="openPage('uploadAd')">Upload Ad</button>
+            <button class="btn btn-secondary" onclick="deleteAd()" style="margin-top:10px;">Delete Current Ad</button>
+        </div>
+        <div class="admin-section">
+            <h3><i class="fas fa-users"></i> Users</h3>
+            <button class="btn btn-primary" onclick="openPage('users')">View Users</button>
+        </div>
+        <div class="admin-section">
+            <h3><i class="fas fa-link"></i> Social Links</h3>
+            <button class="btn btn-primary" onclick="openPage('social')">Edit Social Links</button>
+        </div>
+    </div>
+
+    <!-- FULLSCREEN: Create Code -->
+    <div class="fullscreen" id="createCodePage">
+        <div class="back-btn" onclick="closePage('createCode')"><i class="fas fa-arrow-left"></i> Back</div>
+        <h1><i class="fas fa-key"></i> Create Subscription Code</h1>
+        <div class="admin-section">
+            <div class="form-group">
+                <label>Code:</label>
+                <input type="text" id="newCode" placeholder="e.g. PREMIUM2025" oninput="validateCode()">
+            </div>
+            <div class="form-group">
+                <label>Free Days:</label>
+                <input type="number" id="freeDays" value="30" min="1" max="365">
+            </div>
+            <button class="btn btn-primary" onclick="createSubscription()">Create Code</button>
+            <div id="codeFeedback" class="feedback"></div>
+        </div>
+    </div>
+
+    <!-- FULLSCREEN: Upload Ad -->
+    <div class="fullscreen" id="uploadAdPage">
+        <div class="back-btn" onclick="closePage('uploadAd')"><i class="fas fa-arrow-left"></i> Back</div>
+        <h1><i class="fas fa-ad"></i> Upload Ad</h1>
+        <div class="admin-section">
+            <div class="form-group">
+                <label>Image:</label>
+                <input type="file" id="adImage" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label>Link:</label>
+                <input type="text" id="adLink" placeholder="https://example.com">
+            </div>
+            <div class="form-group">
+                <label>Duration (days):</label>
+                <input type="number" id="adDuration" value="7" min="1" max="365">
+            </div>
+            <button class="btn btn-primary" onclick="uploadAd()">Upload Ad</button>
+            <div id="adFeedback" class="feedback"></div>
+        </div>
+    </div>
+
+    <!-- FULLSCREEN: Users -->
+    <div class="fullscreen" id="usersPage">
+        <div class="back-btn" onclick="closePage('users')"><i class="fas fa-arrow-left"></i> Back</div>
+        <h1><i class="fas fa-users"></i> Users <span id="userCount">(0)</span></h1>
+        <div id="userList"></div>
+    </div>
+
+    <!-- FULLSCREEN: Edit Social -->
+    <div class="fullscreen" id="socialPage">
+        <div class="back-btn" onclick="closePage('social')"><i class="fas fa-arrow-left"></i> Back</div>
+        <h1><i class="fas fa-link"></i> Edit Social Links</h1>
+        <div class="admin-section">
+            <div class="form-group">
+                <label>Instagram:</label>
+                <input type="text" id="igInput" placeholder="https://instagram.com/...">
+            </div>
+            <div class="form-group">
+                <label>Telegram:</label>
+                <input type="text" id="tgInput" placeholder="https://t.me/...">
+            </div>
+            <div class="form-group">
+                <label>YouTube:</label>
+                <input type="text" id="ytInput" placeholder="https://youtube.com/@...">
+            </div>
+            <button class="btn btn-primary" onclick="saveSocial()">Save Changes</button>
+            <div id="socialFeedback" class="feedback"></div>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('register')">×</button>
+            <h3><i class="fas fa-user-plus"></i> Register</h3>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" id="regEmail" placeholder="your@email.com">
+            </div>
+            <div class="form-group">
+                <label>Full Name:</label>
+                <input type="text" id="regName" placeholder="John Doe">
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" id="regPass" placeholder="••••••••">
+            </div>
+            <div class="form-group">
+                <label>Confirm Password:</label>
+                <input type="password" id="regPass2" placeholder="••••••••">
+            </div>
+            <button class="btn btn-primary" onclick="registerUser()">Register</button>
+            <p style="margin-top:15px;">
+                Already have an account? <a href="#" onclick="showLogin()" style="color:var(--accent);">Login here</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('login')">×</button>
+            <h3><i class="fas fa-sign-in-alt"></i> Login</h3>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" id="loginEmail" placeholder="your@email.com">
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" id="loginPass" placeholder="••••••••">
+            </div>
+            <button class="btn btn-primary" onclick="loginUser()">Login</button>
+            <p style="margin-top:15px;">
+                Forgot password? <a href="#" onclick="showRecover()" style="color:var(--accent);">Recover it</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="modal" id="recoverModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('recover')">×</button>
+            <h3><i class="fas fa-key"></i> Recover Password</h3>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" id="recEmail" placeholder="your@email.com">
+            </div>
+            <div class="form-group">
+                <label>Full Name:</label>
+                <input type="text" id="recName" placeholder="John Doe">
+            </div>
+            <button class="btn btn-primary" onclick="recoverPassword()">Recover</button>
+            <p style="margin-top:15px;">
+                <a href="#" onclick="showLogin()" style="color:var(--accent);">Back to Login</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="modal" id="resetModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('reset')">×</button>
+            <h3><i class="fas fa-lock"></i> Reset Password</h3>
+            <div class="form-group">
+                <label>New Password:</label>
+                <input type="password" id="resetPass" placeholder="••••••••">
+            </div>
+            <div class="form-group">
+                <label>Confirm New Password:</label>
+                <input type="password" id="resetPass2" placeholder="••••••••">
+            </div>
+            <button class="btn btn-primary" onclick="resetPassword()">Reset</button>
+            <p style="margin-top:15px;">
+                <a href="#" onclick="showLogin()" style="color:var(--accent);">Back to Login</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="modal" id="gptsModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('gpts')">×</button>
+            <h3>🔑 Enter Subscription Code</h3>
+            <input type="text" id="codeInput" placeholder="Your subscription code">
+            <button class="btn btn-primary" onclick="submitCode()">Submit</button>
+            <div id="codeFeedbackModal" class="feedback"></div>
+        </div>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div class="gallery-modal" id="galleryModal">
+        <div class="gallery-content">
+            <img id="modalImage" src="" alt="Full Image">
+            <div class="gallery-actions">
+                <button class="btn btn-primary" onclick="saveImage()"><i class="fas fa-download"></i> Save</button>
+                <button class="btn btn-secondary" onclick="deleteImage()"><i class="fas fa-trash"></i> Delete</button>
+                <button class="btn" onclick="closeGalleryModal()"><i class="fas fa-arrow-left"></i> Back</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // === Data ===
+        let isAdmin = localStorage.getItem('isAdmin') === 'true';
+        let users = JSON.parse(localStorage.getItem('users') || '[]');
+        let chats = JSON.parse(localStorage.getItem('chats') || '[]');
+        let subs = JSON.parse(localStorage.getItem('subs') || '[]');
+        let ads = JSON.parse(localStorage.getItem('ads') || '[]');
+        let gallery = JSON.parse(localStorage.getItem('gallery') || '[]');
+        let currentUser = null;
+        let controller = null; // for aborting fetch
+
+        // Initialize social links
+        const defaultSocial = {
+            ig: "https://instagram.com/ai_chathub",
+            tg: "https://t.me/ai_chathub_official",
+            yt: "https://youtube.com/@AIChatHub"
+        };
+
+        // Sample gallery images
+        const sampleImages = [
+            'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=600&fit=crop',
+            'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&h=600&fit=crop'
+        ];
+
+        // Initialize gallery if empty
+        if (gallery.length === 0) {
+            gallery = sampleImages;
+            localStorage.setItem('gallery', JSON.stringify(gallery));
+        }
+
+        // === DOM Events ===
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menuBtn');
+            const sidebar = document.getElementById('sidebar');
+
+            if (menuBtn && sidebar) {
+                menuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    sidebar.classList.toggle('active');
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (sidebar.classList.contains('active') && 
+                        !sidebar.contains(e.target) && 
+                        e.target !== menuBtn) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+
+                sidebar.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+
+            loadSocial();
+            loadAdInSidebar();
+            loadGallery();
+        });
+
+        // === Feedback ===
+        function showSuccess(target, text = '✓') {
+            const el = document.createElement('div');
+            el.style.cssText = `
+                position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+                font-size: 40px; color: white; z-index: 1000;
+                animation: pop 0.6s forwards;
+            `;
+            el.textContent = text;
+            el.style.animation = 'pop 0.6s forwards';
+            document.head.insertAdjacentHTML('beforeend', `
+                <style>
+                @keyframes pop {
+                    0% { opacity: 0; transform: translate(-50%,-50%) scale(0.5); }
+                    50% { opacity: 1; transform: translate(-50%,-50%) scale(1.2); color: var(--success); }
+                    100% { opacity: 0; transform: translate(-50%,-50%) scale(1); }
+                }
+                </style>
+            `);
+            target.appendChild(el);
+            setTimeout(() => el.remove(), 1200);
+        }
+
+        function showError(target, text = '✗') {
+            const el = document.createElement('div');
+            el.style.cssText = `
+                position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+                font-size: 40px; color: white; z-index: 1000;
+                animation: pop 0.6s forwards;
+            `;
+            el.textContent = text;
+            document.head.insertAdjacentHTML('beforeend', `
+                <style>
+                @keyframes pop {
+                    0% { opacity: 0; transform: translate(-50%,-50%) scale(0.5); }
+                    50% { opacity: 1; transform: translate(-50%,-50%) scale(1.2); color: var(--danger); }
+                    100% { opacity: 0; transform: translate(-50%,-50%) scale(1); }
+                }
+                </style>
+            `);
+            target.appendChild(el);
+            setTimeout(() => el.remove(), 1200);
+        }
+
+        // === Modal Management ===
+        function closeModal(modalType) {
+            document.getElementById(modalType + 'Modal').style.display = 'none';
+        }
+
+        function showRegisterForm() {
+            document.getElementById('registerModal').style.display = 'flex';
+        }
+
+        function showLogin() {
+            document.getElementById('registerModal').style.display = 'none';
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function showRecover() {
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('recoverModal').style.display = 'flex';
+        }
+
+        // === Account Management ===
+        function registerUser() {
+            const email = document.getElementById('regEmail').value.trim();
+            const name = document.getElementById('regName').value.trim();
+            const pass = document.getElementById('regPass').value;
+            const pass2 = document.getElementById('regPass2').value;
+
+            if (!email) return showError(document.getElementById('registerModal').querySelector('.modal-content'), '❌');
+            if (!name) return showError(document.getElementById('registerModal').querySelector('.modal-content'), '❌');
+            if (!pass) return showError(document.getElementById('registerModal').querySelector('.modal-content'), '❌');
+            if (pass !== pass2) return showError(document.getElementById('registerModal').querySelector('.modal-content'), '❌');
+            
+            const existingUser = users.find(u => u.email === email);
+            if (existingUser) {
+                showError(document.getElementById('registerModal').querySelector('.modal-content'), '❌');
+                setTimeout(() => {
+                    closeModal('register');
+                    document.getElementById('loginModal').style.display = 'flex';
+                }, 2000);
+                return;
+            }
+
+            const newUser = {
+                id: Date.now(),
+                email: email,
+                name: name,
+                password: pass,
+                created: new Date().toISOString(),
+                lastLogin: null
+            };
+
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            showSuccess(document.getElementById('registerModal').querySelector('.modal-content'), '✓');
+            setTimeout(() => {
+                closeModal('register');
+                goToChat();
+            }, 1500);
+        }
+
+        function loginUser() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const pass = document.getElementById('loginPass').value;
+
+            if (!email || !pass) return showError(document.getElementById('loginModal').querySelector('.modal-content'), '❌');
+
+            const user = users.find(u => u.email === email && u.password === pass);
+            if (!user) return showError(document.getElementById('loginModal').querySelector('.modal-content'), '❌');
+
+            user.lastLogin = new Date().toISOString();
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            currentUser = user;
+            showSuccess(document.getElementById('loginModal').querySelector('.modal-content'), '✓');
+            setTimeout(() => {
+                closeModal('login');
+                goToChat();
+            }, 1500);
+        }
+
+        function recoverPassword() {
+            const email = document.getElementById('recEmail').value.trim();
+            const name = document.getElementById('recName').value.trim();
+
+            if (!email || !name) return showError(document.getElementById('recoverModal').querySelector('.modal-content'), '❌');
+
+            const user = users.find(u => u.email === email && u.name === name);
+            if (!user) return showError(document.getElementById('recoverModal').querySelector('.modal-content'), '❌');
+
+            currentUser = user;
+            showSuccess(document.getElementById('recoverModal').querySelector('.modal-content'), '✓');
+            setTimeout(() => {
+                closeModal('recover');
+                document.getElementById('resetModal').style.display = 'flex';
+            }, 1500);
+        }
+
+        function resetPassword() {
+            const newPass = document.getElementById('resetPass').value;
+            const newPass2 = document.getElementById('resetPass2').value;
+
+            if (!newPass || !newPass2) return showError(document.getElementById('resetModal').querySelector('.modal-content'), '❌');
+            if (newPass !== newPass2) return showError(document.getElementById('resetModal').querySelector('.modal-content'), '❌');
+
+            const index = users.findIndex(u => u.email === currentUser.email);
+            if (index !== -1) {
+                users[index].password = newPass;
+                users[index].lastLogin = null;
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                showSuccess(document.getElementById('resetModal').querySelector('.modal-content'), '✓');
+                setTimeout(() => {
+                    closeModal('reset');
+                    document.getElementById('loginModal').style.display = 'flex';
+                }, 1500);
+            }
+        }
+
+        // === Navigation ===
+        function goToChat() {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('chatPage').style.display = 'block';
+        }
+
+        function openPage(id) {
+            if (id !== 'gallery' && id !== 'gpts' && !isAdmin) {
+                alert('❌ Access denied. Admin privileges required.');
+                return;
+            }
+            
+            document.getElementById('chatPage').style.display = 'none';
+            document.getElementById(id + 'Page').style.display = 'block';
+            document.getElementById('sidebar').classList.remove('active');
+            if (id === 'users') loadUsers();
+            if (id === 'social') loadSocial();
+        }
+
+        function closePage(id) {
+            document.getElementById(id + 'Page').style.display = 'none';
+            document.getElementById('chatPage').style.display = 'block';
+        }
+
+        function openModal(id) {
+            document.getElementById(id + 'Modal').style.display = 'flex';
+        }
+
+        function toggleUploadPanel() {
+            document.getElementById('uploadPanel').classList.toggle('active');
+        }
+
+        // === Chat ===
+        function newChat() {
+            const msg = document.getElementById('userInput').value.trim();
+            if (msg) {
+                chats.push({ msg, time: new Date().toLocaleString() });
+                localStorage.setItem('chats', JSON.stringify(chats));
+            }
+            document.getElementById('userInput').value = '';
+            document.getElementById('messages').innerHTML = '<div class="message msg-ai">Hello! I\'m Hiro Ai. How can I assist you today? 😊</div>';
+            document.getElementById('sidebar').classList.remove('active');
+        }
+
+        // ✅ REAL API INTEGRATION — STREAMING + STOP
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            // Add user message
+            addMessage(text, 'user');
+            input.value = '';
+
+            // Create AI message container
+            const aiDiv = document.createElement('div');
+            aiDiv.className = 'message msg-ai';
+            aiDiv.innerHTML = '<span class="typing"></span><span class="typing"></span><span class="typing"></span>';
+            document.getElementById('messages').appendChild(aiDiv);
+            document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+
+            // Show generating state
+            const sendBtn = document.getElementById('sendBtn');
+            sendBtn.classList.add('generating');
+            sendBtn.innerHTML = '<i class="fas fa-stop"></i>';
+            sendBtn.onclick = () => abortGeneration();
+
+            // Abort previous if any
+            if (controller) {
+                controller.abort();
+            }
+            controller = new AbortController();
+
+            try {
+                // ✅ تغییر نهایی: اتصال به سرور واقعی
+                const response = await fetch('https://hiro-ai-api.vercel.app/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text }),
+                    signal: controller.signal
+                });
+
+                if (!response.ok) throw new Error('Network error');
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let fullText = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    const chunk = decoder.decode(value, { stream: true });
+                    fullText += chunk;
+
+                    // Update UI incrementally
+                    aiDiv.innerHTML = fullText + '<span class="typing"></span><span class="typing"></span><span class="typing"></span>';
+                    document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+                }
+
+                // Final update (remove typing)
+                aiDiv.innerHTML = fullText;
+
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    aiDiv.innerHTML = '⚠️ Sorry, I encountered an error. Please try again.';
+                }
+            } finally {
+                // Reset button
+                sendBtn.classList.remove('generating');
+                sendBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+                sendBtn.onclick = () => sendMessage();
+                controller = null;
+            }
+        }
+
+        function toggleGenerate() {
+            if (document.getElementById('sendBtn').classList.contains('generating')) {
+                abortGeneration();
+            } else {
+                sendMessage();
+            }
+        }
+
+        function abortGeneration() {
+            if (controller) {
+                controller.abort();
+                controller = null;
+            }
+        }
+
+        function addMessage(text, sender) {
+            const div = document.createElement('div');
+            div.className = `message msg-${sender}`;
+            div.textContent = text;
+            document.getElementById('messages').appendChild(div);
+            document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+        }
+
+        function addFileMessage(filename, type) {
+            let icon = 'fa-file';
+            if (type.includes('image')) icon = 'fa-image';
+            if (type.includes('video')) icon = 'fa-video';
+            if (type.includes('audio')) icon = 'fa-music';
+            
+            const div = document.createElement('div');
+            div.className = 'message msg-user';
+            div.innerHTML = `<div class="file-message"><i class="fas ${icon}"></i> ${filename}</div>`;
+            document.getElementById('messages').appendChild(div);
+            document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+        }
+
+        // === GPTs ===
+        function submitCode() {
+            const code = document.getElementById('codeInput').value.trim();
+            const modal = document.getElementById('gptsModal').querySelector('.modal-content');
+            
+            if (!code) return showError(modal, '❌');
+
+            if (code === 'ABOLFAZL10SHAHBAZI') {
+                isAdmin = true;
+                localStorage.setItem('isAdmin', 'true');
+                showSuccess(modal, '✓');
+                setTimeout(() => {
+                    closeModal('gpts');
+                    addAdminPanel();
+                }, 1500);
+            } else {
+                const sub = subs.find(s => s.code === code);
+                if (sub) {
+                    const now = new Date();
+                    const expiry = new Date(sub.expiry);
+                    if (now < expiry) {
+                        showSuccess(modal, '✓');
+                        setTimeout(() => closeModal('gpts'), 1500);
+                    } else {
+                        showError(modal, '❌');
+                    }
+                } else {
+                    showError(modal, '❌');
+                }
+            }
+        }
+
+        function addAdminPanel() {
+            const sidebar = document.getElementById('sidebar');
+            const existing = document.getElementById('adminSidebarItem');
+            if (!existing) {
+                const item = document.createElement('div');
+                item.id = 'adminSidebarItem';
+                item.className = 'sidebar-item';
+                item.innerHTML = '<i class="fas fa-shield-alt"></i> Admin Panel';
+                item.onclick = () => openPage('admin');
+                sidebar.appendChild(item);
+            }
+            loadAdInSidebar();
+        }
+
+        // === Admin Functions (unchanged) ===
+        function validateCode() {
+            const codeInput = document.getElementById('newCode');
+            const code = codeInput.value.trim();
+            if (code && subs.some(s => s.code === code)) {
+                codeInput.style.borderColor = 'var(--danger)';
+                codeInput.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+            } else {
+                codeInput.style.borderColor = '#444';
+                codeInput.style.backgroundColor = '#2d2d2d';
+            }
+        }
+
+        function createSubscription() {
+            const code = document.getElementById('newCode').value.trim();
+            const days = parseInt(document.getElementById('freeDays').value);
+            const feedback = document.getElementById('createCodePage').querySelector('.admin-section');
+
+            if (!code) return showError(feedback, '❌');
+            if (subs.some(s => s.code === code)) return showError(feedback, '❌');
+
+            const expiry = new Date();
+            expiry.setDate(expiry.getDate() + days);
+
+            subs.push({ code, days, expiry: expiry.toISOString() });
+            localStorage.setItem('subs', JSON.stringify(subs));
+            showSuccess(feedback, '✓');
+        }
+
+        function uploadAd() {
+            const file = document.getElementById('adImage').files[0];
+            const link = document.getElementById('adLink').value.trim();
+            const duration = parseInt(document.getElementById('adDuration').value);
+            const feedback = document.getElementById('uploadAdPage').querySelector('.admin-section');
+
+            if (!file || !link) return showError(feedback, '❌');
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const expiry = new Date();
+                expiry.setDate(expiry.getDate() + duration);
+
+                ads = [{
+                    image: e.target.result,
+                    link: link,
+                    expiry: expiry.toISOString(),
+                    created: new Date().toISOString()
+                }];
+
+                localStorage.setItem('ads', JSON.stringify(ads));
+                showSuccess(feedback, '✓');
+                loadAdInSidebar();
+                closePage('uploadAd');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function deleteAd() {
+            ads = [];
+            localStorage.setItem('ads', JSON.stringify(ads));
+            showSuccess(document.getElementById('adminPage'), '✓');
+            loadAdInSidebar();
+        }
+
+        function loadAdInSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const existingAd = document.getElementById('adSidebarItem');
+            if (existingAd) existingAd.remove();
+
+            if (ads.length > 0 && isAdmin) {
+                const adItem = document.createElement('div');
+                adItem.id = 'adSidebarItem';
+                adItem.className = 'ad-banner-sidebar';
+                adItem.innerHTML = `
+                    <img src="${ads[0].image}" alt="Ad">
+                    <div>Special offer!</div>
+                `;
+                adItem.onclick = () => window.open(ads[0].link, '_blank');
+                const items = sidebar.querySelectorAll('.sidebar-item');
+                if (items.length >= 3) {
+                    sidebar.insertBefore(adItem, items[3]);
+                } else {
+                    sidebar.appendChild(adItem);
+                }
+            }
+        }
+
+        function loadUsers() {
+            const list = document.getElementById('userList');
+            const count = document.getElementById('userCount');
+            list.innerHTML = '';
+            count.textContent = `(${users.length})`;
+
+            users.forEach(u => {
+                const div = document.createElement('div');
+                div.className = 'user-item';
+                div.innerHTML = `<strong>${u.name}</strong><br><small>${u.email}</small>`;
+                div.onclick = () => alert(`Email: ${u.email}\nPassword: ${u.password}\nName: ${u.name}\nCreated: ${new Date(u.created).toLocaleString()}`);
+                list.appendChild(div);
+            });
+        }
+
+        function saveSocial() {
+            const igInput = document.getElementById('igInput');
+            const tgInput = document.getElementById('tgInput');
+            const ytInput = document.getElementById('ytInput');
+            
+            const igValue = igInput.value.trim();
+            const tgValue = tgInput.value.trim();
+            const ytValue = ytInput.value.trim();
+            
+            if (!igValue || !tgValue || !ytValue) return showError(document.getElementById('socialPage'), '❌');
+            
+            const socialData = {
+                ig: igValue.startsWith('http') ? igValue : `https://${igValue}`,
+                tg: tgValue.startsWith('http') ? tgValue : `https://${tgValue}`,
+                yt: ytValue.startsWith('http') ? ytValue : `https://${ytValue}`
+            };
+            
+            try {
+                localStorage.setItem('social', JSON.stringify(socialData));
+                showSuccess(document.getElementById('socialPage'), '✓');
+                updateHomepageSocialLinks(socialData);
+                igInput.value = socialData.ig;
+                tgInput.value = socialData.tg;
+                ytInput.value = socialData.yt;
+            } catch (e) {
+                showError(document.getElementById('socialPage'), '❌');
+            }
+        }
+
+        function updateHomepageSocialLinks(socialData) {
+            const socialLinks = document.getElementById('socialLinks');
+            if (!socialLinks) return;
+
+            const getPlatformName = (url, platform) => {
+                try {
+                    const urlObj = new URL(url);
+                    if (platform === 'ig' && urlObj.hostname.includes('instagram')) return 'instagram';
+                    if (platform === 'tg' && urlObj.hostname.includes('t.me')) return urlObj.pathname.split('/').filter(p => p)[0] || 'telegram';
+                    if (platform === 'yt' && (urlObj.hostname.includes('youtube') || urlObj.hostname.includes('youtu.be'))) return 'youtube';
+                } catch (e) {}
+                return { ig: 'instagram', tg: 'telegram', yt: 'youtube' }[platform];
+            };
+
+            const igName = getPlatformName(socialData.ig, 'ig');
+            const tgName = getPlatformName(socialData.tg, 'tg');
+            const ytName = getPlatformName(socialData.yt, 'yt');
+
+            socialLinks.innerHTML = `
+                <div class="social-item">
+                    <i class="fab fa-instagram" style="color:#E1306C;"></i>
+                    <a href="${socialData.ig}" target="_blank" style="color:#fff;text-decoration:none;">${igName}</a>
+                </div>
+                <div class="social-item">
+                    <i class="fab fa-telegram" style="color:#0088cc;"></i>
+                    <a href="${socialData.tg}" target="_blank" style="color:#fff;text-decoration:none;">${tgName}</a>
+                </div>
+                <div class="social-item">
+                    <i class="fab fa-youtube" style="color:#FF0000;"></i>
+                    <a href="${socialData.yt}" target="_blank" style="color:#fff;text-decoration:none;">${ytName}</a>
+                </div>
+            `;
+        }
+
+        function loadSocial() {
+            try {
+                const saved = localStorage.getItem('social') || JSON.stringify(defaultSocial);
+                const socialData = JSON.parse(saved);
+                localStorage.setItem('social', JSON.stringify(socialData));
+                updateHomepageSocialLinks(socialData);
+                if (document.getElementById('igInput')) {
+                    document.getElementById('igInput').value = socialData.ig;
+                    document.getElementById('tgInput').value = socialData.tg;
+                    document.getElementById('ytInput').value = socialData.yt;
+                }
+            } catch (e) {
+                localStorage.setItem('social', JSON.stringify(defaultSocial));
+                updateHomepageSocialLinks(defaultSocial);
+            }
+        }
+
+        // === Gallery ===
+        function loadGallery() {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+            gallery.forEach((url, index) => {
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.innerHTML = `<img src="${url}?w=300&h=200&fit=crop" alt="Image ${index + 1}">`;
+                div.onclick = () => openGalleryImage(url);
+                grid.appendChild(div);
+            });
+        }
+
+        function openGalleryImage(url) {
+            document.getElementById('modalImage').src = url;
+            document.getElementById('galleryModal').style.display = 'flex';
+        }
+
+        function closeGalleryModal() {
+            document.getElementById('galleryModal').style.display = 'none';
+        }
+
+        function saveImage() {
+            const img = document.getElementById('modalImage');
+            const link = document.createElement('a');
+            link.href = img.src;
+            link.download = 'hiro-image.jpg';
+            link.click();
+            showSuccess(document.getElementById('galleryModal').querySelector('.gallery-content'), '✓');
+        }
+
+        function deleteImage() {
+            const img = document.getElementById('modalImage');
+            const url = img.src;
+            gallery = gallery.filter(item => item !== url);
+            localStorage.setItem('gallery', JSON.stringify(gallery));
+            loadGallery();
+            closeGalleryModal();
+            showSuccess(document.getElementById('galleryModal').querySelector('.gallery-content'), '✓');
+        }
+
+        // === Upload Panel ===
+        function useCamera() {
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(stream => {
+                        alert('📷 Camera opened — capture photo/video.');
+                        stream.getTracks().forEach(track => track.stop());
+                        toggleUploadPanel();
+                    })
+                    .catch(err => alert('❌ Camera access denied.'));
+            } else {
+                alert('❌ Camera not supported.');
+            }
+        }
+
+        function uploadFiles() {
+            const input = document.createElement('input');
+            input.type = 'file'; input.multiple = true;
+            input.onchange = e => { if (e.target.files.length) for (let f of e.target.files) addFileMessage(f.name, f.type); };
+            input.click(); toggleUploadPanel();
+        }
+
+        function uploadImage() { createFileInput('image/*', 'image'); }
+        function uploadVideo() { createFileInput('video/*', 'video'); }
+        function uploadAudio() { createFileInput('audio/*', 'audio'); }
+        function createFileInput(accept, type) {
+            const input = document.createElement('input');
+            input.type = 'file'; input.accept = accept; input.multiple = true;
+            input.onchange = e => { if (e.target.files.length) for (let f of e.target.files) addFileMessage(f.name, type); };
+            input.click(); toggleUploadPanel();
+        }
+
+        // === Voice Input ===
+        function startVoiceInput() {
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(stream => {
+                        alert('🎤 Recording started...');
+                        stream.getTracks().forEach(track => track.stop());
+                    })
+                    .catch(err => alert('❌ Microphone access denied.'));
+            } else {
+                alert('❌ Microphone not supported.');
+            }
+        }
+
+        // === Utils ===
+        function searchGoogle() {
+            const q = document.getElementById('userInput').value.trim();
+            if (q) window.open(`https://google.com/search?q=${encodeURIComponent(q)}`, '_blank');
+        }
+
+        function showSubscription() {
+            alert('⏱️ Your subscription: 30 days remaining.');
+        }
+    </script>
+
+</body>
+  </html>
