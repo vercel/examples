@@ -1,0 +1,298 @@
+import React from "react";
+
+/**
+ * Prolink Iberia - Landing Page
+ * Single-file React component (TailwindCSS classes used)
+ * - Modern, corporate layout
+ * - Palette mixes visual cues from Vodafone, Lowi, Ocaso and Repsol
+ * - Readme: Drop into a React app with Tailwind configured.
+ *
+ * Usage:
+ *  - Place this component in your pages (e.g. src/pages/Landing.jsx)
+ *  - Ensure TailwindCSS is installed and configured in your project
+ *  - Provide your real form endpoint in handleSubmit
+ */
+
+export default function ProlinkIberiaLanding() {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const payload = Object.fromEntries(form.entries());
+    // Placeholder: replace endpoint with your serverless function or CRM integration
+    try {
+      await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      alert("Gracias — recibimos tu solicitud. Te contactamos en breve.");
+      e.target.reset();
+    } catch (err) {
+      console.error(err);
+      alert("Error enviando el formulario. Intenta de nuevo más tarde.");
+    }
+  };
+
+  return (
+    <div>
+      {/* CSS variables for combined palette */}
+      <style>{`
+        :root{
+          --vodafone-red: #E60000; /* Vodafone */
+          --lowi-yellow: #FFD700;  /* Lowi-ish warm yellow */
+          --ocaso-orange: #FF6A00; /* Ocaso/Repsol family */
+          --repsol-blue: #0033A0;   /* Repsol dark blue */
+          --muted-grey: #F5F7FA;
+          --soft-ink: #0F1724;
+        }
+        .brand-gradient {
+          background: linear-gradient(90deg, rgba(230,0,0,0.95) 0%, rgba(255,106,0,0.92) 45%, rgba(255,215,0,0.9) 100%);
+        }
+      `}</style>
+
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-lg brand-gradient flex items-center justify-center text-white font-bold">PI</div>
+              <div>
+                <h1 className="text-lg font-semibold text-gray-900">Prolink Iberia</h1>
+                <p className="text-xs text-gray-500">Telecom · Energía · Seguros</p>
+              </div>
+            </div>
+            <nav className="hidden md:flex items-center gap-6 text-sm text-gray-700">
+              <a href="#servicios" className="hover:text-gray-900">Servicios</a>
+              <a href="#como-funciona" className="hover:text-gray-900">Cómo funciona</a>
+              <a href="#colaboradores" className="hover:text-gray-900">Colaboradores</a>
+              <a href="#contacto" className="px-4 py-2 rounded-md bg-[color:var(--vodafone-red)] text-white hover:opacity-95">Quiero ahorrar</a>
+            </nav>
+            <div className="md:hidden">
+              <button aria-label="menu" className="p-2 rounded-md border">☰</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main className="bg-[color:var(--muted-grey)]">
+        {/* HERO */}
+        <section className="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20 grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <h2 className="text-4xl lg:text-5xl font-extrabold leading-tight text-[color:var(--soft-ink)]">
+              Ahorra hoy en <span className="text-[color:var(--vodafone-red)]">telecomunicaciones</span>, <span className="text-[color:var(--ocaso-orange)]">energía</span> y <span className="text-[color:var(--lowi-yellow)]">seguros</span>
+            </h2>
+            <p className="mt-6 text-lg text-gray-700 max-w-xl">
+              Prolink Iberia te ayuda a comparar y contratar las mejores ofertas de Vodafone/Lowi, Repsol Luz y Gas y Ocaso. Un único interlocutor, servicio profesional y ahorro garantizado.
+            </p>
+
+            <div className="mt-8 flex gap-4 items-center">
+              <a href="#contacto" className="inline-flex items-center gap-3 bg-[color:var(--repsol-blue)] text-white px-5 py-3 rounded-md font-medium shadow">Quiero un estudio gratuito</a>
+              <a href="#servicios" className="text-sm text-gray-700 underline">Ver servicios</a>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3 items-center text-sm text-gray-600">
+              <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-[color:var(--vodafone-red)] block"/>Distribución oficial</div>
+              <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-[color:var(--ocaso-orange)] block"/>Soporte postventa</div>
+              <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-[color:var(--lowi-yellow)] block"/>Comisiones transparentes</div>
+            </div>
+
+            <div className="mt-10 grid grid-cols-3 gap-3 max-w-md">
+              <div className="bg-white p-4 rounded-lg shadow-sm">
+                <div className="text-xs text-gray-500">Telecom</div>
+                <div className="font-semibold mt-1">Fibra y Móvil</div>
+              </div>
+              <div className="bg-white p-4 rounded-lg shadow-sm">
+                <div className="text-xs text-gray-500">Energía</div>
+                <div className="font-semibold mt-1">Luz & Gas</div>
+              </div>
+              <div className="bg-white p-4 rounded-lg shadow-sm">
+                <div className="text-xs text-gray-500">Seguros</div>
+                <div className="font-semibold mt-1">Hogar & Vida</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="order-first lg:order-last">
+            <div className="w-full rounded-2xl shadow-lg overflow-hidden bg-white">
+              <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop&ixlib=rb-1.2.1&s=placeholder" alt="Ilustración servicio" className="w-full h-64 object-cover"/>
+              <div className="p-6">
+                <h3 className="font-semibold text-lg">Estudio de ahorro gratuito</h3>
+                <p className="mt-2 text-sm text-gray-600">Completa el formulario y uno de nuestros asesores te contactará con propuestas a medida.</p>
+
+                <form onSubmit={handleSubmit} className="mt-4 grid grid-cols-1 gap-3">
+                  <input name="nombre" required placeholder="Nombre y apellidos" className="border rounded-md px-3 py-2" />
+                  <input name="telefono" required placeholder="Teléfono" className="border rounded-md px-3 py-2" />
+                  <select name="servicio" className="border rounded-md px-3 py-2">
+                    <option value="telecom">Telecomunicaciones</option>
+                    <option value="energia">Repsol Luz y Gas</option>
+                    <option value="seguros">Seguros Ocaso</option>
+                    <option value="combinado">Combinado</option>
+                  </select>
+                  <button type="submit" className="mt-2 bg-[color:var(--vodafone-red)] text-white px-4 py-2 rounded-md">Solicitar estudio</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SERVICES */}
+        <section id="servicios" className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+          <div className="text-center">
+            <h3 className="text-2xl font-bold">Nuestros servicios</h3>
+            <p className="mt-2 text-gray-600">Soluciones integrales para particulares y empresas.</p>
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <article className="bg-white rounded-lg shadow p-6">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-md bg-[color:var(--vodafone-red)] flex items-center justify-center text-white font-bold">V</div>
+                <div>
+                  <h4 className="font-semibold">Telecomunicaciones</h4>
+                  <p className="text-sm text-gray-600">Fibra, móvil y convergentes con condiciones negociadas.</p>
+                </div>
+              </div>
+            </article>
+
+            <article className="bg-white rounded-lg shadow p-6">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-md bg-[color:var(--ocaso-orange)] flex items-center justify-center text-white font-bold">R</div>
+                <div>
+                  <h4 className="font-semibold">Repsol Luz & Gas</h4>
+                  <p className="text-sm text-gray-600">Tarifas competitivas y gestión completa del alta y cambio de suministros.</p>
+                </div>
+              </div>
+            </article>
+
+            <article className="bg-white rounded-lg shadow p-6">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-md bg-[color:var(--lowi-yellow)] flex items-center justify-center text-[color:var(--soft-ink)] font-bold">O</div>
+                <div>
+                  <h4 className="font-semibold">Seguros Ocaso</h4>
+                  <p className="text-sm text-gray-600">Hogar, vida y decesos con gestión profesional y atención dedicada.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        {/* HOW IT WORKS */}
+        <section id="como-funciona" className="bg-white py-12">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center">
+              <h3 className="text-2xl font-bold">Cómo funciona</h3>
+              <p className="mt-2 text-gray-600">Proceso sencillo, transparente y 100% digital.</p>
+            </div>
+
+            <div className="mt-8 grid md:grid-cols-3 gap-6">
+              <div className="p-6 text-center">
+                <div className="w-16 h-16 mx-auto rounded-lg bg-[color:var(--vodafone-red)] flex items-center justify-center text-white font-bold">1</div>
+                <h4 className="font-semibold mt-4">Analizamos tu caso</h4>
+                <p className="text-sm text-gray-600 mt-2">Recogemos tus datos y consumo (móvil, fibra, energía o seguro).</p>
+              </div>
+              <div className="p-6 text-center">
+                <div className="w-16 h-16 mx-auto rounded-lg bg-[color:var(--ocaso-orange)] flex items-center justify-center text-white font-bold">2</div>
+                <h4 className="font-semibold mt-4">Comparamos ofertas</h4>
+                <p className="text-sm text-gray-600 mt-2">Buscamos la mejor combinación de precio y servicio.</p>
+              </div>
+              <div className="p-6 text-center">
+                <div className="w-16 h-16 mx-auto rounded-lg bg-[color:var(--lowi-yellow)] flex items-center justify-center text-[color:var(--soft-ink)] font-bold">3</div>
+                <h4 className="font-semibold mt-4">Gestionamos el alta</h4>
+                <p className="text-sm text-gray-600 mt-2">Nos encargamos de toda la tramitación y seguimiento hasta la activación.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* COLLABORATORS / PITCH */}
+        <section id="colaboradores" className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 className="text-2xl font-bold">¿Eres proveedor o distribuidor?</h3>
+              <p className="mt-3 text-gray-600">Colaboramos con mayoristas y proveedores para incluir sus servicios en nuestro catálogo. Aportamos captación digital, red comercial y procesos medibles.</p>
+
+              <ul className="mt-4 space-y-2 text-sm text-gray-700">
+                <li>• Red de colaboradores operativa</li>
+                <li>• Reportes mensuales y métricas de conversión</li>
+                <li>• Gestión de altas y soporte postventa</li>
+              </ul>
+
+              <div className="mt-6">
+                <a href="#contacto" className="inline-flex items-center gap-2 bg-[color:var(--ocaso-orange)] text-white px-4 py-2 rounded-md">Solicitar acuerdo</a>
+              </div>
+            </div>
+
+            <div className="bg-[color:var(--repsol-blue)] text-white rounded-lg p-6 shadow">
+              <h4 className="font-semibold">Pitch corto</h4>
+              <p className="mt-3 text-sm">Somos Prolink Iberia: un partner comercial multicanal que comercializa telecomunicaciones, energía y seguros a través de una red de colaboradores y captación digital. Buscamos acuerdos para integrar y distribuir servicios con foco en volumen y retención.</p>
+
+              <h4 className="font-semibold mt-4">Valor que aportamos</h4>
+              <ul className="mt-2 text-sm">
+                <li>• Leads cualificados y seguimiento CRM</li>
+                <li>• Equipo comercial con KPIs</li>
+                <li>• Transacciones y onboarding controlado</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ / Trust */}
+        <section className="bg-white py-12">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center">
+              <h3 className="text-2xl font-bold">Confianza y transparencia</h3>
+              <p className="mt-2 text-gray-600">Cumplimos GDPR y actuamos con transparencia en comisiones y procesos.</p>
+            </div>
+
+            <div className="mt-8 grid md:grid-cols-3 gap-6">
+              <div className="p-6 bg-gray-50 rounded-lg">
+                <h4 className="font-semibold">Protección de datos</h4>
+                <p className="text-sm text-gray-600 mt-2">Tratamos los datos conforme a la normativa vigente y por motivos contractuales.</p>
+              </div>
+              <div className="p-6 bg-gray-50 rounded-lg">
+                <h4 className="font-semibold">Soporte dedicado</h4>
+                <p className="text-sm text-gray-600 mt-2">Equipo postventa para resolver incidencias y mantener la satisfacción.</p>
+              </div>
+              <div className="p-6 bg-gray-50 rounded-lg">
+                <h4 className="font-semibold">Informes mensuales</h4>
+                <p className="text-sm text-gray-600 mt-2">Reportes para colaboradores y proveedores con datos de ventas y retención.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CONTACT / FOOTER */}
+        <footer id="contacto" className="bg-[color:var(--soft-ink)] text-white py-12">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="text-xl font-bold">Solicita tu estudio gratuito</h4>
+              <p className="mt-2 text-gray-200 text-sm">Rellena el formulario y te llamamos para ofrecerte la mejor opción.</p>
+
+              <form onSubmit={handleSubmit} className="mt-4 grid grid-cols-1 gap-3">
+                <input name="nombre" required placeholder="Nombre y apellidos" className="rounded-md px-3 py-2 text-black" />
+                <input name="email" type="email" placeholder="Correo electrónico" className="rounded-md px-3 py-2 text-black" />
+                <input name="telefono" required placeholder="Teléfono" className="rounded-md px-3 py-2 text-black" />
+                <select name="servicio" className="rounded-md px-3 py-2 text-black">
+                  <option value="combinado">Combinado</option>
+                  <option value="telecom">Telecomunicaciones</option>
+                  <option value="energia">Energía</option>
+                  <option value="seguros">Seguros</option>
+                </select>
+                <button type="submit" className="mt-2 bg-[color:var(--lowi-yellow)] text-[color:var(--soft-ink)] px-4 py-2 rounded-md font-semibold">Solicitar estudio</button>
+              </form>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-semibold">Contacto</h4>
+              <p className="mt-2 text-gray-300 text-sm">Tel: 600 000 000 · Email: hola@prolinkiberia.com</p>
+              <div className="mt-6 text-sm text-gray-300">
+                <p>Dirección fiscal / Datos legales</p>
+                <p className="mt-2">Aviso legal · Política de privacidad · Cookies</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 border-t border-white/10 pt-6 text-center text-sm text-gray-300">© {new Date().getFullYear()} Prolink Iberia · Todos los derechos reservados</div>
+        </footer>
+      </main>
+    </div>
+  );
+}
