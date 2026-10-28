@@ -1,0 +1,54 @@
+# CaseCite on Vercel: fetch the pinned source, build the React frontend, and run
+# nginx (static files + /api proxy) and the FastAPI backend in one container.
+# This follows the upstream Dockerfile; only the source checkout and PORT handling differ.
+
+# Pinned to a commit on main: the first Apache-2.0 licensed revision (1.3.0 and
+# earlier are under the Elastic License 2.0). Change CASECITE_COMMIT to upgrade.
+ARG CASECITE_COMMIT=ddffb012a99ee636d0258d89813dfd65ba9aea2d
+
+# 1. The CaseCite source at the pinned commit.
+FROM alpine/git:latest AS source
+ARG CASECITE_COMMIT
+WORKDIR /src
+RUN git init -q . \
+ && git remote add origin https://github.com/thomasunise/casecite.git \
+ && git fetch -q --depth 1 origin "$CASECITE_COMMIT" \
+ && git checkout -q FETCH_HEAD
+
+# 2. The Vite frontend.
+FROM node:24-slim AS frontend
+WORKDIR /frontend
+COPY --from=source /src/frontend/ ./
+RUN npm ci && npm run build && test -f dist/index.html
+
+# 3. Runtime: Python 3.11, nginx, OCR and the backend.
+FROM python:3.11-slim
+ARG CASECITE_COMMIT
+ENV PYTHONUTF8=1 PYTHONIOENCODING=utf-8 LANG=C.UTF-8 LC_ALL=C.UTF-8 \
+    TIKTOKEN_CACHE_DIR=/opt/tiktoken SOURCE_COMMIT=$CASECITE_COMMIT
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      nginx curl gosu libmagic1 libffi8 tesseract-ocr tesseract-ocr-eng \
+ && rm -rf /var/lib/apt/lists/* \
+ && groupadd -r appuser && useradd -r -g appuser -d /app -s /sbin/nologin appuser
+WORKDIR /app
+COPY --from=source /src/backend/requirements.lock ./
+RUN pip install --no-cache-dir -r requirements.lock \
+ && python -c "import tiktoken; tiktoken.get_encoding('cl100k_base')" \
+ && chmod -R a+rX /opt/tiktoken
+COPY --from=source --chown=appuser:appuser /src/backend/app ./app
+COPY --from=source --chown=appuser:appuser /src/backend/alembic.ini ./alembic.ini
+COPY --from=source --chown=appuser:appuser /src/backend/migrations ./migrations
+COPY --from=source /src/LICENSE /src/NOTICE.md /app/
+COPY --from=frontend /frontend/dist /var/www/html
+COPY --from=source /src/frontend/logo.webp /var/www/html/logo.webp
+COPY --from=source /src/nginx.unified.conf /etc/nginx/sites-enabled/default
+COPY --from=source /src/start.sh /start.sh
+RUN chmod +x /start.sh \
+ && mkdir -p /app/data && chown -R appuser:appuser /app/data /var/log/nginx /var/lib/nginx /run \
+ && sed -i 's/user www-data;/user appuser;/' /etc/nginx/nginx.conf
+
+# Vercel routes to port 80 unless PORT is set. nginx listens on $PORT (default 80)
+# and proxies /api to uvicorn on 127.0.0.1:8000. start.sh runs migrations, starts
+# both processes, and handles SIGTERM.
+ENV PORT=80
+CMD ["sh", "-c", "sed -i \"s/listen 80;/listen ${PORT};/\" /etc/nginx/sites-enabled/default && exec /start.sh"]
