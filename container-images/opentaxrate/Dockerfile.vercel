@@ -1,0 +1,41 @@
+# OpenTaxRate on Vercel: fetch the pinned source, compile the API, ship it on Node 22.
+
+# OpenTaxRate has no tagged release yet, so pin a commit.
+ARG OPENTAXRATE_COMMIT=77f1d33a2f4d37e15f1aed6217f36771e7fa3263
+
+# 1. The source at the pinned commit.
+FROM node:22-slim AS source
+ARG OPENTAXRATE_COMMIT
+RUN apt-get update && apt-get install -y --no-install-recommends git ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
+WORKDIR /src
+RUN git init -q . \
+ && git remote add origin https://github.com/equated-org/opentaxrate.git \
+ && git fetch -q --depth 1 origin "$OPENTAXRATE_COMMIT" \
+ && git checkout -q FETCH_HEAD
+
+# 2. Compile TypeScript, then keep only production dependencies.
+FROM node:22-slim AS build
+WORKDIR /app
+RUN corepack enable
+COPY --from=source /src/package.json /src/pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
+COPY --from=source /src/tsconfig.json ./
+COPY --from=source /src/src ./src
+RUN pnpm build && pnpm prune --prod
+
+# 3. Runtime: the compiled API, its migrations, and tini to forward SIGTERM to Node.
+FROM node:22-slim
+RUN apt-get update && apt-get install -y --no-install-recommends tini \
+ && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/dist ./dist
+COPY --from=source /src/package.json ./
+COPY --from=source /src/migrations ./migrations
+USER node
+# The API listens on $PORT. 80 is Vercel's default.
+ENV PORT=80
+ENTRYPOINT ["/usr/bin/tini", "--", "node", "dist/cli.js"]
+CMD ["serve"]
