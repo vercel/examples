@@ -1,0 +1,7 @@
+*
+!package.json
+!package-lock.json
+!lakefile.toml
+!lean-toolchain
+!App.lean
+!Main.lean
