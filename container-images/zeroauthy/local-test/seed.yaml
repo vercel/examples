@@ -1,0 +1,36 @@
+# Test-only seed for local-test/smoke-test.sh. Never reuse these credentials.
+tenants:
+  - name: demo
+    friendly_name: Demo
+    domains: ["auth.example.test"]
+    default_directory: Username-Password-Authentication
+    resource_servers:
+      - identifier: https://api.example.test
+        name: Demo API
+        token_lifetime: 3600
+        scopes:
+          - {value: "read:things", description: "Read things"}
+    clients:
+      - client_id: demo-m2m
+        name: Demo machine client
+        app_type: non_interactive
+        client_secret: demo-m2m-secret-not-for-production
+        grant_types: [client_credentials]
+      - client_id: demo-web
+        name: Demo web app
+        app_type: regular_web
+        client_secret: demo-web-secret-not-for-production
+        grant_types: [password, "http://auth0.com/oauth/grant-type/password-realm"]
+    client_grants:
+      - client_id: demo-m2m
+        audience: https://api.example.test
+        scopes: ["read:things"]
+    connections:
+      - name: Username-Password-Authentication
+        enabled_clients: [demo-web]
+    users:
+      - connection: Username-Password-Authentication
+        email: alice@example.test
+        password: "Correct-Horse-Battery-9"
+        email_verified: true
+        name: Alice Example
