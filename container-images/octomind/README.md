@@ -75,7 +75,7 @@ Requires Docker and Python 3. The smoke test runs the image against a fake AI Ga
 
 ```bash
 docker build -f Dockerfile.vercel -t octomind-on-vercel .
-./local-test/smoke-test.sh
+bash local-test/smoke-test.sh
 ```
 
 Expected output (the exit time varies):

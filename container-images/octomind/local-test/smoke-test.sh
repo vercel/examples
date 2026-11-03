@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Smoke-test the Octomind image against a fake AI Gateway. No real API keys are used.
 # Usage (from this example's folder, after `docker build -f Dockerfile.vercel -t octomind-on-vercel .`):
-#   ./local-test/smoke-test.sh
+#   bash local-test/smoke-test.sh
 set -uo pipefail
 
 IMAGE=${IMAGE:-octomind-on-vercel}
