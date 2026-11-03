@@ -1,0 +1,42 @@
+# Octomind on Vercel: download a pinned, checksum-verified release binary and run its WebSocket server.
+
+ARG OCTOMIND_VERSION=0.69.0
+
+# 1. Fetch the static (musl) release binary for the build architecture and verify it.
+FROM debian:bookworm-slim AS fetch
+ARG OCTOMIND_VERSION
+ARG TARGETARCH
+ARG OCTOMIND_SHA256_AMD64=6365936a692165cc3ab10091433a46a9ed8738eadd361f53dcbd7e72ba8516a8
+ARG OCTOMIND_SHA256_ARM64=9b9f8b128671f2b27097c2a52f48a9d29fa7e86fba72654bedd5ec7f03f0b26b
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates curl \
+ && rm -rf /var/lib/apt/lists/*
+RUN set -eu; \
+    case "${TARGETARCH:-amd64}" in \
+      amd64) TRIPLE=x86_64-unknown-linux-musl;  SUM=$OCTOMIND_SHA256_AMD64 ;; \
+      arm64) TRIPLE=aarch64-unknown-linux-musl; SUM=$OCTOMIND_SHA256_ARM64 ;; \
+      *) echo "unsupported arch: $TARGETARCH" >&2; exit 1 ;; \
+    esac; \
+    curl -fsSL -o /tmp/octomind.tar.gz \
+      "https://github.com/muvon/octomind/releases/download/${OCTOMIND_VERSION}/octomind-${OCTOMIND_VERSION}-${TRIPLE}.tar.gz"; \
+    echo "${SUM}  /tmp/octomind.tar.gz" | sha256sum -c -; \
+    tar xzf /tmp/octomind.tar.gz -C /usr/local/bin octomind
+
+# 2. Runtime: the binary plus the tools the agent shells out to (git, ripgrep).
+FROM debian:bookworm-slim
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates git ripgrep tini \
+ && rm -rf /var/lib/apt/lists/* \
+ && useradd --create-home --uid 1000 octo \
+ && mkdir /workspace && chown octo:octo /workspace
+COPY --from=fetch /usr/local/bin/octomind /usr/local/bin/octomind
+COPY start.sh /usr/local/bin/start.sh
+RUN chmod 0755 /usr/local/bin/start.sh
+USER octo
+WORKDIR /workspace
+# 80 is Vercel's default port. Session state lives in /tmp and is per instance.
+ENV PORT=80 \
+    OCTOMIND_DATA_DIR=/tmp/octomind \
+    LOCAL_API_URL=https://ai-gateway.vercel.sh/v1/chat/completions
+# tini forwards SIGTERM so the server stops cleanly when an instance is shut down.
+ENTRYPOINT ["/usr/bin/tini", "--", "/usr/local/bin/start.sh"]
