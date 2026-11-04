@@ -1,0 +1,33 @@
+# Kairos on Vercel: fetch the pinned source, build the API and the console, ship one Node.js file.
+
+# Kairos has no tagged release yet, so pin a commit.
+ARG KAIROS_COMMIT=e8fb8576352a3de3834f4cbc6c76a9bbb19d6be8
+
+# 1. Build: the upstream source at the pinned commit, built with its own standalone script.
+FROM node:22-bookworm AS build
+ARG KAIROS_COMMIT
+WORKDIR /repo
+RUN git init -q . \
+ && git remote add origin https://github.com/finic-ai/kairos.git \
+ && git fetch -q --depth 1 origin "$KAIROS_COMMIT" \
+ && git checkout -q FETCH_HEAD
+RUN npm install -g pnpm@10 \
+ && pnpm install --frozen-lockfile \
+ && pnpm build:standalone
+
+# 2. Runtime: Node.js 22 and the built server. It has no node_modules.
+FROM node:22-slim
+ENV NODE_ENV=production \
+    # 80 is the port Vercel sends traffic to by default.
+    PORT=80 \
+    # Every request reaches the function through Vercel's proxy.
+    KAIROS_TRUST_PROXY=1 \
+    # Apply pending migrations at start. Safe to repeat: a database lock serializes them.
+    KAIROS_MIGRATE_ON_START=1 \
+    KAIROS_MIGRATIONS=/app/drizzle \
+    KAIROS_TEMPLATES=/app/templates \
+    KAIROS_CONSOLE=/app/console
+WORKDIR /app
+COPY --from=build /repo/apps/server/dist ./
+USER node
+CMD ["node", "server.mjs"]
