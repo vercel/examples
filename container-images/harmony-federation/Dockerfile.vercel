@@ -1,0 +1,53 @@
+# Harmony federation backend (ActivityPub server) on Vercel Functions.
+# The example ships no Harmony code: it fetches the upstream repository at a
+# pinned release and builds federation-backend/ the same way upstream does.
+
+ARG NODE_VERSION=24
+ARG HARMONY_REPO=https://github.com/y4my4my4m/harmony.git
+# v1.9.3
+ARG HARMONY_COMMIT=a19cf0a7f62301ff307ed89f0d7fd7a08985356e
+
+# --- fetch upstream at a pinned commit ---------------------------------------
+FROM alpine:3.22 AS source
+ARG HARMONY_REPO
+ARG HARMONY_COMMIT
+RUN apk add --no-cache git ca-certificates
+WORKDIR /src
+RUN git init -q . \
+ && git remote add origin "$HARMONY_REPO" \
+ && git fetch -q --depth 1 origin "$HARMONY_COMMIT" \
+ && git checkout -q FETCH_HEAD
+
+# --- build: TypeScript -> dist ------------------------------------------------
+FROM node:${NODE_VERSION}-alpine AS build
+WORKDIR /app
+COPY --from=source /src/federation-backend/package.json /src/federation-backend/package-lock.json /src/federation-backend/tsconfig.json ./
+RUN npm ci --no-audit --no-fund
+COPY --from=source /src/federation-backend/src ./src
+# Upstream's build-only emits despite type errors (CI type-checks separately).
+RUN npm run build-only \
+ && test -f dist/index.js \
+ && find dist -type d -name __tests__ -prune -exec rm -rf {} + \
+ && find dist -type f \( -name '*.d.ts' -o -name '*.d.ts.map' \) -delete
+
+# --- production dependencies --------------------------------------------------
+FROM node:${NODE_VERSION}-alpine AS deps
+WORKDIR /app
+COPY --from=source /src/federation-backend/package.json /src/federation-backend/package-lock.json ./
+RUN npm ci --omit=dev --no-audit --no-fund && npm cache clean --force
+
+# --- runtime ------------------------------------------------------------------
+FROM node:${NODE_VERSION}-alpine
+ENV NODE_ENV=production \
+    FEDERATION_MODE=server \
+    PORT=80
+WORKDIR /app
+COPY --from=source /src/federation-backend/package.json ./
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=build /app/dist ./dist
+# Upstream's logger also writes logs/ under the working directory.
+RUN mkdir -p logs && chown node:node logs
+USER node
+EXPOSE 80
+# Accept the variable names the Supabase Marketplace integration injects.
+CMD ["sh", "-c", "export SUPABASE_ANON_KEY=\"${SUPABASE_ANON_KEY:-$SUPABASE_PUBLISHABLE_KEY}\" SUPABASE_SERVICE_ROLE_KEY=\"${SUPABASE_SERVICE_ROLE_KEY:-$SUPABASE_SECRET_KEY}\"; exec node dist/index.js"]
