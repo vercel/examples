@@ -10,6 +10,9 @@ on:
 jobs:
   clone-build-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,18 +37,19 @@ jobs:
         env:
           NPM_CONFIG_LOGLEVEL: http
 
-      - working-directory: ./framework-boilerplates/nextjs
-        run: |
-          vc build --debug --token $VERCEL_TOKEN --yes --prod
-        env:
-          VERCEL_PROJECT_ID: prj_D1Kp06w4jE67wyV3WlMHjtfDLjhC
-          VERCEL_TOKEN: ${{ secrets.VERCEL_EXAMPLES_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_EXAMPLES_ORG_ID }}
+      - name: Authenticate Vercel CLI
+        uses: vercel/authenticate-cli-action@34fa13671fee771a9f656d6dda34148f8dce0c8d
+        with:
+          team: ${{ vars.VERCEL_ORG_ID }}
 
       - working-directory: ./framework-boilerplates/nextjs
         run: |
-          vc deploy --debug --token $VERCEL_TOKEN --yes --prod --prebuilt --archive=tgz
+          vc build --debug --yes --prod
         env:
           VERCEL_PROJECT_ID: prj_D1Kp06w4jE67wyV3WlMHjtfDLjhC
-          VERCEL_TOKEN: ${{ secrets.VERCEL_EXAMPLES_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_EXAMPLES_ORG_ID }}
+
+      - working-directory: ./framework-boilerplates/nextjs
+        run: |
+          vc deploy --debug --yes --prod --prebuilt --archive=tgz
+        env:
+          VERCEL_PROJECT_ID: prj_D1Kp06w4jE67wyV3WlMHjtfDLjhC
