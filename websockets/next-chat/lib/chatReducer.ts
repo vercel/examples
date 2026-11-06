@@ -62,8 +62,8 @@ export function chatReducer(state: ChatState, action: ChatAction): ChatState {
   const f = action.frame
   switch (f.type) {
     case 'login':
-      // Identity is already known client-side; nothing to do.
-      return state
+      // Identity is already known client-side; clear stale typing state upon rejoin.
+      return { ...state, typingUsers: [] }
     case 'history': {
       if (state.historyLoaded) return state
       if (!f.messages?.length) {
