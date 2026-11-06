@@ -1,0 +1,178 @@
+:root {
+  --bg: #0b0d12;
+  --panel: #12151d;
+  --border: #232838;
+  --text: #e6e9f0;
+  --muted: #8b93a7;
+  --accent: #6ea8fe;
+  --user: #1b2333;
+  --assistant: #141824;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    sans-serif;
+}
+
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 16px 120px;
+}
+
+.header h1 {
+  font-size: 20px;
+  margin: 0 0 4px;
+}
+
+.header p {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.hint {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.hint code {
+  color: var(--accent);
+  word-break: break-all;
+}
+
+.preview {
+  border: 1px solid #3a3f2a;
+  background: #1a1c14;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #d8dbc4;
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+
+.preview strong {
+  color: #e8dd8a;
+}
+
+.preview-cta {
+  margin-top: 10px;
+}
+
+.preview-cta a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.preview-cta a:hover {
+  text-decoration: underline;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.msg {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.msg.user {
+  background: var(--user);
+  align-self: flex-end;
+  max-width: 85%;
+}
+
+.msg.assistant {
+  background: var(--assistant);
+  align-self: flex-start;
+  max-width: 100%;
+}
+
+.role {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.tool {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin: 4px 0;
+}
+
+.composer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, var(--bg) 70%, transparent);
+  padding: 16px;
+}
+
+.composer form {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+}
+
+.composer input {
+  flex: 1;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+}
+
+.composer input:focus {
+  border-color: var(--accent);
+}
+
+.composer button {
+  background: var(--accent);
+  color: #06101f;
+  border: none;
+  border-radius: 10px;
+  padding: 0 18px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.composer button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
