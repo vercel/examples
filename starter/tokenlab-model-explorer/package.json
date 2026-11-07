@@ -1,0 +1,40 @@
+{
+  "name": "tokenlab-model-explorer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A deployable MCP model explorer for TokenLab public model and pricing data.",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "dev": "tsx watch src/server.ts",
+    "check": "tsc --noEmit",
+    "test": "npm run check && node scripts/smoke.mjs"
+  },
+  "keywords": [
+    "tokenlab",
+    "openai-apps-sdk",
+    "chatgpt-apps",
+    "mcp",
+    "model-explorer",
+    "llm-gateway"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "^1.7.4",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.4",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT"
+}
