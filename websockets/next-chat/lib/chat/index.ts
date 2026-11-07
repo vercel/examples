@@ -248,6 +248,12 @@ export class ChatHub {
       // the store here: the staleness window absorbs reconnects (no flap), and
       // the heartbeat prunes + announces the leave if they stay gone.
       this.localClients.delete(clientId)
+      if (conn.username) {
+        this.broadcaster.broadcast({
+          type: 'stop typing',
+          username: conn.username,
+        })
+      }
     }
   }
 }
