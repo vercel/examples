@@ -1,0 +1,3 @@
+allowBuilds:
+  sharp: set this to true or false
+  unrs-resolver: set this to true or false

@@ -1,0 +1,33 @@
+{
+  "name": "ab-testing-launchdarkly",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@launchdarkly/vercel-server-sdk": "^1.3.3",
+    "@vercel/edge-config": "^1.1.0",
+    "@vercel/examples-ui": "^1.0.5",
+    "js-cookie": "^3.0.5",
+    "next": "^16.0.10",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "autoprefixer": "^10.4.15",
+    "eslint": "^8.47.0",
+    "eslint-config-next": "^13.4.19",
+    "postcss": "^8.4.28",
+    "tailwindcss": "^3.3.3",
+    "turbo": "^1.10.12",
+    "typescript": "^5"
+  }
+}
