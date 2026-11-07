@@ -17,6 +17,8 @@ const HEARTBEAT_MS = Number(process.env.PRESENCE_HEARTBEAT_MS) || 8000
 interface ConnState {
   username: string | null
   clientId: string | null
+  /** Sent 'typing' and hasn't sent 'stop typing' since. */
+  typing: boolean
 }
 
 export class ChatHub {
@@ -104,6 +106,7 @@ export class ChatHub {
         return this.onNewMessage(ws, conn, frame)
       case 'typing':
         if (conn.username) {
+          conn.typing = true
           this.broadcaster.broadcast(
             { type: 'typing', username: conn.username },
             ws
@@ -112,6 +115,7 @@ export class ChatHub {
         return
       case 'stop typing':
         if (conn.username) {
+          conn.typing = false
           this.broadcaster.broadcast(
             { type: 'stop typing', username: conn.username },
             ws
@@ -202,7 +206,7 @@ export class ChatHub {
   }
 
   handleUpgrade(ws: WebSocket) {
-    const conn: ConnState = { username: null, clientId: null }
+    const conn: ConnState = { username: null, clientId: null, typing: false }
     this.broadcaster.register(ws)
 
     ws.on('message', (data) => {
@@ -234,6 +238,16 @@ export class ChatHub {
 
   private handleClose(ws: WebSocket, conn: ConnState) {
     this.broadcaster.unregister(ws)
+    // A socket that drops mid-typing never sends its 'stop typing' (the
+    // client's idle timer fires after the socket is gone), so clear the
+    // indicator for everyone else on its behalf.
+    if (conn.username && conn.typing) {
+      conn.typing = false
+      this.broadcaster.broadcast({
+        type: 'stop typing',
+        username: conn.username,
+      })
+    }
     const clientId = conn.clientId
     if (!clientId) {
       return
