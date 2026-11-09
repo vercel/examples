@@ -22,7 +22,7 @@ export default async function datadome(req: NextRequest) {
       ? req.headers.get('x-forwarded-for')!.split(',')[0]
       : '127.0.0.1',
     RequestModuleName: 'Next.js',
-    ModuleVersion: '0.3.0',
+    ModuleVersion: '0.3.1',
     AuthorizationLen: getAuthorizationLength(req),
     Accept: req.headers.get('accept'),
     AcceptEncoding: req.headers.get('accept-encoding'),
@@ -43,11 +43,11 @@ export default async function datadome(req: NextRequest) {
     PostParamLen: req.headers.get('content-length'),
     Protocol: req.headers.get('x-forwarded-proto'),
     Referer: req.headers.get('referer'),
-    Request: pathname + encode(Object.fromEntries(req.nextUrl.searchParams)),
+    Request: pathname + req.nextUrl.search,
     ServerHostname: req.headers.get('host'),
     ServerName: 'vercel',
     ServerRegion: 'sfo1',
-    TimeRequest: new Date().getTime() * 1000,
+    TimeRequest: Date.now() * 1000,
     TrueClientIP: req.headers.get('true-client-ip'),
     UserAgent: req.headers.get('user-agent'),
     Via: req.headers.get('via'),
@@ -69,16 +69,19 @@ export default async function datadome(req: NextRequest) {
 
   const options = {
     method: 'POST',
-    body: stringify(truncateRequestData(requestData)),
+    body: '',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'User-Agent': 'DataDome'
     },
   }
   if (req.headers.get('x-datadome-clientid')?.length) {
+    //@ts-ignore - custom DataDome error
     options.headers['X-DataDome-X-Set-Cookie'] = 'true'
     requestData.ClientID = req.headers.get('x-datadome-clientid') as string
   }
+  options.body = stringify(truncateRequestData(requestData));
+  
   const dataDomeReq = fetch(DATADOME_ENDPOINT + '/validate-request/', options)
 
   const timeoutPromise = new Promise((resolve, reject) => {
@@ -151,15 +154,6 @@ export default async function datadome(req: NextRequest) {
 
       return res
   }
-}
-
-function encode(query: Record<string, string>) {
-  let e = ''
-  for (const k in query) {
-    const v = query[k]
-    e += `${encodeURIComponent(k)}=${encodeURIComponent(v)}`
-  }
-  return e
 }
 
 function toHeaders(
@@ -261,6 +255,7 @@ function truncateRequestData(requestData: Record<string, string | number | null 
 
   for (let key in requestData) {
     const value = requestData[key];
+    //@ts-ignore
     const limit = limits[key.toLowerCase()];
     if (limit && value && typeof value == 'string' && value.length > Math.abs(limit)) {
       if (limit > 0) {
