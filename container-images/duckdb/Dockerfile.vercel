@@ -1,0 +1,17 @@
+# DuckDB on Vercel: a read-only SQL API over one CSV, Parquet or JSON file, served from a container image.
+FROM python:3.13-slim
+
+# DuckDB 2.0 is a long-term support release. Change the pin to upgrade.
+ARG DUCKDB_VERSION=2.0.0
+RUN pip install --no-cache-dir "duckdb==${DUCKDB_VERSION}" "fastapi==0.157.0" "uvicorn==0.54.0"
+
+RUN useradd --create-home --uid 10001 app
+USER app
+WORKDIR /home/app
+
+# Bake the httpfs extension into the image so a cold start never downloads it.
+RUN python -c "import duckdb; duckdb.execute('INSTALL httpfs')"
+
+COPY app.py .
+ENV PORT=80 MAX_ROWS=1000 PYTHONUNBUFFERED=1
+CMD ["python", "app.py"]
