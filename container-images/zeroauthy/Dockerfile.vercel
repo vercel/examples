@@ -1,0 +1,26 @@
+# zeroauthy on Vercel: fetch the pinned source, compile one static binary, ship it on distroless.
+
+# zeroauthy has no tagged release yet, so pin a commit.
+ARG ZEROAUTHY_COMMIT=5d1c30c1ac7c90d88307c1958af7d7fd20ef0d54
+
+# 1. Build. The admin console is committed prebuilt and embedded at compile time.
+FROM golang:1.26-bookworm AS build
+ARG ZEROAUTHY_COMMIT
+WORKDIR /src
+RUN git init -q . \
+ && git remote add origin https://github.com/occupysaas/zeroauthy.git \
+ && git fetch -q --depth 1 origin "$ZEROAUTHY_COMMIT" \
+ && git checkout -q FETCH_HEAD
+RUN CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o /out/zeroauthy ./cmd/zeroauthy
+
+# 2. Runtime: CA certificates, the binary, nothing else.
+FROM gcr.io/distroless/static-debian12:nonroot
+COPY --from=build /out/zeroauthy /usr/local/bin/zeroauthy
+# Vercel terminates TLS and sends plain HTTP to port 80 by default.
+# Logs go to stdout as JSON; migrations run at startup.
+ENV ZEROAUTHY_SERVER__LISTEN=:80 \
+    ZEROAUTHY_LOG__FORMAT=json \
+    ZEROAUTHY_STORAGE__AUTO_MIGRATE=true \
+    ZEROAUTHY_SEED_MODE=create_only
+ENTRYPOINT ["/usr/local/bin/zeroauthy"]
+CMD ["serve"]
