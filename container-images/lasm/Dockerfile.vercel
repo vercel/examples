@@ -1,0 +1,19 @@
+# Lean 4 on Vercel: Lasm compiles the Lean program to WebAssembly in the first
+# stage; the image Vercel runs contains only Node and dist/.
+
+# 1. Compile. @lasm/cli (pinned in package.json) downloads Lean 4.35.0 and its
+#    build tools, checks every proof in App.lean, and writes dist/.
+FROM node:24-trixie AS build
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY lakefile.toml lean-toolchain App.lean Main.lean ./
+RUN npx lasm build Main.lean --output dist
+
+# 2. Runtime: Node 24, the Wasm program, its launcher and production node_modules.
+FROM node:24-bookworm-slim
+WORKDIR /app
+ENV NODE_ENV=production HOST=0.0.0.0 PORT=80
+COPY --from=build /app/dist ./dist
+USER node
+CMD ["node", "dist/main.mjs"]

@@ -1,0 +1,18 @@
+{
+  "name": "lasm-on-vercel",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "lasm dev Main.lean"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "@hono/node-server": "2.1.3",
+    "hono": "4.13.13"
+  },
+  "devDependencies": {
+    "@lasm/cli": "0.3.5"
+  }
+}

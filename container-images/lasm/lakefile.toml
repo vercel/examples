@@ -1,0 +1,12 @@
+name = "lasm-on-vercel"
+version = "0.1.0"
+defaultTargets = ["app"]
+
+# Pure Lean modules (App.lean).
+[[lean_lib]]
+name = "App"
+
+# The program: Main.lean. Lasm builds it with `lasm build Main.lean`.
+[[lean_exe]]
+name = "app"
+root = "Main"
