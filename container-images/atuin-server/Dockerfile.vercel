@@ -1,0 +1,40 @@
+# Atuin sync server on Vercel: fetch the pinned release binary, verify its checksum, ship it on Debian slim.
+
+# Upgrade by changing this tag. Releases: https://github.com/atuinsh/atuin/releases
+ARG ATUIN_VERSION=v18.24.6
+
+# 1. The prebuilt, statically linked (musl) atuin-server binary from the GitHub release,
+#    checked against its published SHA-256.
+FROM debian:bookworm-slim AS fetch
+ARG ATUIN_VERSION
+ARG TARGETARCH
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates curl \
+ && rm -rf /var/lib/apt/lists/*
+WORKDIR /dl
+RUN set -eu; \
+    case "${TARGETARCH:-amd64}" in \
+      amd64) target=x86_64-unknown-linux-musl ;; \
+      arm64) target=aarch64-unknown-linux-musl ;; \
+      *) echo "unsupported architecture: $TARGETARCH" >&2; exit 1 ;; \
+    esac; \
+    base="https://github.com/atuinsh/atuin/releases/download/${ATUIN_VERSION}"; \
+    curl -fsSLO "$base/atuin-server-$target.tar.gz"; \
+    curl -fsSLO "$base/atuin-server-$target.tar.gz.sha256"; \
+    sha256sum -c "atuin-server-$target.tar.gz.sha256"; \
+    tar xzf "atuin-server-$target.tar.gz"; \
+    install -m 0755 "atuin-server-$target/atuin-server" /dl/atuin-server
+
+# 2. Runtime: CA certificates, the binary, an empty server.toml (everything is configured by env vars).
+FROM debian:bookworm-slim
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates \
+ && rm -rf /var/lib/apt/lists/* \
+ && useradd --system --uid 10001 --no-create-home atuin \
+ && mkdir -p /config && touch /config/server.toml
+COPY --from=fetch /dl/atuin-server /usr/local/bin/atuin-server
+USER atuin
+ENV ATUIN_CONFIG_DIR=/config ATUIN_HOST=0.0.0.0 RUST_LOG=atuin_server=info TZ=Etc/UTC
+# Vercel routes traffic to $PORT (80 by default). Atuin reads ATUIN_PORT, and Marketplace Postgres
+# integrations inject DATABASE_URL, so map both before exec'ing the server (which then gets SIGTERM directly).
+ENTRYPOINT ["/bin/sh", "-c", "export ATUIN_PORT=\"${PORT:-80}\" ATUIN_DB_URI=\"${ATUIN_DB_URI:-${DATABASE_URL:-}}\"; exec /usr/local/bin/atuin-server start"]
