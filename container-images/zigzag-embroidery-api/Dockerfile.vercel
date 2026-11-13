@@ -1,0 +1,24 @@
+# ZigZag embroidery API on Vercel: build the upstream `zigzag` CLI at a pinned release,
+# then serve it over HTTP with a small Python (standard library only) wrapper.
+
+# ZigZag v0.1.2. Change both to upgrade.
+ARG ZIGZAG_TAG=v0.1.2
+ARG ZIGZAG_COMMIT=7fdb49f34517f569128bf02f215b45fa280c818c
+
+# 1. The CLI from the pinned source. Default features only: no GUI, no Bluetooth, no system deps.
+FROM rust:1-bookworm AS build
+ARG ZIGZAG_TAG
+ARG ZIGZAG_COMMIT
+WORKDIR /src
+RUN git clone -q --depth 1 --branch "$ZIGZAG_TAG" https://github.com/simpsoka/zigzag.git . \
+ && test "$(git rev-parse HEAD)" = "$ZIGZAG_COMMIT"
+RUN cargo build --release --locked --bin zigzag
+
+# 2. Runtime: Python for the wrapper, the CLI binary, nothing else. Same Debian release as above.
+FROM python:3.12-slim-bookworm
+COPY --from=build /src/target/release/zigzag /usr/local/bin/zigzag
+COPY server.py /app/server.py
+# The wrapper listens on 0.0.0.0:$PORT. 80 is Vercel's default.
+ENV PORT=80 PYTHONUNBUFFERED=1
+USER nobody
+CMD ["python3", "/app/server.py"]
