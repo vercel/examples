@@ -1,0 +1,21 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "tiles": {
+      "root": ".",
+      "entrypoint": "Dockerfile.vercel",
+      "runtime": "container"
+    }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": { "service": "tiles" } }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Vercel-CDN-Cache-Control", "value": "max-age=86400, stale-while-revalidate=604800" }
+      ]
+    }
+  ]
+}

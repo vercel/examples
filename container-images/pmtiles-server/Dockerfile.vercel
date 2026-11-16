@@ -1,0 +1,33 @@
+# PMTiles tile server on Vercel: fetch go-pmtiles at a pinned release, compile it, ship one static binary.
+
+# go-pmtiles release tag and the commit it points to (checked after the fetch).
+ARG PMTILES_VERSION=v1.31.2
+ARG PMTILES_COMMIT=a3e4951ea6a0477b784c27c1dcbfd9c130878c5a
+
+# 1. Build the pmtiles CLI from the pinned source.
+FROM golang:1.25-alpine AS build
+ARG PMTILES_VERSION
+ARG PMTILES_COMMIT
+RUN apk add --no-cache git
+WORKDIR /src
+RUN git init -q . \
+ && git remote add origin https://github.com/protomaps/go-pmtiles.git \
+ && git fetch -q --depth 1 origin "refs/tags/$PMTILES_VERSION" \
+ && git checkout -q FETCH_HEAD \
+ && test "$(git rev-parse HEAD)" = "$PMTILES_COMMIT"
+RUN CGO_ENABLED=0 go build -trimpath \
+      -ldflags "-s -w -X main.version=$PMTILES_VERSION -X main.commit=$PMTILES_COMMIT" \
+      -o /out/pmtiles .
+
+# 2. Runtime: Alpine for CA certificates and a shell to read $PORT.
+FROM alpine:3.22
+RUN apk add --no-cache ca-certificates
+COPY --from=build /out/pmtiles /usr/local/bin/pmtiles
+# Vercel sends traffic to port 80 unless PORT is set in the project settings.
+ENV PORT=80 \
+    PMTILES_BUCKET= \
+    PMTILES_CORS=* \
+    PMTILES_PUBLIC_URL= \
+    PMTILES_CACHE_MB=64
+# `exec` makes pmtiles PID 1 so it receives SIGTERM directly.
+CMD ["/bin/sh", "-c", "exec pmtiles serve . --bucket=\"$PMTILES_BUCKET\" --port=\"$PORT\" --cors=\"$PMTILES_CORS\" --public-url=\"$PMTILES_PUBLIC_URL\" --cache-size=\"$PMTILES_CACHE_MB\""]
