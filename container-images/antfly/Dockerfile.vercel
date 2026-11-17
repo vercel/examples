@@ -1,0 +1,28 @@
+# Antfly on Vercel: take the server from the pinned official release image and ship it on a slim, CPU-only runtime.
+
+# Official Antfly release image, pinned by tag and digest. Change both to upgrade.
+ARG ANTFLY_IMAGE=ghcr.io/antflydb/antfly:v0.3.0@sha256:bafa9373a0ca11c9398d17c01d9756aca31b3f73c0029ea2395cfa2544091f65
+
+# 1. The release image. It also bundles CUDA libraries (about 2 GB) that Vercel Functions cannot use.
+FROM ${ANTFLY_IMAGE} AS antfly
+
+# 2. Runtime: the same Debian release, the antfly binary, the Wasmtime library and the Antfarm dashboard.
+FROM debian:bookworm-slim
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates libstdc++6 libopenblas0-pthread \
+ && rm -rf /var/lib/apt/lists/*
+COPY --from=antfly /antfly /antfly
+COPY --from=antfly /usr/local/lib/libwasmtime.so /usr/local/lib/libwasmtime.so
+COPY --from=antfly /usr/share/antfly /usr/share/antfly
+COPY --from=antfly /usr/share/licenses/antfly /usr/share/licenses/antfly
+
+# Vercel routes traffic to $PORT (80 by default). Only /tmp is used for data, so every instance starts empty.
+ENV PORT=80 \
+    HOME=/tmp \
+    ANTFLY_WASMTIME_LIB=/usr/local/lib/libwasmtime.so \
+    ANTFLY_EXTENSION_PACKAGE_STORE=/tmp/antfly/extensions
+USER 10001:10001
+
+# Auth is always on: the first start on each instance creates `admin` from ANTFLY_BOOTSTRAP_ADMIN_PASSWORD.
+# The separate health port is off because Vercel routes one port; /healthz and /readyz stay on $PORT.
+ENTRYPOINT ["/bin/sh", "-c", "exec /antfly standalone --host 0.0.0.0 --port \"${PORT:-80}\" --data-dir /tmp/antfly --auth true --health false \"$@\"", "antfly"]
