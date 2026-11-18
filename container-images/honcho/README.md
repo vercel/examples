@@ -19,7 +19,7 @@ relatedTemplates:
 
 Run [Honcho](https://github.com/plastic-labs/honcho), an open-source memory library for building stateful AI agents, on Vercel. Your agents send Honcho their conversations. A background worker (the "deriver") uses an LLM to turn those conversations into conclusions about each peer, and the API answers natural-language questions about them ("What does Alice like?").
 
-This example contains no Honcho code. `Dockerfile.vercel` fetches Honcho at a pinned release, installs its locked Python dependencies with `uv`, and builds one image that is deployed twice:
+This example contains no Honcho code. The `Dockerfile` fetches Honcho at a pinned release, installs its locked Python dependencies with `uv`, and builds one image that is deployed twice:
 
 | Part | Runs on | Configured in `vercel.json` |
 | --- | --- | --- |
@@ -29,7 +29,7 @@ This example contains no Honcho code. `Dockerfile.vercel` fetches Honcho at a pi
 
 The image starts by applying Honcho's database migrations, which hold a database lock so instances that start at the same time wait for each other. It then serves the API on `$PORT` (80 by default, which is what Vercel expects). It also sets `AUTH_USE_AUTH=true`, so a deployment never serves the API without JWT auth.
 
-> This example pins Honcho `v3.6.1` (commit `70c6762`). To upgrade, change `HONCHO_VERSION` and `HONCHO_COMMIT` in `Dockerfile.vercel`.
+> This example pins Honcho `v3.6.1` (commit `70c6762`). To upgrade, change `HONCHO_VERSION` and `HONCHO_COMMIT` in `Dockerfile`.
 
 ## How to use
 
@@ -73,7 +73,7 @@ See Honcho's [`.env.template`](https://github.com/plastic-labs/honcho/blob/v3.6.
 Requires Docker and Python 3. The smoke test starts Postgres (`pgvector/pgvector:pg17`), a fake OpenAI server, the API, and the deriver, using the same environment variables as on Vercel, so no real keys are used.
 
 ```bash
-docker build -f Dockerfile.vercel -t honcho-on-vercel .
+docker build -t honcho-on-vercel .
 bash local-test/smoke-test.sh
 ```
 

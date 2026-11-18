@@ -3,14 +3,14 @@
   "services": {
     "api": {
       "root": ".",
-      "entrypoint": "Dockerfile.vercel",
+      "entrypoint": "Dockerfile",
       "runtime": "container"
     }
   },
   "daemons": {
     "deriver": {
       "root": ".",
-      "entrypoint": "Dockerfile.vercel",
+      "entrypoint": "Dockerfile",
       "command": ["/app/.venv/bin/python", "-m", "src.deriver"],
       "instances": { "iad1": 1 }
     }

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Smoke-test the Honcho image against Postgres (pgvector) and a fake OpenAI upstream. No real API keys are used.
-# Usage (from this example's folder, after `docker build -f Dockerfile.vercel -t honcho-on-vercel .`):
+# Usage (from this example's folder, after `docker build -t honcho-on-vercel .`):
 #   bash local-test/smoke-test.sh
 set -euo pipefail
 
