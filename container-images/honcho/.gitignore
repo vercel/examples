@@ -1,0 +1,4 @@
+.vercel
+.env
+.env*.local
+local-test/.mock.log
