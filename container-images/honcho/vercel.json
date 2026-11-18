@@ -1,0 +1,21 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "api": {
+      "root": ".",
+      "entrypoint": "Dockerfile",
+      "runtime": "container"
+    }
+  },
+  "daemons": {
+    "deriver": {
+      "root": ".",
+      "entrypoint": "Dockerfile",
+      "command": ["/app/.venv/bin/python", "-m", "src.deriver"],
+      "instances": { "iad1": 1 }
+    }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": { "service": "api" } }
+  ]
+}
