@@ -1,0 +1,22 @@
+{
+  "name": "zpup-svg-api",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "typecheck": "tsc --noEmit",
+    "test": "bash local-test/smoke-test.sh"
+  },
+  "dependencies": {
+    "@zpup/core": "0.3.1",
+    "hono": "^4.13.19"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}
