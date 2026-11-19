@@ -50,3 +50,22 @@ pnpm dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=examples-repo) ([Documentation](https://nextjs.org/docs/deployment)).
+
+## Monitor that your cron jobs ran
+
+To find out when a cron job stops running or starts failing, have the job ping a check-in link at the end of each run. A check-in service alerts you when a ping is late or reports a failure. Any check-in service works. [Spooky Particles](https://spookyparticles.com/docs/check-ins) is one example: its links accept a bare request as ok and `/fail` as a failure.
+
+Add the link as a `CHECKIN_URL` environment variable and ping it after the work is done in `pages/api/cron/[cron].ts`:
+
+```ts
+const response = await update(cron)
+
+// Optional: tell a check-in service this run finished.
+if (process.env.CHECKIN_URL) {
+  await fetch(process.env.CHECKIN_URL, { method: 'POST' }).catch(() => {})
+}
+
+return res.status(200).json(response)
+```
+
+If the job throws before the ping, no check-in arrives and the service alerts you. Treat the link like a password and keep it out of your code.
