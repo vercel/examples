@@ -1,0 +1,28 @@
+# hippomaps on Vercel: fetch the pinned source, compile the Go server, ship one static binary.
+
+# hippomaps release v1.4.1. Change both to upgrade.
+ARG HIPPOMAPS_REF=v1.4.1
+ARG HIPPOMAPS_COMMIT=db4d882133e7dc59501474772088a2c17cf6549f
+
+# 1. The source at the pinned commit, and the binary. The web page is embedded in it.
+FROM golang:1.27-alpine AS build
+ARG HIPPOMAPS_REF
+ARG HIPPOMAPS_COMMIT
+RUN apk add --no-cache git
+WORKDIR /src
+RUN git init -q . \
+ && git remote add origin https://github.com/cdutsov/hippomaps.git \
+ && git fetch -q --depth 1 origin "refs/tags/$HIPPOMAPS_REF" \
+ && test "$(git rev-parse FETCH_HEAD^{commit})" = "$HIPPOMAPS_COMMIT" \
+ && git checkout -q FETCH_HEAD
+RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/hippomaps ./cmd/hippomaps
+
+# 2. Runtime: CA certificates, time zones, the binary, an unprivileged user.
+FROM alpine:3.24
+RUN apk add --no-cache ca-certificates tzdata && adduser -D -H -u 10004 hippomaps
+COPY --from=build /out/hippomaps /usr/local/bin/hippomaps
+USER 10004:10004
+# hippomaps listens on LISTEN, not PORT: map Vercel's PORT (80 by default) onto it.
+# The page is served at the root of the domain.
+ENV BASE_PATH=/
+ENTRYPOINT ["/bin/sh", "-c", "export LISTEN=\":${PORT:-80}\"; exec hippomaps serve"]
