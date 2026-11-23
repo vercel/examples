@@ -1,0 +1,38 @@
+# Worker 755 on Vercel: fetch the pinned source, build the web app, run the Node server.
+
+# Worker 755 has no tagged releases, so pin a commit.
+ARG WORKER755_COMMIT=993d82fec34529bc9fee2fe8fb11737c02ddc8c2
+
+# 1. The game source at the pinned commit.
+FROM node:24-bookworm AS source
+ARG WORKER755_COMMIT
+WORKDIR /src
+RUN git init -q . \
+ && git remote add origin https://github.com/gulivan/worker755.git \
+ && git fetch -q --depth 1 origin "$WORKER755_COMMIT" \
+ && git checkout -q FETCH_HEAD
+
+# 2. The web app. The in-browser shell (a Web Worker) is bundled into it.
+FROM node:24-slim AS web
+WORKDIR /app
+COPY --from=source /src/web/package.json /src/web/package-lock.json web/
+RUN npm ci --prefix web --no-audit --no-fund
+COPY --from=source /src/shell shell
+COPY --from=source /src/web web
+RUN npm run build --prefix web
+
+# 3. Runtime: the server runs its TypeScript directly on Node 24.
+FROM node:24-slim
+WORKDIR /app
+COPY --from=source /src/server/package.json /src/server/package-lock.json server/
+RUN npm ci --prefix server --omit=dev --no-audit --no-fund
+COPY --from=source /src/shell shell
+COPY --from=source /src/server server
+COPY --from=source /src/web/src/game/avatar-gallery.json web/src/game/avatar-gallery.json
+COPY --from=web /app/web/dist web/dist
+# Listen on 0.0.0.0:80, Vercel's default port. The function filesystem is read-only except /tmp,
+# so per-instance files (stats, shift logs) go there. Review sharing is off: links would only
+# resolve on the instance that wrote them.
+ENV NODE_ENV=production HOST=0.0.0.0 PORT=80 DATA_DIR=/tmp/worker755 SHARING=0
+USER node
+CMD ["node", "server/src/index.ts"]
