@@ -103,7 +103,7 @@ All checks passed.
 - **Scale to zero.** Vercel scales idle functions down and sends `SIGTERM` with a 30-second grace period; SlashObserve shuts down in well under a second. Its periodic jobs (dashboard health checks, OAuth cleanup) run only while an instance is up, and live updates and agent runs last only as long as the function's maximum duration, so clients reconnect.
 - **Agent runs.** The built-in agent runs in the same process (8 workers by default, `SLASHOBSERVE_AGENT_WORKERS`). A run in flight when an instance scales down is cut short.
 - **Database connections.** Each instance opens a pool of at least 16 connections. Use Neon's pooled URL for `SLASHOBSERVE_DATABASE_URL`, or add `pool_max_conns=N`.
-- **Datasources must be reachable from Vercel.** Prometheus, ClickHouse and the rest must accept connections from the public internet. Secure Compute and Static IPs do not work with custom container images yet.
+- **Datasources must be reachable from Vercel.** Prometheus, ClickHouse and the rest must accept connections from the public internet. For private networks, check [Container Runtime](https://vercel.com/docs/functions/runtimes/container) for current Secure Compute and Static IPs support; this example has not been tested with either.
 - **Port 80 as non-root.** The image runs as a non-root user. Binding port 80 worked in Docker; if it fails on your deployment, set `SLASHOBSERVE_HTTP_ADDR=:8080` and `PORT=8080` in the project's environment variables.
 
 ## Learn more
