@@ -1,0 +1,9 @@
+# SlashObserve on Vercel: run the official release image, pinned by version and digest, as a Vercel Function.
+# The image is SlashObserve's own multi-stage build (Go server, embedded web app, built-in agent) on distroless.
+FROM ghcr.io/slashobserve/slashobserve:0.1.5@sha256:c0ecdbcf059b655d58ba811d9583cdb9b0e7b1a78872687b2ca67bc69d1eea05
+
+# Vercel routes HTTP traffic to port 80 by default. The image listens on :8080 unless told otherwise.
+# /metrics would be public on a Vercel URL, so turn it off; Vercel Observability covers the function itself.
+ENV SLASHOBSERVE_HTTP_ADDR=:80 \
+    SLASHOBSERVE_LOG_FORMAT=json \
+    SLASHOBSERVE_METRICS=false
