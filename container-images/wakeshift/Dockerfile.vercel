@@ -1,0 +1,38 @@
+# Wakeshift on Vercel: fetch the pinned server source, build its console, compile one Go binary.
+
+# Wakeshift has no tagged release yet, so pin a commit.
+ARG WAKESHIFT_COMMIT=efa2025a44ea92fd57d228fd537a014f2dfa02d9
+
+# 1. The server source at the pinned commit.
+FROM golang:1.27.4 AS source
+ARG WAKESHIFT_COMMIT
+WORKDIR /src
+RUN git init -q . \
+ && git remote add origin https://github.com/wakeshift/server.git \
+ && git fetch -q --depth 1 origin "$WAKESHIFT_COMMIT" \
+ && git checkout -q FETCH_HEAD
+
+# 2. The console (web/), which the server embeds at build time.
+FROM node:26-bookworm-slim AS web
+WORKDIR /src/web
+COPY --from=source /src/web/ ./
+RUN npm ci --ignore-scripts --no-fund --no-audit && npm run build
+
+# 3. The server and the appkey tool, as static binaries.
+FROM source AS build
+ARG WAKESHIFT_COMMIT
+RUN go mod download
+COPY --from=web /src/web/dist ./web/dist
+RUN CGO_ENABLED=0 go build -trimpath \
+      -ldflags="-s -w -X github.com/wakeshift/server/internal/version.Version=${WAKESHIFT_COMMIT}" \
+      -o /out/ ./cmd/wakeshift ./cmd/appkey
+
+# 4. Runtime: two static binaries on distroless, as a non-root user.
+FROM gcr.io/distroless/static-debian12:nonroot
+COPY --from=build /out/wakeshift /server
+COPY --from=build /out/appkey /appkey
+# With WAKESHIFT_ADDR unset, the server listens on :$PORT. It runs as a non-root user, so it
+# uses an unprivileged port: set the project environment variable PORT=8370 so Vercel routes there.
+ENV PORT=8370
+EXPOSE 8370
+ENTRYPOINT ["/server"]
