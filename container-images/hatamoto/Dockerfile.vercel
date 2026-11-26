@@ -1,0 +1,54 @@
+# Hatamoto on Vercel: fetch the pinned release source, compile the Go binary, ship it on Debian slim.
+
+# Hatamoto v1.4.6. Change both values to upgrade.
+ARG HATAMOTO_VERSION=v1.4.6
+ARG HATAMOTO_COMMIT=f50289a18c17e8026a0bba08a76898fddb712717
+
+# 1. The Hatamoto source at the pinned commit.
+FROM golang:1.27-alpine AS source
+ARG HATAMOTO_COMMIT
+RUN apk add --no-cache git bash
+WORKDIR /src
+RUN git init -q . \
+ && git remote add origin https://github.com/Zen-Labs-Corp/hatamoto.git \
+ && git fetch -q --depth 1 origin "$HATAMOTO_COMMIT" \
+ && git checkout -q FETCH_HEAD
+
+# 2. The binary, built the same way as the upstream image: static, no cgo.
+FROM source AS build
+ARG HATAMOTO_VERSION
+ARG HATAMOTO_COMMIT
+WORKDIR /src/backend
+RUN go mod download
+RUN /src/scripts/third-party-licenses.sh /out/THIRD_PARTY_LICENSES
+RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -tags nodynamic \
+    -ldflags "-X hatamoto.dev/core/app.Version=${HATAMOTO_VERSION} -X hatamoto.dev/core/app.Commit=${HATAMOTO_COMMIT}" \
+    -o /out/hatamoto ./cmd/hatamoto
+
+# 3. Runtime. pg_dump (for in-app backups) must match your Postgres major: build with --build-arg PG_MAJOR=<n>.
+FROM debian:bookworm-slim
+ARG PG_MAJOR=17
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl \
+ && curl -fsSL -o /usr/share/keyrings/postgresql-archive-keyring.asc https://www.postgresql.org/media/keys/ACCC4CF8.asc \
+ && echo "deb [signed-by=/usr/share/keyrings/postgresql-archive-keyring.asc] https://apt.postgresql.org/pub/repos/apt bookworm-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+ && apt-get update && apt-get install -y --no-install-recommends "postgresql-client-${PG_MAJOR}" \
+ && apt-get purge -y --auto-remove curl \
+ && rm -rf /var/lib/apt/lists/* \
+ && useradd --system --uid 10001 --no-create-home --shell /usr/sbin/nologin app \
+ && mkdir -p /app/uploads /data/secrets && chown -R app:app /app /data
+COPY --from=build /out/hatamoto /usr/local/bin/hatamoto
+COPY --from=build /src/LICENSE /src/NOTICE /usr/share/doc/hatamoto/
+COPY --from=build /out/THIRD_PARTY_LICENSES /usr/share/doc/hatamoto/THIRD_PARTY_LICENSES
+WORKDIR /app
+# Vercel deploys are immutable, so the self-updater is off and the server runs as `serve`, not `supervise`.
+# Every instance is a fresh copy: keep install stats off so each one doesn't count as a new install.
+ENV HATAMOTO_DATA=/data \
+    HATAMOTO_SECRETS_DIR=/data/secrets \
+    HATAMOTO_UPDATES=off \
+    HATAMOTO_TELEMETRY=off \
+    ENVIRONMENT=production
+USER app
+# Hatamoto listens on API_PORT. Vercel sends traffic to $PORT, 80 by default.
+# `exec` makes hatamoto PID 1, so it receives SIGTERM directly and shuts down cleanly.
+ENTRYPOINT []
+CMD ["sh", "-c", "API_PORT=\"${PORT:-80}\" exec hatamoto serve"]
