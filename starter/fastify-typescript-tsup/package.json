@@ -1,0 +1,20 @@
+{
+  "name": "fastify-typescript-tsup",
+  "repository": "https://github.com/vercel/examples.git",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsup --watch & vercel dev",
+    "build": "tsup"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.26",
+    "@vercel/node": "^3.0.22",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "fastify": "^4.26.2"
+  }
+}
