@@ -1,0 +1,204 @@
+generator client {
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  extensions = [vector]
+}
+
+enum MessageRole {
+  user
+  assistant
+}
+
+enum MessageSource {
+  web
+  telegram
+  cron
+}
+
+enum MessageType {
+  regular
+  compaction_summary
+  memory_flush
+  hidden
+}
+
+model User {
+  id              String                 @id
+  name            String
+  email           String
+  emailVerified   Boolean                @default(false)
+  image           String?
+  timezone        String                 @default("UTC")
+  username        String?                @unique
+  displayUsername String?
+  createdAt       DateTime               @default(now())
+  updatedAt       DateTime               @updatedAt
+  sessions        Session[]
+  accounts        Account[]
+  instances       ComposioClawInstance[]
+  onboardingState OnboardingState?
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
+}
+
+model ComposioClawInstance {
+  id     String @id @default(cuid())
+  userId String @unique
+
+  // Anthropic config
+  anthropicModel String @default("claude-sonnet-4-5-20250929")
+
+  // Telegram linking
+  telegramChatId             String?   @unique
+  telegramLinkToken          String?   @unique
+  telegramLinkTokenExpiresAt DateTime?
+
+  // Agent identity, stored as text
+  soulPrompt      String?
+  identityPrompt  String?
+  userPrompt      String?
+
+  // Context compaction
+  compactionCount       Int       @default(0)
+  lastCompactionSummary String?
+  lastCompactionAt      DateTime?
+  tokensAtCompaction    Int?
+  memoryFlushCount      Int       @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  messages Message[]
+  memories Memory[]
+  cronJobs CronJob[]
+
+  @@index([userId])
+  @@map("composio_claw_instance")
+}
+
+model Message {
+  id          String        @id @default(cuid())
+  instanceId  String
+  role        MessageRole
+  content     Json
+  source      MessageSource @default(web)
+  messageType MessageType   @default(regular)
+
+  inputTokens      Int?
+  outputTokens     Int?
+  cacheReadTokens  Int?
+  cacheWriteTokens Int?
+
+  createdAt DateTime             @default(now())
+  instance  ComposioClawInstance @relation(fields: [instanceId], references: [id], onDelete: Cascade)
+
+  @@index([instanceId, createdAt])
+  @@map("composio_claw_message")
+}
+
+model Memory {
+  id         String                      @id @default(cuid())
+  instanceId String
+  content    String
+  embedding  Unsupported("VECTOR(1024)")
+  createdAt  DateTime                    @default(now())
+
+  instance ComposioClawInstance @relation(fields: [instanceId], references: [id], onDelete: Cascade)
+
+  @@index([instanceId, createdAt])
+  @@map("composio_claw_memory")
+}
+
+model CronJob {
+  id         String    @id @default(cuid())
+  instanceId String
+  expression String
+  prompt     String
+  timezone   String    @default("UTC")
+  enabled    Boolean   @default(true)
+  lastRunAt  DateTime?
+  nextRunAt  DateTime?
+
+  lockedAt  DateTime?
+  lockedBy  String?
+  lastError String?
+
+  instance ComposioClawInstance @relation(fields: [instanceId], references: [id], onDelete: Cascade)
+
+  @@index([instanceId, nextRunAt])
+  @@map("composio_claw_cron_job")
+}
+
+model OnboardingState {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  currentStep    String
+  name           String   @default("")
+  writingStyle   String?
+  personality    String?
+  emoji          String?
+  lore           String   @default("") @db.Text
+  anthropicModel String   @default("claude-sonnet-4-5-20250929")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("onboarding_state")
+}
