@@ -1,0 +1,39 @@
+# pgrust on Vercel: the pgrust database and the pgweb SQL client in one container image.
+
+# Pinned releases. Update the version and checksum together to upgrade.
+ARG PGRUST_VERSION=0.4-beta
+ARG PGRUST_SHA256=9a53fdc039ca338808702641369b0ac7d6c163124f76f2bfd21860b0be9fb7bb
+ARG PGWEB_VERSION=0.17.0
+ARG PGWEB_SHA256=042b70755a0ad0443ff91fe1116b89472da3b841122064942d8024297d4af9ad
+
+# 1. Download the release binaries and verify their checksums.
+FROM debian:bookworm-slim AS fetch
+ARG PGRUST_VERSION PGRUST_SHA256 PGWEB_VERSION PGWEB_SHA256
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates curl unzip \
+ && rm -rf /var/lib/apt/lists/*
+WORKDIR /opt
+RUN curl -fsSLo pgrust.tgz "https://pgrust.com/downloads/v${PGRUST_VERSION}/pgrust-${PGRUST_VERSION}-linux-x86_64.tar.gz" \
+ && echo "${PGRUST_SHA256}  pgrust.tgz" | sha256sum -c - \
+ && mkdir pgrust && tar -xzf pgrust.tgz -C pgrust --strip-components=1 && rm pgrust.tgz \
+ && curl -fsSLo pgweb.zip "https://github.com/sosedoff/pgweb/releases/download/v${PGWEB_VERSION}/pgweb_linux_amd64.zip" \
+ && echo "${PGWEB_SHA256}  pgweb.zip" | sha256sum -c - \
+ && unzip -q pgweb.zip && mv pgweb_linux_amd64 pgweb && rm pgweb.zip
+
+# 2. Runtime: Debian 12 (glibc 2.36; pgrust needs 2.34 or newer).
+FROM debian:bookworm-slim
+COPY --from=fetch /opt/pgrust /opt/pgrust
+COPY --from=fetch /opt/pgweb /usr/local/bin/pgweb
+COPY seed.sql start.sh /opt/
+
+# Postgres refuses to run as root, so pgrust gets its own user.
+# Create the database and load seed.sql at build time. Every instance boots from a copy of it.
+RUN useradd --system --no-create-home pgrust \
+ && install -d -o pgrust -g pgrust /opt/pgdata \
+ && setpriv --reuid=pgrust --regid=pgrust --init-groups \
+      /opt/pgrust/bin/initdb -D /opt/pgdata --no-locale --encoding UTF8 -U postgres -A trust >/dev/null \
+ && /opt/start.sh --seed
+
+# pgweb listens on $PORT. 80 is Vercel's default.
+ENV PORT=80
+CMD ["/opt/start.sh"]
