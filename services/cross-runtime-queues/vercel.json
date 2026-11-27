@@ -1,0 +1,52 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "frontend": {
+      "root": "frontend/",
+      "bindings": [
+        {
+          "type": "service",
+          "service": "backend",
+          "format": "url",
+          "env": "BACKEND_URL"
+        }
+      ],
+      "functions": {
+        "src/app/api/queues/from-python/route.ts": {
+          "experimentalTriggers": [
+            {
+              "type": "queue/v2beta",
+              "topic": "demo-python-to-next"
+            }
+          ]
+        },
+        "src/app/api/queues/fanout/route.ts": {
+          "experimentalTriggers": [
+            {
+              "type": "queue/v2beta",
+              "topic": "demo-fanout"
+            }
+          ]
+        }
+      }
+    },
+    "backend": {
+      "root": "backend/",
+      "entrypoint": "pyproject.toml"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/python/(.*)",
+      "destination": {
+        "service": "backend"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "frontend"
+      }
+    }
+  ]
+}
