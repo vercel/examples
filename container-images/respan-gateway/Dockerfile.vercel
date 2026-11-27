@@ -1,0 +1,32 @@
+# Respan Gateway on Vercel: fetch the pinned source, build the web UI, compile the gateway, ship one binary.
+
+# Respan Gateway is pre-alpha with no tagged release, so pin a commit.
+ARG RESPAN_COMMIT=7cf775d0ac22efcee7bcbabb1a9e72245824ad95
+
+# 1. The gateway source at the pinned commit.
+FROM rust:1-bookworm AS source
+ARG RESPAN_COMMIT
+WORKDIR /src
+RUN git init -q . \
+ && git remote add origin https://github.com/respanai/respan-gateway.git \
+ && git fetch -q --depth 1 origin "$RESPAN_COMMIT" \
+ && git checkout -q FETCH_HEAD
+
+# 2. The web UI, which the gateway embeds at build time.
+FROM node:22-bookworm-slim AS ui
+WORKDIR /src/apps/ui
+RUN corepack enable
+COPY --from=source /src/apps/ui/ ./
+RUN pnpm install --frozen-lockfile && pnpm build
+
+# 3. The gateway binary. Same Debian release as the runtime image below.
+FROM source AS build
+COPY --from=ui /src/apps/ui/dist apps/ui/dist
+RUN cargo build --release --locked -p respan-gateway
+
+# 4. Runtime: glibc, CA certificates, the binary, nothing else.
+FROM gcr.io/distroless/cc-debian12:nonroot
+COPY --from=build /src/target/release/respan-gateway /usr/local/bin/respan-gateway
+# The gateway listens on 0.0.0.0:$PORT when PORT is set. 80 is Vercel's default.
+ENV PORT=80 RESPAN_LOG=json
+ENTRYPOINT ["/usr/local/bin/respan-gateway"]
