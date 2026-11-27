@@ -1,96 +1,959 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="vi" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
+    <title>FocusHub Exhibition - Premium Invitation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&display=swap"
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
     />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              playfair: ["Playfair Display", "serif"],
+              inter: ["Inter", "sans-serif"],
+              cormorant: ["Cormorant Garamond", "serif"],
+              dancing: ["Dancing Script", "cursive"],
+              vibes: ["Great Vibes", "cursive"],
+            },
+            animation: {
+              "fade-in": "fadeIn 0.8s ease-out",
+              "scale-out": "scaleOut 0.6s ease-in-out",
+              "glow-pulse": "glowPulse 3s ease-in-out infinite",
+              float: "float 6s ease-in-out infinite",
+              write: "write 3s ease-in-out",
+              stroke: "stroke 2s ease-in-out",
+              "pulse-slow": "pulse 3s ease-in-out infinite",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes scaleOut {
+        from {
+          opacity: 1;
+          transform: scale(1);
+        }
+        to {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+      }
+
+      @keyframes glowPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 20px rgba(139, 69, 19, 0.3);
+        }
+        50% {
+          box-shadow:
+            0 0 40px rgba(139, 69, 19, 0.5),
+            0 0 60px rgba(139, 69, 19, 0.2);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes write {
+        0% {
+          stroke-dashoffset: 100%;
+        }
+        100% {
+          stroke-dashoffset: 0%;
+        }
+      }
+
+      @keyframes stroke {
+        0% {
+          stroke-dasharray: 0 100%;
+        }
+        100% {
+          stroke-dasharray: 100% 0;
+        }
+      }
+
+      /* Aged paper background - simplified for better rendering */
+      .aged-paper {
+        background: linear-gradient(
+          135deg,
+          #f4f1e8 0%,
+          #f0ead6 25%,
+          #ede4d1 50%,
+          #e8dcc0 75%,
+          #e3d4af 100%
+        );
+        position: relative;
+      }
+
+      .aged-paper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(
+            circle at 25% 25%,
+            rgba(139, 69, 19, 0.05) 1px,
+            transparent 1px
+          ),
+          radial-gradient(
+            circle at 75% 75%,
+            rgba(160, 82, 45, 0.04) 1px,
+            transparent 1px
+          );
+        background-size:
+          50px 50px,
+          80px 80px;
+        opacity: 0.3;
+        pointer-events: none;
+      }
+
+      /* Clean version for download */
+      .aged-paper-clean {
+        background: #f0ead6;
+        position: relative;
+      }
+
+      /* Calligraphy text effects - simplified */
+      .calligraphy-text {
+        color: #2d1810;
+        text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.2);
+        position: relative;
+      }
+
+      .handwritten {
+        font-family: "Great Vibes", cursive;
+        color: #3d2817;
+        filter: drop-shadow(1px 1px 1px rgba(139, 69, 19, 0.1));
+      }
+
+      /* Animation classes for invitation assembly */
+      .slide-from-top {
+        transform: translateY(-100vh);
+        opacity: 0;
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .slide-from-bottom {
+        transform: translateY(100vh);
+        opacity: 0;
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .slide-from-left {
+        transform: translateX(-100vw);
+        opacity: 0;
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .slide-from-right {
+        transform: translateX(100vw);
+        opacity: 0;
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .slide-from-top-left {
+        transform: translate(-50vw, -50vh) rotate(-15deg);
+        opacity: 0;
+        transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .slide-from-bottom-right {
+        transform: translate(50vw, 50vh) rotate(15deg);
+        opacity: 0;
+        transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .animate-in {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+      }
+
+      /* Simplified border for better rendering */
+      .luxury-border {
+        background: #8b4513;
+        padding: 3px;
+      }
+
+      .luxury-border-clean {
+        border: 3px solid #8b4513;
+      }
+
+      .invitation-glow {
+        box-shadow:
+          0 0 20px rgba(139, 69, 19, 0.2),
+          0 0 40px rgba(139, 69, 19, 0.1);
+      }
+
+      .text-shadow-luxury {
+        text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+      }
+
+      .backdrop-luxury {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      /* Photo upload styles */
+      .photo-upload-area {
+        border: 2px dashed #4a5568;
+        transition: all 0.3s ease;
+      }
+
+      .photo-upload-area:hover {
+        border-color: #ffffff;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .photo-upload-area.dragover {
+        border-color: #ffffff;
+        background: rgba(255, 255, 255, 0.05);
+        transform: scale(1.02);
+      }
+
+      /* Countdown styles */
+      .countdown-digit {
+        background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+        border: 1px solid #404040;
+        box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.1);
+      }
+
+      .guest-photo {
+        border: 3px solid #8b4513;
+        box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+      }
+
+      /* Vintage paper text colors */
+      .paper-text-dark {
+        color: #2d1810;
+      }
+
+      .paper-text-medium {
+        color: #5d2f1a;
+      }
+
+      .paper-text-light {
+        color: #8b4513;
+      }
+
+      /* Simplified wanted poster style decorations */
+      .wanted-corner {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #8b4513;
+      }
+
+      .wanted-corner.top-left {
+        top: 12px;
+        left: 12px;
+        border-right: none;
+        border-bottom: none;
+      }
+
+      .wanted-corner.top-right {
+        top: 12px;
+        right: 12px;
+        border-left: none;
+        border-bottom: none;
+      }
+
+      .wanted-corner.bottom-left {
+        bottom: 12px;
+        left: 12px;
+        border-right: none;
+        border-top: none;
+      }
+
+      .wanted-corner.bottom-right {
+        bottom: 12px;
+        right: 12px;
+        border-left: none;
+        border-top: none;
+      }
+
+      /* Simplified vintage stamp */
+      .vintage-stamp {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        border: 2px solid #8b4513;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(139, 69, 19, 0.1);
+        transform: rotate(15deg);
+        opacity: 0.8;
+      }
+    </style>
   </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
+
+  <body class="min-h-screen bg-black text-white overflow-x-hidden">
+    <!-- Subtle background pattern -->
+    <div class="fixed inset-0 opacity-[0.02]">
+      <div
+        class="absolute inset-0"
+        style="
+          background-image: radial-gradient(
+            circle at 2px 2px,
+            white 1px,
+            transparent 0
+          );
+          background-size: 40px 40px;
+        "
+      ></div>
+    </div>
+
+    <!-- Input Section -->
+    <section
+      id="inputSection"
+      class="min-h-screen flex items-center justify-center px-4 relative z-10"
+    >
+      <div class="max-w-lg w-full animate-fade-in">
+        <!-- Logo/Brand -->
+        <div class="text-center mb-16 animate-float">
+          <h1
+            class="font-playfair text-5xl md:text-7xl font-light mb-6 tracking-wider text-shadow-luxury"
+          >
+            Focus<span class="font-light italic">Hub</span>
+          </h1>
+          <div
+            class="w-32 h-px bg-gradient-to-r from-transparent via-white to-transparent mx-auto mb-6"
+          ></div>
+          <p
+            class="font-inter text-sm tracking-[0.3em] text-gray-400 uppercase"
+          >
+            Exhibition Invitation
+          </p>
+        </div>
+
+        <!-- Countdown Timer -->
+        <div class="text-center mb-12">
+          <p
+            class="font-inter text-xs tracking-[0.3em] text-gray-400 uppercase mb-4"
+          >
+            Thời gian còn lại
+          </p>
+          <div id="countdown" class="flex justify-center space-x-4">
+            <div class="countdown-digit rounded-lg p-3 text-center">
+              <div id="days" class="text-2xl font-bold text-white">00</div>
+              <div class="text-xs text-gray-400 uppercase tracking-wider">
+                Ngày
+              </div>
+            </div>
+            <div class="countdown-digit rounded-lg p-3 text-center">
+              <div id="hours" class="text-2xl font-bold text-white">00</div>
+              <div class="text-xs text-gray-400 uppercase tracking-wider">
+                Giờ
+              </div>
+            </div>
+            <div class="countdown-digit rounded-lg p-3 text-center">
+              <div id="minutes" class="text-2xl font-bold text-white">00</div>
+              <div class="text-xs text-gray-400 uppercase tracking-wider">
+                Phút
+              </div>
+            </div>
+            <div class="countdown-digit rounded-lg p-3 text-center">
+              <div id="seconds" class="text-2xl font-bold text-white">00</div>
+              <div class="text-xs text-gray-400 uppercase tracking-wider">
+                Giây
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Input Form -->
+        <div
+          class="backdrop-luxury border border-gray-800 rounded-lg p-8 md:p-12"
+        >
+          <h2
+            class="font-cormorant text-2xl md:text-3xl font-light text-center mb-12 tracking-wide"
+          >
+            Personalized Invitation
+          </h2>
+
+          <div class="space-y-8">
+            <!-- Photo Upload -->
+            <div class="text-center">
+              <div
+                id="photoUploadArea"
+                class="photo-upload-area rounded-lg p-8 cursor-pointer"
+              >
+                <input
+                  type="file"
+                  id="photoInput"
+                  accept="image/*"
+                  class="hidden"
+                />
+                <div id="photoPreview" class="hidden">
+                  <img
+                    id="previewImage"
+                    class="w-24 h-24 rounded-full mx-auto object-cover guest-photo"
+                  />
+                  <p class="mt-3 text-sm text-gray-400">
+                    Click để thay đổi ảnh
+                  </p>
+                </div>
+                <div id="photoPlaceholder">
+                  <svg
+                    class="w-12 h-12 mx-auto text-gray-500 mb-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    ></path>
+                  </svg>
+                  <p class="text-gray-400 text-sm">Thêm ảnh khách mời</p>
+                  <p class="text-gray-500 text-xs mt-1">
+                    Click hoặc kéo thả ảnh vào đây
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Name Input -->
+            <div class="relative">
+              <input
+                type="text"
+                id="guestName"
+                placeholder=" "
+                class="peer w-full px-0 py-4 bg-transparent border-0 border-b-2 border-gray-700 focus:border-white focus:outline-none transition-all duration-500 text-xl font-light tracking-wide placeholder-transparent"
+                autocomplete="off"
+              />
+              <label
+                for="guestName"
+                class="absolute left-0 -top-3 text-gray-400 text-sm tracking-widest uppercase transition-all duration-300 peer-placeholder-shown:text-xl peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-4 peer-focus:-top-3 peer-focus:text-sm peer-focus:text-white peer-focus:tracking-widest peer-focus:uppercase"
+              >
+                Guest Name
+              </label>
+            </div>
+
+            <button
+              id="createInvitation"
+              class="w-full mt-12 py-4 px-8 bg-white text-black font-inter text-sm tracking-[0.2em] uppercase transition-all duration-500 hover:bg-gray-100 hover:tracking-[0.3em] focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-20 disabled:opacity-50"
+            >
+              Create Invitation
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Invitation Section -->
+    <section
+      id="invitationSection"
+      class="hidden min-h-screen flex items-center justify-center px-4 py-12 relative z-10"
+    >
+      <div class="max-w-4xl w-full">
+        <!-- Action Buttons -->
+        <div class="flex justify-between items-center mb-8">
+          <button
+            id="backButton"
+            class="text-gray-400 hover:text-white transition-all duration-300 flex items-center space-x-3 group"
+          >
+            <svg
+              class="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M15 19l-7-7 7-7"
+              ></path>
+            </svg>
+            <span class="font-inter text-sm tracking-wider uppercase"
+              >Return</span
+            >
+          </button>
+
+          <button
+            id="downloadButton"
+            class="bg-white text-black px-6 py-2 rounded-md font-inter text-sm tracking-wider uppercase transition-all duration-300 hover:bg-gray-100 hover:scale-105 flex items-center space-x-2"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              ></path>
+            </svg>
+            <span>Tải về</span>
+          </button>
+        </div>
+
+        <!-- Invitation Card Container -->
+        <div
+          id="invitationCard"
+          class="luxury-border rounded-lg invitation-glow"
+        >
+          <div
+            class="aged-paper rounded-lg p-8 md:p-16 relative overflow-hidden"
+          >
+            <!-- Wanted poster style corners -->
+            <div class="wanted-corner top-left"></div>
+            <div class="wanted-corner top-right"></div>
+            <div class="wanted-corner bottom-left"></div>
+            <div class="wanted-corner bottom-right"></div>
+
+            <!-- Vintage stamp -->
+            <div class="vintage-stamp">
+              <span class="font-inter text-xs font-bold paper-text-dark"
+                >2025</span
+              >
+            </div>
+
+            <!-- Main Title - slides from top with calligraphy effect -->
+            <div id="mainTitle" class="slide-from-top text-center mb-8">
+              <h1
+                class="calligraphy-text font-playfair text-4xl md:text-6xl font-semibold tracking-wide text-shadow-luxury"
+                data-text="THƯ MỜI TRIỂN LÃM"
+              >
+                THƯ MỜI TRIỂN LÃM
+              </h1>
+            </div>
+
+            <!-- Subtitle - slides from left with handwritten effect -->
+            <div id="subtitle" class="slide-from-left text-center mb-12">
+              <div class="w-24 h-px bg-amber-700 mx-auto mb-6"></div>
+              <h2
+                class="handwritten text-3xl md:text-4xl font-medium tracking-wide"
+              >
+                FocusHub – Quá khứ và Tương lai
+              </h2>
+              <div class="w-24 h-px bg-amber-700 mx-auto mt-6"></div>
+            </div>
+
+            <!-- Greeting - slides from right -->
+            <div id="greeting" class="slide-from-right text-center mb-8">
+              <p
+                class="font-inter text-lg tracking-[0.3em] paper-text-medium uppercase"
+              >
+                Trân trọng kính mời
+              </p>
+            </div>
+
+            <!-- Guest Photo and Name Section - slides from top-left with rotation -->
+            <div
+              id="guestNameSection"
+              class="slide-from-top-left text-center mb-12"
+            >
+              <div class="flex flex-col items-center space-y-6">
+                <div id="guestPhotoDisplay" class="hidden">
+                  <img
+                    id="displayImage"
+                    class="w-32 h-32 rounded-full object-cover guest-photo"
+                  />
+                </div>
+                <div class="inline-block border-b-2 border-amber-700 pb-4">
+                  <p
+                    id="guestNameDisplay"
+                    class="font-playfair text-3xl md:text-5xl font-light tracking-wider paper-text-dark"
+                  >
+                    <!-- Guest name will be inserted here -->
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Main Content - slides from bottom -->
+            <div id="mainContent" class="slide-from-bottom text-center mb-16">
+              <div class="max-w-2xl mx-auto">
+                <p
+                  class="font-cormorant text-xl md:text-2xl leading-relaxed paper-text-dark font-light"
+                >
+                  Tham dự triển lãm nhiếp ảnh nghệ thuật
+                  <em class="handwritten text-2xl font-medium">FocusHub</em> –
+                  nơi ký ức giao thoa tương lai, quy tụ những tác phẩm độc bản
+                  của thời gian.
+                </p>
+              </div>
+            </div>
+
+            <!-- Event Details Container -->
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+              <!-- Time - slides from left -->
+              <div
+                id="timeSection"
+                class="slide-from-left text-center md:text-left"
+              >
+                <div class="space-y-3">
+                  <p
+                    class="font-inter text-xs tracking-[0.3em] paper-text-light uppercase"
+                  >
+                    Thời gian
+                  </p>
+                  <p
+                    class="font-playfair text-2xl md:text-3xl font-medium paper-text-dark"
+                  >
+                    9h30 - 15h30
+                  </p>
+                  <p class="font-cormorant text-xl paper-text-medium">
+                    Ngày 15/07/2025
+                  </p>
+                </div>
+              </div>
+
+              <!-- Location - slides from right -->
+              <div
+                id="locationSection"
+                class="slide-from-right text-center md:text-right"
+              >
+                <div class="space-y-3">
+                  <p
+                    class="font-inter text-xs tracking-[0.3em] paper-text-light uppercase"
+                  >
+                    Địa điểm
+                  </p>
+                  <p
+                    class="font-playfair text-2xl md:text-3xl font-medium paper-text-dark"
+                  >
+                    Focus Gallery
+                  </p>
+                  <p class="font-cormorant text-xl paper-text-medium">
+                    Đại học FPT Cần Thơ
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Closing Message - slides from bottom-right with rotation -->
+            <div
+              id="closingMessage"
+              class="slide-from-bottom-right text-center"
+            >
+              <div class="border-t border-amber-700 pt-12">
+                <p
+                  class="font-cormorant text-lg md:text-xl italic paper-text-medium leading-relaxed mb-8"
+                >
+                  Sự hiện diện của bạn là niềm vinh hạnh của chúng tôi.
+                </p>
+
+                <!-- Brand signature -->
+                <div class="space-y-4">
+                  <div class="w-16 h-px bg-amber-700 mx-auto"></div>
+                  <p
+                    class="handwritten text-2xl font-light tracking-[0.2em] paper-text-dark"
+                  >
+                    FocusHub
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const guestNameInput = document.getElementById("guestName");
+      const createButton = document.getElementById("createInvitation");
+      const inputSection = document.getElementById("inputSection");
+      const invitationSection = document.getElementById("invitationSection");
+      const guestNameDisplay = document.getElementById("guestNameDisplay");
+      const backButton = document.getElementById("backButton");
+      const downloadButton = document.getElementById("downloadButton");
+
+      // Photo upload elements
+      const photoUploadArea = document.getElementById("photoUploadArea");
+      const photoInput = document.getElementById("photoInput");
+      const photoPreview = document.getElementById("photoPreview");
+      const photoPlaceholder = document.getElementById("photoPlaceholder");
+      const previewImage = document.getElementById("previewImage");
+      const guestPhotoDisplay = document.getElementById("guestPhotoDisplay");
+      const displayImage = document.getElementById("displayImage");
+
+      let uploadedImageData = null;
+
+      // Animation elements
+      const animationElements = [
+        { id: "mainTitle", delay: 200 },
+        { id: "subtitle", delay: 400 },
+        { id: "greeting", delay: 600 },
+        { id: "guestNameSection", delay: 800 },
+        { id: "mainContent", delay: 1000 },
+        { id: "timeSection", delay: 1200 },
+        { id: "locationSection", delay: 1400 },
+        { id: "closingMessage", delay: 1600 },
+      ];
+
+      // Countdown Timer
+      function updateCountdown() {
+        const eventDate = new Date("2025-07-20T18:00:00").getTime();
+        const now = new Date().getTime();
+        const distance = eventDate - now;
+
+        if (distance > 0) {
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+          );
+          const minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) / (1000 * 60),
+          );
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          document.getElementById("days").textContent = days
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("hours").textContent = hours
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("minutes").textContent = minutes
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("seconds").textContent = seconds
+            .toString()
+            .padStart(2, "0");
+        } else {
+          document.getElementById("countdown").innerHTML =
+            '<div class="text-xl font-playfair text-white">Triển lãm đã bắt đầu!</div>';
+        }
+      }
+
+      // Update countdown every second
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+
+      // Photo Upload Functionality
+      photoUploadArea.addEventListener("click", () => {
+        photoInput.click();
+      });
+
+      photoUploadArea.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        photoUploadArea.classList.add("dragover");
+      });
+
+      photoUploadArea.addEventListener("dragleave", () => {
+        photoUploadArea.classList.remove("dragover");
+      });
+
+      photoUploadArea.addEventListener("drop", (e) => {
+        e.preventDefault();
+        photoUploadArea.classList.remove("dragover");
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+          handleImageUpload(files[0]);
+        }
+      });
+
+      photoInput.addEventListener("change", (e) => {
+        if (e.target.files.length > 0) {
+          handleImageUpload(e.target.files[0]);
+        }
+      });
+
+      function handleImageUpload(file) {
+        if (file && file.type.startsWith("image/")) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            uploadedImageData = e.target.result;
+            previewImage.src = uploadedImageData;
+            photoPlaceholder.classList.add("hidden");
+            photoPreview.classList.remove("hidden");
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+
+      // Create Invitation
+      createButton.addEventListener("click", function () {
+        const guestName = guestNameInput.value.trim();
+
+        if (guestName === "") {
+          guestNameInput.classList.add("border-red-500");
+          guestNameInput.focus();
+          setTimeout(() => {
+            guestNameInput.classList.remove("border-red-500");
+          }, 2000);
+          return;
+        }
+
+        // Update guest name in invitation
+        guestNameDisplay.textContent = guestName;
+
+        // Update guest photo if uploaded
+        if (uploadedImageData) {
+          displayImage.src = uploadedImageData;
+          guestPhotoDisplay.classList.remove("hidden");
+        }
+
+        // Animate out input section
+        inputSection.style.animation = "scaleOut 0.6s ease-in-out forwards";
+
+        setTimeout(() => {
+          inputSection.classList.add("hidden");
+          invitationSection.classList.remove("hidden");
+
+          // Trigger assembly animation
+          setTimeout(() => {
+            animateInvitationAssembly();
+          }, 100);
+        }, 600);
+      });
+
+      function animateInvitationAssembly() {
+        animationElements.forEach((element, index) => {
+          setTimeout(() => {
+            const el = document.getElementById(element.id);
+            el.classList.add("animate-in");
+          }, element.delay);
+        });
+
+        // Add final glow effect
+        setTimeout(() => {
+          const invitationCard = document.querySelector(".luxury-border");
+          invitationCard.style.animation = "glowPulse 3s ease-in-out infinite";
+        }, 2000);
+      }
+
+      // Fixed Download Functionality - Clean and Simple
+      downloadButton.addEventListener("click", function () {
+        // Create a clean version for download
+        const originalCard = document.getElementById("invitationCard");
+
+        // Create a clean download version
+        const downloadCard = originalCard.cloneNode(true);
+
+        // Replace classes for clean rendering
+        const cardInner = downloadCard.querySelector(".aged-paper");
+        cardInner.className =
+          "aged-paper-clean rounded-lg p-8 md:p-16 relative overflow-hidden";
+
+        // Replace border
+        downloadCard.className = "luxury-border-clean rounded-lg";
+
+        // Create temporary container
+        const tempContainer = document.createElement("div");
+        tempContainer.style.position = "fixed";
+        tempContainer.style.left = "-9999px";
+        tempContainer.style.top = "0";
+        tempContainer.style.width = "800px";
+        tempContainer.style.background = "#f0ead6";
+        tempContainer.style.padding = "40px";
+        tempContainer.appendChild(downloadCard);
+        document.body.appendChild(tempContainer);
+
+        // Capture with clean settings
+        html2canvas(downloadCard, {
+          scale: 2,
+          backgroundColor: "#f0ead6",
+          useCORS: true,
+          allowTaint: false,
+          logging: false,
+          width: downloadCard.offsetWidth,
+          height: downloadCard.offsetHeight,
+          removeContainer: true,
+        })
+          .then((canvas) => {
+            // Clean up
+            document.body.removeChild(tempContainer);
+
+            // Create download link
+            const link = document.createElement("a");
+            link.download = `FocusHub-Invitation-${guestNameDisplay.textContent.replace(/\s+/g, "-")}.png`;
+            link.href = canvas.toDataURL("image/png", 1.0);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          })
+          .catch((error) => {
+            console.error("Error generating image:", error);
+            document.body.removeChild(tempContainer);
+            alert("Có lỗi xảy ra khi tải xuống. Vui lòng thử lại.");
+          });
+      });
+
+      // Back Button
+      backButton.addEventListener("click", function () {
+        // Reset animations
+        animationElements.forEach((element) => {
+          const el = document.getElementById(element.id);
+          el.classList.remove("animate-in");
+        });
+
+        invitationSection.classList.add("hidden");
+        inputSection.classList.remove("hidden");
+        inputSection.style.animation = "fadeIn 0.8s ease-out";
+
+        // Clear input and focus
+        guestNameInput.value = "";
+        setTimeout(() => {
+          guestNameInput.focus();
+        }, 100);
+      });
+
+      // Enter key support
+      guestNameInput.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          createButton.click();
+        }
+      });
+
+      // Auto focus on load
+      window.addEventListener("load", function () {
+        setTimeout(() => {
+          guestNameInput.focus();
+        }, 500);
+      });
+
+      // Elegant input interactions
+      guestNameInput.addEventListener("input", function () {
+        if (this.value.length > 0) {
+          createButton.style.transform = "translateY(-2px)";
+          createButton.style.boxShadow = "0 8px 25px rgba(0, 0, 0, 0.15)";
+        } else {
+          createButton.style.transform = "translateY(0)";
+          createButton.style.boxShadow = "none";
+        }
+      });
+    </script>
   </body>
 </html>
