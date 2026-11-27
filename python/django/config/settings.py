@@ -27,6 +27,8 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-change-me-in-p
 DEBUG = os.environ.get("DJANGO_DEBUG") == "1"
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".vercel.app"]
+if vercel_url := os.environ.get("VERCEL_URL"):
+    ALLOWED_HOSTS.append(vercel_url)
 
 
 # Application definition
