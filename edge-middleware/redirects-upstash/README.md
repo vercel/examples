@@ -5,7 +5,7 @@ description: Redirect from a list of redirects both hardcoded and coming from Up
 framework: Next.js
 useCase: Edge Middleware
 css: Tailwind
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN&project-name=redirects-upstash&repository-name=redirects-upstash
+deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash&env=KV_REST_API_URL,KV_REST_API_TOKEN,KV_REST_API_READ_ONLY_TOKEN&project-name=redirects-upstash&repository-name=redirects-upstash
 demoUrl: https://edge-functions-redirects-upstash.vercel.app
 relatedTemplates:
   - edge-functions-i18n
@@ -31,7 +31,7 @@ You can choose from one of the following two methods to use this repository:
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash&env=UPSTASH_REST_API_DOMAIN,UPSTASH_REST_API_TOKEN,&project-name=redirects-upstash&repository-name=redirects-upstash)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/edge-middleware/redirects-upstash&env=KV_REST_API_URL,KV_REST_API_TOKEN,KV_REST_API_READ_ONLY_TOKEN&project-name=redirects-upstash&repository-name=redirects-upstash)
 
 ### Clone and Deploy
 
@@ -47,15 +47,17 @@ You'll need to have an account with [Upstash](https://upstash.com/). Once that's
 cp .env.example .env.local
 ```
 
-Then open `.env.local` and set the environment variables to match the REST API and Edge API of your database. It should look like this:
+Then open `.env.local` and set the REST API environment variables for your database. It should look like this:
 
 ```bash
-# Upstash REST API
-UPSTASH_REST_API_DOMAIN = "us1-shiny-firefly-12345.upstash.io"
-UPSTASH_REST_API_TOKEN = "your-api-token"
+# Upstash KV REST API
+KV_REST_API_URL = "https://us1-shiny-firefly-12345.upstash.io"
+KV_REST_API_TOKEN = "your-api-token"
+KV_REST_API_READ_ONLY_TOKEN = "your-read-only-api-token"
+POPULATE_REDIS = false
 ```
 
-We populate the redirects in Upstash in [scripts/upstash.js](scripts/upstash.js) using their REST API, if you prefer not to do that then set `POPULATE_REDIS` to `false` in `.env`. JSON redirects are also created there.
+The build always creates 1,000 redirects in a local JSON file. To seed redirects 1,001 through 10,000 in Upstash, set `POPULATE_REDIS` to `true` for one build, then set it back to `false`. Seeding uses `KV_REST_API_TOKEN`; runtime lookups use `KV_REST_API_READ_ONLY_TOKEN`.
 
 Next, run Next.js in development mode:
 

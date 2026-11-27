@@ -11,7 +11,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       title="Edge Redirects"
       path="edge-middleware/redirects-upstash"
       deployButton={{
-        env: ['UPSTASH_REST_API_DOMAIN', 'UPSTASH_REST_API_TOKEN'],
+        env: [
+          'KV_REST_API_URL',
+          'KV_REST_API_TOKEN',
+          'KV_REST_API_READ_ONLY_TOKEN',
+        ],
       }}
     >
       <Component {...pageProps} />
