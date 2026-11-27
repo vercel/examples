@@ -1,1 +1,5 @@
 Flask==3.0.3
+google-auth==2.35.0
+earthengine-api==1.0.0
+requests==2.32.3
+flask-cors==5.0.0
