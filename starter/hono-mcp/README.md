@@ -21,18 +21,19 @@ The Model Context Protocol (MCP) is an open protocol that standardizes how appli
 
 ## Prerequisites
 
+- Node.js 20 or later
 - [Vercel CLI](https://vercel.com/docs/cli) installed globally
 
 ## Development
 
 To develop locally:
 
-```
-npm install
+```bash
+pnpm install
 vc dev
 ```
 
-```
+```bash
 open http://localhost:3000
 ```
 
@@ -40,24 +41,22 @@ open http://localhost:3000
 
 To build locally:
 
-```
-npm install
-vc build
+```bash
+pnpm build
 ```
 
 ## Deployment
 
 To deploy:
 
-```
-npm install
+```bash
 vc deploy
 ```
 
 ## API Endpoints
 
 - **GET `/`** - Welcome endpoint with server information
-- **POST `/mcp/*`** - MCP protocol endpoint for tool execution
+- **POST `/mcp`** - Streamable HTTP endpoint for MCP requests
 
 ## Available Tools
 
