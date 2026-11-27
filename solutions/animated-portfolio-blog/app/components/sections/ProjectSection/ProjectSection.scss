@@ -1,0 +1,471 @@
+// Project carousel + inspect panel. All colors are theme-aware via CSS
+// custom properties + color-mix(), never hardcoded hex/rgba. The carousel
+// cards sit inside the shared TiltCard wrapper, so the 3D cursor tilt is
+// gated by useCursorMotionGate (no fine pointer / prefers-reduced-motion
+// disables it). The section-wide `.section-active` frosted backdrop applies
+// here via the standard Section wrapper.
+//
+// Mobile-first: base rules target small screens; desktop values layered
+// on top via min-width: 768px.
+.project-section {
+  padding: 3rem 1rem;
+
+  .project-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+  }
+
+  // Visual nav arrows flanking the carousel.
+  .project-carousel-btn {
+    width: 40px;
+    height: 40px;
+    background: color-mix(in srgb, var(--text-secondary) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text-secondary) 18%, transparent);
+    border-radius: 50%;
+    color: var(--brand-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 10;
+    flex-shrink: 0;
+
+    svg {
+      font-size: 1.3rem;
+    }
+
+    &:hover {
+      background: rgba(var(--brand-color-rgb), 0.15);
+      border-color: var(--brand-color-light);
+      color: var(--text-primary);
+      box-shadow: 0 0 15px color-mix(in srgb, var(--brand-color-light) 25%, transparent);
+      transform: scale(1.08);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .project-carousel-viewport {
+    flex-grow: 1;
+    overflow: hidden;
+    max-width: 800px;
+  }
+
+  .project-carousel-list {
+    display: flex;
+    gap: 16px;
+    padding: 10px 60px 20px 60px; // Padding lets the active card center
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; // Firefox
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none; // Chrome/Safari
+    }
+  }
+
+  // Project card surface. Wrapped in TiltCard so the 3D tilt comes from
+  // the shared component; the card itself only owns the layout, surface,
+  // and cover image composition.
+  .project-card {
+    flex: 0 0 170px;
+    height: 250px;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid color-mix(in srgb, var(--text-secondary) 22%, transparent);
+    background: color-mix(in srgb, var(--bg-primary) 88%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 10px 25px color-mix(in srgb, var(--text-primary) 18%, transparent);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    scroll-snap-align: center;
+
+    &:hover {
+      border-color: color-mix(in srgb, var(--brand-color-light) 45%, transparent);
+    }
+
+    &.selected {
+      border-color: var(--brand-color-light);
+      box-shadow: 0 0 25px color-mix(in srgb, var(--brand-color-light) 35%, transparent);
+    }
+
+    .project-card-cover {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: block;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .project-card-image {
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+    }
+
+    // Soft bottom-only gradient behind the title+icon row for readability.
+    // The top ~55% stays fully transparent so the cover image is visible;
+    // only the area where the title/icon sit gets a dark backdrop. Pointer
+    // events pass through so the parent button remains clickable.
+    .project-card-overlay {
+      position: absolute;
+      inset: 0;
+      padding: 25px 15px 15px 15px;
+      z-index: 4;
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.78) 0%,
+        rgba(0, 0, 0, 0.55) 25%,
+        rgba(0, 0, 0, 0.2) 45%,
+        rgba(0, 0, 0, 0) 65%
+      );
+      pointer-events: none;
+    }
+
+    .project-card-icon {
+      color: var(--brand-color-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+
+      svg {
+        font-size: 1.3rem;
+      }
+    }
+
+    .project-card-name {
+      color: #fafafa;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.03rem;
+      line-height: 1.25;
+      text-align: left;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    }
+  }
+
+  // LED-style indicator dots.
+  .project-pagination-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin: 5px 0 15px 0;
+
+    .project-pagination-dot {
+      width: 9px;
+      height: 9px;
+      background-color: color-mix(in srgb, var(--text-secondary) 30%, transparent);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      padding: 0;
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--text-secondary) 60%, transparent);
+        transform: scale(1.2);
+      }
+
+      &.active {
+        background-color: var(--brand-color-light);
+        box-shadow: 0 0 10px color-mix(in srgb, var(--brand-color-light) 50%, transparent);
+        transform: scale(1.3);
+      }
+    }
+  }
+
+  // Inspect panel — uses the shared .glass-card surface treatment so it
+  // matches the Reviews/Experience cards.
+  .project-inspect {
+    background: color-mix(in srgb, var(--bg-primary) 72%, transparent);
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+    border: 1px solid color-mix(in srgb, var(--text-secondary) 22%, transparent);
+    border-radius: 16px;
+    padding: 20px 15px;
+    box-shadow: 0 15px 35px color-mix(in srgb, var(--text-primary) 15%, transparent);
+    width: 100%;
+    margin-top: 10px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-inspect-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .project-inspect-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .project-inspect-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(var(--brand-color-rgb), 0.12);
+      border: 1px solid rgba(var(--brand-color-rgb), 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand-color);
+      flex-shrink: 0;
+
+      svg {
+        font-size: 1.6rem;
+      }
+    }
+
+    .project-inspect-title-group {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .project-inspect-title {
+      color: var(--text-primary);
+      font-size: 1.3rem;
+      margin: 0 0 4px 0;
+      font-weight: 700;
+      letter-spacing: 0.01rem;
+    }
+
+    .project-inspect-duration {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin: 0;
+
+      svg {
+        font-size: 0.95rem;
+        color: var(--brand-color-light);
+      }
+    }
+  }
+
+  .project-inspect-body {
+    .project-inspect-description {
+      color: var(--text-primary);
+      opacity: 0.85;
+      line-height: 1.65;
+      font-size: 0.94rem;
+      margin: 0;
+
+      b {
+        color: var(--brand-color-light);
+      }
+    }
+  }
+
+  // Buttons wrapper — stacks vertically on mobile, row on desktop.
+  .project-inspect-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 5px;
+
+    .project-action-button {
+      width: 100%;
+      max-width: 300px;
+      flex: 0 0 auto;
+    }
+  }
+
+  .project-action-button {
+    flex: 0 1 220px;
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(
+      135deg,
+      rgba(var(--brand-color-rgb), 0.25) 0%,
+      rgba(var(--brand-color-rgb), 0.05) 100%
+    );
+    border: 1px solid rgba(var(--brand-color-rgb), 0.4);
+    // Mobile-first: smaller padding/type/icon on small screens; layer up
+    // via min-width tiers at 430px (phablet) and 768px (desktop).
+    padding: 8px 14px;
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+
+    .project-action-icon {
+      display: flex;
+      align-items: center;
+      color: var(--brand-color-light);
+
+      svg {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (min-width: 430px) {
+      padding: 10px 16px;
+      font-size: 0.82rem;
+      gap: 10px;
+
+      .project-action-icon svg {
+        font-size: 1rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      padding: 12px 20px;
+      font-size: 0.88rem;
+
+      .project-action-icon svg {
+        font-size: 1.1rem;
+      }
+    }
+
+    &:hover {
+      background: linear-gradient(
+        135deg,
+        rgba(var(--brand-color-rgb), 0.45) 0%,
+        rgba(var(--brand-color-rgb), 0.15) 100%
+      );
+      border-color: var(--brand-color-light);
+      box-shadow: 0 0 15px color-mix(in srgb, var(--brand-color-light) 25%, transparent);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+// Desktop tier — base rules above target small screens.
+@media screen and (min-width: 768px) {
+  .project-section {
+    padding: 4rem 1.5rem;
+
+    .project-carousel {
+      gap: 20px;
+    }
+
+    .project-carousel-btn {
+      width: 48px;
+      height: 48px;
+
+      svg {
+        font-size: 1.6rem;
+      }
+    }
+
+    .project-carousel-list {
+      padding: 15px 120px 25px 120px;
+      gap: 24px;
+    }
+
+    .project-card {
+      flex: 0 0 210px;
+      height: 310px;
+    }
+
+    .project-inspect {
+      padding: 30px;
+    }
+
+    .project-inspect-buttons {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .project-action-button {
+        width: auto;
+        // Restore row-layout width basis (button's own flex: 0 1 220px).
+        flex: 0 1 220px;
+      }
+    }
+  }
+}
+
+// Section wrapper override: the project section needs a column layout
+// (header on top, content below) instead of the default row layout. The
+// `!important` is unavoidable here without adding a `headerPosition` prop
+// to the shared Section wrapper — kept as a localized override for the
+// project section only.
+.project-section.section-wrapper {
+  .section {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 3rem 1.5rem !important;
+
+    .section-header {
+      border-right: none !important;
+      border-bottom: 1px solid var(--text-primary) !important;
+      padding: 0 0 15px 0 !important;
+      margin-bottom: 30px !important;
+      justify-content: center !important;
+      width: 100% !important;
+      font-size: 2rem !important;
+
+      .section-header-icon {
+        padding: 0 !important;
+        font-size: 2rem !important;
+        margin-right: 15px !important;
+      }
+    }
+
+    .section-content {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      width: 100% !important;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .project-section.section-wrapper {
+    .section {
+      padding: 5rem 3rem !important;
+
+      .section-header {
+        justify-content: flex-start !important;
+        font-size: 2.6rem !important;
+
+        .section-header-icon {
+          font-size: 2.6rem !important;
+        }
+      }
+    }
+  }
+}

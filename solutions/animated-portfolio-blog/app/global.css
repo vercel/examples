@@ -1,0 +1,254 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+::selection {
+  background-color: #47a3f3;
+  color: #fefefe;
+}
+
+:root {
+  /* TODO convert to tailwind colors */
+  --bg-primary: #fafafa;
+  --bg-secondary: #3c83f611; /* 7% opacity of brand color */
+  --text-primary: #0f131a;
+  --text-secondary: #adadad;
+  --brand-color: #3c83f6;
+  --brand-color-light: #21e5e5;
+  --brand-color-rgb: 60, 131, 246;
+
+  --medium-muted: #475569;
+  --medium-link: #1a73e8;
+  --medium-accent: #7c3aed;
+  --medium-border: #e6eef8;
+
+  /* Soft brand-tinted backdrop inside the hero avatar. Pairs with the
+     existing inset border on .avatar — together they read as a tinted
+     blob with a frame rather than a flat shape. color-mix keeps the
+     token theme-aware without needing separate rgba triplets per theme. */
+  --avatar-glow-color: color-mix(in srgb, var(--brand-color) 12%, transparent);
+}
+
+.dark {
+  --bg-primary: #0f131a;
+  --text-primary: #fafafa;
+  --text-secondary: #e0e0e0;
+
+  --medium-muted: #a8b3c7;
+  --medium-link: #7fb4ff;
+  --medium-accent: #b58cff;
+  --medium-border: rgba(255, 255, 255, 0.06);
+
+  /* Dark backdrop swallows more of the glow, so bump alpha to keep it
+     readable without making it loud. */
+  --avatar-glow-color: color-mix(in srgb, var(--brand-color) 22%, transparent);
+
+  body {
+    color-scheme: dark;
+  }
+}
+
+html {
+  min-width: 360px;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-varela-round), sans-serif;
+  font-size: 16px;
+  /* Transition for dark mode */
+  transition: all 0.2s;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--brand-color);
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* lucide-react icons render with width="24" height="24" as presentation
+   attributes. Author CSS overrides those, so sizing via font-size (the
+   pattern this codebase already uses for icon sizing, e.g.
+   `.btn-icon svg { font-size: 0.95rem }`) keeps working once we set
+   width/height to 1em here. Stroke width scales with the icon. */
+svg.lucide {
+  width: 1em;
+  height: 1em;
+}
+
+/* Animated underline that draws left→right on hover/focus. Uses background-image
+   rather than text-decoration so the stroke can transition cleanly and sit at a
+   controlled offset. Inherits text color via currentColor — theme-aware for free.
+   Opt-in: apply on curated text links where the global a:hover underline is too plain.
+   Note: list `color` here too — a host rule setting the `transition` shorthand
+   (e.g. `.breadcrumb a { transition: color .2s }`) would otherwise reset the
+   property list and drop background-size from animating. */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.28s ease, color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--brand-color);
+    background-size: 100% 1px;
+    text-decoration: none;
+  }
+}
+
+/* Wraps a text label + arrow icon so the arrow nudges diagonally on hover/focus.
+   Designed for ArrowOutward (up-right diagonal). Plain descendant selectors
+   (no SCSS `&__icon` concatenation — invalid in a .css file, the compiler drops
+   the suffix and the transition lands on the wrong element). */
+.arrow-nudge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.arrow-nudge .arrow-nudge__icon {
+  transition: transform 0.25s ease;
+}
+
+.arrow-nudge:hover .arrow-nudge__icon,
+.arrow-nudge:focus-visible .arrow-nudge__icon {
+  transform: translate(0.18em, -0.18em);
+}
+
+/* Frosted-glass card surface shared by section cards (About bento,
+   Experience timeline, Reviews). Compose with a component class that
+   owns layout + padding — this owns only the surface treatment. */
+.glass-card {
+  background: color-mix(in srgb, var(--bg-primary) 72%, transparent);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  border: 1px solid color-mix(in srgb, var(--text-secondary) 22%, transparent);
+  border-radius: 14px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: color-mix(in srgb, var(--brand-color) 45%, transparent);
+}
+
+/* Brand-tinted pill for tech chips and status badges. Size-specific
+   padding/font-size come from the composing class. */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--text-secondary) 25%, transparent);
+  background: color-mix(in srgb, var(--brand-color) 8%, transparent);
+  color: var(--text-secondary);
+}
+
+::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-primary);
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Hide scrollbar for code blocks */
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+pre {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Remove Safari input shadow on mobile */
+input[type="text"],
+input[type="email"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+table {
+  display: block;
+  max-width: fit-content;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.title {
+  text-wrap: balance;
+}
+
+@layer base {
+  h1 {
+    @apply mt-6 mb-4;
+  }
+  h2 {
+    @apply mt-5 mb-3;
+  }
+  h3 {
+    @apply mt-4 mb-2;
+  }
+  h4 {
+    @apply mt-3 mb-2;
+  }
+  h5 {
+    @apply mt-2 mb-1;
+  }
+  h6 {
+    @apply mt-2 mb-1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding-top: 3rem;
+  }
+}
+
+/* Respect users who prefer reduced motion. Disables the CSS-driven loops
+   used across the site (hero gradient shine, avatar morph, signature draw).
+   JS-driven animations gate themselves on this media query individually. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

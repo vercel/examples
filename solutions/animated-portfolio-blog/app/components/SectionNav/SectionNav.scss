@@ -1,0 +1,82 @@
+.section-nav {
+  position: fixed;
+  // Mobile-first base: horizontal row at bottom-right.
+  bottom: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  z-index: 500; // above content, below ScrollProgress (9998) and Menu (100-200)
+  padding: 0.5rem;
+
+  // Desktop: vertical column on the right edge, centered.
+  @media (min-width: 768px) {
+    top: 50%;
+    bottom: auto;
+    right: 1.5rem;
+    transform: translateY(-50%);
+    flex-direction: column;
+  }
+}
+
+.section-nav-dot {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+
+  &__indicator {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    // Use --text-primary (not --text-secondary) so contrast adapts per theme:
+    // --text-secondary is #adadad in light mode, nearly invisible on #fafafa.
+    // --text-primary is dark in light theme / light in dark theme, so opacity
+    // alone gives a visible-but-muted dot in both.
+    background: var(--text-primary);
+    opacity: 0.35;
+    transition:
+      width 0.25s ease,
+      height 0.25s ease,
+      opacity 0.25s ease,
+      background-color 0.25s ease;
+  }
+
+  // Hover (mouse) and focus-visible (keyboard) bump the indicator for
+  // affordance. Mouse-click focus doesn't trigger :focus-visible.
+  &:hover &__indicator,
+  &:focus-visible &__indicator {
+    width: 0.7rem;
+    height: 0.7rem;
+    opacity: 0.7;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-color-light, #21e5e5);
+    outline-offset: 2px;
+    border-radius: 50%;
+  }
+
+  // Active section: full brand color + largest indicator.
+  &[aria-current="true"] &__indicator {
+    width: 0.8rem;
+    height: 0.8rem;
+    background: var(--brand-color-light, #21e5e5);
+    opacity: 1;
+    box-shadow: 0 0 8px var(--brand-color-light, #21e5e5);
+  }
+
+  // Respect reduced motion.
+  @media (prefers-reduced-motion: reduce) {
+    &__indicator {
+      transition: none;
+    }
+  }
+}

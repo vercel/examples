@@ -1,0 +1,162 @@
+.top-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  // Background is rendered globally by <ShaderBackground />.
+  background: transparent;
+
+  .intro {
+    text-align: left;
+    width: 40%;
+
+    &__kicker {
+      margin: 0 0 0.75rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--brand-color);
+      font-weight: 600;
+    }
+
+    h1 {
+      font-family: var(--font-bricolage), var(--font-varela-round), sans-serif;
+      font-size: 5rem;
+      font-weight: 500; // resting; overridden by motion when cursor-driven weight is enabled
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin: 0;
+      color: var(--text-primary);
+      will-change: font-weight;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin: 0.5rem 0 0;
+      color: var(--text-secondary);
+    }
+  }
+
+  .signature {
+    width: 60%;
+    max-width: 660px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    // The morphing-blob frame. The faceshot renders via the priority
+    // next/image inside the frame (visible, preloaded → fast, LCP-eligible
+    // <img>) — previously the <Image> was visibility:hidden and the visible
+    // face came from a CSS background-image, which next/image can't optimize.
+    .avatar {
+      width: 60%;
+      aspect-ratio: 356 / 466; // faceshot.webp aspect ratio
+      animation: morph 8s ease-in-out 1s infinite;
+      box-shadow: inset 0 0 0 9px rgba(var(--brand-color-rgb), 0.3);
+      // Subtle theme-aware brand tint inside the morphing blob. The image
+      // uses object-fit: contain, so the tint shows through around the
+      // photo's edges and reads as a soft backdrop rather than a flat fill.
+      // Token colors live in :root / .dark in global.css so this stays
+      // theme-aware without SCSS duplication.
+      background: var(--avatar-glow-color);
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      padding: 2rem;
+
+      .profile-picture {
+        width: 100%;
+        height: 100%;
+        // contain (not cover) keeps the whole face visible, matching the
+        // old background-size: contain inset look.
+        object-fit: contain;
+      }
+    }
+
+    svg {
+      max-height: 7rem;
+      max-width: 80%;
+
+      #signature-path {
+        animation: drawSignature 5s linear forwards;
+      }
+    }
+  }
+
+  .social {
+    position: absolute;
+    bottom: 3rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .top-section {
+    .intro {
+      width: 50%;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .top-section {
+    flex-direction: column;
+
+    .intro {
+      text-align: center;
+      width: auto;
+      padding: 0;
+      padding-top: 2rem;
+
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+      }
+    }
+
+    .signature {
+      height: unset;
+      padding: 0;
+      padding-bottom: 2rem;
+    }
+
+    .social {
+      bottom: 1rem;
+    }
+  }
+}
+
+@keyframes drawSignature {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes morph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+  }
+  50% {
+    border-radius: 40% 60% 70% 30% / 40% 60% 30% 70%;
+  }
+  75% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  to {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
