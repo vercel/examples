@@ -1,0 +1,46 @@
+# Proton Calendar RO REST API on Vercel: fetch the pinned release, install dependencies, ship a minimal runtime image.
+
+ARG PROTONCAL_VERSION=0.6.0
+ARG PYTHON_IMAGE=python:3.14-slim-trixie
+
+# 1. Fetch upstream source at the pinned release tag and build the virtual environment.
+FROM ${PYTHON_IMAGE} AS build
+ARG PROTONCAL_VERSION
+ENV PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_ROOT_USER_ACTION=ignore
+
+WORKDIR /src
+RUN python -c "import tarfile, urllib.request; \
+    url = 'https://github.com/xcalts/protoncalendar-ro-api/archive/refs/tags/${PROTONCAL_VERSION}.tar.gz'; \
+    urllib.request.urlretrieve(url, '/tmp/src.tar.gz'); \
+    tarfile.open('/tmp/src.tar.gz').extractall('/src')" \
+ && mv "/src/protoncalendar-ro-api-${PROTONCAL_VERSION}" /app \
+ && rm -rf /tmp/src.tar.gz /src
+
+WORKDIR /app
+RUN python -c 'import tomllib; print(*tomllib.load(open("pyproject.toml", "rb"))["project"]["dependencies"], sep="\n")' > requirements.txt \
+ && python -m venv --without-pip /app/.venv \
+ && python -m pip --python /app/.venv/bin/python install -r requirements.txt \
+ && python -m pip --python /app/.venv/bin/python check
+
+# 2. Runtime: slim Python, virtual environment, and application package only.
+FROM ${PYTHON_IMAGE}
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PATH="/app/.venv/bin:${PATH}" \
+    PORT=80
+
+RUN python -m pip uninstall -y pip \
+ && useradd --system --uid 10001 --no-create-home --shell /usr/sbin/nologin app
+
+WORKDIR /app
+COPY --from=build /app/.venv /app/.venv
+COPY --from=build /app/api ./api
+
+USER app
+EXPOSE 80
+
+# Vercel routes to port 80 by default and overrides it with PORT.
+# exec hands PID 1 to uvicorn so SIGTERM triggers a clean shutdown on scale-down.
+CMD ["sh", "-c", "exec uvicorn api.main:app --host 0.0.0.0 --port ${PORT:-80}"]
