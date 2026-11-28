@@ -62,8 +62,11 @@ export function chatReducer(state: ChatState, action: ChatAction): ChatState {
   const f = action.frame
   switch (f.type) {
     case 'login':
-      // Identity is already known client-side; nothing to do.
-      return state
+      // Sent on the first join and again after every reconnect. Any 'stop
+      // typing' frames broadcast while we were offline were missed, so drop the
+      // typing list rather than show indicators that may never clear; active
+      // typists reappear on their next keystroke burst.
+      return state.typingUsers.length ? { ...state, typingUsers: [] } : state
     case 'history': {
       if (state.historyLoaded) return state
       if (!f.messages?.length) {
